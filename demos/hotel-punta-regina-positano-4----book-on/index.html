@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Punta Regina Positano 4* - Demo by Experiences Srl</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: #333; line-height: 1.6; background: #fafafa; }
+
+/* Demo Banner */
+.demo-banner {
+  background: linear-gradient(90deg, #e8a020, #f4b942);
+  color: #fff; text-align: center; padding: 10px 20px; font-weight: 600;
+  font-size: 14px; position: relative; z-index: 1000;
+}
+.demo-banner a { color: #fff; text-decoration: underline; }
+
+/* Navbar */
+.navbar {
+  background: #fff; padding: 16px 40px; display: flex; justify-content: space-between;
+  align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 999;
+}
+.logo { font-size: 22px; font-weight: 800; color: #0B3D61; letter-spacing: 1px; }
+.logo span { color: #e8a020; }
+.nav-menu { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-menu a { color: #0B3D61; text-decoration: none; font-weight: 500; font-size: 14px; transition: color 0.3s; }
+.nav-menu a:hover { color: #e8a020; }
+.btn-quote {
+  background: linear-gradient(135deg, #e8a020, #f4b942); color: #fff; padding: 10px 22px;
+  border-radius: 30px; border: none; font-weight: 600; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s; font-size: 14px;
+}
+.btn-quote:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(232,160,32,0.4); }
+
+/* Hero */
+.hero {
+  height: 90vh; min-height: 600px;
+  background: linear-gradient(rgba(11,61,97,0.55), rgba(11,61,97,0.55)),
+              url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1600&q=80') center/cover;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  color: #fff; padding: 20px;
+}
+.hero-content { max-width: 900px; }
+.hero h1 {
+  font-size: clamp(36px, 6vw, 64px); font-weight: 800; margin-bottom: 20px;
+  opacity: 0; animation: fadeInUp 0.8s ease forwards;
+}
+.hero p {
+  font-size: clamp(16px, 2vw, 20px); margin-bottom: 30px;
+  opacity: 0; animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+.hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeInUp 0.8s ease 0.4s forwards;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #e8a020, #f4b942); color: #fff; padding: 16px 36px;
+  border-radius: 50px; border: none; font-weight: 700; font-size: 16px; cursor: pointer;
+  text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(232,160,32,0.5); }
+.btn-outline {
+  background: transparent; color: #fff; padding: 16px 36px; border-radius: 50px;
+  border: 2px solid #fff; font-weight: 700; font-size: 16px; cursor: pointer;
+  text-decoration: none; transition: all 0.3s;
+}
+.btn-outline:hover { background: #fff; color: #0B3D61; transform: scale(1.05); }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats */
+.stats {
+  background: #0B3D61; color: #fff; padding: 50px 20px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px; text-align: center;
+}
+.stat-item h3 { font-size: 42px; color: #e8a020; font-weight: 800; margin-bottom: 5px; }
+.stat-item p { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+
+/* Section Title */
+.section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 38px; color: #0B3D61; font-weight: 800; margin-bottom: 12px; }
+.section-title p { color: #666; font-size: 17px; max-width: 600px; margin: 0 auto; }
+
+/* Services Grid */
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+}
+.service-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover { transform: scale(1.03); box-shadow: 0 12px 35px rgba(0,0,0,0.15); }
+.service-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.service-content { padding: 25px; }
+.service-content h3 { color: #0B3D61; font-size: 20px; margin-bottom: 10px; }
+.service-content p { color: #666; font-size: 15px; }
+
+/* AI Chat */
+.ai-section {
+  background: linear-gradient(135deg, #0B3D61, #154a78); color: #fff; padding: 80px 40px;
+}
+.ai-container {
+  max-width: 1100px; margin: 0 auto; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+}
+.ai-text h2 { font-size: 36px; margin-bottom: 18px; }
+.ai-text h2 span { color: #e8a020; }
+.ai-text p { font-size: 17px; margin-bottom: 20px; opacity: 0.95; }
+.ai-features { list-style: none; }
+.ai-features li { padding: 8px 0; padding-left: 28px; position: relative; }
+.ai-features li::before {
+  content: "✓"; position: absolute; left: 0; color: #e8a020; font-weight: 800; font-size: 18px;
+}
+.chat-box {
+  background: #fff; border-radius: 20px; padding: 22px; color: #333;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.chat-header {
+  display: flex; align-items: center; gap: 12px; padding-bottom: 15px;
+  border-bottom: 1px solid #eee; margin-bottom: 15px;
+}
+.chat-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, #e8a020, #f4b942);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.chat-header h4 { color: #0B3D61; font-size: 16px; }
+.chat-status { font-size: 12px; color: #25D366; }
+.chat-status::before {
+  content: "●"; margin-right: 4px; animation: blink 1.5s infinite;
+}
+@keyframes blink { 50% { opacity: 0.3; } }
+
+.message {
+  padding: 10px 14px; border-radius: 14px; margin-bottom: 10px; max-width: 80%; font-size: 14px;
+  animation: msgIn 0.5s ease forwards;
+}
+.msg-bot { background: #f0f4f8; color: #333; border-bottom-left-radius: 4px; }
+.msg-user { background: #0B3D61; color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.typing { display: flex; gap: 4px; padding: 12px 14px; background: #f0f4f8; border-radius: 14px; width: fit-content; }
+.typing span {
+  width: 8px; height: 8px; background: #999; border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+  30% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* Pricing */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px;
+}
+.price-card {
+  background: #fff; border-radius: 16px; padding: 35px 25px; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;
+  border-top: 5px solid #e8a020;
+}
+.price-card:hover { transform: scale(1.03); box-shadow: 0 12px 35px rgba(0,0,0,0.15); }
+.price-card.featured { border-top-color: #0B3D61; background: linear-gradient(180deg, #fff, #f8f9fb); transform: scale(1.05); }
+.price-card.featured:hover { transform: scale(1.08); }
+.price-card h3 { color: #0B3D61; font-size: 22px; margin-bottom: 10px; }
+.price-card .price { font-size: 38px; font-weight: 800; color: #e8a020; margin: 15px 0; }
+.price-card .price small { font-size: 16px; color: #666; font-weight: 400; }
+.price-card .commission { background: #f0f4f8; padding: 8px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; color: #0B3D61; display: inline-block; margin-bottom: 15px; }
+.price-card .limit { color: #888; font-size: 13px; margin-bottom: 20px; }
+.badge-popular {
+  background: #e8a020; color: #fff; padding: 4px 12px; border-radius: 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; display: inline-block; margin-bottom: 10px;
+}
+
+/* CTA Final */
+.cta-final {
+  background: linear-gradient(135deg, #e8a020, #f4b942); color: #fff; text-align: center; padding: 80px 40px;
+}
+.cta-final h2 { font-size: 38px; margin-bottom: 15px; }
+.cta-final p { font-size: 18px; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.btn-whatsapp {
+  background: #25D366; color: #fff; padding: 18px 40px; border-radius: 50px;
+  text-decoration: none; font-weight: 700; font-size: 18px; display: inline-flex;
+  align-items: center; gap: 12px; transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+
+/* Footer */
+footer { background: #0B3D61; color: #fff; text-align: center; padding: 30px 20px; }
+footer a { color: #e8a020; text-decoration: none; }
+
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .navbar { padding: 14px 20px; }
+  .ai-container { grid-template-columns: 1fr; }
+  .section { padding: 60px 20px; }
+  .price-card.featured { transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  ✨ DEMO GRATUITO realizzato da Experiences Srl — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+</div>
+
+<nav class="navbar">
+  <div class="logo">PUNTA <span>REGINA</span></div>
+  <ul class="nav-menu">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#rooms">Rooms & Suites</a></li>
+    <li><a href="#terrace">Terrace & Pool</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contacts</a></li>
+  </ul>
+  <button class="btn-quote" onclick="window.open('https://wa.me/393926917657','_blank')">Preventivo gratuito</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Live the Experience in Positano</h1>
+    <p>Luxury, exclusivity and warm hospitality on the Amalfi Coast. An unforgettable stay awaits you at Hotel Punta Regina 4*.</p>
+    <div class="hero-btns">
+      <a href="#rooms" class="btn-primary">Prenota Ora</a>
+      <a href="#services" class="btn-outline">Scopri di più</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-item"><h3>4★</h3><p>Hotel di Lusso</p></div>
+  <div class="stat-item"><h3>20+</h3><p>Anni di Ospitalità</p></div>
+  <div class="stat-item"><h3>36m²</h3><p>Suite Premium</p></div>
+  <div class="stat-item"><h3>100%</h3><p>Vista Mare</p></div>
+  <div class="stat-item"><h3>24/7</h3><p>Concierge Service</p></div>
+</section>
+
+<section class="section" id="rooms">
+  <div class="section-title">
+    <h2>Le Nostre Esperienze</h2>
+    <p>Scopri tutti i servizi e gli ambienti esclusivi di Hotel Punta Regina nel cuore di Positano.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Breathe Suite" loading="lazy">
+      <div class="service-content">
+        <h3>Breathe the Freedom Suite</h3>
+        <p>Spazi interni fino a 36 m² con arredi pregiati e maioliche di Vietri. Terrazze sul mare di Positano.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80" alt="Deluxe Special" loading="lazy">
+      <div class="service-content">
+        <h3>Deluxe Special</h3>
+        <p>Vasca Jacuzzi in camera o sulla terrazza. Soggiorno romantico per la coppia o esperienza per famiglie fino a 4 persone.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Deluxe Room" loading="lazy">
+      <div class="service-content">
+        <h3>Deluxe Room</h3>
+        <p>Mettiti comodo in uno spazio "large" e goditi la gioia di stare insieme tutto il giorno su una terrazza attrezzata vista mare.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&q=80" alt="Terrace & Pool" loading="lazy">
+      <div class="service-content">
+        <h3>Terrace & Pool</h3>
+        <p>Sogna ad occhi aperti guardando il panorama dell'antico borgo, la spiaggia grande e l'isola di Li Galli.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1200&q=80" alt="Guest House" loading="lazy">
+      <div class="service-content">
+        <h3>Puntarè & Punta Caterina</h3>
+        <p>Le nostre guest house esclusive nel cuore di Positano: charme tipico ed eleganza in ogni dettaglio.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Dining" loading="lazy">
+      <div class="service-content">
+        <h3>Hospitality & Dining</h3>
+        <p>L'accoglienza calorosa tipica delle case di Positano. Sapori autentici della tradizione amalfitana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ai-section">
+  <div class="ai-container">
+    <div class="ai-text">
+      <h2>Assistente AI <span>24/7 Multilingua</span></h2>
+      <p>Offri ai tuoi ospiti un servizio di concierge digitale sempre attivo. Rispondi in 30+ lingue, automatizza prenotazioni e gestisci richieste mentre dormi.</p>
+      <ul class="ai-features">
+        <li>Risposte istantanee in oltre 30 lingue</li>
+        <li>Integrato con il booking engine</li>
+        <li>Riduce il carico sulla reception del 70%</li>
+        <li>Aumenta le conversioni dirette</li>
+      </ul>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <h4>Punta Regina Concierge AI</h4>
+          <div class="chat-status">Online ora</div>
+        </div>
+      </div>
+      <div class="message msg-user">Hi! Do you have rooms with sea view available for next weekend?</div>
+      <div class="message msg-bot">Hello! 🌊 Yes, our Breathe Suite with private terrace facing the Amalfi Coast is available. Would you like me to check rates?</div>
+      <div class="message msg-user">Yes please, for 2 adults</div>
+      <div class="typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <h2>I Piani Experiences Srl</h2>
+    <p>Soluzioni digitali su misura per il settore turistico. Scegli il piano più adatto alla tua struttura.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Base</h3>
+      <div class="price">€1.400<small>/anno</small></div>
+      <div class="commission">+ 10% commissione</div>
+      <p class="limit">Fino a 1.000 clienti/anno</p>
+    </div>
+    <div class="price-card">
+      <h3>Advanced</h3>
+      <div class="price">€1.000<small>/anno</small></div>
+      <div class="commission">+ 8% commissione</div>
+      <p class="limit">Fino a 5.000 clienti/anno</p>
+    </div>
+    <div class="price-card featured">
+      <div class="badge-popular">PIÙ SCELTO</div>
+      <h3>Pro</h3>
+      <div class="price">€500<small>/anno</small></div>
+      <div class="commission">+ 5% commissione</div>
+      <p class="limit">Fino a 10.000 clienti/anno</p>
+    </div>
+    <div class="price-card">
+      <h3>Enterprise</h3>
+      <div class="price">€0<small>/anno</small></div>
+      <div class="commission">+ 3% commissione</div>
+      <p class="limit">Oltre 10.000 clienti/anno</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <h2>Pronti a far crescere Hotel Punta Regina?</h2>
+  <p>Contattaci ora su WhatsApp per una consulenza gratuita e un preventivo personalizzato.</p>
+  <a href="https://wa.me/393926917657" target="_blank" class="btn-whatsapp">
+    💬 Scrivici su WhatsApp
+  </a>
+</section>
+
+<footer>
+  <p>Powered by <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a></p>
+  <p style="margin-top:8px;opacity:0.7;font-size:13px;">Demo non ufficiale a scopo illustrativo per Hotel Punta Regina Positano.</p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
