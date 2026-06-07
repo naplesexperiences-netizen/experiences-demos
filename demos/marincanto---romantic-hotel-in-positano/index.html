@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marincanto – Romantic Hotel in Positano</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,sans-serif;color:#1a1a1a}
+a{text-decoration:none;color:inherit}
+
+/* DEMO BANNER */
+.demo-banner{background:linear-gradient(90deg,#0B3D61,#e8a020);color:#fff;text-align:center;padding:10px;font-size:13px;font-weight:600;letter-spacing:.5px}
+.demo-banner a{color:#fff;text-decoration:underline}
+
+/* NAVBAR */
+nav{background:#fff;box-shadow:0 2px 16px rgba(0,0,0,0.10);position:sticky;top:0;z-index:100;padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:20px;font-weight:800;color:#0B3D61;letter-spacing:1px}
+.nav-logo span{color:#e8a020}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{font-size:13.5px;font-weight:600;color:#0B3D61;transition:.2s}
+.nav-links a:hover{color:#e8a020}
+.btn-nav{background:linear-gradient(135deg,#e8a020,#f0b840);color:#fff;border:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:13px;cursor:pointer;transition:.3s}
+.btn-nav:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(232,160,32,.4)}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;height:92vh;min-height:520px;background:url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(11,61,97,.72) 0%,rgba(11,61,97,.45) 100%)}
+.hero-content{position:relative;z-index:2;max-width:760px;padding:24px}
+.hero-content h1{font-size:clamp(2rem,5vw,3.4rem);color:#fff;font-weight:800;line-height:1.18;animation:fadeInUp .7s forwards}
+.hero-content p{color:rgba(255,255,255,.9);font-size:clamp(1rem,2.2vw,1.22rem);margin:18px 0 30px;animation:fadeInUp .7s .2s forwards}
+.btn-hero{display:inline-block;background:linear-gradient(135deg,#e8a020,#f0b840);color:#fff;padding:15px 36px;border-radius:30px;font-weight:700;font-size:1rem;animation:fadeInUp .7s .4s forwards;transition:.3s;cursor:pointer}
+.btn-hero:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(232,160,32,.5)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* STATS */
+.stats{background:#0B3D61;padding:36px 24px}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;text-align:center}
+.stat-item h3{font-size:2.4rem;font-weight:800;color:#e8a020}
+.stat-item p{color:rgba(255,255,255,.85);font-size:.92rem;margin-top:4px}
+
+/* SERVICES */
+.services{padding:72px 24px;background:#f7f9fb}
+.section-title{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#0B3D61;margin-bottom:8px}
+.section-sub{text-align:center;color:#666;margin-bottom:44px;font-size:1rem}
+.services-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:.3s}
+.service-card:hover{transform:scale(1.03);box-shadow:0 10px 36px rgba(11,61,97,.15)}
+.service-card img{width:100%;height:180px;object-fit:cover}
+.card-body{padding:22px}
+.card-body h4{font-size:1.1rem;font-weight:700;color:#0B3D61;margin-bottom:8px}
+.card-body p{font-size:.92rem;color:#555;line-height:1.6}
+.card-tag{display:inline-block;background:rgba(232,160,32,.15);color:#b07a10;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:12px}
+
+/* AI CHAT */
+.ai-section{padding:72px 24px;background:linear-gradient(135deg,#0B3D61 0%,#0d4f7a 100%)}
+.ai-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:700px){.ai-inner{grid-template-columns:1fr}}
+.ai-text h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:16px}
+.ai-text p{color:rgba(255,255,255,.82);line-height:1.7;font-size:.97rem}
+.ai-features{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.ai-feat{display:flex;align-items:center;gap:10px;color:#fff;font-size:.93rem}
+.ai-feat span.dot{width:10px;height:10px;border-radius:50%;background:#e8a020;flex-shrink:0}
+.chat-box{background:#fff;border-radius:20px;padding:20px;min-height:280px;display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.chat-msg{display:flex;gap:10px;align-items:flex-start}
+.chat-msg.user{flex-direction:row-reverse}
+.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.avatar.bot{background:#0B3D61;color:#fff}
+.avatar.user{background:#e8a020;color:#fff}
+.bubble{background:#f0f4f8;border-radius:16px;padding:10px 14px;font-size:.88rem;color:#1a1a1a;max-width:220px;line-height:1.5}
+.chat-msg.user .bubble{background:#0B3D61;color:#fff}
+.typing{display:flex;align-items:center;gap:5px;padding:12px 16px;background:#f0f4f8;border-radius:16px;width:fit-content}
+.typing span{width:7px;height:7px;border-radius:50%;background:#0B3D61;animation:bounce .9s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* PRICING */
+.pricing{padding:72px 24px;background:#fff}
+.pricing-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:44px}
+.price-card{border:2px solid #e8e8e8;border-radius:16px;padding:28px 22px;text-align:center;transition:.3s;position:relative}
+.price-card:hover{border-color:#e8a020;transform:translateY(-4px);box-shadow:0 10px 32px rgba(232,160,32,.15)}
+.price-card.featured{border-color:#0B3D61;background:#0B3D61;color:#fff}
+.badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#e8a020;color:#fff;font-size:.72rem;font-weight:700;padding:3px 14px;border-radius:20px;white-space:nowrap}
+.price-card h3{font-size:1.25rem;font-weight:800;color:#0B3D61;margin-bottom:6px}
+.price-card.featured h3{color:#e8a020}
+.price-card .price-main{font-size:2rem;font-weight:800;color:#0B3D61;margin:10px 0 2px}
+.price-card.featured .price-main{color:#fff}
+.price-card .comm{font-size:.88rem;color:#888;margin-bottom:16px}
+.price-card.featured .comm{color:rgba(255,255,255,.7)}
+.price-card ul{list-style:none;font-size:.88rem;color:#555;text-align:left;margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
+.price-card.featured ul{color:rgba(255,255,255,.85)}
+.price-card ul li::before{content:"✓ ";color:#e8a020;font-weight:700}
+.btn-price{display:block;background:linear-gradient(135deg,#e8a020,#f0b840);color:#fff;padding:11px;border-radius:25px;font-weight:700;font-size:.9rem;transition:.3s}
+.btn-price:hover{transform:scale(1.04);box-shadow:0 4px 14px rgba(232,160,32,.4)}
+.price-card.featured .btn-price{background:#fff;color:#0B3D61}
+
+/* CTA */
+.cta-section{padding:64px 24px;background:linear-gradient(135deg,#f7f9fb,#eef2f7);text-align:center}
+.cta-section h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#0B3D61;margin-bottom:14px}
+.cta-section p{color:#555;margin-bottom:30px;font-size:1rem}
+.btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:16px 36px;border-radius:30px;font-weight:700;font-size:1.05rem;transition:.3s;box-shadow:0 4px 20px rgba(37,211,102,.3)}
+.btn-wa:hover{transform:scale(1.06);box-shadow:0 8px 28px rgba(37,211,102,.45)}
+.wa-icon{width:24px;height:24px;fill:#fff}
+
+/* FOOTER */
+footer{background:#0B3D61;color:rgba(255,255,255,.75);text-align:center;padding:28px 24px;font-size:.88rem}
+footer a{color:#e8a020;font-weight:600}
+footer strong{color:#fff}
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  🎯 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | WhatsApp: <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Marin<span>canto</span></div>
+    <ul class="nav-links">
+      <li><a href="#servizi">Camere</a></li>
+      <li><a href="#servizi">Piscina</a></li>
+      <li><a href="#servizi">Ristorante</a></li>
+      <li><a href="#servizi">Matrimoni</a></li>
+      <li><a href="#ai">AI Concierge</a></li>
+      <li><a href="#prezzi">Piani</a></li>
+    </ul>
+    <button class="btn-nav" onclick="window.open('https://wa.me/393926917657','_blank')">Preventivo gratuito</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Romantica Positano, vista mare senza confini</h1>
+    <p>Dal 1967, il Marincanto accoglie ogni ospite con calore unico — tra terrazze panoramiche, piscina a sfioro e il blu infinito della Costiera Amalfitana.</p>
+    <a href="https://wa.me/393926917657" target="_blank" class="btn-hero">Scopri le nostre camere ✦</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat-item"><h3>57+</h3><p>Anni di ospitalità dal 1967</p></div>
+    <div class="stat-item"><h3>∞</h3><p>Ospiti unici da tutto il mondo</p></div>
+    <div class="stat-item"><h3>100%</h3><p>Lido privato esclusivo</p></div>
+    <div class="stat-item"><h3>24/7</h3><p>AI Concierge multilingua</p></div>
+    <div class="stat-item"><h3>0</h3><p>Overbooking con Channel Manager</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servizi">
+  <h2 class="section-title">Vivere il Marincanto</h2>
+  <p class="section-sub">Un'esperienza romantica completa, sospesa tra cielo e mare</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere e Suites" loading="lazy">
+      <div class="card-body">
+        <h4>Camere & Suites</h4>
+        <p>Standard, Superior, Junior Suite e Suite con vista mozzafiato sulla Costiera Amalfitana. Eleganza senza compromessi.</p>
+        <span class="card-tag">4 tipologie</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Piscina e Spiaggia" loading="lazy">
+      <div class="card-body">
+        <h4>Piscina & Spiaggia</h4>
+        <p>Piscina a sfioro che si fonde con l'orizzonte e lido privato esclusivo tra le rocce. Relax assoluto sul mare.</p>
+        <span class="card-tag">Vista mare</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ristorante e Bar" loading="lazy">
+      <div class="card-body">
+        <h4>Ristorante & Bar</h4>
+        <p>Colazione panoramica, pranzo leggero e cocktail al tramonto. Sapori autentici campani con vista sulla costiera.</p>
+        <span class="card-tag">Cucina locale</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Matrimoni" loading="lazy">
+      <div class="card-body">
+        <h4>Matrimoni & Cerimonie</h4>
+        <p>Una cornice da sogno per dire "Sì". Cerimonia intima ed elegante, sospesi tra cielo e mare di Positano.</p>
+        <span class="card-tag">Evento su misura</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Costiera Amalfitana" loading="lazy">
+      <div class="card-body">
+        <h4>Terrazze & Panorami</h4>
+        <p>Set cinematografico, luogo d'ispirazione di grandi pittori. Ogni angolo del Marincanto è una cartolina.</p>
+        <span class="card-tag">UNESCO Heritage</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Villa Incanto" loading="lazy">
+      <div class="card-body">
+        <h4>Villa Incanto</h4>
+        <p>Spazi interni curati nei dettagli, atmosfera romantica e riservatezza assoluta per una permanenza indimenticabile.</p>
+        <span class="card-tag">Dal 1967</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section class="ai-section" id="ai">
+  <div class="ai-inner">
+    <div class="ai-text">
+      <h2>Assistente AI 24/7 per i vostri ospiti</h2>
+      <p>Con Experiences Srl, Marincanto ottiene un chatbot multilingua sempre attivo: risponde alle richieste degli ospiti in italiano, inglese, tedesco e oltre — anche di notte, anche nei weekend.</p>
+      <div class="ai-features">
+        <div class="ai-feat"><span class="dot"></span>Disponibilità disponibilità camere in tempo reale</div>
+        <div class="ai-feat"><span class="dot"></span>Suggerimenti ristoranti, escursioni e transfer</div>
+        <div class="ai-feat"><span class="dot"></span>Gestione richieste matrimoni e preventivi</div>
+        <div class="ai-feat"><span class="dot"></span>Supporto multilingua (IT, EN, DE, FR…)</div>
+      </div>
+    </div>
+    <div class="chat-box">
+      <div class="chat-msg">
+        <div class="avatar bot">🤖</div>
+        <div class="bubble">Benvenuto al Marincanto! 🌊 Come posso aiutarti oggi?</div>
+      </div>
+      <div class="chat-msg user">
+        <div class="avatar user">👤</div>
+        <div class="bubble">Vorrei una suite con vista mare per il 15 agosto.</div>
+      </div>
+      <div class="chat-msg">
+        <div class="avatar bot">🤖</div>
+        <div class="bubble">Perfetto! Abbiamo la Junior Suite Panoramica disponibile. Include colazione e accesso al lido privato. Vuoi procedere con la prenotazione? 🏖️</div>
+      </div>
+      <div class="chat-msg">
+        <div class="avatar bot">🤖</div>
+        <div class="typing"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="prezzi">
+  <h2 class="section-title">Piani Experiences Srl</h2>
+  <p class="section-sub">Soluzioni digitali complete per hotel, B&B e strutture ricettive</p>
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <h3>Base</h3>
+      <div class="price-main">€1.400</div>
+      <div class="comm">/anno + 10% commissione</div>
+      <ul>
+        <li>Fino a 1.000 clienti/anno</li>
+        <li>Sito web mobile-first</li>
+        <li>Booking integrato</li>
+        <li>SEO base</li>
+      </ul>
+      <a href="https://wa.me/393926917657" target="_blank" class="btn-price">Inizia ora</a>
+    </div>
+
+    <div class="price-card">
+      <h3>Advanced</h3>
+      <div class="price-main">€1.000</div>
+      <div class="comm">/anno + 8% commissione</div>
+      <ul>
+        <li>Fino a 5.000 clienti/anno</li>
+        <li>Channel Manager OTA</li>
+        <li>Google Ads & Social</li>
+        <li>Chatbot AI multilingua</li>
+      </ul>
+      <a href="https://wa.me/393926917657" target="_blank" class="btn-price">Inizia ora</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="badge">⭐ PIÙ SCELTO</div>
+      <h3>Pro</h3>
+      <div class="price-main">€500</div>
+      <div class="comm">/anno + 5% commissione</div>
+      <ul>
+        <li>Fino a 10.000 clienti/anno</li>
+        <li>Gestione OTA completa</li>
+        <li>SEM & Social Media</li>
+        <li>AI Concierge 24/7</li>
+        <li>Zero overbooking</li>
+      </ul>
+      <a href="https://wa.me/393926917657" target="_blank" class="btn-price">Scegli Pro</a>
+    </div>
+
+    <div class="price-card">
+      <h3>Enterprise</h3>
+      <div class="price-main">€0</div>
+      <div class="comm">/anno + 3% commissione</div>
+      <ul>
+        <li>Oltre 10.000 clienti/anno</li>
+        <li>Tutto il piano Pro incluso</li>
+        <li>Account manager dedicato</li>
+        <li>Reporting avanzato</li>
+      </ul>
+      <a href="https://wa.me/393926917657" target="_blank" class="btn-price">Contattaci</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-section">
+  <h2>Pronti a trasformare il Marincanto digitalmente?</h2>
+  <p>Contattaci su WhatsApp per una consulenza gratuita e personalizzata. Risposta entro 24 ore.</p>
+  <a href="https://wa.me/393926917657" target="_blank" class="btn-wa">
+    <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Scrivici su WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Marincanto – Romantic Hotel in Positano</strong> | Via Cristoforo Colombo 50, 84017 Positano (SA)</p>
+  <p style="margin-top:8px">📞 (+39) 089 875130 | ✉️ info@marincanto.it</p>
+  <p style="margin-top:12px;font-size:.82rem">Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — naplesexperiences.com | <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a></p>
+  <p style="margin-top:6px;font-size:.78rem;color:rgba(255,255,255,.45)">Portfolio: accoglienzafma.com · villacrawford.it · villatiberiade.com · vesuvioexpress.it</p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
