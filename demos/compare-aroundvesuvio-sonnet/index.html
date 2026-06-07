@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AroundVesuvio.com — Tour in Campania</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,sans-serif;color:#1a1a1a}
+a{text-decoration:none;color:inherit}
+
+/* BANNER */
+.top-banner{background:linear-gradient(90deg,#e8a020,#f5c842);text-align:center;padding:10px;font-size:13px;font-weight:600;color:#0B3D61}
+.top-banner a{color:#0B3D61;text-decoration:underline}
+
+/* NAV */
+nav{background:#0B3D61;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.nav-logo{color:#fff;font-size:20px;font-weight:800;letter-spacing:-0.5px}
+.nav-logo span{color:#e8a020}
+.nav-links{display:flex;gap:18px;list-style:none;flex-wrap:wrap}
+.nav-links a{color:rgba(255,255,255,0.85);font-size:14px;transition:color 0.2s}
+.nav-links a:hover{color:#e8a020}
+.btn-quote{background:#e8a020;color:#0B3D61;padding:10px 20px;border-radius:25px;font-weight:700;font-size:14px;transition:transform 0.2s,box-shadow 0.2s}
+.btn-quote:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(232,160,32,0.5)}
+
+/* HERO */
+.hero{min-height:88vh;background:url('https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,61,97,0.75),rgba(0,0,0,0.55))}
+.hero-content{position:relative;z-index:1;padding:0 20px;max-width:760px}
+.hero-content h1{font-size:clamp(28px,5vw,56px);color:#fff;font-weight:900;line-height:1.15;animation:fadeInUp 0.6s forwards}
+.hero-content p{font-size:clamp(16px,2.5vw,22px);color:rgba(255,255,255,0.9);margin:18px 0 30px;animation:fadeInUp 0.6s 0.2s forwards}
+.hero-content .btn-hero{display:inline-block;background:#e8a020;color:#0B3D61;padding:15px 36px;border-radius:30px;font-weight:800;font-size:17px;animation:fadeInUp 0.6s 0.4s forwards;transition:transform 0.2s,box-shadow 0.2s}
+.hero-content .btn-hero:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(232,160,32,0.6)}
+
+/* STATS */
+.stats{background:#0B3D61;padding:40px 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:30px}
+.stat{text-align:center;color:#fff}
+.stat-num{font-size:38px;font-weight:900;color:#e8a020}
+.stat-label{font-size:13px;opacity:0.85;margin-top:4px}
+
+/* SECTIONS */
+.section{padding:70px 20px;max-width:1100px;margin:0 auto}
+.section-title{text-align:center;font-size:clamp(24px,4vw,36px);font-weight:800;color:#0B3D61;margin-bottom:10px}
+.section-sub{text-align:center;color:#555;font-size:16px;margin-bottom:48px}
+
+/* SERVICES GRID */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);background:#fff;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer}
+.service-card:hover{transform:scale(1.03);box-shadow:0 8px 32px rgba(11,61,97,0.15)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:20px}
+.service-card-body h3{font-size:18px;font-weight:700;color:#0B3D61;margin-bottom:8px}
+.service-card-body p{font-size:14px;color:#555;line-height:1.6}
+.service-tag{display:inline-block;background:#e8a020;color:#0B3D61;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:10px}
+
+/* AI CHAT */
+.ai-section{background:linear-gradient(135deg,#0B3D61,#0d4f7c);padding:70px 20px}
+.ai-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.ai-text h2{color:#fff;font-size:clamp(22px,4vw,34px);font-weight:800;margin-bottom:16px}
+.ai-text p{color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;margin-bottom:20px}
+.ai-text ul{color:rgba(255,255,255,0.8);font-size:14px;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ai-text ul li::before{content:'✓ ';color:#e8a020;font-weight:700}
+.chat-box{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.chat-header{background:#0B3D61;color:#fff;padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.chat-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;display:inline-block}
+.msg{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;margin-bottom:10px;max-width:85%}
+.msg-bot{background:#f0f4f8;color:#1a1a1a;border-bottom-left-radius:4px}
+.msg-user{background:#0B3D61;color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.typing{display:flex;gap:4px;padding:10px 14px;background:#f0f4f8;border-radius:12px;width:fit-content}
+.typing span{width:7px;height:7px;background:#999;border-radius:50%;animation:bounce 1.2s infinite}
+.typing span:nth-child(2){animation-delay:0.2s}
+.typing span:nth-child(3){animation-delay:0.4s}
+
+/* PRICING */
+.pricing-bg{background:#f7f9fc;padding:70px 20px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.price-card{background:#fff;border-radius:16px;padding:28px 22px;box-shadow:0 4px 20px rgba(0,0,0,0.08);text-align:center;transition:transform 0.3s,box-shadow 0.3s;position:relative}
+.price-card:hover{transform:scale(1.04);box-shadow:0 8px 32px rgba(11,61,97,0.12)}
+.price-card.featured{background:#0B3D61;color:#fff}
+.price-card.featured .price-name,.price-card.featured .price-desc,.price-card.featured .price-feature{color:rgba(255,255,255,0.85)}
+.price-badge{background:#e8a020;color:#0B3D61;font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;position:absolute;top:-12px;left:50%;transform:translateX(-50%)}
+.price-name{font-size:20px;font-weight:800;color:#0B3D61;margin-bottom:6px}
+.price-card.featured .price-name{color:#e8a020}
+.price-amount{font-size:32px;font-weight:900;color:#0B3D61;margin:12px 0 4px}
+.price-card.featured .price-amount{color:#fff}
+.price-comm{font-size:14px;color:#e8a020;font-weight:600;margin-bottom:12px}
+.price-desc{font-size:12px;color:#888;margin-bottom:16px}
+.price-feature{font-size:13px;color:#444;padding:5px 0;border-top:1px solid #f0f0f0}
+.price-card.featured .price-feature{border-top-color:rgba(255,255,255,0.1)}
+.btn-price{display:inline-block;margin-top:18px;background:#e8a020;color:#0B3D61;padding:10px 22px;border-radius:25px;font-weight:700;font-size:13px;transition:transform 0.2s}
+.btn-price:hover{transform:scale(1.05)}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,#e8a020,#f5c842);padding:60px 20px;text-align:center}
+.cta-section h2{font-size:clamp(22px,4vw,36px);font-weight:800;color:#0B3D61;margin-bottom:14px}
+.cta-section p{color:#0B3D61;font-size:16px;margin-bottom:28px;opacity:0.85}
+.btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:16px 36px;border-radius:30px;font-weight:800;font-size:18px;transition:transform 0.2s,box-shadow 0.2s}
+.btn-wa:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(37,211,102,0.5)}
+.wa-icon{font-size:24px}
+
+/* FOOTER */
+footer{background:#0B3D61;color:rgba(255,255,255,0.7);text-align:center;padding:28px 20px;font-size:13px}
+footer a{color:#e8a020}
+
+/* KEYFRAMES */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
+@media(max-width:680px){
+.ai-inner{grid-template-columns:1fr}
+.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="top-banner">
+  🚀 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | WhatsApp: <a href="https://wa.me/393926917657">+39 392 691 7657</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Around<span>Vesuvio</span>.com</div>
+  <ul class="nav-links">
+    <li><a href="#tours">Tour</a></li>
+    <li><a href="#servizi">Destinazioni</a></li>
+    <li><a href="#ai">Assistente AI</a></li>
+    <li><a href="#prezzi">Prezzi</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a href="https://wa.me/393926917657" target="_blank" class="btn-quote">Preventivo Gratuito</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Scopri la Campania<br>come non l'hai mai vista</h1>
+    <p>Tour condivisi e privati da Pompei, Napoli, Salerno e Sorrento.<br>15 anni di esperienze autentiche per ogni viaggiatore.</p>
+    <a href="#tours" class="btn-hero">🗺️ Esplora i Tour</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Anni di Esperienza</div></div>
+  <div class="stat"><div class="stat-num">50K+</div><div class="stat-label">Turisti Soddisfatti</div></div>
+  <div class="stat"><div class="stat-num">4.4★</div><div class="stat-label">Rating Medio</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Destinazioni</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Lingue Supportate</div></div>
+</div>
+
+<!-- SERVIZI -->
+<section id="servizi" style="padding:70px 20px;background:#fff">
+  <div style="max-width:1100px;margin:0 auto">
+    <h2 class="section-title">Le Nostre Destinazioni</h2>
+    <p class="section-sub">Tour esclusivi in Campania — esperienze autentiche, guide certificate, prezzi trasparenti</p>
+    <div class="services-grid" id="tours">
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=800&q=80" alt="Pompei" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-tag">Tour Condiviso</span>
+          <h3>🏛️ Pompei</h3>
+          <p>Esplora gli scavi dell'antica città romana con guide esperte. Partenze quotidiane da Napoli, Salerno e Sorrento. Da €22/persona.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1611310424006-42cf208f3a0a?w=800&q=80" alt="Vesuvio" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-tag">Easy Tour</span>
+          <h3>🌋 Vesuvio</h3>
+          <p>Visita il Gran Cono del Vesuvio con transfer incluso. Nessun ostacolo, solo un'esperienza indimenticabile. 3 ore, per tutta la famiglia.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Costiera Amalfitana" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-tag">Grand Tour</span>
+          <h3>🌊 Costiera Amalfitana</h3>
+          <p>Un itinerario mozzafiato lungo la Costiera. Amalfi, Positano, Ravello — il meglio del Sud Italia in un giorno.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Capri" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-tag">Isola</span>
+          <h3>⛵ Capri</h3>
+          <p>Raggiungi l'isola più glamour del Mediterraneo. Grotta Azzurra, Villa Jovis, i Faraglioni. Tour giornaliero con barca inclusa.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=800&q=80" alt="Napoli" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-tag">City Tour</span>
+          <h3>🍕 Napoli</h3>
+          <p>Esplora il centro storico UNESCO di Napoli, il Castel dell'Ovo e la pizza più autentica del mondo. Tour a piedi con guida locale.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ercolano e gastronomia" loading="lazy">
+        <div class="service-card-body">
+          <span class="service-tag">Cultura & Gusto</span>
+          <h3>🏺 Ercolano</h3>
+          <p>Meglio conservata di Pompei, Ercolano svela tesori unici. Combinabile con tour gastronomici e degustazioni locali.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section class="ai-section" id="ai">
+  <div class="ai-inner">
+    <div class="ai-text">
+      <h2>🤖 Assistente AI 24/7 per i tuoi Clienti</h2>
+      <p>Con Experiences Srl, AroundVesuvio può offrire un chatbot multilingua che risponde istantaneamente a ogni domanda, in qualsiasi orario, in italiano, inglese, francese, tedesco e spagnolo.</p>
+      <ul>
+        <li>Risposta immediata a prenotazioni e info</li>
+        <li>Multilingua: 5 lingue supportate</li>
+        <li>Integrato con il sistema di booking</li>
+        <li>Riduce il carico del servizio clienti del 70%</li>
+        <li>Attivo H24, anche nei festivi</li>
+      </ul>
+    </div>
+    <div>
+      <div class="chat-box">
+        <div class="chat-header"><span class="chat-dot"></span> AroundVesuvio Assistant — Online</div>
+        <div class="msg msg-bot">👋 Ciao! Sono l'assistente AI di AroundVesuvio. Come posso aiutarti oggi?</div>
+        <div class="msg msg-user">Vorrei info sul tour Vesuvio</div>
+        <div class="msg msg-bot">🌋 Il <strong>Vesuvio Easy Tour</strong> dura 3 ore con transfer incluso! Parte ogni giorno da Pompei, Napoli e Sorrento. Prezzo da <strong>€22</strong>. Vuoi prenotare?</div>
+        <div class="msg msg-user">Sì! Per 2 persone sabato</div>
+        <div class="typing"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg" id="prezzi">
+  <h2 class="section-title">Piani Experiences Srl</h2>
+  <p class="section-sub" style="max-width:600px;margin:10px auto 48px">Soluzioni digitali su misura per tour operator e agenzie turistiche. Zero costi fissi elevati, massima crescita.</p>
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-name">Base</div>
+      <div class="price-amount">€1.400</div>
+      <div class="price-comm">+ 10% commissione</div>
+      <div class="price-desc">Fino a 1.000 clienti/anno</div>
+      <div class="price-feature">Sito web mobile-first</div>
+      <div class="price-feature">SEO base</div>
+      <div class="price-feature">1 OTA gestita</div>
+      <a href="https://wa.me/393926917657" class="btn-price">Inizia</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Advanced</div>
+      <div class="price-amount">€1.000</div>
+      <div class="price-comm">+ 8% commissione</div>
+      <div class="price-desc">Fino a 5.000 clienti/anno</div>
+      <div class="price-feature">Booking integrato</div>
+      <div class="price-feature">Google Ads + Social</div>
+      <div class="price-feature">Channel Manager</div>
+      <a href="https://wa.me/393926917657" class="btn-price">Inizia</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">⭐ CONSIGLIATO</div>
+      <div class="price-name">Pro</div>
+      <div class="price-amount" style="color:#e8a020">€500</div>
+      <div class="price-comm">+ 5% commissione</div>
+      <div class="price-desc" style="color:rgba(255,255,255,0.6)">Fino a 10.000 clienti/anno</div>
+      <div class="price-feature">Tutto Advanced +</div>
+      <div class="price-feature">Chatbot AI multilingua</div>
+      <div class="price-feature">Booking, Expedia, Agoda</div>
+      <a href="https://wa.me/393926917657" class="btn-price">Inizia</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Enterprise</div>
+      <div class="price-amount">€0</div>
+      <div class="price-comm">+ 3% commissione</div>
+      <div class="price-desc">Oltre 10.000 clienti/anno</div>
+      <div class="price-feature">Suite completa</div>
+      <div class="price-feature">Account manager dedicato</div>
+      <div class="price-feature">Integrazioni custom</div>
+      <a href="https://wa.me/393926917657" class="btn-price">Contattaci</a>
+    </div>
+
+  </div>
+  <p style="text-align:center;margin-top:32px;font-size:13px;color:#888">Portfolio clienti: <a href="https://vesuvioexpress.it" target="_blank" style="color:#0B3D61">vesuvioexpress.it</a> · <a href="https://villacrawford.it" target="_blank" style="color:#0B3D61">villacrawford.it</a> · <a href="https://villatiberiade.com" target="_blank" style="color:#0B3D61">villatiberiade.com</a></p>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contatti">
+  <h2>Pronto a far crescere AroundVesuvio?</h2>
+  <p>Parla con noi oggi stesso — consulenza gratuita, nessun impegno</p>
+  <a href="https://wa.me/393926917657" target="_blank" class="btn-wa">
+    <span class="wa-icon">💬</span> Scrivici su WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 AroundVesuvio.com — Tour e Esperienze in Campania</p>
+  <p style="margin-top:8px">Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — naplesexperiences.com | <a href="https://wa.me/393926917657">+39 392 691 7657</a></p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
