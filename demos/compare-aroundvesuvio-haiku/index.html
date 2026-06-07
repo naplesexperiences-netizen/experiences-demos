@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AroundVesuvio.com — Tour Campania | Experiences Srl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .banner-demo {
+            background: linear-gradient(135deg, #e8a020 0%, #d4891a 100%);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .banner-demo a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        nav {
+            background: white;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0B3D61;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0B3D61;
+        }
+
+        .btn-preventivo {
+            background: linear-gradient(135deg, #0B3D61 0%, #0d4a7a 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-preventivo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(11, 61, 97, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(11, 61, 97, 0.75) 0%, rgba(232, 160, 32, 0.6) 100%), 
+                        url('https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1600&q=80') center/cover no-repeat;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero .btn-cta {
+            background: #e8a020;
+            color: #0B3D61;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .hero .btn-cta:hover {
+            transform: scale(1.05);
+            background: #d4891a;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .stat-box h3 {
+            font-size: 32px;
+            color: #0B3D61;
+            margin-bottom: 8px;
+        }
+
+        .stat-box p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .services {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #0B3D61;
+            margin-bottom: 48px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 32px rgba(11, 61, 97, 0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 20px;
+        }
+
+        .service-card h3 {
+            color: #0B3D61;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .ai-section {
+            background: linear-gradient(135deg, #0B3D61 0%, #0d4a7a 100%);
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .ai-section h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .chat-demo {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-message {
+            text-align: left;
+            margin-bottom: 16px;
+            opacity: 1;
+        }
+
+        .chat-message.user {
+            text-align: right;
+        }
+
+        .chat-message .text {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .chat-message.bot .text {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .chat-message.user .text {
+            background: #e8a020;
+            color: #0B3D61;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: white;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+
+        .pricing {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #0B3D61;
+            margin-bottom: 48px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e8a020;
+            border-radius: 12px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 8px 32px rgba(232, 160, 32, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card h3 {
+            color: #0B3D61;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .pricing-card .price {
+            font-size: 32px;
+            color: #e8a020;
+            font-weight: 700;
+            margin: 16px 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            font-size: 14px;
+            color: #666;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cta-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            margin-top: 60px;
+        }
+
+        .cta-whatsapp:hover {
+            background: #1fa856;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #0B3D61;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #e8a020;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px;
+            }
+
+            nav ul {
+                gap: 12px;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 80px 20px;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-demo">
+        🎉 DEMO GRATUITO realizzato da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — naplesexperiences.com
+    </div>
+
+    <nav>
+        <a href="#" class="logo">🌋 AroundVesuvio</a>
+        <ul>
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#ai">Assistente AI</a></li>
+            <li><a href="#prezzi">Prezzi</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <button class="btn-preventivo" onclick="scrollToContact()">Preventivo Gratuito</button>
+    </nav>
+
+    <section class="hero">
+        <h1>Scopri la Bellezza della Campania</h1>
+        <p>Tour condivisi, privati e itinerari personalizzati per un'esperienza indimenticabile</p>
+        <button class="btn-cta" onclick="scrollToServices()">Esplora i Nostri Servizi</button>
+    </section>
+
+    <section class="stats">
+        <div class="stat-box">
+            <h3>15+</h3>
+            <p>Anni di Esperienza</p>
+        </div>
+        <div class="stat-box">
+            <h3>10.000+</h3>
+            <p>Clienti Soddisfatti</p>
+        </div>
+        <div class="stat-box">
+            <h3>4.4★</h3>
+            <p>Valutazione Media</p>
+        </div>
+        <div class="stat-box">
+            <h3>7 Destinazioni</h3>
+            <p>in Campania</p>
+        </div>
+    </section>
+
+    <section class="services" id="servizi">
+        <h2>I Nostri Servizi Esclusivi</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=800&q=80" alt="Pompei" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Tour Pompei</h3>
+                    <p>Scopri gli affascinanti scavi di Pompei con guide esperte. Visita uno dei siti archeologici più importanti del mondo.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1611310424006-42cf208f3a0a?w=800&q=80" alt="Vesuvio" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Vesuvio Easy Tour</h3>
+                    <p>Salita al Gran Cono del vulcano più famoso del mondo. Esperienza facile e veloce per tutta la famiglia.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Costiera Amalfitana" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Amalfi Grand Tour</h3>
+                    <p>Giornata indimenticabile sulla Costiera Amalfitana. Visita Positano, Amalfi e le spiagge più belle.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Capri" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Escursione Capri</h3>
+                    <p>Esplorare l'isola di Capri con visita alla Grotta Azzurra e spiagge incantate.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Napoli" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Napoli City Tour</h3>
+                    <p>Passeggiata nel centro storico di Napoli. Scopri le chiese, i palazzi e la gastronomia locale.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Cibo" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Esperienze Culinarie</h3>
+                    <p>Assaggia le specialità della cucina campana. Tour gastronomici con degustazioni autentiche.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-section" id="ai">
+        <h2>🤖 Assistente AI 24/7</h2>
+        <p style="margin-bottom: 32px; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Rispondiamo alle tue domande in tempo reale, in italiano, inglese, francese e tedesco
+        </p>
+        <div class="chat-demo">
+            <div class="chat-message bot">
+                <div class="text">Ciao! 👋 Come posso aiutarti oggi?</div>
+            </div>
+            <div class="chat-message user">
+                <div class="text">Qual è il miglior tour per una famiglia con bambini?</div>
+            </div>
+            <div class="chat-message bot">
+                <div class="text">
+                    Vi consiglio il <strong>Vesuvio Easy Tour</strong> — perfetto per famiglie! 
+                    <div class="typing-dots" style="margin-top: 8px;">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="prezzi">
+        <h2>Piani Experiences Srl</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>🚀 Enterprise</h3>
+                <div class="price">€0/anno</div>
+                <p style="color: #e8a020; font-weight: 600;">+ 3% commissione</p>
+                <ul>
+                    <li>✓ Oltre 10.000 clienti/anno</li>
+                    <li>✓ Sito web completo</li>
+                    <li>✓ Channel Manager</li>
+                    <li>✓ SEO/SEM illimitato</li>
+                    <li>✓ Chatbot AI 24/7</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card">
+                <h3>⭐ Pro</h3>
+                <div class="price">€500/anno</div>
+                <p style="color: #e8a020; font-weight: 600;">+ 5% commissione</p>
+                <ul>
+                    <li>✓ Fino a 10.000 clienti</li>
+                    <li>✓ Sito web responsive</li>
+                    <li>✓ Channel Manager</li>
+                    <li>✓ Google Ads integrato</li>
+                    <li>✓ Assistente AI</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card">
+                <h3>💎 Advanced</h3>
+                <div class="price">€1.000/anno</div>
+                <p style="color: #e8a020; font-weight: 600;">+ 8% commissione</p>
+                <ul>
+                    <li>✓ Fino a 5.000 clienti</li>
+                    <li>✓ Sito personalizzato</li>
+                    <li>✓ Gestione OTA</li>
+                    <li>✓ Social Media</li>
+                    <li>✓ Supporto prioritario</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card">
+                <h3>🎯 Base</h3>
+                <div class="price">€1.400/anno</div>
+                <p style="color: #e8a020; font-weight: 600;">+ 10% commissione</p>
+                <ul>
+                    <li>✓ Fino a 1.000 clienti</li>
+                    <li>✓ Sito web base</li>
+                    <li>✓ Booking widget</li>
+                    <li>✓ Email support</li>
+                    <li>✓ Statistiche basic</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="https://wa.me/393926917657?text=Richiedo%20un%20preventivo%20per%20AroundVesuvio.com" target="_blank" class="cta-whatsapp" id="contatti">
+            📱 Contattaci su WhatsApp
+        </a>
+    </section>
+
+    <footer>
+        Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo
+        <br><br>
+        📞 +39 392 691 7657 | 🌐 naplesexperiences.com
+    </footer>
+
+    <script>
+        function scrollToServices() {
+            document.getElementById('servizi').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToContact() {
+            window.open('https://wa.me/393926917657?text=Richiedo%20un%20preventivo%20per%20AroundVesuvio.com', '_blank');
+        }
+    </script>
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
