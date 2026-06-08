@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grand Hotel delle Terme Re Ferdinando - Dimhotels Ischia</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: #1a1a1a; line-height: 1.6; }
+
+/* Demo Banner */
+.demo-banner {
+  background: linear-gradient(90deg, #e8a020, #f4c245, #e8a020);
+  color: #0B3D61;
+  text-align: center;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  position: relative;
+  z-index: 1000;
+}
+.demo-banner a { color: #0B3D61; text-decoration: underline; }
+
+/* Navbar */
+.navbar {
+  background: white;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.logo { display: flex; flex-direction: column; }
+.logo-main { font-size: 22px; font-weight: 800; color: #0B3D61; letter-spacing: 1px; }
+.logo-sub { font-size: 11px; color: #e8a020; letter-spacing: 2px; font-weight: 600; }
+.nav-menu { display: flex; gap: 28px; list-style: none; }
+.nav-menu a { color: #0B3D61; text-decoration: none; font-weight: 500; font-size: 15px; transition: color 0.3s; }
+.nav-menu a:hover { color: #e8a020; }
+.btn-quote {
+  background: linear-gradient(135deg, #e8a020, #f4c245);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: 14px;
+}
+.btn-quote:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(232,160,32,0.4); }
+
+/* Hero */
+.hero {
+  background: linear-gradient(rgba(11,61,97,0.65), rgba(11,61,97,0.75)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+.hero-content { max-width: 900px; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(232,160,32,0.2);
+  border: 1px solid #e8a020;
+  color: #f4c245;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+.hero h1 {
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.15;
+  animation: fadeInUp 0.6s ease forwards;
+}
+.hero h1 span { color: #e8a020; }
+.hero p {
+  font-size: clamp(16px, 2vw, 20px);
+  margin-bottom: 32px;
+  opacity: 0.95;
+  animation: fadeInUp 0.6s ease 0.2s forwards;
+  animation-fill-mode: both;
+}
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.6s ease 0.4s forwards; animation-fill-mode: both; }
+.btn-primary {
+  background: linear-gradient(135deg, #e8a020, #f4c245);
+  color: white;
+  padding: 16px 36px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(232,160,32,0.5); }
+.btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 16px 36px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid white;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+.btn-secondary:hover { background: white; color: #0B3D61; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats Bar */
+.stats {
+  background: #0B3D61;
+  color: white;
+  padding: 50px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+.stat-item h3 {
+  font-size: 42px;
+  color: #e8a020;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.stat-item p { font-size: 14px; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Section */
+.section { padding: 80px 40px; max-width: 1300px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  color: #0B3D61;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.section-title p { color: #666; font-size: 17px; max-width: 600px; margin: 0 auto; }
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 28px;
+}
+.service-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.service-card:hover { transform: scale(1.03); box-shadow: 0 12px 36px rgba(0,0,0,0.15); }
+.service-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.service-content { padding: 24px; }
+.service-content h3 { color: #0B3D61; font-size: 20px; margin-bottom: 10px; font-weight: 700; }
+.service-content p { color: #666; font-size: 14px; }
+.service-tag {
+  display: inline-block;
+  background: rgba(232,160,32,0.15);
+  color: #e8a020;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* AI Chat Section */
+.ai-section {
+  background: linear-gradient(135deg, #0B3D61, #164a73);
+  color: white;
+  padding: 80px 40px;
+}
+.ai-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.ai-text h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 18px; font-weight: 800; }
+.ai-text h2 span { color: #e8a020; }
+.ai-text p { font-size: 16px; opacity: 0.9; margin-bottom: 20px; }
+.ai-features { list-style: none; }
+.ai-features li { padding: 8px 0; padding-left: 28px; position: relative; }
+.ai-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #e8a020;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.chat-box {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  color: #1a1a1a;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 16px;
+}
+.chat-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #0B3D61, #e8a020);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+}
+.chat-info h4 { font-size: 15px; color: #0B3D61; }
+.chat-info span { font-size: 12px; color: #4caf50; }
+.chat-info span::before {
+  content: "●";
+  margin-right: 4px;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.message { margin-bottom: 14px; display: flex; }
+.message.bot .bubble {
+  background: #f0f4f8;
+  padding: 12px 16px;
+  border-radius: 16px 16px 16px 4px;
+  max-width: 80%;
+  font-size: 14px;
+}
+.message.user { justify-content: flex-end; }
+.message.user .bubble {
+  background: linear-gradient(135deg, #0B3D61, #164a73);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 16px 16px 4px 16px;
+  max-width: 80%;
+  font-size: 14px;
+}
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 14px 16px;
+  background: #f0f4f8;
+  border-radius: 16px 16px 16px 4px;
+  width: fit-content;
+}
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: #0B3D61;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* Pricing */
+.pricing-section { background: #f8f9fb; padding: 80px 40px; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.price-card {
+  background: white;
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  position: relative;
+}
+.price-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+.price-card.featured {
+  background: linear-gradient(135deg, #0B3D61, #164a73);
+  color: white;
+  transform: scale(1.05);
+}
+.price-card.featured:hover { transform: scale(1.05) translateY(-8px); }
+.price-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e8a020;
+  color: white;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.price-card h3 { font-size: 22px; margin-bottom: 8px; font-weight: 700; }
+.price-card .price { font-size: 38px; font-weight: 800; color: #e8a020; margin: 16px 0 4px; }
+.price-card.featured .price { color: #f4c245; }
+.price-card .commission { font-size: 14px; opacity: 0.8; margin-bottom: 8px; }
+.price-card .limit { font-size: 12px; color: #999; margin-bottom: 20px; }
+.price-card.featured .limit { color: rgba(255,255,255,0.7); }
+.price-card ul { list-style: none; text-align: left; margin-bottom: 24px; }
+.price-card ul li { padding: 6px 0; font-size: 13px; padding-left: 22px; position: relative; }
+.price-card ul li::before { content: "✓"; position: absolute; left: 0; color: #e8a020; font-weight: 800; }
+.price-card.featured ul li::before { color: #f4c245; }
+
+/* CTA */
+.cta-section {
+  background: linear-gradient(135deg, #e8a020, #f4c245);
+  padding: 80px 40px;
+  text-align: center;
+  color: white;
+}
+.cta-section h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 16px; font-weight: 800; }
+.cta-section p { font-size: 18px; margin-bottom: 32px; }
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  padding: 18px 40px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+}
+.btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(37,211,102,0.6); }
+
+/* Footer */
+.footer {
+  background: #0a2e4a;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+.footer p { margin: 6px 0; font-size: 14px; opacity: 0.9; }
+.footer a { color: #e8a020; text-decoration: none; font-weight: 600; }
+
+@media (max-width: 768px) {
+  .navbar { padding: 14px 20px; flex-wrap: wrap; gap: 12px; }
+  .nav-menu { display: none; }
+  .section { padding: 60px 20px; }
+  .ai-container { grid-template-columns: 1fr; }
+  .price-card.featured { transform: scale(1); }
+  .price-card.featured:hover { transform: translateY(-8px); }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  ✨ DEMO GRATUITO realizzato da Experiences Srl — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+</div>
+
+<nav class="navbar">
+  <div class="logo">
+    <span class="logo-main">DIMHOTELS</span>
+    <span class="logo-sub">DAL 1957 • ISCHIA</span>
+  </div>
+  <ul class="nav-menu">
+    <li><a href="#hotel">L'Hotel</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#offerte">Offerte</a></li>
+    <li><a href="#ai">AI Concierge</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a href="https://wa.me/393926917657" class="btn-quote">Preventivo gratuito</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">★★★★ SUPERIOR • ISCHIA PORTO</span>
+    <h1>Grand Hotel delle Terme<br><span>Re Ferdinando</span></h1>
+    <p>Relax e tradizione nel cuore di Ischia Porto. Elegante hotel 4 stelle Superior immerso nel verde, con centro termale interno, 2 piscine termali e a pochi passi dal mare.</p>
+    <div class="hero-buttons">
+      <a href="#offerte" class="btn-primary">Prenota Ora</a>
+      <a href="#hotel" class="btn-secondary">Scopri di più</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-item">
+    <h3>1957</h3>
+    <p>Dal nostro inizio</p>
+  </div>
+  <div class="stat-item">
+    <h3>204</h3>
+    <p>Camere eleganti</p>
+  </div>
+  <div class="stat-item">
+    <h3>2</h3>
+    <p>Piscine Termali</p>
+  </div>
+  <div class="stat-item">
+    <h3>4★</h3>
+    <p>Stelle Superior</p>
+  </div>
+  <div class="stat-item">
+    <h3>7</h3>
+    <p>Hotel del Gruppo</p>
+  </div>
+</section>
+
+<section class="section" id="servizi">
+  <div class="section-title">
+    <h2>I Nostri Servizi Esclusivi</h2>
+    <p>Un'esperienza completa di benessere, comfort e tradizione nel cuore di Ischia</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Camere" loading="lazy">
+      <div class="service-content">
+        <span class="service-tag">COMFORT</span>
+        <h3>204 Camere Eleganti</h3>
+        <p>Camere raffinate con vista mare o giardino, ogni dettaglio pensato per il vostro relax e benessere.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Centro Termale" loading="lazy">
+      <div class="service-content">
+        <span class="service-tag">BENESSERE</span>
+        <h3>Centro Termale Interno</h3>
+        <p>Acque termali millenarie di Ischia, trattamenti, massaggi e cure benessere all'interno della struttura.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=1200&q=80" alt="Piscine" loading="lazy">
+      <div class="service-content">
+        <span class="service-tag">RELAX</span>
+        <h3>2 Piscine Termali</h3>
+        <p>Piscine termali a temperature differenti, immerse nel verde, perfette per momenti di puro relax.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Ristoranti" loading="lazy">
+      <div class="service-content">
+        <span class="service-tag">GUSTO</span>
+        <h3>2 Ristoranti Gourmet</h3>
+        <p>Cucina mediterranea e tradizionale ischitana con prodotti locali, dal mare alla tavola.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1200&q=80" alt="Ischia Porto" loading="lazy">
+      <div class="service-content">
+        <span class="service-tag">POSIZIONE</span>
+        <h3>Cuore di Ischia Porto</h3>
+        <p>Posizione strategica nel centro di Ischia Porto, a pochi passi dal mare, dalle boutique e dalla movida.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&q=80" alt="Escursioni" loading="lazy">
+      <div class="service-content">
+        <span class="service-tag">ESPERIENZE</span>
+        <h3>Escursioni sull'Isola</h3>
+        <p>Bus DimHotels dedicato, tour guidati, escursioni a Capri, Procida e visite ai borghi più belli di Ischia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ai-section" id="ai">
+  <div class="ai-container">
+    <div class="ai-text">
+      <h2>Assistente AI <span>24/7 Multilingua</span></h2>
+      <p>Un concierge virtuale sempre disponibile per i vostri ospiti, in italiano, inglese, tedesco, francese e spagnolo.</p>
+      <ul class="ai-features">
+        <li>Risposte immediate a qualsiasi richiesta</li>
+        <li>Prenotazioni dirette senza commissioni OTA</li>
+        <li>Informazioni su terme, escursioni e ristoranti</li>
+        <li>Supporto pre, durante e post soggiorno</li>
+      </ul>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-avatar">RF</div>
+        <div class="chat-info">
+          <h4>Re Ferdinando Concierge</h4>
+          <span>Online ora</span>
+        </div>
+      </div>
+      <div class="message user"><div class="bubble">Buongiorno! Avete disponibilità per il weekend con accesso alle terme?</div></div>
+      <div class="message bot"><div class="bubble">Buongiorno! 🌿 Sì, abbiamo camere disponibili. Il pacchetto include 2 notti + accesso illimitato alle piscine termali e centro benessere. Vuole maggiori dettagli?</div></div>
+      <div class="message user"><div class="bubble">Perfetto, sì grazie!</div></div>
+      <div class="message bot"><div class="typing"><span></span><span></span><span></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section" id="offerte">
+  <div class="section-title">
+    <h2>Piani Experiences Srl</h2>
+    <p>Soluzioni digitali su misura per il vostro hotel — zero overbooking, massima visibilità</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Base</h3>
+      <div class="price">€1.400<span style="font-size:16px;">/anno</span></div>
+      <div class="commission">+ 10% commissione</div>
+      <div class="limit">Fino a 1.000 clienti/anno</div>
+      <ul>
+        <li>Sito web mobile-first</li>
+        <li>Booking integrato</li>
+        <li>SEO base</li>
+        <li>Channel Manager</li>
+      </ul>
+      <a href="https://wa.me/393926917657" class="btn-primary">Inizia</a>
+    </div>
+    <div class="price-card">
+      <h3>Advanced</h3>
+      <div class="price">€1.000<span style="font-size:16px;">/anno</span></div>
+      <div class="commission">+ 8% commissione</div>
+      <div class="limit">Fino a 5.000 clienti/anno</div>
+      <ul>
+        <li>Tutto del Base</li>
+        <li>SEO/SEM avanzato</li>
+        <li>Google Ads</li>
+        <li>Gestione OTA</li>
+      </ul>
+      <a href="https://wa.me/393926917657" class="btn-primary">Inizia</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">CONSIGLIATO</div>
+      <h3>Pro</h3>
+      <div class="price">€500<span style="font-size:16px;">/anno</span></div>
+      <div class="commission">+ 5% commissione</div>
+      <div class="limit">Fino a 10.000 clienti/anno</div>
+      <ul>
+        <li>Tutto dell'Advanced</li>
+        <li>Chatbot AI 24/7</li>
+        <li>Social Media Mgmt</li>
+        <li>Report mensili</li>
+      </ul>
+      <a href="https://wa.me/393926917657" class="btn-primary">Inizia</a>
+    </div>
+    <div class="price-card">
+      <h3>Enterprise</h3>
+      <div class="price">€0<span style="font-size:16px;">/anno</span></div>
+      <div class="commission">+ 3% commissione</div>
+      <div class="limit">Oltre 10.000 clienti/anno</div>
+      <ul>
+        <li>Tutto incluso</li>
+        <li>Account manager</li>
+        <li>AI multilingua premium</li>
+        <li>Supporto prioritario</li>
+      </ul>
+      <a href="https://wa.me/393926917657" class="btn-primary">Contattaci</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contatti">
+  <h2>Pronti a trasformare il vostro hotel?</h2>
+  <p>Parliamone su WhatsApp — risposta in pochi minuti</p>
+  <a href="https://wa.me/393926917657" class="btn-whatsapp">
+    💬 Scrivici su WhatsApp: +39 392 691 7657
+  </a>
+</section>
+
+<footer class="footer">
+  <p>Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl — naplesexperiences.com</a></p>
+  <p>Portfolio: accoglienzafma.com • villacrawford.it • villatiberiade.com • vesuvioexpress.it</p>
+  <p style="margin-top:14px; opacity:0.6; font-size:12px;">© Demo per Gruppo Dimhotels — Grand Hotel delle Terme Re Ferdinando</p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
