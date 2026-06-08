@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Felix Ischia — Oasi di Pace e Benessere Termale</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-family:system-ui,-apple-system,sans-serif}
+body{background:#f8f9fa;color:#1a1a2e}
+:root{--blue:#0B3D61;--gold:#e8a020;--light:#f8f9fa;--white:#ffffff}
+
+/* DEMO BANNER */
+.demo-banner{background:linear-gradient(90deg,#e8a020,#c47a10,#e8a020);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:0.3px;position:relative;z-index:1000}
+.demo-banner a{color:#fff;text-decoration:underline}
+
+/* NAVBAR */
+nav{background:var(--blue);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:999;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.nav-logo{color:var(--gold);font-size:22px;font-weight:800;letter-spacing:1px}
+.nav-logo span{color:#fff;font-weight:400;font-size:13px;display:block;letter-spacing:2px}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:#cde;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(232,160,32,0.5)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+@media(max-width:768px){.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--blue);flex-direction:column;padding:16px 24px;gap:16px}.nav-links.open{display:flex}.hamburger{display:flex}}
+
+/* HERO */
+.hero{min-height:90vh;background:linear-gradient(rgba(11,61,97,0.7),rgba(11,61,97,0.5)),url('https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
+.hero-inner{max-width:800px}
+.hero h1{font-size:clamp(2rem,5vw,3.8rem);color:#fff;font-weight:900;line-height:1.15;animation:fadeInUp 0.7s forwards}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:rgba(255,255,255,0.9);font-size:clamp(1rem,2vw,1.25rem);margin:20px 0 32px;animation:fadeInUp 0.7s 0.2s forwards}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.7s 0.4s forwards}
+.btn-primary{background:var(--gold);color:#fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(232,160,32,0.6)}
+.btn-secondary{background:transparent;color:#fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid rgba(255,255,255,0.7);transition:transform 0.2s,background 0.2s}
+.btn-secondary:hover{transform:scale(1.05);background:rgba(255,255,255,0.15)}
+
+/* BOOKING BAR */
+.booking-bar{background:var(--blue);padding:20px 24px;display:flex;gap:12px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.booking-bar label{color:#cde;font-size:12px;font-weight:600;display:block;margin-bottom:4px}
+.booking-bar input,.booking-bar select{padding:8px 12px;border-radius:8px;border:none;font-size:14px;background:#fff;color:#333;min-width:120px}
+.booking-bar .btn-book{background:var(--gold);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;transition:transform 0.2s}
+.booking-bar .btn-book:hover{transform:scale(1.05)}
+
+/* STATS */
+.stats{background:var(--white);padding:40px 24px;display:flex;gap:0;justify-content:center;flex-wrap:wrap}
+.stat-item{text-align:center;padding:20px 40px;border-right:1px solid #e0e0e0}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2.5rem;font-weight:900;color:var(--gold)}
+.stat-label{font-size:13px;color:#666;margin-top:4px;font-weight:500}
+@media(max-width:600px){.stat-item{border-right:none;border-bottom:1px solid #e0e0e0;width:50%;padding:16px}}
+
+/* SECTIONS */
+section{padding:64px 24px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-size:clamp(1.6rem,3vw,2.5rem);color:var(--blue);font-weight:800}
+.section-header p{color:#666;margin-top:12px;font-size:16px;max-width:600px;margin-left:auto;margin-right:auto}
+.badge{display:inline-block;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+
+/* SERVICES GRID */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:transform 0.3s,box-shadow 0.3s}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,0.18)}
+.service-card img{width:100%;height:180px;object-fit:cover}
+.service-card-body{padding:20px}
+.service-card-body h3{color:var(--blue);font-size:17px;font-weight:700;margin-bottom:8px}
+.service-card-body p{color:#555;font-size:14px;line-height:1.6}
+.service-icon{font-size:22px;margin-bottom:8px}
+
+/* ABOUT SECTION */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.about-grid img{width:100%;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15)}
+.about-text h2{font-size:2rem;color:var(--blue);font-weight:800;margin-bottom:16px}
+.about-text p{color:#555;font-size:15px;line-height:1.8;margin-bottom:16px}
+.about-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.about-list li{display:flex;align-items:center;gap:10px;color:#444;font-size:14px}
+.about-list li::before{content:'✓';background:var(--gold);color:#fff;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+
+/* AI CHAT SECTION */
+.ai-section{background:linear-gradient(135deg,var(--blue),#0d4f80);padding:64px 24px}
+.ai-wrapper{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.ai-text h2{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:16px}
+.ai-text p{color:rgba(255,255,255,0.85);font-size:15px;line-height:1.7;margin-bottom:24px}
+.ai-features{display:flex;flex-direction:column;gap:12px}
+.ai-feat{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.9);font-size:14px}
+.ai-feat span.icon{font-size:20px}
+.chat-box{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+.chat-header{background:var(--blue);padding:14px 18px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:36px;height:36px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.chat-header-info h4{color:#fff;font-size:14px;font-weight:700}
+.chat-header-info p{color:rgba(255,255,255,0.7);font-size:11px}
+.online-dot{width:8px;height:8px;background:#4caf50;border-radius:50%;animation:pulse 1.5s infinite}
+.chat-messages{padding:16px;display:flex;flex-direction:column;gap:12px;min-height:220px;background:#f5f7fa}
+.msg{display:flex;flex-direction:column;gap:4px}
+.msg.bot{align-items:flex-start}
+.msg.user{align-items:flex-end}
+.msg-bubble{padding:10px 14px;border-radius:14px;font-size:13px;max-width:85%;line-height:1.5}
+.msg.bot .msg-bubble{background:#fff;color:#333;border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+.msg.user .msg-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.msg-time{font-size:10px;color:#999}
+.typing-bubble{background:#fff;padding:12px 16px;border-radius:14px;border-bottom-left-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;gap:4px;align-items:center;width:fit-content}
+.dot{width:7px;height:7px;background:#aaa;border-radius:50%;animation:bounce 1.2s infinite}
+.dot:nth-child(2){animation-delay:0.2s}
+.dot:nth-child(3){animation-delay:0.4s}
+.chat-input{display:flex;padding:12px;gap:8px;border-top:1px solid #e8e8e8}
+.chat-input input{flex:1;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;outline:none}
+.chat-input button{background:var(--gold);border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px}
+@media(max-width:768px){.ai-wrapper{grid-template-columns:1fr}}
+
+/* PRICING */
+.pricing-section{background:#f0f4f8;padding:64px 24px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.pricing-card{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:transform 0.3s,box-shadow 0.3s;position:relative;text-align:center}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(11,61,97,0.16)}
+.pricing-card.featured{background:linear-gradient(135deg,var(--blue),#0d5a8a);color:#fff;transform:scale(1.03)}
+.pricing-card.featured:hover{transform:scale(1.06) translateY(-4px)}
+.pricing-card.featured .price-label{color:rgba(255,255,255,0.8)}
+.pricing-card.featured .plan-name{color:var(--gold)}
+.pricing-card.featured .plan-features li{color:rgba(255,255,255,0.9)}
+.plan-name{font-size:20px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.price-main{font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1}
+.price-main span{font-size:14px;color:#999;font-weight:400}
+.price-label{font-size:13px;color:#888;margin:4px 0 16px}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:left}
+.plan-features li{font-size:13px;color:#555;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.plan-features li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+.plan-btn{background:var(--gold);color:#fff;border:none;padding:12px 24px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;width:100%;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;display:block}
+.plan-btn:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(232,160,32,0.5)}
+.featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap}
+
+/* CTA FINAL */
+.cta-section{background:linear-gradient(135deg,#0B3D61,#1a6491);padding:80px 24px;text-align:center}
+.cta-section h2{color:#fff;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:16px}
+.cta-section p{color:rgba(255,255,255,0.85);font-size:17px;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.wa-btn{display:inline-flex;align-items:center;gap:14px;background:#25d366;color:#fff;padding:18px 40px;border-radius:50px;font-size:18px;font-weight:700;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(37,211,102,0.4)}
+.wa-btn:hover{transform:scale(1.06);box-shadow:0 8px 40px rgba(37,211,102,0.6)}
+.wa-icon{font-size:28px}
+.contact-info{margin-top:40px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.contact-item{color:rgba(255,255,255,0.8);font-size:15px;display:flex;align-items:center;gap:8px}
+
+/* PORTFOLIO */
+.portfolio-section{background:#fff;padding:64px 24px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.portfolio-item{background:var(--blue);color:#fff;padding:20px;border-radius:12px;text-align:center;font-size:14px;font-weight:600;transition:transform 0.2s,background 0.2s}
+.portfolio-item:hover{transform:translateY(-4px);background:#0d5a8a}
+.portfolio-item .port-icon{font-size:28px;margin-bottom:8px}
+
+/* FOOTER */
+footer{background:#0a2940;color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px}
+footer p{font-size:13px;margin-bottom:8px}
+footer a{color:var(--gold);text-decoration:none}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;max-width:900px;margin:0 auto 24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.footer-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:12px}
+.footer-col p,.footer-col a{color:rgba(255,255,255,0.6);font-size:13px;display:block;margin-bottom:6px;text-decoration:none}
+.footer-col a:hover{color:var(--gold)}
+
+/* KEYFRAMES */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.9)}}
+@keyframes blink{0%,100%{opacity:0.3}50%{opacity:1}}
+@keyframes slideMsg{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.msg:nth-child(1){animation:slideMsg 0.5s 0.3s both}
+.msg:nth-child(2){animation:slideMsg 0.5s 0.8s both}
+.msg:nth-child(3){animation:slideMsg 0.5s 1.3s both}
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">🎯 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | WhatsApp: <a href="https://wa.me/393926917657">+39 392 691 7657</a></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="nav-logo">Hotel Felix<span>ISCHIA PORTO</span></div>
+<button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links">
+<li><a href="#about">Hotel</a></li>
+<li><a href="#camere">Camere</a></li>
+<li><a href="#servizi">Servizi</a></li>
+<li><a href="#terme">Terme & SPA</a></li>
+<li><a href="#offerte">Offerte</a></li>
+<li><a href="#contatti">Contatti</a></li>
+</ul>
+<a href="https://wa.me/393926917657" class="nav-cta" target="_blank">Preventivo Gratuito</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-inner">
+<div class="badge">🌊 Ischia Porto — Oasi Termale</div>
+<h1>Benvenuto all'<em>Hotel Felix</em><br>La tua vacanza ideale a Ischia</h1>
+<p>Nel cuore di Ischia Porto, famosa in tutto il mondo per le cure termali. Un'oasi di pace, benessere e natura per una vacanza davvero indimenticabile.</p>
+<div class="hero-btns">
+<a href="#booking" class="btn-primary">📅 Prenota Ora</a>
+<a href="#servizi" class="btn-secondary">Scopri i Servizi</a>
+</div>
+</div>
+</section>
+
+<!-- BOOKING BAR -->
+<div class="booking-bar" id="booking">
+<div><label>📅 Arrivo</label><input type="date" /></div>
+<div><label>📅 Partenza</label><input type="date" /></div>
+<div><label>👤 Adulti</label><select><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+<div><label>👶 Bambini</label><select><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+<button class="btn-book">Verifica Disponibilità</button>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+<div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Anni di Esperienza</div></div>
+<div class="stat-item"><div class="stat-num">★4.5</div><div class="stat-label">Rating Google</div></div>
+<div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Piscine Termali</div></div>
+<div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Assistenza Ospiti</div></div>
+<div class="stat-item"><div class="stat-num">CIN</div><div class="stat-label">Certificato Nazionale</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="background:#fff;padding:64px 24px">
+<div class="about-grid">
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80" alt="Hotel Felix Ischia" loading="lazy" />
+<div class="about-text">
+<div class="badge">Chi Siamo</div>
+<h2>Hotel Terme Felix: la tua oasi a Ischia Porto</h2>
+<p>L'Hotel Terme Felix è situato nel cuore del Centro Commerciale di Ischia Porto, famosa in tutto il mondo per le cure termali sia in estate che in inverno.</p>
+<p>Attorniato da un meraviglioso paesaggio naturale, l'Albergo Felix è una vera "oasi di pace e tranquillità" che seduce gli ospiti con la sua atmosfera unica.</p>
+<ul class="about-list">
+<li>Posizione centrale a Ischia Porto</li>
+<li>Piscine termali riscaldate tutto l'anno</li>
+<li>Camere Standard, Superior e Basic</li>
+<li>Giardino con vista panoramica</li>
+<li>SPA e trattamenti benessere</li>
+<li>Cucina tipica ischitana</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi" style="background:#f0f4f8">
+<div class="section-header">
+<div class="badge">I Nostri Servizi</div>
+<h2>Tutto per la tua Vacanza Perfetta</h2>
+<p>Hotel Felix offre una gamma completa di servizi per rendere il tuo soggiorno a Ischia un'esperienza indimenticabile</p>
+</div>
+<div class="services-grid" id="camere">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Camere Hotel Felix" loading="lazy" />
+<div class="service-card-body">
+<div class="service-icon">🛏️</div>
+<h3>Camere & Suite</h3>
+<p>Standard, Superior e Basic con stile architettonico moderno, controsoffitti a volta, colori chiari e arredi eleganti.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Terme e SPA" loading="lazy" />
+<div class="service-card-body">
+<div class="service-icon" id="terme">🌿</div>
+<h3>Terme & SPA</h3>
+<p>Trattamenti termali e benessere nelle nostre piscine riscaldate, sfruttando le proprietà curative delle acque di Ischia.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&q=80" alt="Ischia Porto" loading="lazy" />
+<div class="service-card-body">
+<div class="service-icon">🏖️</div>
+<h3>Escursioni & Attività</h3>
+<p>Tour guidati di Ischia, escursioni in barca, visite al Castello Aragonese e alle spiagge più belle dell'isola.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Ristorante Hotel Felix" loading="lazy" />
+<div class="service-card-body">
+<div class="service-icon">🍽️</div>
+<h3>Ristorante & Bar</h3>
+<p>Cucina tipica ischitana con prodotti freschi locali, colazioni abbondanti e aperitivi al tramonto con vista sul porto.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=1200&q=80" alt="Piscina Hotel Felix" loading="lazy" />
+<div class="service-card-body">
+<div class="service-icon">🏊</div>
+<h3>Piscine Termali</h3>
+<p>Due piscine con acque termali naturali di Ischia, disponibili tutto l'anno. Il cuore del nostro centro benessere.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1200&q=80" alt="Offerte Hotel Felix" loading="lazy" />
+<div class="service-card-body">
+<div class="service-icon" id="offerte">🎁</div>
+<h3>Offerte & Pacchetti</h3>
+<p>Pacchetti benessere, soggiorni romantici, vacanze in famiglia e offerte last minute. Prenota direttamente e risparmia.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- AI CHAT SECTION -->
+<section class="ai-section">
+<div class="ai-wrapper">
+<div class="ai-text">
+<div class="badge" style="background:var(--gold)">🤖 Novità 2025</div>
+<h2>Assistente Virtuale AI Sempre Attivo</h2>
+<p>Grazie ai servizi di <strong style="color:var(--gold)">Experiences Srl</strong>, Hotel Felix può offrire un assistente AI multilingua disponibile 24 ore su 24, 7 giorni su 7. Nessuna richiesta senza risposta, nessun cliente perso.</p>
+<div class="ai-features">
+<div class="ai-feat"><span class="icon">🌍</span>Risponde in Italiano, Inglese, Tedesco, Francese</div>
+<div class="ai-feat"><span class="icon">📅</span>Gestisce prenotazioni e disponibilità in tempo reale</div>
+<div class="ai-feat"><span class="icon">💬</span>Integrato su WhatsApp, sito web e Facebook</div>
+<div class="ai-feat"><span class="icon">📊</span>Report settimanali su richieste e conversioni</div>
+</div>
+</div>
+<div class="chat-box">
+<div class="chat-header">
+<div class="chat-avatar">🤖</div>
+<div class="chat-header-info">
+<h4>Felix AI Assistant</h4>
+<p>Hotel Felix Ischia</p>
+</div>
+<div class="online-dot" style="margin-left:auto"></div>
+</div>
+<div class="chat-messages">
+<div class="msg bot">
+<div class="msg-bubble">👋 Benvenuto all'Hotel Felix Ischia! Come posso aiutarti oggi?</div>
+<span class="msg-time">Adesso</span>
+</div>
+<div class="msg user">
+<div class="msg-bubble">Avete disponibilità per agosto, 2 adulti?</div>
+<span class="msg-time">Adesso</span>
+</div>
+<div class="msg bot">
+<div class="msg-bubble">✅ Certo! Ad agosto abbiamo camere Superior disponibili con trattamento di mezza pensione. Vuoi che verifichi le date precise?</div>
+<span class="msg-time">Adesso</span>
+</div>
+</div>
+<div style="padding:12px 16px 4px">
+<div class="typing-bubble">
+<div class="dot"></div><div class="dot"></div><div class="dot"></div>
+<span style="font-size:11px;color:#aaa;margin-left:6px">Felix sta scrivendo...</span>
+</div>
+</div>
+<div class="chat-input">
+<input type="text" placeholder="Scrivi un messaggio..." />
+<button>➤</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<div class="portfolio-section">
+<div class="section-header">
+<div class="badge">Portfolio Experiences Srl</div>
+<h2>Strutture che già ci affidano il loro digitale</h2>
+</div>
+<div class="portfolio-grid">
+<div class="portfolio-item"><div class="port-icon">🏨</div>accoglienzafma.com</div>
+<div class="portfolio-item"><div class="port-icon">🌿</div>villacrawford.it</div>
+<div class="portfolio-item"><div class="port-icon">🏛️</div>villatiberiade.com</div>
+<div class="portfolio-item"><div class="port-icon">🚂</div>vesuvioexpress.it</div>
+</div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing-section">
+<div class="section-header">
+<div class="badge">Piani Experiences Srl</div>
+<h2>Scegli il piano giusto per Hotel Felix</h2>
+<p>Prezzi trasparenti, zero overbooking, più prenotazioni dirette. Senza rischi.</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card">
+<div class="plan-name">Base</div>
+<div class="price-main">€1.400<span>/anno</span></div>
+<div class="price-label">+ 10% commissione · fino a 1.000 clienti</div>
+<ul class="plan-features">
+<li>Sito web mobile-first</li>
+<li>Booking integrato</li>
+<li>1 canale OTA gestito</li>
+<li>Supporto email</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn" target="_blank">Inizia Ora</a>
+</div>
+<div class="pricing-card">
+<div class="plan-name">Advanced</div>
+<div class="price-main">€1.000<span>/anno</span></div>
+<div class="price-label">+ 8% commissione · fino a 5.000 clienti</div>
+<ul class="plan-features">
+<li>Sito + SEO ottimizzato</li>
+<li>Channel Manager 3 OTA</li>
+<li>Google Ads base</li>
+<li>Report mensili</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn" target="_blank">Inizia Ora</a>
+</div>
+<div class="pricing-card featured">
+<div class="featured-badge">⭐ CONSIGLIATO</div>
+<div class="plan-name">Pro</div>
+<div class="price-main" style="color:var(--gold)">€500<span style="color:rgba(255,255,255,0.6)">/anno</span></div>
+<div class="price-label">+ 5% commissione · fino a 10.000 clienti</div>
+<ul class="plan-features">
+<li>Sito premium + blog</li>
+<li>Channel Manager completo</li>
+<li>Google Ads + Social Media</li>
+<li>Chatbot AI multilingua</li>
+<li>Assistenza prioritaria</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn" target="_blank">Scegli Pro</a>
+</div>
+<div class="pricing-card">
+<div class="plan-name">Enterprise</div>
+<div class="price-main">€0<span>/anno</span></div>
+<div class="price-label">+ 3% commissione · oltre 10.000 clienti</div>
+<ul class="plan-features">
+<li>Tutto il piano Pro incluso</li>
+<li>AI Assistant avanzato</li>
+<li>Account manager dedicato</li>
+<li>Integrazioni custom</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn" target="_blank">Contattaci</a>
+</div>
+</div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-section" id="contatti">
+<div class="badge" style="background:rgba(255,255,255,0.2);color:#fff">📞 Contattaci Ora</div>
+<h2>Porta Hotel Felix al livello successivo</h2>
+<p>Più prenotazioni dirette, zero overbooking, un sito che converte. Parla con noi oggi — è gratuito e senza impegno.</p>
+<a href="https://wa.me/393926917657" class="wa-btn" target="_blank">
+<span class="wa-icon">💬</span>
+Scrivici su WhatsApp
+</a>
+<div class="contact-info">
+<div class="contact-item">🌐 <a href="https://naplesexperiences.com" target="_blank" style="color:var(--gold)">naplesexperiences.com</a></div>
+<div class="contact-item">📱 +39 392 691 7657</div>
+<div class="contact-item">🏨 Hotel Felix: 081.991201</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-top">
+<div class="footer-col">
+<h4>🏨 Hotel Felix Ischia</h4>
+<p>Via Alfredo De Luca, 48</p>
+<p>80077 Ischia Porto (NA)</p>
+<a href="tel:081991201">📞 081.991201</a>
+<p style="font-size:11px;margin-top:8px;color:rgba(255,255,255,0.4)">P.IVA: 06494750638</p>
+<p style="font-size:10px;color:rgba(255,255,255,0.3)">CIN: IT063037A15BFL6CN9</p>
+</div>
+<div class="footer-col">
+<h4>🔗 Link Utili</h4>
+<a href="#about">Chi Siamo</a>
+<a href="#camere">Camere</a>
+<a href="#servizi">Servizi</a>
+<a href="#terme">Terme & SPA</a>
+<a href="#offerte">Offerte</a>
+</div>
+<div class="footer-col">
+<h4>⚡ Powered by</h4>
+<a href="https://naplesexperiences.com" target="_blank" style="color:var(--gold);font-weight:700;font-size:15px">Experiences Srl</a>
+<a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+<a href="https://wa.me/393926917657" target="_blank">WhatsApp: +39 392 691 7657</a>
+<p style="margin-top:8px;font-size:11px">Soluzioni Digitali per il Turismo</p>
+</div>
+</div>
+<p>© 2025 Hotel Felix Ischia — Tutti i diritti riservati</p>
+<p style="margin-top:6px;font-size:12px">🚀 <strong style="color:var(--gold)">Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a></strong> — Soluzioni Digitali per il Turismo | <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a></p>
+<p style="margin-top:4px;font-size:11px;color:rgba(255,255,255,0.3)">⚠️ Questo è un sito demo gratuito. Non rappresenta il sito ufficiale di Hotel Felix.</p>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+const chatInput=document.querySelector('.chat-input input');
+const chatBtn=document.querySelector('.chat-input button');
+const chatMsgs=document.querySelector('.chat-messages');
+if(chatBtn&&chatInput){chatBtn.addEventListener('click',()=>{const v=chatInput.value.trim();if(!v)return;const m=document.createElement('div');m.className='msg user';m.innerHTML=`<div class="msg-bubble">${v}</div><span class="msg-time">Adesso</span>`;chatMsgs.appendChild(m);chatInput.value='';chatMsgs.scrollTop=chatMsgs.scrollHeight;setTimeout(()=>{const r=document.createElement('div');r.className='msg bot';r.innerHTML=`<div class="msg-bubble">Grazie per il messaggio! Un nostro operatore ti risponderà a breve. Per info immediate chiama il 081.991201 🏨</div><span class="msg-time">Adesso</span>`;chatMsgs.appendChild(r);chatMsgs.scrollTop=chatMsgs.scrollHeight},1200)});}
+</script>
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
