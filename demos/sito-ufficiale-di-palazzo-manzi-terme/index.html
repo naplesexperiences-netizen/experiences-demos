@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palazzo Manzi Terme & Spa — Ischia | Demo by Experiences Srl</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-family:system-ui,-apple-system,sans-serif}
+body{background:#f8f6f2;color:#1a1a2e;overflow-x:hidden}
+
+/* DEMO BANNER */
+#demo-banner{background:linear-gradient(90deg,#b8860b,#e8a020,#b8860b);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:600;letter-spacing:.5px;position:sticky;top:0;z-index:9999;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#demo-banner a{color:#fff;text-decoration:underline}
+
+/* NAVBAR */
+nav{background:#0B3D61;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:40px;z-index:999;box-shadow:0 2px 16px rgba(0,0,0,.3)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo span{color:#e8a020;font-size:20px;font-weight:800;letter-spacing:.5px;line-height:1.1}
+.nav-logo small{color:#a8c4d8;font-size:11px;display:block;font-weight:400}
+.nav-menu{display:flex;gap:24px;list-style:none}
+.nav-menu a{color:#d0e8f5;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-menu a:hover{color:#e8a020}
+.nav-cta{background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61;border:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:13px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-block}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(232,160,32,.5)}
+@media(max-width:768px){.nav-menu{display:none}.nav-logo span{font-size:16px}}
+
+/* HERO */
+#hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;background-image:url('https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=1600&q=80');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,61,97,.82) 0%,rgba(11,61,97,.55) 60%,rgba(0,0,0,.35) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;padding:40px 20px;max-width:860px}
+.hero-badge{display:inline-block;background:rgba(232,160,32,.25);border:1px solid #e8a020;color:#e8a020;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px;animation:fadeInUp .5s forwards}
+.hero-content h1{font-size:clamp(32px,5vw,62px);font-weight:900;line-height:1.1;margin-bottom:20px;text-shadow:0 2px 12px rgba(0,0,0,.4);animation:fadeInUp .5s .2s forwards}
+.hero-content p{font-size:clamp(16px,2vw,20px);color:#d0e8f5;margin-bottom:36px;line-height:1.6;animation:fadeInUp .5s .4s forwards}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .5s .6s forwards}
+.btn-primary{background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61;padding:14px 32px;border-radius:30px;font-weight:800;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(232,160,32,.45)}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(232,160,32,.6)}
+.btn-secondary{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.7);color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,background .2s;backdrop-filter:blur(6px)}
+.btn-secondary:hover{background:rgba(255,255,255,.28);transform:scale(1.05)}
+
+/* STATS BAR */
+#stats{background:linear-gradient(135deg,#0B3D61,#0d4a75);padding:36px 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat-item{color:#fff}
+.stat-num{font-size:clamp(28px,4vw,46px);font-weight:900;color:#e8a020;line-height:1}
+.stat-label{font-size:13px;color:#a8c4d8;margin-top:6px;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+@media(max-width:600px){#stats{grid-template-columns:repeat(2,1fr)}}
+
+/* SECTIONS */
+section{padding:70px 5%}
+.section-header{text-align:center;margin-bottom:50px}
+.section-header h2{font-size:clamp(26px,3.5vw,40px);color:#0B3D61;font-weight:800;margin-bottom:12px}
+.section-header p{color:#666;font-size:16px;max-width:600px;margin:0 auto;line-height:1.6}
+.section-label{display:inline-block;color:#e8a020;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+
+/* SERVICES GRID */
+#services{background:#fff}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 36px rgba(11,61,97,.18)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:22px}
+.service-icon{font-size:26px;margin-bottom:10px}
+.service-card h3{color:#0B3D61;font-size:18px;font-weight:700;margin-bottom:8px}
+.service-card p{color:#666;font-size:14px;line-height:1.6}
+.service-tag{display:inline-block;background:#e8f4fb;color:#0B3D61;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-top:10px;text-transform:uppercase;letter-spacing:.5px}
+
+/* AI CHAT BOX */
+#ai-section{background:linear-gradient(135deg,#f0f8ff,#e8f4fb)}
+.ai-container{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.ai-container{grid-template-columns:1fr}}
+.ai-text h2{color:#0B3D61;font-size:clamp(24px,3vw,36px);font-weight:800;margin-bottom:16px}
+.ai-text p{color:#555;font-size:15px;line-height:1.7;margin-bottom:20px}
+.ai-features{list-style:none;display:flex;flex-direction:column;gap:12px}
+.ai-features li{display:flex;align-items:center;gap:10px;color:#444;font-size:14px}
+.ai-features li::before{content:"✓";background:#e8a020;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.chat-widget{background:#fff;border-radius:20px;box-shadow:0 8px 32px rgba(11,61,97,.15);overflow:hidden;max-width:400px}
+.chat-header{background:linear-gradient(135deg,#0B3D61,#0d4a75);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:40px;height:40px;background:linear-gradient(135deg,#e8a020,#f5c842);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.chat-header-info h4{color:#fff;font-size:14px;font-weight:700}
+.chat-header-info span{color:#a8c4d8;font-size:12px}
+.online-dot{width:8px;height:8px;background:#4caf50;border-radius:50%;display:inline-block;margin-right:4px}
+.chat-body{padding:20px;display:flex;flex-direction:column;gap:14px;min-height:240px;background:#f8f9fa}
+.msg{max-width:82%;font-size:13px;line-height:1.5;padding:10px 14px;border-radius:16px;animation:fadeInUp .4s forwards}
+.msg-bot{background:#fff;color:#333;border-radius:4px 16px 16px 16px;box-shadow:0 2px 8px rgba(0,0,0,.08);align-self:flex-start}
+.msg-user{background:linear-gradient(135deg,#0B3D61,#0d4a75);color:#fff;border-radius:16px 4px 16px 16px;align-self:flex-end}
+.typing-dots{display:flex;gap:5px;padding:10px 14px;background:#fff;border-radius:4px 16px 16px 16px;box-shadow:0 2px 8px rgba(0,0,0,.08);width:fit-content}
+.typing-dots span{width:7px;height:7px;background:#0B3D61;border-radius:50%;animation:bounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
+.chat-input-bar{padding:14px;background:#fff;border-top:1px solid #eee;display:flex;gap:8px}
+.chat-input-bar input{flex:1;border:1.5px solid #e0e0e0;border-radius:20px;padding:8px 14px;font-size:13px;outline:none}
+.chat-send{background:linear-gradient(135deg,#e8a020,#f5c842);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;transition:transform .2s}
+.chat-send:hover{transform:scale(1.1)}
+
+/* PRICING */
+#pricing{background:#fff}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto}
+@media(max-width:1024px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pricing-grid{grid-template-columns:1fr}}
+.pricing-card{border-radius:16px;padding:30px 24px;text-align:center;border:2px solid #eee;transition:transform .3s,box-shadow .3s;position:relative;background:#fff}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(11,61,97,.15)}
+.pricing-card.featured{background:linear-gradient(135deg,#0B3D61,#0d4a75);border-color:#e8a020;color:#fff}
+.pricing-card.featured .plan-price,.pricing-card.featured .plan-name{color:#fff}
+.featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61;font-size:11px;font-weight:800;padding:5px 16px;border-radius:20px;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
+.plan-name{font-size:22px;font-weight:800;color:#0B3D61;margin-bottom:6px}
+.plan-price{font-size:32px;font-weight:900;color:#0B3D61;margin:16px 0 4px}
+.plan-price span{font-size:14px;font-weight:400}
+.plan-comm{font-size:13px;color:#888;margin-bottom:4px}
+.pricing-card.featured .plan-comm{color:#a8c4d8}
+.plan-limit{font-size:12px;color:#aaa;margin-bottom:20px}
+.pricing-card.featured .plan-limit{color:#7aa8c4}
+.plan-features{list-style:none;text-align:left;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}
+.plan-features li{font-size:13px;color:#555;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.pricing-card.featured .plan-features li{color:#d0e8f5}
+.plan-features li::before{content:"✓";color:#e8a020;font-weight:700;flex-shrink:0}
+.btn-plan{width:100%;padding:12px;border-radius:25px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
+.btn-plan-outline{background:transparent;border:2px solid #0B3D61;color:#0B3D61}
+.btn-plan-outline:hover{background:#0B3D61;color:#fff;transform:scale(1.03)}
+.btn-plan-gold{background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61}
+.btn-plan-gold:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(232,160,32,.45)}
+
+/* CTA WHATSAPP */
+#cta-final{background:linear-gradient(135deg,#0B3D61 0%,#0d4a75 50%,#0B3D61 100%);padding:80px 5%;text-align:center}
+#cta-final h2{color:#fff;font-size:clamp(26px,3.5vw,42px);font-weight:900;margin-bottom:16px}
+#cta-final p{color:#a8c4d8;font-size:16px;margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;padding:16px 36px;border-radius:35px;font-weight:800;font-size:16px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(37,211,102,.4)}
+.btn-whatsapp:hover{transform:scale(1.06);box-shadow:0 8px 32px rgba(37,211,102,.55)}
+.btn-whatsapp svg{width:24px;height:24px;fill:#fff}
+.cta-note{color:#7aa8c4;font-size:13px;margin-top:16px}
+
+/* PORTFOLIO STRIP */
+#portfolio-strip{background:#f0f8ff;padding:40px 5%;text-align:center}
+#portfolio-strip h3{color:#0B3D61;font-size:14px;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:24px}
+.portfolio-logos{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.portfolio-item{background:#fff;border:1.5px solid #d0e8f5;border-radius:10px;padding:10px 22px;font-size:13px;color:#0B3D61;font-weight:600;transition:transform .2s,box-shadow .2s}
+.portfolio-item:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(11,61,97,.12)}
+
+/* FOOTER */
+footer{background:#06273d;color:#7aa8c4;padding:30px 5%;text-align:center}
+footer a{color:#e8a020;text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+.footer-brand{color:#fff;font-size:15px;font-weight:700;margin-bottom:6px}
+footer p{font-size:13px;margin-top:4px}
+
+/* KEYFRAMES */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div id="demo-banner">🎯 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | WhatsApp: <a href="https://wa.me/393926917657">+39 392 691 7657</a></div>
+
+<nav>
+<div class="nav-logo">
+<span>Palazzo Manzi<small>Terme & Spa · Ischia</small></span>
+</div>
+<ul class="nav-menu">
+<li><a href="#services">Servizi</a></li>
+<li><a href="#ai-section">AI Concierge</a></li>
+<li><a href="#pricing">Piani</a></li>
+<li><a href="#cta-final">Contatti</a></li>
+</ul>
+<a href="https://wa.me/393926917657" class="nav-cta" target="_blank">Preventivo gratuito</a>
+</nav>
+
+<section id="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-badge">⭐ Sorgente del Gurgitello · Dal 1956</div>
+<h1>Benessere termale sull'isola<br>più magica del Mediterraneo</h1>
+<p>Palazzo Manzi Terme &amp; Spa: l'eleganza storica di Ischia incontra le proprietà curative dell'acqua termale. Piscine, spa, cucina isolana e suite esclusive con vista sul Golfo.</p>
+<div class="hero-btns">
+<a href="#services" class="btn-primary">Scopri i Servizi</a>
+<a href="https://wa.me/393926917657" class="btn-secondary" target="_blank">Prenota ora</a>
+</div>
+</div>
+</section>
+
+<div id="stats">
+<div class="stat-item"><div class="stat-num">68+</div><div class="stat-label">Anni di storia</div></div>
+<div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Piscine termali</div></div>
+<div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Hotel del gruppo</div></div>
+<div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Acqua termale naturale</div></div>
+</div>
+
+<section id="services">
+<div class="section-header">
+<span class="section-label">I nostri servizi</span>
+<h2>Un'esperienza completa di benessere</h2>
+<p>Dal percorso termale romano alle suite panoramiche, ogni dettaglio di Palazzo Manzi è pensato per rigenerare corpo e mente.</p>
+</div>
+<div class="services-grid">
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Spa e Terme" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">♨️</div>
+<h3>Spa &amp; Terme</h3>
+<p>La leggendaria Sorgente del Gurgitello, il Percorso Romano e piscine termali interne ed esterne per un benessere profondo.</p>
+<span class="service-tag">Percorso termale</span>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80" alt="Camere e Suite" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🛏️</div>
+<h3>Camere &amp; Suite</h3>
+<p>Dalla Classic alla De Luxe Suite: ambienti eleganti con vista sul mare, arredi raffinati e ogni comfort moderno.</p>
+<span class="service-tag">5 tipologie</span>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Ristorante Gli Ulivi" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🍽️</div>
+<h3>Ristorante Gli Ulivi</h3>
+<p>Cucina ischitana autentica con prodotti locali a km0, vini delle cantine dell'isola e atmosfera mediterranea unica.</p>
+<span class="service-tag">Cucina tipica</span>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=1200&q=80" alt="Spiagge esclusive" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🏖️</div>
+<h3>Spiagge esclusive</h3>
+<p>Baia di San Montano, Citara, Spiaggia dei Maronti e la Baia di Sorgeto con le sue piscine naturali di acqua termale.</p>
+<span class="service-tag">6 spiagge</span>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=1200&q=80" alt="Esperienze esclusive" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">⛵</div>
+<h3>Esperienze esclusive</h3>
+<p>Tour in Ape, escursioni in barca privata, visita ai giardini La Mortella e alle cantine ischitane per scoprire l'isola.</p>
+<span class="service-tag">Tour guidati</span>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Meeting ed eventi" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🎭</div>
+<h3>Meeting &amp; Eventi</h3>
+<p>Sale meeting attrezzate, Sunset Experience e Anema e Core Ischia per eventi aziendali e celebrazioni indimenticabili.</p>
+<span class="service-tag">Corporate &amp; privati</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="ai-section">
+<div class="ai-container">
+<div class="ai-text">
+<span class="section-label">Powered by Experiences Srl</span>
+<h2>Assistente AI Concierge<br>attivo 24/7 multilingua</h2>
+<p>Con il chatbot AI integrato da Experiences Srl, ogni ospite riceve risposte immediate in italiano, inglese, tedesco e francese — anche nel cuore della notte. Zero chiamate perse, prenotazioni automatizzate.</p>
+<ul class="ai-features">
+<li>Risponde istantaneamente a domande su camere, tariffe e disponibilità</li>
+<li>Gestisce prenotazioni e modifiche in autonomia</li>
+<li>Multilingua: 🇮🇹 🇬🇧 🇩🇪 🇫🇷 e altre 10 lingue</li>
+<li>Integrato con il gestionale e il channel manager</li>
+<li>Upselling automatico di spa, ristorante ed esperienze</li>
+</ul>
+</div>
+<div style="display:flex;justify-content:center">
+<div class="chat-widget">
+<div class="chat-header">
+<div class="chat-avatar">🤖</div>
+<div class="chat-header-info">
+<h4>Manzi AI Concierge</h4>
+<span><span class="online-dot"></span>Online · risposta immediata</span>
+</div>
+</div>
+<div class="chat-body" id="chatBody">
+<div class="msg msg-bot">Benvenuto a Palazzo Manzi! 🌿 Sono il tuo assistente virtuale. Come posso aiutarti oggi?</div>
+<div class="msg msg-user">Avete disponibilità per 2 notti in agosto con accesso spa?</div>
+<div class="msg msg-bot">Perfetto! Ho trovato disponibilità per agosto 🏨 La nostra <strong>Suite Premier</strong> include accesso illimitato alla Spa termale. Vuoi che verifichi il prezzo migliore per le tue date?</div>
+<div class="typing-dots"><span></span><span></span><span></span></div>
+</div>
+<div class="chat-input-bar">
+<input type="text" placeholder="Scrivi un messaggio..." readonly>
+<button class="chat-send">➤</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="pricing" style="background:#f8f6f2">
+<div class="section-header">
+<span class="section-label">Experiences Srl · Piani digitali</span>
+<h2>Scegli il piano su misura<br>per Palazzo Manzi</h2>
+<p>Soluzioni digitali complete per hotel termali e spa resort. Nessun costo nascosto, commissioni solo su risultati.</p>
+</div>
+<div class="pricing-grid">
+
+<div class="pricing-card">
+<div class="plan-name">Base</div>
+<div class="plan-price">€1.400<span>/anno</span></div>
+<div class="plan-comm">+ 10% commissione</div>
+<div class="plan-limit">Fino a 1.000 clienti/anno</div>
+<ul class="plan-features">
+<li>Sito web mobile-first</li>
+<li>SEO base on-page</li>
+<li>1 OTA gestita</li>
+<li>Chatbot AI multilingua</li>
+<li>Supporto email</li>
+</ul>
+<button class="btn-plan btn-plan-outline" onclick="window.open('https://wa.me/393926917657','_blank')">Inizia ora</button>
+</div>
+
+<div class="pricing-card">
+<div class="plan-name">Advanced</div>
+<div class="plan-price">€1.000<span>/anno</span></div>
+<div class="plan-comm">+ 8% commissione</div>
+<div class="plan-limit">Fino a 5.000 clienti/anno</div>
+<ul class="plan-features">
+<li>Sito web + booking integrato</li>
+<li>SEO + Google Ads</li>
+<li>3 OTA gestite</li>
+<li>Channel Manager</li>
+<li>AI Concierge 24/7</li>
+</ul>
+<button class="btn-plan btn-plan-outline" onclick="window.open('https://wa.me/393926917657','_blank')">Inizia ora</button>
+</div>
+
+<div class="pricing-card featured">
+<div class="featured-badge">⭐ Più scelto</div>
+<div class="plan-name">Pro</div>
+<div class="plan-price">€500<span>/anno</span></div>
+<div class="plan-comm">+ 5% commissione</div>
+<div class="plan-limit">Fino a 10.000 clienti/anno</div>
+<ul class="plan-features">
+<li>Sito premium + UX avanzata</li>
+<li>SEO + SEM + Social Media</li>
+<li>Tutte le OTA principali</li>
+<li>Channel Manager avanzato</li>
+<li>AI 24/7 + CRM integrato</li>
+</ul>
+<button class="btn-plan btn-plan-gold" onclick="window.open('https://wa.me/393926917657','_blank')">Scegli Pro</button>
+</div>
+
+<div class="pricing-card">
+<div class="plan-name">Enterprise</div>
+<div class="plan-price">€0<span>/anno</span></div>
+<div class="plan-comm">+ 3% commissione</div>
+<div class="plan-limit">Oltre 10.000 clienti/anno</div>
+<ul class="plan-features">
+<li>Soluzione full-service custom</li>
+<li>Team dedicato</li>
+<li>OTA illimitate + Revenue Mgmt</li>
+<li>AI multilingua evoluta</li>
+<li>Report analytics avanzati</li>
+</ul>
+<button class="btn-plan btn-plan-outline" onclick="window.open('https://wa.me/393926917657','_blank')">Contattaci</button>
+</div>
+
+</div>
+</section>
+
+<div id="portfolio-strip">
+<h3>Hotel e strutture già attive con Experiences Srl</h3>
+<div class="portfolio-logos">
+<div class="portfolio-item">accoglienzafma.com</div>
+<div class="portfolio-item">villacrawford.it</div>
+<div class="portfolio-item">villatiberiade.com</div>
+<div class="portfolio-item">vesuvioexpress.it</div>
+</div>
+</div>
+
+<section id="cta-final">
+<h2>Trasforma la presenza digitale<br>di Palazzo Manzi</h2>
+<p>Prenota una consulenza gratuita con il team di Experiences Srl. Analizziamo il tuo sito attuale e ti mostriamo come aumentare prenotazioni dirette e ridurre le commissioni OTA.</p>
+<a href="https://wa.me/393926917657" class="btn-whatsapp" target="_blank">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Scrivici su WhatsApp — Consulenza gratuita
+</a>
+<p class="cta-note">Risposta garantita entro 30 minuti · Nessun impegno</p>
+</section>
+
+<footer>
+<div class="footer-brand">Palazzo Manzi Terme &amp; Spa — Demo Site</div>
+<p>Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> · naplesexperiences.com · WhatsApp <a href="https://wa.me/393926917657">+39 392 691 7657</a></p>
+<p style="margin-top:8px;font-size:12px;color:#4a6a7a">Questo è un sito dimostrativo gratuito. Non affiliato ufficialmente a Palazzo Manzi.</p>
+</footer>
+
+<script>
+(function(){
+var msgs=[
+"Certo! Per agosto abbiamo la Suite Premier a €320/notte 🌟 Include spa, colazione e rooftop. Vuoi prenotare?",
+"Ottima scelta! Clicca su 'Prenota ora' per confermare. Ti invio anche il voucher sconto del 10% 🎁"
+];
+var idx=0;
+var chatBody=document.getElementById('chatBody');
+function addMsg(){
+if(idx>=msgs.length)return;
+var dots=chatBody.querySelector('.typing-dots');
+if(dots)dots.style.display='none';
+var m=document.createElement('div');
+m.className='msg msg-bot';
+m.innerHTML=msgs[idx];
+chatBody.appendChild(m);
+idx++;
+if(idx<msgs.length){
+var nd=document.createElement('div');
+nd.className='typing-dots';
+nd.innerHTML='<span></span><span></span><span></span>';
+chatBody.appendChild(nd);
+setTimeout(addMsg,2800);
+}
+chatBody.scrollTop=chatBody.scrollHeight;
+}
+setTimeout(addMsg,3200);
+})();
+</script>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
