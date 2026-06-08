@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aragona Palace Hotel & Spa — Ischia 4 Stelle</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-family:system-ui,-apple-system,sans-serif}
+body{color:#1a1a2e;background:#fff}
+a{text-decoration:none;color:inherit}
+
+/* DEMO BANNER */
+.demo-banner{background:linear-gradient(135deg,#e8a020,#f5c842,#e8a020);color:#0B3D61;text-align:center;padding:10px 20px;font-size:13px;font-weight:700;letter-spacing:0.3px;position:sticky;top:0;z-index:9999;box-shadow:0 2px 8px rgba(232,160,32,0.4)}
+.demo-banner a{color:#0B3D61;text-decoration:underline;font-weight:800}
+
+/* NAVBAR */
+nav{background:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(0,0,0,0.08);position:sticky;top:40px;z-index:998;flex-wrap:wrap;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,#0B3D61,#1a6fa8);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#e8a020;font-weight:900;font-size:16px;flex-shrink:0}
+.nav-logo-text{line-height:1.2}
+.nav-logo-text strong{display:block;color:#0B3D61;font-size:15px;font-weight:800}
+.nav-logo-text span{color:#888;font-size:11px}
+.nav-menu{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.nav-menu a{color:#0B3D61;font-size:13px;font-weight:600;padding:6px 10px;border-radius:6px;transition:background 0.2s,color 0.2s}
+.nav-menu a:hover{background:#0B3D61;color:#fff}
+.btn-preventivo{background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61!important;font-weight:800!important;padding:10px 18px!important;border-radius:25px!important;box-shadow:0 3px 12px rgba(232,160,32,0.4);transition:transform 0.2s,box-shadow 0.2s!important}
+.btn-preventivo:hover{transform:scale(1.05);box-shadow:0 5px 18px rgba(232,160,32,0.6);background:linear-gradient(135deg,#f5c842,#e8a020)!important}
+
+/* HERO */
+.hero{min-height:90vh;background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80');background-size:cover;background-position:center;position:relative;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,61,97,0.7) 0%,rgba(11,61,97,0.85) 100%)}
+.hero-content{position:relative;z-index:2;padding:40px 24px;max-width:800px}
+.hero-badge{display:inline-block;background:rgba(232,160,32,0.2);border:1px solid rgba(232,160,32,0.6);color:#e8a020;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;animation:fadeInUp 0.5s forwards}
+.hero-content h1{color:#fff;font-size:clamp(28px,5vw,54px);font-weight:900;line-height:1.15;margin-bottom:16px;animation:fadeInUp 0.5s 0.15s forwards}
+.hero-content p{color:rgba(255,255,255,0.88);font-size:clamp(15px,2.5vw,19px);line-height:1.6;margin-bottom:32px;animation:fadeInUp 0.5s 0.3s forwards}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.5s 0.45s forwards}
+.btn-primary{background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61;font-weight:800;padding:14px 28px;border-radius:30px;font-size:15px;box-shadow:0 4px 16px rgba(232,160,32,0.5);transition:transform 0.2s,box-shadow 0.2s;display:inline-block}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(232,160,32,0.7);background:linear-gradient(135deg,#f5c842,#e8a020)}
+.btn-secondary{background:transparent;color:#fff;font-weight:700;padding:13px 28px;border-radius:30px;font-size:15px;border:2px solid rgba(255,255,255,0.7);transition:all 0.2s;display:inline-block}
+.btn-secondary:hover{background:#fff;color:#0B3D61;transform:scale(1.03)}
+
+/* STATS */
+.stats{background:linear-gradient(135deg,#0B3D61,#1a6fa8);padding:50px 24px}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}
+.stat-item{text-align:center;padding:24px 16px;background:rgba(255,255,255,0.08);border-radius:14px;border:1px solid rgba(255,255,255,0.15);transition:transform 0.3s}
+.stat-item:hover{transform:translateY(-4px)}
+.stat-number{color:#e8a020;font-size:40px;font-weight:900;line-height:1;margin-bottom:6px}
+.stat-label{color:rgba(255,255,255,0.85);font-size:13px;font-weight:600;letter-spacing:0.5px}
+
+/* SERVICES */
+.services{padding:70px 24px;background:#f8f9fc}
+.section-header{text-align:center;max-width:640px;margin:0 auto 48px}
+.section-tag{color:#e8a020;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:10px}
+.section-header h2{color:#0B3D61;font-size:clamp(24px,4vw,38px);font-weight:900;margin-bottom:12px;line-height:1.2}
+.section-header p{color:#666;font-size:15px;line-height:1.7}
+.services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.07);transition:transform 0.3s,box-shadow 0.3s}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 36px rgba(11,61,97,0.14)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:22px}
+.service-icon{width:42px;height:42px;background:linear-gradient(135deg,#0B3D61,#1a6fa8);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+.service-card-body h3{color:#0B3D61;font-size:17px;font-weight:800;margin-bottom:8px}
+.service-card-body p{color:#666;font-size:14px;line-height:1.65}
+
+/* AI CHAT */
+.ai-section{padding:70px 24px;background:linear-gradient(135deg,#0B3D61 0%,#1a3a5c 100%)}
+.ai-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:700px){.ai-inner{grid-template-columns:1fr}}
+.ai-text h2{color:#fff;font-size:clamp(22px,3.5vw,34px);font-weight:900;margin-bottom:16px;line-height:1.25}
+.ai-text p{color:rgba(255,255,255,0.8);font-size:15px;line-height:1.7;margin-bottom:20px}
+.ai-features{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ai-features li{color:rgba(255,255,255,0.85);font-size:14px;display:flex;gap:10px;align-items:center}
+.ai-features li::before{content:"✓";color:#e8a020;font-weight:900;flex-shrink:0}
+.chat-window{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.25)}
+.chat-header{background:linear-gradient(135deg,#e8a020,#f5c842);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.chat-header-dot{width:10px;height:10px;background:#0B3D61;border-radius:50%}
+.chat-header h4{color:#0B3D61;font-size:14px;font-weight:800}
+.chat-header span{color:rgba(11,61,97,0.7);font-size:11px;margin-left:4px}
+.chat-body{padding:18px;background:#f4f6f9;min-height:240px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:80%;padding:11px 14px;border-radius:14px;font-size:13px;line-height:1.5;animation:fadeInUp 0.4s forwards}
+.msg-bot{background:#fff;color:#1a1a2e;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-radius:4px 14px 14px 14px}
+.msg-user{background:linear-gradient(135deg,#0B3D61,#1a6fa8);color:#fff;align-self:flex-end;border-radius:14px 14px 4px 14px}
+.msg-bot.delay1{animation-delay:0.3s}
+.msg-bot.delay2{animation-delay:1.2s}
+.typing{display:flex;gap:5px;align-items:center;padding:12px 14px;background:#fff;border-radius:4px 14px 14px 14px;width:fit-content;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.dot{width:7px;height:7px;background:#0B3D61;border-radius:50%;animation:bounce 1.2s infinite}
+.dot:nth-child(2){animation-delay:0.2s}
+.dot:nth-child(3){animation-delay:0.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
+
+/* PRICING */
+.pricing{padding:70px 24px;background:#f8f9fc}
+.pricing-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:48px}
+.price-card{background:#fff;border-radius:16px;padding:30px 22px;box-shadow:0 4px 20px rgba(0,0,0,0.07);border:2px solid transparent;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;text-align:center;position:relative}
+.price-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(11,61,97,0.14);border-color:#e8a020}
+.price-card.featured{border-color:#e8a020;background:linear-gradient(135deg,#0B3D61,#1a6fa8);color:#fff;transform:scale(1.03)}
+.price-card.featured:hover{transform:scale(1.06) translateY(-4px)}
+.badge-featured{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61;font-size:11px;font-weight:800;padding:4px 14px;border-radius:20px;letter-spacing:0.5px;white-space:nowrap}
+.price-name{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#e8a020;margin-bottom:10px}
+.price-card.featured .price-name{color:#f5c842}
+.price-amount{font-size:36px;font-weight:900;color:#0B3D61;line-height:1;margin-bottom:4px}
+.price-card.featured .price-amount{color:#fff}
+.price-year{font-size:12px;color:#888;margin-bottom:4px}
+.price-card.featured .price-year{color:rgba(255,255,255,0.7)}
+.price-comm{font-size:14px;color:#0B3D61;font-weight:700;margin-bottom:6px}
+.price-card.featured .price-comm{color:#e8a020}
+.price-limit{font-size:12px;color:#999;margin-bottom:20px}
+.price-card.featured .price-limit{color:rgba(255,255,255,0.65)}
+.price-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.price-features li{font-size:13px;color:#555;display:flex;gap:8px;align-items:flex-start}
+.price-features li::before{content:"✓";color:#e8a020;font-weight:900;flex-shrink:0}
+.price-card.featured .price-features li{color:rgba(255,255,255,0.85)}
+.btn-plan{display:block;background:linear-gradient(135deg,#e8a020,#f5c842);color:#0B3D61;font-weight:800;padding:12px;border-radius:25px;font-size:14px;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 3px 10px rgba(232,160,32,0.35)}
+.btn-plan:hover{transform:scale(1.05);box-shadow:0 5px 18px rgba(232,160,32,0.55)}
+.price-card.featured .btn-plan{background:#fff;color:#0B3D61}
+
+/* CTA FINAL */
+.cta-final{padding:80px 24px;background:linear-gradient(135deg,#e8a020 0%,#f5c842 50%,#e8a020 100%);text-align:center}
+.cta-final h2{color:#0B3D61;font-size:clamp(24px,4vw,40px);font-weight:900;margin-bottom:12px}
+.cta-final p{color:rgba(11,61,97,0.8);font-size:16px;margin-bottom:32px;max-width:540px;margin-left:auto;margin-right:auto}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:12px;background:#0B3D61;color:#fff;font-weight:800;padding:16px 32px;border-radius:40px;font-size:16px;box-shadow:0 6px 24px rgba(11,61,97,0.35);transition:transform 0.2s,box-shadow 0.2s}
+.btn-whatsapp:hover{transform:scale(1.06);box-shadow:0 10px 32px rgba(11,61,97,0.5)}
+.btn-whatsapp svg{width:24px;height:24px;fill:#25d366;flex-shrink:0}
+
+/* FOOTER */
+footer{background:#0B3D61;color:rgba(255,255,255,0.7);text-align:center;padding:28px 24px;font-size:13px}
+footer a{color:#e8a020;font-weight:700}
+footer strong{color:#fff}
+
+/* KEYFRAMES */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* MOBILE */
+@media(max-width:600px){nav{top:36px}.demo-banner{font-size:11px}.stats-inner{grid-template-columns:repeat(2,1fr)}.hero-btns{flex-direction:column;align-items:center}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">🎯 DEMO GRATUITO realizzato da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Scopri come far crescere il tuo hotel digitalmente → <a href="https://wa.me/393926917657" target="_blank">Contattaci ora</a></div>
+
+<nav>
+<div class="nav-logo">
+<div class="nav-logo-icon">A</div>
+<div class="nav-logo-text"><strong>Aragona Palace</strong><span>Hotel & Spa — Ischia ★★★★</span></div>
+</div>
+<div class="nav-menu">
+<a href="#servizi">Servizi</a>
+<a href="#spa">Spa</a>
+<a href="#camere">Camere</a>
+<a href="#prezzi">Prezzi</a>
+<a href="#contatti">Contatti</a>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-preventivo">💬 Preventivo gratuito</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-badge">★★★★ Hotel — Ischia Porto</div>
+<h1>Il Gioiello di Famiglia<br>sul Porto di Ischia</h1>
+<p>Benessere, relax e lusso nel cuore di Ischia. Centro Spa, piscine, ristorante e camere moderne direttamente sul porto. La tua vacanza ideale inizia qui.</p>
+<div class="hero-btns">
+<a href="#camere" class="btn-primary">🛏️ Scopri le Camere</a>
+<a href="#spa" class="btn-secondary">💆 Visita la Spa</a>
+</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="stats-inner">
+<div class="stat-item"><div class="stat-number">4★</div><div class="stat-label">Hotel di Lusso</div></div>
+<div class="stat-item"><div class="stat-number">2007</div><div class="stat-label">Anno Riapertura</div></div>
+<div class="stat-item"><div class="stat-number">2</div><div class="stat-label">Piscine (Coperta & Scoperta)</div></div>
+<div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Assistenza Clienti</div></div>
+<div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Posizione Central</div></div>
+</div>
+</section>
+
+<section class="services" id="servizi">
+<div class="section-header">
+<span class="section-tag">I Nostri Servizi</span>
+<h2>Un'Esperienza Completa di Lusso</h2>
+<p>Dall'accoglienza alla spa, ogni dettaglio pensato per il tuo benessere a Ischia.</p>
+</div>
+<div class="services-grid" id="camere">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere Hotel Ischia" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🛏️</div>
+<h3>Camere & Suite</h3>
+<p>Camere moderne e confortevoli con Wi-Fi gratuito, Sky TV e vista panoramica. Arredate con eleganza per un soggiorno indimenticabile.</p>
+</div>
+</div>
+<div class="service-card" id="spa">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Spa Centro Benessere Ischia" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">💆</div>
+<h3>Centro Benessere & Spa</h3>
+<p>Un mondo di relax con trattamenti esclusivi, sauna, bagno turco e piscine termali. Lasciati coccolare dai nostri esperti del benessere.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Piscina Hotel Ischia" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🏊</div>
+<h3>Piscina Coperta & Scoperta</h3>
+<p>Due piscine per il tuo relax: goditi il sole sul solarium o rilassati nella piscina coperta. Cure elioterapiche e idromassaggio disponibili.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ristorante Hotel Ischia" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🍽️</div>
+<h3>Ristorante & Bar</h3>
+<p>Cucina mediterranea autentica con i sapori di Ischia. Bar, caffetteria e servizio in camera disponibili per soddisfare ogni tuo desiderio.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Ischia Porto Location" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">📍</div>
+<h3>Posizione Privilegiata</h3>
+<p>Direttamente su Via Porto, nel cuore di Ischia. Raggiungi facilmente spiagge, negozi e attrazioni. Linea bus dedicata inclusa.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Escursioni Ischia" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">⛵</div>
+<h3>Escursioni & Attività</h3>
+<p>Gite in barca a Capri, tour dell'isola, escursioni al Castello Aragonese. Concierge dedicato per pianificare la tua vacanza perfetta.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="ai-section">
+<div class="ai-inner">
+<div class="ai-text">
+<span class="section-tag" style="color:#e8a020;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:10px">Tecnologia AI</span>
+<h2>Assistente Virtuale 24/7 per i Tuoi Ospiti</h2>
+<p>Con Experiences Srl, il tuo hotel risponde sempre — anche di notte, anche in 5 lingue. Zero attese, prenotazioni automatiche e ospiti soddisfatti.</p>
+<ul class="ai-features">
+<li>Risponde in italiano, inglese, tedesco, francese, spagnolo</li>
+<li>Gestisce prenotazioni e richieste in autonomia</li>
+<li>Integrato con il tuo sito e WhatsApp</li>
+<li>Riduce il carico del personale del 60%</li>
+</ul>
+</div>
+<div class="chat-window">
+<div class="chat-header">
+<div class="chat-header-dot"></div>
+<div>
+<h4>Aragona Palace AI Assistant</h4>
+<span>● Online ora</span>
+</div>
+</div>
+<div class="chat-body">
+<div class="msg msg-bot">👋 Benvenuto all'Aragona Palace Hotel & Spa! Come posso aiutarti oggi?</div>
+<div class="msg msg-user">Vorrei prenotare una camera per 2 persone dal 10 al 15 luglio</div>
+<div class="msg msg-bot delay1">Perfetto! Ho disponibilità per quelle date. 🏨 Camera Doppia Superior a €180/notte con colazione inclusa e accesso alla Spa. Procedo con la prenotazione?</div>
+<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="prezzi">
+<div class="section-header">
+<span class="section-tag">Piani Experiences Srl</span>
+<h2>Soluzioni Digitali per il Tuo Hotel</h2>
+<p>Scegli il piano più adatto alla tua struttura. Zero sorprese, tutto incluso.</p>
+</div>
+<div class="pricing-grid">
+<div class="price-card">
+<div class="price-name">Base</div>
+<div class="price-amount">€1.400</div>
+<div class="price-year">/anno</div>
+<div class="price-comm">+ 10% commissione</div>
+<div class="price-limit">fino a 1.000 clienti/anno</div>
+<ul class="price-features">
+<li>Sito web mobile-first</li>
+<li>SEO base</li>
+<li>Gestione 1 OTA</li>
+<li>Supporto email</li>
+</ul>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-plan">Inizia ora</a>
+</div>
+<div class="price-card">
+<div class="price-name">Advanced</div>
+<div class="price-amount">€1.000</div>
+<div class="price-year">/anno</div>
+<div class="price-comm">+ 8% commissione</div>
+<div class="price-limit">fino a 5.000 clienti/anno</div>
+<ul class="price-features">
+<li>Sito + booking integrato</li>
+<li>SEO/SEM + Google Ads</li>
+<li>Channel Manager (3 OTA)</li>
+<li>Chatbot AI base</li>
+</ul>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-plan">Inizia ora</a>
+</div>
+<div class="price-card featured">
+<div class="badge-featured">⭐ PIÙ POPOLARE</div>
+<div class="price-name">Pro</div>
+<div class="price-amount">€500</div>
+<div class="price-year">/anno</div>
+<div class="price-comm">+ 5% commissione</div>
+<div class="price-limit">fino a 10.000 clienti/anno</div>
+<ul class="price-features">
+<li>Sito premium + booking</li>
+<li>SEO/SEM completo</li>
+<li>Channel Manager full</li>
+<li>AI Chatbot 24/7 multilingua</li>
+</ul>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-plan">Scegli Pro</a>
+</div>
+<div class="price-card">
+<div class="price-name">Enterprise</div>
+<div class="price-amount">€0</div>
+<div class="price-year">/anno</div>
+<div class="price-comm">+ 3% commissione</div>
+<div class="price-limit">oltre 10.000 clienti/anno</div>
+<ul class="price-features">
+<li>Tutto incluso illimitato</li>
+<li>Account manager dedicato</li>
+<li>AI avanzata custom</li>
+<li>Priorità assoluta</li>
+</ul>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-plan">Contattaci</a>
+</div>
+</div>
+</section>
+
+<section class="cta-final" id="contatti">
+<h2>Pronto a Rivoluzionare il Tuo Hotel?</h2>
+<p>Parla con un esperto di Experiences Srl. Consulenza gratuita, nessun impegno. Risultati garantiti.</p>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-whatsapp">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Scrivici su WhatsApp — +39 392 691 7657
+</a>
+</section>
+
+<footer>
+<p style="margin-bottom:6px"><strong>Aragona Palace Hotel & Spa</strong> — Via Porto, 12 — 80077 Ischia (NA) — Tel. <a href="tel:+390813331229">+39 081 333 1229</a></p>
+<p style="margin-bottom:10px;color:rgba(255,255,255,0.5);font-size:12px">Questo è un sito demo. Il sito ufficiale è <a href="http://www.hotelaragona.it/" target="_blank">www.hotelaragona.it</a></p>
+<p>⚡ Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo | Portfolio: accoglienzafma.com · villacrawford.it · villatiberiade.com · vesuvioexpress.it</p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
