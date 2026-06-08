@@ -5,346 +5,356 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PC Boutique Hotel Napoli | Vivi nel cuore della città</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:system-ui,sans-serif;color:#1a1a1a;background:#fff}
-:root{--blu:#0B3D61;--oro:#e8a020}
-
-/* DEMO BANNER */
-.demo-banner{background:linear-gradient(90deg,var(--oro),#f5c842,var(--oro));color:#0B3D61;text-align:center;padding:10px;font-size:.85rem;font-weight:700;letter-spacing:.5px}
-.demo-banner a{color:var(--blu);text-decoration:underline}
-
-/* NAVBAR */
-nav{background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.1);position:sticky;top:0;z-index:999;padding:0 5%}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-.nav-logo{font-size:1.1rem;font-weight:800;color:var(--blu);line-height:1.2}
-.nav-logo span{color:var(--oro)}
-.nav-links{display:flex;gap:24px;list-style:none}
-.nav-links a{text-decoration:none;color:#333;font-size:.9rem;font-weight:500;transition:.2s}
-.nav-links a:hover{color:var(--oro)}
-.btn-nav{background:var(--blu);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:.85rem;cursor:pointer;transition:.3s;text-decoration:none}
-.btn-nav:hover{background:var(--oro);color:#fff;transform:scale(1.05)}
-@media(max-width:768px){.nav-links{display:none}}
-
-/* HERO */
-.hero{min-height:92vh;background:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,61,97,.82),rgba(0,0,0,.55))}
-.hero-content{position:relative;z-index:2;padding:0 20px;max-width:800px}
-.hero-content h1{font-size:clamp(2rem,5vw,3.4rem);color:#fff;font-weight:900;animation:fadeInUp .7s ease both}
-.hero-content p{color:rgba(255,255,255,.9);font-size:clamp(1rem,2vw,1.2rem);margin:18px 0 32px;animation:fadeInUp .7s .2s ease both}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .7s .4s ease both}
-.btn-primary{background:var(--oro);color:#fff;padding:14px 32px;border-radius:10px;font-weight:800;font-size:1rem;text-decoration:none;transition:.3s;border:none;cursor:pointer}
-.btn-primary:hover{transform:scale(1.05);background:#d4911a}
-.btn-outline{background:transparent;color:#fff;border:2px solid #fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1rem;text-decoration:none;transition:.3s}
-.btn-outline:hover{background:#fff;color:var(--blu)}
-
-/* STATS */
-.stats{background:var(--blu);padding:48px 5%}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;max-width:1000px;margin:0 auto;text-align:center}
-.stat-item h3{font-size:2.4rem;color:var(--oro);font-weight:900}
-.stat-item p{color:rgba(255,255,255,.85);font-size:.9rem;margin-top:4px}
-
-/* CAMERE */
-.section{padding:72px 5%}
-.section-title{text-align:center;margin-bottom:48px}
-.section-title h2{font-size:clamp(1.6rem,3vw,2.4rem);color:var(--blu);font-weight:900}
-.section-title p{color:#666;margin-top:10px;font-size:1rem;max-width:600px;margin-inline:auto}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto}
-.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:.3s;animation:fadeInUp .6s ease both}
-.card:hover{transform:scale(1.03);box-shadow:0 8px 32px rgba(11,61,97,.18)}
-.card img{width:100%;height:180px;object-fit:cover;display:block}
-.card-body{padding:20px}
-.card-body h3{font-size:1.05rem;color:var(--blu);font-weight:800;margin-bottom:8px}
-.card-body p{color:#555;font-size:.9rem;line-height:1.6}
-.card-tag{display:inline-block;background:rgba(232,160,32,.15);color:var(--oro);font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:10px}
-
-/* AI CHAT */
-.ai-section{background:linear-gradient(135deg,#f0f6ff,#fff9ee);padding:72px 5%}
-.ai-box{max-width:680px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 8px 40px rgba(11,61,97,.12);overflow:hidden}
-.ai-header{background:var(--blu);padding:20px 24px;display:flex;align-items:center;gap:12px}
-.ai-dot{width:12px;height:12px;background:#4ade80;border-radius:50%;animation:blink 1.2s infinite}
-.ai-header h3{color:#fff;font-size:1.05rem;font-weight:800}
-.ai-header p{color:rgba(255,255,255,.7);font-size:.8rem}
-.chat-body{padding:24px;min-height:220px}
-.msg{display:flex;gap:10px;margin-bottom:16px;animation:fadeInUp .5s ease both}
-.msg-bubble{padding:12px 16px;border-radius:14px;font-size:.9rem;line-height:1.5;max-width:85%}
-.msg.bot .msg-bubble{background:#f0f4ff;color:#333;border-bottom-left-radius:4px}
-.msg.user .msg-bubble{background:var(--blu);color:#fff;border-bottom-right-radius:4px;margin-left:auto}
-.msg.user{flex-direction:row-reverse}
-.avatar{width:32px;height:32px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;color:#fff;font-weight:800}
-.typing-dots span{display:inline-block;width:7px;height:7px;background:#999;border-radius:50%;margin:0 2px;animation:bounce .9s infinite}
-.typing-dots span:nth-child(2){animation-delay:.15s}
-.typing-dots span:nth-child(3){animation-delay:.3s}
-
-/* PREZZI */
-.pricing{background:#f8fafc;padding:72px 5%}
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1100px;margin:0 auto}
-.price-card{background:#fff;border-radius:16px;padding:28px 22px;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:.3s;position:relative;text-align:center}
-.price-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(11,61,97,.15)}
-.price-card.featured{background:var(--blu);color:#fff}
-.price-card.featured h3,.price-card.featured .price-amount,.price-card.featured p,.price-card.featured li{color:#fff}
-.badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--oro);color:#fff;font-size:.72rem;font-weight:800;padding:4px 14px;border-radius:20px;white-space:nowrap}
-.price-card h3{font-size:1.2rem;font-weight:900;color:var(--blu);margin-bottom:12px}
-.price-amount{font-size:1.8rem;font-weight:900;color:var(--oro)}
-.price-amount span{font-size:.85rem;font-weight:500;color:#666}
-.price-comm{font-size:.85rem;color:#888;margin:4px 0 16px}
-.price-card.featured .price-comm{color:rgba(255,255,255,.7)}
-.price-list{list-style:none;text-align:left;margin-bottom:20px}
-.price-list li{font-size:.85rem;color:#555;padding:5px 0;border-bottom:1px solid #f0f0f0}
-.price-list li::before{content:"✓ ";color:var(--oro);font-weight:800}
-.price-card.featured .price-list li{border-color:rgba(255,255,255,.15)}
-.btn-price{width:100%;padding:12px;background:var(--oro);color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer;transition:.3s;text-decoration:none;display:block;font-size:.9rem}
-.btn-price:hover{background:#d4911a;transform:scale(1.03)}
-
-/* CTA */
-.cta-section{background:linear-gradient(135deg,var(--blu),#1a5f8a);padding:64px 5%;text-align:center}
-.cta-section h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;margin-bottom:12px}
-.cta-section p{color:rgba(255,255,255,.85);margin-bottom:32px;font-size:1rem}
-.btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:16px 36px;border-radius:12px;font-weight:800;font-size:1.05rem;text-decoration:none;transition:.3s;box-shadow:0 4px 20px rgba(37,211,102,.4)}
-.btn-wa:hover{transform:scale(1.06);background:#1ebe5d}
-
-/* FOOTER */
-footer{background:#0a2a42;color:rgba(255,255,255,.7);text-align:center;padding:24px;font-size:.85rem}
-footer a{color:var(--oro);text-decoration:none}
-
-/* ANIMATIONS */
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,sans-serif;color:#1a1a2e;background:#fff}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.demo-banner{background:linear-gradient(135deg,#e8a020,#c8820a);color:#fff;text-align:center;padding:10px 20px;font-size:14px;font-weight:600;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.demo-banner a{color:#fff;text-decoration:underline}
+nav{background:#0B3D61;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:42px;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,0.15)}
+.nav-logo{color:#fff;font-size:20px;font-weight:800;letter-spacing:-0.5px;line-height:1.2}
+.nav-logo span{color:#e8a020}
+.nav-menu{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+.nav-menu a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
+.nav-menu a:hover{color:#e8a020}
+.nav-cta{background:#e8a020;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#c8820a;transform:scale(1.05)}
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(11,61,97,0.7),rgba(11,61,97,0.5)),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat;padding:60px 24px}
+.hero-content h1{color:#fff;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;line-height:1.15;margin-bottom:20px;text-shadow:0 2px 20px rgba(0,0,0,0.4);animation:fadeInUp 0.7s ease forwards}
+.hero-content p{color:rgba(255,255,255,0.92);font-size:clamp(1rem,2.5vw,1.3rem);max-width:640px;margin:0 auto 32px;text-shadow:0 1px 8px rgba(0,0,0,0.3);animation:fadeInUp 0.7s 0.2s ease forwards}
+.hero-content .hero-btn{background:#e8a020;color:#fff;padding:16px 40px;border-radius:50px;font-size:1.1rem;font-weight:700;text-decoration:none;display:inline-block;box-shadow:0 8px 30px rgba(232,160,32,0.4);transition:all 0.3s;animation:fadeInUp 0.7s 0.4s ease forwards}
+.hero-content .hero-btn:hover{background:#c8820a;transform:scale(1.05);box-shadow:0 12px 40px rgba(232,160,32,0.5)}
+.hero-badge{display:inline-block;background:rgba(232,160,32,0.2);border:1px solid rgba(232,160,32,0.5);color:#e8a020;padding:6px 16px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:20px;animation:fadeInUp 0.7s ease forwards}
+.stats{background:#0B3D61;padding:48px 24px}
+.stats-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;text-align:center}
+.stat-item{padding:24px 16px;border-right:1px solid rgba(255,255,255,0.1)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2.8rem;font-weight:900;color:#e8a020;line-height:1}
+.stat-label{color:rgba(255,255,255,0.75);font-size:14px;margin-top:8px;font-weight:500}
+.section{padding:80px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{color:#e8a020;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:900;color:#0B3D61;margin-bottom:16px;line-height:1.2}
+.section-sub{color:#555;font-size:1.05rem;max-width:600px;margin-bottom:48px;line-height:1.6}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s;border:1px solid rgba(11,61,97,0.06)}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,0.15)}
+.service-card img{width:100%;height:200px;object-fit:cover;display:block}
+.service-card-body{padding:24px}
+.service-card-body h3{color:#0B3D61;font-size:1.1rem;font-weight:800;margin-bottom:10px}
+.service-card-body p{color:#666;font-size:0.9rem;line-height:1.6}
+.service-tag{display:inline-block;background:rgba(232,160,32,0.12);color:#e8a020;border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.ai-section{background:linear-gradient(135deg,#0B3D61 0%,#1a6090 100%);padding:80px 24px}
+.ai-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.ai-text h2{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;line-height:1.25}
+.ai-text p{color:rgba(255,255,255,0.8);font-size:0.95rem;line-height:1.7;margin-bottom:24px}
+.ai-feature{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.9);font-size:0.9rem;margin-bottom:12px}
+.ai-feature span.dot{width:8px;height:8px;background:#e8a020;border-radius:50%;flex-shrink:0}
+.chat-box{background:#fff;border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-width:380px}
+.chat-header{background:#0B3D61;color:#fff;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.chat-header .avatar{width:36px;height:36px;background:#e8a020;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.chat-header-text strong{font-size:13px;display:block}
+.chat-header-text span{font-size:11px;color:rgba(255,255,255,0.7)}
+.chat-online{width:8px;height:8px;background:#4caf50;border-radius:50%;margin-left:auto;animation:pulse 2s infinite}
+.msg{margin-bottom:12px;animation:slideIn 0.5s ease forwards}
+.msg.bot{display:flex;gap:8px;align-items:flex-start}
+.msg.user{display:flex;justify-content:flex-end}
+.bubble{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;max-width:85%}
+.bubble.bot-b{background:#f0f4f8;color:#1a1a2e;border-bottom-left-radius:4px}
+.bubble.user-b{background:#0B3D61;color:#fff;border-bottom-right-radius:4px}
+.bot-icon{width:28px;height:28px;background:#0B3D61;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
+.typing-dots{display:inline-flex;gap:4px;align-items:center;padding:12px 16px;background:#f0f4f8;border-radius:14px;border-bottom-left-radius:4px}
+.typing-dots span{width:6px;height:6px;background:#999;border-radius:50%;animation:blink 1.4s infinite}
+.typing-dots span:nth-child(2){animation-delay:0.2s}
+.typing-dots span:nth-child(3){animation-delay:0.4s}
+.msg-delay-1{animation-delay:0.3s}
+.msg-delay-2{animation-delay:0.6s}
+.msg-delay-3{animation-delay:0.9s}
+.pricing{padding:80px 24px;background:#f8fafc}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:48px}
+.price-card{background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:2px solid transparent;transition:all 0.3s;position:relative;overflow:hidden}
+.price-card:hover{border-color:#e8a020;transform:translateY(-4px);box-shadow:0 16px 40px rgba(11,61,97,0.12)}
+.price-card.featured{border-color:#e8a020;background:linear-gradient(135deg,#0B3D61,#1a6090);color:#fff}
+.price-card.featured .price-label,.price-card.featured .price-clients,.price-card.featured .price-feature{color:rgba(255,255,255,0.8)}
+.price-card.featured .price-name{color:#e8a020}
+.price-badge{position:absolute;top:16px;right:16px;background:#e8a020;color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:1px}
+.price-name{font-size:1.3rem;font-weight:900;color:#0B3D61;margin-bottom:8px}
+.price-amount{font-size:2.4rem;font-weight:900;color:#0B3D61;line-height:1}
+.price-card.featured .price-amount{color:#fff}
+.price-amount sup{font-size:1.1rem;vertical-align:top;margin-top:8px}
+.price-amount sub{font-size:0.8rem;color:#666;font-weight:500}
+.price-card.featured .price-amount sub{color:rgba(255,255,255,0.7)}
+.price-commission{font-size:1.3rem;font-weight:800;color:#e8a020;margin:4px 0}
+.price-label{font-size:12px;color:#888;margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.price-divider{height:1px;background:rgba(0,0,0,0.08);margin:16px 0}
+.price-card.featured .price-divider{background:rgba(255,255,255,0.15)}
+.price-clients{font-size:13px;color:#555;margin-bottom:16px;font-weight:600}
+.price-feature{display:flex;align-items:center;gap:8px;font-size:13px;color:#444;margin-bottom:8px}
+.price-feature::before{content:"✓";color:#e8a020;font-weight:900;flex-shrink:0}
+.price-btn{display:block;text-align:center;background:#e8a020;color:#fff;padding:12px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;margin-top:24px;transition:all 0.3s}
+.price-btn:hover{background:#c8820a;transform:scale(1.02)}
+.price-card.featured .price-btn{background:#fff;color:#0B3D61}
+.price-card.featured .price-btn:hover{background:#f0f0f0}
+.cta-section{background:linear-gradient(135deg,#e8a020,#c8820a);padding:80px 24px;text-align:center}
+.cta-section h2{color:#fff;font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:900;margin-bottom:16px}
+.cta-section p{color:rgba(255,255,255,0.9);font-size:1.05rem;margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto}
+.wa-btn{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#fff;padding:18px 40px;border-radius:50px;font-size:1.1rem;font-weight:800;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,0.2);transition:all 0.3s}
+.wa-btn:hover{transform:scale(1.05);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.wa-icon{width:28px;height:28px;fill:#fff}
+footer{background:#0B3D61;color:rgba(255,255,255,0.7);padding:32px 24px;text-align:center;font-size:13px}
+footer a{color:#e8a020;text-decoration:none}
+footer strong{color:#fff}
+.portfolio-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px}
+.portfolio-tag{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:600}
+@media(max-width:768px){.ai-inner{grid-template-columns:1fr}.nav-menu{display:none}.chat-box{max-width:100%}.stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1)}.stat-item:last-child{border-bottom:none}}
 </style>
 </head>
 <body>
-
-<div class="demo-banner">
-  🎯 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | Vuoi un sito così? <a href="https://wa.me/393926917657" target="_blank">Contattaci ora →</a>
-</div>
+<div class="demo-banner">🚀 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | Vuoi un sito così? Scrivici su WhatsApp!</div>
 
 <nav>
-  <div class="nav-inner">
-    <div class="nav-logo">PC <span>Boutique</span> Hotel<br><small style="font-size:.7rem;font-weight:500;color:#888">Napoli — Piazza Bovio</small></div>
-    <ul class="nav-links">
-      <li><a href="#camere">Camere</a></li>
-      <li><a href="#servizi">Servizi</a></li>
-      <li><a href="#ai">AI Concierge</a></li>
-      <li><a href="#prezzi">Piani</a></li>
-      <li><a href="#contatti">Contatti</a></li>
-    </ul>
-    <a class="btn-nav" href="https://wa.me/393926917657" target="_blank">Prenota ora</a>
-  </div>
+<div class="nav-logo">PC <span>Boutique</span><br><small style="font-size:11px;font-weight:400;color:rgba(255,255,255,0.6)">Hotel Napoli</small></div>
+<ul class="nav-menu">
+<li><a href="#camere">Camere</a></li>
+<li><a href="#servizi">Servizi</a></li>
+<li><a href="#ai">AI Concierge</a></li>
+<li><a href="#prezzi">Piani</a></li>
+<li><a href="#contatti">Contatti</a></li>
+</ul>
+<a href="https://wa.me/393926917657" class="nav-cta" target="_blank">Preventivo gratuito</a>
 </nav>
 
 <section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Vivi nel cuore<br>di Napoli</h1>
-    <p>PC Boutique Hotel — 13 camere eleganti a Piazza Bovio,<br>con vista sul Maschio Angioino e Wi-Fi gratuito</p>
-    <div class="hero-btns">
-      <a class="btn-primary" href="#camere">Scopri le Camere</a>
-      <a class="btn-outline" href="#contatti">Contattaci</a>
-    </div>
-  </div>
+<div class="hero-content">
+<div class="hero-badge">⭐ Piazza Bovio, Cuore di Napoli</div>
+<h1>Vivi la Magia<br>di Napoli in<br><span style="color:#e8a020">Stile Boutique</span></h1>
+<p>13 camere esclusive nel cuore storico di Napoli, a pochi passi dal Maschio Angioino e dalla vivace Piazza Bovio. Un'esperienza autentica nel cuore della città.</p>
+<a href="#camere" class="hero-btn">✦ Scopri le Camere</a>
+</div>
 </section>
 
-<section class="stats">
-  <div class="stats-grid">
-    <div class="stat-item"><h3>13</h3><p>Camere & Suites</p></div>
-    <div class="stat-item"><h3>50m²</h3><p>Suite più grande</p></div>
-    <div class="stat-item"><h3>3</h3><p>Accessi con ascensore</p></div>
-    <div class="stat-item"><h3>800</h3><p>Palazzo ottocentesco</p></div>
-    <div class="stat-item"><h3>5⭐</h3><p>Esperienza ospiti</p></div>
-  </div>
-</section>
+<div class="stats">
+<div class="stats-inner">
+<div class="stat-item">
+<div class="stat-num">13</div>
+<div class="stat-label">Camere Esclusive</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">50㎡</div>
+<div class="stat-label">Camere fino a</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">4</div>
+<div class="stat-label">Tipologie di Alloggio</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">3</div>
+<div class="stat-label">Lingue Supportate</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">24/7</div>
+<div class="stat-label">Assistenza Ospiti</div>
+</div>
+</div>
+</div>
 
 <section class="section" id="camere">
-  <div class="section-title">
-    <h2>Le Nostre Camere & Suites</h2>
-    <p>Spazi ampi e luminosi, con balconi in marmo e vista mozzafiato su Napoli</p>
-  </div>
-  <div class="cards-grid">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Junior Suite" loading="lazy">
-      <div class="card-body">
-        <span class="card-tag">⭐ TOP CHOICE</span>
-        <h3>Junior Suite</h3>
-        <p>38 m² con balcone in marmo e vista panoramica sul Maschio Angioino e la città.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Camera Deluxe" loading="lazy">
-      <div class="card-body">
-        <span class="card-tag">DELUXE</span>
-        <h3>Matrimoniale Deluxe</h3>
-        <p>25 m² con balconcino e vista laterale. Comfort superiore nel cuore di Napoli.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Camera Superior" loading="lazy">
-      <div class="card-body">
-        <span class="card-tag">SUPERIOR</span>
-        <h3>Matrimoniale Superior</h3>
-        <p>22 m² con balconcino laterale e vista sulla città. Eleganza e modernità.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=800&q=80" alt="Napoli centro" loading="lazy">
-      <div class="card-body">
-        <span class="card-tag">STANDARD</span>
-        <h3>Matrimoniale Standard</h3>
-        <p>35 m² con vista interna. Ampia, silenziosa e dotata di tutti i comfort.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Tour Napoli" loading="lazy">
-      <div class="card-body">
-        <span class="card-tag">ESPERIENZA</span>
-        <h3>Visite Guidate</h3>
-        <p>Tour esclusivi nei quartieri storici, Pompei, Caserta e dintorni. Prenota in hotel.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Aperitivo" loading="lazy">
-      <div class="card-body">
-        <span class="card-tag">SOCIAL</span>
-        <h3>Aperitivi & Movida</h3>
-        <p>Aperitivi di gruppo e serata movida napoletana. L'esperienza autentica di Napoli.</p>
-      </div>
-    </div>
-  </div>
+<div class="section-inner">
+<div class="section-tag">Le nostre camere</div>
+<h2 class="section-title">Eleganza al Terzo Piano<br>di un Palazzo Ottocentesco</h2>
+<p class="section-sub">Ogni camera è stata progettata con cura per offrire il massimo comfort, con vista sulla splendida Piazza Bovio e il Maschio Angioino.</p>
+<div class="services-grid" id="servizi">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Junior Suite" loading="lazy">
+<div class="service-card-body">
+<div class="service-tag">Top di gamma</div>
+<h3>🏛️ Junior Suites</h3>
+<p>38 mq di puro lusso con balcone in marmo e vista mozzafiato sul Maschio Angioino. L'esperienza napoletana per eccellenza.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Camera Deluxe" loading="lazy">
+<div class="service-card-body">
+<div class="service-tag">Deluxe</div>
+<h3>🌇 Matrimoniali Deluxe</h3>
+<p>25 mq con elegante balconcino e vista laterale sulla città. Perfette per coppie che cercano romanticismo e comfort.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Camera Superior" loading="lazy">
+<div class="service-card-body">
+<div class="service-tag">Superior</div>
+<h3>🏙️ Matrimoniali Superior</h3>
+<p>22 mq con balconcino laterale e splendida vista sulla città. Ambienti curati con tutti i comfort moderni.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=800&q=80" alt="Tour Napoli" loading="lazy">
+<div class="service-card-body">
+<div class="service-tag">Esperienza</div>
+<h3>🗺️ Visite Guidate Napoli</h3>
+<p>Scopri i tesori nascosti di Napoli con i nostri tour esclusivi. Storia, arte e cultura a portata di mano dalla struttura.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Cibo napoletano" loading="lazy">
+<div class="service-card-body">
+<div class="service-tag">Lifestyle</div>
+<h3>🍕 Aperitivi & Movida</h3>
+<p>Immergiti nella vivace vita notturna napoletana con i nostri aperitivi di gruppo e i migliori consigli locali.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Costiera Amalfitana" loading="lazy">
+<div class="service-card-body">
+<div class="service-tag">Day Trip</div>
+<h3>🌊 Escursioni in Costiera</h3>
+<p>Capri, Positano, Amalfi e Pompei a pochi minuti dalla struttura. La base ideale per esplorare il meglio del Sud Italia.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <section class="ai-section" id="ai">
-  <div class="section-title">
-    <h2>Assistente AI 24/7</h2>
-    <p>Il tuo concierge virtuale risponde in italiano, inglese e francese — sempre disponibile</p>
-  </div>
-  <div class="ai-box">
-    <div class="ai-header">
-      <div>
-        <div class="ai-dot"></div>
-      </div>
-      <div>
-        <h3>PC Hotel AI Concierge</h3>
-        <p>Online ora — risponde in 3 lingue</p>
-      </div>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <div class="msg bot" id="msg1" style="opacity:0">
-        <div class="avatar">AI</div>
-        <div class="msg-bubble">Benvenuto al PC Boutique Hotel Napoli! 🏨 Come posso aiutarti oggi?</div>
-      </div>
-      <div class="msg user" id="msg2" style="opacity:0">
-        <div class="avatar">Tu</div>
-        <div class="msg-bubble">Avete camere disponibili per questo weekend?</div>
-      </div>
-      <div class="msg bot" id="msg3" style="opacity:0">
-        <div class="avatar">AI</div>
-        <div class="msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>
-      </div>
-      <div class="msg bot" id="msg4" style="opacity:0">
-        <div class="avatar">AI</div>
-        <div class="msg-bubble">Sì! Abbiamo disponibili 2 Junior Suite con vista Maschio Angioino e una Deluxe. Vuoi che ti invii i prezzi o preferisci prenotare subito? 🗝️</div>
-      </div>
-    </div>
-  </div>
+<div class="ai-inner">
+<div class="ai-text">
+<div style="display:inline-block;background:rgba(232,160,32,0.2);border:1px solid rgba(232,160,32,0.4);color:#e8a020;padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px">Powered by Experiences Srl</div>
+<h2>Il Tuo Concierge<br>AI è Sempre<br><span style="color:#e8a020">Disponibile</span></h2>
+<p>Con l'assistente virtuale AI di Experiences Srl, i tuoi ospiti ricevono risposte immediate in italiano, inglese e francese — 24 ore su 24, 7 giorni su 7, anche mentre dormi.</p>
+<div class="ai-feature"><span class="dot"></span>Risponde in 3 lingue istantaneamente</div>
+<div class="ai-feature"><span class="dot"></span>Gestisce prenotazioni e richieste</div>
+<div class="ai-feature"><span class="dot"></span>Integrato con Channel Manager</div>
+<div class="ai-feature"><span class="dot"></span>Zero overbooking garantito</div>
+</div>
+<div>
+<div class="chat-box">
+<div class="chat-header">
+<div class="avatar">🤖</div>
+<div class="chat-header-text">
+<strong>Sofia — AI Concierge</strong>
+<span>PC Boutique Hotel Napoli</span>
+</div>
+<div class="chat-online"></div>
+</div>
+<div class="msg bot msg-delay-1">
+<div class="bot-icon">🤖</div>
+<div class="bubble bot-b">Benvenuto al PC Boutique Hotel! 🏨 Sono Sofia, la tua assistente virtuale. Come posso aiutarti oggi?</div>
+</div>
+<div class="msg user msg-delay-2">
+<div class="bubble user-b">Avete camere disponibili per il weekend con vista sul castello?</div>
+</div>
+<div class="msg bot msg-delay-3">
+<div class="bot-icon">🤖</div>
+<div class="bubble bot-b">Ottima scelta! 🏰 Le nostre Junior Suites (38mq) hanno una vista spettacolare sul Maschio Angioino. Sono disponibili questo weekend da €120/notte. Vuoi prenotare?</div>
+</div>
+<div class="msg bot" style="margin-top:4px">
+<div class="bot-icon">🤖</div>
+<div class="typing-dots"><span></span><span></span><span></span></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <section class="pricing" id="prezzi">
-  <div class="section-title">
-    <h2>Piani Experiences Srl</h2>
-    <p>Soluzioni digitali per far crescere il tuo hotel — zero rischi, massimo risultato</p>
-  </div>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <h3>Base</h3>
-      <div class="price-amount">€1.400<span>/anno</span></div>
-      <p class="price-comm">+ 10% commissione</p>
-      <ul class="price-list">
-        <li>Fino a 1.000 clienti/anno</li>
-        <li>Sito web mobile-first</li>
-        <li>SEO base</li>
-        <li>Supporto email</li>
-      </ul>
-      <a class="btn-price" href="https://wa.me/393926917657" target="_blank">Inizia ora</a>
-    </div>
-    <div class="price-card">
-      <h3>Advanced</h3>
-      <div class="price-amount">€1.000<span>/anno</span></div>
-      <p class="price-comm">+ 8% commissione</p>
-      <ul class="price-list">
-        <li>Fino a 5.000 clienti/anno</li>
-        <li>Channel Manager OTA</li>
-        <li>Google Ads & Social</li>
-        <li>Chatbot AI multilingua</li>
-      </ul>
-      <a class="btn-price" href="https://wa.me/393926917657" target="_blank">Inizia ora</a>
-    </div>
-    <div class="price-card featured">
-      <div class="badge">⭐ CONSIGLIATO</div>
-      <h3>Pro</h3>
-      <div class="price-amount">€500<span>/anno</span></div>
-      <p class="price-comm">+ 5% commissione</p>
-      <ul class="price-list">
-        <li>Fino a 10.000 clienti/anno</li>
-        <li>Booking + Expedia + Agoda</li>
-        <li>Zero overbooking</li>
-        <li>AI Concierge 24/7</li>
-      </ul>
-      <a class="btn-price" href="https://wa.me/393926917657" target="_blank">Inizia ora</a>
-    </div>
-    <div class="price-card">
-      <h3>Enterprise</h3>
-      <div class="price-amount">€0<span>/anno</span></div>
-      <p class="price-comm">+ 3% commissione</p>
-      <ul class="price-list">
-        <li>Oltre 10.000 clienti/anno</li>
-        <li>Servizi full-stack</li>
-        <li>Account manager dedicato</li>
-        <li>Priorità assoluta</li>
-      </ul>
-      <a class="btn-price" href="https://wa.me/393926917657" target="_blank">Contattaci</a>
-    </div>
-  </div>
+<div class="section-inner">
+<div style="text-align:center">
+<div class="section-tag">Experiences Srl — Piani Digitali</div>
+<h2 class="section-title">Soluzioni per Ogni<br>Struttura Ricettiva</h2>
+<p class="section-sub" style="margin:0 auto 0">Scegli il piano perfetto per il tuo hotel e inizia a ricevere più prenotazioni dirette, senza overbooking e senza pensieri.</p>
+</div>
+<div class="pricing-grid">
+<div class="price-card">
+<div class="price-name">Base</div>
+<div class="price-amount"><sup>€</sup>1.400<sub>/anno</sub></div>
+<div class="price-commission">+ 10% commissione</div>
+<div class="price-label">Fino a 1.000 clienti/anno</div>
+<div class="price-divider"></div>
+<div class="price-clients">👥 Ideale per strutture piccole</div>
+<div class="price-feature">Sito web mobile-first</div>
+<div class="price-feature">SEO base</div>
+<div class="price-feature">Channel Manager OTA</div>
+<div class="price-feature">Assistente AI multilingua</div>
+<a href="https://wa.me/393926917657" class="price-btn" target="_blank">Inizia ora →</a>
+</div>
+<div class="price-card">
+<div class="price-name">Advanced</div>
+<div class="price-amount"><sup>€</sup>1.000<sub>/anno</sub></div>
+<div class="price-commission">+ 8% commissione</div>
+<div class="price-label">Fino a 5.000 clienti/anno</div>
+<div class="price-divider"></div>
+<div class="price-clients">👥 Per strutture in crescita</div>
+<div class="price-feature">Tutto di Base +</div>
+<div class="price-feature">Google Ads & Social Media</div>
+<div class="price-feature">Gestione OTA avanzata</div>
+<div class="price-feature">Report mensili</div>
+<a href="https://wa.me/393926917657" class="price-btn" target="_blank">Inizia ora →</a>
+</div>
+<div class="price-card featured">
+<div class="price-badge">🏆 Più scelto</div>
+<div class="price-name">Pro</div>
+<div class="price-amount"><sup>€</sup>500<sub>/anno</sub></div>
+<div class="price-commission">+ 5% commissione</div>
+<div class="price-label" style="color:rgba(255,255,255,0.6)">Fino a 10.000 clienti/anno</div>
+<div class="price-divider"></div>
+<div class="price-clients">👥 Per hotel strutturati</div>
+<div class="price-feature">Tutto di Advanced +</div>
+<div class="price-feature">Booking integrato diretto</div>
+<div class="price-feature">Chatbot AI 24/7 premium</div>
+<div class="price-feature">Priority support</div>
+<a href="https://wa.me/393926917657" class="price-btn" target="_blank">Scegli Pro →</a>
+</div>
+<div class="price-card">
+<div class="price-name">Enterprise</div>
+<div class="price-amount"><sup>€</sup>0<sub>/anno</sub></div>
+<div class="price-commission">+ 3% commissione</div>
+<div class="price-label">Oltre 10.000 clienti/anno</div>
+<div class="price-divider"></div>
+<div class="price-clients">👥 Per grandi strutture</div>
+<div class="price-feature">Suite completa personalizzata</div>
+<div class="price-feature">Account manager dedicato</div>
+<div class="price-feature">Integrazioni su misura</div>
+<div class="price-feature">SLA garantito</div>
+<a href="https://wa.me/393926917657" class="price-btn" target="_blank">Contattaci →</a>
+</div>
+</div>
+</div>
 </section>
 
 <section class="cta-section" id="contatti">
-  <h2>Porta il tuo hotel al livello successivo</h2>
-  <p>Parla ora con il team di Experiences Srl — risposta garantita entro 1 ora</p>
-  <a class="btn-wa" href="https://wa.me/393926917657" target="_blank">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Scrivici su WhatsApp
-  </a>
+<h2>Trasforma il Tuo Hotel<br>con il Digitale 🚀</h2>
+<p>Prenota una consulenza gratuita con il team di Experiences Srl. Ti mostreremo come aumentare le prenotazioni dirette e ridurre le commissioni OTA.</p>
+<a href="https://wa.me/393926917657" class="wa-btn" target="_blank">
+<svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Scrivici su WhatsApp ora
+</a>
+<p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.75)">📞 +39 392 691 7657 · 🌐 naplesexperiences.com</p>
 </section>
 
 <footer>
-  <p>© 2024 PC Boutique Hotel Napoli — Piazza Bovio, Napoli</p>
-  <p style="margin-top:8px">Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — naplesexperiences.com | <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a></p>
+<p><strong>PC Boutique Hotel Napoli</strong> — Piazza Bovio, Napoli | Demo realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a></p>
+<div class="portfolio-row">
+<span class="portfolio-tag">accoglienzafma.com</span>
+<span class="portfolio-tag">villacrawford.it</span>
+<span class="portfolio-tag">villatiberiade.com</span>
+<span class="portfolio-tag">vesuvioexpress.it</span>
+</div>
+<p style="margin-top:16px">© 2025 Powered by <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a> — Soluzioni Digitali per il Turismo</p>
 </footer>
-
 <script>
-// Chat animation
-const msgs = ['msg1','msg2','msg3','msg4'];
-const delays = [600, 1800, 3000, 4200];
-msgs.forEach((id, i) => {
-  setTimeout(() => {
-    const el = document.getElementById(id);
-    if(el){ el.style.opacity='1'; el.style.animation='fadeInUp 0.5s ease both'; }
-    if(id==='msg3'){
-      setTimeout(()=>{
-        const m3=document.getElementById('msg3');
-        if(m3) m3.style.display='none';
-      },1100);
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
     }
-  }, delays[i]);
-});
-
-// Intersection Observer for fadeInUp
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.style.animationPlayState='running'; }});
-}, {threshold: 0.1});
-document.querySelectorAll('.card,.price-card,.stat-item').forEach(el => {
-  el.style.animationPlayState='paused';
-  observer.observe(el);
-});
+  });
+}, 1500);
 </script>
 </body>
 </html>
