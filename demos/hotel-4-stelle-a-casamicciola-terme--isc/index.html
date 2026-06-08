@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Gran Paradiso Ischia — Demo by Experiences Srl</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-family:system-ui,-apple-system,sans-serif}
+body{color:#1a1a1a;background:#fff;overflow-x:hidden}
+:root{--blu:#0B3D61;--oro:#e8a020;--oro2:#f5b942}
+.demo-banner{background:linear-gradient(90deg,var(--blu),#1a6090);color:#fff;text-align:center;padding:10px 20px;font-size:.85rem;position:sticky;top:0;z-index:999;border-bottom:3px solid var(--oro)}
+.demo-banner a{color:var(--oro);font-weight:700;text-decoration:none}
+.demo-banner a:hover{text-decoration:underline}
+nav{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.1);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:41px;z-index:998}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--blu),#1a6090);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--oro);font-weight:900;font-size:1rem}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo-text span:first-child{font-weight:800;color:var(--blu);font-size:.95rem}
+.nav-logo-text span:last-child{font-size:.72rem;color:#888}
+.nav-menu{display:flex;gap:24px;list-style:none}
+.nav-menu a{text-decoration:none;color:#333;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-menu a:hover{color:var(--oro)}
+.btn-preventivo{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#fff;border:none;padding:10px 22px;border-radius:25px;font-weight:700;font-size:.85rem;cursor:pointer;text-decoration:none;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 15px rgba(232,160,32,.4)}
+.btn-preventivo:hover{transform:scale(1.05);box-shadow:0 6px 25px rgba(232,160,32,.6)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
+.hamburger span{width:24px;height:2px;background:var(--blu);border-radius:2px;transition:.3s}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-15px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero{position:relative;height:100vh;min-height:600px;background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,61,97,.75) 0%,rgba(11,61,97,.55) 60%,rgba(0,0,0,.4) 100%)}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:20px}
+.hero-badge{display:inline-block;background:rgba(232,160,32,.25);border:1px solid var(--oro);color:var(--oro);padding:6px 18px;border-radius:20px;font-size:.8rem;font-weight:600;letter-spacing:1px;margin-bottom:20px;animation:fadeInUp .5s ease forwards}
+.hero-content h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:20px;animation:fadeInUp .5s ease .2s both}
+.hero-content p{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.9);margin-bottom:35px;max-width:600px;margin-left:auto;margin-right:auto;animation:fadeInUp .5s ease .4s both}
+.hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .5s ease .6s both}
+.btn-hero-primary{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;font-size:1rem;text-decoration:none;transition:transform .3s,box-shadow .3s;box-shadow:0 5px 20px rgba(232,160,32,.5)}
+.btn-hero-primary:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(232,160,32,.7)}
+.btn-hero-secondary{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);color:#fff;padding:14px 32px;border-radius:30px;font-weight:600;font-size:1rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:all .3s}
+.btn-hero-secondary:hover{background:rgba(255,255,255,.25);border-color:#fff}
+.booking-bar{background:#fff;box-shadow:0 8px 40px rgba(0,0,0,.15);border-radius:16px;padding:20px 30px;max-width:900px;margin:-50px auto 0;position:relative;z-index:10;display:flex;gap:15px;align-items:flex-end;flex-wrap:wrap;justify-content:center}
+.booking-field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:140px}
+.booking-field label{font-size:.75rem;font-weight:600;color:var(--blu);text-transform:uppercase;letter-spacing:.5px}
+.booking-field input,.booking-field select{border:1.5px solid #e0e0e0;border-radius:8px;padding:9px 12px;font-size:.9rem;color:#333;outline:none;transition:border-color .2s;background:#fafafa}
+.booking-field input:focus,.booking-field select:focus{border-color:var(--oro)}
+.btn-booking{background:linear-gradient(135deg,var(--blu),#1a6090);color:#fff;padding:10px 28px;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.95rem;transition:transform .2s,box-shadow .2s;white-space:nowrap;align-self:flex-end}
+.btn-booking:hover{transform:scale(1.04);box-shadow:0 4px 15px rgba(11,61,97,.4)}
+.stats-section{background:linear-gradient(135deg,var(--blu) 0%,#1a6090 100%);padding:60px 5%;margin-top:60px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1000px;margin:0 auto;text-align:center}
+.stat-card{animation:countUp .6s ease forwards}
+.stat-number{font-size:2.8rem;font-weight:900;color:var(--oro);line-height:1}
+.stat-label{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px;font-weight:500}
+.section{padding:80px 5%}
+.section-header{text-align:center;margin-bottom:50px}
+.section-tag{display:inline-block;background:rgba(232,160,32,.12);color:var(--oro);padding:5px 16px;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:1px;margin-bottom:12px;border:1px solid rgba(232,160,32,.3)}
+.section-header h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--blu);margin-bottom:12px}
+.section-header p{color:#666;max-width:580px;margin:0 auto;line-height:1.7}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.service-card{border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);background:#fff;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,.15)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:20px}
+.service-card-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--oro),var(--oro2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:12px}
+.service-card h3{font-size:1.05rem;font-weight:700;color:var(--blu);margin-bottom:8px}
+.service-card p{font-size:.85rem;color:#666;line-height:1.6}
+.service-tag{display:inline-block;background:rgba(11,61,97,.08);color:var(--blu);padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:600;margin-top:10px}
+.ai-section{background:linear-gradient(135deg,#f0f7ff 0%,#e8f4fd 100%);padding:80px 5%}
+.ai-container{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.ai-info h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--blu);margin-bottom:15px}
+.ai-info p{color:#555;line-height:1.7;margin-bottom:20px}
+.ai-features{display:flex;flex-direction:column;gap:10px}
+.ai-feature{display:flex;align-items:center;gap:10px;font-size:.88rem;color:#444}
+.ai-feature-dot{width:8px;height:8px;border-radius:50%;background:var(--oro);flex-shrink:0}
+.chat-widget{background:#fff;border-radius:20px;box-shadow:0 10px 50px rgba(11,61,97,.15);overflow:hidden;max-width:360px;margin:0 auto}
+.chat-header{background:linear-gradient(135deg,var(--blu),#1a6090);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--oro),var(--oro2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.chat-header-info{color:#fff}
+.chat-header-info strong{display:block;font-size:.9rem}
+.chat-header-info span{font-size:.75rem;opacity:.85}
+.online-dot{width:8px;height:8px;background:#4caf50;border-radius:50%;display:inline-block;margin-right:4px;animation:pulse 2s infinite}
+.chat-body{padding:16px;min-height:220px;display:flex;flex-direction:column;gap:10px;background:#f8f9fa}
+.msg{max-width:80%;padding:10px 14px;border-radius:14px;font-size:.83rem;line-height:1.5;animation:slideIn .4s ease forwards}
+.msg-bot{background:#fff;color:#333;box-shadow:0 2px 8px rgba(0,0,0,.08);border-bottom-left-radius:4px;align-self:flex-start;animation-delay:.1s}
+.msg-user{background:linear-gradient(135deg,var(--blu),#1a6090);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;animation-delay:.3s}
+.msg-bot2{animation-delay:.5s}
+.typing{display:flex;align-items:center;gap:4px;padding:10px 14px;background:#fff;border-radius:14px;border-bottom-left-radius:4px;width:fit-content;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.dot{width:6px;height:6px;background:#aaa;border-radius:50%;animation:blink 1.4s infinite}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+.chat-input{display:flex;padding:12px;border-top:1px solid #eee;gap:8px;background:#fff}
+.chat-input input{flex:1;border:1.5px solid #e0e0e0;border-radius:20px;padding:8px 14px;font-size:.82rem;outline:none}
+.chat-input input:focus{border-color:var(--oro)}
+.chat-send{background:linear-gradient(135deg,var(--oro),var(--oro2));border:none;border-radius:50%;width:34px;height:34px;color:#fff;cursor:pointer;font-size:.9rem;transition:transform .2s}
+.chat-send:hover{transform:scale(1.1)}
+.pricing-section{background:#fff;padding:80px 5%}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.pricing-card{border-radius:16px;padding:30px 24px;border:2px solid #e8e8e8;position:relative;transition:transform .3s,box-shadow .3s,border-color .3s;background:#fff}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(11,61,97,.12);border-color:var(--oro)}
+.pricing-card.featured{border-color:var(--oro);background:linear-gradient(135deg,var(--blu),#1a6090);color:#fff}
+.pricing-card.featured .pricing-price,.pricing-card.featured .pricing-name{color:var(--oro)}
+.pricing-card.featured .pricing-desc,.pricing-card.featured .pricing-feature{color:rgba(255,255,255,.85)}
+.pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--oro);color:#fff;padding:4px 16px;border-radius:12px;font-size:.72rem;font-weight:700;white-space:nowrap}
+.pricing-name{font-size:1.1rem;font-weight:800;color:var(--blu);margin-bottom:6px}
+.pricing-price{font-size:2rem;font-weight:900;color:var(--blu);line-height:1}
+.pricing-price span{font-size:.85rem;font-weight:500;opacity:.7}
+.pricing-comm{font-size:.78rem;color:#888;margin-bottom:4px}
+.pricing-limit{font-size:.75rem;color:#aaa;margin-bottom:18px}
+.pricing-card.featured .pricing-comm,.pricing-card.featured .pricing-limit{color:rgba(255,255,255,.7)}
+.pricing-divider{border:none;border-top:1px solid #eee;margin:16px 0}
+.pricing-card.featured .pricing-divider{border-top-color:rgba(255,255,255,.2)}
+.pricing-feature{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;color:#555;margin-bottom:8px}
+.pricing-check{color:var(--oro);font-weight:700;flex-shrink:0;margin-top:1px}
+.btn-pricing{display:block;text-align:center;padding:11px;border-radius:10px;font-weight:700;font-size:.88rem;text-decoration:none;margin-top:20px;transition:all .3s;cursor:pointer;border:none;width:100%}
+.btn-pricing-default{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#fff;box-shadow:0 4px 15px rgba(232,160,32,.3)}
+.btn-pricing-default:hover{box-shadow:0 6px 25px rgba(232,160,32,.5);transform:scale(1.03)}
+.btn-pricing-featured{background:#fff;color:var(--blu)}
+.btn-pricing-featured:hover{background:var(--oro);color:#fff}
+.cta-section{background:linear-gradient(135deg,var(--blu) 0%,#0d4f7c 100%);padding:80px 5%;text-align:center}
+.cta-section h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;color:#fff;margin-bottom:15px}
+.cta-section p{color:rgba(255,255,255,.85);max-width:550px;margin:0 auto 35px;font-size:1rem;line-height:1.7}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#fff;padding:16px 36px;border-radius:35px;font-weight:700;font-size:1.05rem;text-decoration:none;box-shadow:0 6px 30px rgba(37,211,102,.5);transition:transform .3s,box-shadow .3s;animation:pulse 3s infinite}
+.btn-whatsapp:hover{transform:scale(1.06);box-shadow:0 10px 40px rgba(37,211,102,.7);animation:none}
+.btn-whatsapp svg{width:24px;height:24px;fill:#fff}
+.portfolio-strip{background:#f8f8f8;padding:30px 5%;text-align:center}
+.portfolio-strip p{font-size:.82rem;color:#888;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.portfolio-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.portfolio-links a{color:var(--blu);font-size:.85rem;font-weight:600;text-decoration:none;padding:5px 12px;border:1px solid #ddd;border-radius:8px;transition:all .2s}
+.portfolio-links a:hover{border-color:var(--oro);color:var(--oro)}
+footer{background:#0a0f1a;color:#aaa;text-align:center;padding:30px 20px;font-size:.83rem}
+footer a{color:var(--oro);text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+.footer-top{margin-bottom:10px;color:#ddd;font-size:.9rem}
+@media(max-width:768px){
+.nav-menu{display:none;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:#fff;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.1);gap:15px}
+.nav-menu.open{display:flex}
+.hamburger{display:flex}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+.ai-container{grid-template-columns:1fr}
+.pricing-grid{grid-template-columns:1fr 1fr}
+.booking-bar{flex-direction:column}
+.booking-field{min-width:100%}
+}
+@media(max-width:480px){.pricing-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="demo-banner">🌟 DEMO GRATUITO realizzato da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo | <a href="https://wa.me/393926917657" target="_blank">Richiedi il tuo sito →</a></div>
+<nav id="navbar">
+<a href="#" class="nav-logo">
+<div class="nav-logo-icon">GP</div>
+<div class="nav-logo-text"><span>Gran Paradiso</span><span>Hotel 4★ Ischia</span></div>
+</a>
+<button class="hamburger" onclick="document.querySelector('.nav-menu').classList.toggle('open')" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-menu">
+<li><a href="#hotel">Hotel</a></li>
+<li><a href="#servizi">Camere</a></li>
+<li><a href="#servizi">Wellness</a></li>
+<li><a href="#servizi">Ristorante</a></li>
+<li><a href="#servizi">Offerte</a></li>
+<li><a href="#contatti">Contatti</a></li>
+</ul>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-preventivo">Preventivo gratuito</a>
+</nav>
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="hero-badge">⭐ HOTEL 4 STELLE · CASAMICCIOLA TERME</div>
+<h1>Vivi l'Ischia<br>che hai sempre sognato</h1>
+<p>Panorama mozzafiato sul Golfo di Napoli, terme rigeneranti e un'ospitalità mediterranea che riscalda il cuore. Benvenuto nel Gran Paradiso.</p>
+<div class="hero-btns">
+<a href="#booking" class="btn-hero-primary">🗓 Prenota Ora</a>
+<a href="#servizi" class="btn-hero-secondary">Scopri i Servizi</a>
+</div>
+</div>
+</section>
+<div class="booking-bar" id="booking">
+<div class="booking-field"><label>Arrivo</label><input type="date"></div>
+<div class="booking-field"><label>Partenza</label><input type="date"></div>
+<div class="booking-field"><label>Adulti</label><select><option>1 Adulto</option><option>2 Adulti</option><option>3 Adulti</option><option>4 Adulti</option></select></div>
+<div class="booking-field"><label>Camere</label><select><option>1 Camera</option><option>2 Camere</option><option>3 Camere</option></select></div>
+<button class="btn-booking" onclick="alert('Sistema di prenotazione integrato da Experiences Srl!')">🔍 Cerca</button>
+</div>
+<section class="stats-section">
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-number">4★</div><div class="stat-label">Categoria Hotel</div></div>
+<div class="stat-card"><div class="stat-number">30+</div><div class="stat-label">Anni di ospitalità</div></div>
+<div class="stat-card"><div class="stat-number">98%</div><div class="stat-label">Ospiti soddisfatti</div></div>
+<div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Lingue parlate</div></div>
+</div>
+</section>
+<section class="section" id="servizi">
+<div class="section-header">
+<div class="section-tag">I NOSTRI SERVIZI</div>
+<h2>Un'esperienza completa a Ischia</h2>
+<p>Dalle camere panoramiche alle terme rigeneranti, ogni dettaglio è pensato per il tuo benessere</p>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere Hotel" loading="lazy">
+<div class="service-card-body">
+<div class="service-card-icon">🛏</div>
+<h3>Camere & Suite</h3>
+<p>Camere eleganti con vista panoramica sul Golfo di Napoli, arredate con gusto mediterraneo e dotate di ogni comfort.</p>
+<span class="service-tag">Vista Mare</span>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Terrazza" loading="lazy">
+<div class="service-card-body">
+<div class="service-card-icon">🌅</div>
+<h3>Terrazza Gran Paradiso</h3>
+<p>La nostra terrazza panoramica è il luogo perfetto per ammirare il tramonto sul Golfo, con cocktail e aperitivi al tramonto.</p>
+<span class="service-tag">Panoramica</span>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ristorante" loading="lazy">
+<div class="service-card-body">
+<div class="service-card-icon">🍽</div>
+<h3>Ristorante & Bar</h3>
+<p>Cucina campana autentica con prodotti locali a km 0. Dal pescato fresco ai dolci tradizionali, un viaggio nel gusto.</p>
+<span class="service-tag">Cucina Locale</span>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Wellness Terme" loading="lazy">
+<div class="service-card-body">
+<div class="service-card-icon">♨️</div>
+<h3>Wellness & Terme</h3>
+<p>Percorsi termali con acque sulfuree naturali di Ischia, massaggi rigeneranti e trattamenti beauty personalizzati.</p>
+<span class="service-tag">Acque Termali</span>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Escursioni" loading="lazy">
+<div class="service-card-body">
+<div class="service-card-icon">⛵</div>
+<h3>Esperienze & Escursioni</h3>
+<p>Tour in barca intorno all'isola, escursioni al Castello Aragonese, visita alle cantine locali e molto altro.</p>
+<span class="service-tag">Attività</span>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Transfer" loading="lazy">
+<div class="service-card-body">
+<div class="service-card-icon">🚢</div>
+<h3>Transfer & Logistica</h3>
+<p>Convenzione SNAV per aliscafi da Napoli, parcheggi custoditi, transfer privato e gestione bagagli in tutta Italia.</p>
+<span class="service-tag">Door to Door</span>
+</div>
+</div>
+</div>
+</section>
+<section class="ai-section" id="ai">
+<div class="ai-container">
+<div class="ai-info">
+<div class="section-tag">NOVITÀ DIGITALE</div>
+<h2>Assistente AI 24/7 per i tuoi ospiti</h2>
+<p>Con Experiences Srl, il tuo hotel dispone di un assistente virtuale intelligente che risponde agli ospiti in qualsiasi lingua, a qualsiasi ora, senza mai farti perdere una prenotazione.</p>
+<div class="ai-features">
+<div class="ai-feature"><div class="ai-feature-dot"></div><span>Risponde in italiano, inglese, francese, tedesco e spagnolo</span></div>
+<div class="ai-feature"><div class="ai-feature-dot"></div><span>Gestisce prenotazioni e disponibilità in tempo reale</span></div>
+<div class="ai-feature"><div class="ai-feature-dot"></div><span>Invia preventivi personalizzati automaticamente</span></div>
+<div class="ai-feature"><div class="ai-feature-dot"></div><span>Integrato con Channel Manager e sito web</span></div>
+<div class="ai-feature"><div class="ai-feature-dot"></div><span>Disponibile 24 ore su 24, 7 giorni su 7</span></div>
+</div>
+</div>
+<div class="chat-widget">
+<div class="chat-header">
+<div class="chat-avatar">🤖</div>
+<div class="chat-header-info">
+<strong>Assistente Gran Paradiso</strong>
+<span><span class="online-dot"></span>Online ora</span>
+</div>
+</div>
+<div class="chat-body">
+<div class="msg msg-bot">Ciao! 👋 Benvenuto all'Hotel Gran Paradiso Ischia. Come posso aiutarti oggi?</div>
+<div class="msg msg-user">Avete camere disponibili per agosto?</div>
+<div class="msg msg-bot msg-bot2">Certo! 🌟 Ho disponibilità per agosto. Per 2 adulti, la camera doppia vista mare parte da <strong>€180/notte</strong> con colazione inclusa. Vuoi che ti invii un preventivo dettagliato?</div>
+<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+</div>
+<div class="chat-input">
+<input type="text" placeholder="Scrivi un messaggio...">
+<button class="chat-send" onclick="alert('Chat AI integrata da Experiences Srl!')">➤</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="pricing-section" id="prezzi">
+<div class="section-header">
+<div class="section-tag">PIANI EXPERIENCES SRL</div>
+<h2>Soluzioni digitali per ogni hotel</h2>
+<p>Scegli il piano più adatto alla tua struttura. Zero costi fissi eccessivi, massima crescita online.</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card">
+<div class="pricing-name">Base</div>
+<div class="pricing-price">€1.400<span>/anno</span></div>
+<div class="pricing-comm">+ 10% commissione</div>
+<div class="pricing-limit">Fino a 1.000 clienti/anno</div>
+<hr class="pricing-divider">
+<div class="pricing-feature"><span class="pricing-check">✓</span>Sito web mobile-first</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Booking engine integrato</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>SEO base</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Assistente AI 24/7</div>
+<button class="btn-pricing btn-pricing-default" onclick="window.open('https://wa.me/393926917657','_blank')">Inizia Ora</button>
+</div>
+<div class="pricing-card">
+<div class="pricing-name">Advanced</div>
+<div class="pricing-price">€1.000<span>/anno</span></div>
+<div class="pricing-comm">+ 8% commissione</div>
+<div class="pricing-limit">Fino a 5.000 clienti/anno</div>
+<hr class="pricing-divider">
+<div class="pricing-feature"><span class="pricing-check">✓</span>Tutto il piano Base</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Google Ads & Social</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Channel Manager</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>OTA Management</div>
+<button class="btn-pricing btn-pricing-default" onclick="window.open('https://wa.me/393926917657','_blank')">Inizia Ora</button>
+</div>
+<div class="pricing-card featured">
+<div class="pricing-badge">⭐ PIÙ SCELTO</div>
+<div class="pricing-name">Pro</div>
+<div class="pricing-price">€500<span>/anno</span></div>
+<div class="pricing-comm">+ 5% commissione</div>
+<div class="pricing-limit">Fino a 10.000 clienti/anno</div>
+<hr class="pricing-divider">
+<div class="pricing-feature"><span class="pricing-check">✓</span>Tutto il piano Advanced</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Zero overbooking garantito</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Chatbot multilingua AI</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Report analytics avanzati</div>
+<button class="btn-pricing btn-pricing-featured" onclick="window.open('https://wa.me/393926917657','_blank')">Scegli Pro</button>
+</div>
+<div class="pricing-card">
+<div class="pricing-name">Enterprise</div>
+<div class="pricing-price">€0<span>/anno</span></div>
+<div class="pricing-comm">+ 3% commissione</div>
+<div class="pricing-limit">Oltre 10.000 clienti/anno</div>
+<hr class="pricing-divider">
+<div class="pricing-feature"><span class="pricing-check">✓</span>Tutto il piano Pro</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Account manager dedicato</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Sviluppo custom</div>
+<div class="pricing-feature"><span class="pricing-check">✓</span>Priorità assoluta</div>
+<button class="btn-pricing btn-pricing-default" onclick="window.open('https://wa.me/393926917657','_blank')">Contattaci</button>
+</div>
+</div>
+</section>
+<section class="cta-section" id="contatti">
+<h2>Vuoi un sito come questo<br>per il tuo hotel?</h2>
+<p>Contatta Experiences Srl oggi stesso. Il demo è gratuito, la crescita è immediata. Gestiamo tutto noi: sito, SEO, prenotazioni, chatbot AI e molto altro.</p>
+<a href="https://wa.me/393926917657" target="_blank" class="btn-whatsapp">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Scrivici su WhatsApp
+</a>
+</section>
+<div class="portfolio-strip">
+<p>Portfolio Experiences Srl</p>
+<div class="portfolio-links">
+<a href="https://accoglienzafma.com" target="_blank">accoglienzafma.com</a>
+<a href="https://villacrawford.it" target="_blank">villacrawford.it</a>
+<a href="https://villatiberiade.com" target="_blank">villatiberiade.com</a>
+<a href="https://vesuvioexpress.it" target="_blank">vesuvioexpress.it</a>
+</div>
+</div>
+<footer>
+<div class="footer-top">Hotel Gran Paradiso · Casamicciola Terme, Ischia · Tel: 081994003 · <a href="mailto:info@hgp.it">info@hgp.it</a></div>
+<div>Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo · <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a></div>
+</footer>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})});
+(function(){const msgs=[{text:"Ciao! 👋 Benvenuto all'Hotel Gran Paradiso Ischia. Come posso aiutarti oggi?",bot:true,delay:0},{text:"Avete camere disponibili per agosto?",bot:false,delay:2000},{text:"Certo! 🌟 Ho disponibilità per agosto. Camera doppia vista mare da €180/notte. Vuoi un preventivo?",bot:true,delay:4000}];const body=document.querySelector('.chat-body');const typing=body.querySelector('.typing');function showMsgs(i){if(i>=msgs.length){setTimeout(()=>{body.innerHTML='<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';showMsgs(0)},3000);return}const m=msgs[i];setTimeout(()=>{const d=document.createElement('div');d.className='msg '+(m.bot?'msg-bot':'msg-user');d.innerHTML=m.text;body.insertBefore(d,body.querySelector('.typing'));body.scrollTop=body.scrollHeight;showMsgs(i+1)},m.delay+800)}if(body){showMsgs(0)}})();
+</script>
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
