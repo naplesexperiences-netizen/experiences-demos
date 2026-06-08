@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermitage Resort & Thermal SPA - Soluzioni Digitali Experiences Srl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== BANNER DORATO ===== */
+        .top-banner {
+            background: linear-gradient(135deg, #e8a020 0%, #d4891a 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .top-banner a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(255,255,255,0.7);
+            transition: border 0.3s;
+        }
+
+        .top-banner a:hover {
+            border-bottom-color: white;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B3D61;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #e8a020;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .menu a:hover {
+            color: #e8a020;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e8a020;
+            transition: width 0.3s;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .btn-preventivo {
+            background: linear-gradient(135deg, #0B3D61 0%, #1a5f8f 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .btn-preventivo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(11, 61, 97, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .menu {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu a {
+                font-size: 13px;
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(rgba(11, 61, 97, 0.5), rgba(11, 61, 97, 0.5)),
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat;
+            color: white;
+            padding: 120px 30px;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero-content .btn-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #e8a020 0%, #d4891a 100%);
+            color: white;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 15px;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .hero-content .btn-cta:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px;
+                min-height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats {
+            background: linear-gradient(135deg, #0B3D61 0%, #1a5f8f 100%);
+            color: white;
+            padding: 50px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #e8a020;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services {
+            padding: 80px 30px;
+            background: #f9f9f9;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #0B3D61;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 25px;
+        }
+
+        .service-card h3 {
+            color: #0B3D61;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .services {
+                padding: 50px 20px;
+            }
+
+            .services h2 {
+                font-size: 32px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== AI ASSISTANT BOX ===== */
+        .ai-section {
+            background: linear-gradient(135deg, #e8a020 0%, #d4891a 100%);
+            padding: 60px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .ai-section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .chat-demo {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .chat-header {
+            background: #0B3D61;
+            color: white;
+            padding: 15px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 700;
+            margin: -20px -20px 20px -20px;
+            font-size: 14px;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 250px;
+            justify-content: flex-start;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 13px;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-bubble {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .message.user .message-bubble {
+            background: #0B3D61;
+            color: white;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            padding: 10px 15px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            animation: bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                opacity: 0.5;
+                transform: translateY(0);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ai-section {
+                padding: 40px 20px;
+            }
+
+            .ai-section h2 {
+                font-size: 28px;
+            }
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .pricing {
+            padding: 80px 30px;
+            background: white;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #0B3D61;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e8a020;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #0B3D61 0%, #1a5f8f 100%);
+            color: white;
+            border-color: #e8a020;
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(11, 61, 97, 0.2);
+        }
+
+        .pricing-card.featured .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e8a020;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pricing-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #0B3D61;
+        }
+
+        .pricing-card.featured h3 {
+            color: #e8a020;
+        }
+
+        .pricing-card .price {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 20px 0;
+            color: #e8a020;
+        }
+
+        .pricing-card.featured .price {
+            color: #e8a020;
+        }
+
+        .pricing-card .price-subtitle {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .pricing-card.featured .price-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 25px 0;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .pricing-card.featured .pricing-features {
+            color: rgba(255,255,255,0.95);
+        }
+
+        .feature-item {
+            padding: 8px 0;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-card.featured .feature-item {
+            color: rgba(255,255,255,0.9);
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+
+        .pricing-card .btn-pricing {
+            background: linear-gradient(135deg, #0B3D61 0%, #1a5f8f 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 13px;
+        }
+
+        .pricing-card.featured .btn-pricing {
+            background: #e8a020;
+            color: #0B3D61;
+        }
+
+        .pricing-card .btn-pricing:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(11, 61, 97, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .pricing {
+                padding: 50px 20px;
+            }
+
+            .pricing h2 {
+                font-size: 32px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        /* ===== CTA WHATSAPP ===== */
+        .cta-whatsapp {
+            background: linear-gradient(135deg, #25d366 0%, #1fb456 100%);
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-whatsapp h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-whatsapp p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: white;
+            color: #25d366;
+            padding: 15px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 16px;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .cta-whatsapp {
+                padding: 40px 20px;
+            }
+
+            .cta-whatsapp h2 {
+                font-size: 28px;
+            }
+
+            .cta-whatsapp p {
+                font-size: 14px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0B3D61;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #e8a020;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- TOP BANNER -->
+<div class="top-banner">
+    🎁 DEMO GRATUITO realizzato da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl — naplesexperiences.com</a>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+    <a href="#" class="logo">Hermitage <span>Ischia</span></a>
+    <ul class="menu">
+        <li><a href="#camere">Camere</a></li>
+        <li><a href="#spa">Thermal SPA</a></li>
+        <li><a href="#ristorante">Ristorante</a></li>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#prezzi">Piani Digitali</a></li>
+    </ul>
+    <button class="btn-preventivo" onclick="window.location.href='https://wa.me/393926917657'">Preventivo</button>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Hermitage Resort & Thermal SPA Ischia</h1>
+        <p>Il vostro rifugio di lusso nel Mediterraneo. Scoprite il connubio perfetto tra tecnologia digitale avanzata e ospitalità autentica.</p>
+        <button class="btn-cta" onclick="document.getElementById('spa').scrollIntoView()">Scopri i nostri servizi</button>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats">
+    <div class="stat-item">
+        <h3>54+</h3>
+        <p>Anni di Ospitalità Eccellente</p>
+    </div>
+    <div class="stat-item">
+        <h3>80</h3>
+        <p>Camere & Suite Esclusive</p>
+    </div>
+    <div class="stat-item">
+        <h3>100%</h3>
+        <p>Acque Termali Naturali</p>
+    </div>
+    <div class="stat-item">
+        <h3>5★</h3>
+        <p>Certificazioni & Awards</p>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services" id="spa">
+    <h2>I Nostri Servizi Premium</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere Luxury" loading="lazy">
+            <div class="service-card-content">
+                <h3>Camere Deluxe & Suite</h3>
+                <p>Camere vista mare e junior suite con ogni comfort. Arredi raffinati e balconi panoramici per il vostro relax.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Thermal SPA" loading="lazy">
+            <div class="service-card-content">
+                <h3>Cinthia Thermal SPA</h3>
+                <p>Centro benessere con acque termali, sauna, piscine interne e massaggi esclusivi. Elisir naturali di Ischia.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ristorante Gourmet" loading="lazy">
+            <div class="service-card-content">
+                <h3>Ristorante Il Panorama</h3>
+                <p>Cucina italiana autentica con vista mare. Chef rinomati e vini pregiati. Piatti tipici ischiitani.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Terrazza & Bar" loading="lazy">
+            <div class="service-card-content">
+                <h3>Terrazza La Pigna & GinBar</h3>
+                <p>Spazi all'aperto con viste spettacolari. Aperitivi, cocktail e musica live al tramonto.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Attività Esperienziali" loading="lazy">
+            <div class="service-card-content">
+                <h3>Attività & Escursioni</h3>
+                <p>Tour guidati, sport acquatici, visite culturali. Scopri i tesori dell'isola d'Ischia con i nostri esperti.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=800&q=80" alt="Sale Congressi" loading="lazy">
+            <div class="service-card-content">
+                <h3>Sale Congressi & Eventi</h3>
+                <p>Spazi eleganti per meeting aziendali, cerimonie e matrimoni. Team professionale e servizi 24/7.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI ASSISTANT SECTION -->
+<section class="ai-section">
+    <h2>🤖 Assistente AI 24/7 Multilingue</h2>
+    <div class="chat-demo">
+        <div class="chat-header">🌐 Hermitage AI Assistant</div>
+        <div class="chat-messages">
+            <div class="message bot" style="animation-delay: 0s">
+                <div class="message-bubble">
+                    Ciao! Sono l'Assistente AI di Hermitage. Come posso aiutarti?
+                </div>
+            </div>
+
+            <div class="message user" style="animation-delay: 0.3s">
+                <div class="message-bubble">
+                    Disponibilità camere a giugno?
+                </div>
+            </div>
+
+            <div class="message bot" style="animation-delay: 0.6s">
+                <div class="typing-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="margin-top: 30px; font-size: 14px; opacity: 0.95;">
+        ✨ Risponde in italiano, inglese, tedesco, francese • Elabora prenotazioni • Gestisce lamentele • Available 24/7
+    </p>
+</section>
+
+<!-- PRICING SECTION -->
+<section class="pricing" id="prezzi">
+    <h2>Piani Digitali Experiences Srl</h2>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Base</h3>
+            <div class="price">€1.400<span style="font-size: 16px; opacity: 0.8">/anno</span></div>
+            <div class="price-subtitle">+ 10% commissione</div>
+            <div class="pricing-features">
+                <div class="feature-item">✅ Sito web responsive</div>
+                <div class="feature-item">✅ Booking engine integrato</div>
+                <div class="feature-item">✅ Channel Manager base</div>
+                <div class="feature-item">✅ 1 OTA connesso</div>
+                <div class="feature-item">✅ SEO base</div>
+                <div class="feature-item">Fino a 1.000 clienti/anno</div>
+            </div>
+            <button class="btn-pricing" onclick="window.location.href='https://wa.me/393926917657'">Richiedi info</button>
+        </div>
+
+        <div class="pricing-card featured">
+            <div class="badge">⭐ CONSIGLIATO</div>
+            <h3>Advanced</h3>
+            <div class="price">€1.000<span style="font-size: 16px; opacity: 0.8">/anno</span></div>
+            <div class="price-subtitle">+ 8% commissione</div>
+            <div class="pricing-features">
+                <div class="feature-item">✅ Sito web premium + design</div>
+                <div class="feature-item">✅ Channel Manager avanzato</div>
+                <div class="feature-item">✅ 5 OTA connessi</div>
+                <div class="feature-item">✅ SEO/SEM marketing</div>
+                <div class="feature-item">✅ AI Chatbot 24/7</div>
+                <div class="feature-item">Fino a 5.000 clienti/anno</div>
+            </div>
+            <button class="btn-pricing" onclick="window.location.href='https://wa.me/393926917657'">Scegli Advanced</button>
+        </div>
+
+        <div class="pricing-card">
+            <h3>Pro</h3>
+            <div class="price">€500<span style="font-size: 16px; opacity: 0.8">/anno</span></div>
+            <div class="price-subtitle">+ 5% commissione</div>
+            <div class="pricing-features">
+                <div class="feature-item">✅ Sito excellence tier</div>
+                <div class="feature-item">✅ Channel Manager premium</div>
+                <div class="feature-item">✅ 10+ OTA connessi</div>
+                <div class="feature-item">✅ Social media gestione</div>
+                <div class="feature-item">✅ AI multilingue avanzato</div>
+                <div class="feature-item">Fino a 10.000 clienti/anno</div>
+            </div>
+            <button class="btn-pricing" onclick="window.location.href='https://wa.me/393926917657'">Dettagli Pro</button>
+        </div>
+
+        <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">€0<span style="font-size: 16px; opacity: 0.8">/anno</span></div>
+            <div class="price-subtitle">+ 3% commissione</div>
+            <div class="pricing-features">
+                <div class="feature-item">✅ Soluzione white-label</div>
+                <div class="feature-item">✅ Integrazione API custom</div>
+                <div class="feature-item">✅ Gestione OTA illimitata</div>
+                <div class="feature-item">✅ Supporto dedicato 24/7</div>
+                <div class="feature-item">✅ AI e automazione completa</div>
+                <div class="feature-item">Oltre 10.000 clienti/anno</div>
+            </div>
+            <button class="btn-pricing" onclick="window.location.href='https://wa.me/393926917657'">Contatta Sales</button>
+        </div>
+    </div>
+</section>
+
+<!-- CTA WHATSAPP -->
+<section class="cta-whatsapp">
+    <h2>Pronto per trasformare il vostro business?</h2>
+    <p>Contattate subito Experiences Srl per una consulenza gratuita e un preventivo personalizzato!</p>
+    <a href="https://wa.me/393926917657" target="_blank" class="btn-whatsapp">💬 Contatta via WhatsApp</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>Hermitage Resort & Thermal SPA Ischia 🏨 | <strong>Powered by</strong> <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo</p>
+    <p style="margin-top: 15px; opacity: 0.8;">Via San Montano, Ischia (NA) | Tel: <a href="tel:+39081908999">+39 081 908 999</a> | <a href="mailto:info@hermitageischia.it">info@hermitageischia.it</a></p>
+    <p style="margin-top: 10px; opacity: 0.7;">Portfolio: accoglienzafma.com • villacrawford.it • villatiberiade.com • vesuvioexpress.it</p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
