@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Villa D'Orta - Wellness e Spa a Ischia | Experiences Srl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        /* BANNER DEMO */
+        .demo-banner {
+            background: linear-gradient(135deg, #e8a020 0%, #d4882a 100%);
+            color: #0B3D61;
+            padding: 14px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-banner a {
+            color: #0B3D61;
+            text-decoration: none;
+            border-bottom: 2px solid #0B3D61;
+            transition: all 0.3s;
+        }
+
+        .demo-banner a:hover {
+            padding-bottom: 2px;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B3D61;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #0B3D61, #e8a020);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #0B3D61;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e8a020;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0B3D61, #0d4a7d);
+            color: #fff;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(11, 61, 97, 0.3);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(rgba(11, 61, 97, 0.55), rgba(11, 61, 97, 0.55)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover;
+            color: #fff;
+            padding: 120px 40px;
+            text-align: center;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 32px;
+            opacity: 0.95;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero .cta-button {
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            background: #e8a020;
+            color: #0B3D61;
+            font-size: 15px;
+            padding: 14px 36px;
+        }
+
+        .hero .cta-button:hover {
+            background: #d4882a;
+            box-shadow: 0 8px 24px rgba(232, 160, 32, 0.35);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 50px 40px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .stat-card h3 {
+            font-size: 32px;
+            color: #e8a020;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* SERVIZI */
+        .services-section {
+            padding: 70px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 42px;
+            color: #0B3D61;
+            text-align: center;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 16px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .service-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .service-card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .service-card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 32px rgba(11, 61, 97, 0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            color: #0B3D61;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .service-card .badge {
+            display: inline-block;
+            background: #e8a020;
+            color: #0B3D61;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* AI CHAT */
+        .ai-section {
+            background: linear-gradient(135deg, #0B3D61 0%, #0d4a7d 100%);
+            padding: 70px 40px;
+            color: #fff;
+            margin: 60px 0;
+        }
+
+        .ai-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .ai-text h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .ai-text p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .ai-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .ai-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .ai-features li::before {
+            content: '✓';
+            background: #e8a020;
+            color: #0B3D61;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .chat-box {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .chat-message {
+            margin-bottom: 16px;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 1;
+        }
+
+        .chat-message:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .chat-message:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .chat-message:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .chat-message.user {
+            text-align: right;
+        }
+
+        .chat-message.user .bubble {
+            background: #0B3D61;
+            color: #fff;
+        }
+
+        .chat-message.bot .bubble {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .bubble {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+
+        .typing {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            height: 20px;
+        }
+
+        .typing span {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: blink 1.4s infinite;
+        }
+
+        .typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input-wrapper input {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            background: #f8f8f8;
+            color: #333;
+        }
+
+        .chat-input-wrapper button {
+            background: #e8a020;
+            color: #0B3D61;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .chat-input-wrapper button:hover {
+            background: #d4882a;
+            transform: scale(1.05);
+        }
+
+        /* PRICING */
+        .pricing-section {
+            padding: 70px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border: 2px solid #e8e8e8;
+            border-radius: 14px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        .pricing-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .pricing-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .pricing-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: #e8a020;
+            box-shadow: 0 8px 32px rgba(232, 160, 32, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #0B3D61 0%, #0d4a7d 100%);
+            color: #fff;
+            border: 2px solid #e8a020;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured .plan-name {
+            color: #e8a020;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e8a020;
+            color: #0B3D61;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0B3D61;
+            margin-bottom: 16px;
+            margin-top: 8px;
+        }
+
+        .plan-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e8a020;
+            margin-bottom: 4px;
+        }
+
+        .plan-price-sub {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card.featured .plan-price {
+            color: #fff;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 28px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pricing-card.featured .plan-features li {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li::before {
+            content: '✓ ';
+            color: #e8a020;
+            font-weight: 700;
+        }
+
+        .pricing-card.featured .plan-features li::before {
+            color: #fff;
+        }
+
+        .plan-cta {
+            background: #0B3D61;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 24px;
+            font-size: 13px;
+        }
+
+        .pricing-card.featured .plan-cta {
+            background: #e8a020;
+            color: #0B3D61;
+        }
+
+        .plan-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(11, 61, 97, 0.3);
+        }
+
+        .pricing-card.featured .plan-cta:hover {
+            box-shadow: 0 6px 20px rgba(232, 160, 32, 0.35);
+        }
+
+        /* CTA FINALE */
+        .final-cta {
+            background: linear-gradient(135deg, #e8a020 0%, #d4882a 100%);
+            padding: 60px 40px;
+            text-align: center;
+            color: #0B3D61;
+        }
+
+        .final-cta h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .final-cta p {
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.08);
+            background: #1ea952;
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0B3D61;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #e8a020;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 14px 20px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-menu {
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 80px 20px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .ai-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .services-section,
+            .pricing-section,
+            .ai-section {
+                padding: 50px 20px;
+            }
+
+            .final-cta {
+                padding: 40px 20px;
+            }
+
+            .final-cta h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demo-banner {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .stat-card h3 {
+                font-size: 24px;
+            }
+
+            .service-card {
+                margin-bottom: 10px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .ai-text h2 {
+                font-size: 24px;
+            }
+
+            .chat-box {
+                height: 300px;
+            }
+
+            .pricing-card {
+                padding: 20px 16px;
+            }
+
+            .plan-price {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER DEMO -->
+    <div class="demo-banner">
+        🎯 DEMO GRATUITO realizzato da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl — naplesexperiences.com</a>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🏨</div>
+            <span>Villa D'Orta</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#ai">IA 24/7</a></li>
+            <li><a href="#pricing">Prezzi</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <button class="cta-button" onclick="scrollToContact()">Preventivo Gratuito</button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <h1>Ritrova il Benessere a Ischia</h1>
+        <p>Spa e Acque Termali a Casamicciola Terme — Relax, Natura e Lusso a Pochi Passi dal Mare</p>
+        <button class="cta-button" onclick="scrollToContact()">Scopri le Offerte</button>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stat-card">
+            <h3>25+</h3>
+            <p>Anni di Ospitalità</p>
+        </div>
+        <div class="stat-card">
+            <h3>4★</h3>
+            <p>Certificazione Wellness</p>
+        </div>
+        <div class="stat-card">
+            <h3>100%</h3>
+            <p>Acqua Geotermica Naturale</p>
+        </div>
+        <div class="stat-card">
+            <h3>500+</h3>
+            <p>Ospiti Felici/Anno</p>
+        </div>
+    </section>
+
+    <!-- SERVIZI -->
+    <section class="services-section" id="servizi">
+        <h2 class="section-title">I Nostri Servizi Premium</h2>
+        <p class="section-subtitle">Scopri tutto ciò che Villa D'Orta offre per il tuo benessere esclusivo</p>
+        
+        <div class="services-grid">
+            <!-- Card 1: Piscina Geotermica -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f3fabu?w=800&q=80" alt="Piscina Geotermica" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Piscine Geotermiche</h3>
+                    <p>Immergiti nell'acqua naturalmente calda ricca di minerali benefici dal nostro pozzo privato.</p>
+                    <span class="badge">Incluso</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Spa & Wellness -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1540575467063-178f50002c4b?w=800&q=80" alt="Spa Wellness" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Spa & Massaggi</h3>
+                    <p>Trattamenti esclusivi e massaggi terapeutici per rigenerare corpo e mente.</p>
+                    <span class="badge">Premium</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Bagno Turco -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80" alt="Bagno Turco" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Bagno Turco & Sauna</h3>
+                    <p>Vapori caldi che liberano le tensioni in un'atmosfera di puro relax.</p>
+                    <span class="badge">Incluso</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Cucina -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80" alt="Cucina Gourmet" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Cucina Gourmet</h3>
+                    <p>Piatti autentici campani e mediterranei preparati con ingredienti a km 0.</p>
+                    <span class="badge">Esclusiva</span>
+                </div>
+            </div>
+
+            <!-- Card 5: Camere Eleganti -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Suite Boutique</h3>
+                    <p>Camere eleganti con vista mare, arredate con materiali naturali e sostenibili.</p>
+                    <span class="badge">Lusso</span>
+                </div>
+            </div>
+
+            <!-- Card 6: Escursioni -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Escursioni" loading="lazy">
+                <div class="service-card-content">
+                    <h3>Tour & Escursioni</h3>
+                    <p>Scopri le bellezze di Casamicciola Terme e i tesori naturali di Ischia con guide locali.</p>
+                    <span class="badge">Incluso</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI SECTION -->
+    <section class="ai-section" id="ai">
+        <div class="ai-container">
+            <div class="ai-text">
+                <h2>Assistente IA 24/7</h2>
+                <p>Risposte istantanee in 8 lingue. Il nostro chatbot intelligente risponde a domande su disponibilità, prezzi, servizi e prenotazioni, anche se dormi.</p>
+                <ul class="ai-features">
+                    <li>Risposte in tempo reale</li>
+                    <li>Supporto multilingua (IT, EN, DE, ES, FR, PT, RU, ZH)</li>
+                    <li>Integrazione con il booking engine</li>
+                    <li>Riduzione del 70% dei contatti telefonici</li>
+                    <li>Disponibile 24 ore su 24, 7 giorni su 7</li>
+                </ul>
+            </div>
+
+            <div class="chat-box">
+                <div class="chat-messages">
+                    <div class="chat-message user">
+                        <div class="bubble">Avete camere disponibili a giugno?</div>
+                    </div>
+                    <div class="chat-message bot">
+                        <div class="bubble">Perfetto! Abbiamo Suite con vista mare disponibili dal 1° al 30 giugno. Quale data preferisci?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="bubble">Dal 10 al 17 giugno per 2 persone</div>
+                    </div>
+                    <div class="chat-message bot">
+                        <div class="typing">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-wrapper">
+                    <input type="text" placeholder="Scrivi qui...">
+                    <button>Invia</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title">Piani di Servizio Experiences Srl</h2>
+        <p class="section-subtitle">Soluzioni digitali su misura per la tua struttura ricettiva</p>
+
+        <div class="pricing-grid">
+            <!-- Base -->
+            <div class="pricing-card">
+                <div class="plan-name">Base</div>
+                <div class="plan-price">€1.400</div>
+                <div class="plan-price-sub">/anno + 10% commissione</div>
+                <ul class="plan-features">
+                    <li>Fino a 1.000 clienti/anno</li>
+                    <li>Sito web mobile-first</li>
+                    <li>Booking integrato</li>
+                    <li>Assistente IA base</li>
+                    <li>Email support</li>
+                </ul>
+                <button class="plan-cta">Scegli Base</button>
+            </div>
+
+            <!-- Advanced -->
+            <div class="pricing-card">
+                <div class="plan-name">Advanced</div>
+                <div class="plan-price">€1.000</div>
+                <div class="plan-price-sub">/anno + 8% commissione</div>
+                <ul class="plan-features">
+                    <li>Fino a 5.000 clienti/anno</li>
+                    <li>Sito web premium</li>
+                    <li>Channel Manager (Booking, Expedia)</li>
+                    <li>IA multilingua 24/7</li>
+                    <li>SEO/SEM marketing</li>
+                    <li>Supporto prioritario</li>
+                </ul>
+                <button class="plan-cta">Scegli Advanced</button>
+            </div>
+
+            <!-- PRO - FEATURED -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">⭐ Consigliato</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">€500</div>
+                <div class="plan-price-sub">/anno + 5% commissione</div>
+                <ul class="plan-features">
+                    <li>Fino a 10.000 clienti/anno</li>
+                    <li>Sito web enterprise</li>
+                    <li>Multi-Channel Manager (Agoda incluso)</li>
+                    <li>IA avanzata con analytics</li>
+                    <li>Gestione annunci OTA</li>
+                    <li>Campagne Facebook/Instagram</li>
+                    <li>Supporto 24/7 dedicato</li>
+                </ul>
+                <button class="plan-cta">Scegli Pro</button>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price">Personalizzato</div>
+                <div class="plan-price-sub">+ 3% commissione</div>
+                <ul class="plan-features">
+                    <li>Oltre 10.000 clienti/anno</li>
+                    <li>Soluzione completamente custom</li>
+                    <li>Integrazione API avanzate</li>
+                    <li>IA con machine learning</li>
+                    <li>Account manager dedicato</li>
+                    <li>Analisi concorrenza real-time</li>
+                    <li>Priority SLA 99.9%</li>
+                </ul>
+                <button class="plan-cta">Contatta Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="contatti">
+        <h2>Pronto per Trasformare il Tuo Hotel?</h2>
+        <p>Contattaci oggi per una consulenza gratuita. Scopri come Experiences Srl può aiutarti a aumentare le prenotazioni e migliorare l'esperienza dei tuoi ospiti.</p>
+        <a href="https://wa.me/393926917657?text=Ciao%20Experiences%20Srl!%20Sono%20interessato%20ai%20vostri%20servizi%20per%20il%20mio%20hotel." target="_blank" class="whatsapp-btn">
+            💬 Contattaci su WhatsApp
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>🏨 Hotel Villa D'Orta — Casamicciola Terme, Ischia | 🔗 <a href="https://www.hotelvilladorta.it" target="_blank">hotelvilladorta.it</a></p>
+        <p style="margin-top: 16px; opacity: 0.8;">Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo</p>
+        <p style="margin-top: 10px; font-size: 11px; opacity: 0.6;">© 2024 Experiences Srl. Tutti i diritti riservati. | WhatsApp: +39 392 691 7657</p>
+    </footer>
+
+    <script>
+        function scrollToContact() {
+            const element = document.getElementById('contatti');
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Simulazione chat - aggiorna il "typing" dopo 2 secondi
+        setTimeout(() => {
+            const typing = document.querySelector('.typing');
+            if (typing) {
+                typing.parentElement.innerHTML = '<div class="bubble">Perfetto! Ho trovato 3 suite disponibili dal 10-17 giugno. Desideri proseguire con la prenotazione?</div>';
+            }
+        }, 2000);
+    </script>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
