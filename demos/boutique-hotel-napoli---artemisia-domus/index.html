@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artemisia Domus – Luxury Boutique Hotel Napoli</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color:#222; line-height:1.6; background:#fafafa; }
+
+/* Demo Banner */
+.demo-banner {
+  background: linear-gradient(90deg, #e8a020, #f5b94a, #e8a020);
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+  color:#fff; text-align:center; padding:10px 16px;
+  font-weight:600; font-size:14px;
+  position:relative; z-index:1000;
+}
+.demo-banner a { color:#fff; text-decoration:underline; }
+@keyframes shimmer { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+/* Navbar */
+.navbar {
+  background:#fff; padding:16px 32px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  position:sticky; top:0; z-index:999;
+  flex-wrap:wrap; gap:12px;
+}
+.logo { font-size:22px; font-weight:700; color:#0B3D61; letter-spacing:0.5px; }
+.logo span { color:#e8a020; font-style:italic; }
+.nav-links { display:flex; gap:24px; list-style:none; flex-wrap:wrap; }
+.nav-links a { color:#0B3D61; text-decoration:none; font-weight:500; font-size:15px; transition:color .2s; }
+.nav-links a:hover { color:#e8a020; }
+.btn-primary {
+  background:linear-gradient(135deg, #e8a020, #f5b94a);
+  color:#fff; padding:10px 22px; border:none; border-radius:30px;
+  font-weight:600; cursor:pointer; text-decoration:none;
+  transition: all .3s; font-size:14px;
+}
+.btn-primary:hover {
+  background:linear-gradient(135deg, #f5b94a, #e8a020);
+  transform: scale(1.05);
+  box-shadow:0 6px 20px rgba(232,160,32,0.4);
+}
+
+/* Hero */
+.hero {
+  position:relative;
+  min-height: 92vh;
+  background-image: linear-gradient(rgba(11,61,97,0.55), rgba(11,61,97,0.7)), url('https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1600&q=80');
+  background-size: cover; background-position: center;
+  color:#fff; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:80px 24px;
+}
+.hero-content { max-width:900px; }
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight:700; margin-bottom:20px; line-height:1.15;
+  opacity:0; animation: fadeInUp 0.7s ease forwards;
+}
+.hero h1 .gold { color:#e8a020; }
+.hero p {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  margin-bottom:32px; max-width:700px; margin-left:auto; margin-right:auto;
+  opacity:0; animation: fadeInUp 0.7s ease forwards;
+  animation-delay:0.2s;
+}
+.hero .cta-group {
+  opacity:0; animation: fadeInUp 0.7s ease forwards;
+  animation-delay:0.4s;
+  display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+}
+.btn-ghost {
+  background:transparent; color:#fff; border:2px solid #fff;
+  padding:12px 28px; border-radius:30px; font-weight:600;
+  text-decoration:none; transition:all .3s;
+}
+.btn-ghost:hover { background:#fff; color:#0B3D61; }
+.btn-large { padding:14px 32px; font-size:16px; }
+
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Stats Bar */
+.stats {
+  background:#0B3D61; color:#fff; padding:40px 24px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:24px; text-align:center;
+}
+.stat-item .num { font-size:2.5rem; font-weight:700; color:#e8a020; }
+.stat-item .label { font-size:14px; opacity:0.9; margin-top:4px; }
+
+/* Sections */
+section { padding:80px 24px; }
+.container { max-width:1200px; margin:0 auto; }
+.section-title { text-align:center; margin-bottom:50px; }
+.section-title h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color:#0B3D61; margin-bottom:12px;
+}
+.section-title p { color:#666; max-width:600px; margin:0 auto; }
+.section-title .accent { display:block; width:60px; height:3px; background:#e8a020; margin:16px auto; border-radius:3px;}
+
+/* Services Grid */
+.services-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(290px,1fr));
+  gap:28px;
+}
+.service-card {
+  background:#fff; border-radius:16px; overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  transition: all .3s ease;
+  cursor:pointer;
+}
+.service-card:hover {
+  transform: scale(1.03);
+  box-shadow:0 12px 32px rgba(0,0,0,0.15);
+}
+.service-card img { width:100%; height:180px; object-fit:cover; display:block; }
+.service-card .body { padding:22px; }
+.service-card h3 { color:#0B3D61; font-size:1.25rem; margin-bottom:10px; }
+.service-card p { color:#555; font-size:14px; }
+.service-card .tag {
+  display:inline-block; background:#e8a020; color:#fff;
+  font-size:11px; padding:4px 10px; border-radius:20px;
+  margin-bottom:10px; font-weight:600; letter-spacing:0.5px;
+}
+
+/* AI Chat Box */
+.ai-section {
+  background: linear-gradient(135deg, #0B3D61, #155080);
+  color:#fff;
+}
+.ai-wrap {
+  display:grid; grid-template-columns: 1fr 1fr; gap:50px; align-items:center;
+}
+@media(max-width:800px){ .ai-wrap { grid-template-columns:1fr; } }
+.ai-text h2 { font-size:2.2rem; margin-bottom:18px; }
+.ai-text h2 .gold { color:#e8a020; }
+.ai-text p { font-size:1.05rem; opacity:0.92; margin-bottom:14px; }
+.ai-text ul { list-style:none; margin-top:18px; }
+.ai-text li { padding:6px 0; padding-left:26px; position:relative; }
+.ai-text li::before { content:"✓"; position:absolute; left:0; color:#e8a020; font-weight:700; }
+
+.chat-box {
+  background:#fff; border-radius:18px; padding:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.3);
+  color:#222;
+}
+.chat-header {
+  display:flex; align-items:center; gap:12px;
+  padding-bottom:14px; border-bottom:1px solid #eee; margin-bottom:16px;
+}
+.chat-avatar {
+  width:42px; height:42px; border-radius:50%;
+  background:linear-gradient(135deg,#e8a020,#f5b94a);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:700;
+}
+.chat-header .info strong { color:#0B3D61; display:block; font-size:15px;}
+.chat-header .info span { font-size:12px; color:#27ae60; }
+.chat-header .info span::before { content:"●"; margin-right:4px;}
+.chat-messages { display:flex; flex-direction:column; gap:12px; min-height:280px; }
+.msg {
+  max-width:80%; padding:10px 14px; border-radius:14px;
+  font-size:14px; line-height:1.4;
+}
+.msg.user { background:#0B3D61; color:#fff; align-self:flex-end; border-bottom-right-radius:4px;}
+.msg.bot { background:#f1f3f6; color:#222; align-self:flex-start; border-bottom-left-radius:4px;}
+.typing { display:flex; gap:4px; padding:12px 14px; background:#f1f3f6; align-self:flex-start; border-radius:14px; border-bottom-left-radius:4px;}
+.typing span {
+  width:8px; height:8px; background:#999; border-radius:50%;
+  animation: bounce 1.2s infinite;
+}
+.typing span:nth-child(2){ animation-delay:.2s; }
+.typing span:nth-child(3){ animation-delay:.4s; }
+@keyframes bounce {
+  0%, 60%, 100% { transform:translateY(0); opacity:.6; }
+  30% { transform:translateY(-6px); opacity:1; }
+}
+
+/* Pricing */
+.pricing-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+  gap:24px;
+}
+.price-card {
+  background:#fff; border-radius:16px; padding:32px 24px; text-align:center;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  transition: all .3s; border-top:4px solid #e8a020;
+  position:relative;
+}
+.price-card:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.12); }
+.price-card.featured {
+  background:linear-gradient(160deg,#0B3D61,#155080); color:#fff;
+  transform:scale(1.04);
+  border-top:4px solid #e8a020;
+}
+.price-card.featured:hover { transform:scale(1.04) translateY(-6px); }
+.price-card.featured .price-amount { color:#e8a020; }
+.price-badge {
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  background:#e8a020; color:#fff; padding:4px 14px;
+  border-radius:20px; font-size:12px; font-weight:700;
+}
+.price-card h3 { font-size:1.4rem; margin-bottom:6px; color:inherit; }
+.price-card .price-amount { font-size:2.4rem; font-weight:700; color:#0B3D61; margin:14px 0 4px; }
+.price-card .price-sub { font-size:14px; opacity:.8; margin-bottom:18px; }
+.price-card .price-features { list-style:none; text-align:left; margin:18px 0; font-size:14px; }
+.price-card .price-features li { padding:6px 0 6px 22px; position:relative; }
+.price-card .price-features li::before { content:"✓"; position:absolute; left:0; color:#e8a020; font-weight:700; }
+
+/* Final CTA */
+.final-cta {
+  background:linear-gradient(135deg, #e8a020, #f5b94a);
+  text-align:center; color:#fff; padding:80px 24px;
+}
+.final-cta h2 { font-size:2.4rem; margin-bottom:14px; }
+.final-cta p { font-size:1.1rem; margin-bottom:28px; opacity:.95; }
+.wa-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  background:#25D366; color:#fff;
+  padding:16px 36px; border-radius:40px;
+  font-weight:700; font-size:18px;
+  text-decoration:none;
+  box-shadow:0 8px 24px rgba(0,0,0,0.2);
+  transition: all .3s;
+}
+.wa-btn:hover { transform:scale(1.05); background:#1ebe5b; }
+
+/* Footer */
+footer {
+  background:#0a2c46; color:#fff; padding:36px 24px; text-align:center;
+  font-size:14px;
+}
+footer a { color:#e8a020; text-decoration:none; }
+footer .sub { opacity:.7; font-size:12px; margin-top:6px; }
+
+@media(max-width:700px){
+  .nav-links { display:none; }
+  section { padding:60px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  ✨ DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+</div>
+
+<nav class="navbar">
+  <div class="logo">Artemisia <span>Domus</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#services">Camere & Suites</a></li>
+    <li><a href="#ai">Concierge AI</a></li>
+    <li><a href="#pricing">Esperienze</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary">Preventivo gratuito</a>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Ospitalità di Lusso a Napoli<br>tra il calore di casa e il fascino di un <span class="gold">Boutique Hotel</span></h1>
+    <p>Residenza d'Epoca nel cuore del centro storico, patrimonio UNESCO. Suite con vasca idromassaggio, sauna in stanza e l'eleganza di un palazzo del '700.</p>
+    <div class="cta-group">
+      <a href="#services" class="btn-primary btn-large">Scopri le Suite</a>
+      <a href="#contact" class="btn-ghost btn-large">Prenota soggiorno</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item"><div class="num">1700s</div><div class="label">Palazzo Storico</div></div>
+  <div class="stat-item"><div class="num">6</div><div class="label">Suite Esclusive</div></div>
+  <div class="stat-item"><div class="num">4</div><div class="label">Lingue Parlate</div></div>
+  <div class="stat-item"><div class="num">UNESCO</div><div class="label">Patrimonio Umanità</div></div>
+  <div class="stat-item"><div class="num">9.5/10</div><div class="label">Recensioni Ospiti</div></div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Le Nostre Camere & Suite</h2>
+      <div class="accent"></div>
+      <p>Ogni stanza è un viaggio: dettagli ricercati, comfort SPA e l'incanto del centro storico di Napoli appena fuori dalla porta.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Suite Venere" loading="lazy">
+        <div class="body">
+          <span class="tag">SPA Suite</span>
+          <h3>Suite Venere</h3>
+          <p>Suite elegante con vasca idromassaggio in stanza, arredi raffinati e atmosfera intima per coppie in viaggio di nozze.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80" alt="Suite Cleopatra" loading="lazy">
+        <div class="body">
+          <span class="tag">Luxury</span>
+          <h3>Suite Cleopatra</h3>
+          <p>L'esclusività di una sauna privata in stanza, decorazioni d'epoca e un soggiorno da regina nel cuore di Napoli.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Camera Minerva" loading="lazy">
+        <div class="body">
+          <span class="tag">Boutique</span>
+          <h3>Camera Minerva</h3>
+          <p>Eleganza classica e ogni comfort moderno. Una stanza dedicata alla sapienza, perfetta per chi cerca quiete e raffinatezza.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1200&q=80" alt="Esperienze Napoli" loading="lazy">
+        <div class="body">
+          <span class="tag">Experience</span>
+          <h3>Esperienze su Misura</h3>
+          <p>Tour privati a Pompei, Vesuvio, Capri e Costiera Amalfitana. Vivi Napoli come un local con i nostri concierge esperti.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Colazione Gourmet" loading="lazy">
+        <div class="body">
+          <span class="tag">Gourmet</span>
+          <h3>Colazione Napoletana</h3>
+          <p>Prodotti locali, sfogliatelle calde, caffè espresso e dolci della tradizione: la colazione più autentica di Napoli.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&q=80" alt="Costiera Amalfitana" loading="lazy">
+        <div class="body">
+          <span class="tag">Eco Friendly</span>
+          <h3>Napoli Eco Friendly</h3>
+          <p>Soggiorno sostenibile, prodotti a km 0 ed eventi a basso impatto ambientale. Il lusso che rispetta il territorio.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="ai-section" id="ai">
+  <div class="container ai-wrap">
+    <div class="ai-text">
+      <h2>Concierge <span class="gold">AI 24/7</span><br>Multilingua</h2>
+      <p>I tuoi ospiti meritano risposte immediate, in qualsiasi lingua e a qualsiasi ora. Il nostro Assistente Virtuale AI gestisce prenotazioni, info sulle camere, suggerimenti turistici e check-in digitale.</p>
+      <ul>
+        <li>Italiano • English • Français • Español</li>
+        <li>Booking diretto integrato (zero commissioni OTA)</li>
+        <li>Risposte in &lt; 2 secondi, 24 ore su 24</li>
+        <li>Apprende dal tuo brand e dai tuoi servizi</li>
+      </ul>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-avatar">AD</div>
+        <div class="info">
+          <strong>Artemisia Concierge</strong>
+          <span>Online ora</span>
+        </div>
+      </div>
+      <div class="chat-messages">
+        <div class="msg user">Buongiorno! Avete una suite con vasca idromassaggio per 3 notti a giugno?</div>
+        <div class="msg bot">Buongiorno! 🌿 Certamente: la <strong>Suite Venere</strong> è disponibile dal 12 al 15 giugno con vasca idromassaggio privata e colazione inclusa. Tariffa €380/notte.</div>
+        <div class="msg user">Perfetto! Potete organizzare un tour di Pompei?</div>
+        <div class="typing"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:#f4f6f9;">
+  <div class="container">
+    <div class="section-title">
+      <h2>Piani Experiences Srl per il Tuo Hotel</h2>
+      <div class="accent"></div>
+      <p>Sito web, channel manager, SEO, OTA e Chatbot AI: tutto in un'unica soluzione. Scegli il piano in base al volume annuale di ospiti.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <h3>Base</h3>
+        <div class="price-amount">€1.400<span style="font-size:1rem;">/anno</span></div>
+        <div class="price-sub">+ 10% commissione · fino a 1.000 clienti</div>
+        <ul class="price-features">
+          <li>Sito web mobile-first</li>
+          <li>Booking integrato</li>
+          <li>Channel Manager base</li>
+          <li>Supporto email</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <h3>Advanced</h3>
+        <div class="price-amount">€1.000<span style="font-size:1rem;">/anno</span></div>
+        <div class="price-sub">+ 8% commissione · fino a 5.000 clienti</div>
+        <ul class="price-features">
+          <li>Tutto del piano Base</li>
+          <li>SEO/SEM Marketing</li>
+          <li>Gestione OTA completa</li>
+          <li>Chatbot AI multilingua</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">PIÙ SCELTO</div>
+        <h3>Pro</h3>
+        <div class="price-amount">€500<span style="font-size:1rem;">/anno</span></div>
+        <div class="price-sub">+ 5% commissione · fino a 10.000 clienti</div>
+        <ul class="price-features">
+          <li>Tutto del piano Advanced</li>
+          <li>Google Ads gestiti</li>
+          <li>Channel Manager Premium</li>
+          <li>Account manager dedicato</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <h3>Enterprise</h3>
+        <div class="price-amount">€0<span style="font-size:1rem;">/anno</span></div>
+        <div class="price-sub">+ 3% commissione · oltre 10.000 clienti</div>
+        <ul class="price-features">
+          <li>Tutto incluso, zero canone</li>
+          <li>SLA garantito 24/7</li>
+          <li>Integrazioni custom</li>
+          <li>Reportistica avanzata</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="contact">
+  <h2>Pronto a trasformare la tua presenza online?</h2>
+  <p>Parliamone su WhatsApp. Ti rispondiamo entro pochi minuti.</p>
+  <a href="https://wa.me/393926917657" target="_blank" class="wa-btn">
+    💬 Scrivici su WhatsApp +39 392 691 7657
+  </a>
+  <p style="margin-top:24px; font-size:14px; opacity:.85;">Portfolio: accoglienzafma.com · villacrawford.it · villatiberiade.com · vesuvioexpress.it</p>
+</section>
+
+<footer>
+  <div>Powered by <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a> — naplesexperiences.com</div>
+  <div class="sub">Demo non commerciale realizzata per Artemisia Domus · © 2025</div>
+</footer>
+
+<script>
+// Rotazione dinamica messaggi chat per dare vita
+const messages = document.querySelector('.chat-messages');
+const replies = [
+  {role:'bot', text:'Assolutamente! 🏛️ Possiamo prenotare per voi un tour privato di Pompei con guida in italiano o inglese. Mezza giornata €160 a persona, trasferimento incluso da Artemisia Domus.'},
+  {role:'user', text:'Ottimo, prenoto per 2 persone il 13 giugno!'},
+  {role:'bot', text:'Perfetto! ✅ Prenotazione confermata. Riceverete email con tutti i dettagli. Grazie per aver scelto Artemisia Domus 🌿'}
+];
+
+let step = 0;
+function nextMessage() {
+  if (step >= replies.length) return;
+  const typing = document.querySelector('.typing');
+  if (typing) typing.remove();
+  const r = replies[step];
+  const div = document.createElement('div');
+  div.className = 'msg ' + r.role;
+  div.textContent = r.text;
+  div.style.opacity = '0';
+  div.style.transform = 'translateY(8px)';
+  div.style.transition = 'all .4s';
+  messages.appendChild(div);
+  requestAnimationFrame(()=>{ div.style.opacity='1'; div.style.transform='translateY(0)'; });
+  step++;
+  if (step < replies.length) {
+    const t = document.createElement('div');
+    t.className = 'typing';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(t);
+    setTimeout(nextMessage, 2500);
+  }
+}
+setTimeout(nextMessage, 2500);
+</script>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
