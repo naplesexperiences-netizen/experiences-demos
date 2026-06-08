@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spaccanapoli Comfort Suites — B&B Napoli Centro</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: system-ui, -apple-system, sans-serif; color: #222; line-height: 1.6; background: #fafafa; }
+
+/* Demo banner */
+.demo-banner { background: linear-gradient(90deg, #e8a020, #f0c040); color: #0B3D61; text-align: center; padding: 10px 16px; font-weight: 700; font-size: 14px; letter-spacing: 0.3px; }
+.demo-banner a { color: #0B3D61; text-decoration: underline; }
+
+/* Navbar */
+.navbar { background: #fff; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 20px; font-weight: 800; color: #0B3D61; display: flex; align-items: center; gap: 8px; }
+.logo span { color: #e8a020; }
+.nav-menu { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-menu a { color: #0B3D61; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.nav-menu a:hover { color: #e8a020; }
+.btn-cta { background: linear-gradient(135deg, #e8a020, #f0b840); color: #fff; padding: 10px 20px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.btn-cta:hover { background: linear-gradient(135deg, #0B3D61, #155a8a); transform: scale(1.05); box-shadow: 0 6px 20px rgba(232,160,32,0.4); }
+
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .navbar { padding: 14px 18px; }
+}
+
+/* Hero */
+.hero { position: relative; min-height: 88vh; background: url('https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1600&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 80px 20px; }
+.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,61,97,0.75), rgba(0,0,0,0.55)); }
+.hero-content { position: relative; max-width: 900px; z-index: 2; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 18px; line-height: 1.15; opacity: 0; animation: fadeInUp 0.7s ease forwards; }
+.hero p { font-size: clamp(1rem, 2vw, 1.25rem); margin-bottom: 30px; opacity: 0; animation: fadeInUp 0.7s ease 0.2s forwards; }
+.hero .btn-cta { font-size: 17px; padding: 14px 32px; opacity: 0; animation: fadeInUp 0.7s ease 0.4s forwards; }
+.hero-badge { display: inline-block; background: rgba(232,160,32,0.95); color: #0B3D61; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 20px; letter-spacing: 1px; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats */
+.stats { background: #fff; padding: 50px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; max-width: 1200px; margin: -60px auto 0; border-radius: 16px; box-shadow: 0 4px 30px rgba(0,0,0,0.08); position: relative; z-index: 5; }
+.stat-item { text-align: center; }
+.stat-num { font-size: 2.5rem; font-weight: 800; color: #e8a020; }
+.stat-label { color: #0B3D61; font-weight: 600; margin-top: 4px; font-size: 14px; }
+
+/* Sections */
+section { padding: 80px 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); color: #0B3D61; font-weight: 800; }
+.section-title p { color: #666; margin-top: 10px; font-size: 1.05rem; }
+
+/* Services Grid */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.service-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+.service-card:hover { transform: scale(1.03); box-shadow: 0 12px 35px rgba(11,61,97,0.18); }
+.service-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.service-content { padding: 22px; }
+.service-content h3 { color: #0B3D61; font-size: 1.25rem; margin-bottom: 10px; }
+.service-content p { color: #666; font-size: 0.95rem; }
+.service-meta { display: flex; gap: 14px; margin-top: 12px; font-size: 13px; color: #888; }
+.service-meta span { display: flex; align-items: center; gap: 4px; }
+.price-tag { color: #e8a020; font-weight: 700; }
+
+/* AI Chat */
+.ai-section { background: linear-gradient(135deg, #0B3D61, #155a8a); color: #fff; border-radius: 20px; padding: 60px 40px; margin: 40px auto; max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.ai-info h2 { font-size: 2rem; margin-bottom: 16px; }
+.ai-info p { opacity: 0.9; margin-bottom: 20px; }
+.ai-info ul { list-style: none; }
+.ai-info li { padding: 6px 0; padding-left: 28px; position: relative; }
+.ai-info li::before { content: '✓'; position: absolute; left: 0; color: #e8a020; font-weight: 800; }
+
+.chat-box { background: #fff; border-radius: 16px; padding: 20px; color: #222; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+.chat-header { display: flex; align-items: center; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid #eee; margin-bottom: 14px; }
+.chat-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #e8a020, #f0c040); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; }
+.chat-header-info strong { display: block; color: #0B3D61; }
+.chat-header-info small { color: #4caf50; font-size: 12px; }
+.chat-header-info small::before { content: '● '; }
+.chat-msg { padding: 10px 14px; border-radius: 14px; margin: 8px 0; max-width: 85%; font-size: 14px; animation: slideIn 0.5s ease forwards; }
+.chat-msg.bot { background: #f0f4f8; color: #222; border-bottom-left-radius: 4px; }
+.chat-msg.user { background: linear-gradient(135deg, #0B3D61, #155a8a); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+.typing { display: inline-flex; gap: 4px; padding: 12px 16px; background: #f0f4f8; border-radius: 14px; margin-top: 4px; }
+.typing span { width: 8px; height: 8px; background: #0B3D61; border-radius: 50%; animation: blink 1.4s infinite both; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0.3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-4px); } }
+@keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) { .ai-section { grid-template-columns: 1fr; padding: 40px 24px; } }
+
+/* Pricing */
+.pricing-section { background: #f5f7fa; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.price-card { background: #fff; border-radius: 16px; padding: 32px 26px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.3s; border: 2px solid transparent; position: relative; }
+.price-card:hover { transform: translateY(-6px); box-shadow: 0 14px 35px rgba(11,61,97,0.15); border-color: #e8a020; }
+.price-card.featured { background: linear-gradient(135deg, #0B3D61, #155a8a); color: #fff; transform: scale(1.04); }
+.price-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+.price-card h3 { color: #e8a020; font-size: 1.3rem; margin-bottom: 10px; }
+.price-card .price { font-size: 2.3rem; font-weight: 800; color: #0B3D61; margin: 14px 0; }
+.price-card.featured .price { color: #fff; }
+.price-card .commission { color: #888; font-size: 14px; margin-bottom: 16px; }
+.price-card.featured .commission { color: rgba(255,255,255,0.85); }
+.price-card ul { list-style: none; text-align: left; margin: 20px 0; }
+.price-card li { padding: 6px 0; font-size: 14px; }
+.price-card li::before { content: '✓ '; color: #e8a020; font-weight: 800; }
+.badge-pop { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #e8a020; color: #fff; padding: 4px 14px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+
+/* Final CTA */
+.final-cta { background: linear-gradient(135deg, #0B3D61, #155a8a); color: #fff; text-align: center; padding: 80px 20px; }
+.final-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 16px; }
+.final-cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.btn-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; transition: all 0.3s; box-shadow: 0 6px 25px rgba(37,211,102,0.4); }
+.btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 10px 35px rgba(37,211,102,0.6); }
+
+/* Footer */
+footer { background: #082a44; color: #fff; text-align: center; padding: 30px 20px; }
+footer a { color: #e8a020; text-decoration: none; font-weight: 600; }
+footer p { margin: 6px 0; opacity: 0.9; font-size: 14px; }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; max-width: 1200px; margin: 0 auto; }
+.gallery img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; transition: transform 0.4s; box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+.gallery img:hover { transform: scale(1.04); }
+</style>
+</head>
+<body>
+
+<!-- Demo banner -->
+<div class="demo-banner">
+  ✨ DEMO GRATUITO realizzato da Experiences Srl — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">B&B <span>Spaccanapoli</span> Suites</div>
+  <ul class="nav-menu">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#suites">Le Suites</a></li>
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a href="https://wa.me/393926917657" class="btn-cta">Preventivo gratuito</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="hero-badge">★★★★ NAPOLI CENTRO STORICO</span>
+    <h1>Il comfort di una Suite<br>al prezzo di un Bed & Breakfast</h1>
+    <p>Nel cuore di Napoli, una perla della ricettività partenopea.<br>Ampie Suites, dettagli curati, folklore autentico.</p>
+    <a href="#suites" class="btn-cta">Scopri le Suites</a>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats container">
+  <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Anni di Ospitalità</div></div>
+  <div class="stat-item"><div class="stat-num">4.8★</div><div class="stat-label">Recensioni Verificate</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Suites Esclusive</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Centro Storico UNESCO</div></div>
+</div>
+
+<!-- Suites -->
+<section id="suites">
+  <div class="container">
+    <div class="section-title">
+      <h2>Le Nostre Suites</h2>
+      <p>Prenotando direttamente con noi risparmi e favorisci l'economia locale</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Classic Suite" loading="lazy">
+        <div class="service-content">
+          <h3>Classic Suite</h3>
+          <p>Stanza da letto principale di un'antica residenza nobiliare, balcone caratteristico e arredi in radica di noce.</p>
+          <div class="service-meta">
+            <span>👥 3 Ospiti</span><span>📐 35 m²</span><span class="price-tag">da €89/notte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Family Suite" loading="lazy">
+        <div class="service-content">
+          <h3>Family Suite</h3>
+          <p>Ampia Suite con salotto e divano letto + zona notte impreziosita. Perfetta per famiglie e piccoli gruppi.</p>
+          <div class="service-meta">
+            <span>👥 4 Ospiti</span><span>📐 40 m²</span><span class="price-tag">da €109/notte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80" alt="Deluxe Suite" loading="lazy">
+        <div class="service-content">
+          <h3>Deluxe Suite</h3>
+          <p>Esperienza luxury nel cuore di Spaccanapoli con dettagli d'epoca, comfort moderni e vista sui vicoli storici.</p>
+          <div class="service-meta">
+            <span>👥 2 Ospiti</span><span>📐 30 m²</span><span class="price-tag">da €99/notte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1200&q=80" alt="Tour Pompei" loading="lazy">
+        <div class="service-content">
+          <h3>Tour Pompei & Ercolano</h3>
+          <p>Escursioni guidate ai siti archeologici più affascinanti del mondo, organizzate direttamente dalla struttura.</p>
+          <div class="service-meta">
+            <span>⏱ 6h</span><span>🚐 Transfer incluso</span><span class="price-tag">da €55</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&q=80" alt="Costiera Amalfitana" loading="lazy">
+        <div class="service-content">
+          <h3>Costiera Amalfitana</h3>
+          <p>Una giornata indimenticabile tra Positano, Amalfi e Ravello, con barca privata o tour panoramico.</p>
+          <div class="service-meta">
+            <span>⏱ Full day</span><span>🌊 Boat tour</span><span class="price-tag">da €85</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Food experience" loading="lazy">
+        <div class="service-content">
+          <h3>Food Experience</h3>
+          <p>Pizza tour, degustazioni street food e cooking class con chef napoletani per scoprire la vera cucina locale.</p>
+          <div class="service-meta">
+            <span>⏱ 3h</span><span>🍕 Pizza inclusa</span><span class="price-tag">da €45</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI Assistant -->
+<section style="padding: 40px 20px;">
+  <div class="ai-section">
+    <div class="ai-info">
+      <h2>🤖 Assistente AI 24/7 Multilingua</h2>
+      <p>Il tuo concierge digitale risponde agli ospiti in tempo reale, 24 ore su 24, in oltre 30 lingue. Più prenotazioni dirette, meno costi di gestione.</p>
+      <ul>
+        <li>Risposte immediate a tutte le richieste</li>
+        <li>Gestione check-in / check-out automatica</li>
+        <li>Suggerimenti su tour e ristoranti</li>
+        <li>Integrazione con il booking engine</li>
+      </ul>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-avatar">AI</div>
+        <div class="chat-header-info">
+          <strong>Spacca Assistant</strong>
+          <small>Online ora</small>
+        </div>
+      </div>
+      <div class="chat-msg bot">Ciao! 👋 Benvenuto al B&B Spaccanapoli Suites. Come posso aiutarti?</div>
+      <div class="chat-msg user">Avete disponibilità per 2 notti la prossima settimana?</div>
+      <div class="chat-msg bot">Sì! Ho una Classic Suite disponibile da €89/notte 🌟 Vuoi che ti prenoti subito?</div>
+      <div class="typing"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="experiences" style="background:#fff;">
+  <div class="container">
+    <div class="section-title">
+      <h2>Vivi Napoli con Noi</h2>
+      <p>Dal Vesuvio a Capri, ogni esperienza è organizzata su misura per i nostri ospiti</p>
+    </div>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1611310424006-42cf208f3a0a?w=1200&q=80" alt="Vesuvio" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=1200&q=80" alt="Capri" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=1200&q=80" alt="Spiaggia" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1200&q=80" alt="Centro storico Napoli" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Experiences Srl -->
+<section class="pricing-section" id="facilities">
+  <div class="container">
+    <div class="section-title">
+      <h2>Piani Experiences Srl</h2>
+      <p>Soluzioni digitali complete per la tua struttura ricettiva</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <h3>Base</h3>
+        <div class="price">€1.400<span style="font-size:1rem;color:#888;">/anno</span></div>
+        <div class="commission">+ 10% commissione</div>
+        <ul>
+          <li>Fino a 1.000 clienti/anno</li>
+          <li>Sito web mobile-first</li>
+          <li>Booking integrato</li>
+          <li>SEO base</li>
+        </ul>
+        <a href="https://wa.me/393926917657" class="btn-cta">Scegli Base</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Advanced</h3>
+        <div class="price">€1.000<span style="font-size:1rem;color:#888;">/anno</span></div>
+        <div class="commission">+ 8% commissione</div>
+        <ul>
+          <li>Fino a 5.000 clienti</li>
+          <li>Channel Manager</li>
+          <li>Google Ads & Social</li>
+          <li>Chatbot multilingua</li>
+        </ul>
+        <a href="https://wa.me/393926917657" class="btn-cta">Scegli Advanced</a>
+      </div>
+
+      <div class="price-card featured">
+        <span class="badge-pop">⭐ POPOLARE</span>
+        <h3>Pro</h3>
+        <div class="price">€500<span style="font-size:1rem;opacity:0.8;">/anno</span></div>
+        <div class="commission">+ 5% commissione</div>
+        <ul>
+          <li>Fino a 10.000 clienti</li>
+          <li>Tutto Advanced incluso</li>
+          <li>AI Assistant 24/7</li>
+          <li>Gestione OTA completa</li>
+        </ul>
+        <a href="https://wa.me/393926917657" class="btn-cta">Scegli Pro</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Enterprise</h3>
+        <div class="price">€0<span style="font-size:1rem;color:#888;">/anno</span></div>
+        <div class="commission">+ 3% commissione</div>
+        <ul>
+          <li>Oltre 10.000 clienti</li>
+          <li>Soluzione su misura</li>
+          <li>Account manager dedicato</li>
+          <li>Zero overbooking garantito</li>
+        </ul>
+        <a href="https://wa.me/393926917657" class="btn-cta">Scegli Enterprise</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="contatti">
+  <h2>Pronto a far crescere il tuo B&B?</h2>
+  <p>Parla con un consulente Experiences Srl. Ti mostreremo come aumentare prenotazioni dirette, ridurre commissioni OTA e automatizzare la gestione.</p>
+  <a href="https://wa.me/393926917657" class="btn-whatsapp">
+    💬 Scrivici su WhatsApp
+  </a>
+  <p style="margin-top: 20px; font-size: 14px;">+39 392 691 7657 — Risposta in pochi minuti</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p><strong>B&B Spaccanapoli Comfort Suites</strong> — Napoli Centro Storico</p>
+  <p>Powered by <a href="https://naplesexperiences.com" target="_blank">Experiences Srl — naplesexperiences.com</a></p>
+  <p style="font-size:12px; opacity:0.7; margin-top:10px;">Demo realizzata a scopo dimostrativo</p>
+</footer>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
