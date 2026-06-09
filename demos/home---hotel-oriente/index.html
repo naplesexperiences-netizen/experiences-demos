@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Oriente - Relax vista mare in Costiera Sorrentina</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,sans-serif;color:#222;line-height:1.6;background:#fafafa}
+.demo-banner{background:linear-gradient(90deg,#e8a020,#f4b942);color:#fff;text-align:center;padding:10px;font-weight:600;font-size:14px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.demo-banner a{color:#fff;text-decoration:underline}
+nav{background:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 15px rgba(0,0,0,0.06);position:sticky;top:0;z-index:100}
+.logo{font-size:24px;font-weight:800;color:#0B3D61;letter-spacing:-0.5px}
+.logo span{color:#e8a020}
+.nav-menu{display:flex;gap:30px;list-style:none}
+.nav-menu a{color:#0B3D61;text-decoration:none;font-weight:500;transition:color 0.3s}
+.nav-menu a:hover{color:#e8a020}
+.btn-quote{background:linear-gradient(135deg,#e8a020,#f4b942);color:#fff;padding:12px 24px;border:none;border-radius:50px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 15px rgba(232,160,32,0.3)}
+.btn-quote:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(232,160,32,0.5)}
+.hero{position:relative;min-height:90vh;background:linear-gradient(rgba(11,61,97,0.55),rgba(11,61,97,0.7)),url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1600&q=80') center/cover;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:80px 20px}
+.hero-content{max-width:900px}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;margin-bottom:20px;line-height:1.1;opacity:0;animation:fadeInUp 0.7s ease forwards}
+.hero p{font-size:clamp(1.1rem,2vw,1.4rem);margin-bottom:35px;opacity:0;animation:fadeInUp 0.7s ease 0.2s forwards}
+.hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeInUp 0.7s ease 0.4s forwards}
+.btn-primary{background:linear-gradient(135deg,#e8a020,#f4b942);color:#fff;padding:16px 36px;border:none;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 20px rgba(232,160,32,0.4)}
+.btn-primary:hover{transform:scale(1.05);background:linear-gradient(135deg,#f4b942,#e8a020)}
+.btn-outline{background:transparent;color:#fff;padding:16px 36px;border:2px solid #fff;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s}
+.btn-outline:hover{background:#fff;color:#0B3D61}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.stats{background:#0B3D61;color:#fff;padding:60px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;text-align:center}
+.stat-item h3{font-size:3rem;color:#e8a020;font-weight:800;margin-bottom:5px}
+.stat-item p{font-size:1rem;opacity:0.9}
+.section{padding:80px 5%;max-width:1300px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-size:2.5rem;color:#0B3D61;margin-bottom:10px;font-weight:800}
+.section-title p{color:#666;font-size:1.1rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s;cursor:pointer}
+.service-card:hover{transform:scale(1.03);box-shadow:0 10px 35px rgba(0,0,0,0.15)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:25px}
+.service-card h3{color:#0B3D61;margin-bottom:10px;font-size:1.3rem}
+.service-card p{color:#666;font-size:0.95rem;margin-bottom:15px}
+.service-card a{color:#e8a020;font-weight:600;text-decoration:none}
+.ai-section{background:linear-gradient(135deg,#0B3D61,#1a5a85);color:#fff;padding:80px 5%;margin:40px 0}
+.ai-container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.ai-container h2{font-size:2.3rem;margin-bottom:20px;color:#e8a020}
+.ai-container p{font-size:1.1rem;margin-bottom:20px;line-height:1.7}
+.ai-features{list-style:none;margin-top:20px}
+.ai-features li{padding:8px 0;padding-left:28px;position:relative}
+.ai-features li:before{content:"✓";position:absolute;left:0;color:#e8a020;font-weight:bold;font-size:18px}
+.chat-box{background:#fff;border-radius:20px;padding:25px;color:#222;box-shadow:0 15px 50px rgba(0,0,0,0.3)}
+.chat-header{display:flex;align-items:center;gap:12px;padding-bottom:15px;border-bottom:1px solid #eee;margin-bottom:15px}
+.chat-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e8a020,#f4b942);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold}
+.chat-header-info h4{font-size:15px;color:#0B3D61}
+.chat-header-info span{font-size:12px;color:#4caf50}
+.chat-msg{padding:12px 16px;border-radius:14px;margin-bottom:10px;max-width:85%;font-size:14px;animation:msgIn 0.4s ease forwards}
+.msg-bot{background:#f0f4f8;color:#222;border-bottom-left-radius:4px}
+.msg-user{background:linear-gradient(135deg,#0B3D61,#1a5a85);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.typing{display:inline-flex;gap:4px;padding:14px 16px;background:#f0f4f8;border-radius:14px;border-bottom-left-radius:4px}
+.typing span{width:8px;height:8px;border-radius:50%;background:#0B3D61;animation:bounce 1.2s infinite}
+.typing span:nth-child(2){animation-delay:0.2s}
+.typing span:nth-child(3){animation-delay:0.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.5}30%{transform:translateY(-8px);opacity:1}}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pricing{background:#fafafa;padding:80px 5%}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;max-width:1300px;margin:0 auto}
+.price-card{background:#fff;border-radius:16px;padding:35px 25px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s;border:2px solid transparent}
+.price-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,0.15)}
+.price-card.featured{border-color:#e8a020;position:relative}
+.price-card.featured:before{content:"PIÙ POPOLARE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#e8a020;color:#fff;padding:5px 15px;border-radius:20px;font-size:11px;font-weight:700}
+.price-card h3{color:#0B3D61;font-size:1.5rem;margin-bottom:10px}
+.price-card .price{font-size:2.5rem;color:#e8a020;font-weight:800;margin:15px 0}
+.price-card .price span{font-size:1rem;color:#888}
+.price-card .commission{color:#666;font-size:0.95rem;margin-bottom:20px}
+.price-card ul{list-style:none;text-align:left;margin:25px 0}
+.price-card ul li{padding:8px 0;font-size:0.95rem;color:#444}
+.price-card ul li:before{content:"✓ ";color:#4caf50;font-weight:bold}
+.cta-final{background:linear-gradient(135deg,#0B3D61,#1a5a85);color:#fff;padding:80px 5%;text-align:center}
+.cta-final h2{font-size:2.5rem;margin-bottom:20px}
+.cta-final p{font-size:1.2rem;margin-bottom:35px;opacity:0.9;max-width:700px;margin-left:auto;margin-right:auto}
+.btn-whatsapp{background:#25D366;color:#fff;padding:18px 40px;border-radius:50px;font-size:18px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:12px;transition:all 0.3s;box-shadow:0 6px 25px rgba(37,211,102,0.4)}
+.btn-whatsapp:hover{transform:scale(1.05);background:#1ebe5a}
+footer{background:#0a2f4a;color:#fff;text-align:center;padding:40px 20px}
+footer a{color:#e8a020;text-decoration:none}
+@media(max-width:768px){
+.nav-menu{display:none}
+.ai-container{grid-template-columns:1fr}
+.hero{min-height:70vh}
+.section{padding:60px 5%}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">✨ DEMO GRATUITO realizzato da Experiences Srl — <a href="https://naplesexperiences.com">naplesexperiences.com</a></div>
+
+<nav>
+  <div class="logo">Hotel <span>Oriente</span></div>
+  <ul class="nav-menu">
+    <li><a href="#camere">Camere</a></li>
+    <li><a href="#ristorante">Ristorante</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#offerte">Offerte</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a href="#preventivo" class="btn-quote">Preventivo gratuito</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Relax vista mare in una cornice mozzafiato</h1>
+    <p>Hotel 4 stelle nel cuore della Penisola Sorrentina: l'architettura unica di un villaggio di pescatori, il comfort di un boutique hotel di lusso.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-primary">Prenota Ora</a>
+      <a href="#camere" class="btn-outline">Scopri le Camere</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-item"><h3>4★</h3><p>Stelle Lusso</p></div>
+  <div class="stat-item"><h3>350m</h3><p>dalla Spiaggia Privata</p></div>
+  <div class="stat-item"><h3>24/7</h3><p>Concierge Multilingua</p></div>
+  <div class="stat-item"><h3>100%</h3><p>Vista Mare</p></div>
+</section>
+
+<section class="section" id="camere">
+  <div class="section-title">
+    <h2>I Nostri Servizi</h2>
+    <p>Vivi l'esperienza completa della Costiera Sorrentina</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80" alt="Camere" loading="lazy">
+      <div class="service-card-body">
+        <h3>Le Camere</h3>
+        <p>Aria condizionata, minibar, telefono, asciugacapelli, set di cortesia, Wi-Fi, cassaforte e LCD TV. Comfort esclusivo vista mare.</p>
+        <a href="#">Scopri di più →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80" alt="Ristorante" loading="lazy">
+      <div class="service-card-body">
+        <h3>Il Ristorante</h3>
+        <p>Cucina mediterranea con prodotti freschi a km0. Colazione a buffet, pranzi e cene con servizio ai tavoli vista mare.</p>
+        <a href="#">Scopri di più →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80" alt="Jacuzzi" loading="lazy">
+      <div class="service-card-body">
+        <h3>Sea View Jacuzzi</h3>
+        <p>Area relax con jacuzzi vista mare. Vista panoramica per un'esperienza unica e indimenticabile in totale privacy.</p>
+        <a href="#">Scopri di più →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=1200&q=80" alt="Spiaggia" loading="lazy">
+      <div class="service-card-body">
+        <h3>Lido Oriente Beach</h3>
+        <p>Spiaggia privata a soli 350 metri dalla struttura con lettini e ombrelloni inclusi. Mare cristallino tutto per te.</p>
+        <a href="#">Scopri di più →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=1200&q=80" alt="Costiera" loading="lazy">
+      <div class="service-card-body">
+        <h3>Escursioni Costiera</h3>
+        <p>Tour esclusivi su Capri, Positano, Amalfi e Ravello. Lasciati guidare alla scoperta delle perle del Mediterraneo.</p>
+        <a href="#">Scopri di più →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1523365154888-8a758819b722?w=1200&q=80" alt="Parcheggio" loading="lazy">
+      <div class="service-card-body">
+        <h3>Parcheggio Privato</h3>
+        <p>Parcheggio privato videosorvegliato al prezzo di € 15,00 a notte. Sicurezza e comodità per la tua vacanza.</p>
+        <a href="#">Scopri di più →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ai-section">
+  <div class="ai-container">
+    <div>
+      <h2>Assistente AI 24/7 Multilingua</h2>
+      <p>I tuoi ospiti ricevono risposte istantanee in qualsiasi momento, in qualsiasi lingua. Prenotazioni, informazioni su servizi, escursioni: tutto gestito automaticamente.</p>
+      <ul class="ai-features">
+        <li>Risposte in italiano, inglese, tedesco, francese, spagnolo</li>
+        <li>Gestione prenotazioni integrata</li>
+        <li>Disponibile 24 ore su 24, 7 giorni su 7</li>
+        <li>Riduce il carico sulla reception del 70%</li>
+      </ul>
+    </div>
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-avatar">AI</div>
+        <div class="chat-header-info">
+          <h4>Oriente Assistant</h4>
+          <span>● Online</span>
+        </div>
+      </div>
+      <div id="chat-messages">
+        <div class="chat-msg msg-user">Hi! Is the sea view jacuzzi available tonight?</div>
+        <div class="chat-msg msg-bot">Hello! 🌊 Yes, our Sea View Jacuzzi is available tonight from 7-10 PM. Would you like to book a slot?</div>
+        <div class="chat-msg msg-user">Yes please, for 2 people at 8pm</div>
+        <div class="typing"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="preventivo">
+  <div class="section-title">
+    <h2>Piani Experiences Srl</h2>
+    <p>Soluzioni digitali su misura per il tuo hotel</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Base</h3>
+      <div class="price">€1.400<span>/anno</span></div>
+      <div class="commission">+ 10% commissione</div>
+      <ul>
+        <li>Fino a 1.000 clienti</li>
+        <li>Sito web mobile-first</li>
+        <li>Booking integrato</li>
+        <li>SEO base</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <h3>Advanced</h3>
+      <div class="price">€1.000<span>/anno</span></div>
+      <div class="commission">+ 8% commissione</div>
+      <ul>
+        <li>Fino a 5.000 clienti</li>
+        <li>Channel Manager</li>
+        <li>SEO/SEM Google Ads</li>
+        <li>Social Media</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <h3>Pro</h3>
+      <div class="price">€500<span>/anno</span></div>
+      <div class="commission">+ 5% commissione</div>
+      <ul>
+        <li>Fino a 10.000 clienti</li>
+        <li>Tutti i servizi Advanced</li>
+        <li>Chatbot AI 24/7</li>
+        <li>Gestione OTA completa</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <h3>Enterprise</h3>
+      <div class="price">€0<span>/anno</span></div>
+      <div class="commission">+ 3% commissione</div>
+      <ul>
+        <li>Oltre 10.000 clienti/anno</li>
+        <li>Soluzione completa</li>
+        <li>Account manager dedicato</li>
+        <li>Zero overbooking garantito</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contatti">
+  <h2>Pronto a far crescere il tuo Hotel?</h2>
+  <p>Contattaci ora per un preventivo gratuito e scopri come Experiences Srl può portare l'Hotel Oriente al livello successivo.</p>
+  <a href="https://wa.me/393926917657" class="btn-whatsapp">💬 Scrivici su WhatsApp</a>
+</section>
+
+<footer>
+  <p>Powered by <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com">naplesexperiences.com</a></p>
+  <p style="margin-top:10px;opacity:0.7;font-size:14px">Demo per Hotel Oriente · Portfolio: accoglienzafma.com · villacrawford.it · villatiberiade.com</p>
+</footer>
+
+<script>
+// Chat AI loop animation
+const chatMessages = document.getElementById('chat-messages');
+const messageSequence = [
+  {type:'user',text:'Hi! Is the sea view jacuzzi available tonight?'},
+  {type:'bot',text:'Hello! 🌊 Yes, our Sea View Jacuzzi is available tonight from 7-10 PM. Would you like to book a slot?'},
+  {type:'user',text:'Yes please, for 2 people at 8pm'},
+  {type:'bot',text:'Perfect! ✅ Booked for 2 guests at 8 PM. Confirmation sent to your email. Enjoy! 🥂'}
+];
+
+function rebuildChat(){
+  chatMessages.innerHTML = '';
+  messageSequence.slice(0,3).forEach(m=>{
+    const div = document.createElement('div');
+    div.className = 'chat-msg msg-' + m.type;
+    div.textContent = m.text;
+    chatMessages.appendChild(div);
+  });
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatMessages.appendChild(typing);
+  setTimeout(()=>{
+    typing.remove();
+    const finalMsg = document.createElement('div');
+    finalMsg.className = 'chat-msg msg-bot';
+    finalMsg.textContent = messageSequence[3].text;
+    chatMessages.appendChild(finalMsg);
+  },2500);
+}
+rebuildChat();
+setInterval(rebuildChat,8000);
+</script>
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
