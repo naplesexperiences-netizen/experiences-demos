@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel La Tonnarella Sorrento - 4 Stelle sul Mare</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,sans-serif;color:#1a1a1a;background:#fff}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.demo-banner{background:linear-gradient(135deg,#e8a020,#f0c060,#e8a020);background-size:200% 200%;animation:gradientShift 4s ease infinite;color:#0B3D61;text-align:center;padding:10px 20px;font-weight:700;font-size:14px;letter-spacing:0.5px}
+.demo-banner a{color:#0B3D61;text-decoration:underline}
+nav{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000;padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,#0B3D61,#1a6699);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#e8a020;font-size:20px;font-weight:900}
+.logo-text{font-size:15px;font-weight:700;color:#0B3D61;line-height:1.2}
+.logo-text span{color:#e8a020;display:block;font-size:11px;font-weight:500}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;color:#0B3D61;font-size:14px;font-weight:500;transition:color 0.3s}
+.nav-links a:hover{color:#e8a020}
+.nav-cta{background:linear-gradient(135deg,#e8a020,#f0b030);color:#0B3D61;border:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(232,160,32,0.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
+.hamburger span{width:24px;height:2px;background:#0B3D61;border-radius:2px;display:block}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.logo-text{font-size:13px}}
+.hero{position:relative;height:100vh;min-height:600px;background-image:url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1600&q=80');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,61,97,0.55) 0%,rgba(11,61,97,0.75) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:0 24px}
+.hero-badge{display:inline-block;background:rgba(232,160,32,0.9);color:#0B3D61;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:20px;animation:fadeInUp 0.5s forwards}
+.hero h1{font-size:clamp(32px,6vw,64px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:20px;animation:fadeInUp 0.5s 0s forwards}
+.hero h1 span{color:#e8a020}
+.hero p{font-size:clamp(16px,2.5vw,20px);color:rgba(255,255,255,0.9);margin-bottom:36px;line-height:1.6;animation:fadeInUp 0.5s 0.2s forwards}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.5s 0.4s forwards}
+.btn-primary{background:linear-gradient(135deg,#e8a020,#f0b030);color:#0B3D61;padding:16px 32px;border-radius:30px;font-weight:700;font-size:16px;text-decoration:none;transition:all 0.3s;display:inline-block;box-shadow:0 4px 20px rgba(232,160,32,0.4)}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 30px rgba(232,160,32,0.6)}
+.btn-secondary{background:rgba(255,255,255,0.15);color:#fff;padding:16px 32px;border-radius:30px;font-weight:600;font-size:16px;text-decoration:none;border:2px solid rgba(255,255,255,0.6);transition:all 0.3s;display:inline-block;backdrop-filter:blur(4px)}
+.btn-secondary:hover{background:rgba(255,255,255,0.25);transform:scale(1.05)}
+.stats-bar{background:linear-gradient(135deg,#0B3D61,#1a5276);padding:40px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat-item{color:#fff}
+.stat-num{font-size:clamp(28px,5vw,48px);font-weight:900;color:#e8a020;display:block;line-height:1}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.8);margin-top:6px;line-height:1.3}
+@media(max-width:600px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
+section{padding:80px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:56px}
+.section-tag{display:inline-block;background:rgba(232,160,32,0.12);color:#e8a020;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.section-header h2{font-size:clamp(26px,4vw,42px);font-weight:800;color:#0B3D61;line-height:1.2;margin-bottom:16px}
+.section-header p{font-size:16px;color:#666;max-width:580px;margin:0 auto;line-height:1.7}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s;cursor:pointer}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,0.15)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:20px}
+.service-icon{width:40px;height:40px;background:linear-gradient(135deg,#0B3D61,#1a6699);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.service-card h3{font-size:17px;font-weight:700;color:#0B3D61;margin-bottom:8px}
+.service-card p{font-size:14px;color:#666;line-height:1.6}
+.ai-section{background:linear-gradient(135deg,#0B3D61 0%,#1a5276 100%);padding:80px 24px}
+.ai-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:768px){.ai-inner{grid-template-columns:1fr;gap:40px}}
+.ai-text .section-tag{background:rgba(232,160,32,0.2);color:#e8a020}
+.ai-text h2{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.2}
+.ai-text p{font-size:16px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:24px}
+.ai-features{display:flex;flex-direction:column;gap:12px}
+.ai-feature{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.9);font-size:15px}
+.ai-feature-icon{width:32px;height:32px;background:rgba(232,160,32,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.chat-widget{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.chat-header{background:linear-gradient(135deg,#e8a020,#f0b030);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:40px;height:40px;background:#0B3D61;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.chat-info h4{font-size:15px;font-weight:700;color:#0B3D61}
+.chat-info p{font-size:12px;color:#0B3D61;opacity:0.8}
+.online-dot{width:10px;height:10px;background:#22c55e;border-radius:50%;margin-left:auto;box-shadow:0 0 6px rgba(34,197,94,0.6)}
+.chat-body{padding:20px;background:#f8f9fa;min-height:220px;display:flex;flex-direction:column;gap:12px}
+.msg{display:flex;flex-direction:column;gap:4px}
+.msg.bot .bubble{background:#fff;color:#1a1a1a;border-radius:18px 18px 18px 4px;padding:10px 14px;font-size:14px;max-width:85%;box-shadow:0 2px 8px rgba(0,0,0,0.08);animation:slideIn 0.4s forwards}
+.msg.user{align-items:flex-end}
+.msg.user .bubble{background:linear-gradient(135deg,#0B3D61,#1a6699);color:#fff;border-radius:18px 18px 4px 18px;padding:10px 14px;font-size:14px;max-width:85%;animation:slideIn 0.4s 0.8s forwards}
+.typing{display:flex;gap:4px;align-items:center;padding:12px 14px;background:#fff;border-radius:18px 18px 18px 4px;width:fit-content;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.typing span{width:7px;height:7px;background:#0B3D61;border-radius:50%;animation:blink 1.4s infinite}
+.typing span:nth-child(2){animation-delay:0.2s}
+.typing span:nth-child(3){animation-delay:0.4s}
+.chat-input{display:flex;padding:12px;gap:8px;background:#fff;border-top:1px solid #eee}
+.chat-input input{flex:1;border:1px solid #e0e0e0;border-radius:20px;padding:10px 16px;font-size:14px;outline:none;font-family:inherit}
+.chat-input button{background:linear-gradient(135deg,#e8a020,#f0b030);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:#0B3D61;transition:transform 0.2s}
+.chat-input button:hover{transform:scale(1.1)}
+.pricing-section{background:#f8fafc;padding:80px 24px}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1200px;margin:0 auto}
+@media(max-width:1000px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pricing-grid{grid-template-columns:1fr}}
+.pricing-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s;position:relative;overflow:hidden}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(11,61,97,0.15)}
+.pricing-card.featured{background:linear-gradient(135deg,#0B3D61,#1a5276);color:#fff}
+.pricing-card.featured .plan-name{color:#e8a020}
+.pricing-card.featured .plan-desc{color:rgba(255,255,255,0.75)}
+.pricing-card.featured .feature-item{color:rgba(255,255,255,0.9)}
+.featured-badge{position:absolute;top:16px;right:-24px;background:#e8a020;color:#0B3D61;font-size:11px;font-weight:700;padding:4px 32px;transform:rotate(35deg);transform-origin:center}
+.plan-icon{font-size:32px;margin-bottom:12px}
+.plan-name{font-size:20px;font-weight:800;color:#0B3D61;margin-bottom:6px}
+.plan-price{font-size:30px;font-weight:900;color:#0B3D61;margin:16px 0 4px}
+.plan-price span{font-size:14px;font-weight:500}
+.plan-comm{font-size:13px;color:#e8a020;font-weight:600;margin-bottom:8px}
+.plan-desc{font-size:13px;color:#888;margin-bottom:20px;line-height:1.5}
+.feature-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#444;margin-bottom:8px}
+.check{color:#22c55e;font-weight:700;font-size:15px}
+.plan-btn{display:block;text-align:center;margin-top:20px;padding:11px;border-radius:25px;font-weight:700;font-size:14px;text-decoration:none;transition:all 0.3s;background:linear-gradient(135deg,#e8a020,#f0b030);color:#0B3D61}
+.plan-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(232,160,32,0.4)}
+.featured .plan-price{color:#fff}
+.featured .plan-name-sub{color:#e8a020}
+.cta-section{background:linear-gradient(135deg,#0B3D61,#1a5276);padding:80px 24px;text-align:center}
+.cta-section h2{font-size:clamp(26px,4vw,42px);font-weight:800;color:#fff;margin-bottom:16px}
+.cta-section p{font-size:18px;color:rgba(255,255,255,0.85);margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#fff;padding:18px 36px;border-radius:50px;font-size:18px;font-weight:700;text-decoration:none;transition:all 0.3s;box-shadow:0 6px 30px rgba(37,211,102,0.4);animation:pulse 2s infinite}
+.whatsapp-btn:hover{transform:scale(1.08);box-shadow:0 10px 40px rgba(37,211,102,0.6)}
+.whatsapp-icon{width:28px;height:28px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#25D366;font-size:16px;font-weight:900}
+.portfolio-strip{background:#fff;padding:40px 24px;border-top:1px solid #f0f0f0}
+.portfolio-inner{max-width:1200px;margin:0 auto;text-align:center}
+.portfolio-inner p{font-size:13px;color:#999;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.portfolio-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.portfolio-links a{color:#0B3D61;font-size:14px;font-weight:600;text-decoration:none;padding:6px 14px;border:1px solid #dde;border-radius:20px;transition:all 0.3s}
+.portfolio-links a:hover{background:#0B3D61;color:#fff}
+footer{background:#0B3D61;color:rgba(255,255,255,0.7);text-align:center;padding:30px 24px;font-size:14px}
+footer a{color:#e8a020;text-decoration:none}
+footer strong{color:#fff}
+</style>
+</head>
+<body>
+<div class="demo-banner">🚀 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | Vuoi un sito così? Contattaci ora!</div>
+
+<nav>
+<div class="nav-inner">
+<a href="#" class="logo">
+<div class="logo-icon">⚓</div>
+<div class="logo-text">La Tonnarella<span>Hotel 4★ · Sorrento sul Mare</span></div>
+</a>
+<ul class="nav-links">
+<li><a href="#servizi">Camere</a></li>
+<li><a href="#servizi">Ristorante</a></li>
+<li><a href="#servizi">Spiaggia</a></li>
+<li><a href="#servizi">Esperienze</a></li>
+<li><a href="#servizi">Matrimoni</a></li>
+</ul>
+<a href="https://wa.me/393926917657" target="_blank" class="nav-cta">📅 Preventivo gratuito</a>
+<button class="hamburger" onclick="this.style.opacity='0.5'">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-badge">✨ Hotel 4 Stelle · Sorrento</div>
+<h1>Un risveglio che <span>profuma di mare</span></h1>
+<p>Hotel La Tonnarella: lo sperone di roccia più panoramico di Sorrento, con vista mozzafiato sul Golfo di Napoli. Benvenuti nel vostro angolo di paradiso sul Mediterraneo.</p>
+<div class="hero-buttons">
+<a href="#" class="btn-primary">🛏 Prenota ora</a>
+<a href="#servizi" class="btn-secondary">Scopri l'hotel</a>
+</div>
+</div>
+</section>
+
+<div class="stats-bar">
+<div class="stats-inner">
+<div class="stat-item"><span class="stat-num">4★</span><div class="stat-label">Hotel Certificato<br>dal Ministero</div></div>
+<div class="stat-item"><span class="stat-num">180°</span><div class="stat-label">Vista Panoramica<br>Golfo di Napoli</div></div>
+<div class="stat-item"><span class="stat-num">1948</span><div class="stat-label">Anno di Fondazione<br>Tradizione & Eleganza</div></div>
+<div class="stat-item"><span class="stat-num">9.2</span><div class="stat-label">Punteggio Ospiti<br>su Booking.com</div></div>
+</div>
+</div>
+
+<section id="servizi" style="background:#fff">
+<div class="section-inner">
+<div class="section-header">
+<div class="section-tag">I Nostri Servizi</div>
+<h2>Tutto quello che rende unico il vostro soggiorno</h2>
+<p>Dalla spiaggia privata al ristorante panoramico, ogni dettaglio è pensato per regalarvi un'esperienza indimenticabile a Sorrento.</p>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere panoramiche" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🛏</div>
+<h3>Camere & Suite Panoramiche</h3>
+<p>Camere eleganti con vista sul Golfo di Napoli, arredi raffinati e ogni comfort per un soggiorno da sogno in riva al mare.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ristorante Radici del Sud" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🍽</div>
+<h3>Ristorante "Radici del Sud"</h3>
+<p>Cucina mediterranea d'autore sulla terrazza panoramica sospesa sul mare. Cene romantiche con vista sul Golfo di Sorrento.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Spiaggia privata" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🏖</div>
+<h3>Spiaggia Privata</h3>
+<p>Un angolo nascosto tra le rocce, circondato dalla macchia mediterranea. Attrezzata e riservata, accessibile direttamente dall'hotel.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Escursioni Capri Amalfi" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">⛵</div>
+<h3>Escursioni & Tour</h3>
+<p>Da La Tonnarella raggiungi facilmente Capri, Positano, Amalfi, Ravello, Pompei e Ischia. L'hotel organizza tour personalizzati.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Matrimoni ed eventi" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">💍</div>
+<h3>Matrimoni & Eventi</h3>
+<p>Location esclusiva per matrimoni da sogno sul mare di Sorrento. Terrazze panoramiche, catering d'eccellenza e servizi personalizzati.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Lounge bar vista mare" loading="lazy">
+<div class="service-card-body">
+<div class="service-icon">🍹</div>
+<h3>Lounge Bar Vista Mare</h3>
+<p>Sorseggia i migliori cocktail e vini campani al tramonto con una vista panoramica incomparabile sul Golfo di Napoli.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="ai-section">
+<div class="ai-inner">
+<div class="ai-text">
+<div class="section-tag">AI & Innovazione</div>
+<h2>Assistente Virtuale 24/7 per i tuoi ospiti</h2>
+<p>Con Experiences Srl, il tuo hotel risponde ai clienti in ogni lingua, a qualsiasi ora, senza perdere nessuna prenotazione. L'AI gestisce richieste, disponibilità e check-in in modo automatico.</p>
+<div class="ai-features">
+<div class="ai-feature"><div class="ai-feature-icon">🌍</div>Risposte multilingua (IT, EN, DE, FR, ES)</div>
+<div class="ai-feature"><div class="ai-feature-icon">⏰</div>Attivo 24 ore su 24, 7 giorni su 7</div>
+<div class="ai-feature"><div class="ai-feature-icon">📅</div>Gestione prenotazioni e disponibilità in tempo reale</div>
+<div class="ai-feature"><div class="ai-feature-icon">💬</div>Integrato su WhatsApp, sito web e social</div>
+</div>
+</div>
+<div>
+<div class="chat-widget">
+<div class="chat-header">
+<div class="chat-avatar">🤖</div>
+<div class="chat-info"><h4>Assistente La Tonnarella</h4><p>Solitamente risponde in pochi secondi</p></div>
+<div class="online-dot"></div>
+</div>
+<div class="chat-body">
+<div class="msg bot"><div class="bubble">👋 Ciao! Benvenuto all'Hotel La Tonnarella Sorrento. Come posso aiutarti oggi?</div></div>
+<div class="msg user"><div class="bubble">Avete camere disponibili per il 15 agosto?</div></div>
+<div class="msg bot"><div class="bubble">✅ Sì! Abbiamo disponibilità per il 15-20 agosto. Suite Vista Mare da €280/notte. Vuoi prenotare?</div></div>
+<div class="msg bot"><div class="typing"><span></span><span></span><span></span></div></div>
+</div>
+<div class="chat-input">
+<input type="text" placeholder="Scrivi un messaggio...">
+<button>➤</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section class="pricing-section" id="prezzi">
+<div class="section-header" style="max-width:1200px;margin:0 auto 56px">
+<div class="section-tag">Piani Experiences Srl</div>
+<h2>Scegli il piano giusto per il tuo hotel</h2>
+<p>Soluzioni digitali complete per hotel, B&B e strutture ricettive. Zero overbooking, massima visibilità, più prenotazioni dirette.</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card">
+<div class="plan-icon">🏠</div>
+<div class="plan-name">Base</div>
+<div class="plan-price">€1.400<span>/anno</span></div>
+<div class="plan-comm">+ 10% commissione</div>
+<div class="plan-desc">Fino a 1.000 clienti/anno. Ideale per piccole strutture.</div>
+<div class="feature-item"><span class="check">✓</span>Sito web mobile-first</div>
+<div class="feature-item"><span class="check">✓</span>Booking integrato</div>
+<div class="feature-item"><span class="check">✓</span>SEO base</div>
+<div class="feature-item"><span class="check">✓</span>1 OTA gestita</div>
+<a href="https://wa.me/393926917657" target="_blank" class="plan-btn">Inizia ora →</a>
+</div>
+<div class="pricing-card">
+<div class="plan-icon">⚡</div>
+<div class="plan-name">Advanced</div>
+<div class="plan-price">€1.000<span>/anno</span></div>
+<div class="plan-comm">+ 8% commissione</div>
+<div class="plan-desc">Fino a 5.000 clienti/anno. Per strutture in crescita.</div>
+<div class="feature-item"><span class="check">✓</span>Sito premium + blog</div>
+<div class="feature-item"><span class="check">✓</span>Google Ads & Social</div>
+<div class="feature-item"><span class="check">✓</span>Channel Manager</div>
+<div class="feature-item"><span class="check">✓</span>Chatbot AI</div>
+<a href="https://wa.me/393926917657" target="_blank" class="plan-btn">Inizia ora →</a>
+</div>
+<div class="pricing-card featured">
+<div class="featured-badge">POPOLARE</div>
+<div class="plan-icon">🚀</div>
+<div class="plan-name">Pro</div>
+<div class="plan-price">€500<span>/anno</span></div>
+<div class="plan-comm" style="color:#e8a020">+ 5% commissione</div>
+<div class="plan-desc" style="color:rgba(255,255,255,0.7)">Fino a 10.000 clienti/anno. La scelta degli hotel 4★.</div>
+<div class="feature-item"><span class="check">✓</span>Tutto di Advanced</div>
+<div class="feature-item"><span class="check">✓</span>AI multilingua 24/7</div>
+<div class="feature-item"><span class="check">✓</span>OTA illimitate</div>
+<div class="feature-item"><span class="check">✓</span>Report mensili</div>
+<a href="https://wa.me/393926917657" target="_blank" class="plan-btn" style="background:linear-gradient(135deg,#e8a020,#f0b030)">Scegli Pro →</a>
+</div>
+<div class="pricing-card">
+<div class="plan-icon">🏆</div>
+<div class="plan-name">Enterprise</div>
+<div class="plan-price">€0<span>/anno</span></div>
+<div class="plan-comm">+ 3% commissione</div>
+<div class="plan-desc">Oltre 10.000 clienti/anno. Per grandi strutture.</div>
+<div class="feature-item"><span class="check">✓</span>Tutto di Pro</div>
+<div class="feature-item"><span class="check">✓</span>Account manager dedicato</div>
+<div class="feature-item"><span class="check">✓</span>API personalizzate</div>
+<div class="feature-item"><span class="check">✓</span>SLA garantito</div>
+<a href="https://wa.me/393926917657" target="_blank" class="plan-btn">Contattaci →</a>
+</div>
+</div>
+</section>
+
+<div class="portfolio-strip">
+<div class="portfolio-inner">
+<p>Portfolio clienti Experiences Srl</p>
+<div class="portfolio-links">
+<a href="https://accoglienzafma.com" target="_blank">accoglienzafma.com</a>
+<a href="https://villacrawford.it" target="_blank">villacrawford.it</a>
+<a href="https://villatiberiade.com" target="_blank">villatiberiade.com</a>
+<a href="https://vesuvioexpress.it" target="_blank">vesuvioexpress.it</a>
+</div>
+</div>
+</div>
+
+<section class="cta-section">
+<h2>Porta La Tonnarella al livello successivo 🚀</h2>
+<p>Aumenta le prenotazioni dirette, elimina l'overbooking e offri un'esperienza digitale 5 stelle ai tuoi ospiti. Tutto con Experiences Srl.</p>
+<a href="https://wa.me/393926917657" target="_blank" class="whatsapp-btn">
+<div class="whatsapp-icon">✉</div>
+Scrivici su WhatsApp ora
+</a>
+<p style="margin-top:20px;font-size:14px;color:rgba(255,255,255,0.6)">Risposta garantita entro 2 ore · Consulenza gratuita senza impegno</p>
+</section>
+
+<footer>
+<p style="margin-bottom:8px"><strong>Hotel La Tonnarella Sorrento</strong> · Via del Capo 11, 80067 Sorrento (NA)</p>
+<p style="margin-bottom:16px">📞 +39 081 878 1153 · ✉ info@latonnarella.com</p>
+<p>⚡ Powered by <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a> — Soluzioni Digitali per il Turismo · <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a></p>
+<p style="margin-top:8px;font-size:12px;opacity:0.5">Questo è un sito demo gratuito. © 2024 Experiences Srl</p>
+</footer>
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
