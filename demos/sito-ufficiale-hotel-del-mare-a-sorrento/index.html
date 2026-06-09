@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel del Mare Sorrento | Sito Ufficiale - Prenota Ora</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,sans-serif;color:#1a1a1a;background:#fff}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.demo-banner{background:linear-gradient(90deg,#e8a020,#f0b830,#e8a020);color:#0B3D61;text-align:center;padding:10px 20px;font-size:13px;font-weight:700;letter-spacing:.5px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.demo-banner a{color:#0B3D61;text-decoration:underline;font-weight:800}
+nav{background:#fff;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;box-shadow:0 2px 16px rgba(0,0,0,.08);position:sticky;top:42px;z-index:999}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,#0B3D61,#1a6090);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#e8a020;font-size:20px;font-weight:900}
+.nav-logo-text{line-height:1.1}
+.nav-logo-text span{display:block;font-size:15px;font-weight:800;color:#0B3D61}
+.nav-logo-text small{font-size:10px;color:#666;letter-spacing:.5px;text-transform:uppercase}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{text-decoration:none;color:#333;font-size:13px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:#0B3D61}
+.nav-cta{background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61;border:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:13px;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(232,160,32,.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
+.hamburger span{width:24px;height:2px;background:#0B3D61;border-radius:2px;transition:.3s}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}}
+.hero{position:relative;height:92vh;min-height:580px;background:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,61,97,.65) 0%,rgba(11,61,97,.45) 60%,rgba(0,0,0,.7) 100%)}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:0 24px}
+.hero-badge{display:inline-block;background:rgba(232,160,32,.9);color:#0B3D61;padding:6px 18px;border-radius:25px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;animation:fadeInUp .5s forwards}
+.hero-content h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:18px;text-shadow:0 2px 12px rgba(0,0,0,.3);animation:fadeInUp .5s .1s both}
+.hero-content p{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.92);margin-bottom:32px;line-height:1.6;animation:fadeInUp .5s .25s both}
+.hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .5s .4s both}
+.btn-primary{background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61;padding:15px 32px;border-radius:30px;font-weight:800;font-size:15px;text-decoration:none;transition:all .3s;box-shadow:0 6px 20px rgba(232,160,32,.4)}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(232,160,32,.6)}
+.btn-secondary{background:rgba(255,255,255,.15);color:#fff;padding:15px 32px;border-radius:30px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid rgba(255,255,255,.6);backdrop-filter:blur(6px);transition:all .3s}
+.btn-secondary:hover{background:rgba(255,255,255,.25);transform:scale(1.05)}
+.booking-bar{background:#0B3D61;padding:20px 24px;display:flex;gap:12px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.booking-field{display:flex;flex-direction:column;gap:4px}
+.booking-field label{color:#e8a020;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.booking-field input,.booking-field select{padding:10px 14px;border-radius:8px;border:none;font-size:13px;background:#fff;color:#333;outline:none;min-width:140px}
+.booking-btn{background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61;border:none;padding:12px 28px;border-radius:8px;font-weight:800;font-size:14px;cursor:pointer;transition:all .3s;white-space:nowrap}
+.booking-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(232,160,32,.5)}
+.stats-bar{background:linear-gradient(135deg,#0B3D61 0%,#1a5276 100%);padding:50px 24px}
+.stats-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;text-align:center}
+.stat-item{color:#fff}
+.stat-num{font-size:2.8rem;font-weight:900;color:#e8a020;line-height:1;margin-bottom:6px}
+.stat-label{font-size:13px;opacity:.85;letter-spacing:.5px;text-transform:uppercase}
+.section{padding:70px 24px}
+.section-header{text-align:center;max-width:720px;margin:0 auto 50px}
+.section-header h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:#0B3D61;margin-bottom:12px}
+.section-header p{color:#666;font-size:16px;line-height:1.6}
+.section-tag{display:inline-block;background:#e8f4fd;color:#0B3D61;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.services-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:all .3s;cursor:pointer}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,.15)}
+.service-card img{width:100%;height:200px;object-fit:cover;display:block}
+.service-card-body{padding:22px}
+.service-card-body h3{font-size:17px;font-weight:800;color:#0B3D61;margin-bottom:8px}
+.service-card-body p{font-size:14px;color:#666;line-height:1.6}
+.service-tag{display:inline-block;background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.ai-section{background:linear-gradient(135deg,#f0f7ff 0%,#e8f4fd 100%);padding:70px 24px}
+.ai-container{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+@media(max-width:768px){.ai-container{grid-template-columns:1fr}}
+.ai-text h2{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:900;color:#0B3D61;margin-bottom:16px}
+.ai-text p{color:#555;line-height:1.7;margin-bottom:20px;font-size:15px}
+.ai-features{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ai-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:#444}
+.ai-features li::before{content:'✓';background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0}
+.chat-widget{background:#fff;border-radius:20px;box-shadow:0 8px 40px rgba(11,61,97,.15);overflow:hidden;max-width:340px;margin:0 auto}
+.chat-header{background:linear-gradient(135deg,#0B3D61,#1a6090);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:38px;height:38px;background:linear-gradient(135deg,#e8a020,#f0b830);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.chat-header-info{color:#fff}
+.chat-header-info strong{display:block;font-size:14px}
+.chat-header-info span{font-size:11px;opacity:.8;display:flex;align-items:center;gap:4px}
+.online-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite}
+.chat-messages{padding:16px;display:flex;flex-direction:column;gap:12px;min-height:240px;background:#f8fafc}
+.msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.5;animation:slideIn .4s forwards}
+.msg-bot{background:#fff;color:#333;border-radius:16px 16px 16px 4px;box-shadow:0 2px 8px rgba(0,0,0,.06);align-self:flex-start}
+.msg-user{background:linear-gradient(135deg,#0B3D61,#1a6090);color:#fff;border-radius:16px 16px 4px 16px;align-self:flex-end}
+.typing-dots{display:flex;gap:5px;align-items:center;padding:12px 16px;background:#fff;border-radius:16px 16px 16px 4px;box-shadow:0 2px 8px rgba(0,0,0,.06);width:fit-content;align-self:flex-start}
+.typing-dots span{width:8px;height:8px;background:#0B3D61;border-radius:50%;animation:typingBounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+.chat-input{padding:12px 16px;border-top:1px solid #eee;display:flex;gap:8px}
+.chat-input input{flex:1;border:1px solid #e0e0e0;border-radius:20px;padding:9px 14px;font-size:13px;outline:none}
+.chat-input button{background:linear-gradient(135deg,#e8a020,#f0b830);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;transition:transform .3s}
+.chat-input button:hover{transform:scale(1.1)}
+.pricing-section{background:#fff;padding:70px 24px}
+.pricing-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+.pricing-card{border-radius:16px;padding:32px 28px;box-shadow:0 4px 20px rgba(0,0,0,.08);border:2px solid transparent;transition:all .3s;position:relative;overflow:hidden}
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(11,61,97,.15)}
+.pricing-card.featured{border-color:#e8a020;background:linear-gradient(175deg,#0B3D61 0%,#1a5276 100%);color:#fff}
+.pricing-card.featured .plan-name{color:#e8a020}
+.pricing-card.featured .plan-desc{color:rgba(255,255,255,.75)}
+.pricing-card.featured .plan-feature{color:rgba(255,255,255,.9)}
+.pricing-card.featured .plan-feature::before{color:#e8a020}
+.featured-badge{position:absolute;top:16px;right:-22px;background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61;font-size:10px;font-weight:800;padding:4px 28px;transform:rotate(35deg);letter-spacing:.5px}
+.plan-name{font-size:22px;font-weight:900;color:#0B3D61;margin-bottom:6px}
+.plan-price{margin:16px 0}
+.plan-price .amount{font-size:2.4rem;font-weight:900;color:#e8a020}
+.plan-price .period{font-size:13px;color:#888}
+.plan-price .commission{font-size:13px;font-weight:700;color:#0B3D61;background:#fff3d4;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px}
+.pricing-card.featured .plan-price .commission{background:rgba(232,160,32,.2);color:#e8a020}
+.plan-desc{font-size:12px;color:#888;margin-bottom:18px}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.plan-feature{font-size:13px;color:#444;display:flex;align-items:flex-start;gap:8px}
+.plan-feature::before{content:'✓';color:#e8a020;font-weight:800;flex-shrink:0;margin-top:1px}
+.plan-btn{width:100%;padding:13px;border-radius:25px;border:none;font-weight:800;font-size:14px;cursor:pointer;transition:all .3s;text-decoration:none;display:block;text-align:center}
+.plan-btn-primary{background:linear-gradient(135deg,#e8a020,#f0b830);color:#0B3D61}
+.plan-btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(232,160,32,.4)}
+.plan-btn-secondary{background:#0B3D61;color:#fff}
+.plan-btn-secondary:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(11,61,97,.3)}
+.cta-section{background:linear-gradient(135deg,#0B3D61 0%,#1a5276 60%,#0B3D61 100%);padding:80px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-60px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,160,32,.15),transparent 70%);border-radius:50%}
+.cta-section::after{content:'';position:absolute;bottom:-60px;right:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(232,160,32,.1),transparent 70%);border-radius:50%}
+.cta-content{position:relative;z-index:1;max-width:650px;margin:0 auto}
+.cta-content h2{font-size:clamp(2rem,4vw,2.8rem);font-weight:900;color:#fff;margin-bottom:14px}
+.cta-content p{color:rgba(255,255,255,.85);font-size:16px;line-height:1.6;margin-bottom:36px}
+.wa-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#25D366,#1db954);color:#fff;padding:18px 40px;border-radius:50px;font-size:17px;font-weight:800;text-decoration:none;transition:all .3s;box-shadow:0 8px 30px rgba(37,211,102,.4);animation:pulse 3s infinite}
+.wa-btn:hover{transform:scale(1.06);box-shadow:0 12px 40px rgba(37,211,102,.6);animation:none}
+.wa-icon{font-size:26px}
+.portfolio-strip{background:#f8fafc;padding:40px 24px;text-align:center}
+.portfolio-strip h3{font-size:14px;color:#888;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;font-weight:600}
+.portfolio-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.portfolio-links a{color:#0B3D61;font-weight:700;font-size:13px;text-decoration:none;padding:6px 16px;border:1.5px solid #0B3D61;border-radius:20px;transition:all .3s}
+.portfolio-links a:hover{background:#0B3D61;color:#fff}
+footer{background:#0a2a42;color:rgba(255,255,255,.7);text-align:center;padding:28px 24px}
+footer strong{color:#e8a020}
+footer a{color:#e8a020;text-decoration:none}
+.divider{height:4px;background:linear-gradient(90deg,#0B3D61,#e8a020,#0B3D61)}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">🎨 DEMO GRATUITO realizzato da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> — Soluzioni Digitali per il Turismo | <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a></div>
+
+<nav>
+<a href="#" class="nav-logo">
+<div class="nav-logo-icon">🌊</div>
+<div class="nav-logo-text"><span>Hotel del Mare</span><small>Sorrento — Dal 1985</small></div>
+</a>
+<ul class="nav-links">
+<li><a href="#servizi">Camere</a></li>
+<li><a href="#servizi">Servizi</a></li>
+<li><a href="#servizi">Escursioni</a></li>
+<li><a href="#ai">AI Concierge</a></li>
+<li><a href="#prezzi">Offerte</a></li>
+</ul>
+<a href="https://wa.me/393926917657" class="nav-cta" target="_blank">Preventivo Gratuito</a>
+<div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge">⭐ Sito Ufficiale — Miglior Prezzo Garantito</div>
+<h1>Hotel del Mare<br>Il Mare di Sorrento ti aspetta</h1>
+<p>Vivi l'ospitalità autentica nel cuore della Costiera Amalfitana. Terrazze panoramiche, colazione gourmet e escursioni esclusive — tutto a portata di clic.</p>
+<div class="hero-buttons">
+<a href="#booking" class="btn-primary">🗓️ Prenota Ora</a>
+<a href="#servizi" class="btn-secondary">Scopri le Camere</a>
+</div>
+</div>
+</section>
+
+<div id="booking" class="booking-bar">
+<div class="booking-field"><label>Check-in</label><input type="date"></div>
+<div class="booking-field"><label>Check-out</label><input type="date"></div>
+<div class="booking-field"><label>Adulti</label><select><option>2 Adulti</option><option>1 Adulto</option><option>3 Adulti</option><option>4 Adulti</option></select></div>
+<div class="booking-field"><label>Bambini</label><select><option>0 Bambini</option><option>1 Bambino</option><option>2 Bambini</option></select></div>
+<div class="booking-field"><label>Camere</label><select><option>1 Camera</option><option>2 Camere</option><option>3 Camere</option></select></div>
+<button class="booking-btn">🔍 Verifica Disponibilità</button>
+</div>
+
+<div class="divider"></div>
+
+<section class="stats-bar">
+<div class="stats-grid">
+<div class="stat-item"><div class="stat-num">40+</div><div class="stat-label">Anni di Ospitalità</div></div>
+<div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Clienti Soddisfatti</div></div>
+<div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">AI Concierge</div></div>
+<div class="stat-item"><div class="stat-num">0%</div><div class="stat-label">Overbooking</div></div>
+<div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Tipologie di Camere</div></div>
+</div>
+</section>
+
+<section id="servizi" class="section" style="background:#f8fafc">
+<div class="section-header">
+<span class="section-tag">I Nostri Servizi</span>
+<h2>Un soggiorno da sogno a Sorrento</h2>
+<p>Camere eleganti, colazione italiana, terrazza panoramica e escursioni esclusive. Tutto ciò che rende speciale un viaggio sulla Costiera.</p>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camere Superior Vista Mare" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🛏️ Camere</span>
+<h3>Camere Superior Vista Mare</h3>
+<p>Svegliarsi con il profumo del mare e una vista mozzafiato sul Golfo di Napoli. Camere confortevoli con balcone privato e arredi tradizionali.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Colazione Italiana" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">☕ Colazione</span>
+<h3>Colazione Italiana Gourmet</h3>
+<p>Ogni mattina una selezione di prodotti locali: sfogliatelle fresche, mozzarella di bufala, limoncello artigianale e succhi freschi della Costiera.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Terrazza Solarium" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">☀️ Terrazza</span>
+<h3>Terrazza Solarium Panoramica</h3>
+<p>La nostra terrazza affacciata sul mare è il posto perfetto per rilassarsi al sole, gustare un aperitivo e ammirare il tramonto sulla costiera.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Escursione Capri" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">⛵ Escursioni</span>
+<h3>Capri, Amalfi & Pompei</h3>
+<p>Organizziamo escursioni esclusive a Capri, Anacapri, la Costiera Amalfitana, Pompei, Ercolano e Napoli. Guide locali certificate incluse.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Family Room" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">👨‍👩‍👧 Family</span>
+<h3>Suite Family con Vista</h3>
+<p>Camere family spaziose con balcone o vista mare, perfette per famiglie con bambini. Letti extra, culle e servizi dedicati ai più piccoli.</p>
+</div>
+</div>
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="Marina Grande" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🏖️ Posizione</span>
+<h3>Marina Grande — Cuore di Sorrento</h3>
+<p>Situati nel borgo marinaro di Marina Grande, a pochi passi dal porto e dal centro storico. Parcheggio convenzionato disponibile per tutti gli ospiti.</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<section id="ai" class="ai-section">
+<div class="ai-container">
+<div class="ai-text">
+<span class="section-tag">🤖 Powered by AI</span>
+<h2>Il tuo Concierge Virtuale — sempre disponibile</h2>
+<p>Grazie alla tecnologia AI di Experiences Srl, l'Hotel del Mare offre un assistente virtuale multilingua attivo 24 ore su 24, 7 giorni su 7. Risponde in italiano, inglese, tedesco e francese.</p>
+<ul class="ai-features">
+<li>Risponde istantaneamente alle domande degli ospiti</li>
+<li>Gestisce prenotazioni e richieste speciali</li>
+<li>Consiglia escursioni e ristoranti locali</li>
+<li>Disponibile in 4 lingue simultaneamente</li>
+<li>Integrato con il sistema di booking dell'hotel</li>
+</ul>
+</div>
+<div>
+<div class="chat-widget">
+<div class="chat-header">
+<div class="chat-avatar">🤖</div>
+<div class="chat-header-info">
+<strong>Marina — AI Concierge</strong>
+<span><span class="online-dot"></span>Online ora</span>
+</div>
+</div>
+<div class="chat-messages">
+<div class="msg msg-bot">Buongiorno! 🌊 Benvenuto all'Hotel del Mare. Sono Marina, la tua assistente virtuale. Come posso aiutarti oggi?</div>
+<div class="msg msg-user">Avete camere con vista mare per agosto?</div>
+<div class="msg msg-bot">Certamente! 🏖️ Ho ancora disponibilità per le nostre <strong>Superior Vista Mare</strong> ad agosto. Vuoi che verifichi le date specifiche e ti mostri le offerte speciali?</div>
+<div class="typing-dots"><span></span><span></span><span></span></div>
+</div>
+<div class="chat-input">
+<input type="text" placeholder="Scrivi un messaggio...">
+<button>➤</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="prezzi" class="pricing-section">
+<div class="section-header">
+<span class="section-tag">Piani Experiences Srl</span>
+<h2>Soluzioni Digitali per il tuo Hotel</h2>
+<p>Potenzia la presenza online dell'Hotel del Mare con i piani digitali di Experiences Srl. Zero overbooking, più prenotazioni dirette, meno commissioni OTA.</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card">
+<div class="plan-name">Base</div>
+<div class="plan-price"><span class="amount">€1.400</span><span class="period">/anno</span><br><span class="commission">+ 10% commissione</span></div>
+<div class="plan-desc">Fino a 1.000 clienti/anno</div>
+<ul class="plan-features">
+<li class="plan-feature">Sito web mobile-first</li>
+<li class="plan-feature">Booking engine integrato</li>
+<li class="plan-feature">1 OTA gestita</li>
+<li class="plan-feature">Supporto email</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn plan-btn-secondary" target="_blank">Inizia Ora</a>
+</div>
+<div class="pricing-card">
+<div class="plan-name">Advanced</div>
+<div class="plan-price"><span class="amount">€1.000</span><span class="period">/anno</span><br><span class="commission">+ 8% commissione</span></div>
+<div class="plan-desc">Fino a 5.000 clienti/anno</div>
+<ul class="plan-features">
+<li class="plan-feature">Tutto il piano Base</li>
+<li class="plan-feature">SEO + Google Ads</li>
+<li class="plan-feature">Channel Manager (3 OTA)</li>
+<li class="plan-feature">Social Media Management</li>
+<li class="plan-feature">Report mensile</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn plan-btn-secondary" target="_blank">Inizia Ora</a>
+</div>
+<div class="pricing-card featured">
+<div class="featured-badge">POPOLARE</div>
+<div class="plan-name">Pro</div>
+<div class="plan-price"><span class="amount">€500</span><span class="period">/anno</span><br><span class="commission">+ 5% commissione</span></div>
+<div class="plan-desc">Fino a 10.000 clienti/anno</div>
+<ul class="plan-features">
+<li class="plan-feature">Tutto il piano Advanced</li>
+<li class="plan-feature">AI Chatbot 24/7 multilingua</li>
+<li class="plan-feature">Channel Manager completo</li>
+<li class="plan-feature">Gestione OTA illimitata</li>
+<li class="plan-feature">Assistenza prioritaria</li>
+<li class="plan-feature">Dashboard analytics</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn plan-btn-primary" target="_blank">Scegli Pro</a>
+</div>
+<div class="pricing-card">
+<div class="plan-name">Enterprise</div>
+<div class="plan-price"><span class="amount">€0</span><span class="period">/anno</span><br><span class="commission">+ 3% commissione</span></div>
+<div class="plan-desc">Oltre 10.000 clienti/anno</div>
+<ul class="plan-features">
+<li class="plan-feature">Tutto il piano Pro</li>
+<li class="plan-feature">Account manager dedicato</li>
+<li class="plan-feature">SLA garantito 99.9%</li>
+<li class="plan-feature">Integrazioni custom</li>
+<li class="plan-feature">Commissione minima 3%</li>
+</ul>
+<a href="https://wa.me/393926917657" class="plan-btn plan-btn-secondary" target="_blank">Contattaci</a>
+</div>
+</div>
+</section>
+
+<div class="portfolio-strip">
+<h3>Portfolio Clienti Experiences Srl</h3>
+<div class="portfolio-links">
+<a href="https://accoglienzafma.com" target="_blank">accoglienzafma.com</a>
+<a href="https://villacrawford.it" target="_blank">villacrawford.it</a>
+<a href="https://villatiberiade.com" target="_blank">villatiberiade.com</a>
+<a href="https://vesuvioexpress.it" target="_blank">vesuvioexpress.it</a>
+</div>
+</div>
+
+<section class="cta-section">
+<div class="cta-content">
+<h2>Pronto a trasformare<br>l'Hotel del Mare?</h2>
+<p>Più prenotazioni dirette, zero overbooking, AI Concierge multilingua. Contattaci oggi per una consulenza gratuita e scopri come Experiences Srl può far crescere il tuo hotel.</p>
+<a href="https://wa.me/393926917657" class="wa-btn" target="_blank">
+<span class="wa-icon">💬</span>
+Scrivici su WhatsApp — È Gratis
+</a>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+<p>© 2025 Hotel del Mare Sorrento — Demo realizzato da <strong>Experiences Srl</strong></p>
+<p style="margin-top:6px;font-size:13px">Powered by <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | WhatsApp <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a></p>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+const msgs=['Ciao! 👋 Hai domande sulle escursioni?','Posso aiutarti con info su Capri o Amalfi!','Prenota direttamente con noi per il miglior prezzo 🌊'];
+let msgIdx=0;
+function addChatMsg(){const chat=document.querySelector('.chat-messages');if(chat&&msgIdx<msgs.length){const d=document.querySelector('.typing-dots');if(d)d.style.display='none';const m=document.createElement('div');m.className='msg msg-bot';m.textContent=msgs[msgIdx];m.style.cssText='opacity:0;transition:opacity 0.4s';chat.appendChild(m);setTimeout(()=>{m.style.opacity='1'},50);msgIdx++;setTimeout(()=>{if(d)d.style.display='flex';setTimeout(addChatMsg,3500)},200)}}
+setTimeout(addChatMsg,3000);
+document.querySelector('.chat-input button').addEventListener('click',function(){const inp=document.querySelector('.chat-input input');const val=inp.value.trim();if(!val)return;const chat=document.querySelector('.chat-messages');const um=document.createElement('div');um.className='msg msg-user';um.textContent=val;chat.appendChild(um);inp.value='';chat.scrollTop=chat.scrollHeight;setTimeout(()=>{const bm=document.createElement('div');bm.className='msg msg-bot';bm.textContent='Grazie! 😊 Un nostro operatore ti risponderà a breve oppure scrivi su WhatsApp per assistenza immediata.';chat.appendChild(bm);chat.scrollTop=chat.scrollHeight},1200)});
+document.querySelector('.chat-input input').addEventListener('keypress',function(e){if(e.key==='Enter')document.querySelector('.chat-input button').click()});
+</script>
+
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
