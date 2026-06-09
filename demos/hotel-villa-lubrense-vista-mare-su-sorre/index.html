@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Villa Lubrense — Vista Mare su Sorrento, Capri e Vesuvio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-family:system-ui,-apple-system,sans-serif}
+body{color:#1a1a1a;overflow-x:hidden}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+.demo-banner{background:linear-gradient(90deg,#0B3D61,#e8a020,#0B3D61);color:#fff;text-align:center;padding:10px 16px;font-size:0.85rem;font-weight:600;letter-spacing:0.5px;animation:slideDown 0.5s ease forwards;position:relative;z-index:1000}
+.demo-banner a{color:#fff;text-decoration:underline}
+nav{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.12);position:sticky;top:0;z-index:999;padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{font-size:1.3rem;font-weight:800;color:#0B3D61;letter-spacing:1px;text-decoration:none}
+.nav-logo span{color:#e8a020}
+.nav-menu{display:flex;gap:24px;list-style:none}
+.nav-menu a{text-decoration:none;color:#0B3D61;font-weight:500;font-size:0.9rem;transition:color 0.3s}
+.nav-menu a:hover{color:#e8a020}
+.nav-cta{background:linear-gradient(135deg,#e8a020,#f0b830);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(232,160,32,0.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:2px;background:#0B3D61;display:block;transition:0.3s}
+.hero{position:relative;height:100vh;min-height:600px;background:linear-gradient(rgba(11,61,97,0.55),rgba(11,61,97,0.45)),url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 24px}
+.hero-content h1{font-size:clamp(2rem,5vw,3.8rem);font-weight:900;line-height:1.15;margin-bottom:20px;animation:fadeInUp 0.7s ease forwards;text-shadow:0 2px 12px rgba(0,0,0,0.4)}
+.hero-content h1 span{color:#e8a020}
+.hero-content p{font-size:clamp(1rem,2vw,1.3rem);max-width:700px;margin:0 auto 32px;line-height:1.6;animation:fadeInUp 0.7s 0.2s ease forwards;text-shadow:0 1px 6px rgba(0,0,0,0.3)}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.7s 0.4s ease forwards}
+.btn-primary{background:linear-gradient(135deg,#e8a020,#f0b830);color:#fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1rem;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s;display:inline-block}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(232,160,32,0.5)}
+.btn-secondary{background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);color:#fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1rem;text-decoration:none;border:2px solid rgba(255,255,255,0.6);transition:transform 0.3s,background 0.3s;display:inline-block}
+.btn-secondary:hover{transform:scale(1.05);background:rgba(255,255,255,0.25)}
+.stats-bar{background:linear-gradient(135deg,#0B3D61,#0d4a77);color:#fff;padding:28px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.stat-item h3{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#e8a020;margin-bottom:4px}
+.stat-item p{font-size:0.82rem;opacity:0.85;text-transform:uppercase;letter-spacing:0.5px}
+section{padding:72px 24px}
+.section-title{text-align:center;margin-bottom:48px}
+.section-title h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#0B3D61;margin-bottom:12px}
+.section-title p{color:#555;font-size:1rem;max-width:600px;margin:0 auto;line-height:1.6}
+.section-title .accent{color:#e8a020}
+.services-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.service-card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+.service-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,0.18)}
+.service-card img{width:100%;height:180px;object-fit:cover;display:block}
+.service-card-body{padding:24px}
+.service-card-body h3{font-size:1.15rem;font-weight:700;color:#0B3D61;margin-bottom:10px}
+.service-card-body p{color:#555;font-size:0.9rem;line-height:1.6}
+.service-tag{display:inline-block;background:#e8f4fc;color:#0B3D61;font-size:0.75rem;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:12px}
+.ai-section{background:linear-gradient(135deg,#f8f9ff,#eef4fb);padding:72px 24px}
+.ai-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.ai-text h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#0B3D61;margin-bottom:16px}
+.ai-text p{color:#555;line-height:1.7;margin-bottom:12px;font-size:0.95rem}
+.ai-feature{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.ai-feature .icon{width:36px;height:36px;background:linear-gradient(135deg,#0B3D61,#1565c0);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0}
+.ai-feature p{margin:0;color:#333;font-size:0.9rem}
+.chat-box{background:#fff;border-radius:20px;box-shadow:0 8px 40px rgba(11,61,97,0.15);overflow:hidden;max-width:400px}
+.chat-header{background:linear-gradient(135deg,#0B3D61,#1565c0);color:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:40px;height:40px;background:#e8a020;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.chat-header h4{font-size:0.95rem;font-weight:700}
+.chat-header p{font-size:0.75rem;opacity:0.8}
+.online-dot{width:8px;height:8px;background:#4caf50;border-radius:50%;display:inline-block;margin-right:4px}
+.chat-messages{padding:20px;min-height:220px;display:flex;flex-direction:column;gap:14px;background:#f9f9f9}
+.msg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:0.85rem;line-height:1.5}
+.msg.bot{background:#fff;border:1px solid #e8e8e8;color:#333;border-bottom-left-radius:4px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.msg.user{background:linear-gradient(135deg,#0B3D61,#1565c0);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.typing-dots{display:flex;gap:5px;padding:12px 16px;background:#fff;border:1px solid #e8e8e8;border-radius:12px;border-bottom-left-radius:4px;width:fit-content;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.typing-dots span{width:7px;height:7px;background:#0B3D61;border-radius:50%;animation:blink 1.4s infinite}
+.typing-dots span:nth-child(2){animation-delay:0.2s}
+.typing-dots span:nth-child(3){animation-delay:0.4s}
+.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #eee;background:#fff}
+.chat-input-row input{flex:1;border:1px solid #e0e0e0;border-radius:8px;padding:8px 12px;font-size:0.85rem;outline:none}
+.chat-send{background:#e8a020;border:none;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.85rem;transition:background 0.3s}
+.chat-send:hover{background:#d4911a}
+.pricing{background:#fff;padding:72px 24px}
+.pricing-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.price-card{border-radius:16px;padding:32px 24px;text-align:center;border:2px solid #e8e8e8;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
+.price-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(11,61,97,0.15)}
+.price-card.featured{background:linear-gradient(135deg,#0B3D61,#1565c0);color:#fff;border-color:#0B3D61}
+.price-card.featured .price-name,.price-card.featured .price-desc,.price-card.featured .price-feature{color:rgba(255,255,255,0.85)}
+.price-card.featured .price-amount{color:#e8a020}
+.price-tag{position:absolute;top:16px;right:-24px;background:#e8a020;color:#fff;font-size:0.7rem;font-weight:700;padding:4px 32px;transform:rotate(45deg);letter-spacing:0.5px}
+.price-name{font-size:1.1rem;font-weight:800;color:#0B3D61;margin-bottom:8px}
+.price-amount{font-size:2rem;font-weight:900;color:#0B3D61;margin:12px 0 4px}
+.price-amount span{font-size:0.9rem;font-weight:500}
+.price-comm{font-size:0.8rem;color:#888;margin-bottom:8px}
+.price-desc{font-size:0.8rem;color:#777;margin-bottom:20px}
+.price-features{list-style:none;margin-bottom:24px;text-align:left}
+.price-feature{font-size:0.82rem;color:#555;padding:5px 0;display:flex;align-items:center;gap:8px}
+.price-feature::before{content:"✓";color:#e8a020;font-weight:700;flex-shrink:0}
+.price-btn{width:100%;padding:12px;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer;border:none;transition:transform 0.3s,box-shadow 0.3s;text-decoration:none;display:block}
+.price-btn-default{background:linear-gradient(135deg,#0B3D61,#1565c0);color:#fff}
+.price-btn-featured{background:linear-gradient(135deg,#e8a020,#f0b830);color:#fff}
+.price-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+.cta-section{background:linear-gradient(135deg,#0B3D61,#0d4a77);color:#fff;text-align:center;padding:80px 24px}
+.cta-section h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:16px}
+.cta-section p{font-size:1rem;opacity:0.85;max-width:600px;margin:0 auto 36px;line-height:1.6}
+.wa-btn{display:inline-flex;align-items:center;gap:12px;background:#25d366;color:#fff;padding:16px 36px;border-radius:12px;font-size:1.1rem;font-weight:700;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s;animation:pulse 2s infinite}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 8px 30px rgba(37,211,102,0.5)}
+.wa-icon{width:28px;height:28px;fill:#fff}
+footer{background:#0a0a0a;color:#888;text-align:center;padding:28px 24px;font-size:0.85rem}
+footer a{color:#e8a020;text-decoration:none}
+footer strong{color:#fff}
+.portfolio{background:#f4f7fb;padding:60px 24px}
+.portfolio-inner{max-width:900px;margin:0 auto;text-align:center}
+.portfolio-logos{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:28px}
+.portfolio-logo{background:#fff;padding:12px 24px;border-radius:10px;font-weight:700;color:#0B3D61;font-size:0.85rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.3s}
+.portfolio-logo:hover{transform:translateY(-3px)}
+@media(max-width:900px){.ai-inner{grid-template-columns:1fr}.chat-box{max-width:100%}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.nav-menu{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 24px;box-shadow:0 8px 20px rgba(0,0,0,0.1);gap:12px}.nav-menu.open{display:flex}.hamburger{display:flex}.stats-inner{grid-template-columns:repeat(2,1fr)}.hero-btns{flex-direction:column;align-items:center}}
+</style>
+</head>
+<body>
+<div class="demo-banner">🌟 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> | Vuoi un sito così? Scrivici su WhatsApp!</div>
+
+<nav>
+<div class="nav-inner">
+<a href="#" class="nav-logo">VILLA <span>LUBRENSE</span></a>
+<ul class="nav-menu" id="navMenu">
+<li><a href="#servizi">Camere & Suite</a></li>
+<li><a href="#piscina">Piscina</a></li>
+<li><a href="#ristorante">Ristorante</a></li>
+<li><a href="#ai">Concierge AI</a></li>
+<li><a href="#prezzi">Pricing</a></li>
+</ul>
+<a href="https://wa.me/393926917657" class="nav-cta" target="_blank">Preventivo gratuito</a>
+<button class="hamburger" id="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-content">
+<h1>Benvenuti a <span>Villa Lubrense</span><br>Vista su Sorrento, Capri e Vesuvio</h1>
+<p>Un'oasi di eleganza immersa tra cielo e mare. Camere vista mare, piscina panoramica e ristorante affacciato sul maestoso Vesuvio. La vacanza romantica dei tuoi sogni comincia qui.</p>
+<div class="hero-btns">
+<a href="#servizi" class="btn-primary">Scopri le Camere</a>
+<a href="#ristorante" class="btn-secondary">Prenota un Tavolo</a>
+</div>
+</div>
+</section>
+
+<div class="stats-bar">
+<div class="stats-inner">
+<div class="stat-item"><h3>20+</h3><p>Anni di eccellenza</p></div>
+<div class="stat-item"><h3>4.8★</h3><p>Rating TripAdvisor</p></div>
+<div class="stat-item"><h3>5.000+</h3><p>Ospiti soddisfatti</p></div>
+<div class="stat-item"><h3>180°</h3><p>Vista panoramica</p></div>
+</div>
+</div>
+
+<section id="servizi" style="background:#fff;padding:72px 24px">
+<div class="section-title">
+<h2>I Nostri <span class="accent">Servizi Esclusivi</span></h2>
+<p>Ogni dettaglio è curato per regalarti un soggiorno indimenticabile sulla Costiera Sorrentina</p>
+</div>
+<div class="services-grid">
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camera Vista Mare" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🛏️ Camere & Suite</span>
+<h3>Camere Vista Mare</h3>
+<p>Arredi di qualità e cura nei minimi dettagli, con un panorama mozzafiato sul Golfo di Napoli. Ogni mattina ti sveglierai con Capri e il Vesuvio dinanzi agli occhi.</p>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=800&q=80" alt="Piscina Solarium" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🏊 Piscina & Solarium</span>
+<h3>Piscina & Pool Bar</h3>
+<p>Goditi il sole e il mare dalla nostra piscina panoramica con solarium e pool bar. Un'esperienza di relax totale dinanzi a uno scenario da cartolina.</p>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" alt="Ristorante Vista Vesuvio" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🍽️ Ristorante</span>
+<h3>Cena con Vista Vesuvio</h3>
+<p>Il nostro ristorante offre specialità della cucina sorrentina con una vista straordinaria sul Vesuvio e la costiera. Prenota il tuo tavolo e lasciati conquistare.</p>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Hotel Boutique" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🌅 Colazione</span>
+<h3>Colazione Vista Mare</h3>
+<p>Inizia la giornata con una ricca colazione all'italiana servita con il mare come sfondo. Prodotti locali, freschezza e sapori autentici della tradizione campana.</p>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1597595272404-fcbac9b16b89?w=800&q=80" alt="Capri Escursioni" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">⛵ Attività</span>
+<h3>Escursioni a Capri & Sorrento</h3>
+<p>Organizziamo escursioni personalizzate a Capri, Sorrento, Positano e Pompei. Scopri le meraviglie del Sud Italia con le nostre guide locali esperte.</p>
+</div>
+</div>
+
+<div class="service-card">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Resort Appartamenti" loading="lazy">
+<div class="service-card-body">
+<span class="service-tag">🏡 Resort & Bungalow</span>
+<h3>Bungalow & Appartamenti</h3>
+<p>Per famiglie o soggiorni prolungati, i nostri bungalow e appartamenti offrono spazio, comfort e la stessa mozzafiato vista mare del resort principale.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="ai-section" id="ai">
+<div class="ai-inner">
+<div class="ai-text">
+<h2>🤖 Assistente AI <span style="color:#e8a020">24/7 Multilingua</span></h2>
+<p>Con i servizi di <strong>Experiences Srl</strong>, Hotel Villa Lubrense avrà un assistente virtuale intelligente che risponde ai tuoi ospiti in qualsiasi lingua, a qualsiasi ora.</p>
+<div class="ai-feature">
+<div class="icon">🌍</div>
+<p><strong>Multilingua:</strong> Italiano, Inglese, Francese, Tedesco, Spagnolo e molto altro.</p>
+</div>
+<div class="ai-feature">
+<div class="icon">⚡</div>
+<p><strong>Risposta immediata:</strong> Nessuna attesa, nessuna chiamata persa, zero richieste senza risposta.</p>
+</div>
+<div class="ai-feature">
+<div class="icon">📅</div>
+<p><strong>Booking integrato:</strong> Il chatbot gestisce prenotazioni, disponibilità e check-in autonomamente.</p>
+</div>
+<div class="ai-feature">
+<div class="icon">📊</div>
+<p><strong>Analytics:</strong> Report settimanali su richieste, conversioni e sentiment degli ospiti.</p>
+</div>
+</div>
+<div class="chat-box">
+<div class="chat-header">
+<div class="chat-avatar">🤖</div>
+<div>
+<h4>Villa Lubrense AI Concierge</h4>
+<p><span class="online-dot"></span>Online ora — Risposta istantanea</p>
+</div>
+</div>
+<div class="chat-messages" id="chatMessages">
+<div class="msg bot">👋 Ciao! Benvenuto a Villa Lubrense. Come posso aiutarti oggi?</div>
+<div class="msg user">Avete camere disponibili per il weekend di Ferragosto?</div>
+<div class="msg bot">🌊 Sì! Abbiamo ancora 2 Camere Vista Mare disponibili per Ferragosto. Vuoi che verifichi il prezzo migliore per te?</div>
+</div>
+<div style="padding:8px 16px 0;background:#f9f9f9">
+<div class="typing-dots"><span></span><span></span><span></span></div>
+</div>
+<div class="chat-input-row">
+<input type="text" placeholder="Scrivi un messaggio...">
+<button class="chat-send">Invia</button>
+</div>
+</div>
+</div>
+</section>
+
+<section class="portfolio">
+<div class="portfolio-inner">
+<div class="section-title">
+<h2>Il Nostro <span class="accent">Portfolio</span></h2>
+<p>Strutture ricettive che si affidano già a Experiences Srl per la loro presenza digitale</p>
+</div>
+<div class="portfolio-logos">
+<div class="portfolio-logo">🏨 accoglienzafma.com</div>
+<div class="portfolio-logo">🏛️ villacrawford.it</div>
+<div class="portfolio-logo">🌿 villatiberiade.com</div>
+<div class="portfolio-logo">🚂 vesuvioexpress.it</div>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="prezzi">
+<div class="section-title">
+<h2>Piani & <span class="accent">Prezzi</span></h2>
+<p>Scegli il piano più adatto alla tua struttura. Zero sorprese, massima trasparenza.</p>
+</div>
+<div class="pricing-grid">
+
+<div class="price-card">
+<div class="price-name">Base</div>
+<div class="price-amount">€1.400<span>/anno</span></div>
+<div class="price-comm">+ 10% commissione</div>
+<div class="price-desc">Fino a 1.000 clienti/anno</div>
+<ul class="price-features">
+<li class="price-feature">Sito web mobile-first</li>
+<li class="price-feature">SEO base</li>
+<li class="price-feature">Gestione OTA (1 canale)</li>
+<li class="price-feature">Chatbot AI multilingua</li>
+<li class="price-feature">Supporto email</li>
+</ul>
+<a href="https://wa.me/393926917657" class="price-btn price-btn-default" target="_blank">Inizia ora</a>
+</div>
+
+<div class="price-card">
+<div class="price-name">Advanced</div>
+<div class="price-amount">€1.000<span>/anno</span></div>
+<div class="price-comm">+ 8% commissione</div>
+<div class="price-desc">Fino a 5.000 clienti/anno</div>
+<ul class="price-features">
+<li class="price-feature">Sito web + booking integrato</li>
+<li class="price-feature">SEO/SEM + Google Ads</li>
+<li class="price-feature">Channel Manager (3 OTA)</li>
+<li class="price-feature">AI Chatbot 24/7</li>
+<li class="price-feature">Social Media Management</li>
+</ul>
+<a href="https://wa.me/393926917657" class="price-btn price-btn-default" target="_blank">Inizia ora</a>
+</div>
+
+<div class="price-card featured">
+<div class="price-tag">TOP</div>
+<div class="price-name" style="color:#e8a020">Pro</div>
+<div class="price-amount">€500<span>/anno</span></div>
+<div class="price-comm" style="color:rgba(255,255,255,0.7)">+ 5% commissione</div>
+<div class="price-desc">Fino a 10.000 clienti/anno</div>
+<ul class="price-features">
+<li class="price-feature">Tutto di Advanced +</li>
+<li class="price-feature">Design personalizzato premium</li>
+<li class="price-feature">Channel Manager completo</li>
+<li class="price-feature">AI Concierge multilingua avanzato</li>
+<li class="price-feature">Supporto prioritario 24/7</li>
+</ul>
+<a href="https://wa.me/393926917657" class="price-btn price-btn-featured" target="_blank">Scelto più spesso</a>
+</div>
+
+<div class="price-card">
+<div class="price-name">Enterprise</div>
+<div class="price-amount">€0<span>/anno</span></div>
+<div class="price-comm">+ 3% commissione</div>
+<div class="price-desc">Oltre 10.000 clienti/anno</div>
+<ul class="price-features">
+<li class="price-feature">Zero costi fissi annuali</li>
+<li class="price-feature">Suite completa servizi digitali</li>
+<li class="price-feature">Channel Manager illimitato</li>
+<li class="price-feature">AI ecosystem su misura</li>
+<li class="price-feature">Account manager dedicato</li>
+</ul>
+<a href="https://wa.me/393926917657" class="price-btn price-btn-default" target="_blank">Contattaci</a>
+</div>
+
+</div>
+</section>
+
+<section class="cta-section">
+<h2>🚀 Trasforma il Tuo Hotel con il Digitale</h2>
+<p>Unisciti alle strutture che hanno già scelto Experiences Srl per aumentare le prenotazioni dirette, ridurre le commissioni OTA e offrire un'esperienza moderna ai propri ospiti.</p>
+<a href="https://wa.me/393926917657" class="wa-btn" target="_blank">
+<svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Scrivici su WhatsApp Ora
+</a>
+<p style="margin-top:20px;font-size:0.85rem;opacity:0.65">Risposta garantita entro 1 ora — Consulenza gratuita senza impegno</p>
+</section>
+
+<footer>
+<p style="margin-bottom:6px"><strong>Hotel Villa Lubrense</strong> — Via Partenope, 33 · 80061 Massa Lubrense (NA) · Tel. 081 5339781 · <a href="mailto:info@villalubrense.com">info@villalubrense.com</a></p>
+<p>Questo è un sito <strong>demo</strong> realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a> · <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a> · WhatsApp <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a></p>
+<p style="margin-top:6px;color:#555;font-size:0.78rem">P.IVA 01348791219 · Powered by Experiences Srl — Soluzioni Digitali per il Turismo</p>
+</footer>
+
+<script>
+(function(){
+var msgs=[
+"✅ Perfetto! La Camera Deluxe Vista Mare per Ferragosto è disponibile a €180/notte. Vuoi procedere con la prenotazione?",
+"🌟 Ottima scelta! Riceverai conferma via email entro 2 minuti. Posso aiutarti con altro?"
+];
+var idx=0;
+var chatEl=document.getElementById('chatMessages');
+function addMsg(){
+if(idx<msgs.length){
+var d=document.createElement('div');
+d.className='msg bot';
+d.textContent=msgs[idx];
+d.style.opacity='0';
+d.style.transform='translateY(10px)';
+d.style.transition='opacity 0.4s,transform 0.4s';
+chatEl.appendChild(d);
+chatEl.scrollTop=chatEl.scrollHeight;
+setTimeout(function(){d.style.opacity='1';d.style.transform='translateY(0)'},50);
+idx++;
+setTimeout(addMsg,4000);
+}
+}
+setTimeout(addMsg,3500);
+var counters=document.querySelectorAll('.stat-item h3');
+counters.forEach(function(el){
+el.style.animation='fadeInUp 0.6s ease forwards';
+});
+})();
+</script>
+<script>
+// Anti-blank-page safety net: forza visibilità di tutto dopo 1.5s
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
