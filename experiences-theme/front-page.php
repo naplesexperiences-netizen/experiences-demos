@@ -6,59 +6,7 @@
 get_header();
 ?>
 
-<!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <!-- Mobile: hamburger left placeholder to balance logo center -->
-                <div class="w-10 lg:hidden"></div>
-                <!-- Logo: absolutely centered on mobile, left-aligned on desktop -->
-                <div class="flex-1 flex justify-center lg:justify-start lg:flex-none">
-                    <a href="#" class="flex items-center gap-3 group">
-                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.png" alt="Experiences Logo" class="logo-img group-hover:scale-105 transition-transform">
-                        <div class="hidden sm:block">
-                            <span class="font-heading font-bold text-lg lg:text-xl text-primary">EXPERIENCES</span>
-                            <span class="block text-xs text-secondary font-medium">SRL</span>
-                        </div>
-                    </a>
-                </div>
-                <nav class="hidden lg:flex items-center gap-1">
-                    <a href="#home" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Home</a>
-                    <a href="#services" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Servizi</a>
-                    <a href="#portfolio" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Portfolio</a>
-                    <a href="#avatar" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">AI Avatar</a>
-                    <a href="#blog" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Blog</a>
-                    <a href="#pricing" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Prezzi</a>
-                    <a href="#chatbot" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all flex items-center gap-1"><i class="fas fa-robot text-xs text-accent"></i> Chatbot</a>
-                    <a href="#contact" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-lg transition-all shadow-md hover:shadow-lg">Contatti</a>
-                </nav>
-                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition">
-                    <i class="fas fa-bars text-xl text-primary"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 p-6">
-        <button id="close-menu" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100">
-            <i class="fas fa-times text-xl text-gray-600"></i>
-        </button>
-        <div class="mt-12 flex flex-col gap-2">
-            <a href="#home" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Home</a>
-            <a href="#services" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Servizi</a>
-            <a href="#portfolio" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Portfolio</a>
-            <a href="#avatar" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">AI Avatar</a>
-            <a href="#blog" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Blog</a>
-            <a href="#pricing" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Prezzi</a>
-            <a href="#chatbot" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition flex items-center gap-2"><i class="fas fa-robot text-accent"></i> Chatbot</a>
-            <a href="#contact" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Contatti</a>
-            <a href="https://wa.me/393926917657" class="mt-4 px-4 py-3 bg-green-500 text-white rounded-lg font-medium text-center flex items-center justify-center gap-2">
-                <i class="fab fa-whatsapp text-xl"></i> WhatsApp
-            </a>
-        </div>
-    </div>
-    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+<?php /* Navbar in template-parts/site-header.php (via get_header) */ ?>
 
     <!-- Section 1: Hero -->
     <section id="home" class="hero-gradient relative min-h-screen flex items-center pt-16 overflow-hidden">
@@ -155,7 +103,7 @@ get_header();
                         <!-- Center logo -->
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="pulse-ring w-36 h-36 lg:w-44 lg:h-44 rounded-full bg-white/8 backdrop-blur-sm border border-white/10 flex items-center justify-center p-3">
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.png" alt="Experiences" class="w-full h-full object-contain drop-shadow-2xl" style="filter: drop-shadow(0 0 20px rgba(20,163,163,0.4))">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.webp" alt="Experiences" width="282" height="300" class="w-full h-full object-contain drop-shadow-2xl" style="filter: drop-shadow(0 0 20px rgba(20,163,163,0.4))">
                             </div>
                         </div>
 
@@ -862,65 +810,6 @@ get_header();
 
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                <div class="sm:col-span-2 lg:col-span-1">
-                    <a href="#" class="flex items-center gap-3 mb-4">
-                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.png" alt="Experiences Logo" class="logo-img">
-                        <div><span class="font-heading font-bold text-lg">EXPERIENCES</span><span class="block text-xs text-accent">SRL</span></div>
-                    </a>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Soluzioni digitali complete per il settore turistico. Digitalizzazione, marketing e AI per agenzie di viaggi e strutture alberghiere.</p>
-                    <div class="flex gap-3">
-                        <a href="https://wa.me/393926917657" target="_blank" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-lg flex items-center justify-center transition" title="WhatsApp"><i class="fab fa-whatsapp text-xl"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-heading font-semibold text-lg mb-4">Menu</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Home</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Servizi</a></li>
-                        <li><a href="#portfolio" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Portfolio</a></li>
-                        <li><a href="#pricing" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Prezzi</a></li>
-                        <li><a href="#chatbot" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Chatbot AI</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Contatti</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-heading font-semibold text-lg mb-4">Servizi</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition text-sm">Sviluppo Sito Web</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition text-sm">SEO/SEM Marketing</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition text-sm">Channel Manager</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition text-sm">Gestione OTA</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-accent transition text-sm">AI Assistant</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-heading font-semibold text-lg mb-4">Contatti</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <i class="fab fa-whatsapp text-accent mt-1"></i>
-                            <a href="https://wa.me/393926917657" target="_blank" class="text-gray-400 hover:text-accent transition text-sm">WhatsApp Business</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-gray-500 text-sm">© 2024 Experiences Srl. Tutti i diritti riservati.</p>
-                <div class="flex gap-6 text-sm text-gray-500"><div class="flex gap-6 text-sm text-gray-500">
-                    <a href="#" class="hover:text-accent transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-accent transition">Cookie Policy</a>
-                    <a href="#" class="hover:text-accent transition">Termini e Condizioni</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/393926917657" target="_blank" class="whatsapp-float w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white shadow-2xl transition-transform hover:scale-110" title="Contattaci su WhatsApp">
-        <i class="fab fa-whatsapp text-3xl"></i>
-    </a>
+    <?php /* Footer + WhatsApp float in template-parts/site-footer.php (via get_footer) */ ?>
 
 <?php get_footer(); ?>
