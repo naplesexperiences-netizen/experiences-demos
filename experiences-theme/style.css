@@ -3,8 +3,8 @@ Theme Name: Experiences Srl
 Theme URI: https://www.naplesexperiences.com
 Author: Experiences Srl
 Author URI: https://www.naplesexperiences.com
-Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.1.1: fix form contatti (enqueue main.js + localize nonce su handle corretto), honeypot anti-spam, AJAX handler più robusto, blog completo (single.php + archive.php).
-Version: 2.1.1
+Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.1.2: guard difensivi in main.js (un null su #typing-text bloccava l'intero file e quindi anche il submit del contact form). v2.1.1: fix enqueue + localize nonce, honeypot anti-spam, blog completo.
+Version: 2.1.2
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
