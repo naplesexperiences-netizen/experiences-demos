@@ -13,9 +13,9 @@ Per ogni AREA si produce un CSV dedicato + bozza Gmail.
 |---|---|---|---|---|
 | 1 | Golfo di Napoli e Penisola Sorrentina | Napoli, Sorrento, Sant'Agnello, Vico Equense, area vesuviana (Pompei, Ercolano, Torre del Greco/Annunziata, Portici), Castellammare | ✅ FATTO | ricerca_clienti_napoli_salerno.csv |
 | 2 | Isole del Golfo | Ischia, Capri, Procida | ⏳ Da fare | — |
-| 3 | Costiera Amalfitana | Positano, Praiano, Amalfi, Ravello, Maiori, Minori, Cetara, Vietri sul Mare | 🔄 IN CORSO | — |
-| 4 | Salerno e agro | Salerno città, Cava de' Tirreni | 🔄 IN CORSO | — |
-| 5 | Cilento e Paestum | Agropoli, Castellabate, Palinuro, Marina di Camerota, Paestum/Capaccio, Vallo della Lucania, Sapri | 🔄 IN CORSO | — |
+| 3 | Costiera Amalfitana | Positano, Praiano, Amalfi, Ravello, Maiori, Minori, Cetara, Vietri sul Mare | 🟡 Enumerato (PageSpeed da fare) | _ricerca_intermedia/salerno_amalfi_cilento_RAW.tsv |
+| 4 | Salerno e agro | Salerno città, Cava de' Tirreni | 🟡 Enumerato (PageSpeed da fare) | _ricerca_intermedia/salerno_amalfi_cilento_RAW.tsv |
+| 5 | Cilento e Paestum | Agropoli, Castellabate, Palinuro, Marina di Camerota, Paestum/Capaccio, Vallo della Lucania, Sapri | 🟡 Enumerato (PageSpeed da fare) | _ricerca_intermedia/salerno_amalfi_cilento_RAW.tsv |
 | 6 | Roma e Lazio | Roma, Castelli Romani, litorale, Tuscia, Ciociaria | ⏳ Da fare | — |
 | 7 | Toscana | Firenze, Chianti, Siena/Val d'Orcia, Versilia, Maremma, Lucca, Elba | ⏳ Da fare | — |
 | 8 | Cinque Terre e Liguria | Cinque Terre, Portofino/Tigullio, Riviera Ponente, Genova | ⏳ Da fare | — |
