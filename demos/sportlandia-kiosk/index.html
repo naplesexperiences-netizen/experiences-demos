@@ -21,6 +21,7 @@
             --dark: #062c5c;             /* navy profondo */
             --light: #ffffff;
             --gray: #e3f2fd;             /* azzurro cellule orari */
+            --footer-h: 76px;            /* altezza barra footer slim */
         }
 
         * {
@@ -42,36 +43,46 @@
         }
 
         body {
-            display: flex;
-            flex-direction: column;
+            position: relative;
             min-height: 100vh;
-            background: linear-gradient(180deg, #062c5c 0%, #0d47a1 45%, #1976d2 100%);
-            background-attachment: fixed;
+            background: #062c5c;
+            overflow-x: hidden;
         }
 
-        /* ==================== HEADER ==================== */
+        /* ==================== HEADER (overlay trasparente) ==================== */
         .header {
-            position: relative;
-            padding: 40px 30px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 28px 30px 55px;
             text-align: center;
-            background: rgba(6, 44, 92, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 4px solid var(--accent);
-            z-index: 10;
+            background: linear-gradient(180deg,
+                rgba(6, 44, 92, 0.85) 0%,
+                rgba(6, 44, 92, 0.55) 55%,
+                rgba(6, 44, 92, 0.15) 85%,
+                transparent 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: none;
+            z-index: 20;
+            pointer-events: none;
         }
+
+        .header * { pointer-events: auto; }
 
         .header::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at top, rgba(0, 188, 212, 0.15), transparent 70%);
+            background: radial-gradient(ellipse at top, rgba(0, 188, 212, 0.18), transparent 70%);
             pointer-events: none;
         }
 
         .header-logo {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 15px;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 10px;
             border-radius: 50%;
             background: white;
             padding: 10px;
@@ -88,37 +99,36 @@
         }
 
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 2.3rem;
             font-weight: 900;
             letter-spacing: 4px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             background: linear-gradient(135deg, #fff 0%, #4dd0e1 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 20px rgba(0, 188, 212, 0.3);
+            text-shadow: 0 4px 25px rgba(0, 188, 212, 0.4);
         }
 
         .header .subtitle {
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 400;
             color: var(--accent);
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .header .tagline {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
         }
 
-        /* ==================== HERO SECTION ==================== */
+        /* ==================== HERO SECTION (rimosso - integrato nel card) ==================== */
         .hero {
-            text-align: center;
-            padding: 25px 30px;
-            background: rgba(0, 0, 0, 0.3);
+            display: none;
         }
 
         .hero h2 {
@@ -149,34 +159,32 @@
             50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 0 15px rgba(0, 188, 212, 0); }
         }
 
-        /* ==================== GALLERY ==================== */
+        /* ==================== GALLERY (full-screen) ==================== */
         .gallery-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 25px;
-            position: relative;
+            position: fixed;
+            inset: 0;
+            padding: 0;
+            margin: 0;
+            z-index: 1;
         }
 
         .gallery-wrapper {
-            position: relative;
+            position: absolute;
+            inset: 0;
             width: 100%;
-            max-width: 600px;
-            aspect-ratio: 3/4;
-            margin: 0 auto;
-            perspective: 1500px;
+            height: 100%;
+            max-width: none;
+            margin: 0;
+            perspective: 2000px;
         }
 
-        /* ==================== SLIDER REVOLUTION-STYLE ==================== */
+        /* ==================== SLIDER REVOLUTION-STYLE (full-screen) ==================== */
         .course-card {
             position: absolute;
             inset: 0;
-            border-radius: 25px;
+            border-radius: 0;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
             opacity: 0;
             pointer-events: none;
             background: var(--dark);
@@ -188,10 +196,6 @@
             opacity: 1;
             pointer-events: auto;
             z-index: 10;
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, 0.75),
-                0 0 0 2px rgba(0, 188, 212, 0.2),
-                0 0 60px rgba(0, 188, 212, 0.28);
         }
 
         /* --------- KEYFRAMES: 4 effetti che si alternano --------- */
@@ -315,14 +319,21 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 30%, rgba(6, 44, 92, 0.4) 55%, rgba(6, 44, 92, 0.95) 90%);
+            background:
+                linear-gradient(180deg,
+                    rgba(6, 44, 92, 0.55) 0%,
+                    rgba(6, 44, 92, 0.15) 12%,
+                    transparent 28%,
+                    transparent 45%,
+                    rgba(6, 44, 92, 0.55) 70%,
+                    rgba(6, 44, 92, 0.95) 95%);
             z-index: 1;
         }
 
         /* --------- PROGRESS BAR: countdown autoplay --------- */
         .course-progress {
             position: absolute;
-            bottom: 0;
+            bottom: var(--footer-h, 76px);
             left: 0;
             right: 0;
             height: 4px;
@@ -350,43 +361,44 @@
 
         .course-info {
             position: absolute;
-            bottom: 0;
+            bottom: 230px;
             left: 0;
             right: 0;
-            padding: 35px 30px;
+            padding: 0 40px;
             z-index: 2;
             color: white;
         }
 
         .course-category {
             display: inline-block;
-            padding: 6px 14px;
+            padding: 8px 18px;
             background: var(--accent);
             color: white;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
         }
 
         .course-title {
-            font-size: 2rem;
+            font-size: 2.6rem;
             font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 12px;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
             line-height: 1.1;
         }
 
         .course-description {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.4;
-            margin-bottom: 18px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.45;
+            margin-bottom: 20px;
+            max-width: 600px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
         }
 
         .course-cta {
@@ -397,9 +409,9 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             color: white;
-            padding: 12px 22px;
+            padding: 14px 26px;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
             letter-spacing: 1px;
             transition: all 0.3s ease;
@@ -422,12 +434,29 @@
             font-size: 0.9rem;
         }
 
+        /* ==================== CONTROLS OVERLAY (flottanti sul fondo) ==================== */
+        .controls-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 15;
+            padding: 20px 30px 90px;
+            background: linear-gradient(0deg,
+                rgba(6, 44, 92, 0.75) 0%,
+                rgba(6, 44, 92, 0.35) 60%,
+                transparent 100%);
+            pointer-events: none;
+        }
+
+        .controls-overlay > * { pointer-events: auto; }
+
         /* ==================== INDICATORS ==================== */
         .indicators {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 30px;
+            margin-bottom: 18px;
             flex-wrap: wrap;
             padding: 0 20px;
         }
@@ -435,7 +464,7 @@
         .indicator {
             width: 35px;
             height: 6px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.4s ease;
@@ -445,7 +474,7 @@
         .indicator.active {
             background: var(--accent);
             width: 60px;
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
         }
 
         /* ==================== NAVIGATION ==================== */
@@ -454,7 +483,6 @@
             justify-content: center;
             align-items: center;
             gap: 25px;
-            margin-top: 25px;
             padding: 0 30px;
         }
 
@@ -462,9 +490,10 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
             font-size: 2rem;
             cursor: pointer;
@@ -483,8 +512,9 @@
         }
 
         .nav-counter {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(6, 44, 92, 0.5);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
             padding: 14px 25px;
             border-radius: 50px;
@@ -493,7 +523,7 @@
             letter-spacing: 1px;
             min-width: 100px;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         .nav-counter .current {
@@ -666,58 +696,95 @@
         }
 
         /* ==================== FOOTER ==================== */
+        /* ==================== FOOTER (barra slim trasparente) ==================== */
         .footer {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 30px;
-            text-align: center;
-            border-top: 3px solid var(--accent);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 18;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 25px;
+            background: rgba(6, 44, 92, 0.55);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(0, 188, 212, 0.25);
         }
 
         .footer-contact {
-            margin-bottom: 22px;
-            padding-bottom: 22px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            text-align: left;
         }
 
         .footer-contact-name {
-            font-size: 1.15rem;
+            font-size: 0.85rem;
             font-weight: 800;
             color: var(--accent);
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .footer-contact-row {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.7;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
             font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .footer-hours {
-            margin-top: 8px;
-            font-size: 0.95rem;
-            color: white;
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .footer-brand {
-            display: inline-block;
-            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
             text-decoration: none;
-            padding: 10px 22px;
+            padding: 8px 16px;
             border-radius: 50px;
-            border: 1px solid rgba(0, 188, 212, 0.25);
-            background: rgba(0, 188, 212, 0.06);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            background: rgba(0, 188, 212, 0.1);
             transition: all 0.3s ease;
         }
 
         .footer-brand:hover,
         .footer-brand:active {
-            background: rgba(0, 188, 212, 0.18);
+            background: rgba(0, 188, 212, 0.22);
             border-color: rgba(0, 188, 212, 0.6);
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 188, 212, 0.25);
+        }
+
+        .footer-brand-label {
+            font-size: 0.6rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .footer-brand-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .footer-copyright {
+            display: none;
         }
 
         .footer-copyright-link {
@@ -726,88 +793,30 @@
             font-weight: 700;
         }
 
-        .footer-copyright-link:hover {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-
-        .footer-brand-label {
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 8px;
-        }
-
-        .footer-brand-name {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-        }
-
-        .footer-brand-tagline {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 5px;
-            font-weight: 300;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 10px 20px;
-            background: rgba(0, 188, 212, 0.1);
-            border: 1px solid rgba(0, 188, 212, 0.3);
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        .footer-link:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.4);
-        }
-
-        .footer-copyright {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
         /* ==================== RESPONSIVE FOR 42" TOUCH SCREEN ==================== */
         /* Optimized for ~1080x1920 portrait screens */
         @media (min-height: 1600px) {
-            .header h1 { font-size: 3.5rem; }
-            .header .subtitle { font-size: 1.2rem; }
-            .header-logo { width: 110px; height: 110px; }
-            .hero h2 { font-size: 1.9rem; }
-            .gallery-wrapper { max-width: 800px; }
-            .course-title { font-size: 2.6rem; }
-            .course-description { font-size: 1.3rem; }
-            .nav-btn { width: 90px; height: 90px; font-size: 2.5rem; }
-            .nav-counter { font-size: 1.5rem; padding: 18px 30px; }
-            .footer-brand-name { font-size: 2rem; }
+            :root { --footer-h: 104px; }
+            .header { padding: 40px 40px 70px; }
+            .header h1 { font-size: 3.2rem; }
+            .header .subtitle { font-size: 1.1rem; }
+            .header .tagline { font-size: 1.2rem; }
+            .header-logo { width: 100px; height: 100px; }
+            .course-info { bottom: 300px; padding: 0 60px; }
+            .course-title { font-size: 3.6rem; }
+            .course-description { font-size: 1.5rem; max-width: 800px; }
+            .course-category { font-size: 1.1rem; padding: 10px 24px; }
+            .course-cta { font-size: 1.2rem; padding: 18px 34px; }
+            .controls-overlay { padding: 30px 40px 120px; }
+            .nav-btn { width: 95px; height: 95px; font-size: 2.6rem; }
+            .nav-counter { font-size: 1.5rem; padding: 18px 32px; }
+            .indicator { width: 45px; height: 8px; }
+            .indicator.active { width: 75px; }
+            .footer { padding: 18px 40px; }
+            .footer-contact-name { font-size: 1.1rem; }
+            .footer-contact-row { font-size: 0.95rem; }
+            .footer-brand-label { font-size: 0.75rem; }
+            .footer-brand-name { font-size: 1.25rem; }
         }
 
         /* Touch optimization */
@@ -852,7 +861,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 400px;
+            height: 100%;
         }
 
         .loader-spinner {
@@ -887,12 +896,15 @@
         <p>Tocca un corso per vedere gli orari completi</p>
     </section>
 
-    <!-- ==================== GALLERY ==================== -->
+    <!-- ==================== GALLERY (full-screen) ==================== -->
     <section class="gallery-section">
         <div class="gallery-wrapper" id="galleryWrapper">
             <div class="loader"><div class="loader-spinner"></div></div>
         </div>
+    </section>
 
+    <!-- ==================== CONTROLS OVERLAY ==================== -->
+    <div class="controls-overlay">
         <div class="indicators" id="indicators"></div>
 
         <div class="nav-controls">
@@ -902,7 +914,7 @@
             </div>
             <button class="nav-btn" onclick="nextCourse()" aria-label="Corso successivo">›</button>
         </div>
-    </section>
+    </div>
 
     <!-- ==================== MODAL ==================== -->
     <div id="scheduleModal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
