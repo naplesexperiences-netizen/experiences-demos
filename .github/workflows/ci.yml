@@ -21,12 +21,7 @@ jobs:
         run: npm install -g htmlhint@1.1.4
 
       - name: Run HTMLHint
-        # Demo "test-hotel-vesuvio" e "tour-combinato-..." sono file
-        # incompleti/troncati pre-esistenti; vanno fixati a parte.
-        run: >-
-          htmlhint --config .htmlhintrc
-          --ignore "demos/test-hotel-vesuvio/**,demos/tour-combinato-vesuvio-pompei---around-v/**"
-          "index.html" "demos/**/*.html"
+        run: htmlhint --config .htmlhintrc "index.html" "demos/**/*.html"
 
   link-check:
     name: Broken link check
