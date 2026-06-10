@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  html-lint:
+    name: HTML lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install HTMLHint
+        run: npm install -g htmlhint@1.1.4
+
+      - name: Run HTMLHint
+        run: htmlhint --config .htmlhintrc "index.html" "demos/**/*.html"
+
+  link-check:
+    name: Broken link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run lychee (offline mode — internal links only)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --offline
+            --no-progress
+            --exclude-mail
+            './index.html'
+            './demos/**/*.html'
+          fail: true
+          format: markdown
+          output: ./lychee-report.md
+
+      - name: Upload link-check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lychee-report
+          path: ./lychee-report.md
+          if-no-files-found: ignore
+
+  hub-script:
+    name: Hub generator runs cleanly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run hub generator
+        run: python3 scripts/generate-hub.py
