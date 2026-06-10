@@ -13,15 +13,26 @@ Sito web interattivo verticale (portrait) ottimizzato per schermi touch screen 4
 - **Design Responsivo** - Adatto a diverse altezze di schermo
 - **Contatore Corsi** - Visualizzazione posizione nella galleria (es. 1/7)
 
-## 📚 Corsi Disponibili
+## 📚 Corsi Disponibili (orari ufficiali stagione 25/26)
 
-1. **Sala Attrezzi** 🏋️ - Allenamento completo con attrezzature moderne
-2. **Pilates Matwork** 🧘 - Pilates a corpo libero su tappetino
-3. **Pilates Reformer** ⚙️ - Pilates con macchinari professionale
-4. **Les Mills Virtual** 📺 - Corsi in diretta con istruttori virtuali
-5. **MET** ⚡ - Allenamento metabolico ad alta intensità
-6. **Fisiorehab** 🏥 - Programmi di riabilitazione e prevenzione
-7. **GREENtosi** 🌱 - Attività all'aperto e benessere naturale
+1. **Sala Attrezzi** 🏋️ — Lun-Ven 07:00-21:00, Sab 09:00-12:00
+2. **Pilates Matwork** 🧘 — Base / Intermedio / Avanzato
+3. **Pilates Reformer** ⚙️ — Lun-Sab, sessioni multiple giornaliere
+4. **Pilates Studio** 🎯 — Su appuntamento (Cadillac, Barile)
+5. **TEC-Room** 💪 — Mar/Gio, allenamento tecnico-funzionale
+6. **Les Mills** 📺 — Programmi Shapes, Strength, Circuito
+7. **Fisiorehab 360** 🏥 — Fisioterapia e riabilitazione su appuntamento
+8. **GREENtosi** 🌱 — Sostenibilità e impegno eco-friendly
+
+> Orari estratti dal PDF ufficiale **SPORTLANDIA ORARI 25/26**.
+
+## 📍 Contatti
+
+- **Sportlandia · SSD INFITNESS ARL**
+- Corso Alcide De Gasperi, 177/B — Castellammare di Stabia (NA)
+- Tel. +39 081 871 8076
+- Email: ssdinfitness@gmail.com
+- **Apertura Centro**: Lun-Ven 07:00-21:00 · Sabato 08:00-12:30
 
 ## 🎨 Design
 
