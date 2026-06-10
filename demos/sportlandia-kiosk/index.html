@@ -169,6 +169,7 @@
             perspective: 1500px;
         }
 
+        /* ==================== SLIDER REVOLUTION-STYLE ==================== */
         .course-card {
             position: absolute;
             inset: 0;
@@ -176,72 +177,112 @@
             overflow: hidden;
             cursor: pointer;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-            transition:
-                transform 1.1s cubic-bezier(0.83, 0, 0.17, 1),
-                opacity 0.7s ease,
-                filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
-            transform: translateX(110%) scale(0.85) rotateY(-18deg);
             pointer-events: none;
             background: var(--dark);
-            will-change: transform, opacity, filter;
-            filter: blur(8px) brightness(0.7);
+            will-change: transform, opacity, filter, clip-path;
             transform-origin: center;
         }
 
         .course-card.active {
             opacity: 1;
-            transform: translateX(0) scale(1) rotateY(0);
             pointer-events: auto;
             z-index: 10;
-            filter: blur(0) brightness(1);
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.75),
+                0 0 0 2px rgba(0, 188, 212, 0.2),
+                0 0 60px rgba(0, 188, 212, 0.28);
         }
 
-        /* Direction-aware exit: si va avanti -> esce a sinistra */
-        .course-card.out-left {
-            opacity: 0;
-            transform: translateX(-40%) scale(0.82) rotateY(18deg);
-            filter: blur(14px) brightness(0.6);
-            z-index: 5;
+        /* --------- KEYFRAMES: 4 effetti che si alternano --------- */
+
+        /* 1. SLIDE 3D (direction-aware) */
+        @keyframes slideInRight {
+            0%   { transform: translateX(115%) scale(0.82) rotateY(-25deg); opacity: 0; filter: blur(18px) brightness(0.6); }
+            60%  { opacity: 1; }
+            100% { transform: translateX(0) scale(1) rotateY(0); opacity: 1; filter: blur(0) brightness(1); }
+        }
+        @keyframes slideInLeft {
+            0%   { transform: translateX(-115%) scale(0.82) rotateY(25deg); opacity: 0; filter: blur(18px) brightness(0.6); }
+            60%  { opacity: 1; }
+            100% { transform: translateX(0) scale(1) rotateY(0); opacity: 1; filter: blur(0) brightness(1); }
+        }
+        @keyframes slideOutLeft {
+            0%   { transform: translateX(0) scale(1) rotateY(0); opacity: 1; filter: blur(0); }
+            100% { transform: translateX(-45%) scale(0.82) rotateY(25deg); opacity: 0; filter: blur(16px) brightness(0.5); }
+        }
+        @keyframes slideOutRight {
+            0%   { transform: translateX(0) scale(1) rotateY(0); opacity: 1; filter: blur(0); }
+            100% { transform: translateX(45%) scale(0.82) rotateY(-25deg); opacity: 0; filter: blur(16px) brightness(0.5); }
         }
 
-        /* Direction-aware exit: si torna indietro -> esce a destra */
-        .course-card.out-right {
-            opacity: 0;
-            transform: translateX(40%) scale(0.82) rotateY(-18deg);
-            filter: blur(14px) brightness(0.6);
-            z-index: 5;
+        /* 2. IRIS ZOOM: clip-path circle che si apre dal centro */
+        @keyframes irisIn {
+            0%   { clip-path: circle(0% at 50% 50%); transform: scale(1.25); opacity: 0; }
+            10%  { opacity: 1; }
+            100% { clip-path: circle(120% at 50% 50%); transform: scale(1); opacity: 1; }
+        }
+        @keyframes irisOut {
+            0%   { clip-path: circle(120% at 50% 50%); transform: scale(1); opacity: 1; }
+            100% { clip-path: circle(0% at 50% 50%); transform: scale(1.1); opacity: 0; }
         }
 
-        /* Ingresso da sinistra (prev) */
-        .course-card.from-left {
-            transform: translateX(-110%) scale(0.85) rotateY(18deg);
+        /* 3. CURTAIN: si apre dal centro come due tende verticali */
+        @keyframes curtainIn {
+            0%   { clip-path: inset(0 50% 0 50%); opacity: 0; transform: scale(1.05); }
+            15%  { opacity: 1; }
+            100% { clip-path: inset(0 0% 0 0%); opacity: 1; transform: scale(1); }
+        }
+        @keyframes curtainOut {
+            0%   { clip-path: inset(0 0% 0 0%); opacity: 1; }
+            100% { clip-path: inset(0 50% 0 50%); opacity: 0; transform: scale(0.95); }
         }
 
-        /* Ingresso da destra (next) - già default */
+        /* 4. DIAGONAL WIPE: clip diagonale che attraversa */
+        @keyframes diagonalIn {
+            0%   { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); opacity: 0; transform: scale(1.1); }
+            15%  { opacity: 1; }
+            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 1; transform: scale(1); }
+        }
+        @keyframes diagonalOut {
+            0%   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 1; }
+            100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); opacity: 0; transform: scale(0.95); }
+        }
 
+        /* --------- APPLICAZIONE EFFETTI --------- */
+        .course-card.enter-slide-next   { animation: slideInRight 1.3s cubic-bezier(0.86, 0, 0.07, 1) forwards; }
+        .course-card.enter-slide-prev   { animation: slideInLeft 1.3s cubic-bezier(0.86, 0, 0.07, 1) forwards; }
+        .course-card.enter-iris         { animation: irisIn 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+        .course-card.enter-curtain      { animation: curtainIn 1.2s cubic-bezier(0.86, 0, 0.07, 1) forwards; }
+        .course-card.enter-diagonal     { animation: diagonalIn 1.2s cubic-bezier(0.86, 0, 0.07, 1) forwards; }
+
+        .course-card.leave-slide-next   { animation: slideOutLeft 1.0s cubic-bezier(0.86, 0, 0.07, 1) forwards; z-index: 5; }
+        .course-card.leave-slide-prev   { animation: slideOutRight 1.0s cubic-bezier(0.86, 0, 0.07, 1) forwards; z-index: 5; }
+        .course-card.leave-iris         { animation: irisOut 0.9s ease forwards; z-index: 5; }
+        .course-card.leave-curtain      { animation: curtainOut 0.9s cubic-bezier(0.86, 0, 0.07, 1) forwards; z-index: 5; }
+        .course-card.leave-diagonal     { animation: diagonalOut 0.9s cubic-bezier(0.86, 0, 0.07, 1) forwards; z-index: 5; }
+
+        /* --------- IMMAGINE: parallax + Ken Burns continuo --------- */
         .course-image-bg {
             position: absolute;
             inset: -6%;
             background-size: cover;
             background-position: center;
-            transition: transform 1.4s cubic-bezier(0.5, 0, 0.5, 1);
             transform: scale(1.15);
         }
 
-        /* Ken Burns: pan + zoom continuo sul corso attivo */
         @keyframes kenBurns {
             0%   { transform: scale(1.10) translate(-1%, -1%); }
-            33%  { transform: scale(1.18) translate(2%, -2%); }
-            66%  { transform: scale(1.16) translate(-2%, 2%); }
+            33%  { transform: scale(1.20) translate(3%, -2%); }
+            66%  { transform: scale(1.17) translate(-2%, 3%); }
             100% { transform: scale(1.10) translate(-1%, -1%); }
         }
 
         .course-card.active .course-image-bg {
-            animation: kenBurns 14s ease-in-out infinite;
+            animation: kenBurns 16s ease-in-out infinite;
         }
 
-        /* Shine sweep sulla card appena attivata */
+        /* --------- SHINE SWEEP sull'attivazione --------- */
         @keyframes shine {
             0%   { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
             20%  { opacity: 1; }
@@ -252,14 +293,12 @@
         .course-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
+            top: 0; bottom: 0; left: 0;
             width: 60%;
             background: linear-gradient(110deg,
                 transparent 0%,
                 rgba(255, 255, 255, 0.08) 35%,
-                rgba(0, 188, 212, 0.18) 50%,
+                rgba(0, 188, 212, 0.25) 50%,
                 rgba(255, 255, 255, 0.08) 65%,
                 transparent 100%);
             z-index: 3;
@@ -269,7 +308,7 @@
         }
 
         .course-card.active::before {
-            animation: shine 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+            animation: shine 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
         }
 
         .course-card::after {
@@ -280,12 +319,33 @@
             z-index: 1;
         }
 
-        /* Anello di accento attorno alla card attiva */
-        .course-card.active {
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, 0.75),
-                0 0 0 2px rgba(0, 188, 212, 0.18),
-                0 0 50px rgba(0, 188, 212, 0.25);
+        /* --------- PROGRESS BAR: countdown autoplay --------- */
+        .course-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .course-progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+            box-shadow: 0 0 12px rgba(0, 188, 212, 0.7);
+            border-radius: 0 4px 4px 0;
+        }
+
+        @keyframes progressFill {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .course-card.active .course-progress-fill {
+            animation: progressFill 7s linear forwards;
         }
 
         .course-info {
@@ -755,23 +815,37 @@
             touch-action: manipulation;
         }
 
-        /* ==================== ANIMATIONS ==================== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ==================== TEXT REVEAL ANIMATIONS (layered) ==================== */
+        @keyframes badgeIn {
+            0%   { opacity: 0; transform: translateX(-30px) scale(0.7); letter-spacing: 8px; }
+            100% { opacity: 1; transform: translateX(0) scale(1); letter-spacing: 2px; }
+        }
+        @keyframes titleIn {
+            0%   { opacity: 0; transform: translateY(40px) scale(1.15); filter: blur(8px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes descIn {
+            0%   { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes ctaIn {
+            0%   { opacity: 0; transform: translateX(35px) scale(0.85); }
+            70%  { transform: translateX(-3px) scale(1.02); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
         }
 
-        .course-card.active .course-category,
-        .course-card.active .course-title,
-        .course-card.active .course-description,
+        .course-card.active .course-category {
+            animation: badgeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.45s backwards;
+        }
+        .course-card.active .course-title {
+            animation: titleIn 1.1s cubic-bezier(0.25, 1, 0.5, 1) 0.6s backwards;
+        }
+        .course-card.active .course-description {
+            animation: descIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.8s backwards;
+        }
         .course-card.active .course-cta {
-            animation: fadeInUp 0.8s ease-out backwards;
+            animation: ctaIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 1s backwards;
         }
-
-        .course-card.active .course-category { animation-delay: 0.2s; }
-        .course-card.active .course-title { animation-delay: 0.35s; }
-        .course-card.active .course-description { animation-delay: 0.5s; }
-        .course-card.active .course-cta { animation-delay: 0.65s; }
 
         /* Loading state */
         .loader {
@@ -992,6 +1066,7 @@
                             <span class="course-cta-icon">→</span>
                         </div>
                     </div>
+                    <div class="course-progress"><div class="course-progress-fill"></div></div>
                 `;
                 card.addEventListener('click', () => showSchedule(index));
                 wrapper.appendChild(card);
@@ -1031,46 +1106,66 @@
             resetAutoplay();
         }
 
+        // ==================== SLIDER REVOLUTION ENGINE ====================
+        // Effetti in rotazione: slide(direction-aware), iris, curtain, diagonal
+        const TRANSITION_EFFECTS = ['slide', 'iris', 'curtain', 'diagonal'];
+        const ALL_FX_CLASSES = [
+            'enter-slide-next', 'enter-slide-prev', 'enter-iris', 'enter-curtain', 'enter-diagonal',
+            'leave-slide-next', 'leave-slide-prev', 'leave-iris', 'leave-curtain', 'leave-diagonal'
+        ];
+        let transitionCount = 0;
+
+        function pickEffect(direction) {
+            const fx = TRANSITION_EFFECTS[transitionCount % TRANSITION_EFFECTS.length];
+            transitionCount++;
+            if (fx === 'slide') {
+                return { enter: `enter-slide-${direction}`, leave: `leave-slide-${direction}` };
+            }
+            return { enter: `enter-${fx}`, leave: `leave-${fx}` };
+        }
+
         function moveGallery(newIndex, direction = 'next') {
             isAnimating = true;
             const cards = document.querySelectorAll('.course-card');
             const indicators = document.querySelectorAll('.indicator');
+            const { enter, leave } = pickEffect(direction);
 
-            const outClass = direction === 'next' ? 'out-left' : 'out-right';
-            const incomingFromClass = direction === 'next' ? '' : 'from-left';
+            const oldCard = cards[currentIndex];
+            const newCard = cards[newIndex];
 
-            // Reset card in entrata e posizionala sul lato giusto
-            cards[newIndex].classList.remove('active', 'out-left', 'out-right', 'from-left');
-            if (incomingFromClass) cards[newIndex].classList.add(incomingFromClass);
-            // Force reflow così la transizione parte dalla nuova posizione
-            void cards[newIndex].offsetWidth;
+            // Pulisci tutte le classi fx residue su entrambe le card
+            ALL_FX_CLASSES.forEach(c => { oldCard.classList.remove(c); newCard.classList.remove(c); });
 
-            // Card corrente esce nel verso giusto
-            cards[currentIndex].classList.remove('active');
-            cards[currentIndex].classList.add(outClass);
+            // Card uscente
+            oldCard.classList.remove('active');
+            oldCard.classList.add(leave);
             indicators[currentIndex].classList.remove('active');
 
-            // Card nuova diventa attiva (la transition CSS la porta a posto)
-            cards[newIndex].classList.remove('from-left');
-            cards[newIndex].classList.add('active');
+            // Card entrante: aggiungo l'animation class, poi 'active' nel frame successivo
+            // così l'animazione parte da capo
+            newCard.classList.add(enter, 'active');
             indicators[newIndex].classList.add('active');
 
             currentIndex = newIndex;
             document.getElementById('currentIndex').textContent = currentIndex + 1;
 
             setTimeout(() => {
-                cards.forEach((c, i) => {
-                    if (i !== currentIndex) c.classList.remove('out-left', 'out-right', 'from-left');
+                cards.forEach(c => {
+                    ALL_FX_CLASSES.forEach(cls => {
+                        // mantieni le classi enter- sull'attiva per non interrompere l'animazione,
+                        // ma rimuovi tutto dalle non-attive
+                        if (!c.classList.contains('active')) c.classList.remove(cls);
+                    });
                 });
                 isAnimating = false;
-            }, 1100);
+            }, 1400);
         }
 
         // ==================== AUTOPLAY ====================
         function startAutoplay() {
             autoplayInterval = setInterval(() => {
                 nextCourse();
-            }, 6000);
+            }, 7000);
         }
 
         function resetAutoplay() {
