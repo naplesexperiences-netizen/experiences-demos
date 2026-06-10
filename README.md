@@ -20,6 +20,19 @@ Il file `index.html` deve avere un `<title>` significativo e (consigliato) un
 `<meta name="description">`: lo script `generate-hub.py` li usa per popolare
 la card del demo nell'hub di root.
 
+### Tag e categorie
+
+Aggiungi metadati al `<head>` del demo per farlo apparire nei filtri dell'hub:
+
+```html
+<meta name="demo:tags" content="hotel,sorrento,luxury,beachfront">
+<meta name="demo:category" content="hotel">
+```
+
+I tag (lista separata da virgole) compaiono come chip filtrabili nell'hub
+e nelle card. La `category` è la classificazione primaria. Sono entrambi
+opzionali ma fortemente consigliati per tenere navigabile la collezione.
+
 ## Workflow
 
 ```
@@ -68,3 +81,18 @@ avere il preview aggiornato anche sui branch).
 
 - **Settings → Pages → Source**: `GitHub Actions`
 - **Workflow**: `.github/workflows/pages.yml` (push su `main` + dispatch manuale)
+
+## CI (PR e push)
+
+Il workflow `.github/workflows/ci.yml` gira su ogni PR verso `main` e su
+ogni push su `main`. Tre job in parallelo:
+
+| Job | Tool | Cosa controlla |
+|---|---|---|
+| `html-lint` | [HTMLHint](https://htmlhint.com/) (config in `.htmlhintrc`) | DOCTYPE, tag pair, attributi, id duplicati |
+| `link-check` | [lychee](https://github.com/lycheeverse/lychee) (offline) | Link interni rotti tra demo e asset locali |
+| `hub-script` | `scripts/generate-hub.py` | Lo script gira senza errori |
+
+> Il link check è in modalità `--offline`: verifica solo path locali per
+> evitare falsi positivi da siti esterni che bloccano i bot. Se vuoi
+> validare anche gli URL esterni, rimuovi `--offline` dal workflow.

@@ -19,7 +19,7 @@
     padding: 40px 20px 80px;
   }
   .container { max-width: 1280px; margin: 0 auto; }
-  header { text-align: center; padding: 30px 0 50px; }
+  header { text-align: center; padding: 30px 0 30px; }
   header h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
@@ -35,22 +35,96 @@
     color: rgba(255,255,255,0.75);
     font-weight: 300;
   }
-  header .count {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 6px 18px;
-    background: rgba(0, 188, 212, 0.15);
-    border: 1px solid rgba(0, 188, 212, 0.4);
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .search-wrapper {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .search {
+    width: 100%;
+    padding: 14px 20px 14px 48px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 50px;
-    color: #4dd0e1;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  .search:focus {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(0, 188, 212, 0.6);
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+  }
+  .search::placeholder { color: rgba(255,255,255,0.4); }
+  .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.5);
+    pointer-events: none;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    color: rgba(255,255,255,0.85);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: capitalize;
+  }
+  .filter:hover {
+    background: rgba(0, 188, 212, 0.15);
+    border-color: rgba(0, 188, 212, 0.4);
+  }
+  .filter.active {
+    background: rgba(0, 188, 212, 0.25);
+    border-color: #00bcd4;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.25);
+  }
+  .filter-count {
+    display: inline-block;
+    padding: 1px 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
   }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 20px;
+  }
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.1rem;
   }
   .card {
     display: flex;
@@ -71,6 +145,7 @@
     border-color: rgba(0, 188, 212, 0.5);
     box-shadow: 0 12px 35px rgba(0, 188, 212, 0.25);
   }
+  .card.hidden { display: none; }
   .card-body { flex: 1; min-width: 0; }
   .card-title {
     font-size: 1.05rem;
@@ -86,17 +161,38 @@
     color: rgba(255,255,255,0.65);
     font-weight: 300;
     line-height: 1.4;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
   .card-slug {
     font-family: 'SF Mono', Menlo, monospace;
     font-size: 0.7rem;
     color: rgba(77, 208, 225, 0.7);
     letter-spacing: 0.5px;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 9px;
+    background: rgba(0, 188, 212, 0.15);
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    border-radius: 20px;
+    color: #4dd0e1;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
   }
   .card-arrow {
     font-size: 1.5rem;
@@ -114,300 +210,469 @@
     font-size: 0.85rem;
   }
   footer strong { color: #4dd0e1; }
+  footer .help {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+  }
+  footer code {
+    background: rgba(255,255,255,0.08);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.75rem;
+  }
 </style>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>experiences-demos</h1>
-      <div class="tagline">Indice dei siti e prototipi realizzati da experiences SRL</div>
-      <div class="count">35 demo disponibili</div>
+      <div class="tagline">35 demo · powered by experiences SRL</div>
     </header>
-    <main class="grid">
-      <a class="card" href="demos/alimuri-bay-resort---beachfront-escape-i/">
+    <section class="controls">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="search" class="search" id="searchInput" placeholder="Cerca demo per titolo o tag…" autocomplete="off">
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-tag="">Tutti <span class="filter-count">35</span></button>
+        <button class="filter" data-tag="castellammare">castellammare <span class="filter-count">1</span></button>
+        <button class="filter" data-tag="fitness">fitness <span class="filter-count">1</span></button>
+        <button class="filter" data-tag="kiosk">kiosk <span class="filter-count">1</span></button>
+        <button class="filter" data-tag="touch-screen">touch-screen <span class="filter-count">1</span></button>
+      </div>
+    </section>
+    <main class="grid" id="grid">
+      <a class="card" href="demos/alimuri-bay-resort---beachfront-escape-i/" data-tags="" data-title="alimuri bay resort - demo experiences srl">
         <div class="card-body">
           <div class="card-title">Alimuri Bay Resort - Demo Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/alimuri-bay-resort---beachfront-escape-i/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/alimuri-bay-resort---beachfront-escape-i/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/aroundvesuvio-com---le-migliori-soluzion/">
+      <a class="card" href="demos/aroundvesuvio-com---le-migliori-soluzion/" data-tags="" data-title="aroundvesuvio.com — demo by experiences srl">
         <div class="card-body">
           <div class="card-title">AroundVesuvio.com — Demo by Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/aroundvesuvio-com---le-migliori-soluzion/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/aroundvesuvio-com---le-migliori-soluzion/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/bb-napoli---bed-and-breakfast-napoli-cen/">
+      <a class="card" href="demos/bb-napoli---bed-and-breakfast-napoli-cen/" data-tags="" data-title="spaccanapoli comfort suites — b&amp;b napoli centro">
         <div class="card-body">
           <div class="card-title">Spaccanapoli Comfort Suites — B&amp;B Napoli Centro</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/bb-napoli---bed-and-breakfast-napoli-cen/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/bb-napoli---bed-and-breakfast-napoli-cen/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/bbspaccanapoli-centro-storico/">
+      <a class="card" href="demos/bbspaccanapoli-centro-storico/" data-tags="" data-title="spaccanapoli comfort suites — bed &amp; breakfast napoli centro">
         <div class="card-body">
           <div class="card-title">Spaccanapoli Comfort Suites — Bed &amp; Breakfast Napoli Centro</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/bbspaccanapoli-centro-storico/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/bbspaccanapoli-centro-storico/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/boutique-hotel-napoli---artemisia-domus/">
+      <a class="card" href="demos/boutique-hotel-napoli---artemisia-domus/" data-tags="" data-title="artemisia domus – luxury boutique hotel napoli">
         <div class="card-body">
           <div class="card-title">Artemisia Domus – Luxury Boutique Hotel Napoli</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/boutique-hotel-napoli---artemisia-domus/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/boutique-hotel-napoli---artemisia-domus/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/compare-aroundvesuvio-haiku/">
+      <a class="card" href="demos/compare-aroundvesuvio-haiku/" data-tags="" data-title="aroundvesuvio.com — tour campania | experiences srl">
         <div class="card-body">
           <div class="card-title">AroundVesuvio.com — Tour Campania | Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/compare-aroundvesuvio-haiku/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/compare-aroundvesuvio-haiku/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/compare-aroundvesuvio-opus/">
+      <a class="card" href="demos/compare-aroundvesuvio-opus/" data-tags="" data-title="aroundvesuvio.com — tour in campania">
         <div class="card-body">
           <div class="card-title">AroundVesuvio.com — Tour in Campania</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/compare-aroundvesuvio-opus/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/compare-aroundvesuvio-opus/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/compare-aroundvesuvio-sonnet/">
+      <a class="card" href="demos/compare-aroundvesuvio-sonnet/" data-tags="" data-title="aroundvesuvio.com — tour in campania">
         <div class="card-body">
           <div class="card-title">AroundVesuvio.com — Tour in Campania</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/compare-aroundvesuvio-sonnet/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/compare-aroundvesuvio-sonnet/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/grifo-hotel---spa--hotel-4-stelle-ischia/">
+      <a class="card" href="demos/grifo-hotel---spa--hotel-4-stelle-ischia/" data-tags="" data-title="grifo hotel de charme &amp; spa — ischia terme">
         <div class="card-body">
           <div class="card-title">Grifo Hotel de Charme &amp; SPA — Ischia Terme</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/grifo-hotel---spa--hotel-4-stelle-ischia/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/grifo-hotel---spa--hotel-4-stelle-ischia/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/gruppo-dimhotels/">
+      <a class="card" href="demos/gruppo-dimhotels/" data-tags="" data-title="grand hotel delle terme re ferdinando — ischia porto">
         <div class="card-body">
           <div class="card-title">Grand Hotel delle Terme Re Ferdinando — Ischia Porto</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/gruppo-dimhotels/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/gruppo-dimhotels/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hermitage-resort---thermal-spa---hermita/">
+      <a class="card" href="demos/hermitage-resort---thermal-spa---hermita/" data-tags="" data-title="hermitage resort &amp; thermal spa - soluzioni digitali experiences srl">
         <div class="card-body">
           <div class="card-title">Hermitage Resort &amp; Thermal SPA - Soluzioni Digitali Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hermitage-resort---thermal-spa---hermita/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hermitage-resort---thermal-spa---hermita/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/home---hotel-oriente/">
+      <a class="card" href="demos/home---hotel-oriente/" data-tags="" data-title="hotel oriente - relax vista mare in costiera sorrentina">
         <div class="card-body">
           <div class="card-title">Hotel Oriente - Relax vista mare in Costiera Sorrentina</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/home---hotel-oriente/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/home---hotel-oriente/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-4-stelle-a-casamicciola-terme--isc/">
+      <a class="card" href="demos/hotel-4-stelle-a-casamicciola-terme--isc/" data-tags="" data-title="hotel gran paradiso ischia — demo by experiences srl">
         <div class="card-body">
           <div class="card-title">Hotel Gran Paradiso Ischia — Demo by Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-4-stelle-a-casamicciola-terme--isc/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-4-stelle-a-casamicciola-terme--isc/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-con-spa-a-casamicciola-terme--isch/">
+      <a class="card" href="demos/hotel-con-spa-a-casamicciola-terme--isch/" data-tags="" data-title="hotel villa d&#x27;orta - wellness e spa a ischia | experiences srl">
         <div class="card-body">
           <div class="card-title">Hotel Villa D&#x27;Orta - Wellness e Spa a Ischia | Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-con-spa-a-casamicciola-terme--isch/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-con-spa-a-casamicciola-terme--isch/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-felix-ischia---telefono-081-991201/">
+      <a class="card" href="demos/hotel-felix-ischia---telefono-081-991201/" data-tags="" data-title="hotel felix ischia — oasi di pace e benessere termale">
         <div class="card-body">
           <div class="card-title">Hotel Felix Ischia — Oasi di Pace e Benessere Termale</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-felix-ischia---telefono-081-991201/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-felix-ischia---telefono-081-991201/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-ischia-4-stelle-centro-benessere-s/">
+      <a class="card" href="demos/hotel-ischia-4-stelle-centro-benessere-s/" data-tags="" data-title="aragona palace hotel &amp; spa — ischia 4 stelle">
         <div class="card-body">
           <div class="card-title">Aragona Palace Hotel &amp; Spa — Ischia 4 Stelle</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-ischia-4-stelle-centro-benessere-s/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-ischia-4-stelle-centro-benessere-s/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-la-tonnarella-sorrento---4-star-ho/">
+      <a class="card" href="demos/hotel-la-tonnarella-sorrento---4-star-ho/" data-tags="" data-title="hotel la tonnarella sorrento - 4 stelle sul mare">
         <div class="card-body">
           <div class="card-title">Hotel La Tonnarella Sorrento - 4 Stelle sul Mare</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-la-tonnarella-sorrento---4-star-ho/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-la-tonnarella-sorrento---4-star-ho/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-oriente---beach---spa---ischia-por/">
+      <a class="card" href="demos/hotel-oriente---beach---spa---ischia-por/" data-tags="" data-title="hotel oriente - beach &amp; spa | sito web moderno">
         <div class="card-body">
           <div class="card-title">Hotel Oriente - Beach &amp; SPA | Sito Web Moderno</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-oriente---beach---spa---ischia-por/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-oriente---beach---spa---ischia-por/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-punta-regina-positano-4----book-on/">
+      <a class="card" href="demos/hotel-punta-regina-positano-4----book-on/" data-tags="" data-title="hotel punta regina positano 4* - demo by experiences srl">
         <div class="card-body">
           <div class="card-title">Hotel Punta Regina Positano 4* - Demo by Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-punta-regina-positano-4----book-on/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-punta-regina-positano-4----book-on/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-regina-palace-ischia---home/">
+      <a class="card" href="demos/hotel-regina-palace-ischia---home/" data-tags="" data-title="hotel regina palace ischia - oasi nel cuore di ischia">
         <div class="card-body">
           <div class="card-title">Hotel Regina Palace Ischia - Oasi nel Cuore di Ischia</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-regina-palace-ischia---home/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-regina-palace-ischia---home/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-san-giovanni-terme---benvenuti-nel/">
+      <a class="card" href="demos/hotel-san-giovanni-terme---benvenuti-nel/" data-tags="" data-title="hotel san giovanni terme – charme hotel ischia">
         <div class="card-body">
           <div class="card-title">Hotel San Giovanni Terme – Charme Hotel Ischia</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-san-giovanni-terme---benvenuti-nel/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-san-giovanni-terme---benvenuti-nel/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-solemare-ischia--------beach---bea/">
+      <a class="card" href="demos/hotel-solemare-ischia--------beach---bea/" data-tags="" data-title="hotel solemare ischia **** | beach &amp; beauty ischia porto">
         <div class="card-body">
           <div class="card-title">Hotel Solemare Ischia **** | Beach &amp; Beauty Ischia Porto</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-solemare-ischia--------beach---bea/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-solemare-ischia--------beach---bea/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/hotel-villa-lubrense-vista-mare-su-sorre/">
+      <a class="card" href="demos/hotel-villa-lubrense-vista-mare-su-sorre/" data-tags="" data-title="hotel villa lubrense — vista mare su sorrento, capri e vesuvio">
         <div class="card-body">
           <div class="card-title">Hotel Villa Lubrense — Vista Mare su Sorrento, Capri e Vesuvio</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/hotel-villa-lubrense-vista-mare-su-sorre/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/hotel-villa-lubrense-vista-mare-su-sorre/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/i-migliori-hotel-4-stelle-casamicciola-t/">
+      <a class="card" href="demos/i-migliori-hotel-4-stelle-casamicciola-t/" data-tags="" data-title="hotel 4 stelle casamicciola terme - ischia prenotazioni">
         <div class="card-body">
           <div class="card-title">Hotel 4 Stelle Casamicciola Terme - Ischia Prenotazioni</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/i-migliori-hotel-4-stelle-casamicciola-t/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/i-migliori-hotel-4-stelle-casamicciola-t/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/ischia4punto0-landing-affiliate/">
+      <a class="card" href="demos/ischia4punto0-landing-affiliate/" data-tags="" data-title="ischia 4.0 — l&#x27;isola che riparte">
         <div class="card-body">
           <div class="card-title">Ischia 4.0 — L&#x27;isola che riparte</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/ischia4punto0-landing-affiliate/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/ischia4punto0-landing-affiliate/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/marincanto---romantic-hotel-in-positano/">
+      <a class="card" href="demos/marincanto---romantic-hotel-in-positano/" data-tags="" data-title="marincanto – romantic hotel in positano">
         <div class="card-body">
           <div class="card-title">Marincanto – Romantic Hotel in Positano</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/marincanto---romantic-hotel-in-positano/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/marincanto---romantic-hotel-in-positano/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/minitest-hotel-la-tonnarella-sorrento---4-st/">
+      <a class="card" href="demos/minitest-hotel-la-tonnarella-sorrento---4-st/" data-tags="" data-title="hotel la tonnarella sorrento - 4 stelle sul mare">
         <div class="card-body">
           <div class="card-title">Hotel La Tonnarella Sorrento - 4 Stelle sul Mare</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/minitest-hotel-la-tonnarella-sorrento---4-st/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/minitest-hotel-la-tonnarella-sorrento---4-st/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/official-website-hotel-le-querce---book/">
+      <a class="card" href="demos/official-website-hotel-le-querce---book/" data-tags="" data-title="hotel le querce | resort 4 stelle ischia porto">
         <div class="card-body">
           <div class="card-title">Hotel Le Querce | Resort 4 Stelle Ischia Porto</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/official-website-hotel-le-querce---book/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/official-website-hotel-le-querce---book/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/pc-boutique-hotel-napoli---vivi-nel-cuor/">
+      <a class="card" href="demos/pc-boutique-hotel-napoli---vivi-nel-cuor/" data-tags="" data-title="pc boutique hotel napoli | vivi nel cuore della città">
         <div class="card-body">
           <div class="card-title">PC Boutique Hotel Napoli | Vivi nel cuore della città</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/pc-boutique-hotel-napoli---vivi-nel-cuor/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/pc-boutique-hotel-napoli---vivi-nel-cuor/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/santa-chiara-boutique-hotel--historic-ce/">
+      <a class="card" href="demos/santa-chiara-boutique-hotel--historic-ce/" data-tags="" data-title="santa chiara boutique hotel – historic center naples">
         <div class="card-body">
           <div class="card-title">Santa Chiara Boutique Hotel – Historic Center Naples</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/santa-chiara-boutique-hotel--historic-ce/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/santa-chiara-boutique-hotel--historic-ce/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/sito-ufficiale-di-palazzo-manzi-terme/">
+      <a class="card" href="demos/sito-ufficiale-di-palazzo-manzi-terme/" data-tags="" data-title="palazzo manzi terme &amp; spa — ischia | demo by experiences srl">
         <div class="card-body">
           <div class="card-title">Palazzo Manzi Terme &amp; Spa — Ischia | Demo by Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/sito-ufficiale-di-palazzo-manzi-terme/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/sito-ufficiale-di-palazzo-manzi-terme/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/sito-ufficiale-hotel-del-mare-a-sorrento/">
+      <a class="card" href="demos/sito-ufficiale-hotel-del-mare-a-sorrento/" data-tags="" data-title="hotel del mare sorrento | sito ufficiale - prenota ora">
         <div class="card-body">
           <div class="card-title">Hotel del Mare Sorrento | Sito Ufficiale - Prenota Ora</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/sito-ufficiale-hotel-del-mare-a-sorrento/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/sito-ufficiale-hotel-del-mare-a-sorrento/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/sportlandia-kiosk/">
+      <a class="card" href="demos/sportlandia-kiosk/" data-tags="kiosk fitness touch-screen castellammare" data-title="sportlandia infitness - corsi e attività">
         <div class="card-body">
           <div class="card-title">SPORTLANDIA INFITNESS - Corsi e Attività</div>
           <div class="card-desc">Sportlandia Infitness - Centro Fitness Castellammare di Stabia. Sala attrezzi, Pilates, MET, Les Mills, Fisiorehab e molto altro.</div>
-          <div class="card-slug">demos/sportlandia-kiosk/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/sportlandia-kiosk/</span>
+            <div class="card-tags"><span class="tag">kiosk</span><span class="tag">fitness</span><span class="tag">touch-screen</span><span class="tag">castellammare</span></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/test-hotel-vesuvio/">
+      <a class="card" href="demos/test-hotel-vesuvio/" data-tags="" data-title="hotel vesuvio napoli — sito demo by experiences srl">
         <div class="card-body">
           <div class="card-title">Hotel Vesuvio Napoli — Sito Demo by Experiences Srl</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/test-hotel-vesuvio/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/test-hotel-vesuvio/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
-      <a class="card" href="demos/tour-combinato-vesuvio-pompei---around-v/">
+      <a class="card" href="demos/tour-combinato-vesuvio-pompei---around-v/" data-tags="" data-title="tour combinato vesuvio-pompei — around vesuvio">
         <div class="card-body">
           <div class="card-title">Tour Combinato Vesuvio-Pompei — Around Vesuvio</div>
           <div class="card-desc"></div>
-          <div class="card-slug">demos/tour-combinato-vesuvio-pompei---around-v/</div>
+          <div class="card-meta">
+            <span class="card-slug">demos/tour-combinato-vesuvio-pompei---around-v/</span>
+            <div class="card-tags"></div>
+          </div>
         </div>
         <div class="card-arrow">→</div>
       </a>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        Nessun demo corrisponde ai criteri di ricerca.
+      </div>
     </main>
     <footer>
-      © 2026 · powered by <strong>experiences SRL</strong> · hub generato automaticamente
+      © 2026 · powered by <strong>experiences SRL</strong>
+      <div class="help">Hub generato automaticamente · 34/35 demo senza tag · aggiungi <code>&lt;meta name="demo:tags" content="…"&gt;</code></div>
     </footer>
   </div>
+
+  <script>
+    (() => {
+      const filters = document.getElementById('filters');
+      const search = document.getElementById('searchInput');
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const emptyState = document.getElementById('emptyState');
+      let activeTag = '';
+
+      function applyFilters() {
+        const q = search.value.trim().toLowerCase();
+        let visible = 0;
+        cards.forEach(card => {
+          const tags = (card.dataset.tags || '').split(' ').filter(Boolean);
+          const title = card.dataset.title || '';
+          const matchTag = !activeTag || tags.includes(activeTag);
+          const matchQuery = !q || title.includes(q) || tags.some(t => t.includes(q));
+          const show = matchTag && matchQuery;
+          card.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+        emptyState.style.display = visible === 0 ? 'block' : 'none';
+      }
+
+      filters.addEventListener('click', e => {
+        const btn = e.target.closest('.filter');
+        if (!btn) return;
+        filters.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTag = btn.dataset.tag;
+        applyFilters();
+      });
+
+      search.addEventListener('input', applyFilters);
+    })();
+  </script>
 </body>
 </html>
