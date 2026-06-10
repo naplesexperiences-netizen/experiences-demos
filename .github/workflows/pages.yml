@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Regenerate hub index
+        run: python3 scripts/generate-hub.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
