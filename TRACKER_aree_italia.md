@@ -12,7 +12,7 @@ Per ogni AREA si produce un CSV dedicato + bozza Gmail.
 | # | Area turistica | Sotto-zone principali | Stato | File CSV |
 |---|---|---|---|---|
 | 1 | Golfo di Napoli e Penisola Sorrentina | Napoli, Sorrento, Sant'Agnello, Vico Equense, area vesuviana (Pompei, Ercolano, Torre del Greco/Annunziata, Portici), Castellammare | ✅ FATTO | ricerca_clienti_napoli_salerno.csv |
-| 2 | Isole del Golfo | Ischia, Capri, Procida | 🔄 IN CORSO (enumerazione subagent Sonnet) | — |
+| 2 | Isole del Golfo | Ischia, Capri, Procida | ✅ FATTO | _ricerca_intermedia/CSV_Isole_del_Golfo.csv |
 | 3 | Costiera Amalfitana | Positano, Praiano, Amalfi, Ravello, Maiori, Minori, Cetara, Vietri sul Mare | ✅ FATTO | _ricerca_intermedia/CSV_Costiera_Amalfitana.csv |
 | 4 | Salerno e agro | Salerno città, Cava de' Tirreni | ✅ FATTO | _ricerca_intermedia/CSV_Salerno.csv |
 | 5 | Cilento e Paestum | Agropoli, Castellabate, Palinuro, Marina di Camerota, Paestum/Capaccio, Vallo della Lucania, Sapri | ✅ FATTO | _ricerca_intermedia/CSV_Cilento.csv |
