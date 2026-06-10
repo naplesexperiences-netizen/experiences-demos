@@ -63,3 +63,28 @@ browser per validare grafica/layout prima di pubblicare in WordPress.
 Dopo il deploy, apri DevTools → Network e invia il form:
 - La richiesta `POST /wp-admin/admin-ajax.php` con `action=experiences_contact` deve restituire `200` e JSON `{"success":true,"data":{"message":"Messaggio inviato!..."}}`.
 - Se invece torna `-1` o `403`, il nonce non è stato localizzato → verifica che `experiences-main` sia enqueued (View Source → cerca `var experiencesAjax`).
+
+---
+
+# v2.2.0 — Performance + fix blog
+
+## Performance (LCP 9,8s → atteso ~2,5-3,5s)
+
+1. **Tailwind precompilato**: rimosso il Play CDN (~300KB di JS render-blocking, prima causa dell'LCP); ora `assets/css/tailwind.min.css` statico (33KB) compilato dai template del tema.
+2. **Logo WebP**: `assets/img/logo.webp` 19KB (era logo.png 226KB), con `width`/`height` espliciti.
+3. **Font Awesome subset**: `assets/css/icons.min.css` (2,8KB) + 2 woff2 subsettati (6KB) con le sole 50 icone usate — al posto del CDN completo (~370KB).
+4. **Google Fonts**: da 10 a 6 pesi (Inter 400/500/600/700, Montserrat 600/700).
+5. **AOS**: self-hosted in `assets/vendor/`, CSS async, JS nel footer con `defer` (main.js dipende da AOS, ordine garantito).
+6. **jquery-migrate** rimosso dal front-end (jQuery core resta per i plugin).
+
+## Fix blog
+
+- **Navbar e footer ora su tutte le pagine** (articoli, archivi, 404): erano hardcoded solo in front-page.php; estratti in `template-parts/site-header.php` e `template-parts/site-footer.php`, inclusi da header.php/footer.php. Gli anchor (#services, #contact…) puntano a `home_url('/#...')` fuori dalla homepage.
+- **Layout articolo a tutta larghezza**: container da max-w-4xl a max-w-7xl, colonna contenuto da 7/12 a 8/12 (≈520px → ≈830px), hero e featured image allargati, font articolo 1.125rem su desktop.
+- Corretto un `<div>` duplicato non chiuso nel footer.
+
+## Note deploy
+
+Dopo l'upload del tema: svuotare cache pagina + CDN. Se in futuro si
+aggiungono classi Tailwind nuove nei template, ricompilare
+`assets/css/tailwind.min.css` (vedi tailwind.config.js → content scan).

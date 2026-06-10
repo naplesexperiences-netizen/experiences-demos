@@ -25,7 +25,7 @@ while ( have_posts() ) : the_post();
             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-3xl"></div>
         </div>
 
-        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Breadcrumb -->
             <nav class="flex items-center gap-2 text-sm text-white/60 mb-6" data-aos="fade-up">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="hover:text-accent transition-colors">
@@ -87,7 +87,7 @@ while ( have_posts() ) : the_post();
 
     <!-- Featured Image -->
     <?php if (has_post_thumbnail()) : ?>
-        <div class="relative -mt-12 lg:-mt-16 z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+        <div class="relative -mt-12 lg:-mt-16 z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
             <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <?php the_post_thumbnail('full', ['class' => 'w-full h-auto']); ?>
             </div>
@@ -96,11 +96,11 @@ while ( have_posts() ) : the_post();
 
     <!-- Content area -->
     <div class="py-16 lg:py-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-12 lg:gap-12">
 
                 <!-- Sidebar sinistra: Share & TOC -->
-                <aside class="hidden lg:block lg:col-span-2">
+                <aside class="hidden lg:block lg:col-span-1">
                     <div class="sticky top-28 space-y-6">
                         <!-- Share buttons -->
                         <div>
@@ -141,7 +141,7 @@ while ( have_posts() ) : the_post();
                 </aside>
 
                 <!-- Contenuto articolo -->
-                <div class="lg:col-span-7">
+                <div class="lg:col-span-8">
                     <div class="prose-blog text-gray-700">
                         <?php the_content(); ?>
                     </div>
@@ -325,7 +325,7 @@ while ( have_posts() ) : the_post();
 
     <!-- Navigation precedente/successivo -->
     <section class="py-12 bg-white border-t border-gray-100">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid sm:grid-cols-2 gap-4">
                 <?php
                 $prev = get_previous_post();

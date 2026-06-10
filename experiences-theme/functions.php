@@ -23,27 +23,30 @@ function experiences_setup() {
 }
 add_action( 'after_setup_theme', 'experiences_setup' );
 
-// ── Enqueue theme stylesheet + main.js (with localized AJAX data) ───────
-// Tailwind, Font Awesome e AOS sono caricati direttamente in header.php.
-// main.js viene enqueued qui per poter localizzare i dati AJAX (url +
-// nonce) necessari al contact form. In precedenza la localizzazione era
-// agganciata al handle 'jquery' che però non veniva mai caricato:
-// risultato, la variabile experiencesAjax era undefined nel browser e
-// il form inviava un nonce vuoto facendo fallire check_ajax_referer.
+// ── Enqueue assets ──────────────────────────────────────────────────────
+// v2.2.0: Tailwind precompilato + Font Awesome subset al posto dei CDN
+// (il Play CDN di Tailwind era ~300KB di JS render-blocking, prima causa
+// di LCP 9,8s). AOS è enqueued nel footer con defer; main.js dipende da
+// AOS così l'ordine di esecuzione è garantito (defer preserva l'ordine).
 function experiences_enqueue_assets() {
     $theme_version = wp_get_theme()->get('Version');
+    $theme_uri     = get_template_directory_uri();
 
-    wp_enqueue_style(
-        'experiences-style',
-        get_stylesheet_uri(),
-        [],
-        $theme_version
-    );
+    // Tailwind precompilato — deve precedere style.css che lo sovrascrive
+    wp_enqueue_style( 'experiences-tailwind', $theme_uri . '/assets/css/tailwind.min.css', [], $theme_version );
+
+    // Font Awesome subset (50 icone, ~9KB css+font vs ~370KB del CDN completo)
+    wp_enqueue_style( 'experiences-icons', $theme_uri . '/assets/css/icons.min.css', [], $theme_version );
+
+    wp_enqueue_style( 'experiences-style', get_stylesheet_uri(), [ 'experiences-tailwind' ], $theme_version );
+
+    // AOS self-hosted, footer + defer (il CSS è caricato async in header.php)
+    wp_enqueue_script( 'experiences-aos', $theme_uri . '/assets/vendor/aos.js', [], '2.3.1', true );
 
     wp_enqueue_script(
         'experiences-main',
-        get_template_directory_uri() . '/assets/js/main.js',
-        [],
+        $theme_uri . '/assets/js/main.js',
+        [ 'experiences-aos' ],
         $theme_version,
         true
     );
@@ -54,6 +57,33 @@ function experiences_enqueue_assets() {
     ]);
 }
 add_action( 'wp_enqueue_scripts', 'experiences_enqueue_assets' );
+
+// ── Defer per gli script del tema ───────────────────────────────────────
+// defer non blocca il parsing e preserva l'ordine: aos.js esegue prima di
+// main.js (che chiama AOS.init). Filter compatibile con ogni versione WP.
+function experiences_defer_scripts( $tag, $handle ) {
+    if ( in_array( $handle, [ 'experiences-aos', 'experiences-main' ], true )
+         && false === strpos( $tag, ' defer' ) ) {
+        $tag = str_replace( ' src=', ' defer src=', $tag );
+    }
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'experiences_defer_scripts', 10, 2 );
+
+// ── Rimuovi jquery-migrate sul front-end ────────────────────────────────
+// Il tema non usa jQuery; jquery-migrate è solo un shim di compatibilità
+// per plugin legacy (~12KB inutili). jQuery core resta disponibile per i
+// plugin che lo richiedono. Per rimuovere anche jQuery core, verificare
+// prima che nessun plugin attivo lo utilizzi sul front-end.
+function experiences_remove_jquery_migrate( $scripts ) {
+    if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+        $jquery = $scripts->registered['jquery'];
+        if ( $jquery->deps ) {
+            $jquery->deps = array_diff( $jquery->deps, [ 'jquery-migrate' ] );
+        }
+    }
+}
+add_action( 'wp_default_scripts', 'experiences_remove_jquery_migrate' );
 
 // ── SEO: meta tags ─────────────────────────────────────────────
 function experiences_meta_tags() {
