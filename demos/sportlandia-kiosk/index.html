@@ -543,8 +543,35 @@
             border-top: 3px solid var(--accent);
         }
 
+        .footer-contact {
+            margin-bottom: 22px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .footer-contact-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact-row {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .footer-hours {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            color: white;
+        }
+
         .footer-brand {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .footer-brand-label {
@@ -700,7 +727,7 @@
         <div class="nav-controls">
             <button class="nav-btn" onclick="prevCourse()" aria-label="Corso precedente">‹</button>
             <div class="nav-counter">
-                <span class="current" id="currentIndex">1</span> / <span id="totalCourses">9</span>
+                <span class="current" id="currentIndex">1</span> / <span id="totalCourses">8</span>
             </div>
             <button class="nav-btn" onclick="nextCourse()" aria-label="Corso successivo">›</button>
         </div>
@@ -728,51 +755,46 @@
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
+        <div class="footer-contact">
+            <div class="footer-contact-name">Sportlandia · SSD INFITNESS ARL</div>
+            <div class="footer-contact-row">📍 Corso Alcide De Gasperi, 177/B — Castellammare di Stabia (NA)</div>
+            <div class="footer-contact-row">📞 +39 081 871 8076 &nbsp;·&nbsp; ✉ ssdinfitness@gmail.com</div>
+            <div class="footer-contact-row footer-hours">
+                <strong>Apertura Centro:</strong> Lun-Ven 07:00-21:00 · Sabato 08:00-12:30
+            </div>
+        </div>
         <div class="footer-brand">
             <div class="footer-brand-label">Powered by</div>
             <div class="footer-brand-name">EXPERIENCES SRL</div>
-            <div class="footer-brand-tagline">Innovazione Digitale per il Turismo e lo Sport</div>
-        </div>
-        <div class="footer-links">
-            <a href="https://experiences-srl.it" class="footer-link" target="_blank">
-                🌐 Sito Web
-            </a>
-            <a href="mailto:info@experiences-srl.it" class="footer-link">
-                📧 Contatti
-            </a>
         </div>
         <div class="footer-copyright">
-            © 2026 Sportlandia Infitness · Castellammare di Stabia<br>
-            Sito sviluppato da <strong>experiences SRL</strong>
+            © 2026 Sportlandia Infitness · Sito sviluppato da <strong>experiences SRL</strong>
         </div>
     </footer>
 
     <script>
-        // ==================== DATA ====================
+        // ==================== DATA (orari ufficiali stagione 25/26) ====================
         const courses = [
             {
                 id: 1,
                 title: "Sala Attrezzi",
                 category: "Fitness",
                 image: "images/sala-attrezzi.webp",
-                description: "Allenamento completo con macchinari isotonici, pesi liberi e cardio. Personal trainer qualificati a tua disposizione.",
+                description: "Allenamento completo con macchinari isotonici, pesi liberi e cardio. Sala sempre aperta negli orari del centro.",
                 schedule: {
-                    "Lun - Ven": "06:00 - 22:00",
-                    "Sabato": "08:00 - 20:00",
-                    "Domenica": "08:00 - 19:00"
+                    "Lun - Ven": "07:00 - 21:00",
+                    "Sabato": "09:00 - 12:00"
                 }
             },
             {
                 id: 2,
                 title: "Pilates Matwork",
-                category: "Pilates",
+                category: "Pilates · Base / Intermedio / Avanzato",
                 image: "images/pilates-matwork.webp",
-                description: "Pilates a corpo libero su tappetino con piccoli attrezzi. Migliora postura, equilibrio e forza del core.",
+                description: "Pilates a corpo libero su tappetino. Tre livelli: Base, Intermedio e Avanzato. Migliora postura, equilibrio e forza del core.",
                 schedule: {
-                    "Lunedì": "09:00 · 10:30 · 18:00 · 19:30",
-                    "Mercoledì": "09:00 · 10:30 · 18:00 · 19:30",
-                    "Venerdì": "09:00 · 10:30 · 18:00 · 19:30",
-                    "Sabato": "10:00 · 11:00"
+                    "Lun · Mer · Ven": "09:00 · 11:00 · 16:00 · 18:00 · 19:00 · 20:00",
+                    "Mar · Gio": "10:00 · 16:00 · 18:00"
                 }
             },
             {
@@ -780,62 +802,57 @@
                 title: "Pilates Reformer",
                 category: "Pilates",
                 image: "images/pilates-reformer.webp",
-                description: "Pilates con il macchinario professionale Reformer. Allenamento personalizzato per tonificare e allungare i muscoli.",
+                description: "Pilates con il macchinario professionale Reformer. Allenamento personalizzato per tonificare e allungare la muscolatura.",
                 schedule: {
-                    "Lunedì": "10:00 · 11:00 · 17:00 · 18:30",
-                    "Martedì": "10:00 · 11:00 · 17:00 · 18:30",
-                    "Giovedì": "10:00 · 11:00 · 17:00 · 18:30",
-                    "Sabato": "09:00 · 10:00"
+                    "Lun · Mer · Ven": "09 · 10 · 11 · 13 · 14 · 15 · 16 · 17 · 18 · 19 · 20",
+                    "Mar · Gio": "09 · 10 · 11 · 13 · 14 · 15 · 17 · 18 · 19 · 20",
+                    "Sabato": "09:00 · 10:00 · 11:00"
                 }
             },
             {
                 id: 4,
                 title: "Pilates Studio",
-                category: "Pilates",
+                category: "Pilates · Su appuntamento",
                 image: "images/pilates-studio.webp",
-                description: "Sessioni Pilates Studio con Cadillac, Barile e attrezzi avanzati. Solo lezioni individuali o duette.",
+                description: "Sessioni Pilates Studio con Cadillac, Barile e attrezzi avanzati. Lezioni individuali o duette su appuntamento.",
                 schedule: {
-                    "Su appuntamento": "Lun-Ven: 09:00 - 20:00",
+                    "Lun - Ven": "Su appuntamento",
                     "Sabato": "Su prenotazione",
-                    "Info": "Telefona per prenotare"
+                    "Info": "Tel. 0818718076"
                 }
             },
             {
                 id: 5,
-                title: "MET BodyZone",
-                category: "EMS",
+                title: "TEC-Room",
+                category: "Functional Training",
                 image: "images/met.webp",
-                description: "Elettrostimolazione muscolare ad alta intensità. 20 minuti equivalgono a ore di allenamento tradizionale.",
+                description: "Sala dedicata all'allenamento tecnico e funzionale, disponibile nelle giornate del martedì e giovedì.",
                 schedule: {
-                    "Martedì": "17:00 · 18:30 · 20:00",
-                    "Giovedì": "17:00 · 18:30 · 20:00",
-                    "Sabato": "11:30 · 13:00",
-                    "Domenica": "10:00"
+                    "Mar · Gio": "09:00 · 10:00 · 11:00 · 13:00 · 14:00 · 15:00 · 16:00"
                 }
             },
             {
                 id: 6,
-                title: "Les Mills Virtual",
-                category: "Group Fitness",
+                title: "Les Mills",
+                category: "Group Fitness · Shapes / Strength / Circuito",
                 image: "images/lesmills.webp",
-                description: "Programmi Les Mills in modalità virtual: BodyBalance, BodyPump, BodyCombat e tanti altri.",
+                description: "Programmi ufficiali Les Mills: SHAPES (tonificazione), STRENGTH (forza) e CIRCUITO (cardio circuit).",
                 schedule: {
-                    "Lunedì": "06:30 · 12:00 · 18:00 · 20:00",
-                    "Mercoledì": "06:30 · 12:00 · 18:00 · 20:00",
-                    "Venerdì": "06:30 · 12:00 · 18:00 · 20:00",
-                    "Sabato": "09:00 · 17:00"
+                    "Lun · Mer · Ven": "Shapes 10:00 · 17:00 — Strength 14:00 — Circuito 20:00",
+                    "Mar · Gio": "Shapes 17:00 · 20:00 — Circuito 18:00 — Strength 19:00",
+                    "Sabato": "Shapes 10:00"
                 }
             },
             {
                 id: 7,
                 title: "Fisiorehab 360",
-                category: "Rehab",
+                category: "Riabilitazione",
                 image: "images/fisiorehab.webp",
-                description: "Centro di fisioterapia e riabilitazione integrata. Programmi personalizzati per recupero funzionale.",
+                description: "Centro di fisioterapia e riabilitazione integrata. Programmi personalizzati per il recupero funzionale.",
                 schedule: {
-                    "Lun - Ven": "08:00 - 20:00",
-                    "Sabato": "09:00 - 13:00",
-                    "Info": "Prenotazioni su appuntamento"
+                    "Lun - Ven": "Su appuntamento",
+                    "Sabato": "Su prenotazione",
+                    "Info": "Tel. 0818718076"
                 }
             },
             {
@@ -843,24 +860,11 @@
                 title: "GREENtosi",
                 category: "Eco-Wellness",
                 image: "images/greentosi.webp",
-                description: "Il nostro impegno per la sostenibilità: impianto fotovoltaico e attività eco-friendly per il benessere.",
+                description: "Il nostro impegno per la sostenibilità: impianto fotovoltaico, energia rinnovabile e iniziative eco-friendly.",
                 schedule: {
-                    "Info": "Sportlandia è 100% green",
+                    "Impegno": "Sportlandia è 100% green",
                     "Energia": "Da fonti rinnovabili",
                     "Iniziative": "Eventi periodici"
-                }
-            },
-            {
-                id: 9,
-                title: "Acquagym & Idrokinesi",
-                category: "Piscina",
-                image: "images/sala-attrezzi.webp",
-                description: "Piscina riscaldata per acquagym, idrokinesiterapia e attività in acqua a basso impatto.",
-                schedule: {
-                    "Lunedì": "10:00 · 11:00 · 18:00 · 19:00",
-                    "Mercoledì": "10:00 · 11:00 · 18:00 · 19:00",
-                    "Venerdì": "10:00 · 11:00 · 18:00 · 19:00",
-                    "Sabato": "10:00"
                 }
             }
         ];
