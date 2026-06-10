@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e3c72;
-            --primary-light: #2a5298;
-            --accent: #ff6b35;
-            --accent-light: #ff8555;
-            --dark: #0a1929;
+            --primary: #0d47a1;          /* blu cobalto Sportlandia */
+            --primary-light: #1976d2;    /* blu medio sito */
+            --primary-soft: #1e88e5;     /* blu pill orari PDF */
+            --accent: #00bcd4;           /* ciano logo Infitness */
+            --accent-light: #4dd0e1;     /* ciano chiaro */
+            --dark: #062c5c;             /* navy profondo */
             --light: #ffffff;
-            --gray: #f5f7fa;
+            --gray: #e3f2fd;             /* azzurro cellule orari */
         }
 
         * {
@@ -42,7 +43,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: linear-gradient(180deg, #0a1929 0%, #1e3c72 50%, #2a5298 100%);
+            background: linear-gradient(180deg, #062c5c 0%, #0d47a1 45%, #1976d2 100%);
             background-attachment: fixed;
         }
 
@@ -51,7 +52,7 @@
             position: relative;
             padding: 40px 30px 30px;
             text-align: center;
-            background: rgba(10, 25, 41, 0.95);
+            background: rgba(6, 44, 92, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 4px solid var(--accent);
             z-index: 10;
@@ -61,7 +62,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at top, rgba(255, 107, 53, 0.15), transparent 70%);
+            background: radial-gradient(ellipse at top, rgba(0, 188, 212, 0.15), transparent 70%);
             pointer-events: none;
         }
 
@@ -72,7 +73,7 @@
             border-radius: 50%;
             background: white;
             padding: 10px;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -89,11 +90,11 @@
             font-weight: 900;
             letter-spacing: 4px;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #fff 0%, #ff8555 100%);
+            background: linear-gradient(135deg, #fff 0%, #4dd0e1 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+            text-shadow: 0 4px 20px rgba(0, 188, 212, 0.3);
         }
 
         .header .subtitle {
@@ -142,8 +143,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
-            50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(0, 188, 212, 0.7); }
+            50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 0 15px rgba(0, 188, 212, 0); }
         }
 
         /* ==================== GALLERY ==================== */
@@ -213,7 +214,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 30%, rgba(10, 25, 41, 0.4) 55%, rgba(10, 25, 41, 0.95) 90%);
+            background: linear-gradient(180deg, transparent 30%, rgba(6, 44, 92, 0.4) 55%, rgba(6, 44, 92, 0.95) 90%);
             z-index: 1;
         }
 
@@ -238,7 +239,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
         }
 
         .course-title {
@@ -314,7 +315,7 @@
         .indicator.active {
             background: var(--accent);
             width: 60px;
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
         }
 
         /* ==================== NAVIGATION ==================== */
@@ -348,7 +349,7 @@
             background: var(--accent);
             border-color: var(--accent);
             transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.4);
         }
 
         .nav-counter {
@@ -424,7 +425,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(30, 60, 114, 0.5) 0%, rgba(10, 25, 41, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(13, 71, 161, 0.5) 0%, rgba(6, 44, 92, 0.95) 100%);
         }
 
         .modal-header-content {
@@ -617,8 +618,8 @@
             font-size: 0.9rem;
             font-weight: 500;
             padding: 10px 20px;
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
+            background: rgba(0, 188, 212, 0.1);
+            border: 1px solid rgba(0, 188, 212, 0.3);
             border-radius: 50px;
             transition: all 0.3s ease;
         }
@@ -627,7 +628,7 @@
             background: var(--accent);
             border-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.4);
         }
 
         .footer-copyright {
@@ -687,7 +688,7 @@
         .loader-spinner {
             width: 60px;
             height: 60px;
-            border: 4px solid rgba(255, 107, 53, 0.2);
+            border: 4px solid rgba(0, 188, 212, 0.2);
             border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
