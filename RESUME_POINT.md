@@ -6,6 +6,17 @@
 - **Area 1 — Golfo di Napoli e Penisola Sorrentina** (103 schede): file `ricerca_clienti_napoli_salerno.csv`, analisi PageSpeed completa, email, immagini, priorità. Già su GitHub PR #1.
 - **Aree 3-4-5 — Costiera Amalfitana / Salerno / Cilento — ENUMERAZIONE FATTA** (110 strutture verificate con sito proprio, email dove reperibile): file `_ricerca_intermedia/salerno_amalfi_cilento_RAW.tsv`.
 
+## ⚠️ AGGIORNAMENTO 2026-06-10 (ripresa)
+- Generati 3 CSV per area PROVVISORI: `_ricerca_intermedia/CSV_Costiera_Amalfitana.csv` (52), `CSV_Salerno.csv` (14), `CSV_Cilento.csv` (47).
+- PROVVISORI perché la PAGESPEED_API_KEY è SCADUTA ("API key expired"): campi Sito_Pre2020/Mobile_Friendly/Channel_Manager = "Da analizzare", priorità calcolata SOLO da segmento (lusso/grande=P2, medio=P3, piccolo/B&B=P4). Booking engine e immagini NON disponibili.
+- BOZZE GMAIL non ancora create (si fanno con i CSV definitivi).
+
+### Per completare (serve nuova PAGESPEED_API_KEY valida)
+1. `cd _ricerca_intermedia && PAGESPEED_API_KEY=<NUOVA> python3 ps_driver.py`
+2. `python3 build_area_csv.py`  (rigenera i 3 CSV con dati tecnici reali e priorità corrette)
+3. Creare 1 bozza Gmail per area (allegato CSV) → naplesexperiences@gmail.com
+4. Aggiornare tracker (aree 3-4-5 → ✅) e commit/push.
+
 ## 🔄 In sospeso (RIPRENDERE DA QUI)
 L'**analisi tecnica PageSpeed** delle 110 strutture Salerno/Amalfi/Cilento **NON è ancora stata eseguita** (lo script in /tmp è andato perso, dati grezzi salvati nel repo).
 
