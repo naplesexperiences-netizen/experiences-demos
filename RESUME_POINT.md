@@ -1,6 +1,6 @@
 # RESUME POINT — Ricerca Clienti Napoli/Salerno
 
-**Ultimo aggiornamento:** 2026-06-10 (sera) — AREE 3-4-5 COMPLETATE con PageSpeed reale (112/113 ok; New Hotel Sonia sito irraggiungibile). Priorità definitive nei 3 CSV. IN CORSO: Area 2 Isole del Golfo (enumerazione con subagent Sonnet: Procida fatta 8 schede, Ischia e Capri in corso). DA FARE: bozze Gmail per area; PageSpeed isole; mix modelli in uso = orchestrazione Fable 5 + subagent enumerazione Sonnet 4.6.
+**Ultimo aggiornamento:** 2026-06-10 (sera) — AREE 3-4-5 COMPLETATE con PageSpeed reale (112/113 ok; New Hotel Sonia sito irraggiungibile). Priorità definitive nei 3 CSV. AREA 2 ISOLE DEL GOLFO COMPLETATA (38 schede, PageSpeed 37/38 ok - Hotel Savoia Procida sito irraggiungibile; CSV_Isole_del_Golfo.csv). TUTTE LE AREE CAMPANE (1-5) FATTE: 256 schede totali. Prossima area: 6 Roma e Lazio. DA FARE: bozze Gmail per le 4 aree (BLOCCATO: token Gmail scaduto, serve ri-autorizzazione utente); PageSpeed isole; mix modelli in uso = orchestrazione Fable 5 + subagent enumerazione Sonnet 4.6.
 
 ## ✅ Completato
 - **Area 1 — Golfo di Napoli e Penisola Sorrentina** (103 schede): file `ricerca_clienti_napoli_salerno.csv`, analisi PageSpeed completa, email, immagini, priorità. Già su GitHub PR #1.
