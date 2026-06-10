@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sportlandia - Centro Fitness Castellammare di Stabia">
+    <title>SPORTLANDIA - Corsi e Attività Fisiche</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #ff6b35;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #ff6b35;
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+
+        /* Main Gallery Container */
+        .gallery-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 600px;
+            perspective: 1000px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            pointer-events: none;
+            background: white;
+        }
+
+        .course-card.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+            z-index: 10;
+            animation: slideIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .course-card.prev {
+            opacity: 0;
+            transform: translateY(-50px) scale(0.8);
+            z-index: 5;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .course-image {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .course-info {
+            height: 40%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .course-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .course-cta {
+            color: #ff6b35;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        button.nav-btn {
+            background: #ff6b35;
+            border: none;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        button.nav-btn:hover {
+            background: #ff8555;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        button.nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .course-counter {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff6b35;
+            padding-bottom: 15px;
+        }
+
+        .schedule-section {
+            margin-bottom: 25px;
+        }
+
+        .schedule-day {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-left: 5px solid #ff6b35;
+            border-radius: 5px;
+        }
+
+        .schedule-day-name {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .schedule-time {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.3s ease;
+            padding: 0;
+            width: auto;
+            height: auto;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 25px;
+            text-align: center;
+            border-top: 3px solid #ff6b35;
+        }
+
+        .footer-text {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .footer-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #ff8555;
+            text-decoration: underline;
+        }
+
+        .footer-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (min-height: 900px) {
+            .header h1 {
+                font-size: 4.5rem;
+            }
+
+            .gallery-wrapper {
+                height: 750px;
+            }
+
+            .course-card {
+                border-radius: 30px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .gallery-wrapper {
+                height: 400px;
+            }
+
+            .course-title {
+                font-size: 1.4rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Touch Optimization */
+        button, a {
+            min-height: 60px;
+            min-width: 60px;
+        }
+
+        body {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🏋️ SPORTLANDIA</h1>
+        <p>Scopri i Nostri Corsi - Tocca per Dettagli</p>
+    </div>
+
+    <!-- Main Gallery -->
+    <div class="gallery-container">
+        <div class="gallery-wrapper" id="galleryWrapper"></div>
+
+        <!-- Navigation -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevCourse()">←</button>
+            <div class="course-counter">
+                <span id="currentIndex">1</span> / <span id="totalCourses">7</span>
+            </div>
+            <button class="nav-btn" onclick="nextCourse()">→</button>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header" id="modalTitle">Orari Corso</div>
+            <div id="scheduleContent" class="schedule-section"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-logo">experiences SRL</div>
+        <div class="footer-text">
+            Innovazione Digitale per Strutture Sportive e Turistiche
+        </div>
+        <div class="footer-text">
+            <a href="https://github.com/experiences-srl" class="footer-link">🌐 Visita il nostro Portfolio</a>
+            <br>
+            <a href="mailto:info@experiences-srl.it" class="footer-link">📧 Contattaci</a>
+        </div>
+        <div class="footer-text" style="font-size: 0.85rem; margin-top: 15px;">
+            © 2026 Sportlandia - Powered by experiences SRL
+        </div>
+    </div>
+
+    <script>
+        // Dati dei Corsi
+        const courses = [
+            {
+                id: 1,
+                title: "Sala Attrezzi",
+                icon: "🏋️",
+                description: "Allenamento completo con attrezzature moderne",
+                schedule: {
+                    "Lunedì - Venerdì": "06:00 - 22:00",
+                    "Sabato": "08:00 - 20:00",
+                    "Domenica": "08:00 - 19:00"
+                }
+            },
+            {
+                id: 2,
+                title: "Pilates Matwork",
+                icon: "🧘",
+                description: "Pilates a corpo libero su tappetino",
+                schedule: {
+                    "Lunedì": "09:00, 10:30, 18:00, 19:30",
+                    "Mercoledì": "09:00, 10:30, 18:00, 19:30",
+                    "Venerdì": "09:00, 10:30, 18:00, 19:30",
+                    "Sabato": "10:00, 11:00"
+                }
+            },
+            {
+                id: 3,
+                title: "Pilates Reformer",
+                icon: "⚙️",
+                description: "Pilates con macchinari professionale",
+                schedule: {
+                    "Lunedì": "10:00, 11:00, 17:00, 18:30",
+                    "Martedì": "10:00, 11:00, 17:00, 18:30",
+                    "Giovedì": "10:00, 11:00, 17:00, 18:30",
+                    "Sabato": "09:00, 10:00"
+                }
+            },
+            {
+                id: 4,
+                title: "Les Mills Virtual",
+                icon: "📺",
+                description: "Corsi in diretta con istruttori virtuali",
+                schedule: {
+                    "Lunedì": "06:30, 12:00, 18:00, 20:00",
+                    "Mercoledì": "06:30, 12:00, 18:00, 20:00",
+                    "Venerdì": "06:30, 12:00, 18:00, 20:00",
+                    "Sabato": "09:00, 17:00"
+                }
+            },
+            {
+                id: 5,
+                title: "MET - Metabolic Equivalent",
+                icon: "⚡",
+                description: "Allenamento metabolico ad alta intensità",
+                schedule: {
+                    "Martedì": "17:00, 18:30, 20:00",
+                    "Giovedì": "17:00, 18:30, 20:00",
+                    "Sabato": "11:30, 13:00",
+                    "Domenica": "10:00"
+                }
+            },
+            {
+                id: 6,
+                title: "Fisiorehab",
+                icon: "🏥",
+                description: "Programmi di riabilitazione e prevenzione",
+                schedule: {
+                    "Lunedì": "08:00, 09:00, 14:00, 16:00",
+                    "Mercoledì": "08:00, 09:00, 14:00, 16:00",
+                    "Venerdì": "08:00, 09:00, 14:00, 16:00",
+                    "Contatti": "Per esigenze specifiche telefonare"
+                }
+            },
+            {
+                id: 7,
+                title: "GREENtosi",
+                icon: "🌱",
+                description: "Attività all'aperto e benessere naturale",
+                schedule: {
+                    "Lunedì": "19:00",
+                    "Mercoledì": "19:00",
+                    "Venerdì": "19:00",
+                    "Sabato": "09:00, 17:00"
+                }
+            }
+        ];
+
+        let currentIndex = 0;
+
+        // Inizializza la galleria
+        function initGallery() {
+            const wrapper = document.getElementById('galleryWrapper');
+            courses.forEach((course, index) => {
+                const card = document.createElement('div');
+                card.className = 'course-card' + (index === 0 ? ' active' : '');
+                card.innerHTML = `
+                    <div class="course-image">${course.icon}</div>
+                    <div class="course-info">
+                        <div class="course-title">${course.title}</div>
+                        <div class="course-description">${course.description}</div>
+                        <div class="course-cta">👉 Tocca per Orari</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => showSchedule(index));
+                wrapper.appendChild(card);
+            });
+            document.getElementById('totalCourses').textContent = courses.length;
+        }
+
+        // Mostra il prossimo corso
+        function nextCourse() {
+            moveGallery(1);
+        }
+
+        // Mostra il corso precedente
+        function prevCourse() {
+            moveGallery(-1);
+        }
+
+        // Movimento generico della galleria
+        function moveGallery(direction) {
+            const cards = document.querySelectorAll('.course-card');
+            cards[currentIndex].classList.remove('active');
+            cards[currentIndex].classList.add('prev');
+
+            currentIndex = (currentIndex + direction + courses.length) % courses.length;
+            document.getElementById('currentIndex').textContent = currentIndex + 1;
+
+            cards[currentIndex].classList.remove('prev');
+            cards[currentIndex].classList.add('active');
+        }
+
+        // Mostra il popup con gli orari
+        function showSchedule(index) {
+            const course = courses[index];
+            document.getElementById('modalTitle').textContent = '⏰ ' + course.title;
+            
+            let scheduleHTML = '';
+            for (const [day, times] of Object.entries(course.schedule)) {
+                scheduleHTML += `
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">${day}</div>
+                        <div class="schedule-time">${times}</div>
+                    </div>
+                `;
+            }
+            document.getElementById('scheduleContent').innerHTML = scheduleHTML;
+            document.getElementById('scheduleModal').classList.add('show');
+        }
+
+        // Chiudi il popup
+        function closeModal() {
+            document.getElementById('scheduleModal').classList.remove('show');
+        }
+
+        // Chiudi modal cliccando fuori
+        window.onclick = function(event) {
+            const modal = document.getElementById('scheduleModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Supporto per i tasti freccia
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') prevCourse();
+            if (event.key === 'ArrowRight') nextCourse();
+            if (event.key === 'Escape') closeModal();
+        });
+
+        // Inizializza al caricamento
+        window.addEventListener('load', initGallery);
+    </script>
+</body>
+</html>
