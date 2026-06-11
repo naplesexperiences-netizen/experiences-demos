@@ -19,21 +19,21 @@ Ho visto che organizzate tour verso Sorrento per agenzie internazionali. Perfett
 
 Ho preparato un'anteprima gratuita del vostro sito tour operator con:
 
-✅ **Portale agenzie dedicato** con itinerari su misura
-✅ **Assistente AI multilingua 24/7** per risposte istantanee a TO/ADV
-✅ **Gestione automatica preventivi** e coordinamento trasporti
-✅ **Chatbot che parla 5 lingue** - zero ritardi di risposta
+✅ Portale agenzie dedicato con itinerari su misura
+✅ Assistente AI multilingua 24/7 per risposte istantanee a TO/ADV
+✅ Gestione automatica preventivi e coordinamento trasporti
+✅ Chatbot che parla 5 lingue - zero ritardi di risposta
 
 Non è una proposta—è un regalo per vedere come aumentare le vostre prenotazioni.
 
-👉 **Vedetela qui: https://naplesexperiences-netizen.github.io/experiences-demos/demos/golden-tours-international-demo-experiences/**
+👉 Vedetela qui: https://naplesexperiences-netizen.github.io/experiences-demos/demos/golden-tours-international-demo-experiences/
 
-**Punti di forza che abbiamo identificato:**
+Punti di forza che abbiamo identificato:
 - Esperienza consolidata nel territorio
 - Copertura completa di attrazioni
 - Network di hotel e partner locale
 
-**I numeri che cambiano con Experiences:**
+I numeri che cambiano con Experiences:
 - Risposte in <2 minuti (vs ore di attesa da TO/ADV)
 - Preventivi generati in automatico
 - +40% conversioni da agenzie estere
