@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Tours International - Demo Experiences Srl</title>
+    <meta name="description" content="Golden Tours International - Tour operator / DMC incoming">
+    <meta name="demo:tags" content="hotel,sorrento,luxury">
+    <meta name="demo:category" content="hotel">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .banner-top {
+            background: linear-gradient(90deg, #1e5a8b 0%, #155a99 100%);
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+
+        .navbar-logo {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1e5a8b;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .navbar-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #1e5a8b 0%, #155a99 100%);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 77, 122, 0.75) 0%, rgba(45, 111, 160, 0.6) 100%),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .stats-bar {
+            background: #1e5a8b;
+            color: white;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #4ab2e8;
+            margin-bottom: 8px;
+        }
+
+        .services-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e5a8b;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 24px;
+        }
+
+        .service-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e5a8b;
+            margin-bottom: 12px;
+        }
+
+        .ai-section {
+            background: linear-gradient(135deg, #1e5a8b 0%, #155a99 100%);
+            padding: 60px 20px;
+            margin: 80px 0;
+        }
+
+        .ai-section h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .ai-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .pricing-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .pricing-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e5a8b;
+            margin-bottom: 50px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 14px;
+            padding: 30px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #4ab2e8;
+        }
+
+        .pricing-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e5a8b;
+            margin-bottom: 15px;
+        }
+
+        .pricing-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #4ab2e8;
+            margin-bottom: 8px;
+        }
+
+        .cta-final {
+            background: linear-gradient(135deg, #4ab2e8 0%, #1e5a8b 100%);
+            padding: 60px 20px;
+            text-align: center;
+            margin: 80px 0 0 0;
+        }
+
+        .cta-final h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: #1e5a8b;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .navbar-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-top">
+        🎯 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank" style="color:white;">naplesexperiences.com</a>
+    </div>
+
+    <nav>
+        <div class="navbar-container">
+            <div class="navbar-logo">🏨 Golden Tours International</div>
+            <ul class="navbar-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#pricing">Prezzi</a></li>
+            </ul>
+            <button class="btn-cta">Prenota Ora</button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Golden Tours International</h1>
+            <p>Scopri il lusso e l'eleganza a Sorrento</p>
+            <button class="btn-cta" onclick="document.getElementById('services').scrollIntoView();">Scopri i Servizi</button>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Anni di Ospitalità</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">⭐⭐⭐⭐⭐</div>
+            <div class="stat-label">Valutazione Ospiti</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Camere & Suite</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">2000+</div>
+            <div class="stat-label">Ospiti Annuali</div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <h2 class="section-title">Servizi Esclusivi</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Camere Lusso" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Camere Lusso</h3>
+                    <p class="service-card-desc">Suite panoramiche con vista mare, aria condizionata e servizi premium</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Spa & Wellness" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Spa & Wellness</h3>
+                    <p class="service-card-desc">Massaggi, trattamenti viso e percorsi benessere con prodotti naturali</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Ristorante Gourmet" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Ristorante Gourmet</h3>
+                    <p class="service-card-desc">Cucina di qualità con veduta sul Golfo e sul territorio di Sorrento</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Piscina" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Piscina</h3>
+                    <p class="service-card-desc">Piscina riscaldata con accesso privato o veduta panoramica</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Spiaggia Privata" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Spiaggia Privata</h3>
+                    <p class="service-card-desc">Accesso esclusivo alla spiaggia con lettini e servizi dedicati</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Concierge 24/7" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Concierge 24/7</h3>
+                    <p class="service-card-desc">Assistenza personalizzata per escursioni, trasporti e prenotazioni</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-section">
+        <div class="ai-container" style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;">
+            <div>
+                <h2>Assistente AI 24/7 Multilingua</h2>
+                <p>Rispondi istantaneamente alle prenotazioni in italiano, inglese, tedesco, francese e spagnolo. Aumenta le conversioni e riduci il carico del team.</p>
+                <button class="btn-cta" onclick="window.open('https://wa.me/393926917657', '_blank');">Attiva il Chatbot</button>
+            </div>
+            <div style="background:white; border-radius:14px; padding:20px; box-shadow:0 8px 30px rgba(0,0,0,0.15);">
+                <div style="display:flex; gap:10px; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid #eee;">
+                    <div style="width:36px; height:36px; background:linear-gradient(135deg, #4ab2e8 0%, #1e5a8b 100%); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:12px;">AI</div>
+                    <div>
+                        <div style="font-size:13px; font-weight:600; color:#1e5a8b;">Hotel Assistant</div>
+                        <div style="font-size:11px; color:#888;">Online</div>
+                    </div>
+                </div>
+                <div style="font-size:12px; color:#666; margin-bottom:15px;">
+                    <div style="background:#f0f0f0; padding:10px 14px; border-radius:8px; margin-bottom:12px;">Ciao! Quale camera preferisci?</div>
+                    <div style="background:#1e5a8b; color:white; padding:10px 14px; border-radius:8px; margin-bottom:12px; text-align:right;">Suite con vista mare</div>
+                    <div style="background:#f0f0f0; padding:10px 14px; border-radius:8px;">Perfetto! Disponibili 15-30 luglio...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <h2 class="pricing-title">Piani Experiences Srl</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Base</div>
+                <div class="pricing-price">€1.400</div>
+                <div style="font-size:12px; color:#999; margin-bottom:20px;">/anno</div>
+                <ul style="list-style:none; font-size:13px; color:#666;">
+                    <li style="padding:8px 0; border-bottom:1px solid #f0f0f0;">✓ Sito mobile-first</li>
+                    <li style="padding:8px 0; border-bottom:1px solid #f0f0f0;">✓ Booking integrato</li>
+                    <li style="padding:8px 0;">✓ SEO ottimizzazione</li>
+                </ul>
+                <button class="btn-cta" style="margin-top:20px; width:100%;">Scegli</button>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-name">Pro</div>
+                <div class="pricing-price">€2.500</div>
+                <div style="font-size:12px; color:#999; margin-bottom:20px;">/anno</div>
+                <ul style="list-style:none; font-size:13px; color:#666;">
+                    <li style="padding:8px 0; border-bottom:1px solid #f0f0f0;">✓ Tutto del Base</li>
+                    <li style="padding:8px 0; border-bottom:1px solid #f0f0f0;">✓ Chatbot AI</li>
+                    <li style="padding:8px 0;">✓ Google Ads</li>
+                </ul>
+                <button class="btn-cta" style="margin-top:20px; width:100%;">Scegli</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <h2>Pronto a Trasformare il Tuo Tour operator / DMC incoming?</h2>
+        <p>Aumenta le prenotazioni e riduci i costi operativi</p>
+        <a href="https://wa.me/393926917657" style="background:white; color:#1e5a8b; padding:14px 40px; border-radius:8px; text-decoration:none; font-weight:700; display:inline-block;">💬 Contattaci su WhatsApp</a>
+    </section>
+
+    <footer>
+        <p>© 2024 Golden Tours International. Demo realizzato da <a href="https://naplesexperiences.com" target="_blank" style="color:#4ab2e8;"><strong>Experiences Srl</strong></a></p>
+    </footer>
+</body>
+</html>
