@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sirenide Viaggi - Demo Experiences Srl</title>
+    <meta name="description" content="Sirenide Viaggi DMC - Incoming tour operator con oltre 35 anni di esperienza">
+    <meta name="demo:tags" content="tour operator,dmc,incoming,sorrento,dmctravel">
+    <meta name="demo:category" content="tour operator">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* BANNER DORATO */
+        .banner-top {
+            background: linear-gradient(90deg, #1e5a8b 0%, #13406b 100%);
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .banner-top a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dashed white;
+            transition: all 0.3s ease;
+        }
+
+        .banner-top a:hover {
+            border-bottom: 1px solid white;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 60%, 100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 0.6;
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* NAVBAR */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #1e5a8b;
+        }
+
+        .navbar-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .navbar-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-menu a:hover {
+            color: #1e5a8b;
+        }
+
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1e5a8b;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-menu a:hover::after {
+            width: 100%;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #1e5a8b 0%, #155a99 100%);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(30, 90, 139, 0.25);
+            background: linear-gradient(135deg, #155a99 0%, #1e5a8b 100%);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+            }
+
+            .navbar-container {
+                justify-content: space-between;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 90, 139, 0.75) 0%, rgba(19, 64, 107, 0.6) 100%),
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding: 40px 20px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 0.6s ease-out 0.2s forwards;
+            opacity: 1;
+        }
+
+        .hero .btn-cta {
+            background: linear-gradient(135deg, #2a7bb8 0%, #1e5a8b 100%);
+            padding: 14px 32px;
+            font-size: 15px;
+            animation: fadeInUp 0.6s ease-out 0.4s forwards;
+            opacity: 1;
+        }
+
+        .hero .btn-cta:hover {
+            background: linear-gradient(135deg, #1e5a8b 0%, #2a7bb8 100%);
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: #1e5a8b;
+            color: white;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0s; }
+        .stat-item:nth-child(2) { animation-delay: 0.15s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.45s; }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #4ab2e8;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        /* SEZIONE SERVIZI */
+        .services-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e5a8b;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 1;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0s; }
+        .service-card:nth-child(2) { animation-delay: 0.1s; }
+        .service-card:nth-child(3) { animation-delay: 0.2s; }
+        .service-card:nth-child(4) { animation-delay: 0.3s; }
+        .service-card:nth-child(5) { animation-delay: 0.4s; }
+        .service-card:nth-child(6) { animation-delay: 0.5s; }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 35px rgba(30, 90, 139, 0.15);
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-card-content {
+            padding: 24px;
+        }
+
+        .service-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e5a8b;
+            margin-bottom: 12px;
+        }
+
+        .service-card-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* AI CHAT SECTION */
+        .ai-section {
+            background: linear-gradient(135deg, #1e5a8b 0%, #155a99 100%);
+            padding: 60px 20px;
+            margin: 80px 0;
+        }
+
+        .ai-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .ai-content h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .ai-content p {
+            color: rgba(255,255,255,0.9);
+            font-size: 15px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            animation: fadeInUp 0.6s ease-out 0.1s forwards;
+            opacity: 1;
+        }
+
+        .ai-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .ai-features li {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 1;
+        }
+
+        .ai-features li:nth-child(1) { animation-delay: 0.2s; }
+        .ai-features li:nth-child(2) { animation-delay: 0.3s; }
+        .ai-features li:nth-child(3) { animation-delay: 0.4s; }
+
+        .ai-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ab2e8;
+            font-weight: 700;
+        }
+
+        .chat-demo {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #2a7bb8 0%, #1e5a8b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .chat-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e5a8b;
+        }
+
+        .chat-status {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.4;
+            animation: fadeInUp 0.4s ease-out forwards;
+            opacity: 1;
+        }
+
+        .message.bot {
+            background: #f0f0f0;
+            color: #333;
+            align-self: flex-start;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: #1e5a8b;
+            color: white;
+            align-self: flex-end;
+            max-width: 80%;
+        }
+
+        .message:nth-child(1) { animation-delay: 0s; }
+        .message:nth-child(2) { animation-delay: 0.2s; }
+        .message:nth-child(3) { animation-delay: 0.4s; }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            padding: 10px 14px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .ai-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-content h2 {
+                font-size: 24px;
+            }
+
+            .chat-demo {
+                order: -1;
+            }
+        }
+
+        /* SEZIONE PREZZI */
+        .pricing-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .pricing-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e5a8b;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 14px;
+            padding: 30px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #4ab2e8;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 1;
+        }
+
+        .pricing-card:nth-child(1) { animation-delay: 0s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.15s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+        .pricing-card:nth-child(4) { animation-delay: 0.45s; }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(30, 90, 139, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-top: 4px solid #1e5a8b;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-8px);
+        }
+
+        .pricing-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e5a8b;
+            margin-bottom: 15px;
+        }
+
+        .pricing-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #4ab2e8;
+            margin-bottom: 8px;
+        }
+
+        .pricing-period {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .pricing-commission {
+            font-size: 13px;
+            color: #666;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .pricing-limit {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA SECTION */
+        .cta-final {
+            background: linear-gradient(135deg, #2a7bb8 0%, #1e5a8b 100%);
+            padding: 60px 20px;
+            text-align: center;
+            margin: 80px 0 0 0;
+        }
+
+        .cta-final h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .cta-final p {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-out 0.1s forwards;
+            opacity: 1;
+        }
+
+        .btn-whatsapp {
+            background: white;
+            color: #1e5a8b;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInUp 0.6s ease-out 0.2s forwards;
+            opacity: 1;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1e5a8b;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #4ab2e8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .section-title,
+            .pricing-title,
+            .ai-content h2 {
+                font-size: 26px;
+            }
+
+            .navbar-menu {
+                display: none;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BANNER DORATO -->
+    <div class="banner-top">
+        🎯 DEMO GRATUITO realizzato da <strong>Experiences Srl</strong> — <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                ✈️ Sirenide Viaggi
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#destinations">Destinazioni</a></li>
+                <li><a href="#pricing">Soluzioni</a></li>
+            </ul>
+            <button class="btn-cta" onclick="document.getElementById('pricing').scrollIntoView();">
+                Richiedi Preventivo
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Sirenide Viaggi</h1>
+            <p>DMC e Tour Operator Incoming specializzato in esperienze autentiche del Sud Italia per agenzie estere</p>
+            <button class="btn-cta" onclick="document.getElementById('services').scrollIntoView();">
+                Scopri i Nostri Servizi
+            </button>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">35+</div>
+            <div class="stat-label">Anni di Esperienza</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5 Paesi</div>
+            <div class="stat-label">Copertura Linguistica</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Itinerari Curati</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10.000+</div>
+            <div class="stat-label">Ospiti Felici</div>
+        </div>
+    </section>
+
+    <!-- SERVIZI DEL RESORT -->
+    <section class="services-section" id="services">
+        <h2 class="section-title">Servizi Esclusivi DMC</h2>
+        <div class="services-grid">
+            <!-- Transfer e Trasporti -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1464219414224-2c42dfb54e11?w=800&q=80" alt="Transfer Privati" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Transfer Privati</h3>
+                    <p class="service-card-desc">Flotta di lusso con autisti professionali per trasferimenti aeroporti, hotel e tour privati</p>
+                </div>
+            </div>
+
+            <!-- Guide Esperte -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" alt="Guide Esperte" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Guide Esperte</h3>
+                    <p class="service-card-desc">Guide professioniste in 5+ lingue per visite personalizzate a Pompei, Capri, Costiera</p>
+                </div>
+            </div>
+
+            <!-- Pacchetti Hotel -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Selezione Hotel" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Partnership Hotel</h3>
+                    <p class="service-card-desc">Rete di hotel 3-5 stelle di proprietà e partner strategici in tutta la regione</p>
+                </div>
+            </div>
+
+            <!-- Esperienze Curate -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Esperienze" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Esperienze Curate</h3>
+                    <p class="service-card-desc">Cooking class, wine tasting, yacht privato, escursioni mare e cultura</p>
+                </div>
+            </div>
+
+            <!-- Yacht e Crociere -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Yacht" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Yacht Privati</h3>
+                    <p class="service-card-desc">Crociere private intorno a Capri, Ischia e Procida con crew professionale</p>
+                </div>
+            </div>
+
+            <!-- Matrimoni e Eventi -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1519921839217-1830bda93aa8?w=800&q=80" alt="Matrimoni" class="service-card-image" loading="lazy">
+                <div class="service-card-content">
+                    <h3 class="service-card-title">Matrimoni & Eventi</h3>
+                    <p class="service-card-desc">Organizzazione completa di cerimonie, ricevimenti e team building esclusivi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI CHAT SECTION -->
+    <section class="ai-section" id="destinations">
+        <div class="ai-container">
+            <div class="ai-content">
+                <h2>Assistente IA Multilingue 24/7</h2>
+                <p>Rispondi istantaneamente alle richieste di tour operator e agenzie di viaggio in italiano, inglese, tedesco, francese e spagnolo. Gestione automatica delle prenotazioni e coordinamento trasporti.</p>
+
+                <ul class="ai-features">
+                    <li>Risposte in tempo reale 24/7</li>
+                    <li>Gestione automatica preventivi</li>
+                    <li>5 lingue supportate</li>
+                </ul>
+
+                <button class="btn-cta" onclick="window.open('https://wa.me/393926917657', '_blank');">
+                    Attiva il Chatbot
+                </button>
+            </div>
+
+            <div class="chat-demo">
+                <div class="chat-header">
+                    <div class="chat-avatar">AI</div>
+                    <div>
+                        <div class="chat-title">Sirenide Assistant</div>
+                        <div class="chat-status">Online</div>
+                    </div>
+                </div>
+
+                <div class="chat-messages">
+                    <div class="message bot">
+                        Buongiorno! 👋 Sirenide Viaggi. Come posso organizzare la vostra esperienza nel Sud Italia?
+                    </div>
+                    <div class="message user">
+                        Cercate un tour di 5 giorni Sorrento-Capri-Costiera?
+                    </div>
+                    <div class="message bot">
+                        Perfetto! Abbiamo 50+ itinerari per questo. Hotel 4/5 stelle, guide, yacht e auto privata inclusi. Qual è il vostro budget?
+                    </div>
+                </div>
+
+                <div class="typing-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE PREZZI -->
+    <section class="pricing-section" id="pricing">
+        <h2 class="pricing-title">Soluzioni DMC per Agenzie Estere</h2>
+
+        <div class="pricing-grid">
+            <!-- PACCHETTO BASE -->
+            <div class="pricing-card">
+                <div class="pricing-name">Base</div>
+                <div class="pricing-price">€800</div>
+                <div class="pricing-period">/anno</div>
+                <div class="pricing-commission">+ 12% commissione</div>
+                <div class="pricing-limit">fino a 500 pax/anno</div>
+                <ul class="pricing-features">
+                    <li>✓ Portale agenzie dedicato</li>
+                    <li>✓ 20 itinerari pre-costruiti</li>
+                    <li>✓ Transfer e guide</li>
+                    <li>✓ Supporto via email</li>
+                </ul>
+                <button class="btn-cta" onclick="window.open('https://wa.me/393926917657?text=Interessato%20a%20Sirenide%20Base', '_blank');">
+                    Scegli Base
+                </button>
+            </div>
+
+            <!-- PACCHETTO ADVANCED -->
+            <div class="pricing-card">
+                <div class="pricing-name">Advanced</div>
+                <div class="pricing-price">€1.500</div>
+                <div class="pricing-period">/anno</div>
+                <div class="pricing-commission">+ 8% commissione</div>
+                <div class="pricing-limit">fino a 2.000 pax/anno</div>
+                <ul class="pricing-features">
+                    <li>✓ Tutto del Base</li>
+                    <li>✓ Itinerari custom</li>
+                    <li>✓ Account manager dedicato</li>
+                    <li>✓ Chatbot AI multilingua</li>
+                </ul>
+                <button class="btn-cta" onclick="window.open('https://wa.me/393926917657?text=Interessato%20a%20Sirenide%20Advanced', '_blank');">
+                    Scegli Advanced
+                </button>
+            </div>
+
+            <!-- PACCHETTO PRO (FEATURED) -->
+            <div class="pricing-card featured">
+                <div class="pricing-name">Pro ⭐</div>
+                <div class="pricing-price">€2.500</div>
+                <div class="pricing-period">/anno</div>
+                <div class="pricing-commission">+ 5% commissione</div>
+                <div class="pricing-limit">fino a 5.000 pax/anno</div>
+                <ul class="pricing-features">
+                    <li>✓ Tutto di Advanced</li>
+                    <li>✓ 50+ itinerari su misura</li>
+                    <li>✓ Yacht privati inclusi</li>
+                    <li>✓ Supporto 24/7 WhatsApp</li>
+                </ul>
+                <button class="btn-cta" onclick="window.open('https://wa.me/393926917657?text=Interessato%20a%20Sirenide%20Pro', '_blank');">
+                    Scegli Pro
+                </button>
+            </div>
+
+            <!-- PACCHETTO ENTERPRISE -->
+            <div class="pricing-card">
+                <div class="pricing-name">Enterprise</div>
+                <div class="pricing-price">Personalizzato</div>
+                <div class="pricing-period">/anno</div>
+                <div class="pricing-commission">+ 2% commissione</div>
+                <div class="pricing-limit">oltre 5.000 pax/anno</div>
+                <ul class="pricing-features">
+                    <li>✓ Soluzione white-label</li>
+                    <li>✓ Team dedicato</li>
+                    <li>✓ API integration</li>
+                    <li>✓ Supporto prioritario</li>
+                </ul>
+                <button class="btn-cta" onclick="window.open('https://wa.me/393926917657?text=Interessato%20a%20Sirenide%20Enterprise', '_blank');">
+                    Contatta Sales
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINALE -->
+    <section class="cta-final">
+        <h2>Pronto a Offrire il Meglio del Sud Italia?</h2>
+        <p>Aumenta il portfolio dei tuoi clienti con itinerari esclusivi e servizi premium 24/7</p>
+        <a href="https://wa.me/393926917657?text=Ciao%20Sirenide!%20Vorrei%20informazioni%20sulle%20vostre%20soluzioni%20DMC." class="btn-whatsapp" target="_blank">
+            💬 Contattaci su WhatsApp
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Sirenide Viaggi. Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+        <p style="margin-top: 10px; font-size: 12px;">📞 <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> | 🌐 naplesexperiences.com | 📧 info@sirenide.com</p>
+    </footer>
+
+<script>
+setTimeout(function(){
+  document.querySelectorAll('*').forEach(function(el){
+    var cs = window.getComputedStyle(el);
+    if (parseFloat(cs.opacity) < 0.05 && cs.display !== 'none' && cs.visibility !== 'hidden') {
+      el.style.opacity = '1';
+      el.style.animationPlayState = 'running';
+      el.style.transform = 'none';
+    }
+  });
+}, 1500);
+</script>
+</body>
+</html>
