@@ -19,22 +19,22 @@ Ho visto che offrite una splendida esperienza a Sorrento con tariffe competitive
 
 Ho preparato un'anteprima gratuita del vostro sito con:
 
-✅ **Booking engine integrato** (zero overbooking, gestione in tempo reale)
-✅ **Assistente AI multilingua 24/7** (IT/EN/DE/FR/ES) per risposte istantanee
-✅ **Channel Manager automatico** su Booking.com, Expedia, Agoda, GetYourGuide, Viator
+✅ Booking engine integrato (zero overbooking, gestione in tempo reale)
+✅ Assistente AI multilingua 24/7 (IT/EN/DE/FR/ES) per risposte istantanee
+✅ Channel Manager automatico su Booking.com, Expedia, Agoda, GetYourGuide, Viator
 
 Non è una proposta—è un regalo per vedere cosa è possibile.
 
-👉 **Vedetela qui: https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-royal-sorrento-demo-experiences/**
+👉 Vedetela qui: https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-royal-sorrento-demo-experiences/
 
 (Notate il chatbot che risponde alle domande sulle camere, disponibilità, servizi—tutto in automatico)
 
-**Punti di miglioramento identificati nel vostro sito attuale:**
+Punti di miglioramento identificati nel vostro sito attuale:
 - Incerto (stack classico)
 - Mobile performance: Sì (SEO 85)
 - Booking engine: Sì (d-edge|decms)
 
-**I numeri che cambiano con Experiences:**
+I numeri che cambiano con Experiences:
 - Le prenotazioni online raddoppiano (booking integrato)
 - Si risparmia 25 ore/mese di customer service
 - Disponibilità su 8+ OTA in automatico
