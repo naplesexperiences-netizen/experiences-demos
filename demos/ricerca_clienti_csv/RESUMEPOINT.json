@@ -1,0 +1,286 @@
+{
+  "last_update": "2026-06-11T15:00:00Z",
+  "cycle": 3,
+  "batch": 2,
+  "session_id": "claude-sonnet-4-6",
+  "current_csv_file": "CSV_Golfo_Napoli_Sorrento.csv",
+  "cycle_completed": false,
+  "processed_companies": [
+    {
+      "cycle": 1,
+      "name": "Sirenide Viaggi",
+      "priority": 1,
+      "category": "Tour operator incoming / DMC",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/sirenide-viaggi-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Grand Hotel Excelsior Vittoria",
+      "priority": 2,
+      "category": "Hotel 5 stelle Luxury (LHW)",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-excelsior-vittoria-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Hotel Mediterraneo Sorrento",
+      "priority": 2,
+      "category": "Hotel 5 stelle",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mediterraneo-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Grand Hotel Capodimonte Sorrento",
+      "priority": 2,
+      "category": "Hotel 4 stelle superior",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-capodimonte-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Grand Hotel Royal Sorrento",
+      "priority": 2,
+      "category": "Hotel 5 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-royal-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Grand Hotel Cocumella",
+      "priority": 1,
+      "category": "Hotel 5 stelle (Small Luxury Hotels)",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cocumella-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Golden Tours International",
+      "priority": 3,
+      "category": "Tour operator / DMC incoming",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/golden-tours-international-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Grand Hotel Cesare Augusto",
+      "priority": 1,
+      "category": "Hotel 4 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cesare-augusto-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Hotel Lorelei et Londres",
+      "priority": 2,
+      "category": "Hotel 5 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-lorelei-et-londres-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Grand Hotel La Favorita",
+      "priority": 1,
+      "category": "Hotel 5 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-favorita-demo-experiences/"
+    },
+    {
+      "cycle": 1,
+      "name": "Hotel Continental Sorrento",
+      "priority": 1,
+      "category": "Hotel 4 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-continental-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Hotel Antiche Mura Sorrento",
+      "priority": 1,
+      "category": "Hotel 4 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-antiche-mura-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Grand Hotel La Pace",
+      "priority": 1,
+      "category": "Hotel 5 stelle",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-pace-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Bleu Village Resort & Residence",
+      "priority": 1,
+      "category": "Resort & Residence",
+      "city": "Meta di Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/bleu-village-resort-residence-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Grand Hotel Parker's",
+      "priority": 1,
+      "category": "Hotel 5 stelle Lusso",
+      "city": "Napoli",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-parkers-napoli-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Hotel Royal Continental",
+      "priority": 1,
+      "category": "Hotel 4 stelle",
+      "city": "Napoli",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-royal-continental-napoli-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Torres Travel",
+      "priority": 2,
+      "category": "Tour operator incoming Pompei",
+      "city": "Pompei",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/torres-travel-pompei-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Grand Hotel Aminta",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-aminta-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Grand Hotel Ambasciatori",
+      "priority": 3,
+      "category": "Hotel 5 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-ambasciatori-demo-experiences/"
+    },
+    {
+      "cycle": 2,
+      "name": "Best Western Hotel La Solara",
+      "priority": 3,
+      "category": "Hotel 4 stelle (catena BW)",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/best-western-hotel-la-solara-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 1,
+      "name": "Hotel Crawford",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-crawford-santagnello-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 1,
+      "name": "Vestours",
+      "priority": 2,
+      "category": "Tour operator",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/vestours-santagnello-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 1,
+      "name": "Karsana Travel",
+      "priority": 2,
+      "category": "Tour operator",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/karsana-travel-santagnello-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 1,
+      "name": "Hotel Giosue a Mare",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Meta di Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-giosue-a-mare-meta-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 1,
+      "name": "Panorama Palace Hotel",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Meta di Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/panorama-palace-hotel-meta-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 2,
+      "name": "Hotel Club Sorrento",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Sant'Agnello",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-club-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 2,
+      "name": "Grand Hotel Vesuvio Sorrento",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-vesuvio-sorrento-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 2,
+      "name": "Sorrento Tourist Office",
+      "priority": 2,
+      "category": "Web tour operator",
+      "city": "Sorrento",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/sorrento-tourist-office-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 2,
+      "name": "Hotel Sporting Vico Equense",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Vico Equense",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-sporting-vico-equense-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 2,
+      "name": "Hotel Astoria Vico Equense",
+      "priority": 2,
+      "category": "Hotel 3 stelle",
+      "city": "Vico Equense",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-astoria-vico-equense-demo-experiences/"
+    }
+  ],
+  "next_companies_to_process_cycle3_batch3": [
+    {
+      "name": "Hotel Mary",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Vico Equense",
+      "email": "info@hotelmaryvico.com"
+    },
+    {
+      "name": "Hotel Capo La Gala",
+      "priority": 2,
+      "category": "Hotel 5 stelle",
+      "city": "Vico Equense",
+      "email": "info@hotelcapolagala.com"
+    }
+  ],
+  "stats": {
+    "total_companies_in_csv": 103,
+    "companies_with_priority_1_3": 32,
+    "companies_processed_total": 30,
+    "demo_folders_created": 30,
+    "companies_remaining_priority_1_3": 2,
+    "next_batch": "Ciclo 3 Batch 3 — 2 aziende rimanenti priority 1-2",
+    "note": "Ciclo 1: 11 aziende, Ciclo 2: 10 aziende, Ciclo 3 Batch 1: 5 aziende, Ciclo 3 Batch 2: 4 aziende (30 totali)"
+  },
+  "notes": "CICLO 3 BATCH 2 COMPLETATO: 5 nuove demo create con template Sirenide Viaggi (Hotel Club Sorrento, Grand Hotel Vesuvio Sorrento, Sorrento Tourist Office, Hotel Sporting Vico Equense, Hotel Astoria Vico Equense). CSV aggiornato con link demo. Email draft create con nuovo footer semplificato. Parker's redesigned con luxury design e immagini Campania. Rimangono 2 aziende priority 1-2 da processare. Footer standardizzato: Mario Esposito / Experiences Srl / WhatsApp / Rispondi con CANCELLA."
+}
