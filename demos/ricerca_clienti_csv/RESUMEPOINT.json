@@ -1,0 +1,80 @@
+{
+  "last_update": "2026-06-11T12:00:00Z",
+  "session_id": "claude-gracious-gates-7lzr3i",
+  "current_csv_file": "CSV_Golfo_Napoli_Sorrento.csv",
+  "processed_companies": [
+    {
+      "row_number": 1,
+      "name": "Sirenide Viaggi",
+      "priority": 1,
+      "status": "completed",
+      "demo_created": "2026-06-11",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/sirenide-viaggi-demo-experiences/",
+      "email_draft": "EMAIL_SIRENIDE_VIAGGI.txt",
+      "email_recipient": "info@sirenide.com",
+      "weaknesses_identified": [
+        "Sito pre-2020 (Stack: core-js)",
+        "Mobile performance media (PageSpeed 62/100)",
+        "Nessun booking engine integrato",
+        "Nessun chatbot multilingua"
+      ],
+      "strengths_highlighted": [
+        "35+ anni di esperienza incoming",
+        "Copertura completa Penisola Sorrentina, Costiera, Isole",
+        "Team esperto in 5 lingue",
+        "Partnership hotel di proprietà"
+      ]
+    }
+  ],
+  "next_companies_to_process": [
+    {
+      "row_number": 2,
+      "name": "Grand Hotel Excelsior Vittoria",
+      "priority": 2,
+      "category": "Hotel 5 stelle Luxury (LHW)",
+      "city": "Sorrento",
+      "email": "fb@exvitt.it"
+    },
+    {
+      "row_number": 3,
+      "name": "Hotel Mediterraneo Sorrento",
+      "priority": 2,
+      "category": "Hotel 5 stelle",
+      "city": "Sant'Agnello",
+      "email": "info@mediterraneosorrento.com"
+    },
+    {
+      "row_number": 5,
+      "name": "Grand Hotel Capodimonte Sorrento",
+      "priority": 2,
+      "category": "Hotel",
+      "city": "Sorrento",
+      "email": "TBD"
+    },
+    {
+      "row_number": 6,
+      "name": "Grand Hotel Royal Sorrento",
+      "priority": 2,
+      "category": "Hotel",
+      "city": "Sorrento",
+      "email": "TBD"
+    },
+    {
+      "row_number": 9,
+      "name": "Golden Tours International",
+      "priority": 3,
+      "category": "Tour operator",
+      "city": "Sorrento",
+      "email": "TBD"
+    }
+  ],
+  "stats": {
+    "total_companies_in_csv": 103,
+    "companies_with_priority_1_3": 32,
+    "companies_processed": 1,
+    "companies_remaining": 31,
+    "estimated_time_per_company": "25-30 minutes",
+    "next_resume_in_hours": 5
+  },
+  "notes": "Primo demo completato per Sirenide Viaggi (tour operator DMC). Personalizzato con colori blu navy, servizi DMC specifici, chat multilingua. Email bozza creata. CSV aggiornato. Pronti per prossima sessione."
+}
