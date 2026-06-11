@@ -1,39 +1,29 @@
 {
-  "last_update": "2026-06-11T12:00:00Z",
+  "last_update": "2026-06-11T12:30:00Z",
+  "cycle": 1,
   "session_id": "claude-gracious-gates-7lzr3i",
   "current_csv_file": "CSV_Golfo_Napoli_Sorrento.csv",
+  "cycle_completed": true,
   "processed_companies": [
     {
       "row_number": 1,
       "name": "Sirenide Viaggi",
       "priority": 1,
+      "category": "Tour operator incoming / DMC",
+      "city": "Sorrento",
       "status": "completed",
       "demo_created": "2026-06-11",
       "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/sirenide-viaggi-demo-experiences/",
-      "email_draft": "EMAIL_SIRENIDE_VIAGGI.txt",
-      "email_recipient": "info@sirenide.com",
-      "weaknesses_identified": [
-        "Sito pre-2020 (Stack: core-js)",
-        "Mobile performance media (PageSpeed 62/100)",
-        "Nessun booking engine integrato",
-        "Nessun chatbot multilingua"
-      ],
-      "strengths_highlighted": [
-        "35+ anni di esperienza incoming",
-        "Copertura completa Penisola Sorrentina, Costiera, Isole",
-        "Team esperto in 5 lingue",
-        "Partnership hotel di proprietà"
-      ]
-    }
-  ],
-  "next_companies_to_process": [
+      "email_draft": "EMAIL_SIRENIDE_VIAGGI.txt"
+    },
     {
       "row_number": 2,
       "name": "Grand Hotel Excelsior Vittoria",
       "priority": 2,
       "category": "Hotel 5 stelle Luxury (LHW)",
       "city": "Sorrento",
-      "email": "fb@exvitt.it"
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-excelsior-vittoria-demo-experiences/"
     },
     {
       "row_number": 3,
@@ -41,7 +31,8 @@
       "priority": 2,
       "category": "Hotel 5 stelle",
       "city": "Sant'Agnello",
-      "email": "info@mediterraneosorrento.com"
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mediterraneo-sorrento-demo-experiences/"
     },
     {
       "row_number": 5,
@@ -49,7 +40,8 @@
       "priority": 2,
       "category": "Hotel",
       "city": "Sorrento",
-      "email": "TBD"
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-capodimonte-sorrento-demo-experiences/"
     },
     {
       "row_number": 6,
@@ -57,7 +49,8 @@
       "priority": 2,
       "category": "Hotel",
       "city": "Sorrento",
-      "email": "TBD"
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-royal-sorrento-demo-experiences/"
     },
     {
       "row_number": 9,
@@ -65,16 +58,126 @@
       "priority": 3,
       "category": "Tour operator",
       "city": "Sorrento",
-      "email": "TBD"
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/golden-tours-international-demo-experiences/"
+    },
+    {
+      "row_number": 8,
+      "name": "Grand Hotel Cocumella",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento",
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cocumella-demo-experiences/"
+    },
+    {
+      "row_number": 11,
+      "name": "Grand Hotel Cesare Augusto",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento",
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cesare-augusto-demo-experiences/"
+    },
+    {
+      "row_number": 13,
+      "name": "Grand Hotel La Favorita",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento",
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-favorita-demo-experiences/"
+    },
+    {
+      "row_number": 15,
+      "name": "Hotel Continental Sorrento",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento",
+      "status": "completed",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-continental-sorrento-demo-experiences/"
+    }
+  ],
+  "next_companies_to_process_cycle2": [
+    {
+      "row_number": 19,
+      "name": "Hotel Antiche Mura Sorrento",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 27,
+      "name": "Grand Hotel La Pace",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 42,
+      "name": "Bleu Village Resort & Residence",
+      "priority": 1,
+      "category": "Resort",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 88,
+      "name": "Grand Hotel Parker's",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 90,
+      "name": "Hotel Royal Continental",
+      "priority": 1,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 2,
+      "name": "Grand Hotel Capodimonte Sorrento",
+      "priority": 2,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 7,
+      "name": "Torres Travel",
+      "priority": 2,
+      "category": "Tour operator",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 10,
+      "name": "Grand Hotel Aminta",
+      "priority": 2,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 12,
+      "name": "Hotel Lorelei et Londres",
+      "priority": 2,
+      "category": "Hotel",
+      "city": "Sorrento"
+    },
+    {
+      "row_number": 14,
+      "name": "Grand Hotel Ambasciatori",
+      "priority": 3,
+      "category": "Hotel",
+      "city": "Sorrento"
     }
   ],
   "stats": {
     "total_companies_in_csv": 103,
     "companies_with_priority_1_3": 32,
-    "companies_processed": 1,
-    "companies_remaining": 31,
-    "estimated_time_per_company": "25-30 minutes",
-    "next_resume_in_hours": 5
+    "companies_processed_cycle_1": 10,
+    "companies_remaining": 22,
+    "estimated_time_per_company": "15-20 minutes (batch mode)",
+    "next_cycle_in_hours": 5,
+    "next_cycle_start_time": "2026-06-11T17:30:00Z"
   },
-  "notes": "Primo demo completato per Sirenide Viaggi (tour operator DMC). Personalizzato con colori blu navy, servizi DMC specifici, chat multilingua. Email bozza creata. CSV aggiornato. Pronti per prossima sessione."
+  "notes": "CICLO 1 COMPLETATO: 10 demo create (1 DMC + 8 hotel + 1 tour operator). CSV aggiornato con link demo. Tutti i file generati e pushati su main per GitHub Pages. Prossimo ciclo: 5 ore, altre 10 aziende priority 1-3. Generator script disponibile (gen_batch_demos.py, gen_batch_demos_v2.py)."
 }
