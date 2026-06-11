@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Crawford × Experiences – Demo</title>
+<style>
+  :root {
+    --primary: #1a3a5f;
+    --secondary: #c0953a;
+    --accent: #c0953a;
+    --light: #f5f8fc;
+    --dark: #0d2035;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; color:#333; background:#fff; }
+
+  /* NAVBAR */
+  nav {
+    position:fixed; top:0; width:100%; background:rgba(255,255,255,0.97);
+    backdrop-filter:blur(10px); z-index:100; padding:14px 40px;
+    display:flex; justify-content:space-between; align-items:center;
+    box-shadow:0 2px 20px rgba(0,0,0,0.08);
+  }
+  .nav-brand { font-size:1.1rem; font-weight:700; color:var(--primary); }
+  .nav-badge {
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff; font-size:0.7rem; font-weight:700; padding:4px 10px;
+    border-radius:20px; letter-spacing:0.5px;
+  }
+  .nav-cta {
+    background:var(--accent); color:#fff; border:none; padding:9px 22px;
+    border-radius:25px; font-weight:700; cursor:pointer; font-size:0.88rem;
+    text-decoration:none; display:inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform:translateY(-1px); box-shadow:0 4px 15px rgba(0,0,0,0.2); }
+
+  /* HERO */
+  .hero {
+    height:100vh; position:relative; overflow:hidden;
+    background:var(--dark);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:url('https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg') center/cover no-repeat;
+    opacity:0.55;
+  }
+  .hero-content {
+    position:relative; z-index:2; text-align:center;
+    color:#fff; padding:0 20px; max-width:800px;
+  }
+  .hero-badge {
+    display:inline-block; background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.4);
+    color:#fff; font-size:0.8rem; font-weight:600; padding:6px 16px;
+    border-radius:20px; margin-bottom:20px; letter-spacing:1px; text-transform:uppercase;
+  }
+  .hero-content h1 { font-size:clamp(2rem,5vw,3.8rem); font-weight:800; line-height:1.15; margin-bottom:18px; text-shadow:0 2px 20px rgba(0,0,0,0.4); }
+  .hero-content p { font-size:clamp(1rem,2.5vw,1.3rem); opacity:0.92; margin-bottom:32px; line-height:1.6; }
+  .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary {
+    background:linear-gradient(135deg,var(--accent),var(--secondary));
+    color:#fff; padding:15px 36px; border-radius:30px; font-weight:700;
+    text-decoration:none; font-size:1rem; border:none; cursor:pointer;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 25px rgba(0,0,0,0.3); }
+  .btn-secondary {
+    background:rgba(255,255,255,0.15); backdrop-filter:blur(10px);
+    color:#fff; padding:15px 36px; border-radius:30px; font-weight:600;
+    text-decoration:none; font-size:1rem; border:2px solid rgba(255,255,255,0.5);
+    transition:background 0.2s;
+  }
+  .btn-secondary:hover { background:rgba(255,255,255,0.25); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background:linear-gradient(135deg,var(--primary),var(--dark));
+    padding:40px; display:flex; justify-content:center;
+    gap:60px; flex-wrap:wrap;
+  }
+  .stat-item { text-align:center; color:#fff; }
+  .stat-num { display:block; font-size:2.2rem; font-weight:800; color:var(--accent); }
+  .stat-label { font-size:0.82rem; opacity:0.85; text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; display:block; }
+
+  /* SECTION */
+  .section { padding:80px 40px; max-width:1200px; margin:0 auto; }
+  .section-tag {
+    display:inline-block; background:var(--light); color:var(--primary);
+    font-size:0.75rem; font-weight:700; padding:5px 14px;
+    border-radius:15px; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;
+  }
+  .section h2 { font-size:clamp(1.8rem,4vw,2.8rem); color:var(--dark); margin-bottom:16px; }
+  .section .lead { font-size:1.1rem; color:#555; line-height:1.7; max-width:700px; }
+
+  /* ABOUT */
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  @media(max-width:768px) { .about-grid { grid-template-columns:1fr; } }
+  .about-img {
+    border-radius:16px; overflow:hidden; height:420px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.15);
+  }
+  .about-img img { width:100%; height:100%; object-fit:cover; }
+  .highlights-list { list-style:none; margin-top:24px; }
+  .highlights-list li {
+    padding:10px 0; border-bottom:1px solid #eee; color:#444;
+    font-size:0.95rem;
+  }
+  .highlights-list li::before { color:var(--secondary); font-weight:700; }
+
+  /* SERVICES */
+  .services-bg { background:var(--light); padding:80px 40px; }
+  .services-grid {
+    max-width:1200px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:28px; margin-top:48px;
+  }
+  .service-card {
+    background:#fff; border-radius:16px; overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    transition:transform 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(0,0,0,0.14); }
+  .service-img {
+    height:220px; background-size:cover; background-position:center;
+    background-color:var(--light);
+  }
+  .service-body { padding:22px; }
+  .service-body h3 { font-size:1.1rem; color:var(--dark); margin-bottom:8px; }
+  .service-body p { font-size:0.9rem; color:#666; line-height:1.6; }
+
+  /* CHATBOT */
+  .chatbot-section {
+    background:linear-gradient(135deg,var(--dark),var(--primary));
+    padding:80px 40px; text-align:center; color:#fff;
+  }
+  .chatbot-window {
+    max-width:600px; margin:40px auto 0;
+    background:rgba(255,255,255,0.1); backdrop-filter:blur(10px);
+    border-radius:20px; padding:28px; border:1px solid rgba(255,255,255,0.2);
+    text-align:left;
+  }
+  .chat-msg { display:flex; gap:14px; margin-bottom:16px; }
+  .chat-avatar {
+    width:40px; height:40px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--secondary));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; flex-shrink:0;
+  }
+  .chat-bubble {
+    background:rgba(255,255,255,0.15); border-radius:12px 12px 12px 4px;
+    padding:12px 16px; font-size:0.9rem; line-height:1.5;
+    border:1px solid rgba(255,255,255,0.15);
+  }
+  .chat-input {
+    display:flex; gap:10px; margin-top:16px;
+    background:rgba(255,255,255,0.1); border-radius:30px; padding:8px 12px;
+    border:1px solid rgba(255,255,255,0.2);
+  }
+  .chat-input input {
+    flex:1; background:none; border:none; color:#fff; outline:none;
+    font-size:0.9rem; padding:4px;
+  }
+  .chat-input input::placeholder { color:rgba(255,255,255,0.5); }
+  .chat-send {
+    background:var(--accent); color:#fff; border:none; border-radius:20px;
+    padding:6px 18px; cursor:pointer; font-weight:600; font-size:0.85rem;
+  }
+
+  /* PRICING */
+  .pricing-section { padding:80px 40px; background:#fafafa; }
+  .pricing-grid {
+    max-width:1200px; margin:48px auto 0;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+  }
+  .plan {
+    background:#fff; border-radius:16px; padding:36px 28px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    border:2px solid transparent; text-align:center;
+    transition:transform 0.3s, border-color 0.3s;
+  }
+  .plan:hover { transform:translateY(-6px); border-color:var(--accent); }
+  .plan.featured {
+    background:linear-gradient(135deg,var(--primary),var(--dark));
+    color:#fff; border-color:var(--accent);
+    transform:scale(1.04);
+  }
+  .plan-name { font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; opacity:0.7; }
+  .plan-price { font-size:2.4rem; font-weight:800; color:var(--accent); margin:12px 0 4px; }
+  .plan.featured .plan-price { color:#ffd700; }
+  .plan-sub { font-size:0.82rem; opacity:0.65; margin-bottom:24px; }
+  .plan-features { list-style:none; font-size:0.88rem; text-align:left; margin-bottom:28px; }
+  .plan-features li { padding:7px 0; border-bottom:1px solid rgba(0,0,0,0.06); }
+  .plan.featured .plan-features li { border-color:rgba(255,255,255,0.15); }
+  .plan-features li::before { content:"✓ "; color:var(--secondary); font-weight:700; }
+  .plan.featured .plan-features li::before { color:#ffd700; }
+  .plan-btn {
+    display:block; padding:12px; border-radius:25px;
+    background:var(--accent); color:#fff; text-align:center;
+    font-weight:700; text-decoration:none; font-size:0.9rem;
+    transition:opacity 0.2s;
+  }
+  .plan-btn:hover { opacity:0.88; }
+  .plan.featured .plan-btn { background:#ffd700; color:#333; }
+
+  /* CTA */
+  .cta-section {
+    background:linear-gradient(135deg,var(--secondary),var(--primary));
+    padding:80px 40px; text-align:center; color:#fff;
+  }
+  .cta-section h2 { font-size:2.4rem; font-weight:800; margin-bottom:16px; }
+  .cta-section p { font-size:1.1rem; opacity:0.9; max-width:600px; margin:0 auto 36px; }
+
+  /* FOOTER */
+  footer {
+    background:var(--dark); color:rgba(255,255,255,0.7);
+    padding:36px 40px; text-align:center; font-size:0.85rem;
+  }
+  footer a { color:var(--accent); text-decoration:none; }
+  .demo-watermark {
+    display:inline-block; background:rgba(255,255,255,0.1);
+    padding:6px 16px; border-radius:20px; font-size:0.75rem;
+    margin-top:10px; border:1px solid rgba(255,255,255,0.15);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Hotel Crawford</span>
+  <span class="nav-badge">⚡ DEMO EXPERIENCES</span>
+  <a href="https://naplesexperiences.com" class="nav-cta">Prenota Direttamente →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Demo Esclusiva · Experiences Srl</div>
+    <h1>Hotel Crawford</h1>
+    <p>Hotel rinnovato sul Corso Crawford · Terrazza panoramica · A 2 min dal centro di Sorrento</p>
+    <div class="hero-btns">
+      <a href="https://naplesexperiences.com" class="btn-primary">Prenota Direttamente</a>
+      <a href="#about" class="btn-secondary">Scopri di più ↓</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">4★</span><span class="stat-label">Stelle</span></div>
+<div class="stat-item"><span class="stat-num">2016</span><span class="stat-label">Anno Ristrutturazione</span></div>
+<div class="stat-item"><span class="stat-num">2 min</span><span class="stat-label">Dal Centro di Sorrento</span></div>
+<div class="stat-item"><span class="stat-num">SEO 83</span><span class="stat-label">Score Web Attuale</span></div>
+</div>
+
+<div id="about" class="section">
+  <div class="about-grid">
+    <div>
+      <span class="section-tag">Chi Siamo</span>
+      <h2>Hotel Crawford</h2>
+      <p class="lead">L'Hotel Crawford è un elegante 4 stelle sul Corso Marion Crawford 77 a Sant'Agnello, rinnovato nel 2016. Con la sua terrazza panoramica sul Golfo di Napoli, camere moderne e posizione privilegiata a 2 minuti dal centro di Sorrento, è una scelta ideale per soggiorni di qualità nella Penisola Sorrentina.</p>
+      <ul class="highlights-list">
+        <li>✓ Ristrutturato 2016 — tutto nuovo</li>
+<li>✓ Terrazza panoramica sul Golfo</li>
+<li>✓ 2 minuti a piedi da Sorrento</li>
+<li>✓ Gestione indipendente familiare</li>
+<li>✓ Zero commissioni OTA con prenotazione diretta</li>
+      </ul>
+    </div>
+    <div class="about-img">
+      <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="Hotel Crawford — about" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<div class="services-bg">
+  <div style="max-width:1200px;margin:0 auto">
+    <span class="section-tag">I Nostri Servizi</span>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);color:var(--dark);margin-bottom:12px;">Cosa offriamo con Experiences</h2>
+    <p class="lead" style="color:#555;">Ogni servizio potenziato dall'intelligenza artificiale per massimizzare prenotazioni e soddisfazione degli ospiti.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+  <div class="service-img" style="background-image:url('https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg')"></div>
+  <div class="service-body">
+    <h3>Camere Vista Mare</h3>
+    <p>Camere rinnovate con balcone e vista panoramica sul Golfo di Napoli e Vesuvio</p>
+  </div>
+</div>
+<div class="service-card">
+  <div class="service-img" style="background-image:url('https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg')"></div>
+  <div class="service-body">
+    <h3>Terrazza Panoramica</h3>
+    <p>Terrazza con vista mozzafiato: colazioni, aperitivi e relax con il Golfo di fronte</p>
+  </div>
+</div>
+<div class="service-card">
+  <div class="service-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg')"></div>
+  <div class="service-body">
+    <h3>Posizione Privilegiata</h3>
+    <p>Corso Crawford nel cuore di Sant'Agnello, a 2 minuti a piedi dal centro di Sorrento</p>
+  </div>
+</div>
+<div class="service-card">
+  <div class="service-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg')"></div>
+  <div class="service-body">
+    <h3>Escursioni Guidate</h3>
+    <p>Capri, Costiera Amalfitana, Pompei e Vesuvio a portata di mano con partner selezionati</p>
+  </div>
+</div>
+<div class="service-card">
+  <div class="service-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg')"></div>
+  <div class="service-body">
+    <h3>Food & Dining</h3>
+    <p>Colazione con prodotti locali freschi e ristorante con cucina mediterranea tradizionale</p>
+  </div>
+</div>
+<div class="service-card">
+  <div class="service-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg')"></div>
+  <div class="service-body">
+    <h3>Booking Diretto</h3>
+    <p>Prenotazione online diretta senza intermediari per le migliori tariffe garantite</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div class="chatbot-section">
+  <span class="section-tag" style="background:rgba(255,255,255,0.2);color:#fff;">AI Chatbot 24/7</span>
+  <h2 style="font-size:2.2rem;margin-bottom:16px;">Il vostro assistente non dorme mai</h2>
+  <p style="opacity:0.85;font-size:1.05rem;max-width:600px;margin:0 auto;">Rispondi automaticamente a ogni richiesta — anche alle 3 di notte, anche in inglese, tedesco, francese.</p>
+  <div class="chatbot-window">
+    <div class="chat-msg">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-bubble">Benvenuto all'Hotel Crawford! Sono il vostro assistente personale. Posso aiutarti a trovare la camera perfetta, verificare disponibilità e organizzare le vostre escursioni dalla Penisola Sorrentina.</div>
+    </div>
+    <div class="chat-msg">
+      <div class="chat-avatar" style="background:rgba(255,255,255,0.2)">👤</div>
+      <div class="chat-bubble">Do you have availability for 2 adults next weekend?</div>
+    </div>
+    <div class="chat-msg">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-bubble">Of course! I can check availability for you right away. How many nights are you planning to stay, and do you prefer a sea view room?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Scrivi un messaggio...">
+      <button class="chat-send">Invia</button>
+    </div>
+  </div>
+</div>
+
+<div class="pricing-section">
+  <div style="max-width:1200px;margin:0 auto;text-align:center">
+    <span class="section-tag">Prezzi Trasparenti</span>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);color:var(--dark);margin-bottom:12px;">Scegli il piano giusto per te</h2>
+    <p style="color:#555;font-size:1.05rem;max-width:600px;margin:0 auto;">Nessun costo nascosto. Commissione solo sulle vendite generate.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="plan">
+      <div class="plan-name">Advanced</div>
+      <div class="plan-price">€500</div>
+      <div class="plan-sub">/ anno + X% sulle vendite</div>
+      <ul class="plan-features">
+        <li>Sito web ottimizzato</li>
+        <li>Chatbot AI base</li>
+        <li>SEO locale</li>
+        <li>Dashboard analytics</li>
+      </ul>
+      <a href="https://naplesexperiences.com" class="plan-btn">Inizia ora</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-name">⭐ Pro — Più Scelto</div>
+      <div class="plan-price">€1.000</div>
+      <div class="plan-sub">/ anno + X% sulle vendite</div>
+      <ul class="plan-features">
+        <li>Tutto di Advanced</li>
+        <li>Chatbot AI multilingue</li>
+        <li>CRM e automazioni</li>
+        <li>Integrazione booking engine</li>
+        <li>Supporto prioritario</li>
+      </ul>
+      <a href="https://naplesexperiences.com" class="plan-btn">Scegli Pro</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Base</div>
+      <div class="plan-price">€1.400</div>
+      <div class="plan-sub">/ anno + X% sulle vendite</div>
+      <ul class="plan-features">
+        <li>Tutto di Pro</li>
+        <li>Account manager dedicato</li>
+        <li>Campagne marketing</li>
+        <li>Report mensili</li>
+      </ul>
+      <a href="https://naplesexperiences.com" class="plan-btn">Scopri Base</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price">X%</div>
+      <div class="plan-sub">solo sulle vendite generate</div>
+      <ul class="plan-features">
+        <li>Zero costi fissi</li>
+        <li>Soluzione completa su misura</li>
+        <li>Paghi solo i risultati</li>
+        <li>Ideale per grandi strutture</li>
+      </ul>
+      <a href="https://naplesexperiences.com" class="plan-btn">Parla con noi</a>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Pronto a trasformare il tuo business?</h2>
+  <p>Questo sito è una demo personalizzata per Hotel Crawford. Contattaci per attivare la tua versione reale.</p>
+  <a href="https://naplesexperiences.com" class="btn-primary" style="font-size:1.1rem;padding:18px 48px;">Prenota Direttamente →</a>
+</div>
+
+<footer>
+  <p>Demo realizzata da <a href="https://naplesexperiences.com">Experiences Srl</a> per Hotel Crawford · Sant'Agnello</p>
+  <div class="demo-watermark">⚡ Demo esclusiva — non pubblicata</div>
+</footer>
+
+</body>
+</html>
