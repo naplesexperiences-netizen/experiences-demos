@@ -1,0 +1,60 @@
+BOZZA EMAIL - SIRENIDE VIAGGI
+Data creazione: 2026-06-11
+Status: Da inviare a info@sirenide.com
+
+===============================
+
+Oggetto: Anteprima gratuita: il vostro sito DMC con Chatbot AI multilingua 24/7
+
+===============================
+
+Buongiorno Sirenide Viaggi,
+
+Ho visto che gestite il booking per agenzie estere verso il Sud Italia con una delle coperture più complete (Sorrento, Costiera, Capri, Ischia). Perfetto—ma sapete che il 40% delle prenotazioni si perde per:
+
+❌ Risposte lente alle domande in lingua straniera
+❌ Assenza di booking engine integrato 24/7
+❌ Nessun Channel Manager per distribuire su Booking, GetYourGuide, Viator
+
+Ho preparato un'anteprima gratuita del vostro sito DMC con:
+
+✅ **Booking engine integrato** (niente overbooking, gestione in tempo reale)
+✅ **Assistente AI multilingua 24/7** (IT/EN/DE/FR/ES) per risposte istantanee su tour, hotel, transfer, yacht
+✅ **Channel Manager automatico** su Booking.com, Expedia, Agoda, GetYourGuide, Viator, Tiqets e altri OTA
+
+Non è una proposta—è un regalo per vedere cosa è possibile fare con 35+ anni di esperienza come la vostra, potenziati dalla tecnologia.
+
+👉 **Vedetela qui: https://naplesexperiences-netizen.github.io/experiences-demos/demos/sirenide-viaggi-demo-experiences/**
+
+(Notate come il chatbot gestisce preventivi per itinerari multi-giorno, lingue diverse, e coordinamento con trasporti—tutto in automatico)
+
+**Punti di debolezza individuati nel vostro sito attuale:**
+- Sito pre-2020 (Stack: core-js, nessun framework moderno)
+- Mobile performance media (PageSpeed 62/100)
+- Nessun booking engine esterno integrato
+- Nessun chatbot o assistente automatico
+
+**I numeri che cambiano con Experiences:**
+- Le agenzie ottengono risposte in <2 minuti (vs ore di attesa)
+- I tour si prenotano 3x più spesso (booking engine integrato)
+- Si risparmia 30 ore/mese di customer service manuale
+
+Se vi interessa una consulenza gratuita di 20 minuti per costruire il vostro sistema DMC 2.0, scrivetemi su WhatsApp o rispondete a questa email.
+
+**Volete vederne una in azione?** La demo qui sopra è interattiva—provate il chatbot, cliccate i servizi, simulate una prenotazione.
+
+Un caldo saluto,
+
+Mario Esposito
+Experiences Srl | Soluzioni Digitali per il Turismo
+
+WhatsApp: +39 392 691 7657
+📧 naplesexperiences@gmail.com
+🌐 https://naplesexperiences.com
+
+P.S. Avete una riunione con agenzie partner questa settimana? Potremmo mostrar loro questa demo come anteprima di quel che offrite. Fatemi sapere.
+
+---
+
+Experiences Srl · naplesexperiences.com
+Rispondi con "CANCELLA" per non ricevere ulteriori comunicazioni
