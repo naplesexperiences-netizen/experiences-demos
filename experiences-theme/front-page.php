@@ -61,8 +61,8 @@ get_header();
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#contact" class="shimmer-btn px-8 py-4 text-white font-semibold rounded-xl shadow-lg hover:shadow-accent/25 hover:-translate-y-1 transition-transform flex items-center justify-center gap-2">
-                            <span>Audit Gratuito del tuo Sito</span>
+                        <a href="#booking" data-booking-trigger class="shimmer-btn px-8 py-4 text-white font-semibold rounded-xl shadow-lg hover:shadow-accent/25 hover:-translate-y-1 transition-transform flex items-center justify-center gap-2">
+                            <span>Prenota Audit Gratuito</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="https://wa.me/393926917657" class="px-8 py-4 border border-white/20 text-white hover:bg-white/10 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
@@ -307,9 +307,9 @@ get_header();
             <!-- CTA below avatar -->
             <div class="text-center mt-10" data-aos="fade-up" data-aos-delay="300">
                 <p class="text-gray-500 text-sm mb-4">Preferisci un contatto diretto?</p>
-                <a href="#contact"
+                <a href="#booking" data-booking-trigger
                    class="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
-                    <i class="fas fa-paper-plane"></i> Richiedi una consulenza gratuita
+                    <i class="fas fa-rocket"></i> Prenota una call di 30 min
                 </a>
             </div>
 
@@ -724,8 +724,8 @@ get_header();
                             </div>
                             <div><label class="block text-sm font-medium text-gray-700 mb-2">Messaggio *</label><textarea name="messaggio" required rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm resize-none" placeholder="Descrivi le tue esigenze..."></textarea></div>
                             <div class="flex items-start gap-3">
-                                <input type="checkbox" id="privacy" required class="mt-1 w-4 h-4 text-secondary rounded border-gray-300 focus:ring-secondary">
-                                <label for="privacy" class="text-sm text-gray-500">Acconsento al trattamento dei miei dati personali secondo la <a href="#" class="text-secondary hover:underline">Privacy Policy</a>.</label>
+                                <input type="checkbox" id="privacy" name="privacy_consent" required class="mt-1 w-4 h-4 text-secondary rounded border-gray-300 focus:ring-secondary">
+                                <label for="privacy" class="text-sm text-gray-500">Acconsento al trattamento dei miei dati personali secondo la <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" target="_blank" rel="noopener" class="text-secondary hover:underline">Privacy Policy</a>.</label>
                             </div>
                             <button type="submit" class="w-full py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group">
                                 <span>Invia Richiesta</span>
@@ -802,7 +802,7 @@ get_header();
                 <p class="text-white font-semibold text-base sm:text-lg">Vuoi un chatbot personalizzato per la tua struttura?</p>
                 <p class="text-gray-400 text-sm mt-1">Configurabile in pochi minuti direttamente dalla bacheca WordPress.</p>
             </div>
-            <a href="#contact" class="flex-shrink-0 px-8 py-3 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-accent/30 flex items-center gap-2 group">
+            <a href="#booking" data-booking-trigger class="flex-shrink-0 px-8 py-3 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-accent/30 flex items-center gap-2 group">
                 Richiedi una Demo
                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </a>

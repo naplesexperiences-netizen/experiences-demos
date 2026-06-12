@@ -85,6 +85,269 @@ function experiences_remove_jquery_migrate( $scripts ) {
 }
 add_action( 'wp_default_scripts', 'experiences_remove_jquery_migrate' );
 
+// ── Customizer: Cal.com link + Cookie banner toggle ─────────────────────
+function experiences_customize_register( $wp_customize ) {
+    $wp_customize->add_section( 'experiences_lead_section', [
+        'title'    => __( 'Audit gratuito (Cal.com)', 'experiences-srl' ),
+        'priority' => 30,
+    ]);
+
+    $wp_customize->add_setting( 'exp_cal_link', [
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_cal_link', [
+        'label'       => __( 'Link Cal.com o Calendly per l\'audit gratuito', 'experiences-srl' ),
+        'description' => __( 'Es: https://cal.com/experiences/audit-gratuito oppure https://calendly.com/.../30min. Il modal "Prenota Audit Gratuito" usa questo link.', 'experiences-srl' ),
+        'section'     => 'experiences_lead_section',
+        'type'        => 'url',
+    ]);
+
+    $wp_customize->add_section( 'experiences_privacy_section', [
+        'title'    => __( 'Privacy & Cookie', 'experiences-srl' ),
+        'priority' => 31,
+    ]);
+
+    $wp_customize->add_setting( 'exp_cookie_banner_enabled', [
+        'default'           => true,
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_cookie_banner_enabled', [
+        'label'       => __( 'Mostra cookie banner GDPR', 'experiences-srl' ),
+        'description' => __( 'Disattivare solo se usi un plugin di cookie consent (Iubenda, Complianz, CookieYes…).', 'experiences-srl' ),
+        'section'     => 'experiences_privacy_section',
+        'type'        => 'checkbox',
+    ]);
+}
+add_action( 'customize_register', 'experiences_customize_register' );
+
+// ── Auto-creazione pagine legali al primo cambio tema ──────────────────
+// Crea Privacy Policy (se WP non ne ha già una) + Cookie Policy + Termini.
+// Contenuto boilerplate — il cliente lo personalizza. Idempotente: non
+// duplica pagine esistenti.
+function experiences_create_legal_pages() {
+    $pages = [
+        'privacy-policy' => [
+            'title'   => 'Privacy Policy',
+            'content' => experiences_legal_template_privacy(),
+            'is_wp_privacy' => true, // imposta come pagina privacy ufficiale di WP
+        ],
+        'cookie-policy' => [
+            'title'   => 'Cookie Policy',
+            'content' => experiences_legal_template_cookie(),
+        ],
+        'termini-e-condizioni' => [
+            'title'   => 'Termini e Condizioni',
+            'content' => experiences_legal_template_terms(),
+        ],
+    ];
+
+    foreach ( $pages as $slug => $config ) {
+        $existing = get_page_by_path( $slug );
+        if ( $existing && 'trash' !== $existing->post_status ) {
+            // Se è la privacy policy ufficiale di WP, allinea l'opzione
+            if ( ! empty( $config['is_wp_privacy'] ) && ! get_option( 'wp_page_for_privacy_policy' ) ) {
+                update_option( 'wp_page_for_privacy_policy', $existing->ID );
+            }
+            continue;
+        }
+
+        $page_id = wp_insert_post([
+            'post_title'   => $config['title'],
+            'post_name'    => $slug,
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => $config['content'],
+            'post_author'  => get_current_user_id() ?: 1,
+        ]);
+
+        if ( $page_id && ! is_wp_error( $page_id ) && ! empty( $config['is_wp_privacy'] ) ) {
+            update_option( 'wp_page_for_privacy_policy', $page_id );
+        }
+    }
+}
+add_action( 'after_switch_theme', 'experiences_create_legal_pages' );
+
+function experiences_legal_template_privacy() {
+    $site = esc_html( get_bloginfo( 'name' ) );
+    $home = esc_url( home_url( '/' ) );
+    return <<<HTML
+<p><em>Ultima modifica: {$site} — TODO data.</em></p>
+
+<h2>Titolare del trattamento</h2>
+<p><strong>Experiences Srl</strong><br>Sede legale: TODO indirizzo, Napoli<br>P.IVA: TODO<br>Email: <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a><br>Sito: <a href="{$home}">{$home}</a></p>
+
+<h2>Dati raccolti</h2>
+<p>Raccogliamo solo i dati che ci fornisci volontariamente compilando il modulo contatti:</p>
+<ul>
+<li>Nome e cognome</li>
+<li>Indirizzo email</li>
+<li>Tipo di attività (hotel, agenzia, ecc.)</li>
+<li>Piano di interesse</li>
+<li>Contenuto del messaggio</li>
+</ul>
+<p>Raccogliamo inoltre, previo tuo consenso, dati di navigazione anonimi attraverso cookie di analytics (vedi Cookie Policy).</p>
+
+<h2>Finalità del trattamento</h2>
+<ul>
+<li>Rispondere alle richieste di consulenza e contatto</li>
+<li>Inviare comunicazioni commerciali (solo previo consenso esplicito)</li>
+<li>Migliorare il sito tramite analisi aggregate del traffico</li>
+<li>Adempiere agli obblighi di legge</li>
+</ul>
+
+<h2>Base giuridica</h2>
+<ul>
+<li><strong>Esecuzione di misure precontrattuali</strong> (art. 6.1.b GDPR) per le richieste di consulenza</li>
+<li><strong>Consenso</strong> (art. 6.1.a GDPR) per cookie non essenziali e newsletter</li>
+<li><strong>Obbligo legale</strong> (art. 6.1.c GDPR) per la conservazione contabile/fiscale</li>
+</ul>
+
+<h2>Conservazione</h2>
+<p>I dati di contatto sono conservati per il tempo necessario a evadere la richiesta e successivamente per un massimo di <strong>24 mesi</strong>, salvo necessità contabili o contrattuali.</p>
+
+<h2>Destinatari</h2>
+<p>I dati possono essere trattati da:</p>
+<ul>
+<li><strong>Google LLC</strong> (Gmail) — provider email del titolare</li>
+<li><strong>{TODO_HOSTING}</strong> — hosting del sito web</li>
+<li><strong>Cal.com / Calendly</strong> — per la prenotazione delle call (solo dati che fornisci al momento della prenotazione)</li>
+<li>Consulenti, commercialista, autorità competenti — solo quando obbligatorio per legge</li>
+</ul>
+<p>Non vendiamo mai i tuoi dati a terzi.</p>
+
+<h2>Trasferimento extra-UE</h2>
+<p>Alcuni fornitori (es. Google) possono trattare dati negli Stati Uniti. Il trasferimento avviene in conformità al Data Privacy Framework UE-USA o tramite Clausole Contrattuali Standard.</p>
+
+<h2>I tuoi diritti</h2>
+<p>In qualsiasi momento puoi esercitare i seguenti diritti scrivendo a <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a>:</p>
+<ul>
+<li>Accesso ai tuoi dati (art. 15 GDPR)</li>
+<li>Rettifica (art. 16 GDPR)</li>
+<li>Cancellazione / oblio (art. 17 GDPR)</li>
+<li>Limitazione del trattamento (art. 18 GDPR)</li>
+<li>Portabilità (art. 20 GDPR)</li>
+<li>Opposizione (art. 21 GDPR)</li>
+<li>Revoca del consenso in qualsiasi momento</li>
+</ul>
+<p>Hai inoltre diritto a presentare reclamo all'autorità di controllo: <a href="https://www.garanteprivacy.it" rel="noopener" target="_blank">Garante per la protezione dei dati personali</a>.</p>
+
+<h2>Modifiche</h2>
+<p>Eventuali modifiche a questa Privacy Policy verranno pubblicate su questa pagina. Ti invitiamo a consultarla periodicamente.</p>
+HTML;
+}
+
+function experiences_legal_template_cookie() {
+    return <<<HTML
+<p><em>Ultima modifica: TODO data.</em></p>
+
+<p>Questo sito utilizza cookie per garantire il corretto funzionamento, analizzare il traffico e, previo consenso, mostrare contenuti personalizzati. Puoi gestire le tue preferenze in qualsiasi momento cliccando su <strong>"Preferenze Cookie"</strong> in fondo a ogni pagina.</p>
+
+<h2>Cos'è un cookie</h2>
+<p>Un cookie è un piccolo file di testo memorizzato dal browser sul tuo dispositivo. Serve a ricordare informazioni tra una visita e l'altra (es: lingua, stato di login, scelte sul consenso).</p>
+
+<h2>Categorie di cookie utilizzati</h2>
+
+<h3>1. Cookie essenziali (sempre attivi)</h3>
+<p>Necessari per il funzionamento del sito. Senza di essi alcune funzioni non sarebbero disponibili.</p>
+<table>
+<thead><tr><th>Nome</th><th>Fornitore</th><th>Scopo</th><th>Durata</th></tr></thead>
+<tbody>
+<tr><td>exp_consent_v1</td><td>naplesexperiences.com</td><td>Memorizza le tue preferenze di consenso ai cookie</td><td>12 mesi</td></tr>
+<tr><td>wordpress_*</td><td>WordPress</td><td>Gestione sessione utente loggato (admin)</td><td>Sessione</td></tr>
+</tbody>
+</table>
+
+<h3>2. Cookie di analytics (opt-in)</h3>
+<p>Ci aiutano a capire come gli utenti usano il sito, in forma anonima e aggregata. Attivati solo dopo il tuo consenso esplicito.</p>
+<table>
+<thead><tr><th>Nome</th><th>Fornitore</th><th>Scopo</th><th>Durata</th></tr></thead>
+<tbody>
+<tr><td>_ga, _ga_*</td><td>Google Analytics (Google LLC)</td><td>Statistiche aggregate di traffico</td><td>13 mesi</td></tr>
+<tr><td>_clck, _clsk</td><td>Microsoft Clarity (Microsoft Corp.)</td><td>Heatmap e session recording anonimi</td><td>12 mesi</td></tr>
+</tbody>
+</table>
+
+<h3>3. Cookie di marketing (opt-in)</h3>
+<p>Utilizzati per mostrare annunci più pertinenti su altri siti. Attivati solo dopo il tuo consenso esplicito.</p>
+<table>
+<thead><tr><th>Nome</th><th>Fornitore</th><th>Scopo</th><th>Durata</th></tr></thead>
+<tbody>
+<tr><td>_fbp</td><td>Meta Platforms Inc.</td><td>Remarketing su Facebook/Instagram</td><td>3 mesi</td></tr>
+<tr><td>_gcl_au</td><td>Google Ads</td><td>Attribuzione conversioni Google Ads</td><td>3 mesi</td></tr>
+</tbody>
+</table>
+
+<h2>Come modificare le preferenze</h2>
+<p>Puoi modificare le tue scelte in qualsiasi momento cliccando su <a href="#" data-cookie-settings>Preferenze Cookie</a> in fondo alla pagina. Puoi anche disabilitare o cancellare i cookie direttamente dal tuo browser:</p>
+<ul>
+<li><a href="https://support.google.com/chrome/answer/95647" rel="noopener" target="_blank">Google Chrome</a></li>
+<li><a href="https://support.mozilla.org/it/kb/Eliminare%20i%20cookie" rel="noopener" target="_blank">Mozilla Firefox</a></li>
+<li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" rel="noopener" target="_blank">Safari</a></li>
+<li><a href="https://support.microsoft.com/it-it/microsoft-edge" rel="noopener" target="_blank">Microsoft Edge</a></li>
+</ul>
+<p>Nota: disabilitare i cookie essenziali può compromettere il funzionamento del sito.</p>
+
+<h2>Per maggiori informazioni</h2>
+<p>Consulta la nostra <a href="/privacy-policy/">Privacy Policy</a> o scrivici a <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a>.</p>
+HTML;
+}
+
+function experiences_legal_template_terms() {
+    return <<<HTML
+<p><em>Ultima modifica: TODO data.</em></p>
+
+<p>I presenti Termini e Condizioni regolano l'utilizzo del sito naplesexperiences.com e dei servizi offerti da Experiences Srl.</p>
+
+<h2>1. Informazioni sul titolare</h2>
+<p><strong>Experiences Srl</strong><br>Sede legale: TODO indirizzo, Napoli<br>P.IVA: TODO</p>
+
+<h2>2. Oggetto dei servizi</h2>
+<p>Experiences Srl offre servizi di digitalizzazione per il settore turistico, tra cui sviluppo siti web, SEO/SEM marketing, gestione Channel Manager e OTA, assistenti virtuali AI.</p>
+
+<h2>3. Utilizzo del sito</h2>
+<p>L'utente si impegna a utilizzare il sito in modo lecito, rispettando le leggi vigenti e i diritti di terzi. È vietato:</p>
+<ul>
+<li>Tentare di accedere a sezioni riservate</li>
+<li>Compiere attività che possano danneggiare il sito o gli altri utenti</li>
+<li>Copiare o riprodurre contenuti senza autorizzazione</li>
+</ul>
+
+<h2>4. Proprietà intellettuale</h2>
+<p>Tutti i contenuti del sito (testi, immagini, loghi, design) sono di proprietà di Experiences Srl o dei rispettivi titolari e sono protetti dalle leggi sul diritto d'autore.</p>
+
+<h2>5. Limitazione di responsabilità</h2>
+<p>Experiences Srl si impegna a fornire informazioni accurate ma non garantisce l'assenza di errori. Non è responsabile per eventuali danni derivanti dall'uso del sito o dall'impossibilità di accedervi.</p>
+
+<h2>6. Modifiche</h2>
+<p>Experiences Srl si riserva il diritto di modificare i presenti Termini in qualsiasi momento. Le modifiche entrano in vigore dalla loro pubblicazione su questa pagina.</p>
+
+<h2>7. Legge applicabile e foro competente</h2>
+<p>I presenti Termini sono regolati dalla legge italiana. Per qualsiasi controversia è competente il Foro di Napoli.</p>
+
+<h2>8. Contatti</h2>
+<p>Per qualsiasi domanda relativa ai presenti Termini: <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a></p>
+HTML;
+}
+
+// ── Helper PHP: leggere il consenso lato server ─────────────────────────
+// Permette ai template di condizionare il rendering di pixel/script di
+// terze parti in base al consenso dell'utente.
+//   if ( experiences_has_consent( 'analytics' ) ) { /* GA4 tag */ }
+function experiences_has_consent( $category ) {
+    if ( empty( $_COOKIE['exp_consent_v1'] ) ) {
+        return false;
+    }
+    $raw = wp_unslash( $_COOKIE['exp_consent_v1'] );
+    $data = json_decode( $raw, true );
+    if ( ! is_array( $data ) ) {
+        return false;
+    }
+    return ! empty( $data[ $category ] );
+}
+
 // ── SEO: meta tags ─────────────────────────────────────────────
 function experiences_meta_tags() {
     if ( ! is_front_page() ) return; ?>

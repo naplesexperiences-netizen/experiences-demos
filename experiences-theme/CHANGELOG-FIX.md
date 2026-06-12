@@ -88,3 +88,50 @@ Dopo il deploy, apri DevTools → Network e invia il form:
 Dopo l'upload del tema: svuotare cache pagina + CDN. Se in futuro si
 aggiungono classi Tailwind nuove nei template, ricompilare
 `assets/css/tailwind.min.css` (vedi tailwind.config.js → content scan).
+
+---
+
+# v2.3.0 — GDPR Privacy/Cookie + Booking modal Cal.com
+
+## Cookie consent (GDPR)
+
+- **Banner custom** in `template-parts/cookie-banner.php`: 3 azioni (Accetta tutti / Solo essenziali / Personalizza) + modal con toggle per Analytics e Marketing (essenziali sempre attivi).
+- **Stato del consenso** salvato in `localStorage` (`exp_consent`) e in cookie HTTP (`exp_consent_v1`, 12 mesi) per essere letto anche da PHP.
+- **API JS** `window.expConsent.has('analytics')` e evento `experiences:consent-updated` per integrare GA4 / Meta Pixel.
+- **API PHP** `experiences_has_consent('analytics')` per condizionare il rendering di pixel di terze parti.
+- **Riapertura preferenze** da qualsiasi link con attributo `data-cookie-settings` (incluso il link "Preferenze Cookie" aggiunto al footer).
+- **Disattivabile** da *Personalizza tema → Privacy & Cookie* se il cliente usa Iubenda/Complianz/CookieYes.
+
+## Pagine legali auto-create
+
+All'attivazione del tema vengono create (se non esistono) le pagine:
+- `/privacy-policy/` (impostata anche come `wp_page_for_privacy_policy` di WordPress)
+- `/cookie-policy/`
+- `/termini-e-condizioni/`
+
+Contenuto boilerplate GDPR/EU. Il cliente personalizza con: indirizzo legale, P.IVA, hosting provider, data ultima modifica.
+
+I link `href="#"` nel footer e nel form contatti puntano ora alle pagine vere.
+
+## Booking modal (Cal.com / Calendly)
+
+- Nuovo `template-parts/booking-modal.php`: modal full-screen su mobile, max-4xl su desktop, con embed iframe **lazy-load** (rete solo all'apertura).
+- **Config**: `Personalizza tema → Audit gratuito` oppure costante `EXP_CAL_LINK` in wp-config.php. Funziona sia con Cal.com sia con Calendly.
+- **Trigger**: qualsiasi elemento con `data-booking-trigger` o `href="#booking"` apre il modal. Aggiornati i 3 CTA principali della homepage:
+  - Hero: "Audit Gratuito del tuo Sito" → "Prenota Audit Gratuito"
+  - Mid: "Richiedi una consulenza gratuita" → "Prenota una call di 30 min"
+  - Chatbot CTA: "Richiedi una Demo"
+- **Trust strip** in fondo al modal: "Nessun impegno · 30 min · Online · 100% gratuito"
+- **Fallback** se il link non è configurato: pannello con WhatsApp + form contatti, e (per admin) shortcut alla pagina di configurazione.
+- **ESC** per chiudere, `#booking` nell'URL apre automaticamente al load.
+
+## Note deploy
+
+1. Carica il tema v2.3.0
+2. Vai su **Personalizza tema → Audit gratuito (Cal.com)** e incolla il tuo link Cal.com/Calendly
+3. Vai su **Pagine** e personalizza i `TODO` nelle tre pagine create automaticamente (indirizzo legale, P.IVA, hosting)
+4. Verifica che il banner cookie appaia in incognito e che le scelte vengano memorizzate
+5. Clicca "Prenota Audit Gratuito" → si apre il modal con il calendario
+
+Se in futuro si decide di passare a Iubenda/Complianz/CookieYes, basta
+disattivare il banner custom da Personalizza tema (un click).

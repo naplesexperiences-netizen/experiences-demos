@@ -184,11 +184,184 @@
             }
         })();
 
+        // ── Cookie consent (GDPR) ────────────────────────────────────────
+        // Banner + modal di personalizzazione. Stato in localStorage + cookie
+        // di servizio (exp_consent_v1) per consumo lato server. Espone
+        // window.expConsent.has('analytics' | 'marketing') e l'evento
+        // 'experiences:consent-updated' per integrare GA4/Meta Pixel/ecc.
+        (function bindCookieConsent() {
+            const banner = document.getElementById('exp-cookie-banner');
+            const modal  = document.getElementById('exp-cookie-modal');
+            if (!banner && !modal) return;
+
+            const STORAGE_KEY = 'exp_consent';
+            const COOKIE_NAME = 'exp_consent_v1';
+
+            const readState = () => {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) return null;
+                    const data = JSON.parse(raw);
+                    return data && typeof data === 'object' ? data : null;
+                } catch (_) { return null; }
+            };
+
+            const writeState = (state) => {
+                state.timestamp = Date.now();
+                state.version   = 1;
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+                const days  = 365;
+                const value = encodeURIComponent(JSON.stringify({
+                    analytics: !!state.analytics,
+                    marketing: !!state.marketing,
+                }));
+                document.cookie = `${COOKIE_NAME}=${value};path=/;max-age=${days*86400};SameSite=Lax`;
+                window.dispatchEvent(new CustomEvent('experiences:consent-updated', { detail: state }));
+            };
+
+            window.expConsent = {
+                has: (category) => {
+                    const s = readState();
+                    return !!(s && s[category]);
+                },
+                get: () => readState(),
+                open: () => openModal(),
+            };
+
+            const showBanner = () => {
+                if (!banner) return;
+                requestAnimationFrame(() => banner.classList.remove('translate-y-full'));
+            };
+            const hideBanner = () => banner && banner.classList.add('translate-y-full');
+
+            const openModal = () => {
+                if (!modal) return;
+                const s = readState() || { analytics: false, marketing: false };
+                modal.querySelectorAll('input[data-cookie-category]').forEach(cb => {
+                    cb.checked = !!s[cb.dataset.cookieCategory];
+                });
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeModal = () => {
+                if (!modal) return;
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            };
+
+            const finalize = (state) => {
+                writeState(state);
+                hideBanner();
+                closeModal();
+            };
+
+            // Inizializzazione: se manca il consenso, mostra il banner
+            if (!readState()) {
+                showBanner();
+            }
+
+            // Click su qualsiasi data-cookie-action nel banner o nel modal
+            document.addEventListener('click', (e) => {
+                const trigger = e.target.closest('[data-cookie-action], [data-cookie-settings]');
+                if (!trigger) return;
+
+                if (trigger.matches('[data-cookie-settings]')) {
+                    e.preventDefault();
+                    openModal();
+                    return;
+                }
+
+                const action = trigger.dataset.cookieAction;
+                if (action === 'accept-all') {
+                    finalize({ analytics: true, marketing: true });
+                } else if (action === 'reject') {
+                    finalize({ analytics: false, marketing: false });
+                } else if (action === 'customize') {
+                    openModal();
+                } else if (action === 'close') {
+                    closeModal();
+                } else if (action === 'save') {
+                    const state = {};
+                    modal.querySelectorAll('input[data-cookie-category]').forEach(cb => {
+                        state[cb.dataset.cookieCategory] = cb.checked;
+                    });
+                    finalize(state);
+                }
+            });
+        })();
+
+        // ── Booking modal (Cal.com / Calendly) ───────────────────────────
+        // Lazy-load: l'iframe viene creato solo al primo open per non
+        // caricare risorse esterne se l'utente non interagisce.
+        (function bindBookingModal() {
+            const modal = document.getElementById('exp-booking-modal');
+            if (!modal) return;
+
+            const calLink = modal.dataset.calLink || '';
+            const slot    = modal.querySelector('[data-booking-iframe-slot]');
+            const loader  = modal.querySelector('[data-booking-loader]');
+            let iframeLoaded = false;
+
+            const buildIframe = () => {
+                if (iframeLoaded || !slot || !calLink) return;
+                const iframe = document.createElement('iframe');
+                iframe.src   = calLink;
+                iframe.title = 'Prenota Audit Gratuito';
+                iframe.loading = 'lazy';
+                iframe.allow = 'camera; microphone; fullscreen; payment';
+                iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+                iframe.addEventListener('load', () => loader && loader.remove());
+                slot.appendChild(iframe);
+                iframeLoaded = true;
+            };
+
+            const open = () => {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                buildIframe();
+            };
+            const close = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            };
+
+            // Trigger: data-booking-trigger su qualsiasi elemento, oppure
+            // link con href="#booking" (retro-compatibile con CTA esistenti)
+            document.addEventListener('click', (e) => {
+                const trigger = e.target.closest('[data-booking-trigger], a[href="#booking"], a[href$="#booking"]');
+                if (trigger) {
+                    e.preventDefault();
+                    open();
+                    return;
+                }
+                const closer = e.target.closest('[data-booking-action="close"]');
+                if (closer) {
+                    e.preventDefault();
+                    close();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+            });
+
+            // Apre automaticamente se l'URL contiene #booking
+            if (window.location.hash === '#booking') {
+                setTimeout(open, 100);
+            }
+        })();
+
         // ── Smooth scroll ────────────────────────────────────────────────
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (!href || href === '#') return;
+                // I link verso il modal di booking sono gestiti da bindBookingModal
+                if (href === '#booking') return;
                 const t = document.querySelector(href);
                 if (!t) return;
                 e.preventDefault();

@@ -3,8 +3,8 @@ Theme Name: Experiences Srl
 Theme URI: https://www.naplesexperiences.com
 Author: Experiences Srl
 Author URI: https://www.naplesexperiences.com
-Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.2.0: performance (Tailwind precompilato al posto del Play CDN, Font Awesome subset self-hosted, logo WebP, AOS defer, font ridotti, no jquery-migrate) + navbar/footer su tutte le pagine via template-parts + layout articolo a tutta larghezza.
-Version: 2.2.0
+Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.3.0: cookie banner GDPR custom + auto-creazione pagine Privacy/Cookie/Termini + modal di booking Cal.com (configurabile da Personalizza tema). v2.2.0: performance overhaul + navbar/footer sitewide + layout articolo full-width.
+Version: 2.3.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -623,6 +623,65 @@ Tags: tourism, business, one-page, responsive, custom-menu, custom-logo
 
 .blog-card:hover {
     transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   Cookie consent (banner + modal)
+   ========================================================================== */
+.exp-cookie-banner {
+    box-shadow: 0 -10px 40px rgba(11, 61, 97, 0.15);
+}
+
+.exp-cookie-modal.flex { display: flex; }
+
+/* Toggle switch (input checkbox → track + thumb) */
+.exp-toggle {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.exp-toggle-track {
+    position: absolute;
+    inset: 0;
+    background: #D1D5DB;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+}
+.exp-toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+}
+.exp-toggle input:checked + .exp-toggle-track {
+    background: #14A3A3;
+}
+.exp-toggle input:checked + .exp-toggle-track::after {
+    transform: translateX(22px);
+}
+.exp-toggle input:focus-visible + .exp-toggle-track {
+    box-shadow: 0 0 0 3px rgba(20,163,163,0.3);
+}
+
+/* ==========================================================================
+   Booking modal (Cal.com / Calendly embed)
+   ========================================================================== */
+.exp-booking-modal.flex { display: flex; }
+
+@media (max-width: 640px) {
+    /* Su mobile il modal occupa l'intera viewport per max area utile */
+    .exp-booking-modal > div:last-child {
+        border-radius: 0;
+    }
 }
 
 /* Scrollbar hide per filtri categoria */
