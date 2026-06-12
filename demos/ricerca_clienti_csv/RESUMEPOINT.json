@@ -1,7 +1,7 @@
 {
-  "last_update": "2026-06-11T14:00:00Z",
+  "last_update": "2026-06-11T15:30:00Z",
   "cycle": 3,
-  "batch": 1,
+  "batch": 3,
   "session_id": "claude-sonnet-4-6",
   "current_csv_file": "CSV_Golfo_Napoli_Sorrento.csv",
   "cycle_completed": false,
@@ -210,53 +210,80 @@
       "category": "Hotel 4 stelle",
       "city": "Meta di Sorrento",
       "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/panorama-palace-hotel-meta-sorrento-demo-experiences/"
-    }
-  ],
-  "next_companies_to_process_cycle3_batch2": [
+    },
     {
+      "cycle": 3,
+      "batch": 2,
       "name": "Hotel Club Sorrento",
       "priority": 2,
       "category": "Hotel 4 stelle",
       "city": "Sant'Agnello",
-      "email": "info@hotelclubsorrento.com"
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-club-sorrento-demo-experiences/"
     },
     {
+      "cycle": 3,
+      "batch": 2,
       "name": "Grand Hotel Vesuvio Sorrento",
       "priority": 2,
       "category": "Hotel 4 stelle",
       "city": "Sorrento",
-      "email": "info@vesuviosorrento.com"
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-vesuvio-sorrento-demo-experiences/"
     },
     {
+      "cycle": 3,
+      "batch": 2,
       "name": "Sorrento Tourist Office",
       "priority": 2,
       "category": "Web tour operator",
       "city": "Sorrento",
-      "email": "info@sorrentotouristoffice.com"
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/sorrento-tourist-office-demo-experiences/"
     },
     {
+      "cycle": 3,
+      "batch": 2,
       "name": "Hotel Sporting Vico Equense",
       "priority": 2,
       "category": "Hotel 4 stelle",
       "city": "Vico Equense",
-      "email": "info@hotel-sporting.it"
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-sporting-vico-equense-demo-experiences/"
     },
     {
+      "cycle": 3,
+      "batch": 2,
       "name": "Hotel Astoria Vico Equense",
       "priority": 2,
       "category": "Hotel 3 stelle",
       "city": "Vico Equense",
-      "email": "prenotazioni@astoriavico.com"
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-astoria-vico-equense-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 3,
+      "name": "Hotel Mary",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "city": "Vico Equense",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mary-vico-equense-demo-experiences/"
+    },
+    {
+      "cycle": 3,
+      "batch": 3,
+      "name": "Hotel Capo La Gala",
+      "priority": 2,
+      "category": "Hotel 5 stelle",
+      "city": "Vico Equense",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-capo-la-gala-vico-equense-demo-experiences/"
     }
   ],
+  "next_companies_to_process_cycle3_batch3": [],
   "stats": {
     "total_companies_in_csv": 103,
     "companies_with_priority_1_3": 32,
-    "companies_processed_total": 25,
-    "demo_folders_created": 25,
-    "companies_remaining_priority_1_3": 7,
-    "next_batch": "Ciclo 3 Batch 2 — 5 aziende",
-    "note": "Ciclo 1: 11 aziende, Ciclo 2: 10 aziende, Ciclo 3 Batch 1: 5 aziende (25 totali)"
+    "companies_processed_total": 32,
+    "demo_folders_created": 32,
+    "companies_remaining_priority_1_3": 0,
+    "next_batch": "Nessun batch - Ciclo 1-3 completato (32/32 aziende priority 1-3)",
+    "note": "✓ COMPLETATO: Ciclo 1 (11) + Ciclo 2 (10) + Ciclo 3 Batch 1 (5) + Ciclo 3 Batch 2 (5) + Ciclo 3 Batch 3 (2) = 32 aziende totali"
   },
-  "notes": "CICLO 3 BATCH 1 IN CORSO: 5 nuove demo create (Hotel Crawford, Vestours, Karsana Travel, Hotel Giosue a Mare, Panorama Palace Hotel). CSV aggiornato con link demo e CSV Ciclo 2 completato (Torres Travel, Aminta, Ambasciatori, Parker's, Royal Continental). Email bozze create con HTML hyperlink a Experiences Srl. Prossimo batch: 5 aziende dopo 5 ore."
+  "notes": "✓ CICLO 3 BATCH 3 COMPLETATO - CICLO INTERO COMPLETATO: 2 demo create (Hotel Mary, Hotel Capo La Gala). CSV aggiornato. Email draft ricreat con URL visibile + hyperlink pulito. TOTALE: 32/32 aziende priority 1-3 elaborate. Tutte le demo generate con template Sirenide Viaggi. Tutti i draft Gmail con footer: Mario Esposito / Experiences Srl / WhatsApp / Rispondi CANCELLA. Grand Hotel Parker's redesigned luxury con immagini Campania."
 }
