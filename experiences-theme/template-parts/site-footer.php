@@ -56,10 +56,11 @@ $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
             </div>
             <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p class="text-gray-500 text-sm">© <?php echo esc_html( date( 'Y' ) ); ?> Experiences Srl. Tutti i diritti riservati.</p>
-                <div class="flex gap-6 text-sm text-gray-500">
-                    <a href="#" class="hover:text-accent transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-accent transition">Cookie Policy</a>
-                    <a href="#" class="hover:text-accent transition">Termini e Condizioni</a>
+                <div class="flex flex-wrap gap-6 text-sm text-gray-500">
+                    <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="hover:text-accent transition">Privacy Policy</a>
+                    <a href="<?php echo esc_url( home_url( '/cookie-policy/' ) ); ?>" class="hover:text-accent transition">Cookie Policy</a>
+                    <a href="#" class="hover:text-accent transition" data-cookie-settings>Preferenze Cookie</a>
+                    <a href="<?php echo esc_url( home_url( '/termini-e-condizioni/' ) ); ?>" class="hover:text-accent transition">Termini e Condizioni</a>
                 </div>
             </div>
         </div>

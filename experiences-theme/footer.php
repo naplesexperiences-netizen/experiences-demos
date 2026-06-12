@@ -4,12 +4,12 @@
  * @package experiences-srl
  */
 
-// Footer del sito + WhatsApp float su tutte le pagine
 get_template_part( 'template-parts/site-footer' );
+get_template_part( 'template-parts/booking-modal' );
+get_template_part( 'template-parts/cookie-banner' );
 
-// main.js (handle: experiences-main) e aos.js sono enqueued con defer
-// in functions.php; wp_footer() li stampa qui insieme alla variabile
-// localizzata experiencesAjax necessaria al contact form.
+// main.js + aos.js enqueued con defer in functions.php; wp_footer() li
+// stampa qui insieme alla variabile localizzata experiencesAjax.
 wp_footer();
 ?>
 </body>
