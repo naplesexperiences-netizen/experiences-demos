@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Mary - Demo Experiences Srl</title>
+    <meta name="description" content="Hotel Mary - Hotel 4 stelle a Vico Equense - Demo realizzato da Experiences Srl">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.65; color: #333; background: #fff; }
+
+        /* DEMO BANNER */
+        .demo-banner {
+            background: linear-gradient(90deg, #2f5f7f 0%, #0d2035 100%);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 200;
+        }
+        .demo-banner a { color: #d4a853; text-decoration: none; border-bottom: 1px solid #d4a853; }
+        .demo-banner a:hover { opacity: 0.85; }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        .nav-logo {
+            font-weight: 800;
+            font-size: 17px;
+            color: #2f5f7f;
+            letter-spacing: -0.3px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #2f5f7f; }
+        .btn-cta {
+            background: #2f5f7f;
+            color: #fff !important;
+            padding: 9px 22px;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: all 0.2s !important;
+        }
+        .btn-cta:hover { background: #0d2035 !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/ornaw-naples-4808406_1920.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.45);
+            transform: scale(1.03);
+            transition: transform 8s ease;
+        }
+        .hero:hover .hero-bg { transform: scale(1.07); }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 780px;
+            padding: 0 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #d4a853;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 60px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: clamp(15px, 2vw, 18px);
+            opacity: 0.92;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 13px 30px;
+            border-radius: 7px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+            display: inline-block;
+        }
+        .btn-primary { background: #d4a853; color: #fff; border: 2px solid #d4a853; }
+        .btn-primary:hover { background: transparent; color: #d4a853; }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.7); }
+        .btn-outline:hover { background: rgba(255,255,255,0.15); }
+
+        /* STATS */
+        .stats-bar {
+            background: #2f5f7f;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item { padding: 10px 0; }
+        .stat-num { font-size: 38px; font-weight: 800; color: #d4a853; line-height: 1; margin-bottom: 8px; }
+        .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.3px; }
+
+        /* ABOUT */
+        .about-section {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+        .about-img-wrap img { width: 100%; height: 380px; object-fit: cover; display: block; }
+        .about-text .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #0e9aa7;
+            margin-bottom: 14px;
+        }
+        .about-text h2 { font-size: 34px; font-weight: 800; color: #2f5f7f; margin-bottom: 18px; line-height: 1.2; }
+        .about-text p { color: #555; font-size: 15px; margin-bottom: 20px; }
+        .highlights-list { list-style: none; margin-top: 10px; }
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 0;
+            font-size: 14px;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .check { color: #0e9aa7; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+
+        /* SERVICES */
+        .services-section { background: #f0f7ff; padding: 80px 24px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #0e9aa7;
+            margin-bottom: 12px;
+        }
+        .section-header h2 { font-size: 36px; font-weight: 800; color: #2f5f7f; }
+        .section-header p { color: #666; margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            transition: all 0.3s;
+        }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .card-img-wrap { overflow: hidden; height: 200px; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrap img { transform: scale(1.06); }
+        .card-body { padding: 24px; }
+        .card-title { font-size: 17px; font-weight: 700; color: #2f5f7f; margin-bottom: 10px; }
+        .card-desc { font-size: 13.5px; color: #666; line-height: 1.6; }
+
+        /* CHATBOT PREVIEW */
+        .chatbot-section {
+            background: linear-gradient(135deg, #2f5f7f 0%, #0d2035 100%);
+            padding: 80px 24px;
+            color: #fff;
+        }
+        .chatbot-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .chatbot-text h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+        .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
+        .chatbot-features { list-style: none; margin-bottom: 28px; }
+        .chatbot-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .chatbot-ui {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .chatbot-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .chat-bubble {
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px 12px 12px 0;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .chat-user {
+            background: #d4a853;
+            border-radius: 12px 12px 0 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-left: auto;
+            max-width: 80%;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .chat-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .chat-input input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 9px 14px;
+            color: #fff;
+            font-size: 13px;
+        }
+        .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-send {
+            background: #d4a853;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 14px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* PRICING */
+        .pricing-section { padding: 80px 24px; background: #fff; }
+        .pricing-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .pricing-card {
+            border: 2px solid #e8e8e8;
+            border-radius: 16px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pricing-card:hover { border-color: #2f5f7f; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        .pricing-card.featured {
+            border-color: #d4a853;
+            background: linear-gradient(180deg, #f0f7ff 0%, #fff 100%);
+            transform: scale(1.03);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4a853;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-name { font-size: 16px; font-weight: 700; color: #2f5f7f; margin-bottom: 12px; }
+        .pricing-price { font-size: 32px; font-weight: 900; color: #2f5f7f; margin-bottom: 4px; }
+        .pricing-period { font-size: 12px; color: #999; margin-bottom: 6px; }
+        .pricing-commission { font-size: 13px; color: #0e9aa7; font-weight: 600; margin-bottom: 20px; padding: 8px; background: #f0f7ff; border-radius: 6px; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 24px; }
+        .pricing-features li { padding: 7px 0; font-size: 13px; color: #555; display: flex; gap: 8px; border-bottom: 1px solid #f5f5f5; }
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            background: #2f5f7f;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .pricing-btn:hover { background: #0d2035; }
+        .pricing-card.featured .pricing-btn { background: #d4a853; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #0e9aa7 0%, #2f5f7f 100%);
+            padding: 80px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-section h2 { font-size: 38px; font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-btns .btn-white {
+            background: #fff;
+            color: #2f5f7f;
+            padding: 14px 34px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .cta-btns .btn-ghost {
+            background: transparent;
+            color: #fff;
+            padding: 14px 34px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        /* FOOTER */
+        footer {
+            background: #0d2035;
+            color: rgba(255,255,255,0.8);
+            padding: 40px 24px;
+            text-align: center;
+            font-size: 13px;
+        }
+        footer a { color: #d4a853; text-decoration: none; }
+        footer strong { color: #fff; }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-section { grid-template-columns: 1fr; gap: 30px; }
+            .chatbot-inner { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .hero { min-height: 75vh; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo-banner">
+    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
+</div>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">Hotel Mary</div>
+        <ul class="nav-links">
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#services">Servizi</a></li>
+            <li><a href="#pricing">Piani</a></li>
+            <li><a href="#contact" class="btn-cta">Richiedi Info</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Hotel 4 stelle</div>
+        <h1>Hotel Mary</h1>
+        <p>Panorama e comfort a Vico Equense</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Richiedi Info</a>
+            <a href="#services" class="btn btn-outline">Scopri i Servizi</a>
+        </div>
+    </div>
+</section>
+
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat-item">
+                <div class="stat-num">16+</div>
+                <div class="stat-label">Anni di Attività</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">40+</div>
+                <div class="stat-label">Camere Confortevoli</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">4 ★</div>
+                <div class="stat-label">Stelle</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">1200+</div>
+                <div class="stat-label">Ospiti Annuali</div>
+            </div>
+    </div>
+</div>
+
+<section class="about-section" id="about">
+    <div class="about-img-wrap">
+        <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Hotel Mary">
+    </div>
+    <div class="about-text">
+        <div class="section-tag">Chi Siamo</div>
+        <h2>La Vostra Scelta Ideale</h2>
+        <p>Hotel Mary è una struttura 4 stelle con posizione panoramica privilegiata a Vico Equense. Offre comfort moderno, servizi personalizzati e accesso strategico alle principali attrazioni della Costiera Sorrentina.</p>
+        <ul class="highlights-list">
+            <li><span class="check">✓</span> Ubicazione privilegiata sul mare della Costiera</li>
+<li><span class="check">✓</span> Servizio personalizzato e attento ai dettagli</li>
+<li><span class="check">✓</span> Staff qualificato multilingue e discreto</li>
+<li><span class="check">✓</span> Struttura esclusiva con elevati standard</li>
+<li><span class="check">✓</span> Facilità di accesso a tutte le attrazioni</li>
+<li><span class="check">✓</span> Garanzia di privacy e riservatezza assoluta</li>
+        </ul>
+    </div>
+</section>
+
+<section class="services-section" id="services">
+    <div class="section-header">
+        <div class="section-tag">I Nostri Servizi</div>
+        <h2>Quello che Offriamo</h2>
+        <p>Ogni servizio è pensato per offrire il meglio del territorio, con standard di eccellenza e attenzione ai dettagli.</p>
+    </div>
+    <div class="cards-grid">
+        <div class="card" data-aos="fade-up">
+                <div class="card-img-wrap">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="Camere Panoramiche" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Camere Panoramiche</h3>
+                    <p class="card-desc">Stanze confortevoli con vista mare e balcone privato</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-img-wrap">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Wellness & Relax" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Wellness & Relax</h3>
+                    <p class="card-desc">Area spa, jacuzzi e sauna per il vostro benessere</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-img-wrap">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg" alt="Ristorante Locale" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Ristorante Locale</h3>
+                    <p class="card-desc">Cucina mediterranea con specialità della Costiera</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-img-wrap">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Accesso Spiaggia" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Accesso Spiaggia</h3>
+                    <p class="card-desc">Raggiungimento facile delle migliori spiagge circostanti</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-img-wrap">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/yorick77-vesuvius-4635882_1920.jpg" alt="Servizi Moderni" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Servizi Moderni</h3>
+                    <p class="card-desc">WiFi veloce, parking, reception 24/7</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-img-wrap">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Escursioni Organizzate" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Escursioni Organizzate</h3>
+                    <p class="card-desc">Aiuto per prenotare tour e visite guidate locali</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="chatbot-section" id="chatbot">
+    <div class="chatbot-inner">
+        <div class="chatbot-text">
+            <h2>Assistente AI 24/7</h2>
+            <p>Con Experiences Srl, il vostro sito risponde ai clienti in italiano, inglese e altri idiomi — disponibile giorno e notte.</p>
+            <ul class="chatbot-features">
+                <li>🌍 <span>Assistenza multilingua istantanea</span></li>
+                <li>📅 <span>Gestione prenotazioni automatica</span></li>
+                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
+                <li>📊 <span>Integrazione con booking engine</span></li>
+                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
+        </div>
+        <div class="chatbot-ui">
+            <div class="chatbot-header">
+                <div class="chatbot-dot"></div>
+                <span style="font-size:14px; font-weight:600;">Assistente AI · Hotel Mary</span>
+            </div>
+            <div class="chat-bubble">Ciao! Sono l'assistente di Hotel Mary. Come posso aiutarti?</div>
+            <div class="chat-user">Avete disponibilità per il weekend prossimo?</div>
+            <div class="chat-bubble">Perfetto! Verifichiamo la disponibilità. Quante persone siete e quali servizi vi interessano?</div>
+            <div class="chat-input">
+                <input type="text" placeholder="Scrivi un messaggio...">
+                <button class="chat-send">→</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+    <div class="section-header">
+        <div class="section-tag">Piani Experiences Srl</div>
+        <h2>Soluzioni su Misura per il Vostro Business</h2>
+        <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <div class="pricing-name">Piano Base</div>
+            <div class="pricing-price">€300</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ commissioni sulle vendite</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sito mobile-optimized</span></li>
+                <li>✓ <span>SEO base e Google My Business</span></li>
+                <li>✓ <span>Modulo contatti</span></li>
+                <li>✓ <span>Integrazione social</span></li>
+                <li>✓ <span>Supporto tecnico email</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card featured">
+            <div class="pricing-badge">⭐ Più Scelto</div>
+            <div class="pricing-name">Piano Pro</div>
+            <div class="pricing-price">€600</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ commissioni sulle vendite</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Base</span></li>
+                <li>✓ <span>Chatbot AI 24/7</span></li>
+                <li>✓ <span>Booking engine integrato</span></li>
+                <li>✓ <span>Google Ads gestiti</span></li>
+                <li>✓ <span>Report mensile</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-name">Piano Premium</div>
+            <div class="pricing-price">€1.200</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ commissioni sulle vendite</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Pro</span></li>
+                <li>✓ <span>Channel Manager OTA</span></li>
+                <li>✓ <span>Integrazione Booking.com</span></li>
+                <li>✓ <span>Account manager dedicato</span></li>
+                <li>✓ <span>Supporto H24</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section" id="contact">
+    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <p>Questa demo è stata creata appositamente per Hotel Mary. Contattaci per una consulenza senza impegno.</p>
+    <div class="cta-btns">
+        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
+        <a href="mailto:info@hotelmaryvico.com" class="btn-ghost">📧 Email</a>
+    </div>
+    <p style="margin-top:24px; font-size:13px; opacity:0.7;">Mario Esposito · Experiences Srl · +39 392 691 7657</p>
+</section>
+
+<footer>
+    <p>© 2025 <strong>Hotel Mary</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+    <p style="margin-top:8px;">
+        <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> ·
+        <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a> ·
+        <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+    </p>
+    <p style="margin-top:8px; font-size:11px; opacity:0.5;">Rispondi con "CANCELLA" per non ricevere ulteriori comunicazioni</p>
+</footer>
+
+</body>
+</html>
