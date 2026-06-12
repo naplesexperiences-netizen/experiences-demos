@@ -660,11 +660,42 @@ get_header();
                     <a href="#contact" class="block text-center py-3 px-6 bg-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-all shadow-lg">Scegli Enterprise</a>
                 </div>
             </div>
-            <div class="mt-12 text-center" data-aos="fade-up">
-                <div class="inline-flex items-center gap-3 px-6 py-4 bg-light rounded-xl">
-                    <i class="fas fa-info-circle text-secondary text-xl"></i>
-                    <p class="text-gray-600 text-sm">Tutti i prezzi sono indicati <strong>+ IVA</strong>. La commissione è applicata solo sulle vendite generate attraverso i nostri canali.</p>
+            <div class="mt-12 max-w-4xl mx-auto space-y-4" data-aos="fade-up">
+
+                <!-- Postilla 1: piano e commissione legati al volume -->
+                <div class="flex items-start gap-4 p-5 lg:p-6 bg-light rounded-2xl border-l-4 border-secondary">
+                    <div class="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-chart-line text-secondary"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-primary mb-1">Il piano e la commissione dipendono dal volume di clienti annuali</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            La scelta del piano (Base / Advanced / Pro / Enterprise) e la relativa percentuale di commissione vengono <strong>concordate sul numero stimato di clienti/prenotazioni annui</strong> della tua struttura. In fase di consulenza definiamo insieme il piano più adatto al tuo volume di business, e lo rivediamo se le condizioni cambiano.
+                        </p>
+                    </div>
                 </div>
+
+                <!-- Postilla 2: Channel Manager a carico del cliente -->
+                <div class="flex items-start gap-4 p-5 lg:p-6 bg-light rounded-2xl border-l-4 border-accent">
+                    <div class="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-exchange-alt text-accent"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-primary mb-1">Channel Manager: la scelta è tua, il costo è a tuo carico</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Suggeriamo il Channel Manager più adatto al tuo caso (Octorate, SiteMinder, Smoobu, RoomCloud, Cubilis…), ma puoi anche <strong>indicarci quello che già utilizzi</strong> o sceglierne uno a tua preferenza: ci integriamo con il fornitore che preferisci. La licenza e i costi mensili del Channel Manager sono <strong>a carico del cliente</strong> e non sono inclusi nei nostri piani.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Nota IVA + commissioni vendite -->
+                <div class="flex items-start gap-3 px-5 py-4 bg-white rounded-xl border border-gray-200">
+                    <i class="fas fa-info-circle text-gray-400 mt-0.5"></i>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Tutti i prezzi sono indicati <strong>+ IVA</strong>. La commissione è applicata solo sulle vendite generate attraverso i nostri canali.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
