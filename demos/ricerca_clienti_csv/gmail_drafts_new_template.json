@@ -1,0 +1,199 @@
+{
+  "generated_at": "2026-06-13",
+  "task": "TASK 4 - Gmail drafts for companies with new-template-experiences demo",
+  "summary": {
+    "total_new_template_demos": 32,
+    "email_sent_excluded": 21,
+    "drafts_created": 11
+  },
+  "email_sent_companies": [
+    "Sirenide Viaggi",
+    "Grand Hotel Excelsior Vittoria",
+    "Hotel Mediterraneo Sorrento",
+    "Grand Hotel Capodimonte Sorrento",
+    "Grand Hotel Royal Sorrento",
+    "Torres Travel",
+    "Golden Tours International",
+    "Grand Hotel Cesare Augusto",
+    "Hotel Lorelei et Londres",
+    "Hotel Continental Sorrento",
+    "Hotel Club Sorrento",
+    "Grand Hotel Vesuvio Sorrento",
+    "Hotel Antiche Mura Sorrento",
+    "Sorrento Tourist Office",
+    "Grand Hotel La Pace",
+    "Bleu Village Resort & Residence",
+    "Hotel Capo La Gala",
+    "Hotel Sporting",
+    "Hotel Astoria",
+    "Grand Hotel Parker's",
+    "Hotel Royal Continental"
+  ],
+  "drafts": [
+    {
+      "draft_id": "r1579697543511037466",
+      "nome_azienda": "Grand Hotel Cocumella",
+      "email": "info@cocumella.com",
+      "categoria": "Hotel 5 stelle (Small Luxury Hotels)",
+      "citta": "Sant'Agnello",
+      "url_sito": "https://www.cocumella.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cocumella-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Grand Hotel Cocumella - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 45/100",
+        "Stack obsoleto jQuery UI + yepnope",
+        "Nessun booking engine integrato rilevato"
+      ]
+    },
+    {
+      "draft_id": "r2805388295344391093",
+      "nome_azienda": "Grand Hotel Aminta",
+      "email": "info@aminta.it",
+      "categoria": "Hotel 4 stelle",
+      "citta": "Sorrento",
+      "url_sito": "https://www.aminta.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-aminta-sorrento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Grand Hotel Aminta - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 56/100",
+        "Stack misto Bootstrap + jQuery + WebFont Loader",
+        "Nessun booking engine integrato rilevato"
+      ]
+    },
+    {
+      "draft_id": "r7807931041510437621",
+      "nome_azienda": "Grand Hotel La Favorita",
+      "email": "info@hotellafavorita.com",
+      "categoria": "Hotel 5 stelle",
+      "citta": "Sorrento",
+      "url_sito": "https://www.hotellafavorita.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-favorita-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Grand Hotel La Favorita - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 62/100",
+        "Stack WordPress + jQuery UI datato",
+        "Sistema prenotazione esterno ermeshotels non ottimizzato per conversione diretta"
+      ]
+    },
+    {
+      "draft_id": "r-1451503111884299752",
+      "nome_azienda": "Grand Hotel Ambasciatori",
+      "email": "ambasciatori@manniellohotels.com",
+      "categoria": "Hotel 5 stelle (Manniello Hotels)",
+      "citta": "Sorrento",
+      "url_sito": "https://www.ambasciatorisorrento.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-ambasciatori-sorrento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Grand Hotel Ambasciatori - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 72/100 (migliorabile)",
+        "SEO score 85/100 non ottimale per hotel 5 stelle",
+        "Mancanza upselling integrato per esperienze esclusive"
+      ]
+    },
+    {
+      "draft_id": "r-569611011061482445",
+      "nome_azienda": "Best Western Hotel La Solara",
+      "email": "info@lasolara.com",
+      "categoria": "Hotel 4 stelle (catena BW)",
+      "citta": "Sorrento",
+      "url_sito": "https://www.lasolara.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/best-western-hotel-la-solara-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Best Western Hotel La Solara - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 37/100 (critica)",
+        "Best Practices score: 77/100",
+        "Stack WordPress + jQuery UI + Preact incoerente"
+      ]
+    },
+    {
+      "draft_id": "r4349313973375036992",
+      "nome_azienda": "Hotel Crawford",
+      "email": "reservations@hotelcrawford.com",
+      "categoria": "Hotel 4 stelle",
+      "citta": "Sant'Agnello",
+      "url_sito": "https://www.hotelcrawford.it",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-crawford-santagnello-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel Crawford - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 53/100",
+        "Best Practices score: 73/100",
+        "Stack obsoleto jQuery UI + Modernizr + yepnope, nessun booking engine"
+      ]
+    },
+    {
+      "draft_id": "r9166770401424426578",
+      "nome_azienda": "Vestours",
+      "email": "info@vestours.com",
+      "categoria": "Tour operator",
+      "citta": "Sant'Agnello",
+      "url_sito": "https://www.vestours.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/vestours-santagnello-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Vestours - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 60/100",
+        "Best Practices score: 77/100",
+        "Stack Bootstrap + jQuery senza sistema prenotazione integrato"
+      ]
+    },
+    {
+      "draft_id": "r1088145680937623257",
+      "nome_azienda": "Karsana Travel",
+      "email": "info@karsanatravel.com",
+      "categoria": "Tour operator",
+      "citta": "Sant'Agnello",
+      "url_sito": "https://karsanatravel.it",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/karsana-travel-santagnello-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Karsana Travel - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 39/100 (critica)",
+        "Stack Joomla obsoleto con rischi sicurezza",
+        "Nessun sistema di prenotazione/richiesta online integrato"
+      ]
+    },
+    {
+      "draft_id": "r1566521481815376909",
+      "nome_azienda": "Hotel Giosue a Mare",
+      "email": "info@giosueamare.it",
+      "categoria": "Hotel 4 stelle",
+      "citta": "Meta di Sorrento",
+      "url_sito": "https://www.giosueamare.it",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-giosue-a-mare-meta-sorrento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel Giosue a Mare - Experiences Srl",
+      "punti_deboli": [
+        "Nessun booking engine integrato (performance tecnica 94/100 sprecata)",
+        "Posizionamento digitale insufficiente vs competitor OTA",
+        "Assenza strategie upselling integrate per esperienze e servizi"
+      ]
+    },
+    {
+      "draft_id": "r-9017623135574567736",
+      "nome_azienda": "Panorama Palace Hotel",
+      "email": "info@hotelpanoramapalace.it",
+      "categoria": "Hotel 4 stelle",
+      "citta": "Meta di Sorrento",
+      "url_sito": "https://www.hotelpanoramapalace.it",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/panorama-palace-hotel-meta-sorrento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Panorama Palace Hotel - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 62/100",
+        "Stack Bootstrap + jQuery classico non ottimizzato",
+        "Nessun booking engine integrato: unicità museo e vista Golfo non genera prenotazioni dirette"
+      ]
+    },
+    {
+      "draft_id": "r-1097528302676120116",
+      "nome_azienda": "Hotel Mary",
+      "email": "info@hotelmaryvico.com",
+      "categoria": "Hotel 4 stelle",
+      "citta": "Vico Equense",
+      "url_sito": "https://www.hotelmaryvico.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mary-vico-equense-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel Mary - Experiences Srl",
+      "punti_deboli": [
+        "PageSpeed Performance mobile: 66/100 (nonostante SEO 100/100)",
+        "Stack obsoleto Bootstrap + jQuery + yepnope",
+        "Nessun booking engine integrato rilevato"
+      ]
+    }
+  ]
+}
