@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monastero Santa Rosa - Demo Experiences Srl</title>
+    <meta name="description" content="Monastero Santa Rosa - Hotel 5 stelle lusso a Conca dei Marini - Demo Experiences Srl">
+    <meta property="og:title" content="Monastero Santa Rosa - Demo Experiences Srl">
+    <meta property="og:description" content="Hotel 5 stelle lusso ultra-luxury a Conca dei Marini, ex monastero del 1600. Demo gratuita realizzata da Experiences Srl.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://monasterosantarosa.com/wp-content/uploads/2019/12/foto-monastero-old-per-interno-sfum-980x776.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a0a00;
+            --primary-dark: #0d0500;
+            --accent: #c9a227;
+            --accent-light: #e0bc52;
+            --teal: #0e9aa7;
+            --bg-soft: #f6f9fc;
+            --text: #2d3440;
+            --text-soft: #5b6470;
+            --radius: 16px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.65; color: var(--text); background: #fff; }
+        h1, h2, h3, .nav-logo { font-family: 'Playfair Display', Georgia, serif; }
+        .demo-banner { background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; text-align: center; padding: 12px 20px; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; position: relative; z-index: 200; }
+        .demo-banner a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+        .demo-banner a:hover { opacity: 0.85; }
+        .navbar { background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.07); padding: 0 24px; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 68px; }
+        .nav-logo { font-weight: 800; font-size: 20px; color: var(--primary); letter-spacing: -0.3px; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 28px; align-items: center; list-style: none; }
+        .nav-links a { color: var(--text-soft); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-cta { background: var(--primary); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; font-size: 14px; transition: all 0.2s !important; }
+        .btn-cta:hover { background: var(--accent) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--primary); transition: all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .hero { position: relative; min-height: 88vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background-image: url('https://monasterosantarosa.com/wp-content/uploads/2019/12/foto-monastero-old-per-interno-sfum-980x776.jpg'); background-size: cover; background-position: center; filter: brightness(0.5); transform: scale(1.03); animation: heroZoom 18s ease-in-out infinite alternate; }
+        @keyframes heroZoom { from { transform: scale(1.03); } to { transform: scale(1.1); } }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,10,0,0.25) 0%, rgba(13,5,0,0.65) 100%); }
+        .hero-content { position: relative; z-index: 2; color: #fff; max-width: 800px; padding: 0 24px; animation: fadeInUp 0.9s ease-out; }
+        .hero-badge { display: inline-block; background: rgba(201,162,39,0.92); color: #fff; font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; padding: 6px 18px; border-radius: 30px; margin-bottom: 22px; }
+        .hero h1 { font-size: clamp(36px, 5.5vw, 66px); font-weight: 800; line-height: 1.12; margin-bottom: 18px; text-shadow: 0 2px 16px rgba(0,0,0,0.35); }
+        .hero p { font-size: clamp(15px, 2vw, 19px); opacity: 0.94; margin-bottom: 34px; max-width: 620px; margin-left: auto; margin-right: auto; }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; text-decoration: none; transition: all 0.25s; display: inline-block; }
+        .btn-primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); }
+        .btn-primary:hover { background: transparent; color: var(--accent-light); border-color: var(--accent-light); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
+        .btn-outline:hover { background: rgba(255,255,255,0.16); }
+        .hero-scroll { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 2; color: rgba(255,255,255,0.8); font-size: 22px; text-decoration: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
+        .stats-bar { background: var(--primary); color: #fff; padding: 46px 20px; }
+        .stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center; }
+        .stat-item { padding: 10px 0; }
+        .stat-num { font-size: 42px; font-weight: 800; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+        .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.4px; text-transform: uppercase; }
+        .section-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--teal); margin-bottom: 14px; font-family: 'Inter', sans-serif; }
+        .section-header { text-align: center; margin-bottom: 54px; }
+        .section-header h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--primary); }
+        .section-header p { color: var(--text-soft); margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .about-section { max-width: 1100px; margin: 90px auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: 0 24px 60px rgba(26,10,0,0.18); position: relative; }
+        .about-img-wrap img { width: 100%; height: 420px; object-fit: cover; display: block; }
+        .about-img-badge { position: absolute; bottom: 18px; left: 18px; background: rgba(255,255,255,0.95); border-radius: 12px; padding: 12px 18px; font-size: 13px; font-weight: 700; color: var(--primary); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .about-img-badge .stars { color: var(--accent); letter-spacing: 2px; }
+        .about-text h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 800; color: var(--primary); margin-bottom: 18px; line-height: 1.18; }
+        .about-text p { color: var(--text-soft); font-size: 15px; margin-bottom: 20px; }
+        .highlights-list { list-style: none; margin-top: 10px; }
+        .highlights-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 14px; color: var(--text); border-bottom: 1px solid #eef1f5; }
+        .check { color: var(--teal); font-weight: 800; font-size: 16px; flex-shrink: 0; }
+        .services-section { background: var(--bg-soft); padding: 90px 24px; }
+        .cards-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+        .card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 24px rgba(26,10,0,0.07); transition: all 0.3s; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(26,10,0,0.14); }
+        .card-img-wrap { overflow: hidden; height: 210px; position: relative; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrap img { transform: scale(1.07); }
+        .card-icon { position: absolute; bottom: -22px; right: 20px; width: 46px; height: 46px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 6px 16px rgba(201,162,39,0.4); z-index: 2; }
+        .card-body { padding: 30px 24px 24px; }
+        .card-title { font-size: 19px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.6; font-family: 'Inter', sans-serif; }
+        .gallery-section { padding: 90px 24px; }
+        .gallery-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 14px; }
+        .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,10,0,0.55) 100%); opacity: 0; transition: opacity 0.3s; }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+        .reviews-section { background: var(--bg-soft); padding: 90px 24px; }
+        .reviews-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; }
+        .review-card { background: #fff; border-radius: var(--radius); padding: 30px 28px; box-shadow: 0 4px 24px rgba(26,10,0,0.07); position: relative; }
+        .review-card::before { content: '\201C'; position: absolute; top: 12px; right: 22px; font-size: 70px; font-family: Georgia, serif; color: var(--accent); opacity: 0.25; line-height: 1; }
+        .review-stars { color: var(--accent); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+        .review-text { font-size: 14px; color: var(--text-soft); font-style: italic; margin-bottom: 18px; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--teal)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; }
+        .review-name { font-size: 14px; font-weight: 700; color: var(--primary); }
+        .review-origin { font-size: 12px; color: #98a1ad; }
+        .chatbot-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 90px 24px; color: #fff; }
+        .chatbot-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .chatbot-text h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; margin-bottom: 16px; }
+        .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
+        .chatbot-features { list-style: none; margin-bottom: 28px; }
+        .chatbot-features li { padding: 9px 0; font-size: 14px; display: flex; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .chatbot-ui { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 20px; }
+        .chatbot-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+        .chatbot-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .chat-log { max-height: 260px; overflow-y: auto; scrollbar-width: thin; }
+        .chat-bubble { background: rgba(255,255,255,0.12); border-radius: 12px 12px 12px 0; padding: 12px 16px; margin-bottom: 10px; font-size: 13px; line-height: 1.5; max-width: 90%; animation: fadeInUp 0.35s ease-out; }
+        .chat-user { background: var(--accent); border-radius: 12px 12px 0 12px; padding: 10px 14px; font-size: 13px; margin-left: auto; max-width: 80%; text-align: right; margin-bottom: 10px; animation: fadeInUp 0.35s ease-out; }
+        .chat-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+        .chat-typing i { width: 6px; height: 6px; background: rgba(255,255,255,0.7); border-radius: 50%; animation: blink 1s infinite; font-style: normal; }
+        .chat-typing i:nth-child(2) { animation-delay: 0.2s; }
+        .chat-typing i:nth-child(3) { animation-delay: 0.4s; }
+        .chat-input { display: flex; gap: 8px; margin-top: 12px; }
+        .chat-input input { flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 13px; font-family: 'Inter', sans-serif; }
+        .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-input input:focus { outline: 1px solid var(--accent-light); }
+        .chat-send { background: var(--accent); border: none; border-radius: 8px; padding: 10px 16px; color: #fff; cursor: pointer; font-size: 15px; transition: background 0.2s; }
+        .chat-send:hover { background: var(--accent-light); }
+        .pricing-section { padding: 90px 24px; background: #fff; }
+        .pricing-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .pricing-card { border: 2px solid #e8ecf1; border-radius: var(--radius); padding: 34px 28px; text-align: center; transition: all 0.3s; position: relative; }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px rgba(26,10,0,0.12); transform: translateY(-4px); }
+        .pricing-card.featured { border-color: var(--accent); background: linear-gradient(180deg, #fdf9f0 0%, #fff 100%); transform: scale(1.03); }
+        .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+        .pricing-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 16px; border-radius: 20px; white-space: nowrap; }
+        .pricing-name { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .pricing-price { font-size: 36px; font-weight: 900; color: var(--primary); margin-bottom: 4px; font-family: 'Playfair Display', serif; }
+        .pricing-period { font-size: 12px; color: #98a1ad; margin-bottom: 8px; }
+        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 600; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 26px; }
+        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid #f3f5f8; }
+        .pricing-btn { display: block; width: 100%; padding: 12px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+        .pricing-btn:hover { background: var(--accent); }
+        .pricing-card.featured .pricing-btn { background: var(--accent); }
+        .pricing-card.featured .pricing-btn:hover { background: var(--primary); }
+        .pricing-notes { max-width: 1100px; margin: 36px auto 0; display: grid; gap: 10px; }
+        .pricing-note { display: flex; gap: 12px; align-items: flex-start; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 14px 18px; font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+        .pricing-note strong { color: var(--primary); }
+        .pricing-note .note-icon { font-size: 16px; flex-shrink: 0; }
+        .faq-section { background: var(--bg-soft); padding: 90px 24px; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item { background: #fff; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 12px rgba(26,10,0,0.06); overflow: hidden; }
+        .faq-item summary { padding: 18px 22px; font-size: 15px; font-weight: 600; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); }
+        .cta-section { background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 100%); padding: 90px 24px; text-align: center; color: #fff; }
+        .cta-section h2 { font-size: clamp(28px, 4.5vw, 42px); font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-btns .btn-white { background: #fff; color: var(--primary); padding: 15px 36px; border-radius: 8px; font-weight: 800; font-size: 15px; text-decoration: none; transition: all 0.25s; }
+        .cta-btns .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .cta-btns .btn-ghost { background: transparent; color: #fff; padding: 15px 36px; border: 2px solid rgba(255,255,255,0.6); border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; transition: all 0.25s; }
+        .cta-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+        footer { background: var(--primary-dark); color: rgba(255,255,255,0.8); padding: 44px 24px; text-align: center; font-size: 13px; }
+        footer a { color: var(--accent-light); text-decoration: none; }
+        footer strong { color: #fff; }
+        .wa-float { position: fixed; bottom: 22px; right: 22px; z-index: 300; background: #25d366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; text-decoration: none; box-shadow: 0 6px 20px rgba(37,211,102,0.45); transition: transform 0.2s; }
+        .wa-float:hover { transform: scale(1.1); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-bg { animation: none; } }
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 18px 24px 24px; gap: 16px; box-shadow: 0 14px 24px rgba(0,0,0,0.1); }
+            .nav-links.open { display: flex; }
+            .about-section { grid-template-columns: 1fr; gap: 30px; margin: 60px auto; }
+            .chatbot-inner { grid-template-columns: 1fr; gap: 40px; }
+            .pricing-card.featured { transform: none; }
+            .hero { min-height: 78vh; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo-banner">
+    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
+</div>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">Monastero <span>Santa Rosa</span></div>
+        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#services">Servizi</a></li>
+            <li><a href="#gallery">Galleria</a></li>
+            <li><a href="#reviews">Recensioni</a></li>
+            <li><a href="#pricing">Piani</a></li>
+            <li><a href="#contact" class="btn-cta">Richiedi Info</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">★★★★★ Conca dei Marini · Costiera Amalfitana</div>
+        <h1>Monastero Santa Rosa</h1>
+        <p>Ex monastero del 1600 trasformato in ultra-luxury resort con spa premiata e giardini terrazzati</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Prenota Ora</a>
+            <a href="#services" class="btn btn-outline">Scopri i Servizi</a>
+        </div>
+    </div>
+    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
+</section>
+
+<div class="stats-bar" id="stats">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <div class="stat-num" data-count="1681">0</div>
+            <div class="stat-label">Anno di Fondazione</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-count="20">0</div>
+            <div class="stat-label">Suite Esclusive</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-count="1">0</div>
+            <div class="stat-label">Spa Premiata</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-count="5">0</div>
+            <div class="stat-label">Stelle Ultra-Luxury</div>
+        </div>
+    </div>
+</div>
+
+<section class="about-section reveal" id="about">
+    <div class="about-img-wrap">
+        <img src="https://monasterosantarosa.com/wp-content/uploads/2020/08/nun-old-photo-980x1323.jpg" alt="Monastero Santa Rosa - Conca dei Marini">
+        <div class="about-img-badge"><span class="stars">★★★★★</span><br>Monastero Santa Rosa - Conca dei Marini</div>
+    </div>
+    <div class="about-text">
+        <div class="section-tag">Chi Siamo</div>
+        <h2>Benvenuti a Monastero Santa Rosa</h2>
+        <p>Il Monastero Santa Rosa è un capolavoro di ultra-luxury ricavato da un antico monastero domenicano fondato nel 1681. Affacciato sulle acque turchesi della Costiera Amalfitana tra Positano e Amalfi, è uno dei luoghi più esclusivi e ricercati al mondo.</p>
+        <p>Solo 20 suite, ciascuna diversa dall'altra, distribuite negli ambienti storici del convento e nei giardini terrazzati. La spa premiata, la piscina a strapiombo sul mare e la cucina d'autore fanno del Monastero Santa Rosa una destinazione di pellegrinaggio per i viaggiatori luxury più esigenti di tutto il mondo.</p>
+        <ul class="highlights-list">
+            <li><span class="check">✓</span> Solo 20 suite esclusive in un monastero del XVII secolo</li>
+            <li><span class="check">✓</span> Spa premiata internazionalmente con trattamenti esclusivi</li>
+            <li><span class="check">✓</span> Giardini terrazzati con piante mediterranee centenarie</li>
+            <li><span class="check">✓</span> Piscina infinity pool a strapiombo sul mare</li>
+            <li><span class="check">✓</span> Ristorante con cucina campana di altissimo livello</li>
+            <li><span class="check">✓</span> Concierge dedicato e servizi ultra-personalized</li>
+        </ul>
+    </div>
+</section>
+
+<section class="services-section" id="services">
+    <div class="section-header reveal">
+        <div class="section-tag">I Nostri Servizi</div>
+        <h2>L'Ultra-Luxury del Monastero Santa Rosa</h2>
+        <p>Un'esperienza esclusiva che fonde storia secolare, natura mediterranea e i più alti standard del lusso contemporaneo.</p>
+    </div>
+    <div class="cards-grid">
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://monasterosantarosa.com/wp-content/uploads/2019/12/foto-monastero-old-per-interno-sfum-980x776.jpg" alt="Suite Monastero" loading="lazy">
+                <div class="card-icon">🏛️</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Suite Storiche</h3>
+                <p class="card-desc">Venti suite esclusive ricavate nelle celle monastiche del XVII secolo, trasformate in ambienti di lusso assoluto con affreschi originali e vedute mozzafiato sul mare.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://monasterosantarosa.com/wp-content/uploads/2020/08/nun-old-photo-980x1323.jpg" alt="Spa Premiata" loading="lazy">
+                <div class="card-icon">🏆</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Spa Premiata</h3>
+                <p class="card-desc">La nostra spa ha ricevuto premi internazionali per l'eccellenza dei trattamenti. Rituali di benessere ispirati alla tradizione monastica e ai botanici della Costiera Amalfitana.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Giardini Terrazzati" loading="lazy">
+                <div class="card-icon">🌿</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Giardini Terrazzati</h3>
+                <p class="card-desc">Giardini storici a terrazze con piante mediterranee centenarie, agrumi, lavanda e rose antiche che profumano l'aria della Costiera da quattro secoli.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/yorick77-vesuvius-4635882_1920.jpg" alt="Piscina Infinity" loading="lazy">
+                <div class="card-icon">🏊</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Piscina Infinity sul Mare</h3>
+                <p class="card-desc">La piscina infinity a strapiombo sulla Costiera è uno dei luoghi più fotografati d'Italia. Un'esperienza visiva e sensoriale unica al mondo, sospesa tra cielo e mare.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/petrovhey-pizza-3000274_1920.jpg" alt="Cucina d'Autore" loading="lazy">
+                <div class="card-icon">👨‍🍳</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Cucina d'Autore</h3>
+                <p class="card-desc">Alta cucina campana con ingredienti del territorio: il ristorante del monastero celebra i profumi e i sapori della Costiera in un ambiente di charme storico unico.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="Esperienze Esclusive" loading="lazy">
+                <div class="card-icon">✨</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Esperienze Ultra-Personalized</h3>
+                <p class="card-desc">Chef privato, degustazioni di vini campani in cantina storica, gite in barca privata e accesso a esperienze culturali esclusive lungo la Costiera Amalfitana.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+        <div class="section-tag">Galleria</div>
+        <h2>Scopri il Monastero Santa Rosa</h2>
+        <p>Un viaggio tra storia, lusso e natura: il monastero del 1600 trasformato in un paradiso ultra-luxury sulla Costiera.</p>
+    </div>
+    <div class="gallery-grid reveal">
+        <div class="gallery-item wide"><img src="https://monasterosantarosa.com/wp-content/uploads/2019/12/foto-monastero-old-per-interno-sfum-980x776.jpg" alt="Monastero - Vista storica" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://monasterosantarosa.com/wp-content/uploads/2020/08/nun-old-photo-980x1323.jpg" alt="Monastero - Storia" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/yorick77-italy-6702554_1920.jpg" alt="Costiera Amalfitana" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/petrovhey-pizza-3000274_1920.jpg" alt="Cucina campana" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Vista sul golfo" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/serpae-napoli-5711208_1920.jpg" alt="Napoli" loading="lazy"></div>
+    </div>
+</section>
+
+<section class="reviews-section" id="reviews">
+    <div class="section-header reveal">
+        <div class="section-tag">Recensioni</div>
+        <h2>Cosa Dicono i Nostri Ospiti</h2>
+        <p>Il Monastero Santa Rosa è tra i luoghi più desiderati al mondo dai viaggiatori luxury più esigenti.</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Dormire in un monastero del 1600 sulla Costiera Amalfitana è un'esperienza che va oltre il lusso — è un viaggio nel tempo. La spa è la migliore che abbia mai visitato. Assolutamente imperdibile."</p>
+            <div class="review-author">
+                <div class="review-avatar">EM</div>
+                <div>
+                    <div class="review-name">Elena M.</div>
+                    <div class="review-origin">Milano · Wellness retreat</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Monastero Santa Rosa is in a category of its own. The infinity pool over the sea, the award-winning spa and the historic suites create an experience impossible to replicate. Pure magic."</p>
+            <div class="review-author">
+                <div class="review-avatar">AT</div>
+                <div>
+                    <div class="review-name">Alexandra T.</div>
+                    <div class="review-origin">New York · Luxury escape</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I giardini terrazzati, la storia del convento e la piscina a picco sul mare creano un'atmosfera fuori dal mondo. La spa e la cucina d'autore completano un soggiorno indimenticabile."</p>
+            <div class="review-author">
+                <div class="review-avatar">LF</div>
+                <div>
+                    <div class="review-name">Lorenzo F.</div>
+                    <div class="review-origin">Roma · Anniversario speciale</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chatbot-section" id="chatbot">
+    <div class="chatbot-inner">
+        <div class="chatbot-text reveal">
+            <h2>Assistente AI 24/7</h2>
+            <p>Con Experiences Srl, il vostro sito risponde agli ospiti internazionali in italiano, inglese e altre lingue — disponibile giorno e notte.</p>
+            <ul class="chatbot-features">
+                <li>🌍 <span>Assistenza multilingua per ospiti ultra-luxury</span></li>
+                <li>📅 <span>Gestione richieste suite esclusive automatica</span></li>
+                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
+                <li>📊 <span>Integrazione con booking engine premium</span></li>
+                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
+        </div>
+        <div class="chatbot-ui reveal">
+            <div class="chatbot-header">
+                <div class="chatbot-dot"></div>
+                <span style="font-size:14px; font-weight:600;">Assistente AI · Monastero Santa Rosa</span>
+            </div>
+            <div class="chat-log" id="chatLog">
+                <div class="chat-bubble">Benvenuti al Monastero Santa Rosa! 👋 Sono il vostro assistente. Come posso aiutarvi per il vostro soggiorno esclusivo?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Prova: avete la spa?" aria-label="Scrivi un messaggio">
+                <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+    <div class="section-header reveal">
+        <div class="section-tag">Piani Experiences Srl</div>
+        <h2>Soluzioni su Misura per il Vostro Business</h2>
+        <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Base</div>
+            <div class="pricing-price">€500</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 5% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sito mobile-optimized</span></li>
+                <li>✓ <span>SEO base e Google My Business</span></li>
+                <li>✓ <span>Modulo contatti</span></li>
+                <li>✓ <span>Integrazione social</span></li>
+                <li>✓ <span>Supporto tecnico email</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card featured reveal">
+            <div class="pricing-badge">⭐ Più Scelto</div>
+            <div class="pricing-name">Piano Pro</div>
+            <div class="pricing-price">€1.000</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 8% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Base</span></li>
+                <li>✓ <span>Chatbot AI 24/7</span></li>
+                <li>✓ <span>Booking engine integrato</span></li>
+                <li>✓ <span>Google Ads gestiti</span></li>
+                <li>✓ <span>Report mensile</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Premium</div>
+            <div class="pricing-price">€1.400</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 10% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Pro</span></li>
+                <li>✓ <span>Channel Manager OTA</span></li>
+                <li>✓ <span>Integrazione Booking.com</span></li>
+                <li>✓ <span>Account manager dedicato</span></li>
+                <li>✓ <span>Supporto H24</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+    </div>
+    <div class="pricing-notes reveal">
+        <div class="pricing-note">
+            <span class="note-icon">ℹ️</span>
+            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra struttura. Contattateci per individuare insieme la soluzione più conveniente.</span>
+        </div>
+        <div class="pricing-note">
+            <span class="note-icon">🔗</span>
+            <span><strong>Channel Manager:</strong> suggeriamo noi un Channel Manager, ma potete indicarci quello che già utilizzate o sceglierne uno di vostra preferenza. I costi del Channel Manager sono a carico del cliente.</span>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section" id="faq">
+    <div class="section-header reveal">
+        <div class="section-tag">Domande Frequenti</div>
+        <h2>FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+        <details class="faq-item">
+            <summary>Quanto costa realizzare un sito come questo?</summary>
+            <p>I piani Experiences Srl partono da €500/anno e includono realizzazione, hosting, manutenzione e supporto. Questa demo è gratuita e senza impegno: contattateci su WhatsApp per una proposta personalizzata.</p>
+        </details>
+        <details class="faq-item">
+            <summary>In quanto tempo il sito sarà online?</summary>
+            <p>Il sito base è pronto in 7-10 giorni lavorativi. Con chatbot AI e booking engine integrato servono circa 2-3 settimane, inclusi i test e la formazione del vostro staff.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Il chatbot AI risponde davvero ai clienti?</summary>
+            <p>Sì: viene addestrato sulle informazioni della vostra struttura (camere, prezzi, servizi, policy) e risponde 24/7 in più lingue, riducendo fino al 70% delle email e telefonate ripetitive.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso integrare Booking.com e gli altri portali?</summary>
+            <p>Con il Piano Premium includiamo il Channel Manager che sincronizza disponibilità e prezzi su Booking.com, Expedia, Airbnb e altri portali, evitando overbooking.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Cosa include l'assistenza?</summary>
+            <p>Tutti i piani includono aggiornamenti, backup e supporto tecnico. I piani Pro e Premium aggiungono report mensili e, per il Premium, un account manager dedicato raggiungibile H24.</p>
+        </details>
+    </div>
+</section>
+
+<section class="cta-section" id="contact">
+    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <p>Questa demo mostra come potrebbe essere il sito del Monastero Santa Rosa. Contattateci per una consulenza senza impegno.</p>
+    <div class="cta-btns">
+        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
+        <a href="mailto:info@monasterosantarosa.com" class="btn-ghost">📧 Scrivici</a>
+    </div>
+    <p style="margin-top:24px; font-size:13px; opacity:0.7;">Mario Esposito · Experiences Srl · +39 392 691 7657</p>
+</section>
+
+<footer>
+    <p>© 2026 <strong>Monastero Santa Rosa</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+    <p style="margin-top:8px;">
+        <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> ·
+        <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a> ·
+        <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+    </p>
+    <p style="margin-top:8px; font-size:11px; opacity:0.5;">Rispondi con "CANCELLA" per non ricevere ulteriori comunicazioni</p>
+</footer>
+
+<a href="https://wa.me/393926917657" class="wa-float" target="_blank" aria-label="Contattaci su WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+    var navToggle = document.querySelector('.nav-toggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function () {
+        var open = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { navLinks.classList.remove('open'); navToggle.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    });
+    var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+    function animateCount(el) {
+        var target = parseInt(el.dataset.count, 10);
+        var suffix = el.dataset.suffix || '';
+        var duration = 1600;
+        var start = null;
+        function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased).toLocaleString('it-IT') + (progress === 1 ? suffix : '');
+            if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+    var statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.querySelectorAll('.stat-num').forEach(animateCount); statsObserver.unobserve(entry.target); } });
+    }, { threshold: 0.4 });
+    statsObserver.observe(document.querySelector('.stats-bar'));
+    var chatLog = document.getElementById('chatLog');
+    var chatInput = document.getElementById('chatInput');
+    var chatSend = document.getElementById('chatSend');
+    var replies = [
+        { keys: ['spa', 'massaggio', 'wellness', 'benessere', 'trattamento'], text: 'La nostra Spa ha vinto premi internazionali per l\'eccellenza dei trattamenti. 🏆 Rituali di benessere ispirati alla tradizione monastica e ai botanici della Costiera. Prenotazione consigliata.' },
+        { keys: ['prezz', 'cost', 'tariff', 'price', 'suite'], text: 'Le nostre 20 suite esclusive partono da €1.200/notte. 💶 Ogni suite è unica e diversa dall\'altra. Per un preventivo personalizzato il nostro concierge è a disposizione.' },
+        { keys: ['piscina', 'pool', 'infinity'], text: 'La nostra infinity pool a strapiombo sulla Costiera Amalfitana è uno dei luoghi più iconici d\'Italia. 🏊 Un\'esperienza sensoriale unica sospesa tra cielo e mare.' },
+        { keys: ['giardino', 'giardini', 'natura', 'piante'], text: 'I giardini terrazzati storici ospitano piante centenarie, agrumi e rose antiche. 🌿 Una passeggiata botanica attraverso quattro secoli di storia e bellezza mediterranea.' },
+        { keys: ['monastero', 'storia', 'storico', 'antico', '1600', '1681'], text: 'Il Monastero fu fondato nel 1681 dall\'Ordine Domenicano. 🏛️ Ogni angolo racconta secoli di storia: dalla cappella agli affreschi nelle suite, un viaggio nel tempo.' },
+        { keys: ['disponibil', 'prenot', 'book', 'room'], text: 'Con solo 20 suite disponibili, vi consigliamo di prenotare con largo anticipo. 📅 Il nostro concierge è pronto ad assistervi per trovare le date ideali per il vostro soggiorno.' }
+    ];
+    function botReply(userText) {
+        var lower = userText.toLowerCase();
+        var match = replies.find(function (r) { return r.keys.some(function (k) { return lower.indexOf(k) !== -1; }); });
+        return match ? match.text : 'Grazie per la sua domanda! 😊 Il nostro team di concierge è pronto a risponderle personalmente. Nel sito reale l\'AI è addestrata su tutte le informazioni della struttura — contatti Experiences Srl per una demo completa!';
+    }
+    function appendBubble(cls, html) {
+        var div = document.createElement('div'); div.className = cls; div.innerHTML = html; chatLog.appendChild(div); chatLog.scrollTop = chatLog.scrollHeight; return div;
+    }
+    function sendChat() {
+        var text = chatInput.value.trim(); if (!text) return; chatInput.value = '';
+        appendBubble('chat-user', text.replace(/</g, '&lt;'));
+        var typing = appendBubble('chat-bubble', '<span class="chat-typing"><i></i><i></i><i></i></span>');
+        setTimeout(function () { typing.innerHTML = botReply(text); chatLog.scrollTop = chatLog.scrollHeight; }, 900);
+    }
+    chatSend.addEventListener('click', sendChat);
+    chatInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendChat(); });
+</script>
+
+</body>
+</html>
