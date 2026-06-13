@@ -1,10 +1,12 @@
 {
   "generated_at": "2026-06-13",
-  "task": "TASK 4 - Gmail drafts for companies with new-template-experiences demo",
+  "task": "TASK 5 CICLO 4 BATCH 1 - Gmail drafts per 5 nuove aziende Cilento",
   "summary": {
-    "total_new_template_demos": 32,
+    "total_new_template_demos": 37,
     "email_sent_excluded": 21,
-    "drafts_created": 11
+    "drafts_created": 11,
+    "ciclo4_batch1_drafts": 5,
+    "total_drafts_created": 16
   },
   "email_sent_companies": [
     "Sirenide Viaggi",
@@ -194,6 +196,67 @@
         "Stack obsoleto Bootstrap + jQuery + yepnope",
         "Nessun booking engine integrato rilevato"
       ]
+    },
+    {
+      "draft_id": "r-5653241180352816419",
+      "nome_azienda": "San Francesco Resort",
+      "email": "info@sanfrancescoresort.com",
+      "categoria": "Hotel/Resort SPA",
+      "region": "Cilento",
+      "url_sito": "https://www.sanfrancescoresort.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/san-francesco-resort-cilento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per San Francesco Resort - Experiences Srl",
+      "ciclo": 4,
+      "batch": 1
+    },
+    {
+      "draft_id": "r8594216834576147735",
+      "nome_azienda": "Hotel Myrtus",
+      "email": "info@hotelmyrtus.it",
+      "categoria": "Hotel/Residence",
+      "region": "Cilento",
+      "url_sito": "https://www.hotelmyrtus.it",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-myrtus-cilento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel Myrtus Cilento - Experiences Srl",
+      "ciclo": 4,
+      "batch": 1
+    },
+    {
+      "draft_id": "r-8101908362789118949",
+      "nome_azienda": "Hotel Mare",
+      "email": "info@hotel-mare.com",
+      "categoria": "Hotel",
+      "region": "Cilento",
+      "url_sito": "https://www.hotel-mare.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mare-cilento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel Mare Cilento - Experiences Srl",
+      "ciclo": 4,
+      "batch": 1
+    },
+    {
+      "draft_id": "r6062320734081337459",
+      "nome_azienda": "Hotel La Darsena Residence",
+      "email": "info@ladarsenahotel.com",
+      "categoria": "Hotel/Residence",
+      "region": "Cilento",
+      "url_sito": "https://www.ladarsenahotel.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-darsena-residence-cilento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel La Darsena Residence Cilento - Experiences Srl",
+      "ciclo": 4,
+      "batch": 1
+    },
+    {
+      "draft_id": "r7727056596241796624",
+      "nome_azienda": "Hotel Ristorante Il Ceppo",
+      "email": "info@hotelristoranteilceppo.com",
+      "categoria": "Hotel/Ristorante",
+      "region": "Cilento",
+      "url_sito": "https://www.hotelristoranteilceppo.com",
+      "link_demo": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-cilento-new-template-experiences/",
+      "subject": "Demo gratuita realizzata per Hotel Ristorante Il Ceppo - Experiences Srl",
+      "ciclo": 4,
+      "batch": 1
     }
-  ]
+  ],
+  "last_update": "2026-06-13"
 }

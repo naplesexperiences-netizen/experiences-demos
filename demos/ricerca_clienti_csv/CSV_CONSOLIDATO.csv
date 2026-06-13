@@ -1,9 +1,9 @@
 Region,Nome_Azienda,Email,Status,Data_Contatto,URL_Sito,Categoria,Priorita,Link_Demo,Contattato
-Cilento,San Francesco Resort,info@sanfrancescoresort.com,Draft_Created,,https://www.sanfrancescoresort.com,Hotel/Resort SPA,1,,No
-Cilento,Hotel Myrtus,info@hotelmyrtus.it,Draft_Created,,https://www.hotelmyrtus.it,Hotel/Residence,2,,No
-Cilento,Hotel Mare,info@hotel-mare.com,Draft_Created,,https://www.hotel-mare.com,Hotel,2,,No
-Cilento,Hotel La Darsena Residence,,Non_Contacted,,https://www.ladarsenahotel.com,Hotel/Residence,3,,No
-Cilento,Hotel Ristorante Il Ceppo,info@hotelristoranteilceppo.com,Draft_Created,,https://www.hotelristoranteilceppo.com,Hotel/Ristorante,3,,No
+Cilento,San Francesco Resort,info@sanfrancescoresort.com,Draft_Created,,https://www.sanfrancescoresort.com,Hotel/Resort SPA,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/san-francesco-resort-cilento-new-template-experiences/,No
+Cilento,Hotel Myrtus,info@hotelmyrtus.it,Draft_Created,,https://www.hotelmyrtus.it,Hotel/Residence,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-myrtus-cilento-new-template-experiences/,No
+Cilento,Hotel Mare,info@hotel-mare.com,Draft_Created,,https://www.hotel-mare.com,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mare-cilento-new-template-experiences/,No
+Cilento,Hotel La Darsena Residence,,Non_Contacted,,https://www.ladarsenahotel.com,Hotel/Residence,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-darsena-residence-cilento-new-template-experiences/,No
+Cilento,Hotel Ristorante Il Ceppo,info@hotelristoranteilceppo.com,Draft_Created,,https://www.hotelristoranteilceppo.com,Hotel/Ristorante,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-cilento-new-template-experiences/,No
 Cilento,Grand Hotel Santa Maria,info@ghsm.it,Draft_Created,,https://www.grandhotel-santamaria.it,Hotel 4 stelle,3,,No
 Cilento,Hotel Villa Sirio,,Non_Contacted,,https://www.villasirio.it,Hotel dimora storica,2,,No
 Cilento,Prince Franklyn Hotel,info@franklyn-hotel.com,Draft_Created,,https://www.franklyn-hotel.com,Hotel 4 stelle,2,,No

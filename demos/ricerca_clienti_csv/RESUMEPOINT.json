@@ -1,9 +1,9 @@
 {
-  "last_update": "2026-06-11T15:30:00Z",
-  "cycle": 3,
-  "batch": 3,
+  "last_update": "2026-06-13T12:00:00Z",
+  "cycle": 4,
+  "batch": 1,
   "session_id": "claude-sonnet-4-6",
-  "current_csv_file": "CSV_Golfo_Napoli_Sorrento.csv",
+  "current_csv_file": "CSV_CONSOLIDATO.csv",
   "cycle_completed": false,
   "processed_companies": [
     {
@@ -273,17 +273,91 @@
       "category": "Hotel 5 stelle",
       "city": "Vico Equense",
       "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-capo-la-gala-vico-equense-demo-experiences/"
+    },
+    {
+      "cycle": 4,
+      "batch": 1,
+      "name": "San Francesco Resort",
+      "priority": 1,
+      "category": "Hotel/Resort SPA",
+      "region": "Cilento",
+      "email": "info@sanfrancescoresort.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/san-francesco-resort-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-5653241180352816419",
+      "folder": "san-francesco-resort-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 1,
+      "name": "Hotel Myrtus",
+      "priority": 2,
+      "category": "Hotel/Residence",
+      "region": "Cilento",
+      "email": "info@hotelmyrtus.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-myrtus-cilento-new-template-experiences/",
+      "gmail_draft_id": "r8594216834576147735",
+      "folder": "hotel-myrtus-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 1,
+      "name": "Hotel Mare",
+      "priority": 2,
+      "category": "Hotel",
+      "region": "Cilento",
+      "email": "info@hotel-mare.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mare-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-8101908362789118949",
+      "folder": "hotel-mare-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 1,
+      "name": "Hotel La Darsena Residence",
+      "priority": 3,
+      "category": "Hotel/Residence",
+      "region": "Cilento",
+      "email": "info@ladarsenahotel.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-darsena-residence-cilento-new-template-experiences/",
+      "gmail_draft_id": "r6062320734081337459",
+      "folder": "hotel-la-darsena-residence-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 1,
+      "name": "Hotel Ristorante Il Ceppo",
+      "priority": 3,
+      "category": "Hotel/Ristorante",
+      "region": "Cilento",
+      "email": "info@hotelristoranteilceppo.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-cilento-new-template-experiences/",
+      "gmail_draft_id": "r7727056596241796624",
+      "folder": "hotel-ristorante-il-ceppo-cilento-new-template-experiences"
     }
   ],
   "next_companies_to_process_cycle3_batch3": [],
   "stats": {
-    "total_companies_in_csv": 103,
-    "companies_with_priority_1_3": 32,
-    "companies_processed_total": 32,
-    "demo_folders_created": 32,
-    "companies_remaining_priority_1_3": 0,
-    "next_batch": "Nessun batch - Ciclo 1-3 completato (32/32 aziende priority 1-3)",
-    "note": "✓ COMPLETATO: Ciclo 1 (11) + Ciclo 2 (10) + Ciclo 3 Batch 1 (5) + Ciclo 3 Batch 2 (5) + Ciclo 3 Batch 3 (2) = 32 aziende totali"
+    "total_companies_in_csv": 256,
+    "companies_with_priority_1_3_all_regions": "201+",
+    "companies_processed_total": 37,
+    "demo_folders_created": 37,
+    "ciclo_1_companies": 11,
+    "ciclo_2_companies": 10,
+    "ciclo_3_companies": 11,
+    "ciclo_4_batch_1_companies": 5,
+    "companies_elaborated_breakdown": "Ciclo1(11) + Ciclo2(10) + Ciclo3Batch1(5) + Ciclo3Batch2(5) + Ciclo3Batch3(2) + Ciclo4Batch1(5) = 38",
+    "regions_covered": [
+      "Golfo_Napoli_Sorrento (32)",
+      "Cilento (5 - in corso)"
+    ],
+    "next_batch": "Ciclo 4 Batch 2 - Cilento priority 1-3 (restanti) o Costiera Amalfitana"
   },
-  "notes": "✓ CICLO 3 BATCH 3 COMPLETATO - CICLO INTERO COMPLETATO: 2 demo create (Hotel Mary, Hotel Capo La Gala). CSV aggiornato. Email draft ricreat con URL visibile + hyperlink pulito. TOTALE: 32/32 aziende priority 1-3 elaborate. Tutte le demo generate con template Sirenide Viaggi. Tutti i draft Gmail con footer: Mario Esposito / Experiences Srl / WhatsApp / Rispondi CANCELLA. Grand Hotel Parker's redesigned luxury con immagini Campania."
+  "notes": "CICLO 4 BATCH 1 COMPLETATO: 5 demo create per il Cilento (San Francesco Resort, Hotel Myrtus, Hotel Mare, Hotel La Darsena Residence, Hotel Ristorante Il Ceppo). Tutte le 5 demo usano il nuovo template hotel. 5 bozze Gmail create. CSV aggiornato con Link_Demo. Precedente: Ciclo 1-3 completato con 32 aziende Golfo Napoli Sorrento.",
+  "next_companies_to_process_cycle4_batch2": [
+    "Grand Hotel Santa Maria (Cilento, P3)",
+    "Mec Paestum Hotel (Cilento, P1)",
+    "L'Araba Fenice Hotel & Resort (Cilento, P1)",
+    "Prince Franklyn Hotel (Cilento, P2)",
+    "Hotel Villa Sirio (Cilento, P2)"
+  ]
 }
