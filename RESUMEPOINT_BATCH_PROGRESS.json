@@ -1,0 +1,85 @@
+{
+  "session_status": "ACTIVE - Batch creation ongoing",
+  "current_model": "Sonnet 4.6 + Haiku 4.5",
+  "last_update": "2026-06-13T05:30:00Z",
+
+  "batches_completed": [
+    {
+      "batch_id": 1,
+      "region": "Multi-region template demos",
+      "type": "Templates + Initial 5 hotels",
+      "count": 5,
+      "hotels": [
+        "Hotel Capo La Gala (Vico Equense)",
+        "Grand Hotel Vesuvio Sorrento (Sorrento)",
+        "Sorrento Tourist Office (Sorrento)",
+        "Hotel Sporting Vico Equense (Vico Equense)",
+        "Hotel Astoria Vico Equense (Vico Equense)"
+      ],
+      "status": "COMPLETED ✅",
+      "git_commit": "39ab24f (fixed images)"
+    },
+    {
+      "batch_id": 2,
+      "region": "Costiera Amalfitana - Batch 1",
+      "type": "Luxury 5 stelle",
+      "count": 5,
+      "hotels": [
+        "Le Sirenuse (Positano)",
+        "Il San Pietro di Positano (Positano)",
+        "Hotel Covo dei Saraceni (Positano)",
+        "Monastero Santa Rosa (Conca dei Marini)",
+        "Hotel Santa Caterina (Amalfi)"
+      ],
+      "status": "COMPLETED ✅",
+      "git_commit": "afdad29"
+    },
+    {
+      "batch_id": 3,
+      "region": "Costiera Amalfitana - Batch 2 + Cilento",
+      "type": "Luxury + Resort SPA",
+      "count": 5,
+      "hotels": [
+        "Borgo Santandrea (Amalfi)",
+        "Palazzo Avino (Ravello)",
+        "Hotel Villa Cimbrone (Ravello)",
+        "Hotel Botanico San Lazzaro (Maiori)",
+        "San Francesco Resort (Agropoli)"
+      ],
+      "status": "COMPLETED ✅",
+      "git_commit": "b15452d"
+    }
+  ],
+
+  "total_demos_created": 15,
+  "total_gmail_drafts_created": 15,
+  "all_demos_live_on_github_pages": true,
+
+  "quality_metrics": {
+    "all_files_above_40kb": true,
+    "zero_bellavista_placeholders": true,
+    "zero_dummy_references": true,
+    "all_images_real_or_fallback": true,
+    "prices_correct_on_all": true
+  },
+
+  "next_steps": [
+    "Continue with Batch 4: Costiera Amalfitana remaining priority 2 hotels",
+    "Then: Golfo Napoli/Sorrento region",
+    "Then: Isole del Golfo region",
+    "Track: 196 candidates remaining (priority 1-3)"
+  ],
+
+  "github_pages_urls": {
+    "deployed_branches": "main",
+    "live_url_pattern": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/[folder-name]/",
+    "deployment_delay": "1-2 minutes from push"
+  },
+
+  "notes": [
+    "Sonnet 4.6 handling all batch creation - maintaining quality",
+    "Fallback images used for hotels with SVG/UI elements in CSV",
+    "Real hotel photos prioritized where available",
+    "All bozze Gmail created with personalized content + correct pricing"
+  ]
+}
