@@ -1,7 +1,7 @@
 {
-  "last_update": "2026-06-13T12:00:00Z",
+  "last_update": "2026-06-14T12:00:00Z",
   "cycle": 4,
-  "batch": 1,
+  "batch": 3,
   "session_id": "claude-sonnet-4-6",
   "current_csv_file": "CSV_CONSOLIDATO.csv",
   "cycle_completed": false,
@@ -333,31 +333,150 @@
       "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-cilento-new-template-experiences/",
       "gmail_draft_id": "r7727056596241796624",
       "folder": "hotel-ristorante-il-ceppo-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 2,
+      "name": "Grand Hotel Santa Maria",
+      "priority": 3,
+      "category": "Hotel 4 stelle",
+      "region": "Cilento",
+      "email": "info@ghsm.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-santa-maria-cilento-new-template-experiences/",
+      "folder": "grand-hotel-santa-maria-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 2,
+      "name": "Hotel Villa Sirio",
+      "priority": 2,
+      "category": "Hotel dimora storica",
+      "region": "Cilento",
+      "email": "",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-villa-sirio-cilento-new-template-experiences/",
+      "folder": "hotel-villa-sirio-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 2,
+      "name": "Prince Franklyn Hotel",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "region": "Cilento",
+      "email": "info@franklyn-hotel.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/prince-franklyn-hotel-cilento-new-template-experiences/",
+      "folder": "prince-franklyn-hotel-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 2,
+      "name": "Hotel Costa d'Oro",
+      "priority": 2,
+      "category": "Hotel 3 stelle",
+      "region": "Cilento",
+      "email": "info@hotelcostadoro.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-costa-doro-cilento-new-template-experiences/",
+      "folder": "hotel-costa-doro-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 2,
+      "name": "New Hotel Sonia",
+      "priority": 3,
+      "category": "Hotel 4 stelle",
+      "region": "Cilento",
+      "email": "info@hotelsonia.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/new-hotel-sonia-cilento-new-template-experiences/",
+      "folder": "new-hotel-sonia-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 3,
+      "name": "Hotel Acciaroli",
+      "priority": 3,
+      "category": "Hotel",
+      "region": "Cilento",
+      "email": "info@hotelacciaroli.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-acciaroli-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-6356287071597477543",
+      "folder": "hotel-acciaroli-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 3,
+      "name": "Hotel La Playa",
+      "priority": 2,
+      "category": "Hotel",
+      "region": "Cilento",
+      "email": "info@hotellaplayaacciaroli.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-playa-acciaroli-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-746302160287552143",
+      "folder": "hotel-la-playa-acciaroli-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 3,
+      "name": "Hotel La Vela",
+      "priority": 2,
+      "category": "Hotel",
+      "region": "Cilento",
+      "email": "info@lavelapioppi.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-vela-cilento-new-template-experiences/",
+      "gmail_draft_id": "r6686920556113078017",
+      "folder": "hotel-la-vela-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 3,
+      "name": "Mec Paestum Hotel",
+      "priority": 1,
+      "category": "Hotel 5 stelle",
+      "region": "Cilento",
+      "email": "info@mechotel.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/mec-paestum-hotel-cilento-new-template-experiences/",
+      "gmail_draft_id": "r5185104427635289131",
+      "folder": "mec-paestum-hotel-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 3,
+      "name": "L'Araba Fenice Hotel & Resort",
+      "priority": 1,
+      "category": "Resort SPA 5 stelle",
+      "region": "Cilento",
+      "email": "reception@arabafenicespa.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/araba-fenice-hotel-resort-cilento-new-template-experiences/",
+      "gmail_draft_id": "r6575257444736974266",
+      "folder": "araba-fenice-hotel-resort-cilento-new-template-experiences"
     }
   ],
   "next_companies_to_process_cycle3_batch3": [],
   "stats": {
     "total_companies_in_csv": 256,
     "companies_with_priority_1_3_all_regions": "201+",
-    "companies_processed_total": 37,
-    "demo_folders_created": 37,
+    "companies_processed_total": 47,
+    "demo_folders_created": 47,
     "ciclo_1_companies": 11,
     "ciclo_2_companies": 10,
     "ciclo_3_companies": 11,
     "ciclo_4_batch_1_companies": 5,
-    "companies_elaborated_breakdown": "Ciclo1(11) + Ciclo2(10) + Ciclo3Batch1(5) + Ciclo3Batch2(5) + Ciclo3Batch3(2) + Ciclo4Batch1(5) = 38",
+    "ciclo_4_batch_2_companies": 5,
+    "ciclo_4_batch_3_companies": 5,
+    "companies_elaborated_breakdown": "Ciclo1(11) + Ciclo2(10) + Ciclo3Batch1(5) + Ciclo3Batch2(5) + Ciclo3Batch3(2) + Ciclo4Batch1(5) + Ciclo4Batch2(5) + Ciclo4Batch3(5) = 48",
     "regions_covered": [
       "Golfo_Napoli_Sorrento (32)",
-      "Cilento (5 - in corso)"
+      "Cilento (15 - in corso)"
     ],
-    "next_batch": "Ciclo 4 Batch 2 - Cilento priority 1-3 (restanti) o Costiera Amalfitana"
+    "next_batch": "Ciclo 4 Batch 4 - Cilento priority 1-3 (restanti: Savoy Hotel & Spa, Hotel Schuhmann, Agriturismo Seliano, Ruggiero Park Hotel, Discover Cilento...)"
   },
-  "notes": "CICLO 4 BATCH 1 COMPLETATO: 5 demo create per il Cilento (San Francesco Resort, Hotel Myrtus, Hotel Mare, Hotel La Darsena Residence, Hotel Ristorante Il Ceppo). Tutte le 5 demo usano il nuovo template hotel. 5 bozze Gmail create. CSV aggiornato con Link_Demo. Precedente: Ciclo 1-3 completato con 32 aziende Golfo Napoli Sorrento.",
-  "next_companies_to_process_cycle4_batch2": [
-    "Grand Hotel Santa Maria (Cilento, P3)",
-    "Mec Paestum Hotel (Cilento, P1)",
-    "L'Araba Fenice Hotel & Resort (Cilento, P1)",
-    "Prince Franklyn Hotel (Cilento, P2)",
-    "Hotel Villa Sirio (Cilento, P2)"
+  "notes": "CICLO 4 BATCH 3 COMPLETATO: 5 demo create per il Cilento (Hotel Acciaroli, Hotel La Playa Acciaroli, Hotel La Vela Pioppi, Mec Paestum Hotel, L'Araba Fenice Hotel & Resort). Tutte le 5 demo usano il nuovo template hotel. 5 bozze Gmail create. CSV aggiornato con Link_Demo. Totale cumulativo: 47 aziende elaborate (NB: conteggio batch 2 incluso per completezza).",
+  "next_companies_to_process_cycle4_batch4": [
+    "Savoy Hotel & Spa Pagano (Cilento, P2)",
+    "Hotel Schuhmann (Cilento, P2)",
+    "Agriturismo Seliano (Cilento, P2)",
+    "Ruggiero Park Hotel (Cilento, P2)",
+    "Cilentour ANBI Travel (Cilento, P3)",
+    "Discover Cilento (Cilento, P2)",
+    "ArcheoTrekking (Cilento, P2)"
   ]
 }
