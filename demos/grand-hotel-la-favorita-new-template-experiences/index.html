@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{HOTEL_NAME}} — Demo Experiences Srl</title>
-    <meta name="description" content="{{HOTEL_NAME}} — {{HOTEL_CATEGORY}}. Demo esclusiva realizzata da Experiences Srl.">
+    <title>Grand Hotel La Favorita — Demo Experiences Srl</title>
+    <meta name="description" content="Grand Hotel La Favorita — Hotel 5 stelle. Demo esclusiva realizzata da Experiences Srl.">
     <style>
         /* =============================================
            CSS VARIABLES — easy customization via script
            ============================================= */
         :root {
-            --primary:        {{PRIMARY_COLOR}};
-            --secondary:      {{SECONDARY_COLOR}};
+            --primary:        #2d4a1e;
+            --secondary:      #c9a84c;
             --primary-dark:   color-mix(in srgb, var(--primary) 72%, #000);
             --primary-light:  color-mix(in srgb, var(--primary) 12%, #fff);
             --secondary-dark: color-mix(in srgb, var(--secondary) 68%, #000);
@@ -163,7 +163,7 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('{{HERO_IMAGE_URL}}');
+            background-image: url('https://www.hotellafavorita.com/wp-content/uploads/favorita_18-e1689673695861.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -1000,7 +1000,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-inner">
             <div class="nav-brand">
-                <div class="nav-logo">{{HOTEL_NAME}}</div>
+                <div class="nav-logo">Grand Hotel La Favorita</div>
                 <div class="demo-badge">Demo Experiences</div>
             </div>
             <ul class="nav-links">
@@ -1026,10 +1026,10 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="star">★</span>
-                {{HOTEL_CATEGORY}}
+                Hotel 5 stelle
             </div>
-            <h1 class="hero-title"><em>{{HOTEL_NAME}}</em></h1>
-            <p class="hero-tagline">{{HOTEL_TAGLINE}}</p>
+            <h1 class="hero-title"><em>Grand Hotel La Favorita</em></h1>
+            <p class="hero-tagline">85 camere eleganti nel centro di Sorrento · Roof garden · Spa · Matrimoni</p>
             <div class="hero-cta-group">
                 <a href="https://wa.me/393926917657"
                    target="_blank" rel="noopener"
@@ -1053,20 +1053,20 @@
     <div class="stats-bar">
         <div class="stats-inner">
             <div class="stat-item reveal">
-                <div class="stat-num">{{STAT1_NUM}}</div>
-                <div class="stat-label">{{STAT1_LABEL}}</div>
+                <div class="stat-num">85</div>
+                <div class="stat-label">Camere Eleganti</div>
             </div>
             <div class="stat-item reveal">
-                <div class="stat-num">{{STAT2_NUM}}</div>
-                <div class="stat-label">{{STAT2_LABEL}}</div>
+                <div class="stat-num">5★</div>
+                <div class="stat-label">Stelle</div>
             </div>
             <div class="stat-item reveal">
-                <div class="stat-num">{{STAT3_NUM}}</div>
-                <div class="stat-label">{{STAT3_LABEL}}</div>
+                <div class="stat-num">Roof</div>
+                <div class="stat-label">Garden Panoramico</div>
             </div>
             <div class="stat-item reveal">
-                <div class="stat-num">{{STAT4_NUM}}</div>
-                <div class="stat-label">{{STAT4_LABEL}}</div>
+                <div class="stat-num">Wedding</div>
+                <div class="stat-label">Specialist</div>
             </div>
         </div>
     </div>
@@ -1077,14 +1077,14 @@
             <div class="about-grid">
                 <div class="reveal">
                     <div class="eyebrow about-eyebrow">La Nostra Storia</div>
-                    <h2 class="about-title">{{HOTEL_NAME}}</h2>
-                    <p class="about-desc">{{HOTEL_DESCRIPTION}}</p>
+                    <h2 class="about-title">Grand Hotel La Favorita</h2>
+                    <p class="about-desc">Il Grand Hotel La Favorita è un raffinato 5 stelle nel centro storico di Sorrento con 85 camere, roof garden panoramico, spa completa e ampi spazi per matrimoni ed eventi. La sua posizione privilegiata e la qualità dei servizi lo rendono una scelta ideale per soggiorni di lusso e celebrazioni.</p>
                     <ul class="highlights">
-                        <li>{{HIGHLIGHT1}}</li>
-                        <li>{{HIGHLIGHT2}}</li>
-                        <li>{{HIGHLIGHT3}}</li>
-                        <li>{{HIGHLIGHT4}}</li>
-                        <li>{{HIGHLIGHT5}}</li>
+                        <li>85 camere nel centro di Sorrento</li>
+                        <li>Roof garden con vista golfo</li>
+                        <li>Spa e centro benessere</li>
+                        <li>Specializzato in matrimoni</li>
+                        <li>Ristorante panoramico gourmet</li>
                     </ul>
                     <a href="https://wa.me/393926917657"
                        target="_blank" rel="noopener"
@@ -1097,11 +1097,11 @@
                     </a>
                 </div>
                 <div class="about-img-wrap reveal">
-                    <img src="{{ABOUT_IMAGE_URL}}" alt="{{HOTEL_NAME}}" loading="lazy">
+                    <img src="https://www.hotellafavorita.com/wp-content/uploads/ingresso.jpg" alt="Grand Hotel La Favorita" loading="lazy">
                     <div class="about-accent-block"></div>
                     <div class="about-pill">
                         <span class="pill-star">★</span>
-                        <span>{{HOTEL_CATEGORY}}</span>
+                        <span>Hotel 5 stelle</span>
                     </div>
                 </div>
             </div>
@@ -1120,10 +1120,10 @@
             <div class="services-grid">
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('{{SERVICE1_IMG}}')"></div>
+                    <div class="svc-img" style="background-image:url('https://www.hotellafavorita.com/wp-content/uploads/favorita_18-e1689673695861.jpg')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">{{SERVICE1_TITLE}}</h3>
-                        <p class="svc-desc">{{SERVICE1_DESC}}</p>
+                        <h3 class="svc-title">Camere Panoramiche</h3>
+                        <p class="svc-desc">85 camere eleganti con balcone e vista sui giardini o sul Golfo di Napoli</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1135,10 +1135,10 @@
                 </article>
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('{{SERVICE2_IMG}}')"></div>
+                    <div class="svc-img" style="background-image:url('https://www.hotellafavorita.com/wp-content/uploads/ingresso.jpg')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">{{SERVICE2_TITLE}}</h3>
-                        <p class="svc-desc">{{SERVICE2_DESC}}</p>
+                        <h3 class="svc-title">Roof Garden</h3>
+                        <p class="svc-desc">Terrazza panoramica con piscina e bar per momenti indimenticabili</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1150,10 +1150,10 @@
                 </article>
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('{{SERVICE3_IMG}}')"></div>
+                    <div class="svc-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">{{SERVICE3_TITLE}}</h3>
-                        <p class="svc-desc">{{SERVICE3_DESC}}</p>
+                        <h3 class="svc-title">Ristorante La Favorita</h3>
+                        <p class="svc-desc">Alta cucina sorrentina con ingredienti del territorio e cantina eccellente</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1165,10 +1165,10 @@
                 </article>
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('{{SERVICE4_IMG}}')"></div>
+                    <div class="svc-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">{{SERVICE4_TITLE}}</h3>
-                        <p class="svc-desc">{{SERVICE4_DESC}}</p>
+                        <h3 class="svc-title">Spa & Wellness</h3>
+                        <p class="svc-desc">Centro benessere completo con sauna, trattamenti e massaggi personalizzati</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1180,10 +1180,10 @@
                 </article>
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('{{SERVICE5_IMG}}')"></div>
+                    <div class="svc-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">{{SERVICE5_TITLE}}</h3>
-                        <p class="svc-desc">{{SERVICE5_DESC}}</p>
+                        <h3 class="svc-title">Matrimoni & Eventi</h3>
+                        <p class="svc-desc">Location esclusiva per matrimoni, cerimonie e eventi aziendali di prestigio</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1195,10 +1195,10 @@
                 </article>
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('{{SERVICE6_IMG}}')"></div>
+                    <div class="svc-img" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">{{SERVICE6_TITLE}}</h3>
-                        <p class="svc-desc">{{SERVICE6_DESC}}</p>
+                        <h3 class="svc-title">Escursioni</h3>
+                        <p class="svc-desc">Tour a Capri, Costiera Amalfitana e siti UNESCO con guide locali certificate</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1262,7 +1262,7 @@
                         <div class="chat-header">
                             <div class="chat-av">🤖</div>
                             <div>
-                                <div class="chat-hdr-name">Concierge AI — {{HOTEL_NAME}}</div>
+                                <div class="chat-hdr-name">Concierge AI — Grand Hotel La Favorita</div>
                                 <div class="chat-hdr-status">
                                     <span class="status-dot"></span>
                                     Online ora
@@ -1272,7 +1272,7 @@
                         <div class="chat-msgs">
                             <div class="chat-row">
                                 <div class="msg-av">🤖</div>
-                                <div class="msg-bub">{{CHATBOT_GREETING}}</div>
+                                <div class="msg-bub">Benvenuto al Grand Hotel La Favorita! Posso aiutarvi con prenotazioni, informazioni sul nostro ristorante, spa o per organizzare il vostro matrimonio speciale.</div>
                             </div>
                             <div class="chat-row user">
                                 <div class="msg-av">👤</div>
@@ -1385,7 +1385,7 @@
     <section class="cta-section" id="contact">
         <div class="container reveal">
             <div class="eyebrow">Pronti a Iniziare?</div>
-            <h2 class="section-title">{{CTA_TEXT}}</h2>
+            <h2 class="section-title">Vuoi un sito come questo per Grand Hotel La Favorita?</h2>
             <p class="section-sub">
                 Contattaci oggi e scopri come Experiences Srl può trasformare
                 la visibilità online del tuo hotel.
@@ -1394,7 +1394,7 @@
                 <a href="https://wa.me/393926917657" target="_blank" rel="noopener" class="btn-cta-gold">
                     💬 Scrivici su WhatsApp
                 </a>
-                <a href="mailto:{{HOTEL_EMAIL}}" class="btn-cta-outline">
+                <a href="mailto:info@hotellafavorita.com" class="btn-cta-outline">
                     ✉ Invia una Email
                 </a>
             </div>
@@ -1406,15 +1406,15 @@
         <div class="footer-inner">
             <div class="footer-top">
                 <div>
-                    <div class="footer-logo-name">{{HOTEL_NAME}}</div>
-                    <p class="footer-tagline">{{HOTEL_TAGLINE}}</p>
+                    <div class="footer-logo-name">Grand Hotel La Favorita</div>
+                    <p class="footer-tagline">85 camere eleganti nel centro di Sorrento · Roof garden · Spa · Matrimoni</p>
                     <div class="footer-contact-row">
                         <span>✉</span>
-                        <a href="mailto:{{HOTEL_EMAIL}}">{{HOTEL_EMAIL}}</a>
+                        <a href="mailto:info@hotellafavorita.com">info@hotellafavorita.com</a>
                     </div>
                     <div class="footer-contact-row">
                         <span>🌐</span>
-                        <a href="{{HOTEL_URL}}" target="_blank" rel="noopener">{{HOTEL_URL}}</a>
+                        <a href="https://www.hotellafavorita.com" target="_blank" rel="noopener">https://www.hotellafavorita.com</a>
                     </div>
                     <div class="footer-contact-row">
                         <span>💬</span>
@@ -1459,7 +1459,7 @@
         /* ---- Hero background image ---- */
         (function () {
             var bg = document.getElementById('heroBg');
-            if (bg) bg.style.backgroundImage = "url('{{HERO_IMAGE_URL}}')";
+            if (bg) bg.style.backgroundImage = "url('https://www.hotellafavorita.com/wp-content/uploads/favorita_18-e1689673695861.jpg')";
         }());
 
         /* ---- Scroll reveal via IntersectionObserver ---- */
