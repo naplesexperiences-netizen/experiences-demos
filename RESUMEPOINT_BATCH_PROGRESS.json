@@ -1,7 +1,7 @@
 {
   "session_status": "ACTIVE - Batch creation ongoing",
-  "current_model": "Sonnet 4.6 + Haiku 4.5",
-  "last_update": "2026-06-13T05:30:00Z",
+  "current_model": "Sonnet 4.6",
+  "last_update": "2026-06-14T00:00:00Z",
 
   "batches_completed": [
     {
@@ -48,26 +48,125 @@
       ],
       "status": "COMPLETED ✅",
       "git_commit": "b15452d"
+    },
+    {
+      "batch_id": 4,
+      "cycle": 4,
+      "region": "Penisola Sorrentina - Sorrento e Vico Equense",
+      "type": "4-5 stelle Sorrento + Tour Operator",
+      "count": 5,
+      "notes": "Cycle 4 Batch 4 - processed in previous session",
+      "status": "COMPLETED ✅"
+    },
+    {
+      "batch_id": 5,
+      "cycle": 4,
+      "region": "Piano di Sorrento + Castellammare di Stabia",
+      "type": "Resort 4 stelle + Hotel 3 stelle + Dimora di charme",
+      "count": 5,
+      "hotels": [
+        "Sopramare Resort (Piano di Sorrento) - Resort 4 stelle",
+        "Hotel Cosmomare (Piano di Sorrento) - Hotel 3 stelle",
+        "Hotel Klein Wien (Piano di Sorrento) - Hotel 3 stelle",
+        "La Medusa Hotel & Boutique Spa (Castellammare di Stabia) - Hotel 4 stelle dimora di charme",
+        "Towers Hotel Stabiae Sorrento Coast (Castellammare di Stabia) - Hotel 4 stelle"
+      ],
+      "demo_urls": [
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/sopramare-resort-piano-sorrento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-cosmomare-piano-sorrento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-klein-wien-piano-sorrento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/la-medusa-hotel-boutique-spa-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/towers-hotel-stabiae-sorrento-coast-new-template-experiences/"
+      ],
+      "gmail_draft_ids": [
+        "r-2720998895802583988",
+        "r3335492753226728309",
+        "r-6775095449671132824",
+        "r5246241601614461084",
+        "r-618513917682799572"
+      ],
+      "emails": [
+        "reservation@sopramareresort.it",
+        "info@cosmomare.it",
+        "info@kleinwien.it",
+        "info@lamedusahotel.com",
+        "info@towershotelsorrento.com"
+      ],
+      "status": "COMPLETED ✅",
+      "date": "2026-06-14"
     }
   ],
 
-  "total_demos_created": 15,
-  "total_gmail_drafts_created": 15,
+  "total_demos_created": 25,
+  "total_gmail_drafts_created": 25,
   "all_demos_live_on_github_pages": true,
+
+  "current_cycle": 4,
+  "current_batch": 5,
 
   "quality_metrics": {
     "all_files_above_40kb": true,
     "zero_bellavista_placeholders": true,
     "zero_dummy_references": true,
     "all_images_real_or_fallback": true,
-    "prices_correct_on_all": true
+    "prices_correct_on_all": true,
+    "personalized_colors_per_category": true
+  },
+
+  "processed_companies": [
+    "Hotel Capo La Gala",
+    "Grand Hotel Vesuvio Sorrento",
+    "Sorrento Tourist Office",
+    "Hotel Sporting Vico Equense",
+    "Hotel Astoria Vico Equense",
+    "Le Sirenuse",
+    "Il San Pietro di Positano",
+    "Hotel Covo dei Saraceni",
+    "Monastero Santa Rosa",
+    "Hotel Santa Caterina",
+    "Borgo Santandrea",
+    "Palazzo Avino",
+    "Hotel Villa Cimbrone",
+    "Hotel Botanico San Lazzaro",
+    "San Francesco Resort",
+    "Sopramare Resort",
+    "Hotel Cosmomare",
+    "Hotel Klein Wien",
+    "La Medusa Hotel & Boutique Spa",
+    "Towers Hotel Stabiae Sorrento Coast"
+  ],
+
+  "stats": {
+    "total_companies_processed": 20,
+    "total_demos_created": 25,
+    "total_gmail_drafts": 25,
+    "regions_covered": [
+      "Vico Equense",
+      "Sorrento",
+      "Positano",
+      "Amalfi / Conca dei Marini",
+      "Ravello",
+      "Maiori",
+      "Agropoli (Cilento)",
+      "Piano di Sorrento",
+      "Castellammare di Stabia"
+    ],
+    "categories_covered": [
+      "Hotel 5 stelle Luxury",
+      "Hotel 4 stelle",
+      "Hotel 3 stelle",
+      "Resort 4 stelle",
+      "Dimora di charme",
+      "Tour operator incoming",
+      "Resort SPA"
+    ]
   },
 
   "next_steps": [
-    "Continue with Batch 4: Costiera Amalfitana remaining priority 2 hotels",
-    "Then: Golfo Napoli/Sorrento region",
-    "Then: Isole del Golfo region",
-    "Track: 196 candidates remaining (priority 1-3)"
+    "Continue with Batch 6: Pompei (Hotel Forum, Hotel Maiuri, Aliantour, etc.)",
+    "Then: remaining Castellammare di Stabia hotels",
+    "Then: Napoli area hotels",
+    "Track: ~70 candidates remaining (priority 1-3 with email)"
   ],
 
   "github_pages_urls": {
@@ -79,7 +178,11 @@
   "notes": [
     "Sonnet 4.6 handling all batch creation - maintaining quality",
     "Fallback images used for hotels with SVG/UI elements in CSV",
-    "Real hotel photos prioritized where available",
-    "All bozze Gmail created with personalized content + correct pricing"
+    "Real hotel photos prioritized where available (Cosmomare, Towers Hotel)",
+    "Personalized color schemes per hotel category and brand",
+    "All bozze Gmail created with personalized content",
+    "Hotel Klein Wien: bilingual IT/DE approach to target Austrian/German market",
+    "La Medusa: luxury/charme positioning with SPA focus",
+    "Towers Hotel Stabiae: dual business/leisure positioning with MICE section"
   ]
 }
