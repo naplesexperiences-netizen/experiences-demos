@@ -1,7 +1,7 @@
 {
   "session_status": "ACTIVE - Batch creation ongoing",
   "current_model": "Sonnet 4.6",
-  "last_update": "2026-06-14T00:00:00Z",
+  "last_update": "2026-06-15T00:00:00Z",
 
   "batches_completed": [
     {
@@ -94,15 +94,58 @@
       ],
       "status": "COMPLETED ✅",
       "date": "2026-06-14"
+    },
+    {
+      "batch_id": 6,
+      "cycle": 4,
+      "region": "Cilento - Tour Operator e Hotel",
+      "type": "Tour Operator P2 + Hotel 4/3 stelle P2/P3",
+      "count": 5,
+      "companies": [
+        "Discover Cilento (Pisciotta) - Tour Operator P2",
+        "ArcheoTrekking (Ascea/Vallo della Lucania) - Tour Operator P2",
+        "Hotel Saline (Palinuro) - Hotel 4 stelle P2",
+        "Hotel Palinuro (Palinuro) - Hotel 3 stelle P2",
+        "Grand Hotel San Pietro (Palinuro) - Hotel 4 stelle P3"
+      ],
+      "demo_urls": [
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/discover-cilento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/archeotrekking-cilento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-saline-cilento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-palinuro-cilento-new-template-experiences/",
+        "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-san-pietro-cilento-new-template-experiences/"
+      ],
+      "gmail_draft_ids": [
+        "r828306079943580531",
+        "r-4254801444577880441",
+        "r5549593401288162221",
+        "r-1910939126131866629",
+        "r8108229066487685422"
+      ],
+      "emails": [
+        "info@discovercilento.it",
+        "info@archeotrekking.net",
+        "info@hotelsaline.com",
+        "info@hotelpalinuro.net",
+        "info@grandhotelsanpietro.com"
+      ],
+      "status": "COMPLETED ✅",
+      "date": "2026-06-15",
+      "notes": [
+        "Pricing corrected in all demos: 5%/8%/10% commissione (was X%)",
+        "Tour operator template used for Discover Cilento and ArcheoTrekking",
+        "Hotel template used for Hotel Saline, Hotel Palinuro, Grand Hotel San Pietro",
+        "Gmail drafts created with website weakness analysis"
+      ]
     }
   ],
 
-  "total_demos_created": 25,
-  "total_gmail_drafts_created": 25,
+  "total_demos_created": 30,
+  "total_gmail_drafts_created": 30,
   "all_demos_live_on_github_pages": true,
 
   "current_cycle": 4,
-  "current_batch": 5,
+  "current_batch": 6,
 
   "quality_metrics": {
     "all_files_above_40kb": true,
@@ -133,13 +176,18 @@
     "Hotel Cosmomare",
     "Hotel Klein Wien",
     "La Medusa Hotel & Boutique Spa",
-    "Towers Hotel Stabiae Sorrento Coast"
+    "Towers Hotel Stabiae Sorrento Coast",
+    "Discover Cilento",
+    "ArcheoTrekking",
+    "Hotel Saline",
+    "Hotel Palinuro",
+    "Grand Hotel San Pietro"
   ],
 
   "stats": {
-    "total_companies_processed": 20,
-    "total_demos_created": 25,
-    "total_gmail_drafts": 25,
+    "total_companies_processed": 25,
+    "total_demos_created": 30,
+    "total_gmail_drafts": 30,
     "regions_covered": [
       "Vico Equense",
       "Sorrento",
@@ -149,7 +197,10 @@
       "Maiori",
       "Agropoli (Cilento)",
       "Piano di Sorrento",
-      "Castellammare di Stabia"
+      "Castellammare di Stabia",
+      "Palinuro (Cilento)",
+      "Pisciotta (Cilento)",
+      "Ascea (Cilento)"
     ],
     "categories_covered": [
       "Hotel 5 stelle Luxury",
