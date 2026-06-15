@@ -523,7 +523,7 @@ get_header();
                 </div>
 
                 <div class="text-center mt-12" data-aos="fade-up">
-                    <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <a href="<?php echo esc_url( experiences_blog_archive_url() ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
                         Tutti gli articoli <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>

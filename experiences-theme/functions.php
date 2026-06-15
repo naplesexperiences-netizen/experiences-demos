@@ -170,6 +170,69 @@ function experiences_create_legal_pages() {
 }
 add_action( 'after_switch_theme', 'experiences_create_legal_pages' );
 
+// ── Blog archive: helper URL + setup automatico pagina "Blog" ──────────
+// Il bottone "Tutti gli articoli" nella front-page usava
+// get_post_type_archive_link('post') che restituisce false quando WP non
+// ha la "Pagina degli articoli" configurata in Impostazioni → Lettura.
+// Risultato: href vuoto → click reindirizzava alla home. Ora:
+//   1. helper experiences_blog_archive_url() con fallback intelligente
+//   2. al primo admin_init dopo il deploy del tema, crea la pagina "Blog"
+//      se non esiste e la imposta come page_for_posts (idempotente).
+function experiences_blog_archive_url() {
+    $posts_page = (int) get_option( 'page_for_posts' );
+    if ( $posts_page && get_post_status( $posts_page ) === 'publish' ) {
+        return get_permalink( $posts_page );
+    }
+
+    $blog_page = get_page_by_path( 'blog' );
+    if ( $blog_page && 'publish' === $blog_page->post_status ) {
+        return get_permalink( $blog_page );
+    }
+
+    $archive = get_post_type_archive_link( 'post' );
+    if ( $archive && trailingslashit( $archive ) !== trailingslashit( home_url( '/' ) ) ) {
+        return $archive;
+    }
+
+    return home_url( '/blog/' );
+}
+
+function experiences_setup_blog_archive_page() {
+    // Flag versionato: cambia il numero per ri-eseguire il setup in futuro
+    if ( get_option( 'experiences_blog_page_setup_v1' ) ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return; // setup eseguibile solo da admin loggato
+    }
+
+    $blog_page = get_page_by_path( 'blog' );
+    if ( ! $blog_page ) {
+        $blog_id = wp_insert_post([
+            'post_title'   => 'Blog',
+            'post_name'    => 'blog',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => '', // archive.php gestisce il rendering, no contenuto necessario
+            'post_author'  => get_current_user_id() ?: 1,
+        ]);
+        if ( is_wp_error( $blog_id ) ) {
+            return;
+        }
+    } else {
+        $blog_id = $blog_page->ID;
+    }
+
+    // Imposta come "pagina degli articoli" (richiede show_on_front = page,
+    // che è il caso per chi usa la front-page del tema)
+    if ( 'page' === get_option( 'show_on_front' ) && ! get_option( 'page_for_posts' ) ) {
+        update_option( 'page_for_posts', $blog_id );
+    }
+
+    update_option( 'experiences_blog_page_setup_v1', time() );
+}
+add_action( 'admin_init', 'experiences_setup_blog_archive_page' );
+
 function experiences_legal_template_privacy() {
     $site = esc_html( get_bloginfo( 'name' ) );
     $home = esc_url( home_url( '/' ) );

@@ -63,7 +63,7 @@ if (is_category()) {
         <section class="py-8 bg-white border-b border-gray-100 sticky top-16 lg:top-20 z-30 backdrop-blur-md bg-white/95">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                    <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>"
+                    <a href="<?php echo esc_url( function_exists( 'experiences_blog_archive_url' ) ? experiences_blog_archive_url() : home_url( '/blog/' ) ); ?>"
                        class="flex-shrink-0 px-5 py-2 bg-primary text-white text-sm font-semibold rounded-full hover:bg-secondary transition-all">
                         Tutti
                     </a>
