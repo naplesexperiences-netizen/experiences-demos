@@ -1,8 +1,10 @@
-# Blog Articles v1 — Naples Experiences
+# Blog Articles v2 — Naples Experiences
 
-Pacchetto di 6 articoli blog completi, WordPress-ready, per il sito **naplesexperiences.com** (Experiences Srl).
+Pacchetto di **12 articoli blog** completi, WordPress-ready, per il sito **naplesexperiences.com** (Experiences Srl).
 
 ## Contenuto del pacchetto
+
+### Batch 1 — Pillar (gennaio-febbraio 2026)
 
 | # | Slug | Titolo | Focus Keyword | Categoria | Parole (~) |
 |---|------|--------|---------------|-----------|------------|
@@ -13,7 +15,18 @@ Pacchetto di 6 articoli blog completi, WordPress-ready, per il sito **naplesexpe
 | 5 | `vendere-tour-online-getyourguide-viator-sito-proprio` | GetYourGuide vs Viator vs Sito Proprio: Dove Vendere i Tuoi Tour nel 2026 | vendere tour online | Tour Operator & Agenzie | 2.400 |
 | 6 | `channel-manager-tour-operator` | Channel Manager per Tour Operator: Gestisci 100+ Tour da 1 Dashboard | channel manager tour operator | Tour Operator & Agenzie | 2.500 |
 
-**Totale parole stimate:** ~13.500 parole di contenuto B2B premium.
+### Batch 2 — Turismo & Innovazione (febbraio-marzo 2026)
+
+| # | Slug | Titolo | Focus Keyword | Categoria | Parole (~) |
+|---|------|--------|---------------|-----------|------------|
+| 7 | `ai-chatbot-hotel-bnb-segretario-digitale-24-7` | AI Chatbot per Hotel e B&B: Il Segretario Digitale che Lavora 24/7 | ai chatbot hotel | AI & Innovazione | 2.030 |
+| 8 | `dynamic-pricing-ai-hotel-revpar` | Dynamic Pricing AI: Come Hotel Italiani Aumentano il RevPAR del 35% Senza Svalutare il Brand | dynamic pricing hotel | Revenue Management | 2.084 |
+| 9 | `turismo-sostenibile-hotel-certificazioni-green-2026` | Turismo Sostenibile 2026: Certificazioni Green, KPI e Perché il 73% dei Viaggiatori Sceglie Strutture Eco | turismo sostenibile hotel | Sostenibilità & Innovazione | 2.306 |
+| 10 | `smart-hotel-check-in-keyless-iot-guida-2026` | Smart Hotel: Check-in Senza Reception, Smart Key e IoT — La Guida 2026 per Strutture Italiane | smart hotel | Innovazione Tecnologica | 2.474 |
+| 11 | `vr-ar-tour-operator-esperienze-immersive` | Realtà Virtuale e Aumentata per Tour Operator: Vendere l'Esperienza Prima del Viaggio | realtà virtuale tour operator | Tour Operator & Innovazione | 2.146 |
+| 12 | `voice-search-hotel-ottimizzazione-alexa-google-assistant` | Voice Search per Hotel: Come Ottimizzare per "Alexa, Prenota un Hotel a Napoli" e Intercettare il 50% del Traffico Vocale 2027 | voice search hotel | SEO & Marketing Digitale | 2.086 |
+
+**Totale parole stimate:** ~27.000 parole di contenuto B2B premium su 12 articoli.
 
 ## Struttura cartella
 
@@ -145,6 +158,12 @@ Per massimizzare l'impatto SEO, pubblica gli articoli in sequenza settimanale:
 | 4 | #4 — Case Study Agenzia Tour | Switch verso tour operator |
 | 5 | #5 — Dove Vendere Tour | Supporta il #4 |
 | 6 | #6 — Channel Manager Tour Operator | Chiude il cluster tour |
+| 7 | #7 — AI Chatbot Hotel | Apre il cluster innovazione |
+| 8 | #8 — Dynamic Pricing AI | Supporta #7 (entrambi AI-driven) |
+| 9 | #9 — Turismo Sostenibile | Cambio topic verso ESG |
+| 10 | #10 — Smart Hotel IoT | Supporta #9 (sostenibilità + tech) |
+| 11 | #11 — VR/AR Tour Operator | Cluster innovazione tour |
+| 12 | #12 — Voice Search Hotel | Chiude su SEO futuro |
 
 **Tip:** programma i post per **martedì o mercoledì mattina (ore 9:00-10:00 CET)** — picco di engagement B2B.
 
@@ -160,8 +179,14 @@ Per ogni articolo, suggerimenti per immagini di copertina (16:9, minimo 1200×67
 4. **Case Study Tour** — guida turistica con turisti in centro storico di Napoli
 5. **Vendere Tour** — split screen tra logo GetYourGuide/Viator/Airbnb/sito web
 6. **CM Tour Operator** — dashboard con multipli tour, mappa Campania
+7. **AI Chatbot Hotel** — smartphone con bubble chat in primo piano, reception sfocata sullo sfondo
+8. **Dynamic Pricing** — grafico ascendente di tariffe sovrapposto a immagine di camera hotel di lusso
+9. **Turismo Sostenibile** — hotel mediterraneo con pannelli solari, piante verdi, mare sullo sfondo (Costiera)
+10. **Smart Hotel** — mano che apre la porta della camera con smartphone, codice/NFC visibile
+11. **VR Tour Operator** — turista con visore VR davanti a un fondale del Vesuvio o di Pompei
+12. **Voice Search** — smart speaker (Amazon Echo o Google Home) su comodino di una camera hotel
 
-**Risorse gratuite:** Unsplash, Pexels, Pixabay (cerca: "hotel reception", "naples tourism", "tour guide", "dashboard analytics").
+**Risorse gratuite:** Unsplash, Pexels, Pixabay (cerca: "hotel reception", "naples tourism", "tour guide", "dashboard analytics", "smart hotel", "voice assistant", "VR tourism", "sustainable hotel").
 
 **Risorse a pagamento (raccomandato per brand):** Shutterstock, Adobe Stock (€10-30 ad immagine).
 
