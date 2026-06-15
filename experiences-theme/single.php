@@ -32,7 +32,7 @@ while ( have_posts() ) : the_post();
                     <i class="fas fa-home"></i>
                 </a>
                 <i class="fas fa-chevron-right text-xs"></i>
-                <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="hover:text-accent transition-colors">Blog</a>
+                <a href="<?php echo esc_url( function_exists( 'experiences_blog_archive_url' ) ? experiences_blog_archive_url() : home_url( '/blog/' ) ); ?>" class="hover:text-accent transition-colors">Blog</a>
                 <i class="fas fa-chevron-right text-xs"></i>
                 <span class="text-accent"><?php echo esc_html($primary_cat); ?></span>
             </nav>
