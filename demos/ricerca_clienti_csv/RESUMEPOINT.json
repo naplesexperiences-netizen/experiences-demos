@@ -1,7 +1,7 @@
 {
-  "last_update": "2026-06-14T12:00:00Z",
+  "last_update": "2026-06-15T12:00:00Z",
   "cycle": 4,
-  "batch": 3,
+  "batch": 4,
   "session_id": "claude-sonnet-4-6",
   "current_csv_file": "CSV_CONSOLIDATO.csv",
   "cycle_completed": false,
@@ -448,35 +448,93 @@
       "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/araba-fenice-hotel-resort-cilento-new-template-experiences/",
       "gmail_draft_id": "r6575257444736974266",
       "folder": "araba-fenice-hotel-resort-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 4,
+      "name": "Savoy Hotel & Spa Pagano",
+      "priority": 2,
+      "category": "Hotel SPA",
+      "region": "Cilento",
+      "email": "info@savoyhotelspa.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ricerca_clienti_csv/savoy-hotel-spa-pagano-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-3043489876063700190",
+      "folder": "savoy-hotel-spa-pagano-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 4,
+      "name": "Hotel Schuhmann",
+      "priority": 2,
+      "category": "Hotel 4 stelle",
+      "region": "Cilento",
+      "email": "info@hotelschuhmann.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ricerca_clienti_csv/hotel-schuhmann-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-7231427871460766264",
+      "folder": "hotel-schuhmann-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 4,
+      "name": "Agriturismo Seliano",
+      "priority": 2,
+      "category": "Agriturismo",
+      "region": "Cilento",
+      "email": "info@aziendabellelli.it",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ricerca_clienti_csv/agriturismo-seliano-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-9147794788298510359",
+      "folder": "agriturismo-seliano-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 4,
+      "name": "Ruggiero Park Hotel",
+      "priority": 2,
+      "category": "Hotel 3 stelle",
+      "region": "Cilento",
+      "email": "info@ruggieroparkhotel.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ricerca_clienti_csv/ruggiero-park-hotel-cilento-new-template-experiences/",
+      "gmail_draft_id": "r-5902719419770073476",
+      "folder": "ruggiero-park-hotel-cilento-new-template-experiences"
+    },
+    {
+      "cycle": 4,
+      "batch": 4,
+      "name": "Cilentour ANBI Travel",
+      "priority": 3,
+      "category": "Tour Operator",
+      "region": "Cilento",
+      "email": "info@cilentour.com",
+      "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ricerca_clienti_csv/cilentour-anbi-travel-cilento-new-template-experiences/",
+      "gmail_draft_id": "r3490289792593540726",
+      "folder": "cilentour-anbi-travel-cilento-new-template-experiences"
     }
   ],
-  "next_companies_to_process_cycle3_batch3": [],
   "stats": {
     "total_companies_in_csv": 256,
     "companies_with_priority_1_3_all_regions": "201+",
-    "companies_processed_total": 47,
-    "demo_folders_created": 47,
+    "companies_processed_total": 52,
+    "demo_folders_created": 52,
     "ciclo_1_companies": 11,
     "ciclo_2_companies": 10,
     "ciclo_3_companies": 11,
     "ciclo_4_batch_1_companies": 5,
     "ciclo_4_batch_2_companies": 5,
     "ciclo_4_batch_3_companies": 5,
-    "companies_elaborated_breakdown": "Ciclo1(11) + Ciclo2(10) + Ciclo3Batch1(5) + Ciclo3Batch2(5) + Ciclo3Batch3(2) + Ciclo4Batch1(5) + Ciclo4Batch2(5) + Ciclo4Batch3(5) = 48",
+    "ciclo_4_batch_4_companies": 5,
+    "companies_elaborated_breakdown": "Ciclo1(11) + Ciclo2(10) + Ciclo3Batch1(5) + Ciclo3Batch2(5) + Ciclo3Batch3(2) + Ciclo4Batch1(5) + Ciclo4Batch2(5) + Ciclo4Batch3(5) + Ciclo4Batch4(5) = 53",
     "regions_covered": [
       "Golfo_Napoli_Sorrento (32)",
-      "Cilento (15 - in corso)"
+      "Cilento (20 - in corso)"
     ],
-    "next_batch": "Ciclo 4 Batch 4 - Cilento priority 1-3 (restanti: Savoy Hotel & Spa, Hotel Schuhmann, Agriturismo Seliano, Ruggiero Park Hotel, Discover Cilento...)"
+    "next_batch": "Ciclo 4 Batch 5 - Cilento priority 1-3 (restanti: Discover Cilento, ArcheoTrekking, Hotel Saline, Hotel Palinuro, Grand Hotel San Pietro...)"
   },
-  "notes": "CICLO 4 BATCH 3 COMPLETATO: 5 demo create per il Cilento (Hotel Acciaroli, Hotel La Playa Acciaroli, Hotel La Vela Pioppi, Mec Paestum Hotel, L'Araba Fenice Hotel & Resort). Tutte le 5 demo usano il nuovo template hotel. 5 bozze Gmail create. CSV aggiornato con Link_Demo. Totale cumulativo: 47 aziende elaborate (NB: conteggio batch 2 incluso per completezza).",
-  "next_companies_to_process_cycle4_batch4": [
-    "Savoy Hotel & Spa Pagano (Cilento, P2)",
-    "Hotel Schuhmann (Cilento, P2)",
-    "Agriturismo Seliano (Cilento, P2)",
-    "Ruggiero Park Hotel (Cilento, P2)",
-    "Cilentour ANBI Travel (Cilento, P3)",
+  "notes": "CICLO 4 BATCH 4 COMPLETATO: 5 demo create per il Cilento (Savoy Hotel & Spa Pagano, Hotel Schuhmann, Agriturismo Seliano, Ruggiero Park Hotel, Cilentour ANBI Travel). 4 demo usano il template hotel, 1 usa il template tour operator (Cilentour). 5 bozze Gmail create. CSV aggiornato con Link_Demo. Demo create in /demos/ricerca_clienti_csv/. Totale cumulativo: 52 aziende elaborate.",
+  "next_companies_to_process_cycle4_batch5": [
     "Discover Cilento (Cilento, P2)",
-    "ArcheoTrekking (Cilento, P2)"
+    "ArcheoTrekking (Cilento, P2)",
+    "Hotel Saline (Cilento, P2)",
+    "Hotel Palinuro (Cilento, P2)",
+    "Grand Hotel San Pietro (Cilento, P3)"
   ]
 }
