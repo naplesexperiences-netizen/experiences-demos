@@ -1,31 +1,31 @@
 Region,Nome_Azienda,Email,Status,Data_Contatto,URL_Sito,Categoria,Priorita,Link_Demo,Contattato
-Cilento,San Francesco Resort,info@sanfrancescoresort.com,Draft_Created,2026-06-14,https://www.sanfrancescoresort.com,Hotel/Resort SPA,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/san-francesco-resort-cilento-new-template-experiences/,Sì
-Cilento,Hotel Myrtus,info@hotelmyrtus.it,Draft_Created,2026-06-14,https://www.hotelmyrtus.it,Hotel/Residence,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-myrtus-cilento-new-template-experiences/,Sì
-Cilento,Hotel Mare,info@hotel-mare.com,Draft_Created,2026-06-14,https://www.hotel-mare.com,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mare-cilento-new-template-experiences/,Sì
-Cilento,Hotel La Darsena Residence,info@ladarsenahotel.com,Draft_Created,2026-06-14,https://www.ladarsenahotel.com,Hotel/Residence,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-darsena-residence-cilento-new-template-experiences/,Sì
-Cilento,Hotel Ristorante Il Ceppo,info@hotelristoranteilceppo.com,Draft_Created,2026-06-14,https://www.hotelristoranteilceppo.com,Hotel/Ristorante,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-cilento-new-template-experiences/,Sì
+Cilento,San Francesco Resort,info@sanfrancescoresort.com,Email_Sent,2026-06-16,https://www.sanfrancescoresort.com,Hotel/Resort SPA,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/san-francesco-resort-cilento-new-template-experiences/,Sì
+Cilento,Hotel Myrtus,info@hotelmyrtus.it,Email_Sent,2026-06-16,https://www.hotelmyrtus.it,Hotel/Residence,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-myrtus-cilento-new-template-experiences/,Sì
+Cilento,Hotel Mare,info@hotel-mare.com,Email_Sent,2026-06-16,https://www.hotel-mare.com,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mare-cilento-new-template-experiences/,Sì
+Cilento,Hotel La Darsena Residence,info@ladarsenahotel.com,Email_Sent,2026-06-16,https://www.ladarsenahotel.com,Hotel/Residence,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-darsena-residence-cilento-new-template-experiences/,Sì
+Cilento,Hotel Ristorante Il Ceppo,info@hotelristoranteilceppo.com,Email_Sent,2026-06-16,https://www.hotelristoranteilceppo.com,Hotel/Ristorante,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-cilento-new-template-experiences/,Sì
 Cilento,Grand Hotel Santa Maria,info@ghsm.it,Draft_Created,,https://www.grandhotel-santamaria.it,Hotel 4 stelle,3,,Sì
 Cilento,Hotel Villa Sirio,,Non_Contacted,,https://www.villasirio.it,Hotel dimora storica,2,,No
 Cilento,Prince Franklyn Hotel,info@franklyn-hotel.com,Draft_Created,,https://www.franklyn-hotel.com,Hotel 4 stelle,2,,Sì
 Cilento,Hotel Costa d'Oro,info@hotelcostadoro.it,Draft_Created,,https://www.hotelcostadoro.it,Hotel 3 stelle,2,,Sì
 Cilento,New Hotel Sonia,info@hotelsonia.it,Draft_Created,,http://www.hotelsonia.it,Hotel 4 stelle,3,,Sì
-Cilento,Hotel Acciaroli,info@hotelacciaroli.it,Draft_Created,,https://hotelacciaroli.it,Hotel,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-acciaroli-cilento-new-template-experiences/,Sì
-Cilento,Hotel La Playa,info@hotellaplayaacciaroli.it,Draft_Created,,https://www.hotellaplayaacciaroli.it,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-playa-acciaroli-cilento-new-template-experiences/,Sì
-Cilento,Hotel La Vela,info@lavelapioppi.com,Draft_Created,,https://www.lavelapioppi.com,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-vela-cilento-new-template-experiences/,Sì
-Cilento,Mec Paestum Hotel,info@mechotel.com,Draft_Created,,https://www.mechotel.com,Hotel 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/mec-paestum-hotel-cilento-new-template-experiences/,Sì
-Cilento,L'Araba Fenice Hotel & Resort,reception@arabafenicespa.com,Draft_Created,,https://www.arabafenicespa.com,Resort SPA 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/araba-fenice-hotel-resort-cilento-new-template-experiences/,Sì
-Cilento,Savoy Hotel & Spa Pagano,info@savoyhotelspa.it,Draft_Created,2026-06-15,https://www.paganopaestum.it,Hotel SPA,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/savoy-hotel-spa-pagano-cilento-new-template-experiences/,Sì
-Cilento,Hotel Schuhmann,info@hotelschuhmann.com,Draft_Created,2026-06-15,https://www.hotelschuhmann.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-schuhmann-cilento-new-template-experiences/,Sì
+Cilento,Hotel Acciaroli,info@hotelacciaroli.it,Email_Sent,2026-06-16,https://hotelacciaroli.it,Hotel,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-acciaroli-cilento-new-template-experiences/,Sì
+Cilento,Hotel La Playa,info@hotellaplayaacciaroli.it,Email_Sent,2026-06-16,https://www.hotellaplayaacciaroli.it,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-playa-acciaroli-cilento-new-template-experiences/,Sì
+Cilento,Hotel La Vela,info@lavelapioppi.com,Email_Sent,2026-06-16,https://www.lavelapioppi.com,Hotel,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-vela-cilento-new-template-experiences/,Sì
+Cilento,Mec Paestum Hotel,info@mechotel.com,Email_Sent,2026-06-16,https://www.mechotel.com,Hotel 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/mec-paestum-hotel-cilento-new-template-experiences/,Sì
+Cilento,L'Araba Fenice Hotel & Resort,reception@arabafenicespa.com,Email_Sent,2026-06-16,https://www.arabafenicespa.com,Resort SPA 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/araba-fenice-hotel-resort-cilento-new-template-experiences/,Sì
+Cilento,Savoy Hotel & Spa Pagano,info@savoyhotelspa.it,Email_Sent,2026-06-16,https://www.paganopaestum.it,Hotel SPA,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/savoy-hotel-spa-pagano-cilento-new-template-experiences/,Sì
+Cilento,Hotel Schuhmann,info@hotelschuhmann.com,Email_Sent,2026-06-16,https://www.hotelschuhmann.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-schuhmann-cilento-new-template-experiences/,Sì
 Cilento,Paestum Inn Beach Resort,info@paestuminn.com,Draft_Created,,https://paestuminn.com,Resort/Villaggio 4 stelle,4,,Sì
 Cilento,Agriturismo Seliano,info@aziendabellelli.it,Draft_Created,2026-06-15,https://www.agriturismoseliano.it,Agriturismo,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/agriturismo-seliano-cilento-new-template-experiences/,Sì
 Cilento,Il Cannito,,Non_Contacted,,https://www.ilcannito.com,Agriturismo/B&B,4,,No
-Cilento,Ruggiero Park Hotel,info@ruggieroparkhotel.com,Draft_Created,2026-06-15,http://www.ruggieroparkhotel.com,Hotel 3 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/ruggiero-park-hotel-cilento-new-template-experiences/,Sì
-Cilento,Cilentour ANBI Travel,info@cilentour.com,Draft_Created,2026-06-15,https://www.cilentour.com,Tour Operator,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/cilentour-anbi-travel-cilento-new-template-experiences/,Sì
-Cilento,Discover Cilento,info@discovercilento.it,Draft_Created,2026-06-15,https://www.discovercilento.it,Tour Operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/discover-cilento-new-template-experiences/,Sì
-Cilento,ArcheoTrekking,info@archeotrekking.net,Draft_Created,2026-06-15,https://www.archeotrekking.net,Tour Operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/archeotrekking-cilento-new-template-experiences/,Sì
-Cilento,Hotel Saline,info@hotelsaline.com,Draft_Created,2026-06-15,https://www.hotelsaline.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-saline-cilento-new-template-experiences/,Sì
-Cilento,Hotel Palinuro,info@hotelpalinuro.net,Draft_Created,2026-06-15,https://www.hotelpalinuro.net,Hotel 3 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-palinuro-cilento-new-template-experiences/,Sì
-Cilento,Grand Hotel San Pietro,info@grandhotelsanpietro.com,Draft_Created,2026-06-15,https://www.grandhotelsanpietro.com,Hotel 4 stelle,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-san-pietro-cilento-new-template-experiences/,Sì
+Cilento,Ruggiero Park Hotel,info@ruggieroparkhotel.com,Email_Sent,2026-06-16,http://www.ruggieroparkhotel.com,Hotel 3 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/ruggiero-park-hotel-cilento-new-template-experiences/,Sì
+Cilento,Cilentour ANBI Travel,info@cilentour.com,Email_Sent,2026-06-16,https://www.cilentour.com,Tour Operator,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/cilentour-anbi-travel-cilento-new-template-experiences/,Sì
+Cilento,Discover Cilento,info@discovercilento.it,Email_Sent,2026-06-16,https://www.discovercilento.it,Tour Operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/discover-cilento-new-template-experiences/,Sì
+Cilento,ArcheoTrekking,info@archeotrekking.net,Email_Sent,2026-06-16,https://www.archeotrekking.net,Tour Operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/archeotrekking-cilento-new-template-experiences/,Sì
+Cilento,Hotel Saline,info@hotelsaline.com,Email_Sent,2026-06-16,https://www.hotelsaline.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-saline-cilento-new-template-experiences/,Sì
+Cilento,Hotel Palinuro,info@hotelpalinuro.net,Email_Sent,2026-06-16,https://www.hotelpalinuro.net,Hotel 3 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-palinuro-cilento-new-template-experiences/,Sì
+Cilento,Grand Hotel San Pietro,info@grandhotelsanpietro.com,Email_Sent,2026-06-16,https://www.grandhotelsanpietro.com,Hotel 4 stelle,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-san-pietro-cilento-new-template-experiences/,Sì
 Cilento,Albergo Santa Caterina,info@albergosantacaterina.com,Draft_Created,,https://www.albergosantacaterina.com,Hotel 4 stelle,3,,Sì
 Cilento,Hotel La Torre,info@latorrepalinuro.it,Draft_Created,,https://www.latorrepalinuro.it,Hotel/Residence,2,,Sì
 Cilento,Cala d'Arconte Hotel Village,info@caladarconte.it,Draft_Created,,https://www.caladarconte.it,Villaggio alberghiero,3,,Sì
@@ -44,7 +44,7 @@ Cilento,Victoria Resort,info@victoriaresort.it,Draft_Created,,https://www.victor
 Cilento,Marulivo Hotel,info@marulivohotel.it,Draft_Created,,https://www.marulivohotel.it,Hotel di charme,2,,Sì
 Cilento,Hotel Riviera,info@hotelrivierapisciotta.it,Draft_Created,,https://hotelrivierapisciotta.it,Hotel 3 stelle,3,,Sì
 Cilento,Villaggio Club La Maree,villaggio@lamaree.net,Draft_Created,,https://www.lamaree.net,Villaggio 3 stelle,3,,Sì
-Cilento,ArcheoTrekking Palinuro,info@archeotrekking.net,Draft_Created,,https://www.archeotrekking.net,Tour operator/Agenzia viaggi,2,,Sì
+Cilento,ArcheoTrekking Palinuro,info@archeotrekking.net,Email_Sent,2026-06-16,https://www.archeotrekking.net,Tour operator/Agenzia viaggi,2,,Sì
 Cilento,Cooperativa Cilento Blu,,Non_Contacted,,https://www.coopcilentoblu.com,Tour operator escursioni barca,3,,No
 Costiera_Amalfitana,Hotel Polo Nautico,,Non_Contacted,,https://www.hotelpolonautico.it,Hotel 4 stelle,2,,No
 Costiera_Amalfitana,Lloyd's Baia Hotel,info@lloydsbaiahotel.it,Draft_Created,,https://www.lloydsbaiahotel.it,Hotel 4 stelle,3,,Sì
@@ -105,16 +105,16 @@ Golfo_Napoli_Sorrento,Hotel Prestige Sorrento,info@hotelprestigesorrento.com,Dra
 Golfo_Napoli_Sorrento,Grand Hotel Capodimonte Sorrento,capodimonte@manniellohotels.com,Email_Sent,2026-06-13,https://www.capodimontesorrento.com,Hotel 4 stelle superior,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-capodimonte-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Grand Hotel Royal Sorrento,royal@manniellohotels.com,Email_Sent,2026-06-13,https://www.royalsorrento.com,Hotel 5 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-royal-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Torres Travel,info@torrestravel.it,Email_Sent,2026-06-13,https://www.torrestravel.it,Tour operator incoming Pompei guide center,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/torres-travel-pompei-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Grand Hotel Cocumella,info@cocumella.com,Draft_Created,2026-06-14,https://www.cocumella.com,Hotel 5 stelle (Small Luxury Hotels),1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cocumella-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Grand Hotel Cocumella,info@cocumella.com,Email_Sent,2026-06-16,https://www.cocumella.com,Hotel 5 stelle (Small Luxury Hotels),1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cocumella-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Golden Tours International,incoming@goldentours.it,Email_Sent,2026-06-13,https://www.goldentours.it,Tour operator / DMC incoming,3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/golden-tours-international-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Grand Hotel Aminta,info@aminta.it,Draft_Created,2026-06-14,https://www.aminta.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-aminta-sorrento-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Grand Hotel Aminta,info@aminta.it,Email_Sent,2026-06-16,https://www.aminta.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-aminta-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Grand Hotel Cesare Augusto,info@hotelcesareaugusto.com,Email_Sent,2026-06-13,https://www.hotelcesareaugusto.com,Hotel 4 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-cesare-augusto-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Lorelei et Londres,info@loreleisorrento.com,Email_Sent,2026-06-13,https://www.loreleisorrento.com,Hotel 5 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-lorelei-et-londres-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Grand Hotel La Favorita,info@hotellafavorita.com,Draft_Created,2026-06-14,https://www.hotellafavorita.com,Hotel 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-favorita-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Grand Hotel Ambasciatori,ambasciatori@manniellohotels.com,Draft_Created,2026-06-14,https://www.ambasciatorisorrento.com,Hotel 5 stelle (Manniello Hotels),3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-ambasciatori-sorrento-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Grand Hotel La Favorita,info@hotellafavorita.com,Email_Sent,2026-06-16,https://www.hotellafavorita.com,Hotel 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-favorita-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Grand Hotel Ambasciatori,ambasciatori@manniellohotels.com,Email_Sent,2026-06-15,https://www.ambasciatorisorrento.com,Hotel 5 stelle (Manniello Hotels),3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-ambasciatori-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Continental Sorrento,info@continentalsorrento.com,Email_Sent,2026-06-13,https://www.continentalsorrento.com,Hotel 4 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-continental-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Club Sorrento,info@hotelclubsorrento.com,Email_Sent,2026-06-13,http://www.hotelclubsorrento.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-club-sorrento-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Best Western Hotel La Solara,info@lasolara.com,Draft_Created,2026-06-14,https://www.lasolara.com,Hotel 4 stelle (catena BW),3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/best-western-hotel-la-solara-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Best Western Hotel La Solara,info@lasolara.com,Email_Sent,2026-06-16,https://www.lasolara.com,Hotel 4 stelle (catena BW),3,https://naplesexperiences-netizen.github.io/experiences-demos/demos/best-western-hotel-la-solara-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Grand Hotel Vesuvio Sorrento,info@vesuviosorrento.com,Email_Sent,2026-06-13,https://www.vesuviosorrento.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-vesuvio-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Antiche Mura Sorrento,info@hotelantichemura.com,Email_Sent,2026-06-13,https://www.hotelantichemura.com,Hotel 4 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-antiche-mura-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,HP Travel,info@hptravel.it,Draft_Created,,https://www.hptravel.it,Tour operator incoming,3,,Sì
@@ -126,22 +126,22 @@ Golfo_Napoli_Sorrento,Hotel Tirrenia Sorrento,info@hoteltirrenia.com,Draft_Creat
 Golfo_Napoli_Sorrento,Sorrento Insider / Gray Line,info@iammeia.com,Draft_Created,,https://www.sorrentoinsider.com,Marketplace/portale escursioni,5,,Sì
 Golfo_Napoli_Sorrento,Grand Hotel La Pace,info@ghlapace.com,Email_Sent,2026-06-13,https://www.ghlapace.com,Hotel 5 stelle,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-la-pace-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Caravel,,Non_Contacted,,https://www.hotelcaravel.com,Hotel 4 stelle,2,,No
-Golfo_Napoli_Sorrento,Hotel Crawford,reservations@hotelcrawford.com,Draft_Created,2026-06-14,https://www.hotelcrawford.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-crawford-santagnello-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Hotel Crawford,reservations@hotelcrawford.com,Email_Sent,2026-06-16,https://www.hotelcrawford.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-crawford-santagnello-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Corallo,,Non_Contacted,,https://www.hotelcorallosorrento.com,Hotel 4 stelle,3,,No
 Golfo_Napoli_Sorrento,Hotel Angelina,info@hotelangelinasorrento.com,Draft_Created,,https://www.hotelangelinasorrento.com,Hotel 2 stelle,3,,Sì
-Golfo_Napoli_Sorrento,Vestours,info@vestours.com,Draft_Created,2026-06-14,https://www.vestours.com,Tour operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/vestours-santagnello-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Karsana Travel,info@karsanatravel.com,Draft_Created,2026-06-14,https://karsanatravel.it,Tour operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/karsana-travel-santagnello-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Sopramare Resort,reservation@sopramareresort.it,Draft_Created,,https://www.sopramareresort.it,Resort 4 stelle,2,,Sì
-Golfo_Napoli_Sorrento,Hotel Cosmomare,info@cosmomare.it,Draft_Created,,https://www.cosmomare.it,Hotel 3 stelle,2,,Sì
-Golfo_Napoli_Sorrento,Hotel Klein Wien,info@kleinwien.it,Draft_Created,,https://www.kleinwien.it,Hotel 3 stelle,2,,Sì
+Golfo_Napoli_Sorrento,Vestours,info@vestours.com,Email_Sent,2026-06-16,https://www.vestours.com,Tour operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/vestours-santagnello-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Karsana Travel,info@karsanatravel.com,Email_Sent,2026-06-16,https://karsanatravel.it,Tour operator,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/karsana-travel-santagnello-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Sopramare Resort,reservation@sopramareresort.it,Email_Sent,2026-06-16,https://www.sopramareresort.it,Resort 4 stelle,2,,Sì
+Golfo_Napoli_Sorrento,Hotel Cosmomare,info@cosmomare.it,Email_Sent,2026-06-16,https://www.cosmomare.it,Hotel 3 stelle,2,,Sì
+Golfo_Napoli_Sorrento,Hotel Klein Wien,info@kleinwien.it,Email_Sent,2026-06-16,https://www.kleinwien.it,Hotel 3 stelle,2,,Sì
 Golfo_Napoli_Sorrento,Hotel Soleluna,,Non_Contacted,,https://www.hotelsoleluna.com,Hotel 3 stelle,2,,No
 Golfo_Napoli_Sorrento,Villa Iolanda,,Non_Contacted,,https://www.villaiolandasorrento.com,B&B,3,,No
 Golfo_Napoli_Sorrento,Bed and Lemons,,Non_Contacted,,https://bedandlemons.it,B&B,3,,No
-Golfo_Napoli_Sorrento,Hotel Giosue a Mare,info@giosueamare.it,Draft_Created,2026-06-14,https://www.giosueamare.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-giosue-a-mare-meta-sorrento-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Panorama Palace Hotel,info@hotelpanoramapalace.it,Draft_Created,2026-06-14,https://www.hotelpanoramapalace.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/panorama-palace-hotel-meta-sorrento-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Hotel Giosue a Mare,info@giosueamare.it,Email_Sent,2026-06-16,https://www.giosueamare.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-giosue-a-mare-meta-sorrento-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Panorama Palace Hotel,info@hotelpanoramapalace.it,Email_Sent,2026-06-16,https://www.hotelpanoramapalace.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/panorama-palace-hotel-meta-sorrento-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Bleu Village Resort & Residence,info@bleuvillage.com,Email_Sent,2026-06-13,https://www.bleuvillage.com,Resort & Residence,1,https://naplesexperiences-netizen.github.io/experiences-demos/demos/bleu-village-resort-residence-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Hotel Capo La Gala,info@hotelcapolagala.com,Email_Sent,2026-06-13,https://www.hotelcapolagala.com,Hotel 5 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-capo-la-gala-vico-equense-new-template-experiences/,Sì
-Golfo_Napoli_Sorrento,Hotel Mary,info@hotelmaryvico.com,Draft_Created,2026-06-14,https://www.hotelmaryvico.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mary-vico-equense-new-template-experiences/,Sì
+Golfo_Napoli_Sorrento,Hotel Mary,info@hotelmaryvico.com,Email_Sent,2026-06-16,https://www.hotelmaryvico.com,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mary-vico-equense-new-template-experiences/,Sì
 Golfo_Napoli_Sorrento,Eden Bleu Hotel,info@edenbleuhotel.it,Draft_Created,,https://www.edenbleuhotel.it,Hotel 4 stelle,3,,Sì
 Golfo_Napoli_Sorrento,Aequa Hotel,info@aequahotel.net,Draft_Created,,https://www.aequahotel.net,Hotel 3 stelle,3,,Sì
 Golfo_Napoli_Sorrento,Hotel Sporting,info@hotel-sporting.it,Email_Sent,2026-06-13,https://www.hotel-sporting.it,Hotel 4 stelle,2,https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-sporting-vico-equense-new-template-experiences/,Sì
@@ -149,8 +149,8 @@ Golfo_Napoli_Sorrento,Hotel Astoria,prenotazioni@astoriavico.com,Email_Sent,2026
 Golfo_Napoli_Sorrento,Maison Montechiaro,info@maisonmontechiaro.com,Draft_Created,,https://www.maisonmontechiaro.com,B&B / Maison,4,,Sì
 Golfo_Napoli_Sorrento,Villa Agostino,,Non_Contacted,,https://www.villaagostino.it,B&B luxury,3,,No
 Golfo_Napoli_Sorrento,Hotel Stabia,info@hotelstabia.com,Draft_Created,,https://www.stabiahotel.it,Hotel 4 stelle,3,,Sì
-Golfo_Napoli_Sorrento,La Medusa Hotel & Boutique Spa,info@lamedusahotel.com,Draft_Created,,https://www.lamedusahotel.com,Hotel 4 stelle dimora di charme,2,,Sì
-Golfo_Napoli_Sorrento,Towers Hotel Stabiae Sorrento Coast,info@towershotelsorrento.com,Draft_Created,,https://www.towershotelsorrento.com,Hotel 4 stelle,2,,Sì
+Golfo_Napoli_Sorrento,La Medusa Hotel & Boutique Spa,info@lamedusahotel.com,Email_Sent,2026-06-16,https://www.lamedusahotel.com,Hotel 4 stelle dimora di charme,2,,Sì
+Golfo_Napoli_Sorrento,Towers Hotel Stabiae Sorrento Coast,info@towershotelsorrento.com,Email_Sent,2026-06-16,https://www.towershotelsorrento.com,Hotel 4 stelle,2,,Sì
 Golfo_Napoli_Sorrento,Europa Stabia Hotel,,Non_Contacted,,https://www.europahotel.biz,Hotel 4 stelle,4,,No
 Golfo_Napoli_Sorrento,B&B Numero 5,,Non_Contacted,,https://bebnumero5.it,B&B,3,,No
 Golfo_Napoli_Sorrento,Biu Bed & Breakfast,,Non_Contacted,,https://www.biubb.it,B&B,3,,No
@@ -192,7 +192,7 @@ Golfo_Napoli_Sorrento,Hotel Palazzo Alabardieri,info@palazzoalabardieri.it,Draft
 Golfo_Napoli_Sorrento,Caravaggio Hotel,info@caravaggiohotel.it,Draft_Created,,https://www.caravaggiohotel.it,Hotel 4 stelle centro storico,2,,Sì
 Golfo_Napoli_Sorrento,MH Design Hotel,info@mhhotel.it,Draft_Created,,https://www.mhhotel.it,Hotel 4 stelle design,2,,Sì
 Golfo_Napoli_Sorrento,Costantinopoli 104,,Non_Contacted,,https://www.costantinopoli104.it,Hotel boutique 4 stelle,3,,No
-Golfo_Napoli_Sorrento,Santa Chiara Boutique Hotel,info@santachiarahotel.com,Draft_Created,,https://www.santachiarahotel.com,Hotel 4 stelle boutique,2,,Sì
+Golfo_Napoli_Sorrento,Santa Chiara Boutique Hotel,info@santachiarahotel.com,Email_Sent,2026-06-09,https://www.santachiarahotel.com,Hotel 4 stelle boutique,2,,Sì
 Golfo_Napoli_Sorrento,Hotel Palazzo Decumani,info@palazzodecumani.com,Draft_Created,,http://www.palazzodecumani.com,Hotel 4 stelle boutique,3,,Sì
 Golfo_Napoli_Sorrento,Decumani Hotel de Charme,info@decumani.com,Draft_Created,,https://www.decumani.com,Hotel 3 stelle dimora storica,3,,Sì
 Golfo_Napoli_Sorrento,Chiaja Hotel de Charme,info@hotelchiaia.it,Draft_Created,,https://www.hotelchiaia.it,Hotel 3 stelle dimora storica,3,,Sì
