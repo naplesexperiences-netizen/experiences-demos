@@ -1,35 +1,31 @@
-Soggetto: Partnership di distribuzione - {{NOME_AZIENDA}}
+Soggetto: Una nuova vetrina online per {{NOME_AZIENDA}}
 
-Caro/a {{NOME_CONTATTO}},
+Gentile {{NOME_CONTATTO}},
 
-Spero che questa email ti trovi bene. Mi chiamo {{NOME_MITTENTE}} di Experiences Srl, una piattaforma integrata per la distribuzione turistica in Campania.
+siamo {{NOME_MITTENTE}}, realtà specializzata in consulenza web e promozione turistica nel circuito della Campania.
 
-Abbiamo analizzato {{NOME_AZIENDA}} a {{CITTA}} e riconosciamo il valore della vostra expertise come {{CATEGORIA}} — {{PUNTO_FORZA_1}} e {{PUNTO_FORZA_2}} vi distinguono nel mercato.
+Abbiamo analizzato {{NOME_AZIENDA}} a {{CITTA}} e riconosciamo il valore della vostra attività ({{PUNTO_FORZA_1}}). Crediamo che un sito vetrina moderno possa aiutarvi a presentare al meglio tour ed esperienze e ad acquisire nuovi clienti diretti.
 
-**Chi siamo:**
-Experiences Srl gestisce una rete di strutture ricettive, esperienze e servizi turistici nel territorio campano. Lavoriamo con tour operator come voi per ampliare la portfolio di destinazioni e servizi offerti ai vostri clienti.
+Per darvi un'idea concreta, abbiamo già preparato una demo:
 
-**La proposta:**
-Vi mettiamo a disposizione una piattaforma integrata dove potete accedere e proposte di {{NOME_AZIENDA}}, con fatturazione gestita centralmente. Abbiamo preparato una scheda di presentazione per mostrarvi come funzionerebbe l'integrazione.
+👉 {{LINK_DEMO}}
 
-👉 Vedi la scheda: {{LINK_DEMO}}
+**Cosa offriamo a {{NOME_AZIENDA}}:**
+- Sito vetrina moderno, veloce e multilingua
+- Presentazione efficace di tour, escursioni e pacchetti
+- Maggiore visibilità sui motori di ricerca e sui nostri canali
+- Gestione richieste e preventivi semplificata
 
-**Come funziona la partnership:**
-- Tariffe chiare e trasparenti (€500-€1.400 annui, + commissione su volumi)
-- Accesso diretto alle nostre strutture e partner
-- Tools di booking integration e CRM
-- Reporting mensile e support dedicato
+**Tre piani, su misura per voi:**
+- Base: €500/anno + 5% commissione sulle vendite
+- Plus: €1.000/anno + 8% commissione sulle vendite
+- Premium: €1.400/anno + 10% commissione sulle vendite
+(IVA esclusa)
 
-Sei disponibile per una breve call (15-20 min) la prossima settimana per discutere come possiamo collaborare per crescere insieme?
+Le sarei grato se volesse dare un'occhiata alla demo e dirmi cosa ne pensa. Sono a disposizione per una breve call (15-20 min) quando preferite.
 
-Resto a disposizione.
-
-Cordiali saluti,
+Un cordiale saluto,
 
 {{FIRMA_MITTENTE}}
-Experiences Srl
 Consulenza Web & Turismo
 {{CONTATTI_MITTENTE}}
-
----
-P.S. Se preferisci, puoi saltare la call e inviarmi domande dirette via email. Risponderò in 24 ore.
