@@ -1,0 +1,37 @@
+Soggetto: Una nuova vetrina online per Villaggio Nessuno
+
+Gentile Responsabile,
+
+siamo Experiences Srl, realtà specializzata in consulenza web e promozione turistica nel circuito della Campania.
+
+Abbiamo analizzato il vostro sito web e il posizionamento di Villaggio Nessuno a Marina di Camerota. Abbiamo trovato questi punti da migliorare:
+
+  - Design e tecnologie datate (pre-2020)
+  - Nessun sistema di Channel Manager o booking engine integrato
+  - Velocità di caricamento insufficiente (performance score: 61)
+
+Crediamo che con una vetrina online moderna possiate distinguervi ancora di più e attrarre nuovi ospiti diretti.
+
+Per darvi un'idea concreta, abbiamo già preparato una demo del vostro nuovo sito vetrina:
+
+👉 https://naplesexperiences-netizen.github.io/experiences-demos/demos/villaggio-nessuno-experiences-standard/
+
+**Cosa offriamo a Villaggio Nessuno:**
+- Sito vetrina moderno, veloce e ottimizzato per mobile
+- Maggiore visibilità sui motori di ricerca e sui nostri canali
+- Assistente virtuale e gestione richieste in più lingue
+- Spinta alle prenotazioni dirette, riducendo le commissioni OTA
+
+**Tre piani, su misura per voi:**
+- Base: €500/anno + 5% commissione sulle vendite
+- Plus: €1.000/anno + 8% commissione sulle vendite
+- Premium: €1.400/anno + 10% commissione sulle vendite
+(IVA esclusa)
+
+Le sarei grato se volesse dare un'occhiata alla demo e dirmi cosa ne pensa. Sono a disposizione per una breve call (15-20 min) quando preferite.
+
+Un cordiale saluto,
+
+Experiences Srl
+Consulenza Web & Turismo
+info@experiences-srl.it | +39 392 691 7657

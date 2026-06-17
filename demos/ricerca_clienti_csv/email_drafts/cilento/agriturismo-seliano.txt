@@ -1,0 +1,36 @@
+Soggetto: Una nuova vetrina online per Agriturismo Seliano
+
+Gentile Responsabile,
+
+siamo Experiences Srl, realtà specializzata in consulenza web e promozione turistica nel circuito della Campania.
+
+Abbiamo analizzato il vostro sito web e il posizionamento di Agriturismo Seliano a Paestum. Abbiamo trovato questi punti da migliorare:
+
+  - Nessun sistema di Channel Manager o booking engine integrato
+  - Velocità di caricamento insufficiente (performance score: 52)
+
+Crediamo che un sito vetrina curato possa valorizzare al meglio la vostra ospitalità e attrarre viaggiatori in cerca di esperienze genuine.
+
+Per darvi un'idea concreta, abbiamo già preparato una demo:
+
+👉 https://naplesexperiences-netizen.github.io/experiences-demos/demos/agriturismo-seliano-experiences-standard/
+
+**Cosa offriamo a Agriturismo Seliano:**
+- Sito vetrina moderno, accogliente e ottimizzato per mobile
+- Racconto autentico della vostra struttura e del territorio
+- Maggiore visibilità sui motori di ricerca e sui nostri canali
+- Spinta alle prenotazioni dirette
+
+**Tre piani, su misura per voi:**
+- Base: €500/anno + 5% commissione sulle vendite
+- Plus: €1.000/anno + 8% commissione sulle vendite
+- Premium: €1.400/anno + 10% commissione sulle vendite
+(IVA esclusa)
+
+Le sarei grato se volesse dare un'occhiata alla demo e dirmi cosa ne pensa. Sono a disposizione per una breve call (15-20 min) quando preferite.
+
+Un cordiale saluto,
+
+Experiences Srl
+Consulenza Web & Turismo
+info@experiences-srl.it | +39 392 691 7657
