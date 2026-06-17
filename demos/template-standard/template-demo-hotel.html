@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Myrtus — Demo Experiences Srl</title>
-    <meta name="description" content="Hotel Myrtus — Hotel/Residence. Demo esclusiva realizzata da Experiences Srl.">
+    <title>{{HOTEL_NAME}} — Demo Experiences Srl</title>
+    <meta name="description" content="{{HOTEL_NAME}} — {{HOTEL_CATEGORY}}. Demo esclusiva realizzata da Experiences Srl.">
     <style>
         /* =============================================
            CSS VARIABLES — easy customization via script
            ============================================= */
         :root {
-            --primary:        #2c5aa0;
-            --secondary:      #d4af37;
+            --primary:        {{PRIMARY_COLOR}};
+            --secondary:      {{SECONDARY_COLOR}};
             --primary-dark:   color-mix(in srgb, var(--primary) 72%, #000);
             --primary-light:  color-mix(in srgb, var(--primary) 12%, #fff);
             --secondary-dark: color-mix(in srgb, var(--secondary) 68%, #000);
@@ -163,7 +163,7 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400"%3E%3Crect fill="%23ddd" width="800" height="400"/%3E%3C/svg%3E');
+            background-image: url('{{HERO_IMAGE_URL}}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -1000,7 +1000,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-inner">
             <div class="nav-brand">
-                <div class="nav-logo">Hotel Myrtus</div>
+                <div class="nav-logo">{{HOTEL_NAME}}</div>
                 <div class="demo-badge">Demo Experiences</div>
             </div>
             <ul class="nav-links">
@@ -1026,10 +1026,10 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="star">★</span>
-                Hotel/Residence
+                {{HOTEL_CATEGORY}}
             </div>
-            <h1 class="hero-title"><em>Hotel Myrtus</em></h1>
-            <p class="hero-tagline">Hotel/Residence | Agropoli</p>
+            <h1 class="hero-title"><em>{{HOTEL_NAME}}</em></h1>
+            <p class="hero-tagline">{{HOTEL_TAGLINE}}</p>
             <div class="hero-cta-group">
                 <a href="https://wa.me/393926917657"
                    target="_blank" rel="noopener"
@@ -1077,14 +1077,14 @@
             <div class="about-grid">
                 <div class="reveal">
                     <div class="eyebrow about-eyebrow">La Nostra Storia</div>
-                    <h2 class="about-title">Hotel Myrtus</h2>
-                    <p class="about-desc">Hotel Myrtus; Hotel/Residence; Agropoli; 4 stelle residence piscina vicino spiaggia Trentova mid-family; palette mediterranea coerente col segmento; sezioni: hero / camere e servizi / esperienze e territorio / posizione / contatti-prenota; lingue IT/EN; CTA 'Prenota ora / Richiedi disponibilità'</p>
+                    <h2 class="about-title">{{HOTEL_NAME}}</h2>
+                    <p class="about-desc">{{HOTEL_DESCRIPTION}}</p>
                     <ul class="highlights">
-                        <li>⭐ Qualità garantita</li>
-                        <li>🌍 Territorio autentico</li>
-                        <li>💼 Professionalità</li>
-                        <li>🎯 Risultati certificati</li>
-                        <li>✅ Esperienza consolidata</li>
+                        <li>{{HIGHLIGHT1}}</li>
+                        <li>{{HIGHLIGHT2}}</li>
+                        <li>{{HIGHLIGHT3}}</li>
+                        <li>{{HIGHLIGHT4}}</li>
+                        <li>{{HIGHLIGHT5}}</li>
                     </ul>
                     <a href="https://wa.me/393926917657"
                        target="_blank" rel="noopener"
@@ -1097,11 +1097,11 @@
                     </a>
                 </div>
                 <div class="about-img-wrap reveal">
-                    <img src="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ddd" width="400" height="300"/%3E%3C/svg%3E" alt="Hotel Myrtus" loading="lazy">
+                    <img src="{{ABOUT_IMAGE_URL}}" alt="{{HOTEL_NAME}}" loading="lazy">
                     <div class="about-accent-block"></div>
                     <div class="about-pill">
                         <span class="pill-star">★</span>
-                        <span>Hotel/Residence</span>
+                        <span>{{HOTEL_CATEGORY}}</span>
                     </div>
                 </div>
             </div>
@@ -1120,10 +1120,10 @@
             <div class="services-grid">
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23ddd" width="300" height="300"/%3E%3C/svg%3E')"></div>
+                    <div class="svc-img" style="background-image:url('{{SERVICE1_IMG}}')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">Servizio Premium</h3>
-                        <p class="svc-desc">Esperienza di qualità</p>
+                        <h3 class="svc-title">{{SERVICE1_TITLE}}</h3>
+                        <p class="svc-desc">{{SERVICE1_DESC}}</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1135,10 +1135,10 @@
                 </article>
 
                 <article class="svc-card reveal">
-                    <div class="svc-img" style="background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23ddd" width="300" height="300"/%3E%3C/svg%3E')"></div>
+                    <div class="svc-img" style="background-image:url('{{SERVICE2_IMG}}')"></div>
                     <div class="svc-body">
-                        <h3 class="svc-title">Servizio Esclusivo</h3>
-                        <p class="svc-desc">Personalizzato su misura</p>
+                        <h3 class="svc-title">{{SERVICE2_TITLE}}</h3>
+                        <p class="svc-desc">{{SERVICE2_DESC}}</p>
                         <a href="https://wa.me/393926917657" class="svc-link" target="_blank" rel="noopener">
                             Richiedi Info
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1262,7 +1262,7 @@
                         <div class="chat-header">
                             <div class="chat-av">🤖</div>
                             <div>
-                                <div class="chat-hdr-name">Concierge AI — Hotel Myrtus</div>
+                                <div class="chat-hdr-name">Concierge AI — {{HOTEL_NAME}}</div>
                                 <div class="chat-hdr-status">
                                     <span class="status-dot"></span>
                                     Online ora
@@ -1272,7 +1272,7 @@
                         <div class="chat-msgs">
                             <div class="chat-row">
                                 <div class="msg-av">🤖</div>
-                                <div class="msg-bub">Ciao! Scopri Hotel Myrtus</div>
+                                <div class="msg-bub">{{CHATBOT_GREETING}}</div>
                             </div>
                             <div class="chat-row user">
                                 <div class="msg-av">👤</div>
@@ -1367,7 +1367,7 @@
     <section class="cta-section" id="contact">
         <div class="container reveal">
             <div class="eyebrow">Pronti a Iniziare?</div>
-            <h2 class="section-title">Contatta adesso</h2>
+            <h2 class="section-title">{{CTA_TEXT}}</h2>
             <p class="section-sub">
                 Contattaci oggi e scopri come Experiences Srl può trasformare
                 la visibilità online del tuo hotel.
@@ -1376,7 +1376,7 @@
                 <a href="https://wa.me/393926917657" target="_blank" rel="noopener" class="btn-cta-gold">
                     💬 Scrivici su WhatsApp
                 </a>
-                <a href="mailto:info@hotelmyrtus.it" class="btn-cta-outline">
+                <a href="mailto:{{HOTEL_EMAIL}}" class="btn-cta-outline">
                     ✉ Invia una Email
                 </a>
             </div>
@@ -1388,15 +1388,15 @@
         <div class="footer-inner">
             <div class="footer-top">
                 <div>
-                    <div class="footer-logo-name">Hotel Myrtus</div>
-                    <p class="footer-tagline">Hotel/Residence | Agropoli</p>
+                    <div class="footer-logo-name">{{HOTEL_NAME}}</div>
+                    <p class="footer-tagline">{{HOTEL_TAGLINE}}</p>
                     <div class="footer-contact-row">
                         <span>✉</span>
-                        <a href="mailto:info@hotelmyrtus.it">info@hotelmyrtus.it</a>
+                        <a href="mailto:{{HOTEL_EMAIL}}">{{HOTEL_EMAIL}}</a>
                     </div>
                     <div class="footer-contact-row">
                         <span>🌐</span>
-                        <a href="https://www.hotelmyrtus.it" target="_blank" rel="noopener">https://www.hotelmyrtus.it</a>
+                        <a href="{{HOTEL_URL}}" target="_blank" rel="noopener">{{HOTEL_URL}}</a>
                     </div>
                     <div class="footer-contact-row">
                         <span>💬</span>
@@ -1441,7 +1441,7 @@
         /* ---- Hero background image ---- */
         (function () {
             var bg = document.getElementById('heroBg');
-            if (bg) bg.style.backgroundImage = "url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400"%3E%3Crect fill="%23ddd" width="800" height="400"/%3E%3C/svg%3E')";
+            if (bg) bg.style.backgroundImage = "url('{{HERO_IMAGE_URL}}')";
         }());
 
         /* ---- Scroll reveal via IntersectionObserver ---- */
