@@ -1,0 +1,37 @@
+Soggetto: Visibilità per {{NOME_AZIENDA}} - Progetto Experiences
+
+Caro/a {{NOME_CONTATTO}},
+
+Spero che questa email ti trovi bene. Mi chiamo {{NOME_MITTENTE}} di Experiences Srl, una piattaforma turistica che promuove strutture e esperienze autentiche della Campania.
+
+Abbiamo scoperto {{NOME_AZIENDA}} a {{CITTA}} e ci ha subito colpito: {{PUNTO_FORZA_1}} + {{PUNTO_FORZA_2}} — esattamente quello che i nostri viaggiatori cercano quando vogliono esperienze genuine e a contatto con il territorio.
+
+**Perché vi contattiamo:**
+Experiences Srl collega strutture come la vostra con tour operator internazionali, agenzie di viaggio e viaggiatori indipendenti che cercano autenticità e qualità locale. È un circuito curato, non una piattaforma di massa.
+
+**La proposta per {{NOME_AZIENDA}}:**
+Vi presentiamo una scheda demo che mostra come {{NOME_AZIENDA}} verrebbe valorizzata nel nostro circuito — con focus sugli aspetti che vi rendono unici (storia, tradizioni, esperienze locali).
+
+Sono disponibili tre piani, dal Base (€500/anno) al Premium (€1.400/anno), più una commissione fair su prenotazioni generate.
+
+👉 Vedi la demo: {{LINK_DEMO}}
+
+**Cosa includiamo:**
+- Scheda dedicata con foto e descrizione curata
+- Visibilità su mail list di 10k+ viaggiatori qualificati
+- Integrazione con circuiti incoming B2B
+- Supporto gratuito nei primi 3 mesi
+
+Il mio consiglio: date un'occhiata alla demo per farvi un'idea, poi parliamo. Possiamo fare una call di 15 min quando vi fa comodo.
+
+Resto a disposizione.
+
+Cordiali saluti,
+
+{{FIRMA_MITTENTE}}
+Experiences Srl
+Consulenza Web & Turismo
+{{CONTATTI_MITTENTE}}
+
+---
+P.S. Sappiamo che ricevete molte proposte simili. Questa è diversa perché crediamo nella qualità, non nella quantità. Vogliamo partner che amano quello che fanno.
