@@ -74,11 +74,20 @@ def is_tour_operator(categoria):
     cat = (categoria or "").lower()
     return "tour" in cat or "dmc" in cat or "agenzia" in cat
 
+JUNK_IMAGE_PATTERN = re.compile(
+    r"\.(svg|gif)(\?|$)|flag|logo|placeholder|star|rating|icon|favico|dummy|"
+    r"fallback|pattern|decorat|wave|water|comment|tripadvisor|social|"
+    r"facebook|twitter|instagram|youtube|googleplus|pinterest|linkedin|share|"
+    r"banner|badge|warning|ie8|lin_italiano|lin_english|menubianco|menuoro|"
+    r"freccia|arr-lang|loader\.",
+    re.I,
+)
+
 def parse_images(immagini_field, count=8):
     """Estrai URL immagini reali dal campo CSV (separati da spazio)."""
     urls = [u.strip() for u in (immagini_field or "").split() if u.strip().startswith("http")]
-    # Filtra placeholder inutili (svg, gif, flags, loghi)
-    urls = [u for u in urls if not re.search(r"\.(svg|gif)(\?|$)|flag|logo|placeholder|star\.|rating", u, re.I)]
+    # Filtra icone, loghi, pattern decorativi e altri asset non fotografici
+    urls = [u for u in urls if not JUNK_IMAGE_PATTERN.search(u)]
     if not urls:
         return [PLACEHOLDER_IMG] * count
     # Ripeti ciclicamente se ne servono di più
@@ -112,7 +121,7 @@ def extract_weaknesses(company):
     # Mobile friendly
     mobile = (company.get("Mobile_Friendly") or "").lower().strip()
     if "no" in mobile:
-        weaknesses.append("Non optimizzato per dispositivi mobili")
+        weaknesses.append("Non ottimizzato per dispositivi mobili")
 
     # Blog
     blog = (company.get("Blog") or "").lower().strip()
