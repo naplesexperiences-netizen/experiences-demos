@@ -1,37 +1,31 @@
-Soggetto: Visibilità per {{NOME_AZIENDA}} - Progetto Experiences
+Soggetto: Una nuova vetrina online per {{NOME_AZIENDA}}
 
-Caro/a {{NOME_CONTATTO}},
+Gentile {{NOME_CONTATTO}},
 
-Spero che questa email ti trovi bene. Mi chiamo {{NOME_MITTENTE}} di Experiences Srl, una piattaforma turistica che promuove strutture e esperienze autentiche della Campania.
+siamo {{NOME_MITTENTE}}, realtà specializzata in consulenza web e promozione turistica nel circuito della Campania.
 
-Abbiamo scoperto {{NOME_AZIENDA}} a {{CITTA}} e ci ha subito colpito: {{PUNTO_FORZA_1}} + {{PUNTO_FORZA_2}} — esattamente quello che i nostri viaggiatori cercano quando vogliono esperienze genuine e a contatto con il territorio.
+Abbiamo scoperto {{NOME_AZIENDA}} a {{CITTA}} ({{PUNTO_FORZA_1}}) e ci ha colpito l'autenticità della vostra proposta. Crediamo che un sito vetrina curato possa valorizzare al meglio la vostra ospitalità e attrarre viaggiatori in cerca di esperienze genuine.
 
-**Perché vi contattiamo:**
-Experiences Srl collega strutture come la vostra con tour operator internazionali, agenzie di viaggio e viaggiatori indipendenti che cercano autenticità e qualità locale. È un circuito curato, non una piattaforma di massa.
+Per darvi un'idea concreta, abbiamo già preparato una demo:
 
-**La proposta per {{NOME_AZIENDA}}:**
-Vi presentiamo una scheda demo che mostra come {{NOME_AZIENDA}} verrebbe valorizzata nel nostro circuito — con focus sugli aspetti che vi rendono unici (storia, tradizioni, esperienze locali).
+👉 {{LINK_DEMO}}
 
-Sono disponibili tre piani, dal Base (€500/anno) al Premium (€1.400/anno), più una commissione fair su prenotazioni generate.
+**Cosa offriamo a {{NOME_AZIENDA}}:**
+- Sito vetrina moderno, accogliente e ottimizzato per mobile
+- Racconto autentico della vostra struttura e del territorio
+- Maggiore visibilità sui motori di ricerca e sui nostri canali
+- Spinta alle prenotazioni dirette
 
-👉 Vedi la demo: {{LINK_DEMO}}
+**Tre piani, su misura per voi:**
+- Base: €500/anno + 5% commissione sulle vendite
+- Plus: €1.000/anno + 8% commissione sulle vendite
+- Premium: €1.400/anno + 10% commissione sulle vendite
+(IVA esclusa)
 
-**Cosa includiamo:**
-- Scheda dedicata con foto e descrizione curata
-- Visibilità su mail list di 10k+ viaggiatori qualificati
-- Integrazione con circuiti incoming B2B
-- Supporto gratuito nei primi 3 mesi
+Le sarei grato se volesse dare un'occhiata alla demo e dirmi cosa ne pensa. Sono a disposizione per una breve call (15-20 min) quando preferite.
 
-Il mio consiglio: date un'occhiata alla demo per farvi un'idea, poi parliamo. Possiamo fare una call di 15 min quando vi fa comodo.
-
-Resto a disposizione.
-
-Cordiali saluti,
+Un cordiale saluto,
 
 {{FIRMA_MITTENTE}}
-Experiences Srl
 Consulenza Web & Turismo
 {{CONTATTI_MITTENTE}}
-
----
-P.S. Sappiamo che ricevete molte proposte simili. Questa è diversa perché crediamo nella qualità, non nella quantità. Vogliamo partner che amano quello che fanno.
