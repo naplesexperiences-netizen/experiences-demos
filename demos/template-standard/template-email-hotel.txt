@@ -1,0 +1,35 @@
+Soggetto: Opportunità di visibilità per {{NOME_AZIENDA}} - Experiences Srl
+
+Caro/a {{NOME_CONTATTO}},
+
+Spero che questa email ti trovi bene. Mi chiamo {{NOME_MITTENTE}} di Experiences Srl, una piattaforma integrata di consulenza web e turismo che opera nel circuito della Campania.
+
+Abbiamo analizzato {{NOME_AZIENDA}} a {{CITTA}} e crediamo che la vostra struttura, con la sua {{PUNTO_FORZA_1}} e {{PUNTO_FORZA_2}}, sia un'ottima candidata per il nostro circuito di distribuzione turistica.
+
+**Cosa facciamo:**
+Experiences Srl lavora per connettere strutture ricettive come la vostra con tour operator, agenzie di viaggio e viaggiatori diretti, attraverso una strategia multicanale integrata.
+
+**La proposta per {{NOME_AZIENDA}}:**
+Abbiamo preparato una scheda demo che mostra come {{NOME_AZIENDA}} potrebbe essere presentata nel nostro circuito, con tre piani tariffari flessibili (da €500 a €1.400 annui, + commissione su prenotazioni generate).
+
+👉 Vedi la demo: {{LINK_DEMO}}
+
+**I vantaggi:**
+- Visibilità garantita nei nostri canali di distribuzione
+- Accesso a buyer pool qualificati (tour operator, agenzie)
+- Analytics e reporting mensile
+- Supporto coordinato tra noi e i vostri team
+
+Ti invito a guardare la demo e farmi sapere se interessato a una breve call (15-20 min) per discutere come potremmo supportare {{NOME_AZIENDA}} nel raggiungere nuovi clienti.
+
+Rimango a disposizione per qualsiasi domanda.
+
+Cordiali saluti,
+
+{{FIRMA_MITTENTE}}
+Experiences Srl
+Consulenza Web & Turismo
+{{CONTATTI_MITTENTE}}
+
+---
+P.S. La scheda demo è customizzata per {{NOME_AZIENDA}} e riflette i vostri punti di forza specifici. Abbiamo voluto darvi un'idea concreta prima di approfondire.

@@ -1,0 +1,35 @@
+Soggetto: Partnership di distribuzione - {{NOME_AZIENDA}}
+
+Caro/a {{NOME_CONTATTO}},
+
+Spero che questa email ti trovi bene. Mi chiamo {{NOME_MITTENTE}} di Experiences Srl, una piattaforma integrata per la distribuzione turistica in Campania.
+
+Abbiamo analizzato {{NOME_AZIENDA}} a {{CITTA}} e riconosciamo il valore della vostra expertise come {{CATEGORIA}} — {{PUNTO_FORZA_1}} e {{PUNTO_FORZA_2}} vi distinguono nel mercato.
+
+**Chi siamo:**
+Experiences Srl gestisce una rete di strutture ricettive, esperienze e servizi turistici nel territorio campano. Lavoriamo con tour operator come voi per ampliare la portfolio di destinazioni e servizi offerti ai vostri clienti.
+
+**La proposta:**
+Vi mettiamo a disposizione una piattaforma integrata dove potete accedere e proposte di {{NOME_AZIENDA}}, con fatturazione gestita centralmente. Abbiamo preparato una scheda di presentazione per mostrarvi come funzionerebbe l'integrazione.
+
+👉 Vedi la scheda: {{LINK_DEMO}}
+
+**Come funziona la partnership:**
+- Tariffe chiare e trasparenti (€500-€1.400 annui, + commissione su volumi)
+- Accesso diretto alle nostre strutture e partner
+- Tools di booking integration e CRM
+- Reporting mensile e support dedicato
+
+Sei disponibile per una breve call (15-20 min) la prossima settimana per discutere come possiamo collaborare per crescere insieme?
+
+Resto a disposizione.
+
+Cordiali saluti,
+
+{{FIRMA_MITTENTE}}
+Experiences Srl
+Consulenza Web & Turismo
+{{CONTATTI_MITTENTE}}
+
+---
+P.S. Se preferisci, puoi saltare la call e inviarmi domande dirette via email. Risponderò in 24 ore.
