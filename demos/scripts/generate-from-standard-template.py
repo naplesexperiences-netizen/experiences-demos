@@ -100,6 +100,47 @@ def build_description(company):
         return f"{nome}, {desc}. A {citta}."
     return f"{nome}, eccellenza dell'ospitalità a {citta}, nel cuore della Campania."
 
+def extract_weaknesses(company):
+    """Estrai i punti deboli reali dal sito web aziendale."""
+    weaknesses = []
+
+    # Sito pre-2020
+    sito_pre = (company.get("Sito_Pre2020") or "").lower().strip()
+    if "sì" in sito_pre:
+        weaknesses.append("Design e tecnologie datate (pre-2020)")
+
+    # Mobile friendly
+    mobile = (company.get("Mobile_Friendly") or "").lower().strip()
+    if "no" in mobile:
+        weaknesses.append("Non optimizzato per dispositivi mobili")
+
+    # Blog
+    blog = (company.get("Blog") or "").lower().strip()
+    if "no" in blog or ("incerto" in blog and "non" in blog):
+        weaknesses.append("Assenza di blog o content marketing")
+
+    # Channel manager / booking engine
+    channel = (company.get("Channel_Manager") or "").lower().strip()
+    if "no" in channel:
+        weaknesses.append("Nessun sistema di Channel Manager o booking engine integrato")
+
+    # PageSpeed (estrai da Note)
+    note = company.get("Note", "").lower()
+    if "perf=" in note:
+        import re
+        match = re.search(r"perf=(\d+)", note)
+        if match and int(match.group(1)) < 70:
+            weaknesses.append(f"Velocità di caricamento insufficiente (performance score: {match.group(1)})")
+
+    # SEO
+    if "seo=" in note:
+        import re
+        match = re.search(r"seo=(\d+)", note)
+        if match and int(match.group(1)) < 85:
+            weaknesses.append(f"Ottimizzazione SEO da migliorare (score: {match.group(1)})")
+
+    return weaknesses[:4]  # Max 4 punti per non sovraccaricare
+
 def first_phrase(company):
     """Prima frase breve descrittiva per tagline."""
     note = (company.get("Note") or "").split("|")[0].split(".")[0].strip()
@@ -118,6 +159,8 @@ def build_data(company):
     services = TOUROP_SERVICES if tourop else HOTEL_SERVICES
     desc = build_description(company)
     tagline = first_phrase(company) or f"{categoria} · {citta}"
+    weaknesses = extract_weaknesses(company)
+    weaknesses_text = "\n".join(f"- {w}" for w in weaknesses) if weaknesses else "- Opportunità di miglioramento online"
 
     # Stats derivate (veritiere/generiche)
     stat_label_loc = citta or "Campania"
@@ -221,13 +264,15 @@ def generate_email(company, tourop):
     note = (company.get("Note") or "").split("|")[0].split(".")[0].strip()
     pf = [p.strip() for p in note.split() if p] if note else []
 
+    weaknesses = extract_weaknesses(company)
+    weaknesses_text = "\n".join(f"  - {w}" for w in weaknesses) if weaknesses else "  - Opportunità di miglioramento online"
+
     email_data = {
         "NOME_AZIENDA": company["Nome_Azienda"],
         "NOME_CONTATTO": "Responsabile",
         "CATEGORIA": company.get("Categoria", "partner"),
         "CITTA": company.get("Citta", ""),
-        "PUNTO_FORZA_1": note or company.get("Categoria", "eccellenza"),
-        "PUNTO_FORZA_2": company.get("Citta", "posizione strategica"),
+        "PUNTI_DEBOLI": weaknesses_text,
         "LINK_DEMO": demo_url,
         "NOME_MITTENTE": "Experiences Srl",
         "FIRMA_MITTENTE": "Experiences Srl",
