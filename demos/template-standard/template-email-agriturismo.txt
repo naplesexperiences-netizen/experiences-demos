@@ -4,7 +4,11 @@ Gentile {{NOME_CONTATTO}},
 
 siamo {{NOME_MITTENTE}}, realtà specializzata in consulenza web e promozione turistica nel circuito della Campania.
 
-Abbiamo scoperto {{NOME_AZIENDA}} a {{CITTA}} ({{PUNTO_FORZA_1}}) e ci ha colpito l'autenticità della vostra proposta. Crediamo che un sito vetrina curato possa valorizzare al meglio la vostra ospitalità e attrarre viaggiatori in cerca di esperienze genuine.
+Abbiamo analizzato il vostro sito web e il posizionamento di {{NOME_AZIENDA}} a {{CITTA}}. Abbiamo trovato questi punti da migliorare:
+
+{{PUNTI_DEBOLI}}
+
+Crediamo che un sito vetrina curato possa valorizzare al meglio la vostra ospitalità e attrarre viaggiatori in cerca di esperienze genuine.
 
 Per darvi un'idea concreta, abbiamo già preparato una demo:
 
