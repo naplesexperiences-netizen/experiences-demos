@@ -90,12 +90,13 @@
             position: relative;
             z-index: 1001;
         }
-        .menu-toggle span {
+        .menu-toggle .bar {
             display: block; width: 26px; height: 2px; background: #fff;
             transition: opacity .2s var(--ease);
         }
         .menu-toggle .label {
-            position: absolute; right: 52px; font-size: 12px; letter-spacing: 2px;
+            position: absolute; right: 56px; top: 50%; transform: translateY(-50%);
+            font-size: 12px; letter-spacing: 2px; line-height: 1;
             text-transform: uppercase; color: #fff; white-space: nowrap;
         }
 
@@ -110,20 +111,22 @@
         }
         body.menu-open .menu-overlay { pointer-events: auto; }
         .menu-overlay__nav {
-            display: flex; align-items: center;
-            padding: 0 7vw;
+            display: flex; flex-direction: column; justify-content: center;
+            gap: clamp(28px, 5vh, 56px);
+            padding: 96px 7vw 48px;
+            overflow-y: auto;
         }
         .menu-overlay__nav ul { width: 100%; }
         .menu-overlay__nav li {
             display: flex; align-items: baseline; gap: 22px;
-            padding: 14px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .menu-overlay__nav .idx {
             font-family: var(--font-serif); font-size: 14px; color: var(--secondary); letter-spacing: 1px;
         }
         .menu-overlay__nav a {
-            font-family: var(--font-serif); font-size: clamp(32px, 5.4vw, 64px);
+            font-family: var(--font-serif); font-size: clamp(28px, 4.2vw, 48px);
             color: var(--on-dark);
             transition: color .25s var(--ease), padding-left .25s var(--ease);
         }
@@ -146,15 +149,14 @@
             color: var(--on-dark); font-family: var(--font-serif); font-size: 19px;
         }
         .menu-overlay__footer {
-            position: absolute; left: 7vw; bottom: 40px; z-index: 2;
             color: var(--on-dark-muted); font-size: 14px; line-height: 1.9;
+            flex-shrink: 0;
         }
         .menu-overlay__footer strong { color: var(--on-dark); }
         @media (max-width: 860px) {
             .menu-overlay { grid-template-columns: 1fr; }
             .menu-overlay__preview { display: none; }
-            .menu-overlay__footer { position: static; margin-top: 28px; padding: 0 7vw 40px; }
-            .menu-overlay__nav { padding-top: 110px; align-items: flex-start; }
+            .menu-overlay__nav { justify-content: flex-start; padding-top: 110px; }
         }
 
         /* ============ HERO ============ */
@@ -384,9 +386,9 @@
             <div class="nav-brand">Villa Crawford</div>
             <button class="menu-toggle" id="menuToggle" aria-label="Apri menu" aria-expanded="false">
                 <span class="label">Menu</span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </button>
         </div>
     </nav>
@@ -416,6 +418,12 @@
                     <a href="#contatti" data-close-menu>Contatti</a>
                 </li>
             </ul>
+            <div class="menu-overlay__footer">
+                <strong>Corso Marion Crawford</strong><br>
+                80065 Sant'Agnello (NA), Sorrento<br><br>
+                +39 392 691 7657<br>
+                info@villacrawford.it (demo)
+            </div>
         </nav>
         <div class="menu-overlay__preview">
             <img class="is-active" src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="Facciata di Villa Crawford">
@@ -424,12 +432,6 @@
             <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="Camere di Villa Crawford">
             <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Golfo di Napoli">
             <p class="menu-overlay__caption" id="menuCaption">La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.</p>
-        </div>
-        <div class="menu-overlay__footer">
-            <strong>Corso Marion Crawford</strong><br>
-            80065 Sant'Agnello (NA), Sorrento<br><br>
-            +39 392 691 7657<br>
-            info@villacrawford.it (demo)
         </div>
     </div>
 
