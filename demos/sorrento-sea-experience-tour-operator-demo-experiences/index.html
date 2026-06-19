@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorrento Sea Experience - Tour & Escursioni Capri, Amalfi, Pompei - Demo Experiences Srl</title>
+    <meta name="description" content="Sorrento Sea Experience - Tour operator per escursioni in barca a Capri, Costiera Amalfitana, Pompei e Vesuvio - Demo realizzato da Experiences Srl">
+    <meta property="og:title" content="Sorrento Sea Experience - Tour & Escursioni - Demo Experiences Srl">
+    <meta property="og:description" content="Tour operator per escursioni in barca e itinerari guidati nel Golfo di Napoli. Demo gratuita realizzata da Experiences Srl.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Marca il documento solo se il JS è attivo: gli stati iniziali "nascosti" delle animazioni
+         GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
+    <script>document.documentElement.classList.add('gsap-enabled');</script>
+    <style>
+        :root {
+            /* Palette mare/tramonto personalizzabile per ogni cliente */
+            --primary: #0d6c8a;
+            --primary-dark: #094d63;
+            --accent: #ff7a45;
+            --accent-light: #ffa477;
+            --teal: #1b9aaa;
+            --bg-soft: #eef7fa;
+            --text: #20323a;
+            --text-soft: #56676f;
+            --radius: 18px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.7; color: var(--text); background: #fff; }
+        h1, h2, h3, .nav-logo { font-family: 'Poppins', Georgia, serif; letter-spacing: 0.2px; }
+
+        /* DEMO BANNER */
+        .demo-banner {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 200;
+        }
+        .demo-banner a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+        .demo-banner a:hover { opacity: 0.85; }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .nav-logo { font-weight: 800; font-size: 24px; color: var(--primary); }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; align-items: center; list-style: none; }
+        .nav-links a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: all 0.2s !important;
+        }
+        .btn-cta:hover { background: var(--primary) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--primary); transition: all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.55);
+            transform: scale(1.05);
+            will-change: transform;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(9,77,99,0.25) 0%, rgba(9,77,99,0.6) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 840px;
+            padding: 0 24px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,122,69,0.92);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            padding: 7px 20px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 36px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+            display: inline-block;
+        }
+        .btn-primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); }
+        .btn-primary:hover { background: transparent; color: var(--accent-light); border-color: var(--accent-light); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
+        .btn-outline:hover { background: rgba(255,255,255,0.16); }
+        .hero-scroll {
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.8);
+            font-size: 22px;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
+
+        /* STATS */
+        .stats-bar { background: var(--primary); color: #fff; padding: 48px 20px; }
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item { padding: 10px 0; }
+        .stat-num { font-size: 48px; font-weight: 800; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Poppins', serif; }
+        .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.5px; text-transform: uppercase; }
+
+        /* SECTION BASE */
+        .section-tag {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--teal);
+            margin-bottom: 14px;
+            font-family: 'Inter', sans-serif;
+        }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; color: var(--primary); }
+        .section-header p { color: var(--text-soft); margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+        /* ABOUT */
+        .about-section {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img-wrap {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(13,108,138,0.2);
+            position: relative;
+        }
+        .about-img-wrap img { width: 100%; height: 440px; object-fit: cover; display: block; }
+        .about-img-badge {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .about-img-badge .stars { color: var(--accent); letter-spacing: 2px; }
+        .about-text h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--primary); margin-bottom: 18px; line-height: 1.15; }
+        .about-text p { color: var(--text-soft); font-size: 15px; margin-bottom: 20px; }
+        .highlights-list { list-style: none; margin-top: 10px; }
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text);
+            border-bottom: 1px solid #e1eef2;
+        }
+        .check { color: var(--teal); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+        /* TOURS */
+        .tours-section { background: var(--bg-soft); padding: 100px 24px; }
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(13,108,138,0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(13,108,138,0.16); }
+        .card-img-wrap { overflow: hidden; height: 210px; position: relative; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrap img { transform: scale(1.07); }
+        .card-tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(13,108,138,0.92);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .card-body { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+        .card-title { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; margin-bottom: 18px; flex: 1; }
+        .card-meta { display: flex; gap: 14px; font-size: 12px; color: var(--text-soft); margin-bottom: 18px; flex-wrap: wrap; }
+        .card-meta span { display: inline-flex; align-items: center; gap: 5px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eef4f6; padding-top: 16px; }
+        .card-price { font-size: 14px; color: var(--text-soft); font-family: 'Inter', sans-serif; }
+        .card-price strong { font-size: 26px; color: var(--accent); font-weight: 700; font-family: 'Poppins', serif; }
+        .card-book {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .card-book:hover { background: var(--accent); }
+
+        /* GALLERY */
+        .gallery-section { padding: 100px 24px; }
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 14px;
+        }
+        .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(9,77,99,0.55) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+
+        /* TESTIMONIALS */
+        .reviews-section { background: var(--bg-soft); padding: 100px 24px; }
+        .reviews-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 26px;
+        }
+        .review-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: 0 4px 24px rgba(13,108,138,0.08);
+            position: relative;
+        }
+        .review-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 14px;
+            right: 24px;
+            font-size: 72px;
+            font-family: Georgia, serif;
+            color: var(--accent);
+            opacity: 0.22;
+            line-height: 1;
+        }
+        .review-stars { color: var(--accent); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+        .review-text { font-size: 15px; color: var(--text-soft); font-style: italic; margin-bottom: 18px; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--teal));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+        .review-name { font-size: 14px; font-weight: 600; color: var(--primary); font-family: 'Inter', sans-serif; }
+        .review-origin { font-size: 12px; color: #93a4ab; font-family: 'Inter', sans-serif; }
+
+        /* CHATBOT PREVIEW */
+        .chatbot-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 100px 24px;
+            color: #fff;
+        }
+        .chatbot-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .chatbot-text h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 700; margin-bottom: 16px; }
+        .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
+        .chatbot-features { list-style: none; margin-bottom: 28px; }
+        .chatbot-features li {
+            padding: 9px 0;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .chatbot-ui {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .chatbot-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .chat-log { max-height: 260px; overflow-y: auto; scrollbar-width: thin; }
+        .chat-bubble {
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px 12px 12px 0;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 90%;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .chat-user {
+            background: var(--accent);
+            border-radius: 12px 12px 0 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-left: auto;
+            max-width: 80%;
+            text-align: right;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .chat-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+        .chat-typing i {
+            width: 6px; height: 6px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+            font-style: normal;
+        }
+        .chat-typing i:nth-child(2) { animation-delay: 0.2s; }
+        .chat-typing i:nth-child(3) { animation-delay: 0.4s; }
+        .chat-input { display: flex; gap: 8px; margin-top: 12px; }
+        .chat-input input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+        }
+        .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-input input:focus { outline: 1px solid var(--accent-light); }
+        .chat-send {
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .chat-send:hover { background: var(--accent-light); }
+
+        /* PRICING */
+        .pricing-section { padding: 100px 24px; background: #fff; }
+        .pricing-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .pricing-card {
+            border: 2px solid #dfeaee;
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px rgba(13,108,138,0.12); transform: translateY(-4px); }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, #fff4ee 0%, #fff 100%);
+            transform: scale(1.03);
+        }
+        .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+        .pricing-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            padding: 5px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-name { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
+        .pricing-price { font-size: 44px; font-weight: 800; color: var(--primary); margin-bottom: 4px; font-family: 'Poppins', serif; }
+        .pricing-period { font-size: 12px; color: #93a4ab; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; font-family: 'Inter', sans-serif; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 26px; }
+        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid #eef4f6; font-family: 'Inter', sans-serif; }
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .pricing-btn:hover { background: var(--accent); }
+        .pricing-card.featured .pricing-btn { background: var(--accent); }
+        .pricing-card.featured .pricing-btn:hover { background: var(--primary); }
+        .pricing-notes {
+            max-width: 1100px;
+            margin: 36px auto 0;
+            display: grid;
+            gap: 10px;
+        }
+        .pricing-note {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--bg-soft);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: var(--text-soft);
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+        .pricing-note strong { color: var(--primary); }
+        .pricing-note .note-icon { font-size: 16px; flex-shrink: 0; }
+
+        /* FAQ */
+        .faq-section { background: var(--bg-soft); padding: 100px 24px; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(13,108,138,0.06);
+            overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 18px 22px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); font-family: 'Inter', sans-serif; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 100%);
+            padding: 100px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-section h2 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 700; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-btns .btn-white {
+            background: #fff;
+            color: var(--primary);
+            padding: 15px 38px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .cta-btns .btn-ghost {
+            background: transparent;
+            color: #fff;
+            padding: 15px 38px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 46px 24px;
+            text-align: center;
+            font-size: 13px;
+        }
+        footer a { color: var(--accent-light); text-decoration: none; }
+        footer strong { color: #fff; }
+
+        /* FLOATING WHATSAPP */
+        .wa-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 300;
+            background: #25d366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+            transition: transform 0.2s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+
+        /* ANIMATIONS
+           Le animazioni d'ingresso e di scroll sono gestite via GSAP (vedi <script> in fondo),
+           con ScrollTrigger per i reveal e gsap.matchMedia() per rispettare prefers-reduced-motion.
+           Gli stati iniziali "nascosti" sono vincolati a .gsap-enabled: se JS o la CDN GSAP
+           non caricano, la classe viene rimossa e tutti i contenuti restano visibili. */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gsap-enabled .hero-content { visibility: hidden; }
+        .gsap-enabled .reveal { opacity: 0; will-change: transform, opacity; }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 18px 24px 24px;
+                gap: 16px;
+                box-shadow: 0 14px 24px rgba(0,0,0,0.1);
+            }
+            .nav-links.open { display: flex; }
+            .about-section { grid-template-columns: 1fr; gap: 30px; margin: 60px auto; }
+            .chatbot-inner { grid-template-columns: 1fr; gap: 40px; }
+            .pricing-card.featured { transform: none; }
+            .hero { min-height: 80vh; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo-banner">
+    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
+</div>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">Sorrento <span>Sea</span></div>
+        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#tours">Tour</a></li>
+            <li><a href="#gallery">Galleria</a></li>
+            <li><a href="#reviews">Recensioni</a></li>
+            <li><a href="#pricing">Piani</a></li>
+            <li><a href="#contact" class="btn-cta">Prenota</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">★ Tour & Escursioni · Golfo di Napoli</div>
+        <h1>Sorrento Sea Experience</h1>
+        <p>Capri, Costiera Amalfitana, Pompei e Vesuvio: esperienze indimenticabili via mare e via terra, con guide esperte e gruppi piccoli</p>
+        <div class="hero-btns">
+            <a href="#tours" class="btn btn-primary">Scopri i Tour</a>
+            <a href="#contact" class="btn btn-outline">Prenota Ora</a>
+        </div>
+    </div>
+    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
+</section>
+
+<div class="stats-bar" id="stats">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <div class="stat-num" data-count="45" data-suffix="+">0</div>
+            <div class="stat-label">Tour & Itinerari</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-count="12">0</div>
+            <div class="stat-label">Guide Multilingua</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-count="9" data-suffix=".8">0</div>
+            <div class="stat-label">Punteggio Recensioni</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-count="30000" data-suffix="+">0</div>
+            <div class="stat-label">Viaggiatori Felici</div>
+        </div>
+    </div>
+</div>
+
+<section class="about-section reveal" id="about">
+    <div class="about-img-wrap">
+        <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Sorrento Sea Experience - escursioni in barca">
+        <div class="about-img-badge"><span class="stars">★★★★★</span><br>Tour operator dal 2010</div>
+    </div>
+    <div class="about-text">
+        <div class="section-tag">Chi Siamo</div>
+        <h2>La Costiera Come Non l'Hai Mai Vista</h2>
+        <p>Sorrento Sea Experience è un tour operator locale specializzato in escursioni in barca e itinerari guidati nel Golfo di Napoli. Dal 2010 accompagniamo viaggiatori da tutto il mondo alla scoperta di Capri, della Costiera Amalfitana, di Pompei e del Vesuvio.</p>
+        <ul class="highlights-list">
+            <li><span class="check">✓</span> Gruppi piccoli e tour privati su misura</li>
+            <li><span class="check">✓</span> Guide e skipper locali autorizzati</li>
+            <li><span class="check">✓</span> Assistenza multilingua (IT, EN, FR, DE, ES)</li>
+            <li><span class="check">✓</span> Imbarcazioni confortevoli e sicure</li>
+            <li><span class="check">✓</span> Cancellazione gratuita fino a 48h prima</li>
+            <li><span class="check">✓</span> Pickup in hotel e transfer su richiesta</li>
+        </ul>
+    </div>
+</section>
+
+<section class="tours-section" id="tours">
+    <div class="section-header reveal">
+        <div class="section-tag">I Nostri Tour</div>
+        <h2>Esperienze da Vivere</h2>
+        <p>Itinerari curati nei minimi dettagli, tra mare, archeologia e sapori del territorio.</p>
+    </div>
+    <div class="cards-grid">
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Tour di Capri in barca" loading="lazy">
+                <div class="card-tag">Bestseller</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Capri in Barca & Grotta Azzurra</h3>
+                <p class="card-desc">Giro completo dell'isola via mare, sosta bagno nelle calette e ingresso alla Grotta Azzurra, con tempo libero a Capri.</p>
+                <div class="card-meta"><span>🕐 Giornata intera</span><span>👥 Max 12</span><span>🌍 IT/EN</span></div>
+                <div class="card-footer">
+                    <div class="card-price">da <strong>€120</strong> a persona</div>
+                    <a href="https://wa.me/393926917657" class="card-book">Prenota</a>
+                </div>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Costiera Amalfitana via mare" loading="lazy">
+                <div class="card-tag">Più Richiesto</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Costiera Amalfitana via Mare</h3>
+                <p class="card-desc">Positano, Amalfi e i borghi a picco sul mare visti dalla barca, con soste bagno e tempo per esplorare i paesi.</p>
+                <div class="card-meta"><span>🕐 Giornata intera</span><span>👥 Max 12</span><span>🌍 IT/EN</span></div>
+                <div class="card-footer">
+                    <div class="card-price">da <strong>€110</strong> a persona</div>
+                    <a href="https://wa.me/393926917657" class="card-book">Prenota</a>
+                </div>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Pompei e Vesuvio" loading="lazy">
+                <div class="card-tag">Cultura</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Pompei & Vesuvio</h3>
+                <p class="card-desc">Visita guidata agli scavi di Pompei e salita al cratere del Vesuvio, con guida archeologica e trasporto incluso.</p>
+                <div class="card-meta"><span>🕐 ~7 ore</span><span>👥 Max 15</span><span>🌍 IT/EN/DE</span></div>
+                <div class="card-footer">
+                    <div class="card-price">da <strong>€89</strong> a persona</div>
+                    <a href="https://wa.me/393926917657" class="card-book">Prenota</a>
+                </div>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/serpae-napoli-5711208_1920.jpg" alt="Aperitivo al tramonto in barca" loading="lazy">
+                <div class="card-tag">Romantico</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Sunset Aperitif Cruise</h3>
+                <p class="card-desc">Mini crociera al tramonto lungo la costa sorrentina con aperitivo a bordo: prosecco, bruschette e prodotti locali.</p>
+                <div class="card-meta"><span>🕐 ~2,5 ore</span><span>👥 Max 10</span><span>🥂 Aperitivo incluso</span></div>
+                <div class="card-footer">
+                    <div class="card-price">da <strong>€70</strong> a persona</div>
+                    <a href="https://wa.me/393926917657" class="card-book">Prenota</a>
+                </div>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/petrovhey-pizza-3000274_1920.jpg" alt="Food e limoncello tour" loading="lazy">
+                <div class="card-tag">Food</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Limoncello & Food Tour</h3>
+                <p class="card-desc">Passeggiata nel centro storico di Sorrento tra botteghe, degustazioni di limoncello, mozzarella e dolci tipici.</p>
+                <div class="card-meta"><span>🕐 ~3 ore</span><span>👥 Max 12</span><span>🍋 Degustazioni incluse</span></div>
+                <div class="card-footer">
+                    <div class="card-price">da <strong>€55</strong> a persona</div>
+                    <a href="https://wa.me/393926917657" class="card-book">Prenota</a>
+                </div>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/yorick77-italy-6702554_1920.jpg" alt="Tour privato su misura" loading="lazy">
+                <div class="card-tag">Su Misura</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Tour Privato su Misura</h3>
+                <p class="card-desc">Costruiamo l'itinerario perfetto per te: barca privata, mete a scelta, durata e servizi personalizzati per gruppi e famiglie.</p>
+                <div class="card-meta"><span>🕐 Flessibile</span><span>👥 Privato</span><span>⭐ Personalizzato</span></div>
+                <div class="card-footer">
+                    <div class="card-price">su <strong>preventivo</strong></div>
+                    <a href="https://wa.me/393926917657" class="card-book">Richiedi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+        <div class="section-tag">Galleria</div>
+        <h2>Attimi dai Nostri Tour</h2>
+        <p>Mare cristallino, borghi colorati e panorami che restano nel cuore.</p>
+    </div>
+    <div class="gallery-grid reveal">
+        <div class="gallery-item wide"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Mare di Capri" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Costa" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/yorick77-italy-6702554_1920.jpg" alt="Panorama costiero" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Vesuvio" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/petrovhey-pizza-3000274_1920.jpg" alt="Sapori locali" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/serpae-napoli-5711208_1920.jpg" alt="Tramonto sul golfo" loading="lazy"></div>
+    </div>
+</section>
+
+<section class="reviews-section" id="reviews">
+    <div class="section-header reveal">
+        <div class="section-tag">Recensioni</div>
+        <h2>La Voce dei Viaggiatori</h2>
+        <p>Migliaia di ospiti hanno scelto Sorrento Sea Experience per i loro tour.</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Giornata perfetta a Capri! Skipper gentilissimo, soste bagno in calette stupende e la Grotta Azzurra è stata magica. Organizzazione impeccabile."</p>
+            <div class="review-author">
+                <div class="review-avatar">LR</div>
+                <div>
+                    <div class="review-name">Laura R.</div>
+                    <div class="review-origin">Milano · Tour Capri in barca</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Best excursion of our trip. The Amalfi Coast from the boat is breathtaking and our guide spoke perfect English. Highly recommended!"</p>
+            <div class="review-author">
+                <div class="review-avatar">JM</div>
+                <div>
+                    <div class="review-name">James M.</div>
+                    <div class="review-origin">London · Amalfi Coast tour</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Tour di Pompei e Vesuvio molto curato, guida preparatissima. Tutto puntuale e ben organizzato, anche il transfer dall'hotel. Torneremo!"</p>
+            <div class="review-author">
+                <div class="review-avatar">FG</div>
+                <div>
+                    <div class="review-name">Famiglia G.</div>
+                    <div class="review-origin">Torino · Pompei & Vesuvio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chatbot-section" id="chatbot">
+    <div class="chatbot-inner">
+        <div class="chatbot-text reveal">
+            <h2>Assistente AI 24/7</h2>
+            <p>Con Experiences Srl, il vostro sito risponde ai viaggiatori in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
+            <ul class="chatbot-features">
+                <li>🌍 <span>Assistenza multilingua istantanea</span></li>
+                <li>📅 <span>Disponibilità e prenotazione tour</span></li>
+                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
+                <li>🎫 <span>Integrazione con sistema di booking</span></li>
+                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
+        </div>
+        <div class="chatbot-ui reveal">
+            <div class="chatbot-header">
+                <div class="chatbot-dot"></div>
+                <span style="font-size:14px; font-weight:600;">Assistente AI · Sorrento Sea Experience</span>
+            </div>
+            <div class="chat-log" id="chatLog">
+                <div class="chat-bubble">Ciao! 👋 Sono l'assistente di Sorrento Sea Experience. Chiedimi dei tour, dei prezzi, della disponibilità o dei transfer!</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Prova: quanto costa il tour di Capri?" aria-label="Scrivi un messaggio">
+                <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+    <div class="section-header reveal">
+        <div class="section-tag">Piani Experiences Srl</div>
+        <h2>Soluzioni su Misura per il Vostro Business</h2>
+        <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Base</div>
+            <div class="pricing-price">€500</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 5% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sito mobile-optimized</span></li>
+                <li>✓ <span>SEO base e Google My Business</span></li>
+                <li>✓ <span>Catalogo tour e modulo richieste</span></li>
+                <li>✓ <span>Integrazione social</span></li>
+                <li>✓ <span>Supporto tecnico email</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card featured reveal">
+            <div class="pricing-badge">⭐ Più Scelto</div>
+            <div class="pricing-name">Piano Pro</div>
+            <div class="pricing-price">€1.000</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 8% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Base</span></li>
+                <li>✓ <span>Chatbot AI 24/7</span></li>
+                <li>✓ <span>Sistema di booking online</span></li>
+                <li>✓ <span>Google Ads gestiti</span></li>
+                <li>✓ <span>Report mensile</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Premium</div>
+            <div class="pricing-price">€1.400</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 10% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Pro</span></li>
+                <li>✓ <span>Channel Manager OTA</span></li>
+                <li>✓ <span>Integrazione GetYourGuide / Viator</span></li>
+                <li>✓ <span>Account manager dedicato</span></li>
+                <li>✓ <span>Supporto H24</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+    </div>
+    <div class="pricing-notes reveal">
+        <div class="pricing-note">
+            <span class="note-icon">ℹ️</span>
+            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra attività. Contattateci per individuare insieme la soluzione più conveniente.</span>
+        </div>
+        <div class="pricing-note">
+            <span class="note-icon">🔗</span>
+            <span><strong>Channel Manager:</strong> suggeriamo noi un Channel Manager, ma potete indicarci quello che già utilizzate o sceglierne uno di vostra preferenza. I costi del Channel Manager sono a carico del cliente.</span>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section" id="faq">
+    <div class="section-header reveal">
+        <div class="section-tag">Domande Frequenti</div>
+        <h2>FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+        <details class="faq-item">
+            <summary>Quanto costa realizzare un sito come questo?</summary>
+            <p>I piani Experiences Srl partono da €500/anno e includono realizzazione, hosting, manutenzione e supporto. Questa demo è gratuita e senza impegno: contattateci su WhatsApp per una proposta personalizzata.</p>
+        </details>
+        <details class="faq-item">
+            <summary>In quanto tempo il sito sarà online?</summary>
+            <p>Il sito base è pronto in 7-10 giorni lavorativi. Con chatbot AI e sistema di booking integrato servono circa 2-3 settimane, inclusi i test e la formazione del vostro staff.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Il chatbot AI risponde davvero ai clienti?</summary>
+            <p>Sì: viene addestrato sulle informazioni della vostra attività (tour, prezzi, orari, policy) e risponde 24/7 in più lingue, riducendo fino al 70% delle email e dei messaggi ripetitivi.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso gestire le prenotazioni dei tour online?</summary>
+            <p>Con i piani Pro e Premium integriamo un sistema di booking con calendario disponibilità, pagamenti online e, per il Premium, la sincronizzazione con portali come GetYourGuide e Viator.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Cosa include l'assistenza?</summary>
+            <p>Tutti i piani includono aggiornamenti, backup e supporto tecnico. I piani Pro e Premium aggiungono report mensili e, per il Premium, un account manager dedicato raggiungibile H24.</p>
+        </details>
+    </div>
+</section>
+
+<section class="cta-section" id="contact">
+    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <p>Questa demo mostra come potrebbe essere il sito del vostro tour operator. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra attività.</p>
+    <div class="cta-btns">
+        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
+        <a href="mailto:naplesexperiences@gmail.com" class="btn-ghost">📧 Email</a>
+    </div>
+    <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Inter',sans-serif;">Mario Esposito · Experiences Srl · +39 392 691 7657</p>
+</section>
+
+<footer>
+    <p>© 2026 <strong>Sorrento Sea Experience</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+    <p style="margin-top:8px;">
+        <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> ·
+        <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a> ·
+        <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+    </p>
+    <p style="margin-top:8px; font-size:11px; opacity:0.5;">Rispondi con "CANCELLA" per non ricevere ulteriori comunicazioni</p>
+</footer>
+
+<a href="https://wa.me/393926917657" class="wa-float" target="_blank" aria-label="Contattaci su WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- GSAP (GreenSock) — animazioni performanti. CDN pubblica jsDelivr (npm gsap, include SplitText). -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>
+(function () {
+    var html = document.documentElement;
+
+    // ---- Menu mobile (indipendente da GSAP) ----
+    var navToggle = document.querySelector('.nav-toggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function () {
+        var open = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Mostra subito il valore finale di un contatore (usato senza moto o senza GSAP)
+    function setCounterFinal(el) {
+        el.textContent = parseInt(el.dataset.count, 10).toLocaleString('it-IT') + (el.dataset.suffix || '');
+    }
+
+    // ---- Animazioni GSAP ----
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        var hasSplit = !!window.SplitText;
+        if (hasSplit) gsap.registerPlugin(SplitText);
+        gsap.defaults({ ease: 'power3.out', duration: 0.8 });
+
+        // matchMedia: rispetta prefers-reduced-motion (best practice GSAP per l'accessibilità)
+        gsap.matchMedia().add({
+            motion: '(prefers-reduced-motion: no-preference)',
+            reduce: '(prefers-reduced-motion: reduce)'
+        }, function (ctx) {
+            var split;
+
+            if (ctx.conditions.reduce) {
+                // Nessun movimento: rendi tutto visibile immediatamente
+                gsap.set('.hero-content', { visibility: 'visible' });
+                gsap.set('.reveal', { autoAlpha: 1, y: 0 });
+                document.querySelectorAll('.stat-num').forEach(setCounterFinal);
+                return;
+            }
+
+            // HERO — timeline d'ingresso (from()/immediateRender evita il flash di contenuto)
+            gsap.set('.hero-content', { visibility: 'visible' });
+            var heroTl = gsap.timeline({ defaults: { duration: 0.9, ease: 'power3.out' } });
+            heroTl.from('.hero-badge', { autoAlpha: 0, y: 22 });
+            if (hasSplit) {
+                split = SplitText.create('.hero-content h1', { type: 'words, chars', aria: 'auto' });
+                heroTl.from(split.chars, { autoAlpha: 0, yPercent: 80, stagger: 0.025, duration: 0.6 }, '-=0.5');
+            } else {
+                heroTl.from('.hero-content h1', { autoAlpha: 0, y: 30 }, '-=0.5');
+            }
+            heroTl.from('.hero-content p', { autoAlpha: 0, y: 20 }, '-=0.4')
+                  .from('.hero-btns', { autoAlpha: 0, y: 20 }, '-=0.55')
+                  .from('.hero-scroll', { autoAlpha: 0 }, '-=0.3');
+
+            // HERO background — parallasse + zoom legati allo scroll (transform only, performante)
+            gsap.fromTo('.hero-bg',
+                { scale: 1.05, yPercent: 0 },
+                { scale: 1.16, yPercent: 12, ease: 'none',
+                  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+            // REVEAL allo scroll — batch con stagger (alternativa efficiente a IntersectionObserver)
+            gsap.set('.reveal', { y: 36 });
+            ScrollTrigger.batch('.reveal', {
+                start: 'top 86%',
+                onEnter: function (els) {
+                    gsap.to(els, { autoAlpha: 1, y: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out', overwrite: true });
+                }
+            });
+
+            // CONTATORI — animati quando la barra statistiche entra in viewport
+            ScrollTrigger.create({
+                trigger: '.stats-bar',
+                start: 'top 82%',
+                once: true,
+                onEnter: function () {
+                    document.querySelectorAll('.stat-num').forEach(function (el) {
+                        var target = parseInt(el.dataset.count, 10);
+                        var suffix = el.dataset.suffix || '';
+                        var obj = { v: 0 };
+                        gsap.to(obj, {
+                            v: target, duration: 1.6, ease: 'power2.out', snap: { v: 1 },
+                            onUpdate: function () { el.textContent = Math.round(obj.v).toLocaleString('it-IT'); },
+                            onComplete: function () { el.textContent = target.toLocaleString('it-IT') + suffix; }
+                        });
+                    });
+                }
+            });
+
+            // Cleanup automatico di matchMedia: ripristina anche lo split del titolo
+            return function () { if (split) split.revert(); };
+        });
+    } else {
+        // GSAP non disponibile (es. CDN bloccata): mostra tutti i contenuti
+        html.classList.remove('gsap-enabled');
+        document.querySelectorAll('.stat-num').forEach(setCounterFinal);
+    }
+
+    // ---- Chatbot demo con risposte predefinite ----
+    var chatLog = document.getElementById('chatLog');
+    var chatInput = document.getElementById('chatInput');
+    var chatSend = document.getElementById('chatSend');
+    var replies = [
+        { keys: ['capri', 'grotta', 'azzurra'], text: 'Il tour di Capri in barca con Grotta Azzurra dura l\'intera giornata e parte da €120 a persona. 🚤 Include giro dell\'isola, soste bagno e tempo libero. Vi indico le date disponibili?' },
+        { keys: ['amalfi', 'positano', 'costiera'], text: 'La Costiera Amalfitana via mare (Positano e Amalfi) parte da €110 a persona, giornata intera con soste bagno. 🌊 Per quante persone e in che data?' },
+        { keys: ['pompei', 'vesuvio', 'scavi', 'archeolog'], text: 'Il tour Pompei & Vesuvio dura circa 7 ore e parte da €89 a persona, con guida archeologica e trasporto incluso. 🌋 Volete che verifichi la disponibilità?' },
+        { keys: ['tramonto', 'sunset', 'aperitiv', 'aperitivo'], text: 'La Sunset Aperitif Cruise dura circa 2,5 ore e parte da €70 a persona, con aperitivo a bordo al tramonto. 🥂 Perfetta per coppie! Vi mando gli orari?' },
+        { keys: ['food', 'limoncello', 'degust', 'mangiare', 'cibo'], text: 'Il Limoncello & Food Tour nel centro di Sorrento dura circa 3 ore e parte da €55 a persona, con degustazioni incluse. 🍋 Indicatemi il giorno preferito!' },
+        { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'I nostri tour partono da €55 a persona (food tour) fino a €120 (Capri in barca). 💶 Ditemi quale tour vi interessa e vi do il prezzo esatto con eventuali sconti gruppo!' },
+        { keys: ['disponibil', 'prenot', 'data', 'book', 'quando'], text: 'Verifico subito la disponibilità! 📅 Quale tour, per quante persone e in quali date? I gruppi sono piccoli quindi consiglio di prenotare in anticipo.' },
+        { keys: ['privat', 'gruppo', 'famigl', 'su misura', 'personalizz'], text: 'Organizziamo tour privati su misura con barca dedicata e itinerario a scelta. 👨‍👩‍👧‍👦 Ditemi quante persone e cosa vorreste vedere: vi preparo un preventivo!' },
+        { keys: ['transfer', 'hotel', 'pickup', 'arrivare', 'come si'], text: 'Offriamo pickup in hotel e transfer su richiesta nella zona di Sorrento e dintorni. 🚐 Da dove partireste? Organizziamo noi il prelievo.' },
+        { keys: ['lingua', 'inglese', 'english', 'francese', 'tedesc'], text: 'Le nostre guide parlano italiano, inglese, francese, tedesco e spagnolo. 🌍 In quale lingua preferite il tour?' },
+        { keys: ['cancella', 'rimbors', 'annull'], text: 'La cancellazione è gratuita fino a 48 ore prima del tour. ✅ In caso di maltempo riprogrammiamo o rimborsiamo. Avete bisogno di modificare una prenotazione?' }
+    ];
+    function botReply(userText) {
+        var lower = userText.toLowerCase();
+        var match = replies.find(function (r) { return r.keys.some(function (k) { return lower.indexOf(k) !== -1; }); });
+        return match ? match.text : 'Ottima domanda! 😊 Un membro del nostro staff vi risponderà subito. Nel sito reale, l\'AI è addestrata su tutti i tour e le informazioni dell\'attività — chiedi a Experiences Srl una demo completa!';
+    }
+    function appendBubble(cls, html) {
+        var div = document.createElement('div');
+        div.className = cls;
+        div.innerHTML = html;
+        chatLog.appendChild(div);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return div;
+    }
+    function sendChat() {
+        var text = chatInput.value.trim();
+        if (!text) return;
+        chatInput.value = '';
+        appendBubble('chat-user', text.replace(/</g, '&lt;'));
+        var typing = appendBubble('chat-bubble', '<span class="chat-typing"><i></i><i></i><i></i></span>');
+        setTimeout(function () {
+            typing.innerHTML = botReply(text);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }, 900);
+    }
+    chatSend.addEventListener('click', sendChat);
+    chatInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendChat(); });
+})();
+</script>
+
+</body>
+</html>
