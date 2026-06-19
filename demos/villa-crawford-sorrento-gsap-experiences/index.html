@@ -161,23 +161,25 @@
 
         /* ============ HERO ============ */
         .hero {
-            position: relative; height: 100vh; min-height: 600px;
-            display: flex; align-items: center;
+            position: relative; height: 100vh; min-height: 660px;
+            display: flex; align-items: center; justify-content: center;
             overflow: hidden;
             color: var(--on-dark);
         }
         .hero__bg {
-            position: absolute; top: -10%; left: 0; width: 100%; height: 120%;
-            background-size: cover; background-position: center;
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(60% 50% at 50% 38%, rgba(192,149,58,0.16), transparent 70%),
+                linear-gradient(165deg, var(--primary-dark) 0%, var(--ink) 100%);
             will-change: transform;
         }
-        .hero__bg::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(180deg, rgba(13,20,30,0.55) 0%, rgba(13,20,30,0.35) 45%, rgba(13,20,30,0.85) 100%);
+        .hero__content {
+            position: relative; z-index: 3; width: 100%;
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
         }
-        .hero__content { position: relative; z-index: 2; width: 100%; }
         .hero__title {
-            font-size: clamp(48px, 9vw, 118px);
+            font-size: clamp(40px, 7vw, 92px);
             line-height: 0.98;
             margin: 18px 0 22px;
             overflow: hidden;
@@ -185,7 +187,33 @@
         .hero__title .line { display: block; overflow: hidden; }
         .hero__title .line span { display: inline-block; will-change: transform; }
         .hero__subtitle { max-width: 520px; font-size: 18px; color: var(--on-dark-muted); margin-bottom: 34px; }
-        .hero__cta { display: flex; gap: 18px; flex-wrap: wrap; }
+        .hero__cta { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+
+        /* ---- Floating room-photo cards ---- */
+        .hero__cards { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+        .hero-card {
+            position: absolute; overflow: hidden;
+            width: clamp(150px, 16vw, 220px);
+            aspect-ratio: 3 / 4;
+            border: 1px solid rgba(255,255,255,0.16);
+            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.55);
+            background: var(--ink);
+            will-change: transform;
+        }
+        .hero-card img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-card__tag {
+            position: absolute; left: 12px; bottom: 12px; right: 12px;
+            font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+            color: var(--on-dark); font-weight: 600;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+        }
+        .hero-card--1 { top: 16%;  left: 5%;   transform: rotate(-9deg); }
+        .hero-card--2 { top: 58%;  left: 11%;  transform: rotate(6deg); width: clamp(130px, 13vw, 180px); }
+        .hero-card--3 { top: 12%;  right: 6%;  transform: rotate(8deg); }
+        .hero-card--4 { top: 56%;  right: 10%; transform: rotate(-6deg); width: clamp(130px, 13vw, 180px); }
+        @media (max-width: 980px) {
+            .hero__cards { display: none; }
+        }
         .btn {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 15px 30px; border-radius: 2px;
@@ -438,7 +466,25 @@
     <main>
         <!-- ===== HERO ===== -->
         <section class="hero" id="hero">
-            <div class="hero__bg" id="heroBg" style="background-image:url('https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg')"></div>
+            <div class="hero__bg" id="heroBg"></div>
+            <div class="hero__cards" id="heroCards" aria-hidden="true">
+                <figure class="hero-card hero-card--1" data-depth="0.18" data-float="3.4">
+                    <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="">
+                    <span class="hero-card__tag">Camera Superior</span>
+                </figure>
+                <figure class="hero-card hero-card--2" data-depth="0.3" data-float="2.6">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="">
+                    <span class="hero-card__tag">Terrazza Panoramica</span>
+                </figure>
+                <figure class="hero-card hero-card--3" data-depth="0.22" data-float="3.1">
+                    <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="">
+                    <span class="hero-card__tag">Suite Panoramica</span>
+                </figure>
+                <figure class="hero-card hero-card--4" data-depth="0.34" data-float="2.9">
+                    <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="">
+                    <span class="hero-card__tag">Vista Golfo di Napoli</span>
+                </figure>
+            </div>
             <div class="container hero__content">
                 <span class="eyebrow" style="color:var(--on-dark-muted)">Sant'Agnello · Penisola Sorrentina</span>
                 <h1 class="hero__title">
@@ -731,21 +777,43 @@
             });
         }());
 
-        /* ---- Hero intro + parallax ---- */
+        /* ---- Hero intro + floating cards + parallax ---- */
         (function () {
             var heroLine = document.querySelector('.hero__title .line span');
-            gsap.timeline({ delay: 0.2 })
-                .from(heroLine, { yPercent: 110, duration: 1, ease: 'power4.out' })
-                .from('.hero__subtitle', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-                .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-                .from('.hero__scroll', { opacity: 0, duration: 0.6 }, '-=0.4');
+            var cards = gsap.utils.toArray('.hero-card');
+
+            var tl = gsap.timeline({ delay: 0.2 });
+            tl.from(heroLine, { yPercent: 110, duration: 1, ease: 'power4.out' })
+              .from('.hero__subtitle', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+              .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+              .from('.hero__scroll', { opacity: 0, duration: 0.6 }, '-=0.4')
+              .from(cards, {
+                  opacity: 0, scale: 0.82, rotation: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out'
+              }, 0.1);
 
             if (!prefersReducedMotion) {
-                gsap.to('#heroBg', {
-                    yPercent: 18,
-                    ease: 'none',
-                    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+                /* idle float loop, per-card timing for an organic feel */
+                cards.forEach(function (card, i) {
+                    gsap.to(card, {
+                        y: i % 2 === 0 ? '+=16' : '-=16',
+                        duration: parseFloat(card.getAttribute('data-float')) || 3,
+                        ease: 'sine.inOut',
+                        repeat: -1,
+                        yoyo: true,
+                        delay: i * 0.2
+                    });
                 });
+
+                /* scroll parallax: each card drifts at its own depth */
+                cards.forEach(function (card) {
+                    var depth = parseFloat(card.getAttribute('data-depth')) || 0.2;
+                    gsap.to(card, {
+                        yPercent: depth * 100,
+                        ease: 'none',
+                        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+                    });
+                });
+
                 gsap.to('.hero__scroll .line::after', { yPercent: 100 });
             }
         }());
