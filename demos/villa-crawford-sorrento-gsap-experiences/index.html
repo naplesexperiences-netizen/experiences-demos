@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Crawford — Sant'Agnello, Sorrento | Demo Experiences Srl</title>
+    <meta name="description" content="Concept GSAP per Villa Crawford: resort storico 4 stelle a Sant'Agnello, vista Golfo di Napoli. Menu fullscreen, split-screen wellness, packages a scorrimento e lightbox camere con GSAP Flip.">
+    <meta name="demo:tags" content="hotel,sorrento,gsap,scrolltrigger,flip,animazioni,storico,4 stelle">
+    <meta name="demo:category" content="hotel">
+    <style>
+        /* =============================================
+           CSS VARIABLES
+           ============================================= */
+        :root {
+            --primary:        #1a3a5f;
+            --secondary:      #c0953a;
+            --primary-dark:   #0d1f33;
+            --ink:            #11151c;
+            --cream:          #f6f3ec;
+            --text:           #1c1c2e;
+            --text-muted:     #6b7280;
+            --on-dark:        #f3f1ea;
+            --on-dark-muted:  rgba(243,241,234,0.68);
+            --font-serif:     Georgia, 'Times New Roman', serif;
+            --font-sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w:          1240px;
+            --ease:           cubic-bezier(.4,0,.2,1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+        body.lightbox-open, body.menu-open { overflow: hidden; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+        .eyebrow {
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
+
+        /* ============ DEMO BANNER ============ */
+        .demo-banner {
+            background: linear-gradient(90deg, #0d1f33 0%, #1e3a5f 50%, #0d1f33 100%);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            position: relative;
+            z-index: 500;
+        }
+        .demo-banner strong { color: var(--secondary); }
+        .demo-banner a { color: var(--secondary); border-bottom: 1px solid var(--secondary); font-weight: 700; }
+        .demo-banner a:hover { opacity: 0.8; }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            right: 0;
+            z-index: 300;
+            padding: 22px 0;
+            transition: background var(--ease) .3s, padding var(--ease) .3s, top var(--ease) .3s;
+        }
+        .navbar.is-scrolled {
+            background: rgba(17,21,28,0.82);
+            backdrop-filter: blur(10px);
+            padding: 14px 0;
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { font-family: var(--font-serif); font-size: 22px; letter-spacing: 1px; color: #fff; }
+        .menu-toggle {
+            width: 46px; height: 46px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px;
+            position: relative;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block; width: 26px; height: 2px; background: #fff;
+            transition: opacity .2s var(--ease);
+        }
+        .menu-toggle .label {
+            position: absolute; right: 52px; font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; color: #fff; white-space: nowrap;
+        }
+
+        /* ============ FULLSCREEN MENU OVERLAY ============ */
+        .menu-overlay {
+            position: fixed; inset: 0; z-index: 900;
+            background: var(--primary-dark);
+            clip-path: circle(0% at calc(100% - 46px) 56px);
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            pointer-events: none;
+        }
+        body.menu-open .menu-overlay { pointer-events: auto; }
+        .menu-overlay__nav {
+            display: flex; align-items: center;
+            padding: 0 7vw;
+        }
+        .menu-overlay__nav ul { width: 100%; }
+        .menu-overlay__nav li {
+            display: flex; align-items: baseline; gap: 22px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .menu-overlay__nav .idx {
+            font-family: var(--font-serif); font-size: 14px; color: var(--secondary); letter-spacing: 1px;
+        }
+        .menu-overlay__nav a {
+            font-family: var(--font-serif); font-size: clamp(32px, 5.4vw, 64px);
+            color: var(--on-dark);
+            transition: color .25s var(--ease), padding-left .25s var(--ease);
+        }
+        .menu-overlay__nav li:hover a, .menu-overlay__nav li.is-active a { color: var(--secondary); padding-left: 10px; }
+        .menu-overlay__preview {
+            position: relative;
+            overflow: hidden;
+            border-left: 1px solid rgba(255,255,255,0.08);
+        }
+        .menu-overlay__preview img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            opacity: 0;
+        }
+        .menu-overlay__preview img.is-active { opacity: 1; }
+        .menu-overlay__preview::after {
+            content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,31,51,0.15), rgba(13,31,51,0.75));
+        }
+        .menu-overlay__caption {
+            position: absolute; left: 36px; bottom: 36px; right: 36px; z-index: 2;
+            color: var(--on-dark); font-family: var(--font-serif); font-size: 19px;
+        }
+        .menu-overlay__footer {
+            position: absolute; left: 7vw; bottom: 40px; z-index: 2;
+            color: var(--on-dark-muted); font-size: 14px; line-height: 1.9;
+        }
+        .menu-overlay__footer strong { color: var(--on-dark); }
+        @media (max-width: 860px) {
+            .menu-overlay { grid-template-columns: 1fr; }
+            .menu-overlay__preview { display: none; }
+            .menu-overlay__footer { position: static; margin-top: 28px; padding: 0 7vw 40px; }
+            .menu-overlay__nav { padding-top: 110px; align-items: flex-start; }
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative; height: 100vh; min-height: 600px;
+            display: flex; align-items: center;
+            overflow: hidden;
+            color: var(--on-dark);
+        }
+        .hero__bg {
+            position: absolute; top: -10%; left: 0; width: 100%; height: 120%;
+            background-size: cover; background-position: center;
+            will-change: transform;
+        }
+        .hero__bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(13,20,30,0.55) 0%, rgba(13,20,30,0.35) 45%, rgba(13,20,30,0.85) 100%);
+        }
+        .hero__content { position: relative; z-index: 2; width: 100%; }
+        .hero__title {
+            font-size: clamp(48px, 9vw, 118px);
+            line-height: 0.98;
+            margin: 18px 0 22px;
+            overflow: hidden;
+        }
+        .hero__title .line { display: block; overflow: hidden; }
+        .hero__title .line span { display: inline-block; will-change: transform; }
+        .hero__subtitle { max-width: 520px; font-size: 18px; color: var(--on-dark-muted); margin-bottom: 34px; }
+        .hero__cta { display: flex; gap: 18px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 30px; border-radius: 2px;
+            font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+            transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+        }
+        .btn-primary { background: var(--secondary); color: var(--ink); }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: #fff; }
+        .btn-outline:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+        .hero__scroll {
+            position: absolute; left: 32px; bottom: 36px; z-index: 2;
+            display: flex; align-items: center; gap: 12px;
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--on-dark-muted);
+        }
+        .hero__scroll .line { width: 1px; height: 40px; background: rgba(255,255,255,0.4); position: relative; overflow: hidden; }
+        .hero__scroll .line::after {
+            content: ''; position: absolute; left: 0; top: -100%; width: 100%; height: 100%; background: var(--secondary);
+        }
+
+        /* ============ INTRO ============ */
+        .intro { padding: 130px 0 90px; text-align: center; }
+        .intro__lead {
+            max-width: 760px; margin: 24px auto 0; font-family: var(--font-serif);
+            font-size: clamp(24px, 3vw, 34px); line-height: 1.5; color: var(--primary-dark);
+        }
+        .stat-row {
+            display: flex; justify-content: center; gap: 64px; flex-wrap: wrap;
+            margin-top: 70px; padding-top: 50px; border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .stat-item { text-align: center; }
+        .stat-num { font-family: var(--font-serif); font-size: 44px; color: var(--primary); }
+        .stat-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
+
+        /* ============ AMENITIES SPLIT-SCREEN ============ */
+        .amenities { display: flex; height: 100vh; min-height: 520px; }
+        .amenity-col {
+            position: relative; flex: 1; overflow: hidden; cursor: pointer;
+            display: flex; align-items: flex-end;
+        }
+        .amenity-col__bg {
+            position: absolute; inset: 0; background-size: cover; background-position: center;
+            transform: scale(1.08);
+            transition: transform .6s var(--ease);
+        }
+        .amenity-col__overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(13,20,30,0.15) 0%, rgba(13,20,30,0.82) 100%);
+            transition: opacity .4s var(--ease);
+        }
+        .amenity-col__body { position: relative; z-index: 2; padding: 44px 32px; color: var(--on-dark); width: 100%; }
+        .amenity-col__num { font-size: 12px; letter-spacing: 2px; color: var(--secondary); }
+        .amenity-col__title { font-size: clamp(24px,3vw,32px); margin: 10px 0 12px; }
+        .amenity-col__desc {
+            max-height: 0; opacity: 0; overflow: hidden; font-size: 14px; color: var(--on-dark-muted);
+            transition: max-height .4s var(--ease), opacity .3s var(--ease);
+        }
+        .amenity-col:hover { flex: 1.5; }
+        .amenity-col:hover .amenity-col__bg { transform: scale(1); }
+        .amenity-col:hover .amenity-col__overlay { opacity: 0.55; }
+        .amenity-col:hover .amenity-col__desc { max-height: 100px; opacity: 1; margin-top: 4px; }
+        @media (max-width: 760px) {
+            .amenities { flex-direction: column; height: auto; }
+            .amenity-col { height: 60vh; flex: none !important; }
+        }
+
+        /* ============ PACKAGES / GHOST TEXT ============ */
+        .packages { position: relative; padding: 140px 0 160px; background: var(--primary-dark); overflow: hidden; color: var(--on-dark); }
+        .packages__ghost {
+            position: absolute; top: 8%; left: 0; white-space: nowrap;
+            font-family: var(--font-serif); font-size: clamp(110px, 22vw, 320px);
+            color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+            letter-spacing: 4px; pointer-events: none; z-index: 0;
+        }
+        .packages__head { position: relative; z-index: 2; text-align: center; margin-bottom: 80px; }
+        .packages__head .eyebrow { color: var(--secondary); }
+        .packages__grid {
+            position: relative; z-index: 2;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+        }
+        .package-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 30px;
+            transition: transform .3s var(--ease), background .3s var(--ease);
+        }
+        .package-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.07); }
+        .package-card__title { font-size: 24px; margin-bottom: 14px; }
+        .package-card__desc { font-size: 14px; color: var(--on-dark-muted); margin-bottom: 26px; }
+        .package-card__price { font-size: 13px; letter-spacing: 1px; color: var(--secondary); text-transform: uppercase; }
+        @media (max-width: 880px) {
+            .packages__grid { grid-template-columns: 1fr; }
+        }
+
+        /* ============ ROOMS GRID ============ */
+        .rooms { padding: 140px 0; }
+        .rooms__head { text-align: center; max-width: 620px; margin: 0 auto 70px; }
+        .rooms__head h2 { font-size: clamp(34px, 4.4vw, 52px); margin-top: 12px; }
+        .rooms__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .room-card {
+            display: block; width: 100%; text-align: left;
+            background: #fff; border: 1px solid rgba(0,0,0,0.06);
+        }
+        .room-card__media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+        .room-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+        .room-card:hover .room-card__media img { transform: scale(1.06); }
+        .room-card__body { padding: 24px 22px; }
+        .room-card__meta { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
+        .room-card__title { font-size: 21px; margin: 8px 0 10px; }
+        .room-card__cta { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); font-weight: 700; }
+        @media (max-width: 920px) { .rooms__grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .rooms__grid { grid-template-columns: 1fr; } }
+
+        /* ============ LIGHTBOX (GSAP Flip target) ============ */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 950;
+            display: none;
+            align-items: center; justify-content: center;
+            background: rgba(13,20,30,0.0);
+        }
+        body.lightbox-open .lightbox { display: flex; }
+        .lightbox__backdrop { position: absolute; inset: 0; background: rgba(13,20,30,0.88); }
+        .lightbox__panel {
+            position: relative; z-index: 2;
+            width: min(1040px, 92vw); max-height: 86vh;
+            background: var(--cream);
+            display: grid; grid-template-columns: 1.1fr 1fr;
+            overflow: hidden;
+        }
+        .lightbox__media { position: relative; overflow: hidden; min-height: 280px; }
+        .lightbox__media img.flip-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .lightbox__info { padding: 48px 42px; overflow-y: auto; }
+        .lightbox__info .eyebrow { display: block; margin-bottom: 10px; }
+        .lightbox__info h3 { font-size: 30px; margin-bottom: 16px; }
+        .lightbox__info p { color: var(--text-muted); margin-bottom: 24px; }
+        .lightbox__amenities { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .lightbox__amenities li {
+            font-size: 12px; letter-spacing: 0.5px; padding: 6px 12px;
+            border: 1px solid rgba(0,0,0,0.12); border-radius: 20px; color: var(--text-muted);
+        }
+        .lightbox__close {
+            position: absolute; top: 18px; right: 18px; z-index: 3;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: rgba(255,255,255,0.9); color: var(--ink);
+            font-size: 22px; line-height: 1;
+        }
+        @media (max-width: 760px) {
+            .lightbox__panel { grid-template-columns: 1fr; max-height: 90vh; }
+            .lightbox__media { min-height: 220px; }
+        }
+
+        /* ============ LOCATION ============ */
+        .location { padding: 140px 0; background: var(--primary-dark); color: var(--on-dark); }
+        .location__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+        .location__list { margin-top: 28px; }
+        .location__list li { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; gap: 16px; }
+        .location__list li span:first-child { color: var(--secondary); font-family: var(--font-serif); }
+        .location__map {
+            aspect-ratio: 1/1; background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .location__map .pin {
+            width: 14px; height: 14px; border-radius: 50%; background: var(--secondary);
+            box-shadow: 0 0 0 8px rgba(192,149,58,0.25);
+        }
+        .location__map span.label {
+            position: absolute; bottom: 26px; font-family: var(--font-serif); font-size: 15px; color: var(--on-dark-muted);
+        }
+        @media (max-width: 860px) { .location__grid { grid-template-columns: 1fr; } }
+
+        /* ============ FOOTER ============ */
+        footer { background: var(--ink); color: var(--on-dark-muted); padding: 60px 0 30px; font-size: 14px; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-brand { font-family: var(--font-serif); color: #fff; font-size: 20px; }
+        .footer-note a { color: var(--secondary); }
+        .footer-credit { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 13px; }
+
+        /* ============ REVEAL HELPERS ============ */
+        .reveal-up { opacity: 0; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-up { opacity: 1 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== DEMO BANNER ===== -->
+    <div class="demo-banner">
+        🎯 Questa è una <strong>DEMO CONCEPT</strong> realizzata da <strong>Experiences Srl</strong> — non è il sito ufficiale di Villa Crawford.
+        Vuoi un sito animato come questo?
+        <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Contattaci su WhatsApp →</a>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <div class="nav-brand">Villa Crawford</div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Apri menu" aria-expanded="false">
+                <span class="label">Menu</span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== FULLSCREEN MENU OVERLAY ===== -->
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-overlay__nav">
+            <ul>
+                <li class="is-active" data-img="0">
+                    <span class="idx">I.</span>
+                    <a href="#hero" data-close-menu>Home</a>
+                </li>
+                <li data-img="1">
+                    <span class="idx">II.</span>
+                    <a href="#esperienza" data-close-menu>Esperienza</a>
+                </li>
+                <li data-img="2">
+                    <span class="idx">III.</span>
+                    <a href="#soggiorni" data-close-menu>Soggiorni</a>
+                </li>
+                <li data-img="3">
+                    <span class="idx">IV.</span>
+                    <a href="#camere" data-close-menu>Camere</a>
+                </li>
+                <li data-img="4">
+                    <span class="idx">V.</span>
+                    <a href="#contatti" data-close-menu>Contatti</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="menu-overlay__preview">
+            <img class="is-active" src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="Facciata di Villa Crawford">
+            <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Vista sul Vesuvio dalla terrazza">
+            <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Vista su Capri">
+            <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="Camere di Villa Crawford">
+            <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Golfo di Napoli">
+            <p class="menu-overlay__caption" id="menuCaption">La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.</p>
+        </div>
+        <div class="menu-overlay__footer">
+            <strong>Corso Marion Crawford</strong><br>
+            80065 Sant'Agnello (NA), Sorrento<br><br>
+            +39 392 691 7657<br>
+            info@villacrawford.it (demo)
+        </div>
+    </div>
+
+    <main>
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="hero">
+            <div class="hero__bg" id="heroBg" style="background-image:url('https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg')"></div>
+            <div class="container hero__content">
+                <span class="eyebrow" style="color:var(--on-dark-muted)">Sant'Agnello · Penisola Sorrentina</span>
+                <h1 class="hero__title">
+                    <span class="line"><span>Villa Crawford</span></span>
+                </h1>
+                <p class="hero__subtitle">Un resort storico 4 stelle affacciato sul Golfo di Napoli, nella villa che fu dimora dello scrittore Francis Marion Crawford.</p>
+                <div class="hero__cta">
+                    <a class="btn btn-primary" href="#camere">Scopri le camere</a>
+                    <a class="btn btn-outline" href="https://wa.me/393926917657" target="_blank" rel="noopener">Richiedi disponibilità</a>
+                </div>
+            </div>
+            <div class="hero__scroll"><span class="line"></span> Scorri</div>
+        </section>
+
+        <!-- ===== INTRO ===== -->
+        <section class="intro" id="esperienza-intro">
+            <div class="container">
+                <span class="eyebrow">Dal 1880 sulla Penisola Sorrentina</span>
+                <p class="intro__lead">A pochi passi da Piazza Tasso, tra il profumo degli agrumeti e la vista sul Vesuvio, Villa Crawford unisce l'eleganza di una dimora storica all'ospitalità di un resort contemporaneo.</p>
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <div class="stat-num">4★</div>
+                        <div class="stat-label">Categoria</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">18</div>
+                        <div class="stat-label">Camere</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">48</div>
+                        <div class="stat-label">Posti letto</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">1.5km</div>
+                        <div class="stat-label">Da Piazza Tasso</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== AMENITIES — SPLIT SCREEN ===== -->
+        <section class="amenities" id="esperienza">
+            <div class="amenity-col">
+                <div class="amenity-col__bg" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg')"></div>
+                <div class="amenity-col__overlay"></div>
+                <div class="amenity-col__body">
+                    <span class="amenity-col__num">01</span>
+                    <h3 class="amenity-col__title">Terrazza Panoramica</h3>
+                    <p class="amenity-col__desc">Vista sul Golfo di Napoli e sul Vesuvio, ideale per l'aperitivo al tramonto.</p>
+                </div>
+            </div>
+            <div class="amenity-col">
+                <div class="amenity-col__bg" style="background-image:url('https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg')"></div>
+                <div class="amenity-col__overlay"></div>
+                <div class="amenity-col__body">
+                    <span class="amenity-col__num">02</span>
+                    <h3 class="amenity-col__title">Camere & Suite</h3>
+                    <p class="amenity-col__desc">18 camere distribuite su 3 piani con ascensore, arredate in stile classico sorrentino.</p>
+                </div>
+            </div>
+            <div class="amenity-col">
+                <div class="amenity-col__bg" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg')"></div>
+                <div class="amenity-col__overlay"></div>
+                <div class="amenity-col__body">
+                    <span class="amenity-col__num">03</span>
+                    <h3 class="amenity-col__title">Ristorante & Giardino</h3>
+                    <p class="amenity-col__desc">Cucina campana tra gli agrumeti del giardino storico della villa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PACKAGES / GHOST TEXT ===== -->
+        <section class="packages" id="soggiorni">
+            <div class="packages__ghost" id="packagesGhost">SOGGIORNI · SOGGIORNI · SOGGIORNI · SOGGIORNI</div>
+            <div class="container">
+                <div class="packages__head">
+                    <span class="eyebrow">Le proposte</span>
+                    <h2 style="margin-top:12px;font-size:clamp(30px,4vw,46px)">Scegli il tuo soggiorno</h2>
+                </div>
+                <div class="packages__grid">
+                    <div class="package-card reveal-up">
+                        <h3 class="package-card__title">Romantic Escape</h3>
+                        <p class="package-card__desc">Camera Superior, cena a lume di candela e accesso alla terrazza panoramica.</p>
+                        <span class="package-card__price">Da definire · 2 notti</span>
+                    </div>
+                    <div class="package-card reveal-up">
+                        <h3 class="package-card__title">Sorrento al Centro</h3>
+                        <p class="package-card__desc">Soggiorno con colazione, a 1,5 km da Piazza Tasso e dal centro storico.</p>
+                        <span class="package-card__price">Da definire · 3 notti</span>
+                    </div>
+                    <div class="package-card reveal-up">
+                        <h3 class="package-card__title">Famiglia in Costiera</h3>
+                        <p class="package-card__desc">Junior Suite o Family Room, colazione inclusa e giardino per i più piccoli.</p>
+                        <span class="package-card__price">Da definire · 7 notti</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ROOMS GRID ===== -->
+        <section class="rooms" id="camere">
+            <div class="container">
+                <div class="rooms__head">
+                    <span class="eyebrow">Le camere</span>
+                    <h2>Ogni camera, una vista diversa</h2>
+                </div>
+                <div class="rooms__grid">
+                    <button class="room-card" type="button" data-title="Camera Classic"
+                            data-meta="22 mq · 2 ospiti"
+                            data-desc="Camera accogliente in stile classico sorrentino, con bagno privato e vista giardino."
+                            data-amenities="Wi-Fi,Aria condizionata,TV,Minibar">
+                        <div class="room-card__media"><img class="flip-img" src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="Camera Classic"></div>
+                        <div class="room-card__body">
+                            <div class="room-card__meta">22 mq · 2 ospiti</div>
+                            <div class="room-card__title">Camera Classic</div>
+                            <div class="room-card__cta">Scopri →</div>
+                        </div>
+                    </button>
+                    <button class="room-card" type="button" data-title="Camera Superior"
+                            data-meta="26 mq · 2 ospiti"
+                            data-desc="Più ampia e luminosa, con balcone affacciato sul giardino degli agrumi."
+                            data-amenities="Wi-Fi,Balcone,TV,Minibar,Asciugacapelli">
+                        <div class="room-card__media"><img class="flip-img" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Camera Superior"></div>
+                        <div class="room-card__body">
+                            <div class="room-card__meta">26 mq · 2 ospiti</div>
+                            <div class="room-card__title">Camera Superior</div>
+                            <div class="room-card__cta">Scopri →</div>
+                        </div>
+                    </button>
+                    <button class="room-card" type="button" data-title="Deluxe Vista Mare"
+                            data-meta="28 mq · 2 ospiti"
+                            data-desc="Affacciata sul Golfo di Napoli, con vista sul Vesuvio dalla finestra."
+                            data-amenities="Wi-Fi,Vista mare,TV,Minibar,Cassaforte">
+                        <div class="room-card__media"><img class="flip-img" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Deluxe Vista Mare"></div>
+                        <div class="room-card__body">
+                            <div class="room-card__meta">28 mq · 2 ospiti</div>
+                            <div class="room-card__title">Deluxe Vista Mare</div>
+                            <div class="room-card__cta">Scopri →</div>
+                        </div>
+                    </button>
+                    <button class="room-card" type="button" data-title="Junior Suite"
+                            data-meta="34 mq · 3 ospiti"
+                            data-desc="Zona soggiorno separata e terrazzino privato, ideale per soggiorni più lunghi."
+                            data-amenities="Wi-Fi,Terrazzino,TV,Minibar,Vasca">
+                        <div class="room-card__media"><img class="flip-img" src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="Junior Suite"></div>
+                        <div class="room-card__body">
+                            <div class="room-card__meta">34 mq · 3 ospiti</div>
+                            <div class="room-card__title">Junior Suite</div>
+                            <div class="room-card__cta">Scopri →</div>
+                        </div>
+                    </button>
+                    <button class="room-card" type="button" data-title="Suite Panoramica"
+                            data-meta="40 mq · 2 ospiti"
+                            data-desc="La camera più esclusiva della villa, con vista che arriva fino a Capri nelle giornate limpide."
+                            data-amenities="Wi-Fi,Vista Capri,TV,Minibar,Accappatoio">
+                        <div class="room-card__media"><img class="flip-img" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Suite Panoramica"></div>
+                        <div class="room-card__body">
+                            <div class="room-card__meta">40 mq · 2 ospiti</div>
+                            <div class="room-card__title">Suite Panoramica</div>
+                            <div class="room-card__cta">Scopri →</div>
+                        </div>
+                    </button>
+                    <button class="room-card" type="button" data-title="Family Room"
+                            data-meta="38 mq · 4 ospiti"
+                            data-desc="Doppia zona notte e accesso facilitato al giardino, pensata per le famiglie."
+                            data-amenities="Wi-Fi,Giardino,TV,Minibar,Culla disponibile">
+                        <div class="room-card__media"><img class="flip-img" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg" alt="Family Room"></div>
+                        <div class="room-card__body">
+                            <div class="room-card__meta">38 mq · 4 ospiti</div>
+                            <div class="room-card__title">Family Room</div>
+                            <div class="room-card__cta">Scopri →</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LOCATION ===== -->
+        <section class="location" id="contatti">
+            <div class="container location__grid">
+                <div>
+                    <span class="eyebrow">Come arrivare</span>
+                    <h2 style="margin-top:12px;font-size:clamp(30px,4vw,46px)">Nel cuore della Penisola Sorrentina</h2>
+                    <ul class="location__list">
+                        <li><span>Indirizzo</span><span>Corso Marion Crawford, Sant'Agnello (NA)</span></li>
+                        <li><span>Centro Sorrento</span><span>1,5 km da Piazza Tasso</span></li>
+                        <li><span>Aeroporto</span><span>48 km da Napoli Capodichino</span></li>
+                        <li><span>Struttura</span><span>3 piani con ascensore, giardino, terrazza panoramica</span></li>
+                    </ul>
+                    <div style="margin-top:36px">
+                        <a class="btn btn-primary" href="https://wa.me/393926917657" target="_blank" rel="noopener">Contatta Villa Crawford</a>
+                    </div>
+                </div>
+                <div class="location__map">
+                    <span class="pin"></span>
+                    <span class="label">Corso Marion Crawford, Sant'Agnello</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== LIGHTBOX (GSAP Flip) ===== -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox__panel">
+            <button class="lightbox__close" id="lightboxClose" aria-label="Chiudi">×</button>
+            <div class="lightbox__media" id="lightboxMedia"></div>
+            <div class="lightbox__info">
+                <span class="eyebrow" id="lightboxMeta"></span>
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+                <ul class="lightbox__amenities" id="lightboxAmenities"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">Villa Crawford</div>
+                <div class="footer-note">
+                    Concept demo realizzata da
+                    <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Experiences Srl</a>
+                </div>
+            </div>
+            <div class="footer-credit">
+                Sito dimostrativo, non affiliato a villacrawford.it — Realizzato con ❤ da <strong>Experiences Srl</strong>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger, Flip);
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* ---- Navbar background on scroll ---- */
+        (function () {
+            var nav = document.getElementById('navbar');
+            window.addEventListener('scroll', function () {
+                nav.classList.toggle('is-scrolled', window.scrollY > 60);
+            }, { passive: true });
+        }());
+
+        /* ---- Fullscreen menu overlay ---- */
+        (function () {
+            var toggle = document.getElementById('menuToggle');
+            var overlay = document.getElementById('menuOverlay');
+            var items = overlay.querySelectorAll('.menu-overlay__nav li');
+            var previewImgs = overlay.querySelectorAll('.menu-overlay__preview img');
+            var caption = document.getElementById('menuCaption');
+            var captions = [
+                'La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.',
+                'Vista sul Vesuvio dalla terrazza panoramica.',
+                'Nelle giornate limpide lo sguardo arriva fino a Capri.',
+                '18 camere distribuite su 3 piani con ascensore.',
+                'A 1,5 km da Piazza Tasso, nel centro di Sorrento.'
+            ];
+            var isOpen = false;
+            var tl = gsap.timeline({ paused: true });
+
+            tl.to(overlay, { clipPath: 'circle(150% at calc(100% - 46px) 56px)', duration: 0.8, ease: 'power3.inOut' })
+              .from(items, { y: 24, opacity: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out' }, '-=0.4');
+
+            function setOpen(open) {
+                isOpen = open;
+                document.body.classList.toggle('menu-open', open);
+                toggle.setAttribute('aria-expanded', String(open));
+                if (open) { tl.play(); } else { tl.reverse(); }
+            }
+
+            toggle.addEventListener('click', function () { setOpen(!isOpen); });
+            overlay.querySelectorAll('[data-close-menu]').forEach(function (a) {
+                a.addEventListener('click', function () { setOpen(false); });
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && isOpen) setOpen(false);
+            });
+
+            items.forEach(function (li) {
+                li.addEventListener('mouseenter', function () {
+                    var idx = parseInt(li.getAttribute('data-img'), 10);
+                    previewImgs.forEach(function (img, i) { img.classList.toggle('is-active', i === idx); });
+                    caption.textContent = captions[idx] || captions[0];
+                    items.forEach(function (other) { other.classList.toggle('is-active', other === li); });
+                });
+            });
+        }());
+
+        /* ---- Hero intro + parallax ---- */
+        (function () {
+            var heroLine = document.querySelector('.hero__title .line span');
+            gsap.timeline({ delay: 0.2 })
+                .from(heroLine, { yPercent: 110, duration: 1, ease: 'power4.out' })
+                .from('.hero__subtitle', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+                .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+                .from('.hero__scroll', { opacity: 0, duration: 0.6 }, '-=0.4');
+
+            if (!prefersReducedMotion) {
+                gsap.to('#heroBg', {
+                    yPercent: 18,
+                    ease: 'none',
+                    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+                });
+                gsap.to('.hero__scroll .line::after', { yPercent: 100 });
+            }
+        }());
+
+        /* ---- Generic scroll reveals ---- */
+        (function () {
+            gsap.utils.toArray('.intro__lead, .stat-item, .room-card, .package-card, .location__list li').forEach(function (el) {
+                gsap.set(el, { opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 28 });
+            });
+            ScrollTrigger.batch('.intro__lead, .stat-item, .room-card, .package-card, .location__list li', {
+                start: 'top 88%',
+                onEnter: function (batch) {
+                    gsap.to(batch, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' });
+                }
+            });
+
+            gsap.utils.toArray('.amenity-col').forEach(function (col, i) {
+                gsap.from(col, {
+                    opacity: 0, y: 40, duration: 0.7, delay: i * 0.08, ease: 'power2.out',
+                    scrollTrigger: { trigger: '.amenities', start: 'top 75%' }
+                });
+            });
+        }());
+
+        /* ---- Ghost text horizontal drift (scrub) ---- */
+        (function () {
+            if (prefersReducedMotion) return;
+            gsap.to('#packagesGhost', {
+                xPercent: -12,
+                ease: 'none',
+                scrollTrigger: { trigger: '.packages', start: 'top bottom', end: 'bottom top', scrub: 1 }
+            });
+        }());
+
+        /* ---- Room lightbox: GSAP Flip thumbnail -> detail ---- */
+        (function () {
+            var lightbox = document.getElementById('lightbox');
+            var backdrop = document.getElementById('lightboxBackdrop');
+            var media = document.getElementById('lightboxMedia');
+            var closeBtn = document.getElementById('lightboxClose');
+            var titleEl = document.getElementById('lightboxTitle');
+            var metaEl = document.getElementById('lightboxMeta');
+            var descEl = document.getElementById('lightboxDesc');
+            var amenitiesEl = document.getElementById('lightboxAmenities');
+            var activeCard = null;
+
+            function openCard(card) {
+                activeCard = card;
+                var img = card.querySelector('.flip-img');
+                var state = Flip.getState(img);
+
+                titleEl.textContent = card.getAttribute('data-title') || '';
+                metaEl.textContent = card.getAttribute('data-meta') || '';
+                descEl.textContent = card.getAttribute('data-desc') || '';
+                amenitiesEl.innerHTML = '';
+                (card.getAttribute('data-amenities') || '').split(',').forEach(function (a) {
+                    if (!a) return;
+                    var li = document.createElement('li');
+                    li.textContent = a.trim();
+                    amenitiesEl.appendChild(li);
+                });
+
+                document.body.classList.add('lightbox-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                media.appendChild(img);
+                gsap.set(backdrop, { opacity: 0 });
+                gsap.to(backdrop, { opacity: 1, duration: 0.3 });
+                Flip.from(state, { duration: 0.6, ease: 'power2.inOut', absolute: true });
+            }
+
+            function closeLightbox() {
+                if (!activeCard) return;
+                var img = media.querySelector('.flip-img');
+                var state = Flip.getState(img);
+                var mediaWrap = activeCard.querySelector('.room-card__media');
+                mediaWrap.appendChild(img);
+                gsap.to(backdrop, { opacity: 0, duration: 0.3 });
+                Flip.from(state, {
+                    duration: 0.5, ease: 'power2.inOut', absolute: true,
+                    onComplete: function () {
+                        document.body.classList.remove('lightbox-open');
+                        lightbox.setAttribute('aria-hidden', 'true');
+                        activeCard = null;
+                    }
+                });
+            }
+
+            document.querySelectorAll('.room-card').forEach(function (card) {
+                card.addEventListener('click', function () { openCard(card); });
+            });
+            closeBtn.addEventListener('click', closeLightbox);
+            backdrop.addEventListener('click', closeLightbox);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && document.body.classList.contains('lightbox-open')) closeLightbox();
+            });
+        }());
+    </script>
+</body>
+</html>
