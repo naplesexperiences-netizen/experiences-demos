@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Schuhmann - Demo Experiences Srl</title>
+    <meta name="description" content="Hotel Schuhmann - Hotel Schuhmann — Direttamente sulla spiaggia vicino area archeologica mid-upper. Situato a Paestum, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.">
+    <meta property="og:title" content="Hotel Schuhmann - Demo Experiences Srl">
+    <meta property="og:description" content="Direttamente sulla spiaggia vicino area archeologica mid-upper Demo gratuita realizzata da Experiences Srl.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.hotelschuhmann.com/wp-content/uploads/2025/02/Basic-01.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Marca il documento solo se il JS è attivo: gli stati iniziali "nascosti" delle animazioni
+         GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
+    <script>document.documentElement.classList.add('gsap-enabled');</script>
+    <style>
+        :root {
+            /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
+            --primary: #2c5aa0;
+            --primary-dark: color-mix(in srgb, var(--primary) 72%, #000);
+            --accent: #d4af37;
+            --accent-light: color-mix(in srgb, var(--accent) 60%, #fff);
+            --teal: color-mix(in srgb, var(--primary) 65%, #2c8f84);
+            --bg-soft: color-mix(in srgb, var(--primary) 4%, #fff);
+            --text: #2c352f;
+            --text-soft: #5d6862;
+            --radius: 18px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Jost', system-ui, -apple-system, sans-serif; line-height: 1.7; color: var(--text); background: #fff; }
+        h1, h2, h3, .nav-logo { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 0.2px; }
+
+        /* DEMO BANNER */
+        .demo-banner {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 200;
+        }
+        .demo-banner a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+        .demo-banner a:hover { opacity: 0.85; }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .nav-logo { font-weight: 700; font-size: 24px; color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; align-items: center; list-style: none; }
+        .nav-links a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-cta {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: all 0.2s !important;
+        }
+        .btn-cta:hover { background: var(--accent) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--primary); transition: all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.hotelschuhmann.com/wp-content/uploads/2025/02/Basic-01.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.52);
+            transform: scale(1.05);
+            will-change: transform;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20,63,57,0.3) 0%, rgba(20,63,57,0.6) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 820px;
+            padding: 0 24px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: color-mix(in srgb, var(--accent) 92%, transparent);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            padding: 7px 20px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 74px);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 36px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+            display: inline-block;
+        }
+        .btn-primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); }
+        .btn-primary:hover { background: transparent; color: var(--accent-light); border-color: var(--accent-light); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
+        .btn-outline:hover { background: rgba(255,255,255,0.16); }
+        .hero-scroll {
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.8);
+            font-size: 22px;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
+
+        /* STATS */
+        .stats-bar { background: var(--primary); color: #fff; padding: 48px 20px; }
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item { padding: 10px 0; }
+        .stat-num { font-size: 48px; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
+        .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.5px; text-transform: uppercase; }
+
+        /* SECTION BASE */
+        .section-tag {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--teal);
+            margin-bottom: 14px;
+            font-family: 'Jost', sans-serif;
+        }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 600; color: var(--primary); }
+        .section-header p { color: var(--text-soft); margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+        /* ABOUT */
+        .about-section {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img-wrap {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(31,94,86,0.2);
+            position: relative;
+        }
+        .about-img-wrap img { width: 100%; height: 440px; object-fit: cover; display: block; }
+        .about-img-badge {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            color: var(--primary);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .about-img-badge .stars { color: var(--accent); letter-spacing: 2px; }
+        .about-text h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 600; color: var(--primary); margin-bottom: 18px; line-height: 1.15; }
+        .about-text p { color: var(--text-soft); font-size: 15px; margin-bottom: 20px; }
+        .highlights-list { list-style: none; margin-top: 10px; }
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text);
+            border-bottom: 1px solid #e7efeb;
+        }
+        .check { color: var(--teal); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+        /* SERVICES */
+        .services-section { background: var(--bg-soft); padding: 100px 24px; }
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(31,94,86,0.07);
+            transition: all 0.3s;
+        }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(31,94,86,0.14); }
+        .card-img-wrap { overflow: hidden; height: 210px; position: relative; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrap img { transform: scale(1.07); }
+        .card-icon {
+            position: absolute;
+            bottom: -22px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 45%, transparent);
+            z-index: 2;
+        }
+        .card-body { padding: 30px 26px 26px; }
+        .card-title { font-size: 23px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; font-family: 'Jost', sans-serif; }
+
+        /* GALLERY */
+        .gallery-section { padding: 100px 24px; }
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 14px;
+        }
+        .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(20,63,57,0.55) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+
+        /* TESTIMONIALS */
+        .reviews-section { background: var(--bg-soft); padding: 100px 24px; }
+        .reviews-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 26px;
+        }
+        .review-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: 0 4px 24px rgba(31,94,86,0.07);
+            position: relative;
+        }
+        .review-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 14px;
+            right: 24px;
+            font-size: 72px;
+            font-family: Georgia, serif;
+            color: var(--accent);
+            opacity: 0.22;
+            line-height: 1;
+        }
+        .review-stars { color: var(--accent); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+        .review-text { font-size: 15px; color: var(--text-soft); font-style: italic; margin-bottom: 18px; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--teal));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+        }
+        .review-name { font-size: 14px; font-weight: 600; color: var(--primary); font-family: 'Jost', sans-serif; }
+        .review-origin { font-size: 12px; color: #9aa49e; font-family: 'Jost', sans-serif; }
+
+        /* CHATBOT PREVIEW */
+        .chatbot-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 100px 24px;
+            color: #fff;
+        }
+        .chatbot-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .chatbot-text h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 600; margin-bottom: 16px; }
+        .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
+        .chatbot-features { list-style: none; margin-bottom: 28px; }
+        .chatbot-features li {
+            padding: 9px 0;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .chatbot-ui {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .chatbot-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .chat-log { max-height: 260px; overflow-y: auto; scrollbar-width: thin; }
+        .chat-bubble {
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px 12px 12px 0;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 90%;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .chat-user {
+            background: var(--accent);
+            border-radius: 12px 12px 0 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-left: auto;
+            max-width: 80%;
+            text-align: right;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .chat-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+        .chat-typing i {
+            width: 6px; height: 6px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+            font-style: normal;
+        }
+        .chat-typing i:nth-child(2) { animation-delay: 0.2s; }
+        .chat-typing i:nth-child(3) { animation-delay: 0.4s; }
+        .chat-input { display: flex; gap: 8px; margin-top: 12px; }
+        .chat-input input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Jost', sans-serif;
+        }
+        .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-input input:focus { outline: 1px solid var(--accent-light); }
+        .chat-send {
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .chat-send:hover { background: var(--accent-light); }
+
+        /* PRICING */
+        .pricing-section { padding: 100px 24px; background: #fff; }
+        .pricing-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .pricing-card {
+            border: 2px solid #e4ede9;
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px rgba(31,94,86,0.12); transform: translateY(-4px); }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, #fff) 0%, #fff 100%);
+            transform: scale(1.03);
+        }
+        .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+        .pricing-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            padding: 5px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-name { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
+        .pricing-price { font-size: 44px; font-weight: 700; color: var(--primary); margin-bottom: 4px; font-family: 'Cormorant Garamond', serif; }
+        .pricing-period { font-size: 12px; color: #9aa49e; margin-bottom: 8px; font-family: 'Jost', sans-serif; }
+        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; font-family: 'Jost', sans-serif; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 26px; }
+        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid #eef4f1; font-family: 'Jost', sans-serif; }
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            font-family: 'Jost', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .pricing-btn:hover { background: var(--accent); }
+        .pricing-card.featured .pricing-btn { background: var(--accent); }
+        .pricing-card.featured .pricing-btn:hover { background: var(--primary); }
+        .pricing-notes {
+            max-width: 1100px;
+            margin: 36px auto 0;
+            display: grid;
+            gap: 10px;
+        }
+        .pricing-note {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--bg-soft);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: var(--text-soft);
+            line-height: 1.6;
+            font-family: 'Jost', sans-serif;
+        }
+        .pricing-note strong { color: var(--primary); }
+        .pricing-note .note-icon { font-size: 16px; flex-shrink: 0; }
+
+        /* FAQ */
+        .faq-section { background: var(--bg-soft); padding: 100px 24px; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(31,94,86,0.06);
+            overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 18px 22px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Jost', sans-serif;
+            color: var(--primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); font-family: 'Jost', sans-serif; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 100%);
+            padding: 100px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-section h2 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 600; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-btns .btn-white {
+            background: #fff;
+            color: var(--primary);
+            padding: 15px 38px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .cta-btns .btn-ghost {
+            background: transparent;
+            color: #fff;
+            padding: 15px 38px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 46px 24px;
+            text-align: center;
+            font-size: 13px;
+        }
+        footer a { color: var(--accent-light); text-decoration: none; }
+        footer strong { color: #fff; }
+
+        /* FLOATING WHATSAPP */
+        .wa-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 300;
+            background: #25d366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+            transition: transform 0.2s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+
+        /* ANIMATIONS
+           Le animazioni d'ingresso e di scroll sono gestite via GSAP (vedi <script> in fondo),
+           con ScrollTrigger per i reveal e gsap.matchMedia() per rispettare prefers-reduced-motion.
+           Gli stati iniziali "nascosti" sono vincolati a .gsap-enabled: se JS o la CDN GSAP
+           non caricano, la classe viene rimossa e tutti i contenuti restano visibili. */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gsap-enabled .hero-content { visibility: hidden; }
+        .gsap-enabled .reveal { opacity: 0; will-change: transform, opacity; }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 18px 24px 24px;
+                gap: 16px;
+                box-shadow: 0 14px 24px rgba(0,0,0,0.1);
+            }
+            .nav-links.open { display: flex; }
+            .about-section { grid-template-columns: 1fr; gap: 30px; margin: 60px auto; }
+            .chatbot-inner { grid-template-columns: 1fr; gap: 40px; }
+            .pricing-card.featured { transform: none; }
+            .hero { min-height: 80vh; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo-banner">
+    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
+</div>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">Hotel Schuhmann</div>
+        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#services">Servizi</a></li>
+            <li><a href="#gallery">Galleria</a></li>
+            <li><a href="#reviews">Recensioni</a></li>
+            <li><a href="#pricing">Piani</a></li>
+            <li><a href="#contact" class="btn-cta">Prenota</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">★ Hotel 4 stelle · Paestum</div>
+        <h1>Hotel Schuhmann</h1>
+        <p>Direttamente sulla spiaggia vicino area archeologica mid-upper</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Prenota Ora</a>
+            <a href="#about" class="btn btn-outline">Scopri di Più</a>
+        </div>
+    </div>
+    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
+</section>
+
+<div class="stats-bar" id="stats">
+    <div class="stats-inner">
+        <div class="stat-item reveal">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Su Misura</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-num">IT/EN</div>
+            <div class="stat-label">Multilingua</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-num">Paestum</div>
+            <div class="stat-label">Posizione</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Assistenza</div>
+        </div>
+    </div>
+</div>
+
+<section class="about-section reveal" id="about">
+    <div class="about-img-wrap">
+        <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/Standard-vista-pineta-05.jpg" alt="Hotel Schuhmann">
+        <div class="about-img-badge">📍 Paestum</div>
+    </div>
+    <div class="about-text">
+        <div class="section-tag">Chi Siamo</div>
+        <h2>Un'Accoglienza su Misura</h2>
+        <p>Hotel Schuhmann — Direttamente sulla spiaggia vicino area archeologica mid-upper. Situato a Paestum, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <ul class="highlights-list">
+            <li><span class="check">✓</span> Qualità garantita</li>
+            <li><span class="check">✓</span> Territorio autentico</li>
+            <li><span class="check">✓</span> Accoglienza dedicata</li>
+            <li><span class="check">✓</span> Esperienza consolidata</li>
+            <li><span class="check">✓</span> Posizione ideale</li>
+        </ul>
+    </div>
+</section>
+
+<section class="services-section" id="services">
+    <div class="section-header reveal">
+        <div class="section-tag">Servizi</div>
+        <h2>Esperienze su Misura per Voi</h2>
+        <p>Ogni servizio è pensato per rendere il vostro soggiorno indimenticabile.</p>
+    </div>
+    <div class="cards-grid">
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/standard-mare-balcone.png" alt="Camere & Suite" loading="lazy">
+                <div class="card-icon">🛏️</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Camere & Suite</h3>
+                <p class="card-desc">Sistemazioni accoglienti e curate, pensate per il comfort di coppie, famiglie e viaggiatori business.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/02/Basic-01.jpg" alt="Ristorazione" loading="lazy">
+                <div class="card-icon">🍽️</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Ristorazione</h3>
+                <p class="card-desc">Cucina del territorio con prodotti freschi e sapori autentici della tradizione campana.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/Standard-vista-pineta-05.jpg" alt="Relax & Benessere" loading="lazy">
+                <div class="card-icon">🌿</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Relax & Benessere</h3>
+                <p class="card-desc">Spazi dedicati al riposo e al benessere per rigenerarsi durante il soggiorno.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/standard-mare-balcone.png" alt="Esperienze sul Territorio" loading="lazy">
+                <div class="card-icon">⛵</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Esperienze sul Territorio</h3>
+                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/02/Basic-01.jpg" alt="Posizione Strategica" loading="lazy">
+                <div class="card-icon">📍</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Posizione Strategica</h3>
+                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/Standard-vista-pineta-05.jpg" alt="Servizi su Misura" loading="lazy">
+                <div class="card-icon">✨</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Servizi su Misura</h3>
+                <p class="card-desc">Accoglienza personalizzata e servizi dedicati per rendere unico ogni soggiorno.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+        <div class="section-tag">Galleria</div>
+        <h2>Un Assaggio dell'Esperienza</h2>
+        <p>Scorci e atmosfere della struttura: lasciatevi ispirare.</p>
+    </div>
+    <div class="gallery-grid reveal">
+        <div class="gallery-item wide"><img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/02/Basic-01.jpg" alt="Hotel Schuhmann" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/Standard-vista-pineta-05.jpg" alt="Hotel Schuhmann" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/standard-mare-balcone.png" alt="Camere & Suite" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/02/Basic-01.jpg" alt="Ristorazione" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/Standard-vista-pineta-05.jpg" alt="Relax & Benessere" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="https://www.hotelschuhmann.com/wp-content/uploads/2025/05/standard-mare-balcone.png" alt="Esperienze sul Territorio" loading="lazy"></div>
+    </div>
+</section>
+
+<section class="reviews-section" id="reviews">
+    <div class="section-header reveal">
+        <div class="section-tag">Recensioni</div>
+        <h2>Le Voci dei Nostri Ospiti</h2>
+        <p>Chi sceglie Hotel Schuhmann torna per ritrovare la stessa accoglienza.</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Soggiorno splendido dall'inizio alla fine. Personale gentilissimo e attento a ogni dettaglio. Torneremo sicuramente."</p>
+            <div class="review-author">
+                <div class="review-avatar">CV</div>
+                <div>
+                    <div class="review-name">Chiara V.</div>
+                    <div class="review-origin">Verona · Soggiorno di coppia</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"A truly welcoming place. Clean, comfortable and the staff went out of their way to make us feel at home. Highly recommended."</p>
+            <div class="review-author">
+                <div class="review-avatar">HW</div>
+                <div>
+                    <div class="review-name">Hannah W.</div>
+                    <div class="review-origin">Zurigo · Viaggio di piacere</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Ottima accoglienza e ambienti curati nei minimi dettagli. Esperienza che consigliamo volentieri a chi cerca qualità e tranquillità."</p>
+            <div class="review-author">
+                <div class="review-avatar">MP</div>
+                <div>
+                    <div class="review-name">Marco P.</div>
+                    <div class="review-origin">Firenze · Famiglia</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chatbot-section" id="chatbot">
+    <div class="chatbot-inner">
+        <div class="chatbot-text reveal">
+            <h2>Assistente AI 24/7</h2>
+            <p>Con Experiences Srl, il vostro sito risponde agli ospiti in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
+            <ul class="chatbot-features">
+                <li>🌍 <span>Assistenza multilingua istantanea</span></li>
+                <li>📅 <span>Gestione richieste e prenotazioni</span></li>
+                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
+                <li>📊 <span>Integrazione con booking engine</span></li>
+                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
+        </div>
+        <div class="chatbot-ui reveal">
+            <div class="chatbot-header">
+                <div class="chatbot-dot"></div>
+                <span style="font-size:14px; font-weight:600;">Assistente AI · Hotel Schuhmann</span>
+            </div>
+            <div class="chat-log" id="chatLog">
+                <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Schuhmann. Come posso esserti utile?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+    <div class="section-header reveal">
+        <div class="section-tag">Piani Experiences Srl</div>
+        <h2>Soluzioni su Misura per il Vostro Business</h2>
+        <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Base</div>
+            <div class="pricing-price">€500</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 5% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sito mobile-optimized</span></li>
+                <li>✓ <span>SEO base e Google My Business</span></li>
+                <li>✓ <span>Modulo contatti</span></li>
+                <li>✓ <span>Integrazione social</span></li>
+                <li>✓ <span>Supporto tecnico email</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card featured reveal">
+            <div class="pricing-badge">⭐ Più Scelto</div>
+            <div class="pricing-name">Piano Pro</div>
+            <div class="pricing-price">€1.000</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 8% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Base</span></li>
+                <li>✓ <span>Chatbot AI 24/7</span></li>
+                <li>✓ <span>Booking engine integrato</span></li>
+                <li>✓ <span>Google Ads gestiti</span></li>
+                <li>✓ <span>Report mensile</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Premium</div>
+            <div class="pricing-price">€1.400</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 10% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Pro</span></li>
+                <li>✓ <span>Channel Manager OTA</span></li>
+                <li>✓ <span>Integrazione Booking.com</span></li>
+                <li>✓ <span>Account manager dedicato</span></li>
+                <li>✓ <span>Supporto H24</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+        </div>
+    </div>
+    <div class="pricing-notes reveal">
+        <div class="pricing-note">
+            <span class="note-icon">ℹ️</span>
+            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra struttura. Contattateci per individuare insieme la soluzione più conveniente.</span>
+        </div>
+        <div class="pricing-note">
+            <span class="note-icon">🔗</span>
+            <span><strong>Channel Manager:</strong> suggeriamo noi un Channel Manager, ma potete indicarci quello che già utilizzate o sceglierne uno di vostra preferenza. I costi del Channel Manager sono a carico del cliente.</span>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section" id="faq">
+    <div class="section-header reveal">
+        <div class="section-tag">Domande Frequenti</div>
+        <h2>FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+        <details class="faq-item">
+            <summary>Quanto costa realizzare un sito come questo?</summary>
+            <p>I piani Experiences Srl partono da €500/anno e includono realizzazione, hosting, manutenzione e supporto. Questa demo è gratuita e senza impegno: contattateci su WhatsApp per una proposta personalizzata.</p>
+        </details>
+        <details class="faq-item">
+            <summary>In quanto tempo il sito sarà online?</summary>
+            <p>Il sito base è pronto in 7-10 giorni lavorativi. Con chatbot AI e booking engine integrato servono circa 2-3 settimane, inclusi i test e la formazione del vostro staff.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Il chatbot AI risponde davvero ai clienti?</summary>
+            <p>Sì: viene addestrato sulle informazioni della vostra struttura (camere, servizi, prezzi, policy) e risponde 24/7 in più lingue, riducendo fino al 70% delle email e telefonate ripetitive.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso integrare Booking.com e gli altri portali?</summary>
+            <p>Con il Piano Premium includiamo il Channel Manager che sincronizza disponibilità e prezzi su Booking.com, Expedia, Airbnb e altri portali, evitando overbooking.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Cosa include l'assistenza?</summary>
+            <p>Tutti i piani includono aggiornamenti, backup e supporto tecnico. I piani Pro e Premium aggiungono report mensili e, per il Premium, un account manager dedicato raggiungibile H24.</p>
+        </details>
+    </div>
+</section>
+
+<section class="cta-section" id="contact">
+    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <p>Questa demo mostra come potrebbe essere il sito della vostra struttura. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra struttura.</p>
+    <div class="cta-btns">
+        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
+        <a href="mailto:info@hotelschuhmann.com" class="btn-ghost">📧 Email</a>
+    </div>
+    <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Jost',sans-serif;">Experiences Srl · +39 392 691 7657</p>
+</section>
+
+<footer>
+    <p>© 2026 <strong>Hotel Schuhmann</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+    <p style="margin-top:8px;">
+        <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> ·
+        <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a> ·
+        <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+    </p>
+    <p style="margin-top:8px; font-size:11px; opacity:0.5;">Rispondi con "CANCELLA" per non ricevere ulteriori comunicazioni</p>
+</footer>
+
+<a href="https://wa.me/393926917657" class="wa-float" target="_blank" aria-label="Contattaci su WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- GSAP (GreenSock) — animazioni performanti. CDN pubblica jsDelivr (npm gsap, include SplitText). -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>
+(function () {
+    var html = document.documentElement;
+
+    // ---- Menu mobile (indipendente da GSAP) ----
+    var navToggle = document.querySelector('.nav-toggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function () {
+        var open = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // ---- Animazioni GSAP ----
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        var hasSplit = !!window.SplitText;
+        if (hasSplit) gsap.registerPlugin(SplitText);
+        gsap.defaults({ ease: 'power3.out', duration: 0.8 });
+
+        // matchMedia: rispetta prefers-reduced-motion (best practice GSAP per l'accessibilità)
+        gsap.matchMedia().add({
+            motion: '(prefers-reduced-motion: no-preference)',
+            reduce: '(prefers-reduced-motion: reduce)'
+        }, function (ctx) {
+            var split;
+
+            if (ctx.conditions.reduce) {
+                // Nessun movimento: rendi tutto visibile immediatamente
+                gsap.set('.hero-content', { visibility: 'visible' });
+                gsap.set('.reveal', { autoAlpha: 1, y: 0 });
+                return;
+            }
+
+            // HERO — timeline d'ingresso (from()/immediateRender evita il flash di contenuto)
+            gsap.set('.hero-content', { visibility: 'visible' });
+            var heroTl = gsap.timeline({ defaults: { duration: 0.9, ease: 'power3.out' } });
+            heroTl.from('.hero-badge', { autoAlpha: 0, y: 22 });
+            if (hasSplit) {
+                split = SplitText.create('.hero-content h1', { type: 'words, chars', aria: 'auto' });
+                heroTl.from(split.chars, { autoAlpha: 0, yPercent: 80, stagger: 0.025, duration: 0.6 }, '-=0.5');
+            } else {
+                heroTl.from('.hero-content h1', { autoAlpha: 0, y: 30 }, '-=0.5');
+            }
+            heroTl.from('.hero-content p', { autoAlpha: 0, y: 20 }, '-=0.4')
+                  .from('.hero-btns', { autoAlpha: 0, y: 20 }, '-=0.55')
+                  .from('.hero-scroll', { autoAlpha: 0 }, '-=0.3');
+
+            // HERO background — parallasse + zoom legati allo scroll (transform only, performante)
+            gsap.fromTo('.hero-bg',
+                { scale: 1.05, yPercent: 0 },
+                { scale: 1.16, yPercent: 12, ease: 'none',
+                  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+            // REVEAL allo scroll — batch con stagger (alternativa efficiente a IntersectionObserver)
+            gsap.set('.reveal', { y: 36 });
+            ScrollTrigger.batch('.reveal', {
+                start: 'top 86%',
+                onEnter: function (els) {
+                    gsap.to(els, { autoAlpha: 1, y: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out', overwrite: true });
+                }
+            });
+
+            // Cleanup automatico di matchMedia: ripristina anche lo split del titolo
+            return function () { if (split) split.revert(); };
+        });
+    } else {
+        // GSAP non disponibile (es. CDN bloccata): mostra tutti i contenuti
+        html.classList.remove('gsap-enabled');
+    }
+
+    // ---- Chatbot demo con risposte predefinite ----
+    var chatLog = document.getElementById('chatLog');
+    var chatInput = document.getElementById('chatInput');
+    var chatSend = document.getElementById('chatSend');
+    var hotelName = "Hotel Schuhmann";
+    var citta = "Paestum";
+    var replies = [
+        { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
+        { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
+        { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
+        { keys: ['servizi', 'cosa offrite', 'cosa c'], text: 'Trovate tutti i nostri servizi nella sezione dedicata del sito. ✨ Fatemi sapere cosa vi interessa di più e vi do tutti i dettagli.' },
+        { keys: ['arrivare', 'indicazioni', 'come si arriva', 'dove siete', 'posizione'], text: 'Siamo situati a ' + citta + '. 🗺️ Scrivetemi da dove partite e vi indico il percorso migliore per raggiungerci.' },
+        { keys: ['animali', 'cane', 'gatto', 'pet'], text: 'Per la possibilità di soggiornare con animali domestici vi metto in contatto con lo staff, che vi confermerà tutte le condizioni. 🐾' },
+        { keys: ['bambin', 'famiglia', 'child', 'kids'], text: 'Siamo lieti di accogliere famiglie con bambini. 👨‍👩‍👧 Scrivetemi l\'età dei vostri bambini e vi indico i servizi più adatti.' }
+    ];
+    function botReply(userText) {
+        var lower = userText.toLowerCase();
+        var match = replies.find(function (r) { return r.keys.some(function (k) { return lower.indexOf(k) !== -1; }); });
+        return match ? match.text : 'Ottima domanda! 😊 Un membro del nostro staff vi risponderà subito. Nel sito reale, l\'AI è addestrata su tutte le informazioni della struttura — chiedi a Experiences Srl una demo completa!';
+    }
+    function appendBubble(cls, html) {
+        var div = document.createElement('div');
+        div.className = cls;
+        div.innerHTML = html;
+        chatLog.appendChild(div);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return div;
+    }
+    function sendChat() {
+        var text = chatInput.value.trim();
+        if (!text) return;
+        chatInput.value = '';
+        appendBubble('chat-user', text.replace(/</g, '&lt;'));
+        var typing = appendBubble('chat-bubble', '<span class="chat-typing"><i></i><i></i><i></i></span>');
+        setTimeout(function () {
+            typing.innerHTML = botReply(text);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }, 900);
+    }
+    chatSend.addEventListener('click', sendChat);
+    chatInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendChat(); });
+})();
+</script>
+
+</body>
+</html>
