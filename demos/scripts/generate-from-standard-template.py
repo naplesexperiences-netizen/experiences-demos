@@ -79,7 +79,7 @@ JUNK_IMAGE_PATTERN = re.compile(
     r"fallback|pattern|decorat|wave|water|comment|tripadvisor|social|"
     r"facebook|twitter|instagram|youtube|googleplus|pinterest|linkedin|share|"
     r"banner|badge|warning|ie8|lin_italiano|lin_english|menubianco|menuoro|"
-    r"freccia|arr-lang|loader\.",
+    r"freccia|arr-lang|loader\.|payment",
     re.I,
 )
 
