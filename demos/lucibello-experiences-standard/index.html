@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Hotel Santa Maria - Demo Experiences Srl</title>
-    <meta name="description" content="Grand Hotel Santa Maria - Grand Hotel Santa Maria — 54 camere vista mare spiaggia Pozzillo centro wellness upper. Situato a Santa Maria di Castellabate, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.">
-    <meta property="og:title" content="Grand Hotel Santa Maria - Demo Experiences Srl">
-    <meta property="og:description" content="54 camere vista mare spiaggia Pozzillo centro wellness upper Demo gratuita realizzata da Experiences Srl.">
+    <title>Lucibello - Tour & Escursioni - Demo Experiences Srl</title>
+    <meta name="description" content="Lucibello - Lucibello — Dal 1936 noleggio e tour privati in barca Capri e Costiera charter yacht. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano. - Demo realizzato da Experiences Srl">
+    <meta property="og:title" content="Lucibello - Demo Experiences Srl">
+    <meta property="og:description" content="Dal 1936 noleggio e tour privati in barca Capri e Costiera charter yacht">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E">
+    <meta property="og:image" content="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Marca il documento solo se il JS è attivo: gli stati iniziali "nascosti" delle animazioni
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <style>
         :root {
-            /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
-            --primary: #2c5aa0;
-            --primary-dark: color-mix(in srgb, var(--primary) 72%, #000);
-            --accent: #d4af37;
-            --accent-light: color-mix(in srgb, var(--accent) 60%, #fff);
-            --teal: color-mix(in srgb, var(--primary) 65%, #2c8f84);
-            --bg-soft: color-mix(in srgb, var(--primary) 4%, #fff);
-            --text: #2c352f;
-            --text-soft: #5d6862;
+            /* Palette derivata dai due colori del cliente: tutto il resto è calcolato con color-mix() */
+            --primary: #1d6a8f;
+            --primary-dark: color-mix(in srgb, #1d6a8f 80%, #000 20%);
+            --accent: #e8883a;
+            --accent-light: color-mix(in srgb, #e8883a 75%, #fff 25%);
+            --teal: color-mix(in srgb, #1d6a8f 55%, #e8883a 45%);
+            --bg-soft: color-mix(in srgb, #1d6a8f 6%, #fff 94%);
+            --text: #20323a;
+            --text-soft: #56676f;
             --radius: 18px;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
-        body { font-family: 'Jost', system-ui, -apple-system, sans-serif; line-height: 1.7; color: var(--text); background: #fff; }
-        h1, h2, h3, .nav-logo { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 0.2px; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.7; color: var(--text); background: #fff; }
+        h1, h2, h3, .nav-logo { font-family: 'Poppins', Georgia, serif; letter-spacing: 0.2px; }
 
         /* DEMO BANNER */
         .demo-banner {
@@ -66,7 +66,7 @@
             align-items: center;
             height: 70px;
         }
-        .nav-logo { font-weight: 700; font-size: 24px; color: var(--primary); }
+        .nav-logo { font-weight: 800; font-size: 22px; color: var(--primary); }
         .nav-links { display: flex; gap: 30px; align-items: center; list-style: none; }
         .nav-links a {
             color: var(--text-soft);
@@ -77,7 +77,7 @@
         }
         .nav-links a:hover { color: var(--primary); }
         .btn-cta {
-            background: var(--primary);
+            background: var(--accent);
             color: #fff !important;
             padding: 10px 24px;
             border-radius: 30px;
@@ -85,7 +85,7 @@
             font-size: 14px;
             transition: all 0.2s !important;
         }
-        .btn-cta:hover { background: var(--accent) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-cta:hover { background: var(--primary) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .nav-toggle {
             display: none;
             background: none;
@@ -113,23 +113,23 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E');
+            background-image: url('https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a');
             background-size: cover;
             background-position: center;
-            filter: brightness(0.52);
+            filter: brightness(0.55);
             transform: scale(1.05);
             will-change: transform;
         }
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(20,63,57,0.3) 0%, rgba(20,63,57,0.6) 100%);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--primary-dark) 25%, transparent) 0%, color-mix(in srgb, var(--primary-dark) 60%, transparent) 100%);
         }
         .hero-content {
             position: relative;
             z-index: 2;
             color: #fff;
-            max-width: 820px;
+            max-width: 840px;
             padding: 0 24px;
         }
         .hero-badge {
@@ -138,7 +138,7 @@
             color: #fff;
             font-size: 12px;
             font-weight: 600;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             letter-spacing: 2.5px;
             padding: 7px 20px;
@@ -146,8 +146,8 @@
             margin-bottom: 24px;
         }
         .hero h1 {
-            font-size: clamp(40px, 6vw, 74px);
-            font-weight: 600;
+            font-size: clamp(38px, 6vw, 72px);
+            font-weight: 700;
             line-height: 1.1;
             margin-bottom: 18px;
             text-shadow: 0 2px 16px rgba(0,0,0,0.3);
@@ -157,7 +157,7 @@
             font-weight: 300;
             opacity: 0.95;
             margin-bottom: 36px;
-            max-width: 620px;
+            max-width: 640px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -167,7 +167,7 @@
             border-radius: 30px;
             font-weight: 600;
             font-size: 15px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.25s;
@@ -201,7 +201,7 @@
             text-align: center;
         }
         .stat-item { padding: 10px 0; }
-        .stat-num { font-size: 48px; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
+        .stat-num { font-size: 44px; font-weight: 800; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Poppins', serif; }
         .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.5px; text-transform: uppercase; }
 
         /* SECTION BASE */
@@ -212,10 +212,10 @@
             letter-spacing: 3px;
             color: var(--teal);
             margin-bottom: 14px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .section-header { text-align: center; margin-bottom: 56px; }
-        .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 600; color: var(--primary); }
+        .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; color: var(--primary); }
         .section-header p { color: var(--text-soft); margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; }
 
         /* ABOUT */
@@ -231,7 +231,7 @@
         .about-img-wrap {
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 24px 60px rgba(31,94,86,0.2);
+            box-shadow: 0 24px 60px color-mix(in srgb, var(--primary) 20%, transparent);
             position: relative;
         }
         .about-img-wrap img { width: 100%; height: 440px; object-fit: cover; display: block; }
@@ -244,12 +244,12 @@
             padding: 12px 18px;
             font-size: 13px;
             font-weight: 600;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--primary);
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         .about-img-badge .stars { color: var(--accent); letter-spacing: 2px; }
-        .about-text h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 600; color: var(--primary); margin-bottom: 18px; line-height: 1.15; }
+        .about-text h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--primary); margin-bottom: 18px; line-height: 1.15; }
         .about-text p { color: var(--text-soft); font-size: 15px; margin-bottom: 20px; }
         .highlights-list { list-style: none; margin-top: 10px; }
         .highlights-list li {
@@ -259,12 +259,12 @@
             padding: 8px 0;
             font-size: 14px;
             color: var(--text);
-            border-bottom: 1px solid #e7efeb;
+            border-bottom: 1px solid color-mix(in srgb, var(--primary) 10%, #fff 90%);
         }
         .check { color: var(--teal); font-weight: 700; font-size: 16px; flex-shrink: 0; }
 
-        /* SERVICES */
-        .services-section { background: var(--bg-soft); padding: 100px 24px; }
+        /* SERVICES / TOURS */
+        .tours-section { background: var(--bg-soft); padding: 100px 24px; }
         .cards-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -276,31 +276,32 @@
             background: #fff;
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 4px 24px rgba(31,94,86,0.07);
+            box-shadow: 0 4px 24px color-mix(in srgb, var(--primary) 8%, transparent);
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
         }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(31,94,86,0.14); }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px color-mix(in srgb, var(--primary) 16%, transparent); }
         .card-img-wrap { overflow: hidden; height: 210px; position: relative; }
         .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .card:hover .card-img-wrap img { transform: scale(1.07); }
-        .card-icon {
+        .card-tag {
             position: absolute;
-            bottom: -22px;
-            right: 20px;
-            width: 46px;
-            height: 46px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 45%, transparent);
-            z-index: 2;
+            top: 14px;
+            left: 14px;
+            background: color-mix(in srgb, var(--primary) 92%, transparent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 20px;
         }
-        .card-body { padding: 30px 26px 26px; }
-        .card-title { font-size: 23px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
-        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; font-family: 'Jost', sans-serif; }
+        .card-body { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+        .card-title { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; flex: 1; }
 
         /* GALLERY */
         .gallery-section { padding: 100px 24px; }
@@ -319,7 +320,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(20,63,57,0.55) 100%);
+            background: linear-gradient(180deg, transparent 60%, color-mix(in srgb, var(--primary-dark) 55%, transparent) 100%);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -340,7 +341,7 @@
             background: #fff;
             border-radius: var(--radius);
             padding: 32px 30px;
-            box-shadow: 0 4px 24px rgba(31,94,86,0.07);
+            box-shadow: 0 4px 24px color-mix(in srgb, var(--primary) 8%, transparent);
             position: relative;
         }
         .review-card::before {
@@ -368,10 +369,10 @@
             justify-content: center;
             font-weight: 600;
             font-size: 15px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
-        .review-name { font-size: 14px; font-weight: 600; color: var(--primary); font-family: 'Jost', sans-serif; }
-        .review-origin { font-size: 12px; color: #9aa49e; font-family: 'Jost', sans-serif; }
+        .review-name { font-size: 14px; font-weight: 600; color: var(--primary); font-family: 'Inter', sans-serif; }
+        .review-origin { font-size: 12px; color: #93a4ab; font-family: 'Inter', sans-serif; }
 
         /* CHATBOT PREVIEW */
         .chatbot-section {
@@ -387,7 +388,7 @@
             gap: 60px;
             align-items: center;
         }
-        .chatbot-text h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 600; margin-bottom: 16px; }
+        .chatbot-text h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 700; margin-bottom: 16px; }
         .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
         .chatbot-features { list-style: none; margin-bottom: 28px; }
         .chatbot-features li {
@@ -454,7 +455,7 @@
             padding: 10px 14px;
             color: #fff;
             font-size: 13px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
         .chat-input input:focus { outline: 1px solid var(--accent-light); }
@@ -480,17 +481,17 @@
             gap: 24px;
         }
         .pricing-card {
-            border: 2px solid #e4ede9;
+            border: 2px solid color-mix(in srgb, var(--primary) 14%, #fff 86%);
             border-radius: var(--radius);
             padding: 36px 28px;
             text-align: center;
             transition: all 0.3s;
             position: relative;
         }
-        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px rgba(31,94,86,0.12); transform: translateY(-4px); }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px color-mix(in srgb, var(--primary) 12%, transparent); transform: translateY(-4px); }
         .pricing-card.featured {
             border-color: var(--accent);
-            background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, #fff) 0%, #fff 100%);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, #fff 92%) 0%, #fff 100%);
             transform: scale(1.03);
         }
         .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
@@ -503,17 +504,17 @@
             color: #fff;
             font-size: 11px;
             font-weight: 600;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             padding: 5px 16px;
             border-radius: 20px;
             white-space: nowrap;
         }
         .pricing-name { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
-        .pricing-price { font-size: 44px; font-weight: 700; color: var(--primary); margin-bottom: 4px; font-family: 'Cormorant Garamond', serif; }
-        .pricing-period { font-size: 12px; color: #9aa49e; margin-bottom: 8px; font-family: 'Jost', sans-serif; }
-        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; font-family: 'Jost', sans-serif; }
+        .pricing-price { font-size: 44px; font-weight: 800; color: var(--primary); margin-bottom: 4px; font-family: 'Poppins', serif; }
+        .pricing-period { font-size: 12px; color: #93a4ab; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; font-family: 'Inter', sans-serif; }
         .pricing-features { list-style: none; text-align: left; margin-bottom: 26px; }
-        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid #eef4f1; font-family: 'Jost', sans-serif; }
+        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid color-mix(in srgb, var(--primary) 8%, #fff 92%); font-family: 'Inter', sans-serif; }
         .pricing-btn {
             display: block;
             width: 100%;
@@ -524,7 +525,7 @@
             border-radius: 30px;
             font-weight: 600;
             font-size: 14px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.2s;
@@ -549,7 +550,7 @@
             font-size: 13px;
             color: var(--text-soft);
             line-height: 1.6;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .pricing-note strong { color: var(--primary); }
         .pricing-note .note-icon { font-size: 16px; flex-shrink: 0; }
@@ -561,14 +562,14 @@
             background: #fff;
             border-radius: 12px;
             margin-bottom: 12px;
-            box-shadow: 0 2px 12px rgba(31,94,86,0.06);
+            box-shadow: 0 2px 12px color-mix(in srgb, var(--primary) 6%, transparent);
             overflow: hidden;
         }
         .faq-item summary {
             padding: 18px 22px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--primary);
             cursor: pointer;
             list-style: none;
@@ -580,7 +581,7 @@
         .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
         .faq-item[open] summary::after { transform: rotate(45deg); }
-        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); font-family: 'Jost', sans-serif; }
+        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); font-family: 'Inter', sans-serif; }
 
         /* CTA */
         .cta-section {
@@ -589,7 +590,7 @@
             text-align: center;
             color: #fff;
         }
-        .cta-section h2 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 600; margin-bottom: 16px; }
+        .cta-section h2 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 700; margin-bottom: 16px; }
         .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
         .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
         .cta-btns .btn-white {
@@ -599,7 +600,7 @@
             border-radius: 30px;
             font-weight: 600;
             font-size: 15px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             text-decoration: none;
             transition: all 0.25s;
         }
@@ -612,7 +613,7 @@
             border-radius: 30px;
             font-weight: 500;
             font-size: 15px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Inter', sans-serif;
             text-decoration: none;
             transition: all 0.25s;
         }
@@ -694,17 +695,17 @@
 
 <nav class="navbar">
     <div class="nav-inner">
-        <div class="nav-logo">Grand Hotel Santa Maria</div>
+        <div class="nav-logo">Lucibello</div>
         <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
-            <li><a href="#services">Servizi</a></li>
+            <li><a href="#tours">Servizi</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
-            <li><a href="#contact" class="btn-cta">Prenota</a></li>
+            <li><a href="#contact" class="btn-cta">Contattaci</a></li>
         </ul>
     </div>
 </nav>
@@ -713,12 +714,12 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <div class="hero-badge">★ Hotel 4 stelle · Santa Maria di Castellabate</div>
-        <h1>Grand Hotel Santa Maria</h1>
-        <p>54 camere vista mare spiaggia Pozzillo centro wellness upper</p>
+        <div class="hero-badge">★ Tour operator / escursioni in barca · Positano</div>
+        <h1>Lucibello</h1>
+        <p>Dal 1936 noleggio e tour privati in barca Capri e Costiera charter yacht</p>
         <div class="hero-btns">
-            <a href="#contact" class="btn btn-primary">Prenota Ora</a>
-            <a href="#about" class="btn btn-outline">Scopri di Più</a>
+            <a href="#tours" class="btn btn-primary">Scopri i Servizi</a>
+            <a href="#contact" class="btn btn-outline">Richiedi un Preventivo</a>
         </div>
     </div>
     <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
@@ -735,7 +736,7 @@
             <div class="stat-label">Multilingua</div>
         </div>
         <div class="stat-item reveal">
-            <div class="stat-num">Santa Maria di Castellabate</div>
+            <div class="stat-num">Positano</div>
             <div class="stat-label">Posizione</div>
         </div>
         <div class="stat-item reveal">
@@ -747,13 +748,13 @@
 
 <section class="about-section reveal" id="about">
     <div class="about-img-wrap">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Grand Hotel Santa Maria">
-        <div class="about-img-badge">📍 Santa Maria di Castellabate</div>
+        <img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Lucibello - Tour operator / escursioni in barca">
+        <div class="about-img-badge"><span class="stars">★★★★★</span><br>Positano · Tour operator / escursioni in barca</div>
     </div>
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
-        <h2>Un'Accoglienza su Misura</h2>
-        <p>Grand Hotel Santa Maria — 54 camere vista mare spiaggia Pozzillo centro wellness upper. Situato a Santa Maria di Castellabate, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <h2>Lucibello</h2>
+        <p>Lucibello — Dal 1936 noleggio e tour privati in barca Capri e Costiera charter yacht. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -764,71 +765,71 @@
     </div>
 </section>
 
-<section class="services-section" id="services">
+<section class="tours-section" id="tours">
     <div class="section-header reveal">
-        <div class="section-tag">Servizi</div>
-        <h2>Esperienze su Misura per Voi</h2>
-        <p>Ogni servizio è pensato per rendere il vostro soggiorno indimenticabile.</p>
+        <div class="section-tag">I Nostri Servizi</div>
+        <h2>Esperienze da Vivere</h2>
+        <p>Soluzioni curate nei minimi dettagli, pensate per ogni viaggiatore e ogni gruppo.</p>
     </div>
     <div class="cards-grid">
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Camere & Suite" loading="lazy">
-                <div class="card-icon">🛏️</div>
+                <img src="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a" alt="Tour & Escursioni" loading="lazy">
+                <div class="card-tag">Bestseller</div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Camere & Suite</h3>
-                <p class="card-desc">Sistemazioni accoglienti e curate, pensate per il comfort di coppie, famiglie e viaggiatori business.</p>
+                <h3 class="card-title">Tour & Escursioni</h3>
+                <p class="card-desc">Itinerari curati alla scoperta delle destinazioni più suggestive del territorio.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Ristorazione" loading="lazy">
-                <div class="card-icon">🍽️</div>
+                <img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Transfer & Trasporti" loading="lazy">
+                <div class="card-tag">Più Richiesto</div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Ristorazione</h3>
-                <p class="card-desc">Cucina del territorio con prodotti freschi e sapori autentici della tradizione campana.</p>
+                <h3 class="card-title">Transfer & Trasporti</h3>
+                <p class="card-desc">Servizi di transfer affidabili e confortevoli da e verso aeroporti, porti e hotel.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Relax & Benessere" loading="lazy">
-                <div class="card-icon">🌿</div>
+                <img src="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a" alt="Esperienze Su Misura" loading="lazy">
+                <div class="card-tag">Su Misura</div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Relax & Benessere</h3>
-                <p class="card-desc">Spazi dedicati al riposo e al benessere per rigenerarsi durante il soggiorno.</p>
+                <h3 class="card-title">Esperienze Su Misura</h3>
+                <p class="card-desc">Pacchetti personalizzati costruiti sulle esigenze di ogni cliente e gruppo.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Esperienze sul Territorio" loading="lazy">
-                <div class="card-icon">⛵</div>
+                <img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Guide Multilingue" loading="lazy">
+                <div class="card-tag">Qualità</div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <h3 class="card-title">Guide Multilingue</h3>
+                <p class="card-desc">Accompagnatori e guide qualificate in più lingue per un'esperienza completa.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Posizione Strategica" loading="lazy">
-                <div class="card-icon">📍</div>
+                <img src="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a" alt="Gruppi & Incentive" loading="lazy">
+                <div class="card-tag">Gruppi</div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <h3 class="card-title">Gruppi & Incentive</h3>
+                <p class="card-desc">Organizzazione di viaggi per gruppi, eventi aziendali e incentive.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Servizi su Misura" loading="lazy">
-                <div class="card-icon">✨</div>
+                <img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Booking & Assistenza" loading="lazy">
+                <div class="card-tag">Assistenza</div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Servizi su Misura</h3>
-                <p class="card-desc">Accoglienza personalizzata e servizi dedicati per rendere unico ogni soggiorno.</p>
+                <h3 class="card-title">Booking & Assistenza</h3>
+                <p class="card-desc">Supporto dedicato in ogni fase, dalla prenotazione al termine del viaggio.</p>
             </div>
         </div>
     </div>
@@ -837,56 +838,56 @@
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
         <div class="section-tag">Galleria</div>
-        <h2>Un Assaggio dell'Esperienza</h2>
-        <p>Scorci e atmosfere della struttura: lasciatevi ispirare.</p>
+        <h2>Attimi dalle Nostre Esperienze</h2>
+        <p>Panorami, itinerari e momenti che restano nel cuore di ogni viaggiatore.</p>
     </div>
     <div class="gallery-grid reveal">
-        <div class="gallery-item wide"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Grand Hotel Santa Maria" loading="lazy"></div>
-        <div class="gallery-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Grand Hotel Santa Maria" loading="lazy"></div>
-        <div class="gallery-item tall"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Camere & Suite" loading="lazy"></div>
-        <div class="gallery-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Ristorazione" loading="lazy"></div>
-        <div class="gallery-item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Relax & Benessere" loading="lazy"></div>
-        <div class="gallery-item wide"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Esperienze sul Territorio" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a" alt="Lucibello" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Lucibello" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a" alt="Tour & Escursioni" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Transfer & Trasporti" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://www.lucibello.it/images/large/tbgc7958_private-boat-tour-to-capri-island-2.jpg?v=aa6a" alt="Esperienze Su Misura" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="https://www.lucibello.it/images/large/tbgc10360_boat-party-amalfi-coast-lucibello-positano-4.jpg?v=d7d9" alt="Guide Multilingue" loading="lazy"></div>
     </div>
 </section>
 
 <section class="reviews-section" id="reviews">
     <div class="section-header reveal">
         <div class="section-tag">Recensioni</div>
-        <h2>Le Voci dei Nostri Ospiti</h2>
-        <p>Chi sceglie Grand Hotel Santa Maria torna per ritrovare la stessa accoglienza.</p>
+        <h2>La Voce dei Viaggiatori</h2>
+        <p>Tanti viaggiatori hanno scelto Lucibello per le loro esperienze.</p>
     </div>
     <div class="reviews-grid">
         <div class="review-card reveal">
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Soggiorno splendido dall'inizio alla fine. Personale gentilissimo e attento a ogni dettaglio. Torneremo sicuramente."</p>
+            <p class="review-text">"Esperienza fantastica dall'inizio alla fine. Staff gentilissimo, organizzazione impeccabile e attenzione ad ogni dettaglio. Consigliatissimo!"</p>
             <div class="review-author">
-                <div class="review-avatar">CV</div>
+                <div class="review-avatar">LR</div>
                 <div>
-                    <div class="review-name">Chiara V.</div>
-                    <div class="review-origin">Verona · Soggiorno di coppia</div>
+                    <div class="review-name">Laura R.</div>
+                    <div class="review-origin">Milano</div>
                 </div>
             </div>
         </div>
         <div class="review-card reveal">
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"A truly welcoming place. Clean, comfortable and the staff went out of their way to make us feel at home. Highly recommended."</p>
+            <p class="review-text">"Best experience of our trip. Professional guides, great communication in English and everything ran exactly on schedule. Highly recommended!"</p>
             <div class="review-author">
-                <div class="review-avatar">HW</div>
+                <div class="review-avatar">JM</div>
                 <div>
-                    <div class="review-name">Hannah W.</div>
-                    <div class="review-origin">Zurigo · Viaggio di piacere</div>
+                    <div class="review-name">James M.</div>
+                    <div class="review-origin">London</div>
                 </div>
             </div>
         </div>
         <div class="review-card reveal">
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Ottima accoglienza e ambienti curati nei minimi dettagli. Esperienza che consigliamo volentieri a chi cerca qualità e tranquillità."</p>
+            <p class="review-text">"Servizio molto curato, guida preparatissima e disponibile con tutta la famiglia. Tutto puntuale e ben organizzato. Torneremo sicuramente!"</p>
             <div class="review-author">
-                <div class="review-avatar">MP</div>
+                <div class="review-avatar">FG</div>
                 <div>
-                    <div class="review-name">Marco P.</div>
-                    <div class="review-origin">Firenze · Famiglia</div>
+                    <div class="review-name">Famiglia G.</div>
+                    <div class="review-origin">Torino</div>
                 </div>
             </div>
         </div>
@@ -897,12 +898,12 @@
     <div class="chatbot-inner">
         <div class="chatbot-text reveal">
             <h2>Assistente AI 24/7</h2>
-            <p>Con Experiences Srl, il vostro sito risponde agli ospiti in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
+            <p>Con Experiences Srl, il vostro sito risponde ai viaggiatori in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
             <ul class="chatbot-features">
                 <li>🌍 <span>Assistenza multilingua istantanea</span></li>
-                <li>📅 <span>Gestione richieste e prenotazioni</span></li>
+                <li>📅 <span>Disponibilità e richieste di prenotazione</span></li>
                 <li>💬 <span>Riduce il 70% delle email manuali</span></li>
-                <li>📊 <span>Integrazione con booking engine</span></li>
+                <li>🎫 <span>Integrazione con sistema di booking</span></li>
                 <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
             </ul>
             <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
@@ -910,13 +911,13 @@
         <div class="chatbot-ui reveal">
             <div class="chatbot-header">
                 <div class="chatbot-dot"></div>
-                <span style="font-size:14px; font-weight:600;">Assistente AI · Grand Hotel Santa Maria</span>
+                <span style="font-size:14px; font-weight:600;">Assistente AI · Lucibello</span>
             </div>
             <div class="chat-log" id="chatLog">
-                <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Grand Hotel Santa Maria. Come posso esserti utile?</div>
+                <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Lucibello. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: organizzate gite di gruppo?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -938,7 +939,7 @@
             <ul class="pricing-features">
                 <li>✓ <span>Sito mobile-optimized</span></li>
                 <li>✓ <span>SEO base e Google My Business</span></li>
-                <li>✓ <span>Modulo contatti</span></li>
+                <li>✓ <span>Catalogo servizi e modulo richieste</span></li>
                 <li>✓ <span>Integrazione social</span></li>
                 <li>✓ <span>Supporto tecnico email</span></li>
             </ul>
@@ -953,7 +954,7 @@
             <ul class="pricing-features">
                 <li>✓ <span>Tutto del Piano Base</span></li>
                 <li>✓ <span>Chatbot AI 24/7</span></li>
-                <li>✓ <span>Booking engine integrato</span></li>
+                <li>✓ <span>Sistema di booking online</span></li>
                 <li>✓ <span>Google Ads gestiti</span></li>
                 <li>✓ <span>Report mensile</span></li>
             </ul>
@@ -967,7 +968,7 @@
             <ul class="pricing-features">
                 <li>✓ <span>Tutto del Piano Pro</span></li>
                 <li>✓ <span>Channel Manager OTA</span></li>
-                <li>✓ <span>Integrazione Booking.com</span></li>
+                <li>✓ <span>Integrazione GetYourGuide / Viator</span></li>
                 <li>✓ <span>Account manager dedicato</span></li>
                 <li>✓ <span>Supporto H24</span></li>
             </ul>
@@ -977,7 +978,7 @@
     <div class="pricing-notes reveal">
         <div class="pricing-note">
             <span class="note-icon">ℹ️</span>
-            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra struttura. Contattateci per individuare insieme la soluzione più conveniente.</span>
+            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra attività. Contattateci per individuare insieme la soluzione più conveniente.</span>
         </div>
         <div class="pricing-note">
             <span class="note-icon">🔗</span>
@@ -998,15 +999,15 @@
         </details>
         <details class="faq-item">
             <summary>In quanto tempo il sito sarà online?</summary>
-            <p>Il sito base è pronto in 7-10 giorni lavorativi. Con chatbot AI e booking engine integrato servono circa 2-3 settimane, inclusi i test e la formazione del vostro staff.</p>
+            <p>Il sito base è pronto in 7-10 giorni lavorativi. Con chatbot AI e sistema di booking integrato servono circa 2-3 settimane, inclusi i test e la formazione del vostro staff.</p>
         </details>
         <details class="faq-item">
             <summary>Il chatbot AI risponde davvero ai clienti?</summary>
-            <p>Sì: viene addestrato sulle informazioni della vostra struttura (camere, servizi, prezzi, policy) e risponde 24/7 in più lingue, riducendo fino al 70% delle email e telefonate ripetitive.</p>
+            <p>Sì: viene addestrato sulle informazioni della vostra attività (servizi, prezzi, orari, policy) e risponde 24/7 in più lingue, riducendo fino al 70% delle email e dei messaggi ripetitivi.</p>
         </details>
         <details class="faq-item">
-            <summary>Posso integrare Booking.com e gli altri portali?</summary>
-            <p>Con il Piano Premium includiamo il Channel Manager che sincronizza disponibilità e prezzi su Booking.com, Expedia, Airbnb e altri portali, evitando overbooking.</p>
+            <summary>Posso gestire le prenotazioni online?</summary>
+            <p>Con i piani Pro e Premium integriamo un sistema di booking con calendario disponibilità, pagamenti online e, per il Premium, la sincronizzazione con portali come GetYourGuide e Viator.</p>
         </details>
         <details class="faq-item">
             <summary>Cosa include l'assistenza?</summary>
@@ -1017,16 +1018,16 @@
 
 <section class="cta-section" id="contact">
     <h2>Pronti a Trasformare il Vostro Business?</h2>
-    <p>Questa demo mostra come potrebbe essere il sito della vostra struttura. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra struttura.</p>
+    <p>Questa demo mostra come potrebbe essere il sito del vostro tour operator o DMC. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra attività.</p>
     <div class="cta-btns">
         <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
-        <a href="mailto:info@ghsm.it" class="btn-ghost">📧 Email</a>
+        <a href="mailto:info@lucibello.it" class="btn-ghost">📧 Email</a>
     </div>
-    <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Jost',sans-serif;">Experiences Srl · +39 392 691 7657</p>
+    <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Inter',sans-serif;">Experiences Srl · +39 392 691 7657</p>
 </section>
 
 <footer>
-    <p>© 2026 <strong>Grand Hotel Santa Maria</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+    <p>© 2026 <strong>Lucibello</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
     <p style="margin-top:8px;">
         <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> ·
         <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a> ·
@@ -1121,25 +1122,25 @@
         html.classList.remove('gsap-enabled');
     }
 
-    // ---- Chatbot demo con risposte predefinite ----
+    // ---- Chatbot demo con risposte predefinite (generiche, nessun prezzo o tour specifico) ----
     var chatLog = document.getElementById('chatLog');
     var chatInput = document.getElementById('chatInput');
     var chatSend = document.getElementById('chatSend');
-    var hotelName = "Grand Hotel Santa Maria";
-    var citta = "Santa Maria di Castellabate";
     var replies = [
-        { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
-        { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
-        { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
-        { keys: ['servizi', 'cosa offrite', 'cosa c'], text: 'Trovate tutti i nostri servizi nella sezione dedicata del sito. ✨ Fatemi sapere cosa vi interessa di più e vi do tutti i dettagli.' },
-        { keys: ['arrivare', 'indicazioni', 'come si arriva', 'dove siete', 'posizione'], text: 'Siamo situati a ' + citta + '. 🗺️ Scrivetemi da dove partite e vi indico il percorso migliore per raggiungerci.' },
-        { keys: ['animali', 'cane', 'gatto', 'pet'], text: 'Per la possibilità di soggiornare con animali domestici vi metto in contatto con lo staff, che vi confermerà tutte le condizioni. 🐾' },
-        { keys: ['bambin', 'famiglia', 'child', 'kids'], text: 'Siamo lieti di accogliere famiglie con bambini. 👨‍👩‍👧 Scrivetemi l\'età dei vostri bambini e vi indico i servizi più adatti.' }
+        { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'I prezzi variano in base al servizio scelto, al numero di persone e alla stagione. 💶 Ditemi cosa vi interessa e vi prepariamo un preventivo su misura, senza impegno.' },
+        { keys: ['disponibil', 'prenot', 'data', 'book', 'quando'], text: 'Verifico subito la disponibilità! 📅 Indicatemi date, numero di persone e il servizio di vostro interesse: vi rispondiamo a breve con i dettagli.' },
+        { keys: ['gruppo', 'gruppi', 'famigl', 'incentive', 'azien'], text: 'Organizziamo esperienze anche per gruppi, famiglie ed eventi aziendali/incentive. 👨‍👩‍👧‍👦 Quante persone siete e cosa avete in mente? Vi prepariamo una proposta su misura.' },
+        { keys: ['privat', 'su misura', 'personalizz'], text: 'Possiamo costruire un’esperienza privata su misura per voi, con itinerario e servizi personalizzati. ⭐ Raccontatemi le vostre esigenze e vi facciamo una proposta.' },
+        { keys: ['transfer', 'hotel', 'pickup', 'arrivare', 'come si'], text: 'Offriamo anche servizi di transfer e trasporto su richiesta. 🚐 Da dove partireste e qual è la vostra destinazione?' },
+        { keys: ['lingua', 'inglese', 'english', 'francese', 'tedesc', 'multilingu'], text: 'Il nostro team e le nostre guide parlano più lingue, tra cui italiano e inglese. 🌍 In quale lingua preferite essere assistiti?' },
+        { keys: ['cancella', 'rimbors', 'annull'], text: 'Le condizioni di cancellazione e rimborso variano in base al servizio prenotato. ✅ Scrivetemi i dettagli della vostra prenotazione e vi indichiamo la policy applicabile.' },
+        { keys: ['dove', 'partenza', 'punto di incontro', 'luogo'], text: 'Le nostre esperienze partono da Positano e dintorni. 📍 Vi confermiamo il punto di incontro esatto al momento della prenotazione.' },
+        { keys: ['guid', 'accompagnator'], text: 'Tutte le nostre esperienze sono curate da guide e accompagnatori qualificati. 🧭 Su quale servizio vorreste maggiori informazioni?' }
     ];
     function botReply(userText) {
         var lower = userText.toLowerCase();
         var match = replies.find(function (r) { return r.keys.some(function (k) { return lower.indexOf(k) !== -1; }); });
-        return match ? match.text : 'Ottima domanda! 😊 Un membro del nostro staff vi risponderà subito. Nel sito reale, l\'AI è addestrata su tutte le informazioni della struttura — chiedi a Experiences Srl una demo completa!';
+        return match ? match.text : 'Ottima domanda! 😊 Un membro del nostro staff vi risponderà subito. Nel sito reale, l\'AI è addestrata su tutti i servizi e le informazioni dell\'attività — chiedi a Experiences Srl una demo completa!';
     }
     function appendBubble(cls, html) {
         var div = document.createElement('div');
