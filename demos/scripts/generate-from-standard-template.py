@@ -189,6 +189,7 @@ def build_data(company):
         "HOTEL_TAGLINE": tagline,
         "HOTEL_URL": url,
         "HOTEL_EMAIL": email,
+        "CITTA": citta,
         # Tour operator placeholders
         "COMPANY_NAME": nome,
         "COMPANY_CATEGORY": categoria,
