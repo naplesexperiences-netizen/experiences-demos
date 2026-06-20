@@ -3,82 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{COMPANY_NAME}} - Demo Experiences Srl</title>
-    <meta name="description" content="{{COMPANY_NAME}} - {{COMPANY_CATEGORY}} - Demo realizzato da Experiences Srl">
+    <title>{{COMPANY_NAME}} - Tour & Escursioni - Demo Experiences Srl</title>
+    <meta name="description" content="{{COMPANY_NAME}} - {{COMPANY_DESCRIPTION}} - Demo realizzato da Experiences Srl">
     <meta property="og:title" content="{{COMPANY_NAME}} - Demo Experiences Srl">
     <meta property="og:description" content="{{COMPANY_TAGLINE}}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{HERO_IMAGE_URL}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Marca il documento solo se il JS è attivo: gli stati iniziali "nascosti" delle animazioni
+         GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
+    <script>document.documentElement.classList.add('gsap-enabled');</script>
     <style>
-        /* =========================================================
-           CSS VARIABLES — edit PRIMARY_COLOR & SECONDARY_COLOR here
-           ========================================================= */
         :root {
-            --primary:   {{PRIMARY_COLOR}};
+            /* Palette derivata dai due colori del cliente: tutto il resto è calcolato con color-mix() */
+            --primary: {{PRIMARY_COLOR}};
             --primary-dark: color-mix(in srgb, {{PRIMARY_COLOR}} 80%, #000 20%);
-            --secondary: {{SECONDARY_COLOR}};
-            --secondary-dark: color-mix(in srgb, {{SECONDARY_COLOR}} 80%, #000 20%);
-            --text:      #333;
-            --text-muted:#666;
-            --bg-light:  #f8f6f0;
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --shadow-sm: 0 4px 20px rgba(0,0,0,0.07);
-            --shadow-md: 0 8px 40px rgba(0,0,0,0.10);
-            --shadow-lg: 0 20px 60px rgba(0,0,0,0.14);
-            --transition: all 0.28s ease;
-            --font:      'Segoe UI', system-ui, -apple-system, sans-serif;
+            --accent: {{SECONDARY_COLOR}};
+            --accent-light: color-mix(in srgb, {{SECONDARY_COLOR}} 75%, #fff 25%);
+            --teal: color-mix(in srgb, {{PRIMARY_COLOR}} 55%, {{SECONDARY_COLOR}} 45%);
+            --bg-soft: color-mix(in srgb, {{PRIMARY_COLOR}} 6%, #fff 94%);
+            --text: #20323a;
+            --text-soft: #56676f;
+            --radius: 18px;
         }
-
-        /* =========================================================
-           RESET & BASE
-           ========================================================= */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
-        body { font-family: var(--font); line-height: 1.65; color: var(--text); background: #fff; }
-        img { display: block; max-width: 100%; }
-        a { text-decoration: none; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.7; color: var(--text); background: #fff; }
+        h1, h2, h3, .nav-logo { font-family: 'Poppins', Georgia, serif; letter-spacing: 0.2px; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0.3 } }
-        @keyframes pulse { 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.05) } }
-
-        /* =========================================================
-           DEMO BANNER
-           ========================================================= */
+        /* DEMO BANNER */
         .demo-banner {
             background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: #fff;
             text-align: center;
-            padding: 11px 20px;
-            font-size: 12.5px;
-            font-weight: 600;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 500;
             letter-spacing: 0.3px;
             position: relative;
             z-index: 200;
         }
-        .demo-banner a {
-            color: var(--secondary);
-            text-decoration: none;
-            border-bottom: 1px solid var(--secondary);
-            transition: opacity 0.2s;
-        }
-        .demo-banner a:hover { opacity: 0.8; }
-        .demo-banner strong { color: var(--secondary); }
+        .demo-banner a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+        .demo-banner a:hover { opacity: 0.85; }
 
-        /* =========================================================
-           NAVBAR
-           ========================================================= */
+        /* NAVBAR */
         .navbar {
             background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
             padding: 0 24px;
         }
         .nav-inner {
@@ -87,69 +64,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 66px;
-            gap: 16px;
+            height: 70px;
         }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-        .nav-logo {
-            font-weight: 800;
-            font-size: 17px;
-            color: var(--primary);
-            letter-spacing: -0.3px;
-        }
-        .nav-badge {
-            background: var(--secondary);
-            color: #fff;
-            font-size: 9.5px;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-        }
-        .nav-links {
-            display: flex;
-            gap: 26px;
-            align-items: center;
-            list-style: none;
-        }
+        .nav-logo { font-weight: 800; font-size: 22px; color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; align-items: center; list-style: none; }
         .nav-links a {
-            color: #555;
-            font-size: 13.5px;
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
             transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--primary); }
-        .btn-nav-cta {
-            background: var(--primary);
+        .btn-cta {
+            background: var(--accent);
             color: #fff !important;
-            padding: 9px 22px;
-            border-radius: var(--radius-sm);
-            font-weight: 700 !important;
-            font-size: 13.5px;
-            white-space: nowrap;
-            transition: var(--transition) !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: all 0.2s !important;
         }
-        .btn-nav-cta:hover {
-            background: var(--primary-dark) !important;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.18) !important;
+        .btn-cta:hover { background: var(--primary) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
         }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--primary); transition: all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* =========================================================
-           HERO — full-height, parallax-like bg, glassmorphism badge
-           ========================================================= */
+        /* HERO */
         .hero {
             position: relative;
-            height: 100vh;
-            min-height: 580px;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -161,1119 +115,1056 @@
             inset: 0;
             background-image: url('{{HERO_IMAGE_URL}}');
             background-size: cover;
-            background-position: center 40%;
-            background-attachment: fixed;
-            filter: brightness(0.42);
-            transform: scale(1.04);
-            transition: transform 9s ease;
+            background-position: center;
+            filter: brightness(0.55);
+            transform: scale(1.05);
+            will-change: transform;
         }
-        .hero:hover .hero-bg { transform: scale(1.08); }
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                170deg,
-                rgba(0,0,0,0.08) 0%,
-                rgba(0,0,0,0.55) 100%
-            );
+            background: linear-gradient(180deg, color-mix(in srgb, var(--primary-dark) 25%, transparent) 0%, color-mix(in srgb, var(--primary-dark) 60%, transparent) 100%);
         }
         .hero-content {
             position: relative;
             z-index: 2;
             color: #fff;
-            max-width: 820px;
-            padding: 0 28px;
-            animation: fadeInUp 0.85s ease-out;
+            max-width: 840px;
+            padding: 0 24px;
         }
-
-        /* glassmorphism badge */
-        .hero-glass-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.14);
-            border: 1px solid rgba(255,255,255,0.28);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        .hero-badge {
+            display: inline-block;
+            background: color-mix(in srgb, var(--accent) 92%, transparent);
             color: #fff;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 1.8px;
+            letter-spacing: 2.5px;
             padding: 7px 20px;
             border-radius: 30px;
             margin-bottom: 24px;
         }
-        .hero-glass-badge span {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--secondary);
-            flex-shrink: 0;
-            animation: pulse 2s infinite;
-        }
-
         .hero h1 {
-            font-size: clamp(34px, 5.5vw, 66px);
-            font-weight: 800;
-            line-height: 1.13;
-            margin-bottom: 20px;
-            text-shadow: 0 3px 16px rgba(0,0,0,0.35);
+            font-size: clamp(38px, 6vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.3);
         }
-        .hero h1 em {
-            font-style: normal;
-            color: var(--secondary);
-        }
-        .hero-tagline {
-            font-size: clamp(15px, 2vw, 19px);
-            opacity: 0.9;
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            opacity: 0.95;
             margin-bottom: 36px;
-            max-width: 620px;
+            max-width: 640px;
             margin-left: auto;
             margin-right: auto;
-            text-shadow: 0 1px 6px rgba(0,0,0,0.2);
         }
-        .hero-btns {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            padding: 14px 32px;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-weight: 600;
             font-size: 15px;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
             display: inline-block;
-            transition: var(--transition);
         }
-        .btn-primary {
-            background: var(--secondary);
-            color: #fff;
-            border: 2px solid var(--secondary);
-            box-shadow: 0 4px 18px rgba(0,0,0,0.2);
-        }
-        .btn-primary:hover {
-            background: var(--secondary-dark);
-            border-color: var(--secondary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.25);
-        }
-        .btn-outline-white {
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.65);
-        }
-        .btn-outline-white:hover {
-            background: rgba(255,255,255,0.14);
-            border-color: #fff;
-        }
+        .btn-primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); }
+        .btn-primary:hover { background: transparent; color: var(--accent-light); border-color: var(--accent-light); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
+        .btn-outline:hover { background: rgba(255,255,255,0.16); }
         .hero-scroll {
             position: absolute;
-            bottom: 32px;
+            bottom: 26px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            color: rgba(255,255,255,0.65);
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            font-size: 22px;
+            text-decoration: none;
+            animation: bounce 2s infinite;
         }
-        .hero-scroll::before {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 36px;
-            background: rgba(255,255,255,0.4);
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
+        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
 
-        /* =========================================================
-           STATS BAR
-           ========================================================= */
-        .stats-bar {
-            background: linear-gradient(100deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #fff;
-            padding: 44px 24px;
-        }
+        /* STATS */
+        .stats-bar { background: var(--primary); color: #fff; padding: 48px 20px; }
         .stats-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            text-align: center;
-        }
-        .stat-item {
-            padding: 12px 8px;
-            border-right: 1px solid rgba(255,255,255,0.12);
-        }
-        .stat-item:last-child { border-right: none; }
-        .stat-num {
-            font-size: 40px;
-            font-weight: 800;
-            color: var(--secondary);
-            line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-        .stat-label {
-            font-size: 13px;
-            opacity: 0.82;
-            letter-spacing: 0.3px;
-            font-weight: 500;
-        }
-
-        /* =========================================================
-           ABOUT SECTION
-           ========================================================= */
-        .about-section {
-            max-width: 1140px;
-            margin: 90px auto;
-            padding: 0 28px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-            align-items: center;
-        }
-        .about-text-col { order: 1; }
-        .about-img-col  { order: 2; }
-        .section-tag {
-            display: inline-block;
-            font-size: 11.5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            color: var(--secondary);
-            margin-bottom: 14px;
-        }
-        .about-text-col h2 {
-            font-size: clamp(28px, 3.5vw, 38px);
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 18px;
-            line-height: 1.18;
-        }
-        .about-text-col p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-bottom: 22px;
-        }
-        .highlights-list { list-style: none; margin-top: 6px; }
-        .highlights-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 9px 0;
-            font-size: 14px;
-            color: #444;
-            border-bottom: 1px solid #efefef;
-        }
-        .highlights-list li:last-child { border-bottom: none; }
-        .check {
-            color: var(--secondary);
-            font-weight: 800;
-            font-size: 16px;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .about-img-wrap {
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-        .about-img-wrap::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius-md);
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
-        }
-        .about-img-wrap img {
-            width: 100%;
-            height: 420px;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .about-img-wrap:hover img { transform: scale(1.04); }
-
-        /* =========================================================
-           SERVICES SECTION
-           ========================================================= */
-        .services-section {
-            background: var(--bg-light);
-            padding: 90px 28px;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-        .section-header h2 {
-            font-size: clamp(28px, 3.5vw, 38px);
-            font-weight: 800;
-            color: var(--primary);
-            margin-top: 10px;
-        }
-        .section-header p {
-            color: var(--text-muted);
-            margin-top: 14px;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 15px;
-        }
-        .services-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item { padding: 10px 0; }
+        .stat-num { font-size: 44px; font-weight: 800; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Poppins', serif; }
+        .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.5px; text-transform: uppercase; }
+
+        /* SECTION BASE */
+        .section-tag {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--teal);
+            margin-bottom: 14px;
+            font-family: 'Inter', sans-serif;
+        }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; color: var(--primary); }
+        .section-header p { color: var(--text-soft); margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+        /* ABOUT */
+        .about-section {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img-wrap {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 24px 60px color-mix(in srgb, var(--primary) 20%, transparent);
+            position: relative;
+        }
+        .about-img-wrap img { width: 100%; height: 440px; object-fit: cover; display: block; }
+        .about-img-badge {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .about-img-badge .stars { color: var(--accent); letter-spacing: 2px; }
+        .about-text h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--primary); margin-bottom: 18px; line-height: 1.15; }
+        .about-text p { color: var(--text-soft); font-size: 15px; margin-bottom: 20px; }
+        .highlights-list { list-style: none; margin-top: 10px; }
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text);
+            border-bottom: 1px solid color-mix(in srgb, var(--primary) 10%, #fff 90%);
+        }
+        .check { color: var(--teal); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+        /* SERVICES / TOURS */
+        .tours-section { background: var(--bg-soft); padding: 100px 24px; }
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 28px;
         }
-        .service-card {
+        .card {
             background: #fff;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            box-shadow: 0 4px 24px color-mix(in srgb, var(--primary) 8%, transparent);
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
         }
-        .service-card:hover {
-            transform: translateY(-7px);
-            box-shadow: var(--shadow-md);
+        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px color-mix(in srgb, var(--primary) 16%, transparent); }
+        .card-img-wrap { overflow: hidden; height: 210px; position: relative; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrap img { transform: scale(1.07); }
+        .card-tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: color-mix(in srgb, var(--primary) 92%, transparent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 20px;
         }
-        .service-img {
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
+        .card-body { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+        .card-title { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; flex: 1; }
+
+        /* GALLERY */
+        .gallery-section { padding: 100px 24px; }
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 14px;
         }
-        .service-img::after {
+        .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.28) 0%, transparent 60%);
+            background: linear-gradient(180deg, transparent 60%, color-mix(in srgb, var(--primary-dark) 55%, transparent) 100%);
+            opacity: 0;
             transition: opacity 0.3s;
         }
-        .service-card:hover .service-img::after { opacity: 0.5; }
-        .service-body { padding: 24px 26px 28px; flex: 1; }
-        .service-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        .service-desc {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            line-height: 1.65;
-        }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
 
-        /* =========================================================
-           CHATBOT SECTION
-           ========================================================= */
+        /* TESTIMONIALS */
+        .reviews-section { background: var(--bg-soft); padding: 100px 24px; }
+        .reviews-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 26px;
+        }
+        .review-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: 0 4px 24px color-mix(in srgb, var(--primary) 8%, transparent);
+            position: relative;
+        }
+        .review-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 14px;
+            right: 24px;
+            font-size: 72px;
+            font-family: Georgia, serif;
+            color: var(--accent);
+            opacity: 0.22;
+            line-height: 1;
+        }
+        .review-stars { color: var(--accent); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+        .review-text { font-size: 15px; color: var(--text-soft); font-style: italic; margin-bottom: 18px; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--teal));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+        .review-name { font-size: 14px; font-weight: 600; color: var(--primary); font-family: 'Inter', sans-serif; }
+        .review-origin { font-size: 12px; color: #93a4ab; font-family: 'Inter', sans-serif; }
+
+        /* CHATBOT PREVIEW */
         .chatbot-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 90px 28px;
+            padding: 100px 24px;
             color: #fff;
         }
         .chatbot-inner {
-            max-width: 1060px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 70px;
+            gap: 60px;
             align-items: center;
         }
-        .chatbot-text .section-tag { color: var(--secondary); }
-        .chatbot-text h2 {
-            font-size: clamp(26px, 3vw, 34px);
-            font-weight: 800;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-        .chatbot-text p {
-            opacity: 0.88;
-            margin-bottom: 22px;
-            font-size: 15px;
-        }
-        .chatbot-features { list-style: none; margin-bottom: 30px; }
+        .chatbot-text h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 700; margin-bottom: 16px; }
+        .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
+        .chatbot-features { list-style: none; margin-bottom: 28px; }
         .chatbot-features li {
             padding: 9px 0;
             font-size: 14px;
             display: flex;
-            align-items: flex-start;
             gap: 10px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.92;
         }
-        .chatbot-features li:last-child { border-bottom: none; }
-        .feat-icon { color: var(--secondary); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-
-        /* chat window */
         .chatbot-ui {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: var(--radius-md);
-            padding: 22px;
-            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 20px;
         }
-        .chatbot-win-header {
+        .chatbot-header {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 18px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.12);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
         }
-        .chatbot-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-        .chatbot-online { font-size: 12.5px; opacity: 0.85; }
-        .chatbot-online strong { display: block; font-size: 14px; opacity: 1; }
-        .status-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #4ade80;
-            margin-left: auto;
-            flex-shrink: 0;
-            animation: blink 1.6s infinite;
-        }
-        .chat-messages { display: flex; flex-direction: column; gap: 10px; }
+        .chatbot-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .chat-log { max-height: 260px; overflow-y: auto; scrollbar-width: thin; }
         .chat-bubble {
             background: rgba(255,255,255,0.12);
-            border-radius: 14px 14px 14px 2px;
+            border-radius: 12px 12px 12px 0;
             padding: 12px 16px;
-            font-size: 13px;
-            line-height: 1.55;
-            max-width: 90%;
-        }
-        .chat-user {
-            background: var(--secondary);
-            border-radius: 14px 14px 2px 14px;
-            padding: 11px 15px;
+            margin-bottom: 10px;
             font-size: 13px;
             line-height: 1.5;
-            align-self: flex-end;
-            max-width: 82%;
+            max-width: 90%;
+            animation: fadeInUp 0.35s ease-out;
         }
-        .chat-time {
-            font-size: 10px;
-            opacity: 0.5;
-            margin-top: 4px;
+        .chat-user {
+            background: var(--accent);
+            border-radius: 12px 12px 0 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-left: auto;
+            max-width: 80%;
+            text-align: right;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.35s ease-out;
         }
-        .chat-typing {
-            background: rgba(255,255,255,0.08);
-            border-radius: 14px 14px 14px 2px;
-            padding: 12px 18px;
-            font-size: 12px;
-            width: fit-content;
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-        .typing-dot {
-            width: 7px;
-            height: 7px;
+        .chat-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+        .chat-typing i {
+            width: 6px; height: 6px;
+            background: rgba(255,255,255,0.7);
             border-radius: 50%;
-            background: rgba(255,255,255,0.55);
-            animation: blink 1.2s infinite;
+            animation: blink 1s infinite;
+            font-style: normal;
         }
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        .chat-typing i:nth-child(2) { animation-delay: 0.2s; }
+        .chat-typing i:nth-child(3) { animation-delay: 0.4s; }
+        .chat-input { display: flex; gap: 8px; margin-top: 12px; }
+        .chat-input input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+        }
+        .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-input input:focus { outline: 1px solid var(--accent-light); }
+        .chat-send {
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .chat-send:hover { background: var(--accent-light); }
 
-        /* =========================================================
-           PRICING SECTION
-           ========================================================= */
-        .pricing-section {
-            padding: 90px 28px;
-            background: #fff;
-        }
+        /* PRICING */
+        .pricing-section { padding: 100px 24px; background: #fff; }
         .pricing-grid {
-            max-width: 1160px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 24px;
-            align-items: start;
         }
         .pricing-card {
-            border: 1.5px solid #e8e8e8;
-            border-radius: var(--radius-md);
-            padding: 34px 28px 32px;
+            border: 2px solid color-mix(in srgb, var(--primary) 14%, #fff 86%);
+            border-radius: var(--radius);
+            padding: 36px 28px;
             text-align: center;
-            transition: var(--transition);
+            transition: all 0.3s;
             position: relative;
-            background: #fff;
         }
-        .pricing-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-        }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px color-mix(in srgb, var(--primary) 12%, transparent); transform: translateY(-4px); }
         .pricing-card.featured {
-            border-color: var(--secondary);
-            background: linear-gradient(165deg, #fff 60%, color-mix(in srgb, var(--secondary) 6%, #fff) 100%);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 0 0 2px var(--secondary);
+            border-color: var(--accent);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, #fff 92%) 0%, #fff 100%);
             transform: scale(1.03);
         }
-        .pricing-card.featured:hover { transform: scale(1.03) translateY(-5px); }
-        .featured-badge {
+        .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+        .pricing-badge {
             position: absolute;
-            top: -14px;
+            top: -13px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--secondary);
+            background: var(--accent);
             color: #fff;
-            font-size: 10.5px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 4px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            padding: 5px 16px;
             border-radius: 20px;
             white-space: nowrap;
         }
-        .plan-name {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-        }
-        .plan-price {
-            font-size: 42px;
-            font-weight: 800;
-            color: var(--primary);
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-        .plan-price sup {
-            font-size: 22px;
-            font-weight: 700;
-            vertical-align: super;
-        }
-        .plan-price-note {
-            font-size: 12.5px;
-            color: var(--text-muted);
-            margin-bottom: 22px;
-        }
-        .plan-divider {
-            border: none;
-            border-top: 1px solid #efefef;
-            margin: 18px 0;
-        }
-        .plan-features { list-style: none; text-align: left; margin-bottom: 28px; }
-        .plan-features li {
-            font-size: 13.5px;
-            color: #444;
-            padding: 7px 0;
-            border-bottom: 1px solid #f3f3f3;
-            display: flex;
-            align-items: flex-start;
-            gap: 9px;
-        }
-        .plan-features li:last-child { border-bottom: none; }
-        .feat-check { color: var(--secondary); font-weight: 800; flex-shrink: 0; }
-        .btn-plan {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
+        .pricing-name { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
+        .pricing-price { font-size: 44px; font-weight: 800; color: var(--primary); margin-bottom: 4px; font-family: 'Poppins', serif; }
+        .pricing-period { font-size: 12px; color: #93a4ab; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; font-family: 'Inter', sans-serif; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 26px; }
+        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid color-mix(in srgb, var(--primary) 8%, #fff 92%); font-family: 'Inter', sans-serif; }
+        .pricing-btn {
             display: block;
-            text-align: center;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-        }
-        .btn-plan-outline {
-            background: transparent;
-            color: var(--primary);
-        }
-        .btn-plan-outline:hover {
+            width: 100%;
+            padding: 13px;
             background: var(--primary);
             color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
         }
-        .btn-plan-solid {
-            background: var(--secondary);
-            color: #fff;
-            border-color: var(--secondary);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        .pricing-btn:hover { background: var(--accent); }
+        .pricing-card.featured .pricing-btn { background: var(--accent); }
+        .pricing-card.featured .pricing-btn:hover { background: var(--primary); }
+        .pricing-notes {
+            max-width: 1100px;
+            margin: 36px auto 0;
+            display: grid;
+            gap: 10px;
         }
-        .btn-plan-solid:hover {
-            background: var(--secondary-dark);
-            border-color: var(--secondary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+        .pricing-note {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--bg-soft);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: var(--text-soft);
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
         }
+        .pricing-note strong { color: var(--primary); }
+        .pricing-note .note-icon { font-size: 16px; flex-shrink: 0; }
 
-        /* =========================================================
-           CTA SECTION
-           ========================================================= */
-        .cta-section {
-            background: linear-gradient(120deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 90px 28px;
-            text-align: center;
-            color: #fff;
-            position: relative;
+        /* FAQ */
+        .faq-section { background: var(--bg-soft); padding: 100px 24px; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px color-mix(in srgb, var(--primary) 6%, transparent);
             overflow: hidden;
         }
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            right: -80px;
-            width: 360px;
-            height: 360px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.04);
-        }
-        .cta-section::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -60px;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.04);
-        }
-        .cta-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
-        .cta-section h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 800;
-            margin-bottom: 16px;
-            line-height: 1.18;
-        }
-        .cta-section p {
+        .faq-item summary {
+            padding: 18px 22px;
             font-size: 16px;
-            opacity: 0.87;
-            margin-bottom: 36px;
-        }
-        .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-        .btn-white {
-            background: #fff;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
             color: var(--primary);
-            border: 2px solid #fff;
-            padding: 14px 34px;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 15px;
-            display: inline-block;
-            transition: var(--transition);
-        }
-        .btn-white:hover {
-            background: transparent;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-        .btn-outline-light {
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.5);
-            padding: 14px 34px;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 15px;
-            display: inline-block;
-            transition: var(--transition);
-        }
-        .btn-outline-light:hover {
-            border-color: #fff;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* =========================================================
-           FOOTER
-           ========================================================= */
-        .footer {
-            background: #0d1117;
-            color: rgba(255,255,255,0.75);
-            padding: 50px 28px 32px;
-        }
-        .footer-inner {
-            max-width: 1140px;
-            margin: 0 auto;
-        }
-        .footer-top {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 40px;
-        }
-        .footer-brand-name {
-            font-size: 20px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-        .footer-brand-tagline {
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .footer-contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-        .footer-contact-item a {
-            color: var(--secondary);
-            transition: opacity 0.2s;
-        }
-        .footer-contact-item a:hover { opacity: 0.8; }
-        .footer-col-title {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--secondary);
-            margin-bottom: 18px;
-        }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a {
-            color: rgba(255,255,255,0.65);
-            font-size: 13.5px;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover { color: #fff; }
-        .footer-divider {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            margin-bottom: 24px;
-        }
-        .footer-bottom {
+            cursor: pointer;
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
         }
-        .footer-copy { font-size: 12.5px; opacity: 0.6; }
-        .footer-experiences {
-            font-size: 12.5px;
-            opacity: 0.6;
-        }
-        .footer-experiences a {
-            color: var(--secondary);
-            opacity: 1;
-        }
-        .footer-experiences a:hover { opacity: 0.8; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); font-family: 'Inter', sans-serif; }
 
-        /* =========================================================
-           RESPONSIVE
-           ========================================================= */
-        @media (max-width: 1024px) {
-            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-card.featured { transform: scale(1); }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 100%);
+            padding: 100px 24px;
+            text-align: center;
+            color: #fff;
         }
+        .cta-section h2 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 700; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-btns .btn-white {
+            background: #fff;
+            color: var(--primary);
+            padding: 15px 38px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .cta-btns .btn-ghost {
+            background: transparent;
+            color: #fff;
+            padding: 15px 38px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .about-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                margin: 60px auto;
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 46px 24px;
+            text-align: center;
+            font-size: 13px;
+        }
+        footer a { color: var(--accent-light); text-decoration: none; }
+        footer strong { color: #fff; }
+
+        /* FLOATING WHATSAPP */
+        .wa-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 300;
+            background: #25d366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+            transition: transform 0.2s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+
+        /* ANIMATIONS
+           Le animazioni d'ingresso e di scroll sono gestite via GSAP (vedi <script> in fondo),
+           con ScrollTrigger per i reveal e gsap.matchMedia() per rispettare prefers-reduced-motion.
+           Gli stati iniziali "nascosti" sono vincolati a .gsap-enabled: se JS o la CDN GSAP
+           non caricano, la classe viene rimossa e tutti i contenuti restano visibili. */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gsap-enabled .hero-content { visibility: hidden; }
+        .gsap-enabled .reveal { opacity: 0; will-change: transform, opacity; }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 18px 24px 24px;
+                gap: 16px;
+                box-shadow: 0 14px 24px rgba(0,0,0,0.1);
             }
-            .about-img-col { order: -1; }
-            .about-img-wrap img { height: 300px; }
+            .nav-links.open { display: flex; }
+            .about-section { grid-template-columns: 1fr; gap: 30px; margin: 60px auto; }
             .chatbot-inner { grid-template-columns: 1fr; gap: 40px; }
-            .stats-inner { grid-template-columns: repeat(2, 1fr); }
-            .stat-item:nth-child(2) { border-right: none; }
-            .stat-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
-            .stat-item:last-child { border-bottom: none; }
-            .services-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
             .pricing-card.featured { transform: none; }
-            .footer-top { grid-template-columns: 1fr; gap: 32px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; }
-        }
-
-        @media (max-width: 480px) {
-            .stats-inner { grid-template-columns: 1fr; }
-            .stat-item { border-right: none; }
-            .hero-btns { flex-direction: column; align-items: center; }
+            .hero { min-height: 80vh; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- DEMO BANNER -->
-    <div class="demo-banner">
-        🚀 Questo è un <strong>DEMO</strong> realizzato da <a href="https://www.experiences.srl" target="_blank">Experiences Srl</a>
-        — Chatbot AI &amp; siti web per tour operator &amp; DMC italiani.
-        <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp →</a>
+<div class="demo-banner">
+    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
+</div>
+
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">{{COMPANY_NAME}}</div>
+        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#tours">Servizi</a></li>
+            <li><a href="#gallery">Galleria</a></li>
+            <li><a href="#reviews">Recensioni</a></li>
+            <li><a href="#pricing">Piani</a></li>
+            <li><a href="#contact" class="btn-cta">Contattaci</a></li>
+        </ul>
     </div>
+</nav>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="nav-inner">
-            <div class="nav-brand">
-                <span class="nav-logo">{{COMPANY_NAME}}</span>
-                <span class="nav-badge">Demo Experiences</span>
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">★ {{COMPANY_CATEGORY}} · {{CITTA}}</div>
+        <h1>{{COMPANY_NAME}}</h1>
+        <p>{{COMPANY_TAGLINE}}</p>
+        <div class="hero-btns">
+            <a href="#tours" class="btn btn-primary">Scopri i Servizi</a>
+            <a href="#contact" class="btn btn-outline">{{CTA_TEXT}}</a>
+        </div>
+    </div>
+    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
+</section>
+
+<div class="stats-bar" id="stats">
+    <div class="stats-inner">
+        <div class="stat-item reveal">
+            <div class="stat-num">{{STAT1_NUM}}</div>
+            <div class="stat-label">{{STAT1_LABEL}}</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-num">{{STAT2_NUM}}</div>
+            <div class="stat-label">{{STAT2_LABEL}}</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-num">{{STAT3_NUM}}</div>
+            <div class="stat-label">{{STAT3_LABEL}}</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-num">{{STAT4_NUM}}</div>
+            <div class="stat-label">{{STAT4_LABEL}}</div>
+        </div>
+    </div>
+</div>
+
+<section class="about-section reveal" id="about">
+    <div class="about-img-wrap">
+        <img src="{{ABOUT_IMAGE_URL}}" alt="{{COMPANY_NAME}} - {{COMPANY_CATEGORY}}">
+        <div class="about-img-badge"><span class="stars">★★★★★</span><br>{{CITTA}} · {{COMPANY_CATEGORY}}</div>
+    </div>
+    <div class="about-text">
+        <div class="section-tag">Chi Siamo</div>
+        <h2>{{COMPANY_NAME}}</h2>
+        <p>{{COMPANY_DESCRIPTION}}</p>
+        <ul class="highlights-list">
+            <li><span class="check">✓</span> {{HIGHLIGHT1}}</li>
+            <li><span class="check">✓</span> {{HIGHLIGHT2}}</li>
+            <li><span class="check">✓</span> {{HIGHLIGHT3}}</li>
+            <li><span class="check">✓</span> {{HIGHLIGHT4}}</li>
+            <li><span class="check">✓</span> {{HIGHLIGHT5}}</li>
+        </ul>
+    </div>
+</section>
+
+<section class="tours-section" id="tours">
+    <div class="section-header reveal">
+        <div class="section-tag">I Nostri Servizi</div>
+        <h2>Esperienze da Vivere</h2>
+        <p>Soluzioni curate nei minimi dettagli, pensate per ogni viaggiatore e ogni gruppo.</p>
+    </div>
+    <div class="cards-grid">
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="{{SERVICE1_IMG}}" alt="{{SERVICE1_TITLE}}" loading="lazy">
+                <div class="card-tag">Bestseller</div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#chi-siamo">Chi siamo</a></li>
-                <li><a href="#servizi">Servizi</a></li>
-                <li><a href="#chatbot">Chatbot AI</a></li>
-                <li><a href="#prezzi">Piani</a></li>
-                <li>
-                    <a href="https://wa.me/393926917657" target="_blank" class="btn-nav-cta">
-                        Richiedi un Preventivo
-                    </a>
-                </li>
+            <div class="card-body">
+                <h3 class="card-title">{{SERVICE1_TITLE}}</h3>
+                <p class="card-desc">{{SERVICE1_DESC}}</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="{{SERVICE2_IMG}}" alt="{{SERVICE2_TITLE}}" loading="lazy">
+                <div class="card-tag">Più Richiesto</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{SERVICE2_TITLE}}</h3>
+                <p class="card-desc">{{SERVICE2_DESC}}</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="{{SERVICE3_IMG}}" alt="{{SERVICE3_TITLE}}" loading="lazy">
+                <div class="card-tag">Su Misura</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{SERVICE3_TITLE}}</h3>
+                <p class="card-desc">{{SERVICE3_DESC}}</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="{{SERVICE4_IMG}}" alt="{{SERVICE4_TITLE}}" loading="lazy">
+                <div class="card-tag">Qualità</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{SERVICE4_TITLE}}</h3>
+                <p class="card-desc">{{SERVICE4_DESC}}</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="{{SERVICE5_IMG}}" alt="{{SERVICE5_TITLE}}" loading="lazy">
+                <div class="card-tag">Gruppi</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{SERVICE5_TITLE}}</h3>
+                <p class="card-desc">{{SERVICE5_DESC}}</p>
+            </div>
+        </div>
+        <div class="card reveal">
+            <div class="card-img-wrap">
+                <img src="{{SERVICE6_IMG}}" alt="{{SERVICE6_TITLE}}" loading="lazy">
+                <div class="card-tag">Assistenza</div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{SERVICE6_TITLE}}</h3>
+                <p class="card-desc">{{SERVICE6_DESC}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+        <div class="section-tag">Galleria</div>
+        <h2>Attimi dalle Nostre Esperienze</h2>
+        <p>Panorami, itinerari e momenti che restano nel cuore di ogni viaggiatore.</p>
+    </div>
+    <div class="gallery-grid reveal">
+        <div class="gallery-item wide"><img src="{{HERO_IMAGE_URL}}" alt="{{COMPANY_NAME}}" loading="lazy"></div>
+        <div class="gallery-item"><img src="{{ABOUT_IMAGE_URL}}" alt="{{COMPANY_NAME}}" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="{{SERVICE1_IMG}}" alt="{{SERVICE1_TITLE}}" loading="lazy"></div>
+        <div class="gallery-item"><img src="{{SERVICE2_IMG}}" alt="{{SERVICE2_TITLE}}" loading="lazy"></div>
+        <div class="gallery-item"><img src="{{SERVICE3_IMG}}" alt="{{SERVICE3_TITLE}}" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="{{SERVICE4_IMG}}" alt="{{SERVICE4_TITLE}}" loading="lazy"></div>
+    </div>
+</section>
+
+<section class="reviews-section" id="reviews">
+    <div class="section-header reveal">
+        <div class="section-tag">Recensioni</div>
+        <h2>La Voce dei Viaggiatori</h2>
+        <p>Tanti viaggiatori hanno scelto {{COMPANY_NAME}} per le loro esperienze.</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Esperienza fantastica dall'inizio alla fine. Staff gentilissimo, organizzazione impeccabile e attenzione ad ogni dettaglio. Consigliatissimo!"</p>
+            <div class="review-author">
+                <div class="review-avatar">LR</div>
+                <div>
+                    <div class="review-name">Laura R.</div>
+                    <div class="review-origin">Milano</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Best experience of our trip. Professional guides, great communication in English and everything ran exactly on schedule. Highly recommended!"</p>
+            <div class="review-author">
+                <div class="review-avatar">JM</div>
+                <div>
+                    <div class="review-name">James M.</div>
+                    <div class="review-origin">London</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Servizio molto curato, guida preparatissima e disponibile con tutta la famiglia. Tutto puntuale e ben organizzato. Torneremo sicuramente!"</p>
+            <div class="review-author">
+                <div class="review-avatar">FG</div>
+                <div>
+                    <div class="review-name">Famiglia G.</div>
+                    <div class="review-origin">Torino</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chatbot-section" id="chatbot">
+    <div class="chatbot-inner">
+        <div class="chatbot-text reveal">
+            <h2>Assistente AI 24/7</h2>
+            <p>Con Experiences Srl, il vostro sito risponde ai viaggiatori in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
+            <ul class="chatbot-features">
+                <li>🌍 <span>Assistenza multilingua istantanea</span></li>
+                <li>📅 <span>Disponibilità e richieste di prenotazione</span></li>
+                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
+                <li>🎫 <span>Integrazione con sistema di booking</span></li>
+                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
             </ul>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-glass-badge">
-                <span></span>
-                {{COMPANY_CATEGORY}}
+        <div class="chatbot-ui reveal">
+            <div class="chatbot-header">
+                <div class="chatbot-dot"></div>
+                <span style="font-size:14px; font-weight:600;">Assistente AI · {{COMPANY_NAME}}</span>
             </div>
-            <h1>{{COMPANY_NAME}}<br><em>{{COMPANY_TAGLINE}}</em></h1>
-            <p class="hero-tagline">{{COMPANY_DESCRIPTION}}</p>
-            <div class="hero-btns">
-                <a href="https://wa.me/393926917657" target="_blank" class="btn btn-primary">
-                    Richiedi Preventivo
-                </a>
-                <a href="#servizi" class="btn btn-outline-white">Scopri i Servizi</a>
+            <div class="chat-log" id="chatLog">
+                <div class="chat-bubble">{{CHATBOT_GREETING}}</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Prova: organizzate gite di gruppo?" aria-label="Scrivi un messaggio">
+                <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
-        <div class="hero-scroll">scroll</div>
-    </section>
+    </div>
+</section>
 
-    <!-- STATS BAR -->
-    <section class="stats-bar">
-        <div class="stats-inner">
-            <div class="stat-item">
-                <div class="stat-num">{{STAT1_NUM}}</div>
-                <div class="stat-label">{{STAT1_LABEL}}</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">{{STAT2_NUM}}</div>
-                <div class="stat-label">{{STAT2_LABEL}}</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">{{STAT3_NUM}}</div>
-                <div class="stat-label">{{STAT3_LABEL}}</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num">{{STAT4_NUM}}</div>
-                <div class="stat-label">{{STAT4_LABEL}}</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about-section" id="chi-siamo">
-        <div class="about-text-col">
-            <span class="section-tag">Chi siamo</span>
-            <h2>{{COMPANY_NAME}}</h2>
-            <p>{{COMPANY_DESCRIPTION}}</p>
-            <ul class="highlights-list">
-                <li><span class="check">✓</span> {{HIGHLIGHT1}}</li>
-                <li><span class="check">✓</span> {{HIGHLIGHT2}}</li>
-                <li><span class="check">✓</span> {{HIGHLIGHT3}}</li>
-                <li><span class="check">✓</span> {{HIGHLIGHT4}}</li>
-                <li><span class="check">✓</span> {{HIGHLIGHT5}}</li>
+<section class="pricing-section" id="pricing">
+    <div class="section-header reveal">
+        <div class="section-tag">Piani Experiences Srl</div>
+        <h2>Soluzioni su Misura per il Vostro Business</h2>
+        <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Base</div>
+            <div class="pricing-price">€500</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 5% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sito mobile-optimized</span></li>
+                <li>✓ <span>SEO base e Google My Business</span></li>
+                <li>✓ <span>Catalogo servizi e modulo richieste</span></li>
+                <li>✓ <span>Integrazione social</span></li>
+                <li>✓ <span>Supporto tecnico email</span></li>
             </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
         </div>
-        <div class="about-img-col">
-            <div class="about-img-wrap">
-                <img src="{{ABOUT_IMAGE_URL}}" alt="{{COMPANY_NAME}} — {{COMPANY_CATEGORY}}">
-            </div>
+        <div class="pricing-card featured reveal">
+            <div class="pricing-badge">⭐ Più Scelto</div>
+            <div class="pricing-name">Piano Pro</div>
+            <div class="pricing-price">€1.000</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 8% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Base</span></li>
+                <li>✓ <span>Chatbot AI 24/7</span></li>
+                <li>✓ <span>Sistema di booking online</span></li>
+                <li>✓ <span>Google Ads gestiti</span></li>
+                <li>✓ <span>Report mensile</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
         </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="services-section" id="servizi">
-        <div class="section-header">
-            <span class="section-tag">I Nostri Servizi</span>
-            <h2>Esperienze su Misura<br>per Ogni Esigenza</h2>
-            <p>Soluzioni professionali per agenzie, tour operator e viaggiatori individuali nel cuore del Sud Italia.</p>
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Piano Premium</div>
+            <div class="pricing-price">€1.400</div>
+            <div class="pricing-period">/anno</div>
+            <div class="pricing-commission">+ 10% di commissione</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Tutto del Piano Pro</span></li>
+                <li>✓ <span>Channel Manager OTA</span></li>
+                <li>✓ <span>Integrazione GetYourGuide / Viator</span></li>
+                <li>✓ <span>Account manager dedicato</span></li>
+                <li>✓ <span>Supporto H24</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
         </div>
-        <div class="services-grid">
-
-            <div class="service-card">
-                <div class="service-img" style="background-image: url('{{SERVICE1_IMG}}');"></div>
-                <div class="service-body">
-                    <div class="service-title">{{SERVICE1_TITLE}}</div>
-                    <div class="service-desc">{{SERVICE1_DESC}}</div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img" style="background-image: url('{{SERVICE2_IMG}}');"></div>
-                <div class="service-body">
-                    <div class="service-title">{{SERVICE2_TITLE}}</div>
-                    <div class="service-desc">{{SERVICE2_DESC}}</div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img" style="background-image: url('{{SERVICE3_IMG}}');"></div>
-                <div class="service-body">
-                    <div class="service-title">{{SERVICE3_TITLE}}</div>
-                    <div class="service-desc">{{SERVICE3_DESC}}</div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img" style="background-image: url('{{SERVICE4_IMG}}');"></div>
-                <div class="service-body">
-                    <div class="service-title">{{SERVICE4_TITLE}}</div>
-                    <div class="service-desc">{{SERVICE4_DESC}}</div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img" style="background-image: url('{{SERVICE5_IMG}}');"></div>
-                <div class="service-body">
-                    <div class="service-title">{{SERVICE5_TITLE}}</div>
-                    <div class="service-desc">{{SERVICE5_DESC}}</div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img" style="background-image: url('{{SERVICE6_IMG}}');"></div>
-                <div class="service-body">
-                    <div class="service-title">{{SERVICE6_TITLE}}</div>
-                    <div class="service-desc">{{SERVICE6_DESC}}</div>
-                </div>
-            </div>
-
+    </div>
+    <div class="pricing-notes reveal">
+        <div class="pricing-note">
+            <span class="note-icon">ℹ️</span>
+            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra attività. Contattateci per individuare insieme la soluzione più conveniente.</span>
         </div>
-    </section>
-
-    <!-- CHATBOT -->
-    <section class="chatbot-section" id="chatbot">
-        <div class="chatbot-inner">
-            <div class="chatbot-text">
-                <span class="section-tag">Chatbot AI</span>
-                <h2>Il Tuo Assistente Virtuale<br>Sempre Disponibile</h2>
-                <p>
-                    Un chatbot intelligente integrato nel tuo sito risponde ai clienti 24/7,
-                    raccoglie richieste di preventivo e gestisce le domande frequenti —
-                    in italiano, inglese e nelle principali lingue europee.
-                </p>
-                <ul class="chatbot-features">
-                    <li>
-                        <span class="feat-icon">●</span>
-                        Risponde alle FAQ su tour, trasferimenti e disponibilità
-                    </li>
-                    <li>
-                        <span class="feat-icon">●</span>
-                        Raccoglie dati di contatto e richieste di preventivo
-                    </li>
-                    <li>
-                        <span class="feat-icon">●</span>
-                        Multilingua: IT, EN, DE, FR, ES, PT e altre lingue
-                    </li>
-                    <li>
-                        <span class="feat-icon">●</span>
-                        Integrazione con WhatsApp e CRM esistenti
-                    </li>
-                    <li>
-                        <span class="feat-icon">●</span>
-                        Personalizzato con la tua identità e i tuoi servizi
-                    </li>
-                </ul>
-                <a href="https://wa.me/393926917657" target="_blank" class="btn btn-primary">
-                    Scopri il Chatbot AI
-                </a>
-            </div>
-            <div class="chatbot-ui">
-                <div class="chatbot-win-header">
-                    <div class="chatbot-avatar">🤖</div>
-                    <div class="chatbot-online">
-                        <strong>{{COMPANY_NAME}} AI</strong>
-                        Assistente Virtuale
-                    </div>
-                    <div class="status-dot"></div>
-                </div>
-                <div class="chat-messages">
-                    <div class="chat-bubble">
-                        {{CHATBOT_GREETING}}
-                        <div class="chat-time">Adesso</div>
-                    </div>
-                    <div class="chat-user">
-                        Ciao! Vorrei organizzare un tour privato per 12 persone a Pompei e sulla Costiera Amalfitana per la prossima settimana.
-                        <div class="chat-time">Adesso</div>
-                    </div>
-                    <div class="chat-bubble">
-                        Ottima scelta! Posso prepararti un itinerario su misura con guida privata, trasferimento in minivan e pranzo incluso. Quanti giorni avete a disposizione? 🗺️
-                        <div class="chat-time">Adesso</div>
-                    </div>
-                    <div class="chat-typing">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                    </div>
-                </div>
-            </div>
+        <div class="pricing-note">
+            <span class="note-icon">🔗</span>
+            <span><strong>Channel Manager:</strong> suggeriamo noi un Channel Manager, ma potete indicarci quello che già utilizzate o sceglierne uno di vostra preferenza. I costi del Channel Manager sono a carico del cliente.</span>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- PRICING -->
-    <section class="pricing-section" id="prezzi">
-        <div class="section-header">
-            <span class="section-tag">Piani Experiences Srl</span>
-            <h2>Soluzioni Digitali<br>per Tour Operator</h2>
-            <p>Chatbot AI, sito web professionale e strumenti di marketing per far crescere il tuo business. Attivazione in 48h.</p>
-        </div>
-        <div class="pricing-grid">
+<section class="faq-section" id="faq">
+    <div class="section-header reveal">
+        <div class="section-tag">Domande Frequenti</div>
+        <h2>FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+        <details class="faq-item">
+            <summary>Quanto costa realizzare un sito come questo?</summary>
+            <p>I piani Experiences Srl partono da €500/anno e includono realizzazione, hosting, manutenzione e supporto. Questa demo è gratuita e senza impegno: contattateci su WhatsApp per una proposta personalizzata.</p>
+        </details>
+        <details class="faq-item">
+            <summary>In quanto tempo il sito sarà online?</summary>
+            <p>Il sito base è pronto in 7-10 giorni lavorativi. Con chatbot AI e sistema di booking integrato servono circa 2-3 settimane, inclusi i test e la formazione del vostro staff.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Il chatbot AI risponde davvero ai clienti?</summary>
+            <p>Sì: viene addestrato sulle informazioni della vostra attività (servizi, prezzi, orari, policy) e risponde 24/7 in più lingue, riducendo fino al 70% delle email e dei messaggi ripetitivi.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Posso gestire le prenotazioni online?</summary>
+            <p>Con i piani Pro e Premium integriamo un sistema di booking con calendario disponibilità, pagamenti online e, per il Premium, la sincronizzazione con portali come GetYourGuide e Viator.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Cosa include l'assistenza?</summary>
+            <p>Tutti i piani includono aggiornamenti, backup e supporto tecnico. I piani Pro e Premium aggiungono report mensili e, per il Premium, un account manager dedicato raggiungibile H24.</p>
+        </details>
+    </div>
+</section>
 
-            <!-- Advanced -->
-            <div class="pricing-card">
-                <div class="plan-name">Advanced</div>
-                <div class="plan-price"><sup>€</sup>500<span style="font-size:16px;">/anno</span></div>
-                <div class="plan-price-note">IVA esclusa · + 5% commissione vendite</div>
-                <hr class="plan-divider">
-                <ul class="plan-features">
-                    <li><span class="feat-check">✓</span> Chatbot AI base</li>
-                    <li><span class="feat-check">✓</span> Landing page professionale</li>
-                    <li><span class="feat-check">✓</span> Fino a 5 servizi configurati</li>
-                    <li><span class="feat-check">✓</span> Integrazione WhatsApp</li>
-                    <li><span class="feat-check">✓</span> Supporto 30 giorni</li>
-                </ul>
-                <a href="https://wa.me/393926917657" target="_blank" class="btn-plan btn-plan-outline">
-                    Richiedi Info
-                </a>
-            </div>
+<section class="cta-section" id="contact">
+    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <p>Questa demo mostra come potrebbe essere il sito del vostro tour operator o DMC. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra attività.</p>
+    <div class="cta-btns">
+        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
+        <a href="mailto:{{COMPANY_EMAIL}}" class="btn-ghost">📧 Email</a>
+    </div>
+    <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Inter',sans-serif;">Experiences Srl · +39 392 691 7657</p>
+</section>
 
-            <!-- Pro — featured -->
-            <div class="pricing-card featured">
-                <div class="featured-badge">⭐ Più Scelto</div>
-                <div class="plan-name">Pro</div>
-                <div class="plan-price"><sup>€</sup>1.000<span style="font-size:16px;">/anno</span></div>
-                <div class="plan-price-note">IVA esclusa · + 8% commissione vendite</div>
-                <hr class="plan-divider">
-                <ul class="plan-features">
-                    <li><span class="feat-check">✓</span> Chatbot AI avanzato + FAQ</li>
-                    <li><span class="feat-check">✓</span> Sito web multi-sezione</li>
-                    <li><span class="feat-check">✓</span> Fino a 12 servizi configurati</li>
-                    <li><span class="feat-check">✓</span> Multilingua (3 lingue)</li>
-                    <li><span class="feat-check">✓</span> Form preventivo integrato</li>
-                    <li><span class="feat-check">✓</span> Supporto 90 giorni</li>
-                </ul>
-                <a href="https://wa.me/393926917657" target="_blank" class="btn-plan btn-plan-solid">
-                    Inizia Ora
-                </a>
-            </div>
+<footer>
+    <p>© 2026 <strong>{{COMPANY_NAME}}</strong> · Demo realizzato da <a href="https://naplesexperiences.com" target="_blank"><strong>Experiences Srl</strong></a></p>
+    <p style="margin-top:8px;">
+        <a href="https://wa.me/393926917657" target="_blank">+39 392 691 7657</a> ·
+        <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a> ·
+        <a href="https://naplesexperiences.com" target="_blank">naplesexperiences.com</a>
+    </p>
+    <p style="margin-top:8px; font-size:11px; opacity:0.5;">Rispondi con "CANCELLA" per non ricevere ulteriori comunicazioni</p>
+</footer>
 
-            <!-- Base -->
-            <div class="pricing-card">
-                <div class="plan-name">Base</div>
-                <div class="plan-price"><sup>€</sup>1.400<span style="font-size:16px;">/anno</span></div>
-                <div class="plan-price-note">IVA esclusa · + 10% commissione vendite</div>
-                <hr class="plan-divider">
-                <ul class="plan-features">
-                    <li><span class="feat-check">✓</span> Tutto del piano Pro</li>
-                    <li><span class="feat-check">✓</span> SEO locale avanzato</li>
-                    <li><span class="feat-check">✓</span> Multilingua (5 lingue)</li>
-                    <li><span class="feat-check">✓</span> Blog / News section</li>
-                    <li><span class="feat-check">✓</span> Integrazione Google Analytics</li>
-                    <li><span class="feat-check">✓</span> Supporto 180 giorni</li>
-                </ul>
-                <a href="https://wa.me/393926917657" target="_blank" class="btn-plan btn-plan-outline">
-                    Richiedi Info
-                </a>
-            </div>
-    </section>
+<a href="https://wa.me/393926917657" class="wa-float" target="_blank" aria-label="Contattaci su WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="cta-inner">
-            <h2>{{CTA_TEXT}}</h2>
-            <p>
-                Scopri come un chatbot AI e un sito professionale possono aumentare
-                le tue prenotazioni e far crescere il tuo business come tour operator.
-            </p>
-            <div class="cta-btns">
-                <a href="https://wa.me/393926917657" target="_blank" class="btn-white">
-                    Contattaci su WhatsApp
-                </a>
-                <a href="mailto:{{COMPANY_EMAIL}}" class="btn-outline-light">
-                    Invia una Email
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- GSAP (GreenSock) — animazioni performanti. CDN pubblica jsDelivr (npm gsap, include SplitText). -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>
+(function () {
+    var html = document.documentElement;
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div>
-                    <div class="footer-brand-name">{{COMPANY_NAME}}</div>
-                    <div class="footer-brand-tagline">{{COMPANY_CATEGORY}} — {{COMPANY_TAGLINE}}</div>
-                    <div class="footer-contact-item">
-                        📧 <a href="mailto:{{COMPANY_EMAIL}}">{{COMPANY_EMAIL}}</a>
-                    </div>
-                    <div class="footer-contact-item">
-                        🌐 <a href="{{COMPANY_URL}}" target="_blank">{{COMPANY_URL}}</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="footer-col-title">Servizi</div>
-                    <ul class="footer-links">
-                        <li><a href="#servizi">{{SERVICE1_TITLE}}</a></li>
-                        <li><a href="#servizi">{{SERVICE2_TITLE}}</a></li>
-                        <li><a href="#servizi">{{SERVICE3_TITLE}}</a></li>
-                        <li><a href="#servizi">{{SERVICE4_TITLE}}</a></li>
-                        <li><a href="#servizi">{{SERVICE5_TITLE}}</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">Experiences Srl</div>
-                    <ul class="footer-links">
-                        <li><a href="https://www.experiences.srl" target="_blank">Il Nostro Sito</a></li>
-                        <li><a href="https://wa.me/393926917657" target="_blank">WhatsApp</a></li>
-                        <li><a href="#chatbot">Chatbot AI</a></li>
-                        <li><a href="#prezzi">Piani &amp; Prezzi</a></li>
-                        <li><a href="mailto:naplesexperiences@gmail.com">Contattaci</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="footer-divider">
-            <div class="footer-bottom">
-                <div class="footer-copy">
-                    © 2025 {{COMPANY_NAME}} · Tutti i diritti riservati
-                </div>
-                <div class="footer-experiences">
-                    Demo realizzato da <a href="https://www.experiences.srl" target="_blank">Experiences Srl</a>
-                    — Soluzioni digitali per il turismo italiano
-                </div>
-            </div>
-        </div>
-    </footer>
+    // ---- Menu mobile (indipendente da GSAP) ----
+    var navToggle = document.querySelector('.nav-toggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function () {
+        var open = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // ---- Animazioni GSAP ----
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        var hasSplit = !!window.SplitText;
+        if (hasSplit) gsap.registerPlugin(SplitText);
+        gsap.defaults({ ease: 'power3.out', duration: 0.8 });
+
+        // matchMedia: rispetta prefers-reduced-motion (best practice GSAP per l'accessibilità)
+        gsap.matchMedia().add({
+            motion: '(prefers-reduced-motion: no-preference)',
+            reduce: '(prefers-reduced-motion: reduce)'
+        }, function (ctx) {
+            var split;
+
+            if (ctx.conditions.reduce) {
+                // Nessun movimento: rendi tutto visibile immediatamente
+                gsap.set('.hero-content', { visibility: 'visible' });
+                gsap.set('.reveal', { autoAlpha: 1, y: 0 });
+                return;
+            }
+
+            // HERO — timeline d'ingresso (from()/immediateRender evita il flash di contenuto)
+            gsap.set('.hero-content', { visibility: 'visible' });
+            var heroTl = gsap.timeline({ defaults: { duration: 0.9, ease: 'power3.out' } });
+            heroTl.from('.hero-badge', { autoAlpha: 0, y: 22 });
+            if (hasSplit) {
+                split = SplitText.create('.hero-content h1', { type: 'words, chars', aria: 'auto' });
+                heroTl.from(split.chars, { autoAlpha: 0, yPercent: 80, stagger: 0.025, duration: 0.6 }, '-=0.5');
+            } else {
+                heroTl.from('.hero-content h1', { autoAlpha: 0, y: 30 }, '-=0.5');
+            }
+            heroTl.from('.hero-content p', { autoAlpha: 0, y: 20 }, '-=0.4')
+                  .from('.hero-btns', { autoAlpha: 0, y: 20 }, '-=0.55')
+                  .from('.hero-scroll', { autoAlpha: 0 }, '-=0.3');
+
+            // HERO background — parallasse + zoom legati allo scroll (transform only, performante)
+            gsap.fromTo('.hero-bg',
+                { scale: 1.05, yPercent: 0 },
+                { scale: 1.16, yPercent: 12, ease: 'none',
+                  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+            // REVEAL allo scroll — batch con stagger (alternativa efficiente a IntersectionObserver)
+            gsap.set('.reveal', { y: 36 });
+            ScrollTrigger.batch('.reveal', {
+                start: 'top 86%',
+                onEnter: function (els) {
+                    gsap.to(els, { autoAlpha: 1, y: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out', overwrite: true });
+                }
+            });
+
+            // Cleanup automatico di matchMedia: ripristina anche lo split del titolo
+            return function () { if (split) split.revert(); };
+        });
+    } else {
+        // GSAP non disponibile (es. CDN bloccata): mostra tutti i contenuti
+        html.classList.remove('gsap-enabled');
+    }
+
+    // ---- Chatbot demo con risposte predefinite (generiche, nessun prezzo o tour specifico) ----
+    var chatLog = document.getElementById('chatLog');
+    var chatInput = document.getElementById('chatInput');
+    var chatSend = document.getElementById('chatSend');
+    var replies = [
+        { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'I prezzi variano in base al servizio scelto, al numero di persone e alla stagione. 💶 Ditemi cosa vi interessa e vi prepariamo un preventivo su misura, senza impegno.' },
+        { keys: ['disponibil', 'prenot', 'data', 'book', 'quando'], text: 'Verifico subito la disponibilità! 📅 Indicatemi date, numero di persone e il servizio di vostro interesse: vi rispondiamo a breve con i dettagli.' },
+        { keys: ['gruppo', 'gruppi', 'famigl', 'incentive', 'azien'], text: 'Organizziamo esperienze anche per gruppi, famiglie ed eventi aziendali/incentive. 👨‍👩‍👧‍👦 Quante persone siete e cosa avete in mente? Vi prepariamo una proposta su misura.' },
+        { keys: ['privat', 'su misura', 'personalizz'], text: 'Possiamo costruire un’esperienza privata su misura per voi, con itinerario e servizi personalizzati. ⭐ Raccontatemi le vostre esigenze e vi facciamo una proposta.' },
+        { keys: ['transfer', 'hotel', 'pickup', 'arrivare', 'come si'], text: 'Offriamo anche servizi di transfer e trasporto su richiesta. 🚐 Da dove partireste e qual è la vostra destinazione?' },
+        { keys: ['lingua', 'inglese', 'english', 'francese', 'tedesc', 'multilingu'], text: 'Il nostro team e le nostre guide parlano più lingue, tra cui italiano e inglese. 🌍 In quale lingua preferite essere assistiti?' },
+        { keys: ['cancella', 'rimbors', 'annull'], text: 'Le condizioni di cancellazione e rimborso variano in base al servizio prenotato. ✅ Scrivetemi i dettagli della vostra prenotazione e vi indichiamo la policy applicabile.' },
+        { keys: ['dove', 'partenza', 'punto di incontro', 'luogo'], text: 'Le nostre esperienze partono da {{CITTA}} e dintorni. 📍 Vi confermiamo il punto di incontro esatto al momento della prenotazione.' },
+        { keys: ['guid', 'accompagnator'], text: 'Tutte le nostre esperienze sono curate da guide e accompagnatori qualificati. 🧭 Su quale servizio vorreste maggiori informazioni?' }
+    ];
+    function botReply(userText) {
+        var lower = userText.toLowerCase();
+        var match = replies.find(function (r) { return r.keys.some(function (k) { return lower.indexOf(k) !== -1; }); });
+        return match ? match.text : 'Ottima domanda! 😊 Un membro del nostro staff vi risponderà subito. Nel sito reale, l\'AI è addestrata su tutti i servizi e le informazioni dell\'attività — chiedi a Experiences Srl una demo completa!';
+    }
+    function appendBubble(cls, html) {
+        var div = document.createElement('div');
+        div.className = cls;
+        div.innerHTML = html;
+        chatLog.appendChild(div);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return div;
+    }
+    function sendChat() {
+        var text = chatInput.value.trim();
+        if (!text) return;
+        chatInput.value = '';
+        appendBubble('chat-user', text.replace(/</g, '&lt;'));
+        var typing = appendBubble('chat-bubble', '<span class="chat-typing"><i></i><i></i><i></i></span>');
+        setTimeout(function () {
+            typing.innerHTML = botReply(text);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }, 900);
+    }
+    chatSend.addEventListener('click', sendChat);
+    chatInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendChat(); });
+})();
+</script>
 
 </body>
 </html>
