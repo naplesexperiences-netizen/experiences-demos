@@ -1,6 +1,6 @@
 {
   "_readme": "QUESTO È L'UNICO FILE DI RESUME AUTORITATIVO. Gli altri file (RESUMEPOINT_BATCH_PROGRESS.json, RESUMEPOINT_SONNET_DEMO_CREATION.json, RESUME_POINT.md alla root) sono OBSOLETI e contengono stati non più affidabili (es. aziende segnate 'COMPLETED' senza Link_Demo aggiornato nel CSV). La fonte di verità per 'cosa è già fatto' sono le colonne Link_Demo / Contattato dei CSV in questa cartella, NON i tracker JSON.",
-  "last_update": "2026-06-20T03:00:00Z",
+  "last_update": "2026-06-20T04:00:00Z",
   "template_version": "GSAP v2 (Terme di Vivara per hotel, Sorrento Sea Experience per tour operator) — sostituiti i vecchi template '-new-template-experiences'",
   "pricing_policy": "SOLO questi prezzi reali, mai inventare altro: Base €500/anno + 5% commissione, Plus €1.000/anno + 8%, Premium €1.400/anno + 10% (IVA esclusa)",
   "known_issues": [
@@ -11,8 +11,8 @@
     "CI workflow (ci.yml) ha 2 job che falliscono in modo cronico e PRE-ESISTENTE su molti file già presenti nel repo (non causati da questa sessione): 'Broken link check' (lychee) segnala falsi positivi sui data:image/svg+xml placeholder (li tratta come path di file locali) nei demo con immagini placeholder e nei file *template* con {{HERO_IMAGE_URL}} non sostituito (sono template, è normale); 'HTML lint' (HTMLHint) segnala 'tag-pair' (div non chiuso) su ~30 file demo esistenti (sia vecchia convenzione -new-template-experiences sia alcuni -experiences-standard di batch precedenti) per un probabile bug nel template demo-hotel-template-experiences/index.html attorno alla riga 1305/1364. Nessuno dei 5 file di questo batch (San Francesco Resort, Mec Paestum, Araba Fenice, Myrtus, Mare — commit 03b1d45) compare tra i file che falliscono il lint, quindi non è una regressione di questa sessione. Il deploy GitHub Pages (pages.yml) non dipende da questi controlli ed è andato a buon fine. Da pianificare: un giro di pulizia dedicato sul template e sui demo esistenti con tag-pair rotto, separato dal lavoro di generazione batch."
   ],
   "stato_per_csv": {
-    "CSV_Cilento.csv": {"totale": 47, "con_demo": 44, "contattati": 19, "todo_priorita_1_3_senza_demo": 2},
-    "CSV_Costiera_Amalfitana.csv": {"totale": 52, "con_demo": 1, "contattati": 0, "todo_priorita_1_3_senza_demo": 48},
+    "CSV_Cilento.csv": {"totale": 47, "con_demo": 46, "contattati": 19, "todo_priorita_1_3_senza_demo": 0, "nota": "COMPLETATO P1-3, rimane 1 azienda senza priorita"},
+    "CSV_Costiera_Amalfitana.csv": {"totale": 52, "con_demo": 4, "contattati": 0, "todo_priorita_1_3_senza_demo": 45},
     "CSV_Golfo_Napoli_Sorrento.csv": {"totale": 104, "con_demo": 27, "contattati": 38, "todo_priorita_1_3_senza_demo": 65},
     "CSV_Golfo_Napoli_Sorrento_NEW.csv": {"totale": 104, "con_demo": 0, "contattati": 0, "todo_priorita_1_3_senza_demo": 92, "nota": "vedi known_issues — possibile duplicato"},
     "CSV_Isole_del_Golfo.csv": {"totale": 38, "con_demo": 0, "contattati": 0, "todo_priorita_1_3_senza_demo": 35},
@@ -20,29 +20,31 @@
   },
   "ultimo_batch_completato": {
     "data": "2026-06-20",
-    "csv": "CSV_Cilento.csv",
+    "csv": "CSV_Cilento.csv + CSV_Costiera_Amalfitana.csv (batch misto)",
     "aziende": [
-      {"nome": "Ruggiero Park Hotel", "priorita": 2, "citta": "Vallo della Lucania", "email": "info@ruggieroparkhotel.com", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ruggiero-park-hotel-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r-1920554554516994314"},
-      {"nome": "ArcheoTrekking Palinuro", "priorita": 2, "citta": "Palinuro", "email": "info@archeotrekking.net", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/archeotrekking-palinuro-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r-1245776490258665319", "nota": "Template tour operator (non hotel)"},
-      {"nome": "Hotel La Darsena Residence", "priorita": 3, "citta": "Agropoli", "email": "ASSENTE nel CSV — demo generata, nessuna bozza Gmail", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-darsena-residence-experiences-standard/", "immagini": "reali (CSV)"},
-      {"nome": "Hotel Ristorante Il Ceppo", "priorita": 3, "citta": "Agropoli", "email": "info@hotelristoranteilceppo.com", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r7457635274816820540"},
-      {"nome": "Hotel Acciaroli", "priorita": 3, "citta": "Acciaroli", "email": "info@hotelacciaroli.it", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-acciaroli-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r7425640054446072532"}
+      {"nome": "Cilentour ANBI Travel", "priorita": 3, "citta": "Agropoli", "email": "info@cilentour.com", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/cilentour-anbi-travel-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r5552591594663159458", "nota": "Tour operator"},
+      {"nome": "Cooperativa Cilento Blu", "priorita": 3, "citta": "Marina di Camerota", "email": "ASSENTE nel CSV", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/cooperativa-cilento-blu-experiences-standard/", "immagini": "reali (CSV)", "nota": "Tour operator, nessuna email"},
+      {"nome": "Hotel Polo Nautico", "priorita": 2, "citta": "Salerno", "email": "ASSENTE nel CSV", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-polo-nautico-experiences-standard/", "immagini": "reali (CSV)"},
+      {"nome": "Lloyd's Baia Hotel", "priorita": 3, "citta": "Vietri sul Mare", "email": "info@lloydsbaiahotel.it", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/lloyds-baia-hotel-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r4200901059177257572"},
+      {"nome": "Hotel Raito", "priorita": 2, "citta": "Vietri sul Mare", "email": "reservations@hotelraito.it", "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-raito-experiences-standard/", "immagini": "reali (CSV)", "gmail_draft_id": "r-6703031564295789109"}
     ],
     "azioni": [
-      "CSV_Cilento.csv aggiornato (Link_Demo + Data_Generazione) per tutti e 5",
-      "4 bozze Gmail create (Hotel La Darsena Residence saltata: nessuna email nel CSV)",
-      "commit + push su main",
-      "deploy GitHub Pages verificato per commit 931b815 (batch precedente)"
+      "CSV_Cilento.csv completato P1-3 (46/47, rimane 1 senza priorita)",
+      "CSV_Costiera_Amalfitana.csv iniziato (4/52 con demo)",
+      "3 bozze Gmail create (2 aziende senza email saltate)"
     ]
   },
   "prossimo_batch_da_fare": {
-    "csv": "CSV_Cilento.csv",
-    "criterio": "priorita 1-3 senza Link_Demo — ULTIMI 2 in questo CSV, poi passa a CSV_Costiera_Amalfitana o CSV_Salerno",
+    "csv": "CSV_Costiera_Amalfitana.csv",
+    "criterio": "priorita 1-3 senza Link_Demo, prossimi 5",
     "aziende": [
-      {"nome": "Cilentour ANBI Travel", "priorita": 3, "citta": "Agropoli", "email": "info@cilentour.com"},
-      {"nome": "Cooperativa Cilento Blu", "priorita": 3, "citta": "Marina di Camerota", "email": "ASSENTE nel CSV"}
+      {"nome": "Le Sirenuse", "priorita": 1, "citta": "Positano", "email": "info@sirenuse.it"},
+      {"nome": "Il San Pietro di Positano", "priorita": 1, "citta": "Positano", "email": "info@ilsanpietro.it"},
+      {"nome": "Villa Treville", "priorita": 2, "citta": "Positano", "email": "contact@villatreville.com"},
+      {"nome": "Hotel Le Agavi", "priorita": 2, "citta": "Positano", "email": "booking@leagavipositano.com"},
+      {"nome": "Hotel Villa Franca", "priorita": 2, "citta": "Positano", "email": "info@villafrancahotel.it"}
     ],
-    "nota": "Dopo questi 2 batch, CSV_Cilento.csv sarà completato al 100% (47/47). Proseguire con CSV_Costiera_Amalfitana.csv (48 da fare) o CSV_Salerno.csv (14 da fare, mai iniziato). Preferenza: completare una regione alla volta, quindi Costiera Amalfitana."
+    "nota": "Batch di 5 stelle luxury della Costiera, concentrati a Positano. CSV_Costiera_Amalfitana.csv ha 45 aziende P1-3 rimaste da fare dopo questo batch. Proseguire fino a completamento, poi CSV_Salerno.csv (14 da fare)."
   },
   "schema_csv": "Nome_Azienda,URL_Sito,Google_Business_Link,Categoria,Priorita,Email,Immagini,Link_Demo,Data_Generazione,Data_Contatto,Contattato,Citta,Sito_Pre2020,Mobile_Friendly,Channel_Manager,Blog,Criteri_Soddisfatti,Note,Brief_Demo_OpenClaw",
   "comando_generazione": "cd demos && python3 scripts/generate-from-standard-template.py ricerca_clienti_csv/<CSV> \"<Nome_Azienda>\"",
