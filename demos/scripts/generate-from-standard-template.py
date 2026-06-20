@@ -113,10 +113,9 @@ def extract_weaknesses(company):
     """Estrai i punti deboli reali dal sito web aziendale."""
     weaknesses = []
 
-    # Sito pre-2020
-    sito_pre = (company.get("Sito_Pre2020") or "").lower().strip()
-    if "sì" in sito_pre:
-        weaknesses.append("Design e tecnologie datate (pre-2020)")
+    # Sito pre-2020: il dato è sempre una stima probabilistica ("probabile"),
+    # mai una verifica certa (confermato falso positivo su Grand Hotel Santa
+    # Maria) — non va usato come claim nell'email.
 
     # Mobile friendly
     mobile = (company.get("Mobile_Friendly") or "").lower().strip()

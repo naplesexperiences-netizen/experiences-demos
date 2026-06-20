@@ -1,4 +1,5 @@
 {
+  "_superseded_by": "demos/ricerca_clienti_csv/RESUMEPOINT.json — questo file è OBSOLETO dal 2026-06-20, alcune aziende qui segnate COMPLETED non avevano Link_Demo aggiornato nel CSV. Non usare per riprendere il lavoro.",
   "session_status": "ACTIVE - Batch creation ongoing",
   "current_model": "Sonnet 4.6",
   "last_update": "2026-06-15T00:00:00Z",
