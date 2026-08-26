@@ -1014,7 +1014,7 @@
                 description: "Allenamento completo con macchinari isotonici, pesi liberi e cardio. Sala sempre aperta negli orari del centro.",
                 schedule: {
                     "Lun - Ven": "07:00 - 21:00",
-                    "Sabato": "09:00 - 12:00"
+                    "Sabato": "08:00 - 12:00"
                 }
             },
             {
@@ -1024,8 +1024,8 @@
                 image: "images/pilates-matwork.webp",
                 description: "Pilates a corpo libero su tappetino. Tre livelli: Base, Intermedio e Avanzato. Migliora postura, equilibrio e forza del core.",
                 schedule: {
-                    "Lun · Mer · Ven": "09:00 · 11:00 · 16:00 · 18:00 · 19:00 · 20:00",
-                    "Mar · Gio": "10:00 · 16:00 · 18:00"
+                    "Giorni dispari (Lun · Mer · Ven)": "09:00 Intermedio · 11:00 Base · 16:00 Base · 18:00 Avanzato · 19:00 Intermedio · 20:00 Base",
+                    "Giorni pari (Mar · Gio)": "10:00 Base · 14:00 Base · 16:00 Base · 18:00 Intermedio"
                 }
             },
             {
@@ -1036,8 +1036,8 @@
                 description: "Pilates con il macchinario professionale Reformer. Allenamento personalizzato per tonificare e allungare la muscolatura.",
                 schedule: {
                     "Lun · Mer · Ven": "09 · 10 · 11 · 13 · 14 · 15 · 16 · 17 · 18 · 19 · 20",
-                    "Mar · Gio": "09 · 10 · 11 · 13 · 14 · 15 · 17 · 18 · 19 · 20",
-                    "Sabato": "09:00 · 10:00 · 11:00"
+                    "Mar · Gio": "09 · 10 · 11 · 14 · 15 · 16 · 17 · 18 · 19 · 20",
+                    "Sabato": "09:00 · 10:00"
                 }
             },
             {
@@ -1054,24 +1054,24 @@
             },
             {
                 id: 5,
-                title: "TEC-Room",
-                category: "Functional Training",
+                title: "Pilates Tec Room",
+                category: "Pilates · Sala Tecnica",
                 image: "images/met.webp",
-                description: "Sala dedicata all'allenamento tecnico e funzionale, disponibile nelle giornate del martedì e giovedì.",
+                description: "Lezioni a orario fisso nella sala tecnica: Cadillac, Wunda Chair e grandi attrezzi per postura, mobilità e forza controllata.",
                 schedule: {
-                    "Mar · Gio": "09:00 · 10:00 · 11:00 · 13:00 · 14:00 · 15:00 · 16:00"
+                    "Giorni pari (Mar · Gio)": "09:00 · 10:00 · 11:00 · 12:00 · 14:00 · 15:00 · 16:00"
                 }
             },
             {
                 id: 6,
                 title: "Les Mills",
-                category: "Group Fitness · Shapes / Strength / Circuito",
+                category: "Group Fitness · Shapes / Strength / Ceremony / Balance",
                 image: "images/lesmills.webp",
-                description: "Programmi ufficiali Les Mills: SHAPES (tonificazione), STRENGTH (forza) e CIRCUITO (cardio circuit).",
+                description: "Programmi ufficiali Les Mills: SHAPES (tonificazione), STRENGTH DEVELOPMENT (forza progressiva con bilancieri e dischi), CEREMONY e BALANCE.",
                 schedule: {
-                    "Lun · Mer · Ven": "Shapes 10:00 · 17:00 — Strength 14:00 — Circuito 20:00",
-                    "Mar · Gio": "Shapes 17:00 · 20:00 — Circuito 18:00 — Strength 19:00",
-                    "Sabato": "Shapes 10:00"
+                    "Lun · Mer · Ven": "Shapes 10:00 · 17:00 — Strength 14:00 — Ceremony 15:00 · 17:00 · 20:00",
+                    "Mar · Gio": "Balance 08:00 · 17:00 — Ceremony 14:00 · 17:00 · 18:00 — Strength 19:00 — Shapes 20:00",
+                    "Sabato": "Balance 09:00 — Shapes 10:00"
                 }
             },
             {
@@ -1240,10 +1240,10 @@
         function showSchedule(index) {
             stopAutoplay();
             const course = courses[index];
-            
+
             const modalHeader = document.getElementById('modalHeader');
             modalHeader.style.backgroundImage = `url('${course.image}')`;
-            
+
             document.getElementById('modalTitle').textContent = course.title;
             document.getElementById('modalSubtitle').textContent = course.category + ' · Sportlandia Infitness';
 
