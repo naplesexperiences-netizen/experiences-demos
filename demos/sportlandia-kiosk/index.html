@@ -10,7 +10,12 @@
     <link rel="icon" href="images/logo.webp" type="image/webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font caricato in modo non bloccante: su un kiosk senza rete un <link>
+         normale ritarderebbe render e DOMContentLoaded di ~12s, lasciando a
+         schermo solo lo spinner. Cosi' la pagina parte subito col fallback. -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
     <style>
         :root {
             --primary: #0d47a1;          /* blu cobalto Sportlandia */
@@ -22,6 +27,8 @@
             --light: #ffffff;
             --gray: #e3f2fd;             /* azzurro cellule orari */
             --footer-h: 76px;            /* altezza barra footer slim */
+            --poster-top: 195px;         /* spazio riservato all'header */
+            --poster-bottom: 190px;      /* spazio riservato a controlli + footer */
         }
 
         * {
@@ -287,6 +294,32 @@
 
         .course-card.active .course-image-bg {
             animation: kenBurns 18s ease-in-out infinite;
+        }
+
+        /* --------- SLIDE "LOCANDINA": immagine intera, mai tagliata --------- */
+        /* Le locandine ufficiali hanno nome corso e orari gia' stampati:
+           vanno mostrate per intero (contain) e senza testo sovrapposto. */
+        .course-card.is-poster .course-image-bg,
+        .course-card.is-poster.active .course-image-bg {
+            inset: var(--poster-top, 195px) 0 var(--poster-bottom, 190px) 0;
+            /* la regola base impone width/height 100%: va neutralizzata,
+               altrimenti l'inset inferiore viene ignorato e la locandina sfora */
+            width: auto;
+            height: auto;
+            background-size: contain;
+            background-position: center center;
+            transform: none;
+            animation: none;
+        }
+
+        /* Niente velatura scura sopra la locandina */
+        .course-card.is-poster::after {
+            background: none;
+        }
+
+        /* Il testo e' gia' nella locandina: nessun overlay duplicato */
+        .course-card.is-poster .course-info {
+            display: none;
         }
 
         /* --------- SHINE SWEEP sull'attivazione --------- */
@@ -802,7 +835,7 @@
         /* ==================== RESPONSIVE FOR 42" TOUCH SCREEN ==================== */
         /* Optimized for ~1080x1920 portrait screens */
         @media (min-height: 1600px) {
-            :root { --footer-h: 104px; }
+            :root { --footer-h: 104px; --poster-top: 275px; --poster-bottom: 255px; }
             .header { padding: 40px 40px 70px; }
             .header h1 { font-size: 3.2rem; }
             .header .subtitle { font-size: 1.1rem; }
@@ -828,7 +861,7 @@
 
         /* ==================== MOBILE / VIEWPORT COMPATTI ==================== */
         @media (max-width: 480px) {
-            :root { --footer-h: 84px; }
+            :root { --footer-h: 84px; --poster-top: 150px; --poster-bottom: 164px; }
             .header { padding: 22px 18px 45px; }
             .header h1 { font-size: 1.8rem; letter-spacing: 3px; }
             .header .subtitle { font-size: 0.7rem; letter-spacing: 4px; }
@@ -957,7 +990,7 @@
         <div class="nav-controls">
             <button class="nav-btn" onclick="prevCourse()" aria-label="Corso precedente">‹</button>
             <div class="nav-counter">
-                <span class="current" id="currentIndex">1</span> / <span id="totalCourses">8</span>
+                <span class="current" id="currentIndex">1</span> / <span id="totalCourses">12</span>
             </div>
             <button class="nav-btn" onclick="nextCourse()" aria-label="Corso successivo">›</button>
         </div>
@@ -1011,6 +1044,7 @@
                 title: "Sala Attrezzi",
                 category: "Fitness",
                 image: "images/sala-attrezzi.webp",
+                poster: true,
                 description: "Allenamento completo con macchinari isotonici, pesi liberi e cardio. Sala sempre aperta negli orari del centro.",
                 schedule: {
                     "Lun - Ven": "07:00 - 21:00",
@@ -1022,6 +1056,7 @@
                 title: "Pilates Matwork",
                 category: "Pilates · Base / Intermedio / Avanzato",
                 image: "images/pilates-matwork.webp",
+                poster: true,
                 description: "Pilates a corpo libero su tappetino. Tre livelli: Base, Intermedio e Avanzato. Migliora postura, equilibrio e forza del core.",
                 schedule: {
                     "Giorni dispari (Lun · Mer · Ven)": "09:00 Intermedio · 11:00 Base · 16:00 Base · 18:00 Avanzato · 19:00 Intermedio · 20:00 Base",
@@ -1033,11 +1068,12 @@
                 title: "Pilates Reformer",
                 category: "Pilates",
                 image: "images/pilates-reformer.webp",
+                poster: true,
                 description: "Pilates con il macchinario professionale Reformer. Allenamento personalizzato per tonificare e allungare la muscolatura.",
                 schedule: {
-                    "Lun · Mer · Ven": "09 · 10 · 11 · 13 · 14 · 15 · 16 · 17 · 18 · 19 · 20",
-                    "Mar · Gio": "09 · 10 · 11 · 14 · 15 · 16 · 17 · 18 · 19 · 20",
-                    "Sabato": "09:00 · 10:00"
+                    "Lun - Ven": "09:00 - 21:00",
+                    "Sabato": "09:00 · 10:00",
+                    "Info": "Prenotazione obbligatoria"
                 }
             },
             {
@@ -1056,26 +1092,78 @@
                 id: 5,
                 title: "Pilates Tec Room",
                 category: "Pilates · Sala Tecnica",
-                image: "images/met.webp",
+                image: "images/pilates-tec-room.webp",
+                poster: true,
                 description: "Lezioni a orario fisso nella sala tecnica: Cadillac, Wunda Chair e grandi attrezzi per postura, mobilità e forza controllata.",
                 schedule: {
-                    "Giorni pari (Mar · Gio)": "09:00 · 10:00 · 11:00 · 12:00 · 14:00 · 15:00 · 16:00"
+                    "Giorni pari (Mar · Gio)": "dalle 09:00 alle 17:00",
+                    "Turni": "09:00 · 10:00 · 11:00 · 12:00 · 14:00 · 15:00 · 16:00"
                 }
             },
             {
                 id: 6,
-                title: "Les Mills",
-                category: "Group Fitness · Shapes / Strength / Ceremony / Balance",
-                image: "images/lesmills.webp",
-                description: "Programmi ufficiali Les Mills: SHAPES (tonificazione), STRENGTH DEVELOPMENT (forza progressiva con bilancieri e dischi), CEREMONY e BALANCE.",
+                title: "Les Mills Shapes",
+                category: "Les Mills · Tonificazione",
+                image: "images/lesmills-shapes.webp",
+                poster: true,
+                description: "45 minuti a basso impatto che fondono Pilates, sculpt e power yoga in un format fluido. Tonifica in profondità, migliora la postura e rinforza addome, glutei e gambe.",
                 schedule: {
-                    "Lun · Mer · Ven": "Shapes 10:00 · 17:00 — Strength 14:00 — Ceremony 15:00 · 17:00 · 20:00",
-                    "Mar · Gio": "Balance 08:00 · 17:00 — Ceremony 14:00 · 17:00 · 18:00 — Strength 19:00 — Shapes 20:00",
-                    "Sabato": "Balance 09:00 — Shapes 10:00"
+                    "Giorni dispari (Lun · Mer · Ven)": "10:00 · 17:00",
+                    "Giorni pari (Mar · Gio)": "20:00",
+                    "Sabato": "10:00"
                 }
             },
             {
                 id: 7,
+                title: "Les Mills Strength Development",
+                category: "Les Mills · Forza",
+                image: "images/lesmills-strength.webp",
+                poster: true,
+                description: "Allenamento di forza progressiva che costruisce muscoli, aumenta la potenza e migliora la performance funzionale. Bilancieri, dischi e peso del corpo, adatto a tutti i livelli.",
+                schedule: {
+                    "Giorni dispari (Lun · Mer · Ven)": "14:00",
+                    "Giorni pari (Mar · Gio)": "19:00"
+                }
+            },
+            {
+                id: 8,
+                title: "Les Mills Ceremony",
+                category: "Les Mills · X Hyrox",
+                image: "images/lesmills-ceremony.webp",
+                poster: true,
+                description: "Allenamento funzionale di gruppo ad alta intensità di 45 minuti: circuito di forza, cardio e agilità con bilancieri, manubri, kettlebell, vogatori e air bike.",
+                schedule: {
+                    "Giorni dispari (Lun · Mer · Ven)": "15:00 · 17:00 · 20:00",
+                    "Giorni pari (Mar · Gio)": "14:00 · 17:00 · 18:00"
+                }
+            },
+            {
+                id: 9,
+                title: "Les Mills BodyBalance",
+                category: "Les Mills · Equilibrio",
+                image: "images/lesmills-balance.webp",
+                poster: true,
+                description: "Combina yoga, Tai Chi e pilates per migliorare forza, flessibilità e mobilità. Riduce lo stress, aumenta la concentrazione e favorisce il benessere mentale e fisico.",
+                schedule: {
+                    "Giorni pari (Mar · Gio)": "08:00 · 17:00",
+                    "Sabato": "09:00"
+                }
+            },
+            {
+                id: 10,
+                title: "Orari Completi",
+                category: "Programmazione Settimanale",
+                image: "images/orari.webp",
+                poster: true,
+                description: "Il quadro orario completo di tutte le sale e di tutti i corsi, giorno per giorno.",
+                schedule: {
+                    "Apertura Lun - Ven": "07:00 - 21:00",
+                    "Apertura Sabato": "08:00 - 12:30",
+                    "Info e prenotazioni": "Tel. 081 8718076"
+                }
+            },
+            {
+                id: 11,
                 title: "Fisiorehab 360",
                 category: "Riabilitazione",
                 image: "images/fisiorehab.webp",
@@ -1087,7 +1175,7 @@
                 }
             },
             {
-                id: 8,
+                id: 12,
                 title: "GREENtosi",
                 category: "Eco-Wellness",
                 image: "images/greentosi.webp",
@@ -1113,7 +1201,9 @@
             courses.forEach((course, index) => {
                 // Course card
                 const card = document.createElement('div');
-                card.className = 'course-card' + (index === 0 ? ' active' : '');
+                card.className = 'course-card'
+                    + (course.poster ? ' is-poster' : '')
+                    + (index === 0 ? ' active' : '');
                 card.innerHTML = `
                     <div class="course-image-bg" style="background-image: url('${course.image}')"></div>
                     <div class="course-info">
@@ -1295,7 +1385,13 @@
         }
 
         // ==================== START ====================
-        window.addEventListener('load', initGallery);
+        // DOMContentLoaded e non 'load': su un kiosk con rete lenta o assente
+        // l'attesa del CSS di Google Fonts terrebbe la galleria sullo spinner.
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGallery);
+        } else {
+            initGallery();
+        }
     </script>
 </body>
 </html>
