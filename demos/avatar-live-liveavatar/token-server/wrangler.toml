@@ -1,0 +1,13 @@
+name = "liveavatar-token"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+AVATAR_ID = "c72a9099-84b9-4d5d-98f4-a19ba131e654"
+CONTEXT_ID = "06d11e63-ff70-4c2b-b0a3-aad3f1134013"
+LANGUAGE = "it"
+MAX_SESSION_SECONDS = "300"
+ALLOWED_ORIGINS = "https://naplesexperiences-netizen.github.io,http://localhost:8000"
+
+# LIVEAVATAR_API_KEY non va qui: si imposta con
+#   wrangler secret put LIVEAVATAR_API_KEY
