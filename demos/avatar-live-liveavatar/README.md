@@ -83,24 +83,21 @@ Serve la API key dalla dashboard LiveAvatar. Genera un token:
 
 ```bash
 export LIVEAVATAR_API_KEY="la-tua-chiave"
-
-curl -s -X POST https://api.liveavatar.com/v1/sessions/token \
-  -H "X-API-KEY: $LIVEAVATAR_API_KEY" \
-  -H "content-type: application/json" \
-  -d '{
-    "mode": "FULL",
-    "avatar_id": "c72a9099-84b9-4d5d-98f4-a19ba131e654",
-    "avatar_persona": {
-      "context_id": "06d11e63-ff70-4c2b-b0a3-aad3f1134013",
-      "language": "it"
-    },
-    "interactivity_type": "CONVERSATIONAL",
-    "max_session_duration": 300
-  }' | python3 -m json.tool
+./test/token.sh
 ```
 
-Se ottieni `data.session_token`, **avatar, contesto e chiave sono validi**:
-metà della verifica è già fatta senza aprire il browser.
+Lo script stampa il `session_token` pronto da incollare. Se qualcosa non va,
+stampa la risposta di LiveAvatar con il motivo (chiave errata, avatar
+inesistente, campo del payload sbagliato) ed esce con codice 1.
+
+Avatar, contesto e lingua si possono cambiare senza toccare lo script:
+
+```bash
+AVATAR_ID=... CONTEXT_ID=... LANGUAGE=en ./test/token.sh
+```
+
+Se il token arriva, **chiave, avatar e contesto sono validi**: metà della
+verifica è fatta senza nemmeno aprire il browser.
 
 Poi servi la pagina e incolla il token nel riquadro giallo:
 
