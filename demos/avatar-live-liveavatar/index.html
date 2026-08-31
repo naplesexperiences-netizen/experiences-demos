@@ -214,6 +214,10 @@
     </div>
 </footer>
 
+<!-- Deve precedere l'SDK: il bundle UMD cerca il modulo Node `events` nella
+     globale `events$1` e senza di essa si interrompe al primo utilizzo.
+     Vedi vendor/events-shim.js per il dettaglio. -->
+<script src="vendor/events-shim.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@heygen/liveavatar-web-sdk@0.0.18/dist/index.umd.js"></script>
 <script>
 (function () {
@@ -247,7 +251,11 @@
 
     // L'SDK arriva da CDN: se non ha caricato la pagina deve dirlo, non morire
     // con un errore in console che nessuno guarda.
-    var SDK = window.LiveAvatarSDK || null;
+    // Un bundle interrotto a meta' lascia comunque un oggetto (vuoto): il
+    // controllo deve cercare cio' che serve davvero, non la sola globale.
+    var SDK = (window.LiveAvatarSDK && window.LiveAvatarSDK.LiveAvatarSession)
+        ? window.LiveAvatarSDK
+        : null;
     var SessionEvent   = SDK && SDK.SessionEvent;
     var SessionState   = SDK && SDK.SessionState;
     var AgentEvents    = SDK && SDK.AgentEventsEnum;

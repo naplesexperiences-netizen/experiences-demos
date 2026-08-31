@@ -165,6 +165,25 @@ reale di un 502.
 | **Trascrizione** | Domande e risposte in tempo reale, aggiornate a chunk |
 | **Durata / costo** | Contatore live con stima a `CONFIG.costPerMinute` |
 
+## Perche' c'e' vendor/events-shim.js
+
+Il bundle UMD di `@heygen/liveavatar-web-sdk` non e' autosufficiente: dichiara
+il modulo Node `events` come dipendenza esterna e lo cerca in una globale.
+
+```js
+factory(global.LiveAvatarSDK = {}, global.events$1)
+//                                 ^ undefined in un browser
+```
+
+Senza quella globale il bundle si interrompe alla prima riga che la usa e
+lascia `LiveAvatarSDK` incompleto. L'errore che si vede poi e'
+`LiveAvatarSession is not a constructor`, che indica il sintomo e nasconde la
+causa. `vendor/events-shim.js` fornisce la dipendenza e va incluso **prima**
+dello `<script>` dell'SDK.
+
+Il controllo "SDK reale" in `test/smoke.mjs` carica il bundle vero e fallisce
+se lo shim viene rimosso o spostato dopo l'SDK.
+
 ## Note operative
 
 - **La sessione costa mentre è aperta**, anche in silenzio. `MAX_SESSION_SECONDS`
