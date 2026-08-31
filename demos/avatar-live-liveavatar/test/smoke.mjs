@@ -120,9 +120,89 @@ check("campo bloccato a sessione chiusa", await page.locator("#input").isDisable
 check("chiusura annotata in trascrizione", await page.locator(".msg.system").count(), 1);
 
 check("nessun errore in console", errors, []);
+await page.close();
+
+// --- 3. SDK reale: il bundle UMD si aggancia allo shim ed e' costruibile ---
+// Il bundle dichiara il modulo Node `events` come dipendenza esterna e la
+// cerca nella globale `events$1`. Senza vendor/events-shim.js si interrompe
+// e lascia LiveAvatarSDK vuoto, con il fuorviante "LiveAvatarSession is not
+// a constructor" al primo avvio. Questo controllo usa il bundle vero.
+console.log("\nSDK reale");
+const umd = await realSdkBundle();
+if (!umd) {
+    console.log("  skip  bundle non scaricabile (rete assente) — controllo saltato");
+} else {
+    const real = await browser.newPage();
+    await real.route(
+        (url) => url.hostname === "cdn.jsdelivr.net",
+        (route) => route.fulfill({ status: 200, contentType: "application/javascript", body: umd })
+    );
+    await real.goto(base, { waitUntil: "domcontentloaded" });
+
+    check("shim events presente", await real.evaluate(() => typeof window.events$1?.EventEmitter), "function");
+    check(
+        "export usati dalla pagina presenti",
+        await real.evaluate(() =>
+            ["LiveAvatarSession", "SessionEvent", "SessionState", "AgentEventsEnum", "VoiceChatEvent", "SessionInteractivityMode"]
+                .filter((k) => !window.LiveAvatarSDK?.[k])
+        ),
+        []
+    );
+    check("LiveAvatarSession costruibile", await real.evaluate(() => typeof window.LiveAvatarSDK?.LiveAvatarSession), "function");
+
+    const built = await real.evaluate((jwt) => {
+        try {
+            const s = new window.LiveAvatarSDK.LiveAvatarSession(jwt, { voiceChat: true });
+            return {
+                mode: s.mode,
+                voiceChat: typeof s.voiceChat?.mute === "function",
+                metodi: ["start", "stop", "message", "interrupt", "attach", "keepAlive"]
+                    .every((m) => typeof s[m] === "function"),
+            };
+        } catch (error) {
+            return { errore: error.message };
+        }
+    }, fakeJwt());
+    check("sessione istanziata dal token", built, { mode: "FULL", voiceChat: true, metodi: true });
+    await real.close();
+}
 
 await browser.close();
 server.close();
 
 console.log(failures === 0 ? "\nTutti i controlli superati.\n" : `\n${failures} controlli falliti.\n`);
 process.exit(failures === 0 ? 0 : 1);
+
+/** JWT con la struttura di un session_token reale, ma senza firma valida. */
+function fakeJwt() {
+    const part = (obj) => Buffer.from(JSON.stringify(obj)).toString("base64url");
+    return [
+        part({ alg: "HS256", typ: "JWT" }),
+        part({
+            session_id: "test",
+            start_session_data: { mode: "FULL", avatar_id: "aaa", agent_type: "full", context_id: "bbb" },
+            exp: Math.floor(Date.now() / 1000) + 3600,
+        }),
+        "firma-non-valida",
+    ].join(".");
+}
+
+/** Bundle UMD vero, scaricato una volta sola e tenuto in test/.cache. */
+async function realSdkBundle() {
+    const cache = path.join(ROOT, "test", ".cache", "liveavatar-web-sdk.umd.js");
+    try {
+        return await fs.readFile(cache, "utf8");
+    } catch { /* non ancora in cache */ }
+    try {
+        const response = await fetch(
+            "https://cdn.jsdelivr.net/npm/@heygen/liveavatar-web-sdk@0.0.18/dist/index.umd.js"
+        );
+        if (!response.ok) return null;
+        const body = await response.text();
+        await fs.mkdir(path.dirname(cache), { recursive: true });
+        await fs.writeFile(cache, body);
+        return body;
+    } catch {
+        return null;
+    }
+}
