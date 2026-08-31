@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Live — Concierge AI · Demo Experiences Srl</title>
+    <meta name="description" content="Avatar conversazionale in tempo reale basato su LiveAvatar (HeyGen): risponde a voce alle domande dei visitatori direttamente dal sito. Demo realizzata da Experiences Srl.">
+    <meta name="demo:tags" content="avatar,intelligenza-artificiale,liveavatar,heygen,concierge,realtime,voce">
+    <meta name="demo:category" content="tecnologia">
+    <style>
+        :root {
+            --primary:        #1b3a6b;
+            --secondary:      #c9a84c;
+            --primary-dark:   color-mix(in srgb, var(--primary) 70%, #000);
+            --primary-light:  color-mix(in srgb, var(--primary) 10%, #fff);
+            --text:           #1c1c2e;
+            --text-muted:     #64748b;
+            --bg:             #ffffff;
+            --bg-soft:        #f4f6fa;
+            --border:         #e4e7ef;
+            --ok:             #17915b;
+            --warn:           #b8860b;
+            --err:            #c0392b;
+            --radius:         10px;
+            --radius-lg:      18px;
+            --shadow:         0 4px 24px rgba(0,0,0,0.09);
+            --shadow-lg:      0 16px 56px rgba(0,0,0,0.16);
+            --transition:     0.24s cubic-bezier(.4,0,.2,1);
+            --font-sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+            --max-w:          1120px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; }
+        body { font-family: var(--font-sans); line-height: 1.65; color: var(--text); background: var(--bg-soft); }
+        button, input { font: inherit; }
+
+        .demo-banner { background: linear-gradient(90deg, #0d1f33 0%, #1e3a5f 50%, #0d1f33 100%); color: #fff; text-align: center; padding: 12px 20px; font-size: 13px; font-weight: 600; line-height: 1.5; }
+        .demo-banner strong { color: var(--secondary); }
+
+        header.hero { background: var(--bg); border-bottom: 1px solid var(--border); }
+        .hero-inner { max-width: var(--max-w); margin: 0 auto; padding: 40px 24px 32px; }
+        .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--secondary); margin-bottom: 10px; }
+        h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.2; letter-spacing: -0.02em; }
+        .hero-sub { color: var(--text-muted); margin-top: 12px; max-width: 62ch; }
+
+        main { max-width: var(--max-w); margin: 0 auto; padding: 32px 24px 64px; }
+        .layout { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+        @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+        .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+        .card-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .card-title { font-size: 15px; font-weight: 700; }
+        .card-body { padding: 20px; }
+
+        /* --- stage --- */
+        .stage { position: relative; aspect-ratio: 3 / 4; background: #0c1524; }
+        @media (max-width: 900px) { .stage { aspect-ratio: 4 / 5; } }
+        .stage video { width: 100%; height: 100%; object-fit: cover; display: block; background: #0c1524; }
+        .stage-overlay { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; padding: 32px; color: #dbe4f2; background: radial-gradient(120% 90% at 50% 20%, #1e3358 0%, #0c1524 70%); }
+        .stage-overlay[hidden] { display: none; }
+        .stage-overlay p { font-size: 14px; color: #9fb0c9; max-width: 34ch; }
+        .spinner { width: 34px; height: 34px; border: 3px solid rgba(255,255,255,.18); border-top-color: var(--secondary); border-radius: 50%; animation: spin 0.9s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .badge { position: absolute; top: 14px; left: 14px; display: flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: rgba(8,16,28,.72); backdrop-filter: blur(8px); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #7a8aa3; flex-shrink: 0; }
+        .dot.live { background: #2ecc71; box-shadow: 0 0 0 0 rgba(46,204,113,.7); animation: pulse 1.9s infinite; }
+        .dot.warn { background: var(--secondary); }
+        .dot.err  { background: #e74c3c; }
+        @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(46,204,113,0); } 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); } }
+        .timer { position: absolute; top: 14px; right: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(8,16,28,.72); backdrop-filter: blur(8px); color: #fff; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+        /* --- controls --- */
+        .controls { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--border); background: var(--bg); }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border: 1px solid transparent; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .btn:disabled { opacity: .45; cursor: not-allowed; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover:not(:disabled) { background: var(--primary-dark); }
+        .btn-ghost { background: var(--bg); color: var(--text); border-color: var(--border); }
+        .btn-ghost:hover:not(:disabled) { background: var(--bg-soft); }
+        .btn-danger { background: #fff; color: var(--err); border-color: color-mix(in srgb, var(--err) 30%, #fff); }
+        .btn-danger:hover:not(:disabled) { background: color-mix(in srgb, var(--err) 6%, #fff); }
+        .btn-ghost.is-on { background: var(--primary-light); border-color: color-mix(in srgb, var(--primary) 30%, #fff); color: var(--primary-dark); }
+
+        /* --- transcript --- */
+        .transcript { height: 420px; overflow-y: auto; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; background: var(--bg-soft); }
+        .msg { max-width: 88%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+        .msg.user   { align-self: flex-end; background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
+        .msg.avatar { align-self: flex-start; background: var(--bg); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+        .msg.system { align-self: center; background: transparent; color: var(--text-muted); font-size: 12.5px; text-align: center; padding: 4px 0; max-width: 100%; }
+        .msg.pending { opacity: .62; font-style: italic; }
+        .transcript-empty { margin: auto; text-align: center; color: var(--text-muted); font-size: 13.5px; max-width: 30ch; }
+
+        .composer { display: flex; gap: 10px; padding: 14px 20px; border-top: 1px solid var(--border); }
+        .composer input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius); outline: none; transition: var(--transition); }
+        .composer input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent); }
+        .composer input:disabled { background: var(--bg-soft); }
+
+        .suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 18px; }
+        .chip { padding: 7px 13px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); font-size: 13px; color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+        .chip:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+        .chip:disabled { opacity: .45; cursor: not-allowed; }
+
+        /* --- setup notice --- */
+        .notice { border-radius: var(--radius); padding: 14px 16px; font-size: 13.5px; line-height: 1.6; margin-bottom: 20px; border: 1px solid; }
+        .notice[hidden] { display: none; }
+        .notice-warn { background: #fff9e8; border-color: #f0dca4; color: #6b5310; }
+        .notice-err  { background: #fdeceb; border-color: #f3c0bb; color: #7d221a; }
+        .notice code { background: rgba(0,0,0,.06); padding: 1px 6px; border-radius: 4px; font-size: 12.5px; }
+        .notice strong { display: block; margin-bottom: 4px; }
+
+        .devbox { display: flex; gap: 10px; margin-top: 12px; }
+        .devbox input { flex: 1; min-width: 0; padding: 9px 12px; border: 1px solid #e0cf9a; border-radius: var(--radius); font-family: ui-monospace, monospace; font-size: 12px; }
+
+        .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--border); border-top: 1px solid var(--border); }
+        .meta div { background: var(--bg); padding: 14px 18px; }
+        .meta dt { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+        .meta dd { font-size: 14px; font-weight: 600; margin-top: 3px; font-variant-numeric: tabular-nums; }
+
+        footer { border-top: 1px solid var(--border); background: var(--bg); }
+        .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 28px 24px; font-size: 13px; color: var(--text-muted); }
+        .footer-inner a { color: var(--primary); }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    </style>
+</head>
+<body>
+
+<div class="demo-banner">
+    Demo tecnologica — <strong>Avatar conversazionale in tempo reale</strong> realizzata da Experiences Srl
+</div>
+
+<header class="hero">
+    <div class="hero-inner">
+        <span class="eyebrow">LiveAvatar · HeyGen</span>
+        <h1>Il concierge che risponde guardando negli occhi</h1>
+        <p class="hero-sub">
+            Un avatar fotorealistico in streaming: il visitatore parla o scrive, l'avatar
+            risponde a voce in tempo reale attingendo alla knowledge base della struttura.
+        </p>
+    </div>
+</header>
+
+<main>
+    <div class="notice notice-warn" id="setupNotice" hidden>
+        <strong>Configurazione richiesta</strong>
+        Nessun <code>tokenEndpoint</code> impostato: la pagina non può creare una sessione da sola,
+        perché la API key non deve mai finire in una pagina statica.
+        Vedi <code>README.md</code> per pubblicare il token server, oppure incolla qui sotto un
+        <code>session_token</code> generato a mano per una prova immediata.
+        <div class="devbox">
+            <input type="text" id="devToken" placeholder="session_token (solo per test locali)" autocomplete="off" spellcheck="false">
+            <button class="btn btn-ghost" id="devTokenSave" type="button">Usa</button>
+        </div>
+    </div>
+
+    <div class="notice notice-err" id="errorNotice" hidden></div>
+
+    <div class="layout">
+        <!-- ============ AVATAR ============ -->
+        <section class="card" aria-label="Avatar">
+            <div class="stage">
+                <video id="video" playsinline autoplay></video>
+                <div class="stage-overlay" id="overlay">
+                    <div class="spinner" id="spinner" hidden></div>
+                    <p id="overlayText">Avvia la sessione per parlare con il concierge virtuale.</p>
+                </div>
+                <div class="badge"><span class="dot" id="statusDot"></span><span id="statusText">Non connesso</span></div>
+                <div class="timer" id="timer" hidden>00:00</div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" id="btnStart" type="button">Avvia sessione</button>
+                <button class="btn btn-ghost"   id="btnMic"   type="button" disabled>Microfono off</button>
+                <button class="btn btn-ghost"   id="btnStop2" type="button" disabled>Interrompi</button>
+                <button class="btn btn-danger"  id="btnStop"  type="button" disabled>Chiudi</button>
+            </div>
+
+            <dl class="meta">
+                <div><dt>Durata</dt><dd id="metaDuration">—</dd></div>
+                <div><dt>Costo stimato</dt><dd id="metaCost">—</dd></div>
+                <div><dt>Qualità rete</dt><dd id="metaQuality">—</dd></div>
+            </dl>
+        </section>
+
+        <!-- ============ CONVERSAZIONE ============ -->
+        <section class="card" aria-label="Conversazione">
+            <div class="card-head">
+                <span class="card-title">Conversazione</span>
+                <button class="btn btn-ghost" id="btnClear" type="button" style="padding:6px 12px;font-size:13px;">Pulisci</button>
+            </div>
+
+            <div class="transcript" id="transcript" role="log" aria-live="polite">
+                <p class="transcript-empty" id="transcriptEmpty">
+                    La trascrizione della conversazione comparirà qui, in tempo reale.
+                </p>
+            </div>
+
+            <form class="composer" id="composer">
+                <label class="sr-only" for="input">Scrivi una domanda</label>
+                <input type="text" id="input" placeholder="Scrivi una domanda…" autocomplete="off" disabled>
+                <button class="btn btn-primary" id="btnSend" type="submit" disabled>Invia</button>
+            </form>
+
+            <div class="suggestions" id="suggestions"></div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        Demo tecnologica di <strong>Experiences Srl</strong> — avatar in streaming via
+        <a href="https://www.liveavatar.com" target="_blank" rel="noopener">LiveAvatar</a> (HeyGen).
+        I contenuti delle risposte dipendono dal contesto (knowledge base) collegato alla sessione.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@heygen/liveavatar-web-sdk@0.0.18/dist/index.umd.js"></script>
+<script>
+(function () {
+    "use strict";
+
+    /* ------------------------------------------------------------------ *
+     * CONFIGURAZIONE
+     * ------------------------------------------------------------------ */
+    var CONFIG = {
+        // URL del token server (Cloudflare Worker in token-server/).
+        // Deve restituire { "session_token": "..." }. Lasciare vuoto attiva
+        // la modalità di prova con token incollato a mano.
+        tokenEndpoint: "",
+
+        avatarId:  "c72a9099-84b9-4d5d-98f4-a19ba131e654",
+        contextId: "06d11e63-ff70-4c2b-b0a3-aad3f1134013",
+        language:  "it",
+
+        // Costo indicativo al minuto, solo per la stima mostrata in pagina.
+        costPerMinute: 0.10,
+
+        suggestions: [
+            "Che tipo di camere avete?",
+            "A che ora è il check-in?",
+            "Cosa posso visitare qui vicino?",
+            "Avete parcheggio?"
+        ]
+    };
+
+    /* ------------------------------------------------------------------ */
+
+    // L'SDK arriva da CDN: se non ha caricato la pagina deve dirlo, non morire
+    // con un errore in console che nessuno guarda.
+    var SDK = window.LiveAvatarSDK || null;
+    var SessionEvent   = SDK && SDK.SessionEvent;
+    var SessionState   = SDK && SDK.SessionState;
+    var AgentEvents    = SDK && SDK.AgentEventsEnum;
+    var VoiceChatEvent = SDK && SDK.VoiceChatEvent;
+
+    var el = {
+        video:        document.getElementById("video"),
+        overlay:      document.getElementById("overlay"),
+        overlayText:  document.getElementById("overlayText"),
+        spinner:      document.getElementById("spinner"),
+        statusDot:    document.getElementById("statusDot"),
+        statusText:   document.getElementById("statusText"),
+        timer:        document.getElementById("timer"),
+        btnStart:     document.getElementById("btnStart"),
+        btnStop:      document.getElementById("btnStop"),
+        btnStop2:     document.getElementById("btnStop2"),
+        btnMic:       document.getElementById("btnMic"),
+        btnSend:      document.getElementById("btnSend"),
+        btnClear:     document.getElementById("btnClear"),
+        composer:     document.getElementById("composer"),
+        input:        document.getElementById("input"),
+        transcript:   document.getElementById("transcript"),
+        empty:        document.getElementById("transcriptEmpty"),
+        suggestions:  document.getElementById("suggestions"),
+        setupNotice:  document.getElementById("setupNotice"),
+        errorNotice:  document.getElementById("errorNotice"),
+        devToken:     document.getElementById("devToken"),
+        devTokenSave: document.getElementById("devTokenSave"),
+        metaDuration: document.getElementById("metaDuration"),
+        metaCost:     document.getElementById("metaCost"),
+        metaQuality:  document.getElementById("metaQuality")
+    };
+
+    var session = null;
+    var keepAliveTimer = null;
+    var tickTimer = null;
+    var startedAt = 0;
+    var pending = { user: null, avatar: null };
+
+    /* ---------------------------- UI helpers -------------------------- */
+
+    function setStatus(text, kind) {
+        el.statusText.textContent = text;
+        el.statusDot.className = "dot" + (kind ? " " + kind : "");
+    }
+
+    function showOverlay(text, busy) {
+        el.overlayText.textContent = text;
+        el.spinner.hidden = !busy;
+        el.overlay.hidden = false;
+    }
+
+    function hideOverlay() {
+        el.overlay.hidden = true;
+    }
+
+    function showError(message) {
+        el.errorNotice.textContent = message;
+        el.errorNotice.hidden = false;
+    }
+
+    function clearError() {
+        el.errorNotice.hidden = true;
+    }
+
+    function formatClock(ms) {
+        var total = Math.floor(ms / 1000);
+        var m = String(Math.floor(total / 60)).padStart(2, "0");
+        var s = String(total % 60).padStart(2, "0");
+        return m + ":" + s;
+    }
+
+    function addMessage(role, text, isPending) {
+        if (el.empty) { el.empty.remove(); el.empty = null; }
+        var node = document.createElement("div");
+        node.className = "msg " + role + (isPending ? " pending" : "");
+        node.textContent = text;
+        el.transcript.appendChild(node);
+        el.transcript.scrollTop = el.transcript.scrollHeight;
+        return node;
+    }
+
+    // Le trascrizioni arrivano prima a pezzi (chunk) e poi in versione finale:
+    // il chunk aggiorna una riga provvisoria, il finale la consolida.
+    function updateChunk(role, text) {
+        if (!pending[role]) {
+            pending[role] = addMessage(role, text, true);
+        } else {
+            pending[role].textContent = text;
+            el.transcript.scrollTop = el.transcript.scrollHeight;
+        }
+    }
+
+    function finalizeTranscription(role, text) {
+        if (pending[role]) {
+            pending[role].textContent = text;
+            pending[role].classList.remove("pending");
+            pending[role] = null;
+        } else {
+            addMessage(role, text, false);
+        }
+        el.transcript.scrollTop = el.transcript.scrollHeight;
+    }
+
+    function setInteractive(on) {
+        el.input.disabled = !on;
+        el.btnSend.disabled = !on;
+        el.btnMic.disabled = !on;
+        el.btnStop.disabled = !on;
+        el.btnStop2.disabled = !on;
+        Array.prototype.forEach.call(el.suggestions.children, function (chip) {
+            chip.disabled = !on;
+        });
+    }
+
+    function renderSuggestions() {
+        CONFIG.suggestions.forEach(function (question) {
+            var chip = document.createElement("button");
+            chip.type = "button";
+            chip.className = "chip";
+            chip.textContent = question;
+            chip.disabled = true;
+            chip.addEventListener("click", function () { send(question); });
+            el.suggestions.appendChild(chip);
+        });
+    }
+
+    /* ---------------------------- token ------------------------------- */
+
+    function getSessionToken() {
+        if (!CONFIG.tokenEndpoint) {
+            var manual = sessionStorage.getItem("liveavatar_dev_token");
+            if (manual) return Promise.resolve(manual);
+            return Promise.reject(new Error(
+                "Nessun token server configurato. Imposta CONFIG.tokenEndpoint " +
+                "oppure incolla un session_token nel riquadro giallo."
+            ));
+        }
+        return fetch(CONFIG.tokenEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                avatar_id:  CONFIG.avatarId,
+                context_id: CONFIG.contextId,
+                language:   CONFIG.language
+            })
+        }).then(function (response) {
+            if (!response.ok) {
+                return response.text().then(function (body) {
+                    throw new Error("Token server: HTTP " + response.status + " — " + body.slice(0, 200));
+                });
+            }
+            return response.json();
+        }).then(function (data) {
+            var token = data.session_token || (data.data && data.data.session_token);
+            if (!token) throw new Error("Il token server non ha restituito session_token.");
+            return token;
+        });
+    }
+
+    /* ---------------------------- sessione ---------------------------- */
+
+    function start() {
+        clearError();
+        el.btnStart.disabled = true;
+        showOverlay("Connessione all'avatar in corso…", true);
+        setStatus("Connessione…", "warn");
+
+        getSessionToken()
+            .then(function (token) {
+                session = new SDK.LiveAvatarSession(token, {
+                    voiceChat: { defaultMuted: true, mode: SDK.SessionInteractivityMode.CONVERSATIONAL }
+                });
+                wireEvents(session);
+                return session.start();
+            })
+            .then(function () {
+                startedAt = Date.now();
+                setStatus("In diretta", "live");
+                setInteractive(true);
+                el.timer.hidden = false;
+                el.input.focus();
+
+                // La sessione viene chiusa dal server se resta inattiva.
+                keepAliveTimer = setInterval(function () {
+                    session.keepAlive().catch(function () { /* la chiusura è gestita dagli eventi */ });
+                }, 30000);
+
+                tickTimer = setInterval(tick, 1000);
+                tick();
+            })
+            .catch(function (error) {
+                console.error(error);
+                showError(error.message || "Impossibile avviare la sessione.");
+                showOverlay("Sessione non avviata.", false);
+                setStatus("Errore", "err");
+                el.btnStart.disabled = false;
+                teardown();
+            });
+    }
+
+    function wireEvents(s) {
+        s.on(SessionEvent.SESSION_STREAM_READY, function () {
+            s.attach(el.video);
+            var playback = el.video.play();
+            if (playback && playback.catch) {
+                playback.catch(function () {
+                    showOverlay("Tocca lo schermo per attivare l'audio.", false);
+                });
+            }
+            hideOverlay();
+        });
+
+        s.on(SessionEvent.SESSION_STATE_CHANGED, function (state) {
+            if (state === SessionState.DISCONNECTED) finish("Sessione chiusa.");
+        });
+
+        s.on(SessionEvent.SESSION_DISCONNECTED, function (reason) {
+            finish("Sessione chiusa (" + reason + ").");
+        });
+
+        s.on(SessionEvent.SESSION_CONNECTION_QUALITY_CHANGED, function (quality) {
+            el.metaQuality.textContent = String(quality);
+        });
+
+        s.on(AgentEvents.USER_TRANSCRIPTION_CHUNK,   function (e) { updateChunk("user", e.text); });
+        s.on(AgentEvents.USER_TRANSCRIPTION,         function (e) { finalizeTranscription("user", e.text); });
+        s.on(AgentEvents.AVATAR_TRANSCRIPTION_CHUNK, function (e) { updateChunk("avatar", e.text); });
+        s.on(AgentEvents.AVATAR_TRANSCRIPTION,       function (e) { finalizeTranscription("avatar", e.text); });
+
+        s.on(AgentEvents.AVATAR_SPEAK_STARTED, function () { setStatus("L'avatar risponde", "live"); });
+        s.on(AgentEvents.AVATAR_SPEAK_ENDED,   function () { setStatus("In ascolto", "live"); });
+
+        s.voiceChat.on(VoiceChatEvent.MUTED,   function () { renderMic(true);  });
+        s.voiceChat.on(VoiceChatEvent.UNMUTED, function () { renderMic(false); });
+    }
+
+    function tick() {
+        if (!startedAt) return;
+        var elapsed = Date.now() - startedAt;
+        var clock = formatClock(elapsed);
+        el.timer.textContent = clock;
+        el.metaDuration.textContent = clock;
+        el.metaCost.textContent = "€ " + ((elapsed / 60000) * CONFIG.costPerMinute).toFixed(2);
+    }
+
+    function renderMic(muted) {
+        el.btnMic.textContent = muted ? "Microfono off" : "Microfono attivo";
+        el.btnMic.classList.toggle("is-on", !muted);
+    }
+
+    function toggleMic() {
+        if (!session) return;
+        var action = session.voiceChat.isMuted ? session.voiceChat.unmute() : session.voiceChat.mute();
+        Promise.resolve(action).catch(function (error) {
+            showError("Microfono non disponibile: " + (error.message || error));
+        });
+    }
+
+    function send(text) {
+        var message = (text !== undefined ? text : el.input.value).trim();
+        if (!message || !session) return;
+        addMessage("user", message, false);
+        session.message(message);
+        el.input.value = "";
+    }
+
+    function stop() {
+        if (!session) return;
+        el.btnStop.disabled = true;
+        session.stop().catch(function (error) { console.error(error); });
+    }
+
+    function finish(reason) {
+        if (!session && !startedAt) return;
+        teardown();
+        setStatus("Non connesso");
+        showOverlay(reason + " Avvia una nuova sessione per riprendere.", false);
+        setInteractive(false);
+        el.btnStart.disabled = false;
+        el.timer.hidden = true;
+        addMessage("system", reason, false);
+    }
+
+    function teardown() {
+        clearInterval(keepAliveTimer);
+        clearInterval(tickTimer);
+        keepAliveTimer = tickTimer = null;
+        startedAt = 0;
+        session = null;
+        pending.user = pending.avatar = null;
+        renderMic(true);
+    }
+
+    /* ---------------------------- bootstrap --------------------------- */
+
+    renderSuggestions();
+    renderMic(true);
+
+    if (!SDK) {
+        showError("SDK LiveAvatar non caricato: controlla la connessione o il blocco del CDN.");
+        showOverlay("Avatar non disponibile.", false);
+        setStatus("SDK non disponibile", "err");
+        el.btnStart.disabled = true;
+        return;
+    }
+
+    if (!CONFIG.tokenEndpoint && !sessionStorage.getItem("liveavatar_dev_token")) {
+        el.setupNotice.hidden = false;
+    }
+
+    el.devTokenSave.addEventListener("click", function () {
+        var token = el.devToken.value.trim();
+        if (!token) return;
+        sessionStorage.setItem("liveavatar_dev_token", token);
+        el.setupNotice.hidden = true;
+        clearError();
+    });
+
+    el.btnStart.addEventListener("click", start);
+    el.btnStop.addEventListener("click", stop);
+    el.btnStop2.addEventListener("click", function () { if (session) session.interrupt(); });
+    el.btnMic.addEventListener("click", toggleMic);
+    el.btnClear.addEventListener("click", function () {
+        el.transcript.innerHTML = "";
+        pending.user = pending.avatar = null;
+    });
+    el.composer.addEventListener("submit", function (event) {
+        event.preventDefault();
+        send();
+    });
+
+    window.addEventListener("beforeunload", function () {
+        if (session) session.stop();
+    });
+})();
+</script>
+</body>
+</html>
