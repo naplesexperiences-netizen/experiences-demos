@@ -54,24 +54,36 @@ In `index.html`, nel blocco `CONFIG` in fondo al file:
 tokenEndpoint: "https://liveavatar-token.<tuo-subdomain>.workers.dev",
 ```
 
-### 3. Prova in locale
+### 3. Prova che funzioni
+
+Vedi **Verificare che funzioni** qui sotto: si parte dallo smoke test senza
+API key e si arriva alla sessione reale.
+
+## Verificare che funzioni
+
+Tre livelli, dal più economico al più realistico.
+
+### 1. Smoke test della UI — nessuna API key, nessun costo
+
+Sostituisce l'SDK con uno stub e pilota la pagina con un browser vero:
+dice se l'interfaccia è integra, non se LiveAvatar risponde.
 
 ```bash
 cd demos/avatar-live-liveavatar
-python3 -m http.server 8000
-# apri http://localhost:8000
+npm install playwright && npx playwright install chromium
+node test/smoke.mjs
 ```
 
-Il microfono e la webcam richiedono un contesto sicuro: `localhost` va bene,
-un IP di rete locale in `http://` no.
+Stampa un elenco di controlli e esce con codice 1 se qualcosa si è rotto.
+Da rilanciare dopo ogni modifica a `index.html`.
 
-## Prova rapida senza token server
+### 2. Sessione reale con token generato a mano
 
-Se vuoi vedere l'avatar funzionare prima di pubblicare il Worker, genera un
-token a mano e incollalo nel riquadro giallo della pagina (resta in
-`sessionStorage`, non viene salvato da nessuna parte):
+Serve la API key dalla dashboard LiveAvatar. Genera un token:
 
 ```bash
+export LIVEAVATAR_API_KEY="la-tua-chiave"
+
 curl -s -X POST https://api.liveavatar.com/v1/sessions/token \
   -H "X-API-KEY: $LIVEAVATAR_API_KEY" \
   -H "content-type: application/json" \
@@ -87,8 +99,63 @@ curl -s -X POST https://api.liveavatar.com/v1/sessions/token \
   }' | python3 -m json.tool
 ```
 
-Il token è nel campo `data.session_token`. Serve per **una sola** sessione:
-per una nuova prova bisogna rigenerarlo.
+Se ottieni `data.session_token`, **avatar, contesto e chiave sono validi**:
+metà della verifica è già fatta senza aprire il browser.
+
+Poi servi la pagina e incolla il token nel riquadro giallo:
+
+```bash
+python3 -m http.server 8000     # da questa cartella
+# apri http://localhost:8000
+```
+
+`localhost` è indispensabile: microfono e WebRTC non funzionano da `file://`.
+
+Cosa deve succedere, in ordine:
+
+| Passo | Atteso | Se non succede |
+|---|---|---|
+| Clic su "Avvia sessione" | spinner, poi il video dell'avatar | apri la console: errore su `/v1/sessions/start` = token già usato o scaduto |
+| Stato in alto a sinistra | pallino verde, "In diretta" | resta "Connessione" = il browser non completa il WebRTC (rete o firewall) |
+| Scrivi una domanda e invia | l'avatar parla e la risposta compare in trascrizione | silenzio ma trascrizione presente = audio bloccato dall'autoplay, clicca sulla pagina |
+| Clic su "Microfono" e parla | la tua frase compare come bolla blu | nessuna bolla = permesso microfono negato |
+| Clic su "Interrompi" | l'avatar si zittisce subito | — |
+
+Ogni token vale **una sola** sessione: per una seconda prova rigenera il token.
+
+### 3. Verifica end-to-end col token server
+
+Dopo `wrangler deploy`, controlla che il Worker risponda e che l'allowlist
+faccia il suo lavoro:
+
+```bash
+# origine autorizzata -> deve restituire session_token
+curl -s -X POST https://liveavatar-token.<subdomain>.workers.dev \
+  -H "Origin: https://naplesexperiences-netizen.github.io" \
+  -H "content-type: application/json" -d '{}'
+
+# origine non autorizzata -> deve restituire 403
+curl -s -o /dev/null -w "%{http_code}\n" \
+  -X POST https://liveavatar-token.<subdomain>.workers.dev \
+  -H "Origin: https://sito-a-caso.example" \
+  -H "content-type: application/json" -d '{}'
+```
+
+Il secondo comando **deve** dare `403`. Se dà `200` l'endpoint è aperto a
+chiunque e le sessioni le paghi tu: controlla `ALLOWED_ORIGINS`.
+
+Infine imposta `CONFIG.tokenEndpoint` in `index.html`, ricarica la pagina —
+il riquadro giallo deve sparire — e ripeti la tabella del punto 2.
+
+### Diagnosticare un errore del token server
+
+```bash
+wrangler tail        # log in tempo reale del Worker
+```
+
+Il Worker non rimanda al browser il corpo dell'errore di LiveAvatar (finirebbe
+in pagina), ma lo scrive nei log: `wrangler tail` è dove si vede il motivo
+reale di un 502.
 
 ## Funzioni della pagina
 
