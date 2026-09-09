@@ -35,6 +35,8 @@ jobs:
           args: >-
             --offline
             --no-progress
+            --exclude 'data:.*'
+            --exclude '\{\{.*\}\}'
             './index.html'
             './demos/**/*.html'
           fail: true
