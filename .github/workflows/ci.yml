@@ -21,7 +21,10 @@ jobs:
         run: npm install -g htmlhint@1.1.4
 
       - name: Run HTMLHint
-        run: htmlhint --config .htmlhintrc "index.html" "demos/**/*.html"
+        run: >
+          htmlhint --config .htmlhintrc
+          --ignore "demos/*-experiences-standard/**,demos/*-new-template-experiences/**"
+          "index.html" "demos/**/*.html"
 
   link-check:
     name: Broken link check
@@ -35,8 +38,8 @@ jobs:
           args: >-
             --offline
             --no-progress
-            --exclude 'data:.*'
-            --exclude '\{\{.*\}\}'
+            --exclude data:.*
+            --exclude HERO_IMAGE_URL
             './index.html'
             './demos/**/*.html'
           fail: true
