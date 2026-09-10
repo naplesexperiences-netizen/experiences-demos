@@ -38,7 +38,7 @@ Photorealistic editorial photography. Three-quarter view from behind of a young 
 **Prompt:**
 
 ```
-Clean 3D render with soft studio lighting and photorealistic materials. Four vertical frosted glass panels in portrait proportion float in staggered depth above a warm limestone surface, decreasing in size from left to right to suggest a narrowing funnel. A thin glowing teal thread links them in sequence, ending in a small matte navy key form on the last panel. Background is a softly blurred warm neutral gradient with a faint Mediterranean blue horizon. Slightly elevated three-quarter camera angle, gentle surface reflections, generous negative space, no clutter. Palette deep navy blue (#0B3D61), teal accent (#14A3A3), warm neutral tones. Precise, modern, editorial mood. 16:9 aspect ratio. No text, no letters, no watermarks, no logos in the image.
+Clean 3D render with soft studio lighting and photorealistic materials. Four vertical frosted glass panels in portrait proportion float in staggered depth above a warm limestone surface, decreasing in size from left to right to suggest a narrowing funnel. A thin glowing teal thread links them in sequence, ending in a small matte navy key form. Background is a softly blurred warm neutral gradient with a faint Mediterranean blue horizon. Slightly elevated three-quarter angle, gentle surface reflections, generous negative space, no clutter. Palette deep navy blue (#0B3D61), teal accent (#14A3A3), warm neutral tones. Precise, modern, editorial mood. 16:9 aspect ratio. No text, no letters, no watermarks, no logos in the image.
 ```
 
 **Varianti se il risultato non convince:**
@@ -78,7 +78,7 @@ Photorealistic editorial photography. Wide three-quarter view of a small boutiqu
 **Prompt:**
 
 ```
-Clean 3D render, minimal and precise. A single matte navy vertical rectangle with softly rounded corners stands upright on a warm limestone plinth, evoking a phone screen without any interface details, while three smaller glowing teal rings rise and drift upward from its top edge to suggest spreading reach. Centred symmetrical composition with generous negative space in the upper third. Soft top-left key light, gentle contact shadow beneath the plinth, subtle depth-of-field blur on a warm neutral backdrop washed with a faint Mediterranean blue gradient. Eye-level camera, slightly tilted for depth. Palette deep navy blue (#0B3D61), teal accent (#14A3A3), warm neutral tones. Confident, contemporary, premium mood. 1:1 square format. No text, no letters, no watermarks, no logos in the image.
+Clean 3D render, minimal and precise. A single matte navy vertical rectangle with softly rounded corners stands upright on a warm limestone plinth, evoking a phone screen without any interface details, while three glowing teal rings drift upward from its top edge to suggest spreading reach. Centred symmetrical composition with generous negative space in the upper third. Soft top-left key light, gentle contact shadow, subtle depth-of-field blur on a warm neutral backdrop washed with a faint Mediterranean blue gradient. Eye-level camera, slightly tilted. Palette deep navy blue (#0B3D61), teal accent (#14A3A3), warm neutral tones. Confident, contemporary, premium mood. 1:1 square format. No text, no letters, no watermarks, no logos in the image.
 ```
 
 **Varianti se il risultato non convince:**
