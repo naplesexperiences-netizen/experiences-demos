@@ -21,10 +21,11 @@ jobs:
         run: npm install -g htmlhint@1.1.4
 
       - name: Run HTMLHint
-        run: >
-          htmlhint --config .htmlhintrc
-          --ignore "demos/*-experiences-standard/**,demos/*-new-template-experiences/**"
-          "index.html" "demos/**/*.html"
+        run: |
+          find . -name "*.html" \
+            ! -path "*-experiences-standard/*" \
+            ! -path "*-new-template-experiences/*" \
+            -print0 | xargs -0 htmlhint --config .htmlhintrc
 
   link-check:
     name: Broken link check
