@@ -411,9 +411,75 @@ function experiences_has_consent( $category ) {
     return ! empty( $data[ $category ] );
 }
 
+// ── Open Graph per articoli e pagine ───────────────────────────
+// Prima i tag OG uscivano solo in homepage (is_front_page), quindi
+// condividendo un articolo del blog non compariva nessuna anteprima.
+// Qui li generiamo per i singoli post/pagine usando l'immagine in
+// evidenza quando c'è, con fallback sull'og-image del brand.
+// Un plugin SEO attivo emette già i propri tag OG: duplicarli confonde
+// i crawler, quindi in quel caso ci facciamo da parte.
+function experiences_seo_plugin_active() {
+    return defined( 'WPSEO_VERSION' )            // Yoast
+        || defined( 'RANK_MATH_VERSION' )        // Rank Math
+        || defined( 'SEOPRESS_VERSION' )         // SEOPress
+        || defined( 'AIOSEO_VERSION' );          // All in One SEO
+}
+
+function experiences_meta_tags_singular() {
+    if ( is_front_page() || ! is_singular() ) return;
+    if ( experiences_seo_plugin_active() ) return;
+
+    $fallback = get_template_directory_uri() . '/assets/img/og-image.jpg';
+    $img_w = 1200;
+    $img_h = 630;
+    $img   = $fallback;
+
+    if ( has_post_thumbnail() ) {
+        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+        // Le anteprime social vogliono almeno 600x315; sotto quella soglia
+        // i crawler scartano l'immagine e non mostrano nulla.
+        if ( $thumb && $thumb[1] >= 600 && $thumb[2] >= 315 ) {
+            $img   = $thumb[0];
+            $img_w = $thumb[1];
+            $img_h = $thumb[2];
+        }
+    }
+
+    $excerpt = has_excerpt()
+        ? get_the_excerpt()
+        : wp_trim_words( wp_strip_all_tags( strip_shortcodes( get_the_content() ) ), 30, '…' );
+    $desc = trim( wp_strip_all_tags( $excerpt ) );
+    ?>
+    <meta name="description" content="<?php echo esc_attr( $desc ); ?>">
+    <meta name="author" content="Experiences Srl">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="theme-color" content="#0B3D61">
+    <link rel="canonical" href="<?php echo esc_url( get_permalink() ); ?>">
+    <meta property="og:type" content="<?php echo is_singular( 'post' ) ? 'article' : 'website'; ?>">
+    <meta property="og:site_name" content="Experiences Srl">
+    <meta property="og:title" content="<?php echo esc_attr( get_the_title() ); ?>">
+    <meta property="og:description" content="<?php echo esc_attr( $desc ); ?>">
+    <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>">
+    <meta property="og:image" content="<?php echo esc_url( $img ); ?>">
+    <meta property="og:image:width" content="<?php echo (int) $img_w; ?>">
+    <meta property="og:image:height" content="<?php echo (int) $img_h; ?>">
+    <meta property="og:locale" content="it_IT">
+    <?php if ( is_singular( 'post' ) ) : ?>
+    <meta property="article:published_time" content="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
+    <meta property="article:modified_time" content="<?php echo esc_attr( get_the_modified_date( 'c' ) ); ?>">
+    <?php endif; ?>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr( get_the_title() ); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr( $desc ); ?>">
+    <meta name="twitter:image" content="<?php echo esc_url( $img ); ?>">
+    <?php
+}
+add_action( 'wp_head', 'experiences_meta_tags_singular', 1 );
+
 // ── SEO: meta tags ─────────────────────────────────────────────
 function experiences_meta_tags() {
-    if ( ! is_front_page() ) return; ?>
+    if ( ! is_front_page() ) return;
+    if ( experiences_seo_plugin_active() ) return; ?>
     <meta name="description" content="Experiences Srl digitalizza agenzie di viaggi e strutture alberghiere italiane. Sviluppo siti web, SEO/SEM, gestione Channel Manager, annunci OTA e assistenti AI. Richiedi una consulenza gratuita.">
     <meta name="keywords" content="soluzioni digitali turismo, sito web agenzia viaggi, channel manager hotel, gestione OTA, SEO turismo italia, prenotazioni online hotel, assistente virtuale AI turismo, experiences srl napoli">
     <meta name="author" content="Experiences Srl">
