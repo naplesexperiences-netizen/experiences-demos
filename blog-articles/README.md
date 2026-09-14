@@ -1,20 +1,48 @@
 # Blog Articles — Naples Experiences
 
-Articoli blog B2B **WordPress-ready** per **naplesexperiences.com** (Experiences Srl),
-ciascuno corredato dai prompt per generare le immagini con Google Gemini.
+Articoli blog B2B **WordPress-ready** per **naplesexperiences.com** (Experiences Srl).
+Gli articoli 13-18 includono anche i prompt per generare le immagini con Google Gemini.
 
 ## Contenuto del pacchetto
+
+### Batch 1 — Pillar (gennaio-febbraio 2026)
+
+| # | Slug | Titolo | Focus Keyword | Categoria | Parole |
+|---|------|--------|---------------|-----------|--------|
+| 01 | `channel-manager-hotel-guida-completa-2026` | Channel Manager per Hotel: La Guida Completa 2026 | channel manager hotel | Hotel & Strutture Ricettive | 1.637 |
+| 02 | `come-evitare-overbooking-hotel` | Come Evitare l'Overbooking: Guida Pratica per Hotel e B&B | evitare overbooking hotel | Hotel & Strutture Ricettive | 1.513 |
+| 03 | `seo-locale-hotel-top-google` | SEO Locale per Hotel: Come Arrivare in Top 3 su Google in 90 Giorni | seo locale hotel | Marketing Digitale | 1.788 |
+| 04 | `da-5-a-20-prenotazioni-mese-agenzia-tour` | Da 5 a 20 Prenotazioni al Mese: Il Case Study di un'Agenzia Tour di Napoli | aumentare prenotazioni agenzia viaggi | Case Study | 1.541 |
+| 05 | `vendere-tour-online-getyourguide-viator-sito-proprio` | GetYourGuide vs Viator vs Sito Proprio: Dove Vendere i Tuoi Tour nel 2026 | vendere tour online | Tour Operator & Agenzie | 1.594 |
+| 06 | `channel-manager-tour-operator` | Channel Manager per Tour Operator: Gestisci 100+ Tour da 1 Dashboard | channel manager tour operator | Tour Operator & Agenzie | 1.770 |
+
+### Batch 2 — Turismo & Innovazione (febbraio-marzo 2026)
+
+| # | Slug | Titolo | Focus Keyword | Categoria | Parole |
+|---|------|--------|---------------|-----------|--------|
+| 07 | `ai-chatbot-hotel-bnb-segretario-digitale-24-7` | AI Chatbot per Hotel e B&B: Il Segretario Digitale che Lavora 24/7 | ai chatbot hotel | AI & Innovazione | 1.963 |
+| 08 | `dynamic-pricing-ai-hotel-revpar` | Dynamic Pricing AI: Come Hotel Italiani Aumentano il RevPAR del 35% | dynamic pricing hotel | Revenue Management | 1.971 |
+| 09 | `turismo-sostenibile-hotel-certificazioni-green-2026` | Turismo Sostenibile 2026: Certificazioni Green, KPI e Viaggiatori Eco | turismo sostenibile hotel | Sostenibilità & Innovazione | 2.233 |
+| 10 | `smart-hotel-check-in-keyless-iot-guida-2026` | Smart Hotel: Check-in Senza Reception, Smart Key e IoT | smart hotel | Innovazione Tecnologica | 2.350 |
+| 11 | `vr-ar-tour-operator-esperienze-immersive` | Realtà Virtuale e Aumentata per Tour Operator | realtà virtuale tour operator | Tour Operator & Innovazione | 2.240 |
+| 12 | `voice-search-hotel-ottimizzazione-alexa-google-assistant` | Voice Search per Hotel: Ottimizzare per Alexa e Google Assistant | voice search hotel | SEO & Marketing Digitale | 2.184 |
+
+### Batch 3 — Revenue & Marketing (marzo-aprile 2026)
+
+Include i prompt Gemini per le immagini.
 
 | # | Slug | Titolo | Focus Keyword | Categoria | Parole |
 |---|------|--------|---------------|-----------|--------|
 | 13 | `aumentare-prenotazioni-dirette-hotel-disintermediazione` | Prenotazioni Dirette: Come Tagliare le Commissioni OTA e Aumentare i Margini del 40% | prenotazioni dirette hotel | Revenue Management | 2.556 |
-| 14 | `gestire-recensioni-online-hotel-booking-tripadvisor` | Recensioni Online per Hotel: Come Passare da 8.1 a 9.0 su Booking in 6 Mesi | recensioni online hotel | Reputazione & Customer Care | 2.778 |
+| 14 | `gestire-recensioni-online-hotel-booking-tripadvisor` | Recensioni Online per Hotel: Come Passare da 8.1 a 9.0 su Booking in 6 Mesi | recensioni online hotel | Reputazione & Customer Care | 2.357 |
 | 15 | `email-marketing-hotel-pre-stay-post-stay` | Email Marketing per Hotel: Pre-Stay, Post-Stay e Recupero delle Prenotazioni Abbandonate | email marketing hotel | Marketing Digitale | 2.459 |
 | 16 | `metasearch-google-hotel-ads-trivago-tripadvisor` | Metasearch per Hotel: Google Hotel Ads, Trivago e TripAdvisor — La Guida Completa 2026 | metasearch hotel | Marketing Digitale | 2.556 |
 | 17 | `whatsapp-business-hotel-tour-operator` | WhatsApp Business per Hotel e Tour Operator: Il Canale che Converte il 45% | whatsapp business hotel | AI & Innovazione | 2.770 |
-| 18 | `instagram-tiktok-hotel-strutture-ricettive-ugc` | Instagram e TikTok per Hotel: La Strategia Contenuti (e l'UGC) che Riempie le Camere | instagram hotel marketing | Social Media & Contenuti | 3.133 |
+| 18 | `instagram-tiktok-hotel-strutture-ricettive-ugc` | Instagram e TikTok per Hotel: La Strategia Contenuti (e l'UGC) che Riempie le Camere | instagram hotel marketing | Social Media & Contenuti | 2.511 |
 
-**Totale:** ~16.250 parole di contenuto B2B premium.
+**Totale: 18 articoli, ~38.900 parole** di contenuto B2B.
+
+---
 
 ## Struttura di ogni cartella
 
@@ -22,8 +50,12 @@ ciascuno corredato dai prompt per generare le immagini con Google Gemini.
 13-aumentare-prenotazioni-dirette-hotel-disintermediazione/
 ├── article.html        ← contenuto HTML pronto per WordPress
 ├── seo.json            ← pacchetto SEO completo + schema JSON-LD
-└── image-prompts.md    ← 4 prompt Gemini + alt text
+└── image-prompts.md    ← 4 prompt Gemini + alt text (solo batch 3)
 ```
+
+Gli articoli **01-12** hanno `article.html` e `seo.json`. Il file `image-prompts.md`
+è presente solo per il **batch 3** (13-18); per i primi dodici le immagini vanno
+scelte da stock o generate adattando i prompt esistenti.
 
 ### `article.html`
 
@@ -56,7 +88,7 @@ o in modalità Testo dell'editor classico.
 }
 ```
 
-### `image-prompts.md`
+### `image-prompts.md` (batch 3)
 
 Quattro prompt pronti da incollare in Google Gemini:
 
@@ -111,8 +143,11 @@ wp post create \
 
 Un file WXR (WordPress eXtended RSS) permette di importare tutti gli articoli
 in un colpo solo da **Strumenti → Importa → WordPress**, con categorie, tag e
-meta SEO già assegnati. Chiedi la generazione del WXR quando gli articoli sono
-definitivi.
+meta SEO già assegnati.
+
+Se l'importer restituisce *"numero di versione WXR mancante o errato"*, il file
+è quasi sempre valido ma l'upload lo tronca: usa la variante `.xml.gz`, che
+l'importer scompatta in memoria bypassando i limiti di `upload_max_filesize`.
 
 ---
 
@@ -127,6 +162,11 @@ Imposta in **Impostazioni → Permalink → Struttura personalizzata**:
 
 Senza questa struttura i link interni cross-articolo restituiscono 404.
 
+Serve anche una **pagina degli articoli**: crea una pagina "Blog" (slug `blog`)
+e assegnala in **Impostazioni → Lettura → Pagina degli articoli**, altrimenti
+l'archivio `/blog/` non esiste e i pulsanti "Tutti gli articoli" non portano
+da nessuna parte.
+
 ---
 
 ## Calendario editoriale consigliato
@@ -134,17 +174,29 @@ Senza questa struttura i link interni cross-articolo restituiscono 404.
 Pubblicazione settimanale, **martedì o mercoledì mattina (9:00-10:00 CET)** —
 picco di engagement B2B.
 
-| Settimana | Articolo | Note |
-|-----------|----------|------|
-| 1 | #13 — Prenotazioni dirette | Pillar: il tema economicamente più rilevante |
-| 2 | #16 — Metasearch | Supporta il #13 (canale per il diretto) |
-| 3 | #15 — Email marketing | Supporta il #13 (database proprietario) |
-| 4 | #14 — Recensioni online | Cambio topic: reputazione |
-| 5 | #17 — WhatsApp Business | Canale conversazionale |
-| 6 | #18 — Instagram e TikTok | Chiude sul funnel di scoperta |
+| Sett. | Articolo | Ruolo nel cluster |
+|-------|----------|-------------------|
+| 1 | #01 — Channel Manager Hotel | Pillar tecnologico |
+| 2 | #02 — Evitare Overbooking | Supporta #01 |
+| 3 | #03 — SEO Locale Hotel | Cambio topic: visibilità |
+| 4 | #04 — Case Study Agenzia Tour | Switch verso tour operator |
+| 5 | #05 — Dove Vendere Tour | Supporta #04 |
+| 6 | #06 — Channel Manager Tour Operator | Chiude il cluster tour |
+| 7 | #07 — AI Chatbot Hotel | Apre il cluster innovazione |
+| 8 | #08 — Dynamic Pricing AI | Supporta #07 |
+| 9 | #09 — Turismo Sostenibile | Cambio topic: ESG |
+| 10 | #10 — Smart Hotel IoT | Supporta #09 |
+| 11 | #11 — VR/AR Tour Operator | Innovazione lato tour |
+| 12 | #12 — Voice Search Hotel | Chiude su SEO futuro |
+| 13 | #13 — Prenotazioni dirette | **Pillar economico** del batch 3 |
+| 14 | #16 — Metasearch | Supporta #13 (canale per il diretto) |
+| 15 | #15 — Email marketing | Supporta #13 (database proprietario) |
+| 16 | #14 — Recensioni online | Cambio topic: reputazione |
+| 17 | #17 — WhatsApp Business | Canale conversazionale |
+| 18 | #18 — Instagram e TikTok | Chiude sul funnel di scoperta |
 
-Questa sequenza costruisce un topic cluster attorno alla **disintermediazione**:
-il #13 è il pillar, gli altri cinque sono i supporting content che vi rimandano.
+Il batch 3 costruisce un topic cluster attorno alla **disintermediazione**:
+il #13 è il pillar, gli altri cinque sono supporting content che vi rimandano.
 
 ---
 
@@ -153,7 +205,7 @@ il #13 è il pillar, gli altri cinque sono i supporting content che vi rimandano
 Per ogni articolo:
 
 - [ ] URL pulito e funzionante (`/blog/<slug>/`)
-- [ ] Featured image impostata (generata con il prompt #1)
+- [ ] Featured image impostata
 - [ ] Alt text compilato su tutte le immagini
 - [ ] Categoria e tag corretti
 - [ ] Meta SEO compilati (focus keyword, title, description)
