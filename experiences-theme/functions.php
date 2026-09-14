@@ -123,10 +123,16 @@ function experiences_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'experiences_customize_register' );
 
-// ── Auto-creazione pagine legali al primo cambio tema ──────────────────
+// ── Auto-creazione pagine legali ───────────────────────────────────────
 // Crea Privacy Policy (se WP non ne ha già una) + Cookie Policy + Termini.
 // Contenuto boilerplate — il cliente lo personalizza. Idempotente: non
 // duplica pagine esistenti.
+//
+// Girava solo su 'after_switch_theme', che scatta quando si CAMBIA tema
+// ma non quando se ne carica una versione aggiornata sopra la stessa.
+// Chi aggiornava il tema non otteneva le pagine, e i link nel footer
+// restituivano 404. Ora l'aggancio è su 'admin_init' con un flag
+// versionato, lo stesso meccanismo della pagina Blog.
 function experiences_create_legal_pages() {
     $pages = [
         'privacy-policy' => [
@@ -168,7 +174,21 @@ function experiences_create_legal_pages() {
         }
     }
 }
+// Scatta sia al cambio tema sia, una volta sola, al primo accesso in
+// bacheca dopo un aggiornamento del tema.
 add_action( 'after_switch_theme', 'experiences_create_legal_pages' );
+
+function experiences_ensure_legal_pages() {
+    if ( get_option( 'experiences_legal_pages_setup_v1' ) ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+    experiences_create_legal_pages();
+    update_option( 'experiences_legal_pages_setup_v1', time() );
+}
+add_action( 'admin_init', 'experiences_ensure_legal_pages' );
 
 // ── Blog archive: helper URL + setup automatico pagina "Blog" ──────────
 // Il bottone "Tutti gli articoli" nella front-page usava
