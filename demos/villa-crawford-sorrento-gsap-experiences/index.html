@@ -520,10 +520,10 @@
             </div>
         </nav>
         <div class="menu-overlay__preview">
-            <img class="is-active" src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="Facciata di Villa Crawford">
+            <img class="is-active" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="Facciata di Villa Crawford">
             <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Vista sul Vesuvio dalla terrazza">
             <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Vista su Capri">
-            <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="Camere di Villa Crawford">
+            <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Camere di Villa Crawford">
             <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Golfo di Napoli">
             <p class="menu-overlay__caption" id="menuCaption">La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.</p>
         </div>
@@ -551,11 +551,11 @@
             <div class="hero__cards" id="heroCards" aria-hidden="true">
                 <div class="hero__cards-inner">
                     <figure class="hero-card hero-card--1" data-float="3.4">
-                        <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="">
+                        <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="">
                         <span class="hero-card__tag">Camera Superior</span>
                     </figure>
                     <figure class="hero-card hero-card--2" data-float="2.6">
-                        <img src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="">
+                        <img src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="">
                         <span class="hero-card__tag">Villa Crawford</span>
                     </figure>
                     <figure class="hero-card hero-card--3" data-float="3.1">
@@ -606,7 +606,7 @@
                 </div>
             </div>
             <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg')"></div>
+                <div class="amenity-col__bg" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/serpae-napoli-5711208_1920.jpg')"></div>
                 <div class="amenity-col__overlay"></div>
                 <div class="amenity-col__body">
                     <span class="amenity-col__num">02</span>
@@ -665,7 +665,7 @@
                             data-meta="22 mq · 2 ospiti"
                             data-desc="Camera accogliente in stile classico sorrentino, con bagno privato e vista giardino."
                             data-amenities="Wi-Fi,Aria condizionata,TV,Minibar">
-                        <div class="room-card__media"><img class="flip-img" src="https://www.hotelcrawford.it/templates/crawford/images/1465308047_Hotel-Crawford-slide-2.jpg" alt="Camera Classic"></div>
+                        <div class="room-card__media"><img class="flip-img" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Camera Classic"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">22 mq · 2 ospiti</div>
                             <div class="room-card__title">Camera Classic</div>
@@ -698,7 +698,7 @@
                             data-meta="34 mq · 3 ospiti"
                             data-desc="Zona soggiorno separata e terrazzino privato, ideale per soggiorni più lunghi."
                             data-amenities="Wi-Fi,Terrazzino,TV,Minibar,Vasca">
-                        <div class="room-card__media"><img class="flip-img" src="https://www.hotelcrawford.it/templates/crawford/images/1465308036_Hotel-Crawford-slide-1.jpg" alt="Junior Suite"></div>
+                        <div class="room-card__media"><img class="flip-img" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="Junior Suite"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">34 mq · 3 ospiti</div>
                             <div class="room-card__title">Junior Suite</div>
@@ -889,14 +889,36 @@
 
         /* ---- Generic scroll reveals ---- */
         (function () {
-            gsap.utils.toArray('.intro__lead, .stat-item, .room-card, .package-card, .location__list li').forEach(function (el) {
+            var revealEls = gsap.utils.toArray('.intro__lead, .stat-item, .room-card, .package-card, .location__list li');
+            revealEls.forEach(function (el) {
                 gsap.set(el, { opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 28 });
             });
             ScrollTrigger.batch('.intro__lead, .stat-item, .room-card, .package-card, .location__list li', {
-                start: 'top 88%',
+                start: 'top 92%',
                 onEnter: function (batch) {
                     gsap.to(batch, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' });
                 }
+            });
+
+            /* Fallback: IntersectionObserver ensures elements become visible
+               even when ScrollTrigger doesn't fire after anchor-link jumps. */
+            if (!prefersReducedMotion) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) {
+                            gsap.to(e.target, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.05 });
+                revealEls.forEach(function (el) { io.observe(el); });
+            }
+
+            /* Refresh ScrollTrigger after anchor navigation so in-view elements animate. */
+            document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    setTimeout(function () { ScrollTrigger.refresh(); }, 120);
+                });
             });
 
             gsap.utils.toArray('.amenity-col').forEach(function (col, i) {
