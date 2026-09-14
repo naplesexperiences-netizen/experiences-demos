@@ -35,8 +35,8 @@ get_header();
                     </div>
                     
                     <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                        Recupera il <span class="text-gradient">50% delle prenotazioni</span>
-                        <span class="block mt-2">che stai perdendo oggi</span>
+                        Aumenta le tue <span class="text-gradient">prenotazioni</span>,
+                        <span class="block mt-2">lavorando di meno</span>
                     </h1>
 
                     <p class="text-gray-300 text-lg lg:text-xl mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
