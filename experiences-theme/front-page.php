@@ -41,7 +41,7 @@ get_header();
 
                     <p class="text-gray-300 text-lg lg:text-xl mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                         Mentre tu gestisci <strong class="text-white">5 piattaforme manualmente</strong>, i tuoi competitor incassano prenotazioni dirette 24/7.
-                        <span class="text-accent font-medium block mt-2">Channel Manager + Sito Moderno + AI: tutto sincronizzato, zero doppie prenotazioni.</span>
+                        <span class="text-accent font-medium block mt-2">Channel Manager + Sito Moderno + AI: Tutto Sincronizzato, Zero Overbooking</span>
                     </p>
 
                     <!-- Verticale Selector -->
