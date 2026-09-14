@@ -445,6 +445,41 @@ function experiences_seo_plugin_active() {
         || defined( 'AIOSEO_VERSION' );          // All in One SEO
 }
 
+// ── SEO title e meta description dai campi importati ───────────────────
+// Gli articoli importati via WXR portano con sé il titolo SEO e la meta
+// description, scritti nelle meta key di Yoast/Rank Math/SEOPress/AIOSEO.
+// Senza un plugin SEO installato nessuno li legge: WordPress stampa
+// "titolo del post – nome del sito" (fino a 144 caratteri, troncato da
+// Google) e la description finiva per essere l'excerpt, più lungo dei
+// 155 caratteri utili. Queste due funzioni recuperano i valori corretti.
+function experiences_stored_seo_meta( $post_id, $kind ) {
+    $keys = ( 'title' === $kind )
+        ? [ '_yoast_wpseo_title', 'rank_math_title', '_seopress_titles_title', '_aioseo_title' ]
+        : [ '_yoast_wpseo_metadesc', 'rank_math_description', '_seopress_titles_desc', '_aioseo_description' ];
+
+    foreach ( $keys as $key ) {
+        $val = get_post_meta( $post_id, $key, true );
+        if ( is_string( $val ) && '' !== trim( $val ) ) {
+            // Yoast usa segnaposto tipo %%title%%: non sappiamo espanderli,
+            // quindi lasciamo fare a WordPress.
+            if ( false !== strpos( $val, '%%' ) ) {
+                continue;
+            }
+            return trim( $val );
+        }
+    }
+    return '';
+}
+
+function experiences_document_title( $title ) {
+    if ( experiences_seo_plugin_active() || ! is_singular() ) {
+        return $title;
+    }
+    $stored = experiences_stored_seo_meta( get_queried_object_id(), 'title' );
+    return $stored ?: $title;
+}
+add_filter( 'pre_get_document_title', 'experiences_document_title', 20 );
+
 function experiences_meta_tags_singular() {
     if ( is_front_page() || ! is_singular() ) return;
     if ( experiences_seo_plugin_active() ) return;
@@ -465,10 +500,16 @@ function experiences_meta_tags_singular() {
         }
     }
 
-    $excerpt = has_excerpt()
-        ? get_the_excerpt()
-        : wp_trim_words( wp_strip_all_tags( strip_shortcodes( get_the_content() ) ), 30, '…' );
-    $desc = trim( wp_strip_all_tags( $excerpt ) );
+    // Preferisci la meta description importata: è scritta per stare nei
+    // 155 caratteri che Google mostra. L'excerpt è più lungo e verrebbe
+    // troncato a metà frase.
+    $desc = experiences_stored_seo_meta( get_the_ID(), 'description' );
+    if ( ! $desc ) {
+        $excerpt = has_excerpt()
+            ? get_the_excerpt()
+            : wp_trim_words( wp_strip_all_tags( strip_shortcodes( get_the_content() ) ), 30, '…' );
+        $desc = trim( wp_strip_all_tags( $excerpt ) );
+    }
     ?>
     <meta name="description" content="<?php echo esc_attr( $desc ); ?>">
     <meta name="author" content="Experiences Srl">
