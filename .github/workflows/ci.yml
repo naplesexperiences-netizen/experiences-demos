@@ -21,7 +21,11 @@ jobs:
         run: npm install -g htmlhint@1.1.4
 
       - name: Run HTMLHint
-        run: htmlhint --config .htmlhintrc "index.html" "demos/**/*.html"
+        run: |
+          find . -name "*.html" \
+            ! -path "*-experiences-standard/*" \
+            ! -path "*-new-template-experiences/*" \
+            -print0 | xargs -0 htmlhint --config .htmlhintrc
 
   link-check:
     name: Broken link check
@@ -35,6 +39,8 @@ jobs:
           args: >-
             --offline
             --no-progress
+            --exclude data:.*
+            --exclude HERO_IMAGE_URL
             './index.html'
             './demos/**/*.html'
           fail: true
