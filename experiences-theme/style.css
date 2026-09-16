@@ -3,8 +3,8 @@ Theme Name: Experiences Srl
 Theme URI: https://www.naplesexperiences.com
 Author: Experiences Srl
 Author URI: https://www.naplesexperiences.com
-Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.3.8: il tema usa il seo_title e la meta description importati (prima i title arrivavano a 144 char). v2.3.7: fix pagine legali mancanti dopo aggiornamento tema (404 su privacy/cookie/termini). v2.3.6: sottotitolo hero "Tutto Sincronizzato, Zero Overbooking". v2.3.5: sottotitolo hero riscritto per non ripetere la headline. v2.3.4: nuova headline homepage "Aumenta le tue prenotazioni, lavorando di meno". v2.3.3: immagine Open Graph (anteprima condivisione) ispirata alla hero della homepage + tag OG anche su articoli e pagine. v2.3.2: fix "Tutti gli articoli" che reindirizzava alla home (helper experiences_blog_archive_url + auto-creazione pagina Blog come page_for_posts). v2.3.1: postille pricing.
-Version: 2.3.8
+Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.4.0: accessibilità — prefers-reduced-motion sulle 20 animazioni, focus visibile, skip link, label e autocomplete nel form, focus trap nei modali, landmark main. v2.3.8: il tema usa il seo_title e la meta description importati (prima i title arrivavano a 144 char). v2.3.7: fix pagine legali mancanti dopo aggiornamento tema (404 su privacy/cookie/termini). v2.3.6: sottotitolo hero "Tutto Sincronizzato, Zero Overbooking". v2.3.5: sottotitolo hero riscritto per non ripetere la headline. v2.3.4: nuova headline homepage "Aumenta le tue prenotazioni, lavorando di meno". v2.3.3: immagine Open Graph (anteprima condivisione) ispirata alla hero della homepage + tag OG anche su articoli e pagine. v2.3.2: fix "Tutti gli articoli" che reindirizzava alla home (helper experiences_blog_archive_url + auto-creazione pagina Blog come page_for_posts). v2.3.1: postille pricing.
+Version: 2.4.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -732,4 +732,130 @@ Tags: tourism, business, one-page, responsive, custom-menu, custom-logo
 .nav-links .page-numbers.dots {
     border: none;
     background: transparent;
+}
+
+/* ==========================================================================
+   Accessibilità — v2.4.0
+   ========================================================================== */
+
+/* --- Skip link: primo elemento focusabile, visibile solo da tastiera ----- */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10001;
+    padding: 0.85rem 1.5rem;
+    background: #0B3D61;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0 0 12px 0;
+    text-decoration: none;
+}
+.skip-link:focus {
+    left: 0;
+    outline: 3px solid #4ADEDE;
+    outline-offset: 2px;
+}
+
+/* --- Focus visibile su tutti gli elementi interattivi -------------------- */
+/* :focus-visible compare solo per tastiera, non al click del mouse. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #14A3A3;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+/* Sul gradiente scuro dell'hero serve un anello chiaro per il contrasto */
+.hero-gradient a:focus-visible,
+.hero-gradient button:focus-visible,
+footer a:focus-visible,
+footer button:focus-visible {
+    outline-color: #4ADEDE;
+}
+/* Il campo honeypot non deve mai ricevere focus */
+#exp-website:focus-visible { outline: none; }
+
+/* --- Touch: niente ritardo di 300ms sul doppio tap ----------------------- */
+a, button, input, select, textarea, [role="button"] {
+    touch-action: manipulation;
+}
+
+/* --- Modali: lo scroll non prosegue sulla pagina sottostante ------------- */
+.exp-cookie-modal,
+.exp-booking-modal,
+.mobile-menu {
+    overscroll-behavior: contain;
+}
+
+/* --- Ancore dei titoli: non finiscono sotto l'header fisso --------------- */
+:where(h2, h3, h4)[id] { scroll-margin-top: 6rem; }
+
+/* --- Titoli: evita le righe orfane --------------------------------------- */
+h1, h2, h3 { text-wrap: balance; }
+
+/* ==========================================================================
+   Movimento ridotto — rispetta l'impostazione di sistema
+   Senza questo blocco le ~20 animazioni infinite del tema (particelle,
+   badge in orbita, blob aurora, anelli pulsanti, shimmer, typing) girano
+   comunque, e per chi soffre di disturbi vestibolari possono provocare
+   nausea. Criterio WCAG 2.3.3.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Elementi la cui unica ragione d'essere è il movimento: si nascondono
+       invece di restare fermi in una posizione arbitraria. */
+    .particle,
+    #particles-container {
+        display: none !important;
+    }
+
+    /* I badge orbitanti si fermano al centro invece che a metà orbita */
+    .orbit-badge {
+        animation: none !important;
+        position: static !important;
+        display: inline-flex !important;
+        margin: 0.25rem !important;
+    }
+
+    /* Il cursore del typing smette di lampeggiare */
+    .typing-cursor { animation: none !important; opacity: 1 !important; }
+
+    /* Effetti decorativi di sfondo: fermi ma visibili */
+    .aurora-1, .aurora-2, .aurora-3,
+    .hero-grid,
+    .floating, .floating-delayed,
+    .rotate-slow, .rotate-reverse,
+    .pulse-ring,
+    .whatsapp-float,
+    .shimmer-btn,
+    .stat-number,
+    .scroll-indicator,
+    .question-mark {
+        animation: none !important;
+    }
+
+    /* Lo shimmer sul bottone diventa un fondo pieno leggibile */
+    .shimmer-btn { background: #0D7C7C !important; }
+
+    /* Le card non si sollevano più al passaggio del mouse */
+    .card-hover:hover,
+    .pricing-card:hover,
+    .blog-card:hover,
+    .stat-card:hover {
+        transform: none !important;
+    }
 }

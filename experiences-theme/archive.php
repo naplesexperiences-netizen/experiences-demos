@@ -34,6 +34,8 @@ if (is_category()) {
 <!-- Spacer per header fixed -->
 <div class="h-20 lg:h-24"></div>
 
+<main id="main-content">
+
 <!-- Hero Archive -->
 <section class="relative bg-gradient-to-br from-primary via-dark to-secondary py-16 lg:py-24 overflow-hidden">
     <div class="absolute inset-0 opacity-10">
@@ -234,5 +236,7 @@ endif; ?>
         </div>
     </div>
 </section>
+
+</main>
 
 <?php get_footer(); ?>

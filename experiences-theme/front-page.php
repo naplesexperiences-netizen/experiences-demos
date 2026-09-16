@@ -8,6 +8,8 @@ get_header();
 
 <?php /* Navbar in template-parts/site-header.php (via get_header) */ ?>
 
+<main id="main-content">
+
     <!-- Section 1: Hero -->
     <section id="home" class="hero-gradient relative min-h-screen flex items-center pt-16 overflow-hidden">
         
@@ -730,22 +732,22 @@ get_header();
                                 <input type="text" id="exp-website" name="website" tabindex="-1" autocomplete="off">
                             </div>
                             <div class="grid sm:grid-cols-2 gap-5">
-                                <div><label class="block text-sm font-medium text-gray-700 mb-2">Nome *</label><input type="text" name="nome" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="Il tuo nome"></div>
-                                <div><label class="block text-sm font-medium text-gray-700 mb-2">Cognome *</label><input type="text" name="cognome" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="Il tuo cognome"></div>
+                                <div><label for="exp-nome" class="block text-sm font-medium text-gray-700 mb-2">Nome *</label><input type="text" id="exp-nome" name="nome" required autocomplete="given-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="Il tuo nome"></div>
+                                <div><label for="exp-cognome" class="block text-sm font-medium text-gray-700 mb-2">Cognome *</label><input type="text" id="exp-cognome" name="cognome" required autocomplete="family-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="Il tuo cognome"></div>
                             </div>
-                            <div><label class="block text-sm font-medium text-gray-700 mb-2">Email *</label><input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="la-tua@email.com"></div>
-                            <div><label class="block text-sm font-medium text-gray-700 mb-2">Tipo di Attività *</label>
-                                <select name="tipo_attivita" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
-                                    <option value="">Seleziona...</option>
+                            <div><label for="exp-email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label><input type="email" id="exp-email" name="email" required autocomplete="email" inputmode="email" spellcheck="false" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="la-tua@email.com"></div>
+                            <div><label for="exp-attivita" class="block text-sm font-medium text-gray-700 mb-2">Tipo di Attività *</label>
+                                <select id="exp-attivita" name="tipo_attivita" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
+                                    <option value="">Seleziona…</option>
                                     <option value="hotel">Hotel / Struttura Alberghiera</option>
                                     <option value="agenzia">Agenzia di Viaggi</option>
                                     <option value="villa">Villa / Appartamento</option>
                                     <option value="altro">Altro</option>
                                 </select>
                             </div>
-                            <div><label class="block text-sm font-medium text-gray-700 mb-2">Piano di Interesse</label>
-                                <select name="piano" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
-                                    <option value="">Seleziona un piano...</option>
+                            <div><label for="exp-piano" class="block text-sm font-medium text-gray-700 mb-2">Piano di Interesse</label>
+                                <select id="exp-piano" name="piano" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
+                                    <option value="">Seleziona un piano…</option>
                                     <option value="enterprise">Enterprise - €0/anno + 3%</option>
                                     <option value="pro">Pro - €500/anno + 5%</option>
                                     <option value="advanced">Advanced - €1.000/anno + 8%</option>
@@ -753,7 +755,7 @@ get_header();
                                     <option value="info">Vorrei maggiori informazioni</option>
                                 </select>
                             </div>
-                            <div><label class="block text-sm font-medium text-gray-700 mb-2">Messaggio *</label><textarea name="messaggio" required rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm resize-none" placeholder="Descrivi le tue esigenze..."></textarea></div>
+                            <div><label for="exp-messaggio" class="block text-sm font-medium text-gray-700 mb-2">Messaggio *</label><textarea id="exp-messaggio" name="messaggio" required rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm resize-none" placeholder="Descrivi le tue esigenze…"></textarea></div>
                             <div class="flex items-start gap-3">
                                 <input type="checkbox" id="privacy" name="privacy_consent" required class="mt-1 w-4 h-4 text-secondary rounded border-gray-300 focus:ring-secondary">
                                 <label for="privacy" class="text-sm text-gray-500">Acconsento al trattamento dei miei dati personali secondo la <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" target="_blank" rel="noopener" class="text-secondary hover:underline">Privacy Policy</a>.</label>
@@ -762,7 +764,7 @@ get_header();
                                 <span>Invia Richiesta</span>
                                 <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
                             </button>
-                            <p id="form-status" class="text-center text-sm hidden"></p>
+                            <p id="form-status" class="text-center text-sm hidden" role="status" aria-live="polite" aria-atomic="true"></p>
                         </form>
                     </div>
                 </div>
