@@ -4,14 +4,24 @@
  * Condiviso da home.php (pagina degli articoli) e da page-blog.php
  * (modello di pagina), così esiste una sola copia del markup.
  *
- * Si aspetta $exp_q (WP_Query) e $exp_cats già valorizzati dal chiamante.
+ * I dati arrivano dal terzo parametro di get_template_part(), che li
+ * espone qui come $args. Le variabili locali del template chiamante NON
+ * sono visibili dentro un template part: load_template() è una funzione,
+ * quindi il loro scope non attraversa la chiamata.
  *
  * @package experiences-srl
  */
-if ( ! isset( $exp_q ) || ! ( $exp_q instanceof WP_Query ) ) {
-    return;
-}
-$exp_cats = isset( $exp_cats ) ? $exp_cats : get_categories([
+$exp_q = ( isset( $args['query'] ) && $args['query'] instanceof WP_Query )
+    ? $args['query']
+    : new WP_Query([
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 200,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ]);
+
+$exp_cats = isset( $args['cats'] ) ? $args['cats'] : get_categories([
     'orderby' => 'count', 'order' => 'DESC', 'hide_empty' => true,
 ]);
 ?>

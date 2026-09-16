@@ -60,7 +60,10 @@ $exp_cats = get_categories([ 'orderby' => 'count', 'order' => 'DESC', 'hide_empt
         </div>
     </section>
 
-    <?php get_template_part( 'template-parts/blog-listing' ); ?>
+    <?php get_template_part( 'template-parts/blog-listing', null, [
+        'query' => $exp_q,
+        'cats'  => $exp_cats,
+    ] ); ?>
 
 </main>
 
