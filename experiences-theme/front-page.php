@@ -458,6 +458,117 @@ get_header();
         </div>
     </section>
 
+    <!-- ================================================
+         Section: Demo — rimanda all'hub su GitHub Pages
+         URL modificabile da Personalizza tema → Galleria demo
+         ================================================ -->
+    <?php
+    $exp_demo_url   = experiences_demo_hub_url();
+    $exp_demo_count = (int) get_theme_mod( 'exp_demo_count', 200 );
+    ?>
+    <section id="demo" class="py-20 lg:py-28 bg-dark relative overflow-hidden">
+
+        <!-- Trama di sfondo -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+             style="background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-[110px] pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-14 lg:items-center">
+
+                <!-- Testo -->
+                <div class="lg:col-span-6" data-aos="fade-right">
+                    <span class="inline-block px-4 py-1 bg-accent/15 border border-accent/30 text-accent text-sm font-semibold rounded-full mb-5">
+                        GALLERIA DEMO
+                    </span>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Oltre <span class="text-gradient"><?php echo esc_html( number_format_i18n( $exp_demo_count ) ); ?> demo</span> già pronte da esplorare
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                        Prima di commissionare un sito, guarda come lavoriamo. Abbiamo costruito
+                        demo navigabili per hotel, B&amp;B, tour operator e strutture termali di
+                        tutta la Campania — Costiera, Ischia, Sorrento, Napoli, Cilento.
+                        Sono siti veri, non mockup: si aprono e si usano.
+                    </p>
+
+                    <ul class="space-y-3 mb-9">
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Filtrabili per tipologia di struttura e località</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Ognuna apribile e navigabile dal vivo, anche da telefono</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-300">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Ogni demo è personalizzabile sul tuo brand</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                           class="px-8 py-4 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-colors shadow-lg inline-flex items-center justify-center gap-2 group">
+                            Esplora tutte le demo
+                            <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
+                        </a>
+                        <a href="#booking" data-booking-trigger
+                           class="px-8 py-4 bg-white/10 backdrop-blur border border-white/25 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2">
+                            <i class="fas fa-rocket" aria-hidden="true"></i> Voglio la mia
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Anteprima: finestra browser stilizzata -->
+                <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
+                    <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                       class="block rounded-2xl overflow-hidden border border-white/15 shadow-2xl group"
+                       aria-label="Apri la galleria completa delle demo in una nuova scheda">
+
+                        <!-- Barra della finestra -->
+                        <div class="flex items-center gap-2 px-4 py-3 bg-white/10 border-b border-white/10">
+                            <span class="w-3 h-3 rounded-full bg-red-400/70" aria-hidden="true"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400/70" aria-hidden="true"></span>
+                            <span class="ml-3 text-xs text-gray-400 truncate">galleria demo · Experiences Srl</span>
+                        </div>
+
+                        <!-- Griglia di miniature -->
+                        <div class="p-4 bg-primary/40 backdrop-blur">
+                            <div class="grid grid-cols-3 gap-3">
+                                <?php
+                                $exp_tiles = [
+                                    [ 'fa-hotel',        'Hotel 4★',     'from-teal-500/25 to-cyan-500/15' ],
+                                    [ 'fa-umbrella-beach','Costiera',    'from-sky-500/25 to-blue-500/15' ],
+                                    [ 'fa-spa',          'Terme',        'from-emerald-500/25 to-teal-500/15' ],
+                                    [ 'fa-map-marked-alt','Tour',        'from-amber-500/25 to-orange-500/15' ],
+                                    [ 'fa-bed',          'B&amp;B',      'from-violet-500/25 to-fuchsia-500/15' ],
+                                    [ 'fa-ship',         'Charter',      'from-cyan-500/25 to-sky-500/15' ],
+                                ];
+                                foreach ( $exp_tiles as $t ) : ?>
+                                    <div class="aspect-[4/3] rounded-lg bg-gradient-to-br <?php echo esc_attr( $t[2] ); ?> border border-white/10 flex flex-col items-center justify-center gap-1.5">
+                                        <i class="fas <?php echo esc_attr( $t[0] ); ?> text-white/70" aria-hidden="true"></i>
+                                        <span class="text-[10px] text-white/60 font-medium"><?php echo $t[1]; ?></span>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <div class="mt-4 flex items-center justify-between px-1">
+                                <span class="text-xs text-gray-400">
+                                    …e altre <?php echo esc_html( number_format_i18n( max( 0, $exp_demo_count - 6 ) ) ); ?>
+                                </span>
+                                <span class="text-xs font-semibold text-accent inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                                    Apri la galleria <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 
     <!-- Section: Blog & Risorse -->
     <section id="blog" class="py-20 lg:py-28 bg-gray-50 relative">

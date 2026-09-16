@@ -104,6 +104,37 @@ function experiences_customize_register( $wp_customize ) {
         'type'        => 'url',
     ]);
 
+    // Galleria demo su GitHub Pages
+    $wp_customize->add_section( 'experiences_demo_section', [
+        'title'    => __( 'Galleria demo', 'experiences-srl' ),
+        'priority' => 31,
+    ]);
+
+    $wp_customize->add_setting( 'exp_demo_url', [
+        'default'           => EXP_DEMO_HUB_DEFAULT,
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_demo_url', [
+        'label'       => __( 'URL della galleria demo', 'experiences-srl' ),
+        'description' => __( 'La pagina che raccoglie tutte le demo. Per impostazione predefinita punta all\'hub su GitHub Pages, rigenerato a ogni push da scripts/generate-hub.py.', 'experiences-srl' ),
+        'section'     => 'experiences_demo_section',
+        'type'        => 'url',
+    ]);
+
+    $wp_customize->add_setting( 'exp_demo_count', [
+        'default'           => 200,
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_demo_count', [
+        'label'       => __( 'Quante demo dichiarare', 'experiences-srl' ),
+        'description' => __( 'Mostrato come "Oltre N demo". Tienilo prudenzialmente sotto il numero reale.', 'experiences-srl' ),
+        'section'     => 'experiences_demo_section',
+        'type'        => 'number',
+        'input_attrs' => [ 'min' => 1, 'step' => 10 ],
+    ]);
+
     $wp_customize->add_section( 'experiences_privacy_section', [
         'title'    => __( 'Privacy & Cookie', 'experiences-srl' ),
         'priority' => 31,
@@ -189,6 +220,18 @@ function experiences_ensure_legal_pages() {
     update_option( 'experiences_legal_pages_setup_v1', time() );
 }
 add_action( 'admin_init', 'experiences_ensure_legal_pages' );
+
+// ── Galleria demo ──────────────────────────────────────────────────────
+// Le demo vivono su GitHub Pages: l'hub (index.html alla radice del repo)
+// è rigenerato a ogni push da scripts/generate-hub.py e le elenca tutte
+// con i filtri per tag. Il tema ci rimanda soltanto, così la galleria
+// resta aggiornata senza toccare WordPress.
+define( 'EXP_DEMO_HUB_DEFAULT', 'https://naplesexperiences-netizen.github.io/experiences-demos/' );
+
+function experiences_demo_hub_url() {
+    $url = get_theme_mod( 'exp_demo_url', EXP_DEMO_HUB_DEFAULT );
+    return $url ? $url : EXP_DEMO_HUB_DEFAULT;
+}
 
 // ── Blog archive: helper URL + setup automatico pagina "Blog" ──────────
 // Il bottone "Tutti gli articoli" nella front-page usava

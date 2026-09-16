@@ -35,7 +35,8 @@ $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
                     <a href="<?php echo $exp_anchor; ?>#services" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Servizi</a>
                     <a href="<?php echo $exp_anchor; ?>#portfolio" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Portfolio</a>
                     <a href="<?php echo $exp_anchor; ?>#avatar" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">AI Avatar</a>
-                    <a href="<?php echo $exp_anchor; ?>#blog" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Blog</a>
+                    <a href="<?php echo esc_url( experiences_blog_archive_url() ); ?>" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Blog</a>
+                    <a href="<?php echo $exp_anchor; ?>#demo" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Demo</a>
                     <a href="<?php echo $exp_anchor; ?>#pricing" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all">Prezzi</a>
                     <a href="<?php echo $exp_anchor; ?>#chatbot" class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all flex items-center gap-1"><i class="fas fa-robot text-xs text-accent"></i> Chatbot</a>
                     <a href="<?php echo $exp_anchor; ?>#contact" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-lg transition-all shadow-md hover:shadow-lg">Contatti</a>
@@ -57,7 +58,8 @@ $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
             <a href="<?php echo $exp_anchor; ?>#services" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Servizi</a>
             <a href="<?php echo $exp_anchor; ?>#portfolio" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Portfolio</a>
             <a href="<?php echo $exp_anchor; ?>#avatar" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">AI Avatar</a>
-            <a href="<?php echo $exp_anchor; ?>#blog" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Blog</a>
+            <a href="<?php echo esc_url( experiences_blog_archive_url() ); ?>" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Blog</a>
+            <a href="<?php echo $exp_anchor; ?>#demo" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Demo</a>
             <a href="<?php echo $exp_anchor; ?>#pricing" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Prezzi</a>
             <a href="<?php echo $exp_anchor; ?>#chatbot" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition flex items-center gap-2"><i class="fas fa-robot text-accent"></i> Chatbot</a>
             <a href="<?php echo $exp_anchor; ?>#contact" class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition">Contatti</a>
