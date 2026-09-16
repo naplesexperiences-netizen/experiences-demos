@@ -1,0 +1,57 @@
+{
+  "slug": "dynamic-pricing-ai-hotel-revpar",
+  "post_title": "Dynamic Pricing AI: Come Hotel Italiani Aumentano il RevPAR del 35% Senza Svalutare il Brand",
+  "seo_title": "Dynamic Pricing AI Hotel: +35% RevPAR | Experiences",
+  "meta_description": "Dynamic pricing AI per hotel: cos'è, come funziona, software consigliati e ROI. Caso reale: hotel Costiera Amalfitana, +€280.000 in stagione.",
+  "focus_keyword": "dynamic pricing hotel",
+  "secondary_keywords": [
+    "revenue management hotel",
+    "pricing intelligente",
+    "prezzi dinamici hotel",
+    "revpar",
+    "AI pricing turismo"
+  ],
+  "og_title": "Dynamic Pricing AI: Come Hotel Italiani Aumentano il RevPAR del 35%",
+  "og_description": "Scopri come un AI Pricing tool fa crescere ADR, occupazione e RevPAR senza svalutare il brand. Caso reale: hotel 50 camere Costiera Amalfitana, +€280.000 in stagione.",
+  "category": "Revenue Management",
+  "tags": [
+    "dynamic pricing",
+    "revenue management",
+    "hotel",
+    "AI",
+    "RevPAR",
+    "ADR",
+    "occupazione",
+    "tariffe"
+  ],
+  "estimated_reading_time": 11,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Dynamic Pricing AI: Come Hotel Italiani Aumentano il RevPAR del 35% Senza Svalutare il Brand",
+    "description": "Guida completa al dynamic pricing AI per hotel: software, ROI, implementazione in 45 giorni. Case study hotel 50 camere Costiera Amalfitana con +41% RevPAR.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/dynamic-pricing-ai-hotel-revpar.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo.png"
+      }
+    },
+    "datePublished": "2026-02-12",
+    "dateModified": "2026-02-12",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/blog/dynamic-pricing-ai-hotel-revpar/"
+    },
+    "keywords": "revenue management hotel, pricing intelligente, prezzi dinamici hotel, revpar, AI pricing turismo",
+    "articleSection": "Revenue Management",
+    "wordCount": 2300
+  }
+}
