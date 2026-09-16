@@ -21,10 +21,18 @@ jobs:
         run: npm install -g htmlhint@1.1.4
 
       - name: Run HTMLHint
+        # blog-articles/ contiene frammenti HTML da incollare nell'editor di
+        # WordPress, non documenti: iniziano con <div class="prose-blog"> e un
+        # doctype non devono averlo. Vanno esclusi, altrimenti il linter li
+        # boccia per "Doctype must be declared first".
+        # .htmlhintignore non basta: htmlhint lo onora solo quando espande lui
+        # i glob, non quando riceve i percorsi da xargs.
         run: |
           find . -name "*.html" \
             ! -path "*-experiences-standard/*" \
             ! -path "*-new-template-experiences/*" \
+            ! -path "./blog-articles/*" \
+            ! -path "./node_modules/*" \
             -print0 | xargs -0 htmlhint --config .htmlhintrc
 
   link-check:
