@@ -312,14 +312,14 @@
         <!-- MARQUEE -->
         <div class="marquee" data-scroll-section>
             <div class="marquee__track">
-                <span>Villa Crawford &nbsp;<strong>·</strong>&nbsp; Sant'Agnello</span>
+                <span>Villa Crawford &nbsp;<strong>&middot;</strong>&nbsp; Sant'Agnello</span>
                 <span>Dal <strong>1880</strong> sulla Penisola Sorrentina</span>
                 <span>Vista sul <strong>Golfo di Napoli</strong></span>
-                <span>Resort <strong>4 Stelle</strong> &nbsp;·&nbsp; 18 Camere</span>
-                <span>Villa Crawford &nbsp;<strong>·</strong>&nbsp; Sant'Agnello</span>
+                <span>Resort <strong>4 Stelle</strong> &nbsp;&middot;&nbsp; 18 Camere</span>
+                <span>Villa Crawford &nbsp;<strong>&middot;</strong>&nbsp; Sant'Agnello</span>
                 <span>Dal <strong>1880</strong> sulla Penisola Sorrentina</span>
                 <span>Vista sul <strong>Golfo di Napoli</strong></span>
-                <span>Resort <strong>4 Stelle</strong> &nbsp;·&nbsp; 18 Camere</span>
+                <span>Resort <strong>4 Stelle</strong> &nbsp;&middot;&nbsp; 18 Camere</span>
             </div>
         </div>
 
@@ -333,7 +333,7 @@
                     </div>
                     <div data-scroll data-scroll-delay="2">
                         <blockquote class="manifesto__quote">
-                            "Un luogo dove <em>il tempo rallenta</em> e il Golfo di Napoli diventa parte di ogni giornata."
+                            “Un luogo dove <em>il tempo rallenta</em> e il Golfo di Napoli diventa parte di ogni giornata.”
                         </blockquote>
                         <div class="manifesto__line"></div>
                         <p class="manifesto__attr">Francis Marion Crawford — scrittore, 1880</p>
@@ -507,7 +507,7 @@
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <span>© 2025 Demo concettuale — non affiliato a villacrawford.it</span>
+                    <span>&copy; 2025 Demo concettuale — non affiliato a villacrawford.it</span>
                     <span>Three.js · Locomotive Scroll · GSAP</span>
                 </div>
             </div>
@@ -636,11 +636,32 @@
             });
         });
 
-        window.addEventListener('load', function() { locoScroll.update(); });
+        window.addEventListener('load', function() {
+            locoScroll.update();
+            setTimeout(function() { locoScroll.update(); }, 400);
+            setTimeout(function() { locoScroll.update(); }, 1200);
+        });
     } catch(err) {
         /* Se Locomotive fallisce, gli elementi restano visibili (no loco-ready) */
         console.warn('Locomotive Scroll init failed:', err);
     }
+
+    /* Fallback is-inview via IntersectionObserver — indipendente da Locomotive.
+       Garantisce visibilità se il sistema di scroll events di Locomotive
+       non aggiunge is-inview agli elementi che entrano nel viewport. */
+    (function() {
+        var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('is-inview');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('[data-scroll]').forEach(function(el) {
+            io.observe(el);
+        });
+    }());
 
     /* GSAP — Hero entrance */
     (function() {

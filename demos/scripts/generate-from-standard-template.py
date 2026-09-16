@@ -79,7 +79,7 @@ JUNK_IMAGE_PATTERN = re.compile(
     r"fallback|pattern|decorat|wave|water|comment|tripadvisor|social|"
     r"facebook|twitter|instagram|youtube|googleplus|pinterest|linkedin|share|"
     r"banner|badge|warning|ie8|lin_italiano|lin_english|menubianco|menuoro|"
-    r"freccia|arr-lang|loader\.",
+    r"freccia|arr-lang|loader\.|payment|divider|hover|check-?in\.|on-hover",
     re.I,
 )
 
@@ -113,10 +113,9 @@ def extract_weaknesses(company):
     """Estrai i punti deboli reali dal sito web aziendale."""
     weaknesses = []
 
-    # Sito pre-2020
-    sito_pre = (company.get("Sito_Pre2020") or "").lower().strip()
-    if "sì" in sito_pre:
-        weaknesses.append("Design e tecnologie datate (pre-2020)")
+    # Sito pre-2020: il dato è sempre una stima probabilistica ("probabile"),
+    # mai una verifica certa (confermato falso positivo su Grand Hotel Santa
+    # Maria) — non va usato come claim nell'email.
 
     # Mobile friendly
     mobile = (company.get("Mobile_Friendly") or "").lower().strip()
@@ -189,6 +188,7 @@ def build_data(company):
         "HOTEL_TAGLINE": tagline,
         "HOTEL_URL": url,
         "HOTEL_EMAIL": email,
+        "CITTA": citta,
         # Tour operator placeholders
         "COMPANY_NAME": nome,
         "COMPANY_CATEGORY": categoria,
