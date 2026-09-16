@@ -5,8 +5,20 @@
 */
 
 
+        // Rispetta l'impostazione di sistema "riduci movimento": il CSS ferma
+        // le animazioni dichiarative, qui fermiamo quelle generate da JS.
+        const prefersReducedMotion = window.matchMedia
+            ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            : false;
+
         if (typeof AOS !== 'undefined') {
-            AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 50 });
+            AOS.init({
+                duration: prefersReducedMotion ? 0 : 800,
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 50,
+                disable: prefersReducedMotion
+            });
         }
 
         // ── WP AJAX Contact Form ─────────────────────────────────────────
@@ -56,7 +68,7 @@
 
                 if (btn) {
                     btn.disabled = true;
-                    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Invio in corso...';
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Invio in corso…';
                 }
 
                 fetch(ajaxCfg.url, {
@@ -127,6 +139,12 @@
                 "Hai un assistente virtuale AI?",
                 "Le tue OTA sono ottimizzate?"
             ];
+            // Con movimento ridotto mostriamo la prima domanda, ferma.
+            if (prefersReducedMotion) {
+                typingText.textContent = questions[0];
+                return;
+            }
+
             let qi = 0, ci = 0, del = false;
 
             function typeEffect() {
@@ -170,6 +188,9 @@
         (function bindParticles() {
             const pc = document.getElementById('particles-container');
             if (!pc) return;
+            // 35 nodi animati all'infinito: inutili e fastidiosi se l'utente
+            // ha chiesto meno movimento, quindi non li creiamo proprio.
+            if (prefersReducedMotion) return;
 
             for (let i = 0; i < 35; i++) {
                 const p = document.createElement('div');
@@ -243,12 +264,15 @@
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
+                expFocusTrap.attiva(modal);
             };
             const closeModal = () => {
                 if (!modal) return;
+                const eraAperto = !modal.classList.contains('hidden');
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 document.body.style.overflow = '';
+                if (eraAperto) expFocusTrap.disattiva();
             };
 
             const finalize = (state) => {
@@ -292,6 +316,53 @@
             });
         })();
 
+        // ── Focus trap per i modali ──────────────────────────────────────
+        // Senza questo, con un modal aperto il Tab porta sugli elementi della
+        // pagina retrostante: chi naviga da tastiera "esce" dal dialogo senza
+        // accorgersene. Qui il focus resta dentro e torna al punto di partenza
+        // alla chiusura.
+        const expFocusTrap = (function () {
+            const SELETTORI = 'a[href], button:not([disabled]), input:not([disabled]), ' +
+                              'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+            let attivo = null, elementoPrecedente = null, onKey = null;
+
+            function attiva(modal) {
+                if (!modal) return;
+                elementoPrecedente = document.activeElement;
+                attivo = modal;
+
+                const focusabili = () =>
+                    Array.from(modal.querySelectorAll(SELETTORI)).filter(el => el.offsetParent !== null);
+
+                const primo = focusabili()[0];
+                if (primo) primo.focus();
+
+                onKey = (e) => {
+                    if (e.key !== 'Tab') return;
+                    const el = focusabili();
+                    if (!el.length) return;
+                    const inizio = el[0], fine = el[el.length - 1];
+                    if (e.shiftKey && document.activeElement === inizio) {
+                        e.preventDefault(); fine.focus();
+                    } else if (!e.shiftKey && document.activeElement === fine) {
+                        e.preventDefault(); inizio.focus();
+                    }
+                };
+                document.addEventListener('keydown', onKey);
+            }
+
+            function disattiva() {
+                if (onKey) document.removeEventListener('keydown', onKey);
+                onKey = null; attivo = null;
+                if (elementoPrecedente && typeof elementoPrecedente.focus === 'function') {
+                    elementoPrecedente.focus();
+                }
+                elementoPrecedente = null;
+            }
+
+            return { attiva, disattiva };
+        })();
+
         // ── Booking modal (Cal.com / Calendly) ───────────────────────────
         // Lazy-load: l'iframe viene creato solo al primo open per non
         // caricare risorse esterne se l'utente non interagisce.
@@ -322,11 +393,13 @@
                 modal.classList.add('flex');
                 document.body.style.overflow = 'hidden';
                 buildIframe();
+                expFocusTrap.attiva(modal);
             };
             const close = () => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 document.body.style.overflow = '';
+                expFocusTrap.disattiva();
             };
 
             // Trigger: data-booking-trigger su qualsiasi elemento, oppure
@@ -348,6 +421,10 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
             });
+
+            // Il dialogo va annunciato come tale agli screen reader
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
 
             // Apre automaticamente se l'URL contiene #booking
             if (window.location.hash === '#booking') {

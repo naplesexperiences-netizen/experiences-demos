@@ -15,6 +15,7 @@ while ( have_posts() ) : the_post();
 <!-- Spacer per header fixed -->
 <div class="h-20 lg:h-24"></div>
 
+<main id="main-content">
 <article id="post-<?php the_ID(); ?>" <?php post_class('bg-white'); ?>>
 
     <!-- Hero Section dell'articolo -->
@@ -356,6 +357,7 @@ while ( have_posts() ) : the_post();
     </section>
 
 </article>
+</main>
 
 <?php
 endwhile;

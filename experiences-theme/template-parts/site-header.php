@@ -11,6 +11,9 @@ $exp_anchor = is_front_page() ? '' : esc_url( home_url( '/' ) );
 $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
 ?>
 
+    <!-- Skip link: primo elemento della pagina, raggiungibile con un Tab -->
+    <a class="skip-link" href="#main-content">Salta al contenuto principale</a>
+
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
