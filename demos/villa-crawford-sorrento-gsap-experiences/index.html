@@ -4,873 +4,886 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villa Crawford — Sant’Agnello, Sorrento | Demo Experiences Srl</title>
-    <meta name="description" content="Concept GSAP per Villa Crawford: resort storico 4 stelle a Sant’Agnello, vista Golfo di Napoli. Menu fullscreen, split-screen wellness, packages a scorrimento e lightbox camere con GSAP Flip.">
-    <meta name="demo:tags" content="hotel,sorrento,gsap,scrolltrigger,flip,animazioni,storico,4 stelle">
+    <meta name="description" content="Concept editoriale per Villa Crawford: resort storico 4 stelle a Sant’Agnello, vista Golfo di Napoli. Impaginazione fotografica, masthead da rivista, lightbox camere con GSAP Flip.">
+    <meta name="demo:tags" content="hotel,sorrento,gsap,flip,editoriale,fotografico,storico,4 stelle">
     <meta name="demo:category" content="hotel">
     <meta name="theme-color" content="#0d1f33">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" as="image" href="../assets/villa-crawford/villa-notte.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="../assets/villa-crawford/villa-dal-mare.jpg" fetchpriority="high">
     <style>
-        /* =============================================
-           CSS VARIABLES
-           ============================================= */
+        /* Hallmark · genre: editorial · macrostructure: Photographic · theme: brand-preserved (navy/gold/cream)
+         * enrichment: none — the four photographs are the enrichment
+         * nav: N6 Newspaper masthead · footer: Ft4 Dense colophon
+         * pre-emit critique: P4 H5 E4 S5 R4 V5
+         */
+
+        /* ============================================================
+           TOKENS — ogni colore, spazio e misura della pagina nasce qui.
+           Nessun valore grezzo nel resto del foglio.
+           ============================================================ */
         :root {
-            --primary:        #1a3a5f;
-            --secondary:      #c0953a;
-            --primary-dark:   #0d1f33;
-            --ink:            #11151c;
-            --cream:          #f6f3ec;
-            --text:           #1c1c2e;
-            --text-muted:     #6b7280;
-            --on-dark:        #f3f1ea;
-            --on-dark-muted:  rgba(243,241,234,0.68);
-            --font-serif:     Georgia, 'Times New Roman', serif;
-            --font-sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
-            --max-w:          1240px;
-            --ease:           cubic-bezier(.4,0,.2,1);
+            /* Carta e inchiostro — palette brand convertita in OKLCH */
+            --color-paper:      oklch(96.5% 0.010 87);
+            --color-paper-2:    oklch(93.0% 0.012 87);
+            --color-rule:       oklch(84.0% 0.012 87);
+            --color-ink:        oklch(23.6% 0.034 283);
+            --color-ink-2:      oklch(50.0% 0.020 270);
+            --color-deep:       oklch(23.5% 0.046 253);
+            --color-navy:       oklch(34.4% 0.075 254);
+            --color-accent:     oklch(69.4% 0.118 83);
+            --color-accent-ink: oklch(19.5% 0.016 262);
+            --color-on-dark:    oklch(95.8% 0.010 94);
+            --color-on-dark-2:  oklch(78.0% 0.014 94);
+            --color-focus:      oklch(69.4% 0.118 83);
+
+            /* Veli sulle fotografie — tarati misurando il contrasto sul rendering,
+               non a occhio: sotto il testo la foto può essere cielo chiaro. */
+            --veil-soft:   oklch(14% 0.02 260 / 0.16);
+            --veil-mid:    oklch(13% 0.02 260 / 0.60);
+            --veil-strong: oklch(11% 0.02 260 / 0.88);
+            --veil-deep:   oklch(10% 0.02 260 / 0.96);
+            --hair-on-dark: oklch(95.8% 0.010 94 / 0.22);
+
+            /* Tipografia */
+            --font-display: Georgia, 'Times New Roman', serif;
+            --font-body:    'Segoe UI', system-ui, -apple-system, sans-serif;
+
+            --text-xs:   0.75rem;
+            --text-sm:   0.8125rem;
+            --text-md:   1rem;
+            --text-lg:   1.1875rem;
+            --text-xl:   1.5rem;
+            --text-2xl:  clamp(1.75rem, 3vw, 2.5rem);
+            --text-3xl:  clamp(2.25rem, 5vw, 3.5rem);
+            --text-display: clamp(3rem, 9vw, 7rem);
+
+            /* Spazio — scala 4pt */
+            --space-3xs: 0.25rem;
+            --space-2xs: 0.5rem;
+            --space-xs:  0.75rem;
+            --space-sm:  1rem;
+            --space-md:  1.5rem;
+            --space-lg:  2rem;
+            --space-xl:  3rem;
+            --space-2xl: 4.5rem;
+            --space-3xl: 7rem;
+
+            --page-gutter: clamp(1.25rem, 5vw, 4rem);
+            --measure: 62ch;
+            --max-w: 1280px;
+
+            --rule-hair: 1px;
+            --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+            --dur-short: 220ms;
+            --dur-mid:   420ms;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         html {
-            scroll-behavior: smooth; font-size: 16px;
-            -webkit-tap-highlight-color: rgba(192,149,58,0.25);
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: oklch(69.4% 0.118 83 / 0.24);
+            overflow-x: clip;
         }
         body {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             line-height: 1.7;
-            color: var(--text);
-            background: var(--cream);
-            overflow-x: hidden;
+            color: var(--color-ink);
+            background: var(--color-paper);
+            overflow-x: clip;
         }
         body.lightbox-open, body.menu-open { overflow: hidden; }
+
         img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; touch-action: manipulation; }
-        ul { list-style: none; }
-        button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; touch-action: manipulation; }
-        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+        a   { color: inherit; text-decoration: none; touch-action: manipulation; }
+        ul  { list-style: none; }
+        button {
+            font: inherit; border: 0; background: none; cursor: pointer;
+            color: inherit; touch-action: manipulation;
+        }
 
-        /* Anchor target offset: banner + navbar fissa non devono coprire la sezione */
-        section[id] { scroll-margin-top: 104px; }
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-style: normal;
+            text-wrap: balance;
+            overflow-wrap: anywhere;
+            min-width: 0;
+        }
 
-        /* Focus ring unico per tutti gli elementi interattivi */
+        section[id] { scroll-margin-top: var(--space-2xl); }
+
         :focus-visible {
-            outline: 3px solid var(--secondary);
+            outline: 3px solid var(--color-focus);
             outline-offset: 3px;
-            border-radius: 2px;
         }
 
         .sr-only {
             position: absolute; width: 1px; height: 1px;
             padding: 0; margin: -1px; overflow: hidden;
-            clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+            clip-path: inset(50%); white-space: nowrap;
         }
-        .eyebrow {
-            font-size: 13px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; text-wrap: balance; }
 
-        /* ============ SKIP LINK ============ */
         .skip-link {
-            position: absolute; left: 12px; top: -100px; z-index: 1100;
-            background: var(--secondary); color: var(--ink);
-            padding: 12px 20px; font-size: 13px; font-weight: 700;
-            letter-spacing: 1px; text-transform: uppercase;
-            transition: top .2s var(--ease);
+            position: absolute; left: var(--space-sm); top: -6rem; z-index: 1100;
+            background: var(--color-accent); color: var(--color-accent-ink);
+            padding: var(--space-xs) var(--space-md);
+            font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: top var(--dur-short) var(--ease-out);
         }
-        .skip-link:focus-visible { top: 12px; }
+        .skip-link:focus-visible { top: var(--space-sm); }
 
-        /* ============ DEMO BANNER ============ */
+        /* ============================================================
+           BANNER DEMO
+           ============================================================ */
         .demo-banner {
-            background: linear-gradient(90deg, #0d1f33 0%, #1e3a5f 50%, #0d1f33 100%);
-            color: #fff;
+            background: var(--color-deep);
+            color: var(--color-on-dark);
             text-align: center;
-            padding: 12px 20px;
-            padding-top: max(12px, env(safe-area-inset-top));
-            font-size: 13px;
-            font-weight: 600;
-            position: relative;
-            z-index: 500;
+            padding: var(--space-xs) var(--page-gutter);
+            padding-top: max(var(--space-xs), env(safe-area-inset-top));
+            font-size: var(--text-sm);
+            position: relative; z-index: 500;
         }
-        .demo-banner strong { color: var(--secondary); }
-        .demo-banner a { color: var(--secondary); border-bottom: 1px solid var(--secondary); font-weight: 700; }
-        .demo-banner a:hover { opacity: 0.8; }
-
-        /* ============ NAVBAR ============ */
-        .navbar {
-            position: fixed;
-            top: 40px;
-            left: 0;
-            right: 0;
-            z-index: 300;
-            padding: 22px 0;
-            transition: background var(--ease) .3s, padding var(--ease) .3s, top var(--ease) .3s;
-        }
-        /* a scroll attivo il banner è già uscito: la navbar si aggancia al bordo */
-        .navbar.is-scrolled {
-            top: 0;
-            background: rgba(17,21,28,0.82);
-            backdrop-filter: blur(10px);
-            padding: 14px 0;
-            padding-top: max(14px, env(safe-area-inset-top));
-        }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-        .nav-brand { font-family: var(--font-serif); font-size: 22px; letter-spacing: 1px; color: #fff; }
-        .menu-toggle {
-            width: 46px; height: 46px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 6px;
-            position: relative;
-            z-index: 1001;
-        }
-        .menu-toggle .bar {
-            display: block; width: 26px; height: 2px; background: #fff;
-            transition: opacity .2s var(--ease);
-        }
-        .menu-toggle .label {
-            position: absolute; right: 56px; top: 50%; transform: translateY(-50%);
-            font-size: 12px; letter-spacing: 2px; line-height: 1;
-            text-transform: uppercase; color: #fff; white-space: nowrap;
+        .demo-banner strong { color: var(--color-accent); font-weight: 600; }
+        .demo-banner a {
+            color: var(--color-accent);
+            border-bottom: var(--rule-hair) solid var(--color-accent);
+            font-weight: 600; white-space: nowrap;
         }
 
-        /* ============ FULLSCREEN MENU OVERLAY ============ */
-        .menu-overlay {
-            position: fixed; inset: 0; z-index: 900;
-            background: var(--primary-dark);
-            clip-path: circle(0% at calc(100% - 46px) 56px);
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            pointer-events: none;
-            overscroll-behavior: contain;
+        /* ============================================================
+           N6 · MASTHEAD DA RIVISTA
+           ============================================================ */
+        .mast {
+            padding: var(--space-lg) var(--page-gutter) 0;
+            text-align: center;
+            background: var(--color-paper);
+            position: relative; z-index: 300;
         }
-        /* [inert] toglie i link dal tab order a menu chiuso (vedi JS) */
-        .menu-overlay[inert] { visibility: hidden; }
-        body.menu-open .menu-overlay { pointer-events: auto; }
-        .menu-overlay__nav {
-            display: flex; flex-direction: column; justify-content: center;
-            gap: clamp(28px, 5vh, 56px);
-            padding: 96px 7vw 48px;
-            padding-top: max(96px, calc(env(safe-area-inset-top) + 96px));
-            overflow-y: auto;
-            overscroll-behavior: contain;
+        .mast__issue {
+            font-family: var(--font-display);
+            font-variant: small-caps;
+            letter-spacing: 0.14em;
+            font-size: var(--text-xs);
+            color: var(--color-ink-2);
         }
-        .menu-overlay__nav ul { width: 100%; }
-        .menu-overlay__nav li {
-            display: flex; align-items: baseline; gap: 22px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+        .mast__name {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+            margin: var(--space-2xs) 0;
         }
-        .menu-overlay__nav .idx {
-            font-family: var(--font-serif); font-size: 14px; color: var(--secondary); letter-spacing: 1px;
+        .mast__nav ul {
+            display: inline-flex; flex-wrap: wrap; justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-2xs);
         }
-        .menu-overlay__nav a {
-            font-family: var(--font-serif); font-size: clamp(28px, 4.2vw, 48px);
-            color: var(--on-dark);
-            transition: color .25s var(--ease), padding-left .25s var(--ease);
+        .mast__nav a {
+            font-size: var(--text-sm);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-ink-2);
+            padding-block: var(--space-3xs);
+            white-space: nowrap;
+            border-bottom: var(--rule-hair) solid transparent;
+            transition: color var(--dur-short) var(--ease-out),
+                        border-color var(--dur-short) var(--ease-out);
         }
-        .menu-overlay__nav li:hover a, .menu-overlay__nav li.is-active a { color: var(--secondary); padding-left: 10px; }
-        .menu-overlay__preview {
-            position: relative;
-            overflow: hidden;
-            border-left: 1px solid rgba(255,255,255,0.08);
+        .mast__nav a:hover { color: var(--color-ink); border-bottom-color: var(--color-accent); }
+        .mast__rule {
+            border: 0; height: 4px; margin-top: var(--space-sm);
+            border-top: var(--rule-hair) solid var(--color-rule);
+            border-bottom: var(--rule-hair) solid var(--color-rule);
         }
-        .menu-overlay__preview img {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            opacity: 0;
-        }
-        .menu-overlay__preview img.is-active { opacity: 1; }
-        .menu-overlay__preview::after {
-            content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,31,51,0.15), rgba(13,31,51,0.75));
-        }
-        .menu-overlay__caption {
-            position: absolute; left: 36px; bottom: 36px; right: 36px; z-index: 2;
-            color: var(--on-dark); font-family: var(--font-serif); font-size: 19px;
-        }
-        .menu-overlay__footer {
-            color: var(--on-dark-muted); font-size: 14px; line-height: 1.9;
-            flex-shrink: 0;
-        }
-        .menu-overlay__footer strong { color: var(--on-dark); }
-        @media (max-width: 860px) {
-            .menu-overlay { grid-template-columns: 1fr; }
-            .menu-overlay__preview { display: none; }
-            .menu-overlay__nav { justify-content: flex-start; padding-top: 110px; }
-        }
+        /* il disco menu compare solo dove la riga di link non entra */
+        .mast__toggle { display: none; }
 
-        /* ============ HERO ============ */
-        .hero {
-            position: relative;
-            min-height: 100svh; min-height: 100vh; /* svh with vh fallback */
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            overflow: hidden;
-            color: var(--on-dark);
-            padding: 130px 0 80px;
-        }
-        /* foto della villa di sera, sotto un velo scuro che tiene leggibile il testo.
-           villa-notte è l'unica delle quattro foto non presente anche nel ventaglio
-           di card, così la stessa immagine non compare due volte nella stessa schermata. */
-        .hero__bg {
-            position: absolute; inset: 0;
-            background:
-                radial-gradient(55% 60% at 28% 55%, rgba(192,149,58,0.14), transparent 62%),
-                linear-gradient(155deg, rgba(30,58,95,0.42) 0%, rgba(13,31,51,0.52) 45%, rgba(17,21,28,0.68) 100%),
-                url('../assets/villa-crawford/villa-notte.jpg') center 58% / cover no-repeat;
-        }
-        /* la colonna del testo ha bisogno di più stacco della colonna delle foto */
-        .hero__bg::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, rgba(8,13,22,0.62) 0%, rgba(8,13,22,0.26) 48%, transparent 72%);
-        }
-        @media (max-width: 860px) {
-            /* in verticale il crop stringe molto: sposto l'inquadratura sulla torre
-               e alleggerisco il velo, che altrimenti annulla la foto */
-            .hero__bg { background-position: center, center, 38% 62%; }
-            .hero__bg::after {
-                background: linear-gradient(180deg, rgba(8,13,22,0.18) 0%, rgba(8,13,22,0.44) 52%, rgba(8,13,22,0.60) 100%);
+        @media (max-width: 720px) {
+            .mast { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); text-align: left; padding-bottom: var(--space-sm); }
+            .mast__issue, .mast__nav, .mast__rule { display: none; }
+            .mast__name { margin: 0; font-size: var(--text-xl); }
+            .mast__toggle {
+                display: flex; flex-direction: column; justify-content: center;
+                gap: 5px; width: 44px; height: 44px; align-items: flex-end;
+            }
+            .mast__toggle span {
+                display: block; width: 26px; height: 2px; background: var(--color-ink);
             }
         }
-        /* ---- text column ---- */
-        .hero__body {
-            position: relative; z-index: 3;
-            padding-left: max(32px, calc((100vw - 1240px) / 2 + 32px));
-            padding-right: 40px;
-        }
-        .hero__title {
-            font-size: clamp(42px, 5.5vw, 84px);
-            line-height: 0.97;
-            margin: 18px 0 22px;
-            overflow: hidden;
-        }
-        .hero__title .line { display: block; overflow: hidden; }
-        .hero__title .line span { display: inline-block; will-change: transform; }
-        .hero__subtitle { max-width: 440px; font-size: 17px; color: var(--on-dark-muted); margin-bottom: 34px; }
-        .hero__cta { display: flex; gap: 18px; flex-wrap: wrap; }
 
-        /* ---- cards column ---- */
-        .hero__cards {
-            position: relative; z-index: 2;
-            display: flex; align-items: center; justify-content: center;
-            height: 100%; pointer-events: none;
+        /* ============================================================
+           OVERLAY MENU (solo mobile)
+           ============================================================ */
+        .menu {
+            position: fixed; inset: 0; z-index: 900;
+            background: var(--color-deep);
+            color: var(--color-on-dark);
+            clip-path: circle(0% at calc(100% - 2rem) 2rem);
+            display: flex; flex-direction: column; justify-content: center;
+            padding: var(--space-3xl) var(--page-gutter) var(--space-xl);
+            padding-top: max(var(--space-3xl), calc(env(safe-area-inset-top) + var(--space-3xl)));
+            overscroll-behavior: contain;
+            pointer-events: none;
         }
-        .hero__cards-inner {
+        .menu[inert] { visibility: hidden; }
+        body.menu-open .menu { pointer-events: auto; }
+        .menu li {
+            border-bottom: var(--rule-hair) solid var(--hair-on-dark);
+            padding: var(--space-xs) 0;
+        }
+        .menu a {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+        }
+        .menu__foot {
+            margin-top: var(--space-xl);
+            font-size: var(--text-sm);
+            color: var(--color-on-dark-2);
+            line-height: 1.9;
+        }
+
+        /* ============================================================
+           FOLD FOTOGRAFICO — il cuore della macrostruttura
+           ============================================================ */
+        .fold {
             position: relative;
-            width: clamp(260px, 28vw, 380px);
-            height: clamp(340px, 38vw, 500px);
+            min-height: 78svh;
+            display: grid;
+            overflow: clip;
+            background: var(--color-deep);
         }
-        .hero-card {
-            position: absolute; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.18);
-            box-shadow: 0 28px 64px -8px rgba(0,0,0,0.65), 0 4px 14px rgba(0,0,0,0.3);
-            background: var(--ink);
+        /* l'apertura lascia spazio al masthead sopra di sé, così la CTA
+           resta dentro il primo schermo invece di finire sotto la piega */
+        .fold--opening { min-height: max(28rem, calc(100svh - 14rem)); }
+        @media (max-width: 720px) {
+            .fold--opening { min-height: max(28rem, calc(100svh - 8rem)); }
+        }
+
+        .fold__media {
+            position: absolute; inset: 0;
+            overflow: clip;
+        }
+        .fold__media img {
+            width: 100%; height: 100%; object-fit: cover;
             will-change: transform;
         }
-        .hero-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .hero-card__tag {
-            position: absolute; left: 0; right: 0; bottom: 0;
-            padding: 26px 12px 10px;
-            font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
-            color: var(--on-dark); font-weight: 600;
-            background: linear-gradient(0deg, rgba(0,0,0,0.58), transparent);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-        }
-        /* le card esterne sono coperte da quella centrale: la loro etichetta
-           risulterebbe troncata a metà parola, quindi la mostra solo la front card */
-        .hero-card--1 .hero-card__tag,
-        .hero-card--3 .hero-card__tag { display: none; }
-        /* three-card fan in the right column */
-        .hero-card--1 {
-            width: 58%; aspect-ratio: 3/4;
-            top: 4%; left: 0;
-            transform: rotate(-7deg);
-            z-index: 1;
-        }
-        .hero-card--2 {
-            width: 66%; aspect-ratio: 3/4;
-            top: 14%; left: 17%;
-            transform: rotate(2deg);
-            z-index: 3;
-        }
-        .hero-card--3 {
-            width: 54%; aspect-ratio: 3/4;
-            top: 30%; right: 0;
-            transform: rotate(11deg);
-            z-index: 2;
-        }
-
-        /* ---- mobile / portrait ---- */
-        @media (max-width: 860px) {
-            .hero {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr;
-                padding: 90px 0 56px;
-                text-align: center;
-            }
-            .hero__cards {
-                grid-row: 1;
-                height: auto;
-                margin-bottom: 24px;
-            }
-            .hero__cards-inner {
-                width: 100%; height: 190px;
-            }
-            .hero__body {
-                grid-row: 2;
-                padding: 0 24px;
-            }
-            .hero__cta { justify-content: center; }
-            .hero__subtitle { margin-left: auto; margin-right: auto; }
-            /* fan becomes a side-by-side triple strip in portrait */
-            .hero-card--1 {
-                width: 100px; aspect-ratio: 3/4;
-                top: 50%; left: calc(50% - 120px);
-                transform: translate(0,-50%) rotate(-10deg);
-            }
-            .hero-card--2 {
-                width: 110px; aspect-ratio: 3/4;
-                top: 22%; left: 50%;
-                transform: translate(-50%,0) rotate(0deg);
-            }
-            .hero-card--3 {
-                width: 100px; aspect-ratio: 3/4;
-                top: 50%; right: calc(50% - 120px);
-                transform: translate(0,-50%) rotate(10deg);
-            }
-        }
-
-        .btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 15px 30px; border-radius: 2px;
-            font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
-            transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
-        }
-        .btn-primary { background: var(--secondary); color: var(--ink); }
-        .btn-primary:hover { transform: translateY(-2px); }
-        .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: #fff; }
-        .btn-outline:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
-        .hero__scroll {
-            position: absolute; left: 32px; z-index: 2;
-            bottom: max(36px, calc(env(safe-area-inset-bottom) + 36px));
-            display: flex; align-items: center; gap: 12px;
-            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--on-dark-muted);
-        }
-        .hero__scroll .line { width: 1px; height: 40px; background: rgba(255,255,255,0.4); position: relative; overflow: hidden; }
-        .hero__scroll .line::after {
-            content: ''; position: absolute; left: 0; top: -100%; width: 100%; height: 100%; background: var(--secondary);
-            animation: scroll-hint 2s var(--ease) infinite;
-        }
-        @keyframes scroll-hint {
-            0%   { transform: translateY(0); }
-            100% { transform: translateY(200%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .hero__scroll .line::after { animation: none; }
-        }
-
-        /* ============ INTRO ============ */
-        .intro { padding: 130px 0 90px; text-align: center; }
-        .intro__lead {
-            max-width: 760px; margin: 24px auto 0; font-family: var(--font-serif);
-            font-size: clamp(24px, 3vw, 34px); line-height: 1.5; color: var(--primary-dark);
-        }
-        .stat-row {
-            display: flex; justify-content: center; gap: 64px; flex-wrap: wrap;
-            margin-top: 70px; padding-top: 50px; border-top: 1px solid rgba(0,0,0,0.08);
-        }
-        .stat-item { text-align: center; }
-        .stat-num {
-            font-family: var(--font-serif); font-size: 44px; color: var(--primary);
-            font-variant-numeric: tabular-nums;
-        }
-        .stat-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
-
-        /* ============ AMENITIES SPLIT-SCREEN ============ */
-        .amenities { display: flex; height: 100vh; min-height: 520px; }
-        .amenity-col {
-            position: relative; flex: 1; overflow: hidden;
-            display: flex; align-items: flex-end;
-            transition: flex .5s var(--ease);
-        }
-        .amenity-col__bg {
-            position: absolute; inset: 0; background-size: cover; background-position: center;
-            transform: scale(1.08);
-            transition: transform .6s var(--ease);
-        }
-        .amenity-col__overlay {
+        .fold__veil {
             position: absolute; inset: 0;
-            background: linear-gradient(180deg, rgba(13,20,30,0.15) 0%, rgba(13,20,30,0.82) 100%);
-            transition: opacity .4s var(--ease);
+            background: linear-gradient(180deg,
+                var(--veil-soft) 0%,
+                var(--veil-mid) 42%,
+                var(--veil-strong) 74%,
+                var(--veil-deep) 100%);
         }
-        .amenity-col__body { position: relative; z-index: 2; padding: 44px 32px; color: var(--on-dark); width: 100%; }
-        .amenity-col__num { font-size: 12px; letter-spacing: 2px; color: var(--secondary); }
-        .amenity-col__title { font-size: clamp(24px,3vw,32px); margin: 10px 0 12px; }
-        .amenity-col__desc {
-            max-height: 0; opacity: 0; overflow: hidden; font-size: 14px; color: var(--on-dark-muted);
-            transition: max-height .4s var(--ease), opacity .3s var(--ease);
-        }
-        .amenity-col:hover { flex: 1.5; }
-        .amenity-col:hover .amenity-col__bg { transform: scale(1); }
-        .amenity-col:hover .amenity-col__overlay { opacity: 0.55; }
-        .amenity-col:hover .amenity-col__desc { max-height: 100px; opacity: 1; margin-top: 4px; }
-        /* senza hover (touch) la descrizione non sarebbe mai leggibile */
-        @media (hover: none) {
-            .amenity-col__desc { max-height: 100px; opacity: 1; margin-top: 4px; }
-        }
-        @media (max-width: 760px) {
-            .amenities { flex-direction: column; height: auto; }
-            .amenity-col { height: 60vh; flex: none !important; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .amenity-col, .amenity-col__bg, .amenity-col__overlay, .amenity-col__desc { transition: none; }
-            .amenity-col__desc { max-height: 100px; opacity: 1; margin-top: 4px; }
-        }
-
-        /* ============ PACKAGES / GHOST TEXT ============ */
-        .packages { position: relative; padding: 140px 0 160px; background: var(--primary-dark); overflow: hidden; color: var(--on-dark); }
-        .packages__ghost {
-            position: absolute; top: 8%; left: 0; white-space: nowrap;
-            font-family: var(--font-serif); font-size: clamp(110px, 22vw, 320px);
-            color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.12);
-            letter-spacing: 4px; pointer-events: none; z-index: 0;
-        }
-        .packages__head { position: relative; z-index: 2; text-align: center; margin-bottom: 80px; }
-        .packages__head .eyebrow { color: var(--secondary); }
-        .packages__grid {
+        .fold__body {
             position: relative; z-index: 2;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
-        }
-        .package-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px 30px;
-            transition: transform .3s var(--ease), background .3s var(--ease);
-        }
-        .package-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.07); }
-        .package-card__title { font-size: 24px; margin-bottom: 14px; }
-        .package-card__desc { font-size: 14px; color: var(--on-dark-muted); margin-bottom: 26px; }
-        .package-card__price { font-size: 13px; letter-spacing: 1px; color: var(--secondary); text-transform: uppercase; }
-        @media (max-width: 880px) {
-            .packages__grid { grid-template-columns: 1fr; }
+            align-self: end;
+            width: 100%; max-width: var(--max-w);
+            margin-inline: auto;
+            padding: var(--space-2xl) var(--page-gutter) var(--space-xl);
+            padding-bottom: max(var(--space-xl), calc(env(safe-area-inset-bottom) + var(--space-xl)));
+            color: var(--color-on-dark);
         }
 
-        /* ============ ROOMS GRID ============ */
-        .rooms { padding: 140px 0; }
-        .rooms__head { text-align: center; max-width: 620px; margin: 0 auto 70px; }
-        .rooms__head h2 { font-size: clamp(34px, 4.4vw, 52px); margin-top: 12px; }
-        .rooms__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-        .room-card {
-            display: block; width: 100%; text-align: left;
-            background: #fff; border: 1px solid rgba(0,0,0,0.06);
+        /* la didascalia sostituisce l'eyebrow: luogo e momento, non marketing */
+        .caption {
+            font-family: var(--font-display);
+            font-variant: small-caps;
+            letter-spacing: 0.12em;
+            font-size: var(--text-sm);
+            color: var(--color-on-dark);
         }
-        .room-card__media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
-        .room-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
-        .room-card:hover .room-card__media img { transform: scale(1.06); }
-        .room-card__body { padding: 24px 22px; }
-        .room-card__meta { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
-        .room-card__title { font-size: 21px; margin: 8px 0 10px; }
-        .room-card__cta { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); font-weight: 700; }
-        @media (max-width: 920px) { .rooms__grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .rooms__grid { grid-template-columns: 1fr; } }
+        /* la didascalia di apertura sta in alto, dove il velo è più leggero:
+           si porta dietro un proprio fondo invece di affidarsi al gradiente */
+        .fold--opening .caption {
+            display: inline-block;
+            background: var(--veil-strong);
+            padding: var(--space-3xs) var(--space-2xs);
+            margin-left: calc(var(--space-2xs) * -1);
+        }
+        .caption b { color: var(--color-accent); font-weight: 400; }
 
-        /* ============ LIGHTBOX (GSAP Flip target) ============ */
+        .fold__title {
+            font-size: var(--text-display);
+            line-height: 0.92;
+            margin-top: var(--space-2xs);
+            max-width: 14ch;
+        }
+        .fold__lede {
+            margin-top: var(--space-md);
+            max-width: 46ch;
+            font-size: var(--text-lg);
+            color: var(--color-on-dark-2);
+        }
+        .fold__actions {
+            display: flex; flex-wrap: wrap; gap: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        /* fold intermedi: solo didascalia, la fotografia parla da sola */
+        .fold--plate .fold__body { padding-bottom: var(--space-lg); }
+        .fold--plate .caption { font-size: var(--text-md); }
+
+        /* ============================================================
+           BOTTONI — chip contornati, voce editoriale
+           ============================================================ */
+        .chip {
+            display: inline-flex; align-items: center; gap: var(--space-2xs);
+            min-height: 44px;
+            padding: var(--space-2xs) var(--space-md);
+            font-size: var(--text-sm);
+            letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+            white-space: nowrap;
+            border: var(--rule-hair) solid currentColor;
+            transition: background-color var(--dur-short) var(--ease-out),
+                        color var(--dur-short) var(--ease-out);
+        }
+        .chip--solid {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: var(--color-accent-ink);
+        }
+        .chip--solid:hover { background: var(--color-on-dark); border-color: var(--color-on-dark); }
+        .chip--ghost { color: var(--color-on-dark); }
+        .chip--ghost:hover { background: var(--color-on-dark); color: var(--color-accent-ink); }
+        .chip--ink { color: var(--color-ink); }
+        .chip--ink:hover { background: var(--color-ink); color: var(--color-paper); }
+
+        /* ============================================================
+           BANDA DI TESTO — la colonna stretta fra una foto e l'altra
+           ============================================================ */
+        .band {
+            max-width: var(--max-w);
+            margin-inline: auto;
+            padding-inline: var(--page-gutter);
+        }
+        .band--tight  { padding-block: var(--space-2xl); }
+        .band--airy   { padding-block: var(--space-3xl); }
+        .band--close  { padding-block: var(--space-xl) var(--space-2xl); }
+
+        .band__cta { margin-top: var(--space-lg); }
+        .caption--ink { color: var(--color-ink-2); }
+        .band__title {
+            font-size: var(--text-3xl);
+            line-height: 1.05;
+            margin-top: var(--space-2xs);
+            max-width: 18ch;
+        }
+        .prose {
+            max-width: var(--measure);
+            margin-top: var(--space-md);
+            font-size: var(--text-lg);
+        }
+        .prose + .prose { margin-top: var(--space-sm); }
+        .prose em { font-style: italic; }
+
+        /* impaginazione asimmetrica 2:5 — mai colonne uguali */
+        .split {
+            display: grid;
+            grid-template-columns: 2fr 5fr;
+            gap: var(--space-xl);
+            align-items: start;
+        }
+        .split--flip { grid-template-columns: 5fr 2fr; }
+        @media (max-width: 860px) {
+            .split, .split--flip { grid-template-columns: 1fr; gap: var(--space-md); }
+        }
+
+        /* riga dei numeri, in linea — non una griglia di quattro riquadri */
+        .facts {
+            display: flex; flex-wrap: wrap;
+            gap: var(--space-xs) var(--space-lg);
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: var(--rule-hair) solid var(--color-rule);
+            font-size: var(--text-sm);
+            color: var(--color-ink-2);
+        }
+        .facts--rail {
+            display: block;
+            border-top: 0;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .facts--rail span { display: block; padding-block: var(--space-3xs); }
+        @media (max-width: 860px) {
+            .facts--rail {
+                display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg);
+                border-top: var(--rule-hair) solid var(--color-rule);
+                margin-top: var(--space-md); padding-top: var(--space-md);
+            }
+            .facts--rail span { display: inline; padding-block: 0; }
+        }
+        .facts b {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 400;
+            font-variant-numeric: tabular-nums;
+            color: var(--color-navy);
+            margin-right: var(--space-3xs);
+        }
+
+        /* ============================================================
+           INDICE — camere e soggiorni come righe, non come card
+           ============================================================ */
+        .index { margin-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); }
+
+        .row {
+            display: grid;
+            grid-template-columns: 3rem 1fr auto auto;
+            gap: var(--space-md);
+            align-items: center;
+            width: 100%; text-align: left;
+            padding: var(--space-md) 0;
+            border-bottom: var(--rule-hair) solid var(--color-rule);
+            transition: background-color var(--dur-short) var(--ease-out);
+        }
+        .row:hover { background: var(--color-paper-2); }
+        .row__num {
+            font-family: var(--font-display);
+            font-variant-numeric: tabular-nums;
+            color: var(--color-accent);
+            font-size: var(--text-md);
+        }
+        .row__name { display: block; font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.2; }
+        .row__meta { display: block; font-size: var(--text-sm); color: var(--color-ink-2); margin-top: var(--space-3xs); }
+        .row__thumb {
+            width: 104px; aspect-ratio: 3 / 2; overflow: clip;
+            background: var(--color-paper-2);
+        }
+        .row__thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .row__go {
+            font-size: var(--text-sm); letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--color-navy); font-weight: 600; white-space: nowrap;
+        }
+        @media (max-width: 620px) {
+            .row { grid-template-columns: 2rem 1fr; }
+            .row__thumb { display: none; }
+            .row__go { grid-column: 2; }
+        }
+
+        /* soggiorni: descrizione sotto il nome, niente terza colonna */
+        .stay__desc { display: block; max-width: 54ch; margin-top: var(--space-2xs); font-size: var(--text-md); color: var(--color-ink-2); }
+        .stay__note { font-size: var(--text-sm); color: var(--color-accent); letter-spacing: 0.06em; }
+
+        /* ============================================================
+           LIGHTBOX (bersaglio di GSAP Flip)
+           ============================================================ */
         .lightbox {
             position: fixed; inset: 0; z-index: 950;
-            display: none;
-            align-items: center; justify-content: center;
-            background: rgba(13,20,30,0.0);
+            display: none; align-items: center; justify-content: center;
             overscroll-behavior: contain;
         }
         body.lightbox-open .lightbox { display: flex; }
-        .lightbox__backdrop { position: absolute; inset: 0; background: rgba(13,20,30,0.88); }
+        .lightbox__backdrop { position: absolute; inset: 0; background: var(--veil-deep); }
         .lightbox__panel {
             position: relative; z-index: 2;
-            width: min(1040px, 92vw); max-height: 86vh;
-            background: var(--cream);
+            width: min(1040px, 92vw); max-height: 86svh;
+            background: var(--color-paper);
             display: grid; grid-template-columns: 1.1fr 1fr;
-            overflow: hidden;
+            overflow: clip;
         }
-        .lightbox__media { position: relative; overflow: hidden; min-height: 280px; }
-        .lightbox__media img.flip-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .lightbox__info { padding: 48px 42px; overflow-y: auto; overscroll-behavior: contain; }
-        .lightbox__info .eyebrow { display: block; margin-bottom: 10px; }
-        .lightbox__info h3 { font-size: 30px; margin-bottom: 16px; }
-        .lightbox__info p { color: var(--text-muted); margin-bottom: 24px; }
-        .lightbox__amenities { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-        .lightbox__amenities li {
-            font-size: 12px; letter-spacing: 0.5px; padding: 6px 12px;
-            border: 1px solid rgba(0,0,0,0.12); border-radius: 20px; color: var(--text-muted);
+        .lightbox__media { position: relative; overflow: clip; min-height: 260px; }
+        .lightbox__media img { width: 100%; height: 100%; object-fit: cover; }
+        .lightbox__info { padding: var(--space-xl); overflow-y: auto; overscroll-behavior: contain; }
+        .lightbox__info h3 { font-size: var(--text-2xl); margin-top: var(--space-2xs); }
+        .lightbox__info p { color: var(--color-ink-2); margin-top: var(--space-sm); }
+        .lightbox__tags { display: flex; flex-wrap: wrap; gap: var(--space-2xs); margin-top: var(--space-md); }
+        .lightbox__tags li {
+            font-size: var(--text-xs); padding: var(--space-3xs) var(--space-2xs);
+            border: var(--rule-hair) solid var(--color-rule); color: var(--color-ink-2);
         }
         .lightbox__close {
-            position: absolute; top: 18px; right: 18px; z-index: 3;
-            width: 42px; height: 42px; border-radius: 50%;
-            background: rgba(255,255,255,0.9); color: var(--ink);
-            font-size: 22px; line-height: 1;
+            position: absolute; top: var(--space-sm); right: var(--space-sm); z-index: 3;
+            width: 44px; height: 44px;
+            background: var(--color-paper); color: var(--color-ink);
+            border: var(--rule-hair) solid var(--color-rule);
+            font-size: var(--text-xl); line-height: 1;
         }
         @media (max-width: 760px) {
-            .lightbox__panel { grid-template-columns: 1fr; max-height: 90vh; }
-            .lightbox__media { min-height: 220px; }
+            .lightbox__panel { grid-template-columns: 1fr; max-height: 90svh; }
+            .lightbox__media { min-height: 200px; }
         }
 
-        /* ============ LOCATION ============ */
-        .location { padding: 140px 0; background: var(--primary-dark); color: var(--on-dark); }
-        .location__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-        .location__list { margin-top: 28px; }
-        .location__list li { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; gap: 16px; }
-        .location__list li span:first-child { color: var(--secondary); font-family: var(--font-serif); }
-        .location__map {
-            aspect-ratio: 1/1; background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.12);
-            display: flex; align-items: center; justify-content: center; position: relative;
+        /* ============================================================
+           COLOPHON (Ft4)
+           ============================================================ */
+        .colophon {
+            background: var(--color-deep);
+            color: var(--color-on-dark-2);
+            padding: var(--space-2xl) var(--page-gutter);
+            padding-bottom: max(var(--space-2xl), calc(env(safe-area-inset-bottom) + var(--space-2xl)));
+            font-size: var(--text-sm);
+            line-height: 1.9;
         }
-        .location__map .pin {
-            width: 14px; height: 14px; border-radius: 50%; background: var(--secondary);
-            box-shadow: 0 0 0 8px rgba(192,149,58,0.25);
+        .colophon__inner { max-width: var(--max-w); margin-inline: auto; }
+        .colophon__name {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            color: var(--color-on-dark);
         }
-        .location__map span.label {
-            position: absolute; bottom: 26px; font-family: var(--font-serif); font-size: 15px; color: var(--on-dark-muted);
-        }
-        @media (max-width: 860px) { .location__grid { grid-template-columns: 1fr; } }
+        .colophon p { max-width: 76ch; margin-top: var(--space-sm); }
+        .colophon a { color: var(--color-accent); border-bottom: var(--rule-hair) solid var(--color-accent); }
 
-        /* ============ FOOTER ============ */
-        footer { background: var(--ink); color: var(--on-dark-muted); padding: 60px 0 30px; font-size: 14px; }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-brand { font-family: var(--font-serif); color: #fff; font-size: 20px; }
-        .footer-note a { color: var(--secondary); }
-        .footer-credit { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 13px; }
-
-        /* ============ REVEAL HELPERS ============ */
-        .reveal-up { opacity: 0; }
+        /* ============================================================
+           MOTO — una sola entrata orchestrata; le fotografie non scattano
+           ============================================================ */
         @media (prefers-reduced-motion: reduce) {
-            .reveal-up { opacity: 1 !important; }
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <a class="skip-link" href="#hero">Vai al contenuto</a>
+    <a class="skip-link" href="#apertura">Vai al contenuto</a>
 
-    <!-- ===== DEMO BANNER ===== -->
     <div class="demo-banner">
-        🎯 Questa è una <strong>DEMO CONCEPT</strong> realizzata da <strong translate="no">Experiences Srl</strong> — non è il sito ufficiale di <span translate="no">Villa Crawford</span>.
-        Vuoi un sito animato come questo?
-        <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Contattaci su WhatsApp →</a>
+        Questa è una <strong>demo concept</strong> realizzata da <strong translate="no">Experiences&nbsp;Srl</strong> — non è il sito ufficiale di <span translate="no">Villa&nbsp;Crawford</span>.
+        <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Scrivici su WhatsApp →</a>
     </div>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-inner">
-            <div class="nav-brand" translate="no">Villa Crawford</div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="menuOverlay">
-                <span class="label">Menu</span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- ===== FULLSCREEN MENU OVERLAY ===== -->
-    <div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menu di navigazione" inert>
-        <nav class="menu-overlay__nav">
+    <!-- ===== N6 · MASTHEAD ===== -->
+    <header class="mast">
+        <p class="mast__issue">Sant’Agnello · Penisola Sorrentina · dal 1880</p>
+        <p class="mast__name" translate="no">Villa Crawford</p>
+        <nav class="mast__nav" aria-label="Principale">
             <ul>
-                <li class="is-active" data-img="0">
-                    <span class="idx">I.</span>
-                    <a href="#hero" data-close-menu>Home</a>
-                </li>
-                <li data-img="1">
-                    <span class="idx">II.</span>
-                    <a href="#esperienza" data-close-menu>Esperienza</a>
-                </li>
-                <li data-img="2">
-                    <span class="idx">III.</span>
-                    <a href="#soggiorni" data-close-menu>Soggiorni</a>
-                </li>
-                <li data-img="3">
-                    <span class="idx">IV.</span>
-                    <a href="#camere" data-close-menu>Camere</a>
-                </li>
-                <li data-img="4">
-                    <span class="idx">V.</span>
-                    <a href="#contatti" data-close-menu>Contatti</a>
-                </li>
+                <li><a href="#apertura">Il luogo</a></li>
+                <li><a href="#esperienza">La giornata</a></li>
+                <li><a href="#camere">Le camere</a></li>
+                <li><a href="#soggiorni">Soggiorni</a></li>
+                <li><a href="#contatti">Come arrivare</a></li>
             </ul>
-            <div class="menu-overlay__footer">
-                <strong>Corso Marion Crawford</strong><br>
-                80065 Sant’Agnello (NA), Sorrento<br><br>
-                +39 392 691 7657<br>
-                info@villacrawford.it (demo)
-            </div>
         </nav>
-        <div class="menu-overlay__preview">
-            <img class="is-active" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-dal-mare.jpg" alt="La villa a picco sul mare">
-            <img width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="Terrazza panoramica al tramonto">
-            <img width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="Vista sul Vesuvio e sul golfo">
-            <img width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-notte.jpg" alt="La dimora storica illuminata di sera">
-            <img width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="Costa sorrentina">
-            <p class="menu-overlay__caption" id="menuCaption">La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.</p>
-        </div>
+        <button class="mast__toggle" id="menuToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="menu">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <hr class="mast__rule" aria-hidden="true">
+    </header>
+
+    <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu di navigazione" inert>
+        <nav aria-label="Menu">
+            <ul>
+                <li><a href="#apertura" data-close-menu>Il luogo</a></li>
+                <li><a href="#esperienza" data-close-menu>La giornata</a></li>
+                <li><a href="#camere" data-close-menu>Le camere</a></li>
+                <li><a href="#soggiorni" data-close-menu>Soggiorni</a></li>
+                <li><a href="#contatti" data-close-menu>Come arrivare</a></li>
+            </ul>
+        </nav>
+        <p class="menu__foot">
+            Corso Marion Crawford<br>
+            80065 Sant’Agnello (NA)<br>
+            +39 392 691 7657
+        </p>
     </div>
 
     <main>
-        <!-- ===== HERO ===== -->
-        <section class="hero" id="hero">
-            <div class="hero__bg" id="heroBg"></div>
-
-            <!-- left column: text -->
-            <div class="hero__body">
-                <span class="eyebrow" style="color:var(--on-dark-muted)">Sant’Agnello · Penisola Sorrentina</span>
-                <h1 class="hero__title">
-                    <span class="line"><span>Villa Crawford</span></span>
-                </h1>
-                <p class="hero__subtitle">Un resort storico 4 stelle affacciato sul Golfo di Napoli, nella villa che fu dimora dello scrittore Francis Marion Crawford.</p>
-                <div class="hero__cta">
-                    <a class="btn btn-primary" href="#camere">Scopri le camere</a>
-                    <a class="btn btn-outline" href="https://wa.me/393926917657" target="_blank" rel="noopener">Richiedi disponibilità</a>
-                </div>
+        <!-- ===== TAVOLA I — apertura ===== -->
+        <section class="fold fold--opening" id="apertura">
+            <div class="fold__media">
+                <img width="1920" height="1440" fetchpriority="high" decoding="async"
+                     src="../assets/villa-crawford/villa-dal-mare.jpg"
+                     alt="Villa Crawford vista dal mare: l’edificio ottocentesco sulla scogliera, sopra archi in tufo">
             </div>
-
-            <!-- right column: photo-card fan -->
-            <div class="hero__cards" id="heroCards" aria-hidden="true">
-                <div class="hero__cards-inner">
-                    <figure class="hero-card hero-card--1" data-float="3.4">
-                        <img width="1920" height="1080" fetchpriority="high" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="">
-                        <span class="hero-card__tag">Terrazza al tramonto</span>
-                    </figure>
-                    <figure class="hero-card hero-card--2" data-float="2.6">
-                        <img width="1920" height="1440" fetchpriority="high" decoding="async" src="../assets/villa-crawford/villa-dal-mare.jpg" alt="">
-                        <span class="hero-card__tag" translate="no">Villa Crawford</span>
-                    </figure>
-                    <figure class="hero-card hero-card--3" data-float="3.1">
-                        <img width="1920" height="1080" fetchpriority="high" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="">
-                        <span class="hero-card__tag">Vista Vesuvio</span>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="hero__scroll"><span class="line"></span> Scorri</div>
-        </section>
-
-        <!-- ===== INTRO ===== -->
-        <section class="intro" id="esperienza-intro">
-            <div class="container">
-                <h2 class="sr-only">Villa Crawford in breve</h2>
-                <span class="eyebrow">Dal 1880 sulla Penisola Sorrentina</span>
-                <p class="intro__lead">A pochi passi da Piazza Tasso, tra il profumo degli agrumeti e la vista sul Vesuvio, <span translate="no">Villa&nbsp;Crawford</span> unisce l’eleganza di una dimora storica all’ospitalità di un resort contemporaneo.</p>
-                <div class="stat-row">
-                    <div class="stat-item">
-                        <div class="stat-num">4★</div>
-                        <div class="stat-label">Categoria</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-num">18</div>
-                        <div class="stat-label">Camere</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-num">48</div>
-                        <div class="stat-label">Posti letto</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-num">1,5&nbsp;km</div>
-                        <div class="stat-label">Da Piazza Tasso</div>
-                    </div>
+            <div class="fold__veil" aria-hidden="true"></div>
+            <div class="fold__body">
+                <p class="caption"><b>Tavola I</b> · la villa dal mare</p>
+                <h1 class="fold__title">La casa dello scrittore</h1>
+                <p class="fold__lede">
+                    Un resort storico 4 stelle affacciato sul Golfo di Napoli, nella dimora
+                    che fu di Francis Marion Crawford.
+                </p>
+                <div class="fold__actions">
+                    <a class="chip chip--solid" href="#camere">Le camere</a>
+                    <a class="chip chip--ghost" href="https://wa.me/393926917657" target="_blank" rel="noopener">Richiedi disponibilità</a>
                 </div>
             </div>
         </section>
 
-        <!-- ===== AMENITIES — SPLIT SCREEN ===== -->
-        <section class="amenities" id="esperienza">
-            <h2 class="sr-only">L’esperienza</h2>
-            <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('../assets/villa-crawford/terrazza-tramonto.jpg');background-position:center"></div>
-                <div class="amenity-col__overlay"></div>
-                <div class="amenity-col__body">
-                    <span class="amenity-col__num">01</span>
-                    <h3 class="amenity-col__title">Terrazza Panoramica</h3>
-                    <p class="amenity-col__desc">Vista sul Golfo di Napoli e sul Vesuvio, ideale per l’aperitivo al tramonto.</p>
-                </div>
-            </div>
-            <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('../assets/villa-crawford/villa-notte.jpg');background-position:30% 78%"></div>
-                <div class="amenity-col__overlay"></div>
-                <div class="amenity-col__body">
-                    <span class="amenity-col__num">02</span>
-                    <h3 class="amenity-col__title">La Dimora Storica</h3>
-                    <p class="amenity-col__desc">La torre in tufo e il corpo ottocentesco della villa, 18&nbsp;camere su 3&nbsp;piani con ascensore.</p>
-                </div>
-            </div>
-            <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('../assets/villa-crawford/villa-dal-mare.jpg');background-position:center 42%"></div>
-                <div class="amenity-col__overlay"></div>
-                <div class="amenity-col__body">
-                    <span class="amenity-col__num">03</span>
-                    <h3 class="amenity-col__title">A Picco sul Golfo</h3>
-                    <p class="amenity-col__desc">La proprietà scende sul mare con archi e terrazzamenti scavati nel tufo.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== PACKAGES / GHOST TEXT ===== -->
-        <section class="packages" id="soggiorni">
-            <div class="packages__ghost" id="packagesGhost">SOGGIORNI · SOGGIORNI · SOGGIORNI · SOGGIORNI</div>
-            <div class="container">
-                <div class="packages__head">
-                    <span class="eyebrow">Le proposte</span>
-                    <h2 style="margin-top:12px;font-size:clamp(30px,4vw,46px)">Scegli il tuo soggiorno</h2>
-                </div>
-                <div class="packages__grid">
-                    <div class="package-card reveal-up">
-                        <h3 class="package-card__title">Romantic Escape</h3>
-                        <p class="package-card__desc">Camera Superior, cena a lume di candela e accesso alla terrazza panoramica.</p>
-                        <span class="package-card__price">Da definire · 2 notti</span>
-                    </div>
-                    <div class="package-card reveal-up">
-                        <h3 class="package-card__title">Sorrento al Centro</h3>
-                        <p class="package-card__desc">Soggiorno con colazione, a 1,5&nbsp;km da Piazza Tasso e dal centro storico.</p>
-                        <span class="package-card__price">Da definire · 3 notti</span>
-                    </div>
-                    <div class="package-card reveal-up">
-                        <h3 class="package-card__title">Famiglia in Costiera</h3>
-                        <p class="package-card__desc">Junior Suite o Family Room, colazione inclusa e giardino per i più piccoli.</p>
-                        <span class="package-card__price">Da definire · 7 notti</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== ROOMS GRID ===== -->
-        <section class="rooms" id="camere">
-            <div class="container">
-                <div class="rooms__head">
-                    <span class="eyebrow">Le camere</span>
-                    <h2>Ogni camera, una vista diversa</h2>
-                </div>
-                <div class="rooms__grid">
-                    <button class="room-card" type="button" data-title="Camera Classic"
-                            data-meta="22 mq · 2 ospiti"
-                            data-desc="Camera accogliente in stile classico sorrentino, con bagno privato e vista giardino."
-                            data-amenities="Wi-Fi,Aria condizionata,TV,Minibar">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-notte.jpg" alt="La villa illuminata di sera"></div>
-                        <div class="room-card__body">
-                            <div class="room-card__meta">22 mq · 2 ospiti</div>
-                            <div class="room-card__title">Camera Classic</div>
-                            <div class="room-card__cta">Scopri →</div>
-                        </div>
-                    </button>
-                    <button class="room-card" type="button" data-title="Camera Superior"
-                            data-meta="26 mq · 2 ospiti"
-                            data-desc="Più ampia e luminosa, con balcone affacciato sul giardino degli agrumi."
-                            data-amenities="Wi-Fi,Balcone,TV,Minibar,Asciugacapelli">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="La terrazza al tramonto"></div>
-                        <div class="room-card__body">
-                            <div class="room-card__meta">26 mq · 2 ospiti</div>
-                            <div class="room-card__title">Camera Superior</div>
-                            <div class="room-card__cta">Scopri →</div>
-                        </div>
-                    </button>
-                    <button class="room-card" type="button" data-title="Deluxe Vista Mare"
-                            data-meta="28 mq · 2 ospiti"
-                            data-desc="Affacciata sul Golfo di Napoli, con vista sul Vesuvio dalla finestra."
-                            data-amenities="Wi-Fi,Vista mare,TV,Minibar,Cassaforte">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="Il Vesuvio visto dalla proprietà"></div>
-                        <div class="room-card__body">
-                            <div class="room-card__meta">28 mq · 2 ospiti</div>
-                            <div class="room-card__title">Deluxe Vista Mare</div>
-                            <div class="room-card__cta">Scopri →</div>
-                        </div>
-                    </button>
-                    <button class="room-card" type="button" data-title="Junior Suite"
-                            data-meta="34 mq · 3 ospiti"
-                            data-desc="Zona soggiorno separata e terrazzino privato, ideale per soggiorni più lunghi."
-                            data-amenities="Wi-Fi,Terrazzino,TV,Minibar,Vasca">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="Il tavolino sulla terrazza affacciata sul mare"></div>
-                        <div class="room-card__body">
-                            <div class="room-card__meta">34 mq · 3 ospiti</div>
-                            <div class="room-card__title">Junior Suite</div>
-                            <div class="room-card__cta">Scopri →</div>
-                        </div>
-                    </button>
-                    <button class="room-card" type="button" data-title="Suite Panoramica"
-                            data-meta="40 mq · 2 ospiti"
-                            data-desc="La camera più esclusiva della villa, con vista che arriva fino a Capri nelle giornate limpide."
-                            data-amenities="Wi-Fi,Vista Capri,TV,Minibar,Accappatoio">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-dal-mare.jpg" alt="La villa a picco sulla scogliera, vista dal mare"></div>
-                        <div class="room-card__body">
-                            <div class="room-card__meta">40 mq · 2 ospiti</div>
-                            <div class="room-card__title">Suite Panoramica</div>
-                            <div class="room-card__cta">Scopri →</div>
-                        </div>
-                    </button>
-                    <button class="room-card" type="button" data-title="Family Room"
-                            data-meta="38 mq · 4 ospiti"
-                            data-desc="Doppia zona notte e accesso facilitato al giardino, pensata per le famiglie."
-                            data-amenities="Wi-Fi,Giardino,TV,Minibar,Culla disponibile">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-notte.jpg" alt="La torre in tufo e la terrazza di sera"></div>
-                        <div class="room-card__body">
-                            <div class="room-card__meta">38 mq · 4 ospiti</div>
-                            <div class="room-card__title">Family Room</div>
-                            <div class="room-card__cta">Scopri →</div>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== LOCATION ===== -->
-        <section class="location" id="contatti">
-            <div class="container location__grid">
+        <!-- ===== Il luogo ===== -->
+        <div class="band band--airy">
+            <div class="split split--flip">
                 <div>
-                    <span class="eyebrow">Come arrivare</span>
-                    <h2 style="margin-top:12px;font-size:clamp(30px,4vw,46px)">Nel cuore della Penisola Sorrentina</h2>
-                    <ul class="location__list">
-                        <li><span>Indirizzo</span><span>Corso Marion Crawford, Sant’Agnello (NA)</span></li>
-                        <li><span>Centro Sorrento</span><span>1,5&nbsp;km da Piazza Tasso</span></li>
-                        <li><span>Aeroporto</span><span>48&nbsp;km da Napoli Capodichino</span></li>
-                        <li><span>Struttura</span><span>3&nbsp;piani con ascensore, giardino, terrazza panoramica</span></li>
-                    </ul>
-                    <div style="margin-top:36px">
-                        <a class="btn btn-primary" href="https://wa.me/393926917657" target="_blank" rel="noopener">Contatta Villa Crawford</a>
-                    </div>
+                    <h2 class="band__title">A picco sul golfo, a un passo da Piazza Tasso</h2>
+                    <p class="prose">
+                        A pochi passi dal centro di Sorrento, tra il profumo degli agrumeti e la
+                        vista sul Vesuvio, <span translate="no">Villa&nbsp;Crawford</span> unisce
+                        l’eleganza di una dimora storica all’ospitalità di un resort contemporaneo.
+                    </p>
+                    <p class="prose">
+                        La proprietà scende verso il mare per terrazzamenti e archi scavati nel tufo:
+                        è la stessa scogliera che lo scrittore descriveva nelle sue lettere, e che
+                        oggi si attraversa per arrivare all’acqua.
+                    </p>
                 </div>
-                <div class="location__map">
-                    <span class="pin"></span>
-                    <span class="label">Corso Marion Crawford, Sant’Agnello</span>
-                </div>
+                <p class="facts facts--rail">
+                    <span><b>4</b>stelle</span>
+                    <span><b>18</b>camere</span>
+                    <span><b>48</b>posti letto</span>
+                    <span><b>3</b>piani con ascensore</span>
+                    <span><b>1,5</b>km da Piazza Tasso</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- ===== TAVOLA II ===== -->
+        <section class="fold fold--plate" id="esperienza">
+            <div class="fold__media">
+                <img width="1920" height="1080" loading="lazy" decoding="async"
+                     src="../assets/villa-crawford/terrazza-tramonto.jpg"
+                     alt="La terrazza panoramica al tramonto, con tavolino in ferro battuto affacciato sul golfo">
+            </div>
+            <div class="fold__veil" aria-hidden="true"></div>
+            <div class="fold__body">
+                <p class="caption"><b>Tavola II</b> · la terrazza, all’ora del tramonto</p>
             </div>
         </section>
+
+        <!-- ===== La giornata ===== -->
+        <div class="band band--airy">
+            <div>
+                <div>
+                    <h2 class="band__title">La giornata, dall’alba alla sera</h2>
+                    <p class="prose">
+                        Si comincia in terrazza, dove il golfo si apre fino al Vesuvio e la
+                        colazione dura quanto serve. Nel pomeriggio la scogliera e il giardino
+                        di agrumi; al tramonto si torna su, per l’aperitivo, quando la luce
+                        cade dietro il promontorio.
+                    </p>
+                    <p class="prose">
+                        La sera la villa si illumina dal basso e la torre in tufo diventa il
+                        punto di riferimento da tutta la baia.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAVOLA III ===== -->
+        <section class="fold fold--plate">
+            <div class="fold__media">
+                <img width="1920" height="1080" loading="lazy" decoding="async"
+                     src="../assets/villa-crawford/vista-vesuvio.jpg"
+                     alt="Il Vesuvio e la costa sorrentina visti dalla proprietà, con statua in primo piano">
+            </div>
+            <div class="fold__veil" aria-hidden="true"></div>
+            <div class="fold__body">
+                <p class="caption"><b>Tavola III</b> · il Vesuvio, dal parapetto</p>
+            </div>
+        </section>
+
+        <!-- ===== Le camere — indice, non griglia ===== -->
+        <div class="band band--airy" id="camere">
+            <h2 class="band__title">Diciotto camere, nessuna con la stessa vista</h2>
+            <p class="prose">
+                Sono distribuite su tre piani. Cambiano metratura e affaccio: giardino di agrumi,
+                golfo aperto, o la scogliera sotto la terrazza.
+            </p>
+
+            <div class="index">
+                <button class="row" type="button"
+                        data-title="Camera Classic" data-meta="22 mq · 2 ospiti · vista giardino"
+                        data-desc="Camera accogliente in stile classico sorrentino, con bagno privato e affaccio sul giardino degli agrumi."
+                        data-tags="Wi-Fi,Aria condizionata,TV,Minibar">
+                    <span class="row__num">01</span>
+                    <span>
+                        <span class="row__name">Camera Classic</span>
+                        <span class="row__meta">22 mq · 2 ospiti · vista giardino</span>
+                    </span>
+                    <span class="row__go" aria-hidden="true">Scopri →</span>
+                    <span class="row__thumb">
+                        <img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async"
+                             src="../assets/villa-crawford/villa-notte.jpg" alt="">
+                    </span>
+                </button>
+
+                <button class="row" type="button"
+                        data-title="Camera Superior" data-meta="26 mq · 2 ospiti · balcone"
+                        data-desc="Più ampia e luminosa, con balcone affacciato sul giardino degli agrumi."
+                        data-tags="Wi-Fi,Balcone,TV,Minibar,Asciugacapelli">
+                    <span class="row__num">02</span>
+                    <span>
+                        <span class="row__name">Camera Superior</span>
+                        <span class="row__meta">26 mq · 2 ospiti · balcone</span>
+                    </span>
+                    <span class="row__go" aria-hidden="true">Scopri →</span>
+                    <span class="row__thumb">
+                        <img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async"
+                             src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="">
+                    </span>
+                </button>
+
+                <button class="row" type="button"
+                        data-title="Deluxe Vista Mare" data-meta="28 mq · 2 ospiti · vista Vesuvio"
+                        data-desc="Affacciata sul Golfo di Napoli, con il Vesuvio incorniciato dalla finestra."
+                        data-tags="Wi-Fi,Vista mare,TV,Minibar,Cassaforte">
+                    <span class="row__num">03</span>
+                    <span>
+                        <span class="row__name">Deluxe Vista Mare</span>
+                        <span class="row__meta">28 mq · 2 ospiti · vista Vesuvio</span>
+                    </span>
+                    <span class="row__go" aria-hidden="true">Scopri →</span>
+                    <span class="row__thumb">
+                        <img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async"
+                             src="../assets/villa-crawford/vista-vesuvio.jpg" alt="">
+                    </span>
+                </button>
+
+                <button class="row" type="button"
+                        data-title="Junior Suite" data-meta="34 mq · 3 ospiti · terrazzino"
+                        data-desc="Zona soggiorno separata e terrazzino privato, per soggiorni più lunghi."
+                        data-tags="Wi-Fi,Terrazzino,TV,Minibar,Vasca">
+                    <span class="row__num">04</span>
+                    <span>
+                        <span class="row__name">Junior Suite</span>
+                        <span class="row__meta">34 mq · 3 ospiti · terrazzino</span>
+                    </span>
+                    <span class="row__go" aria-hidden="true">Scopri →</span>
+                    <span class="row__thumb">
+                        <img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async"
+                             src="../assets/villa-crawford/villa-dal-mare.jpg" alt="">
+                    </span>
+                </button>
+
+                <button class="row" type="button"
+                        data-title="Suite Panoramica" data-meta="40 mq · 2 ospiti · vista aperta"
+                        data-desc="La camera più esclusiva della villa: nelle giornate limpide lo sguardo arriva fino a Capri."
+                        data-tags="Wi-Fi,Vista Capri,TV,Minibar,Accappatoio">
+                    <span class="row__num">05</span>
+                    <span>
+                        <span class="row__name">Suite Panoramica</span>
+                        <span class="row__meta">40 mq · 2 ospiti · vista aperta</span>
+                    </span>
+                    <span class="row__go" aria-hidden="true">Scopri →</span>
+                    <span class="row__thumb">
+                        <img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async"
+                             src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="">
+                    </span>
+                </button>
+
+                <button class="row" type="button"
+                        data-title="Family Room" data-meta="38 mq · 4 ospiti · accesso giardino"
+                        data-desc="Doppia zona notte e accesso facilitato al giardino, pensata per le famiglie."
+                        data-tags="Wi-Fi,Giardino,TV,Minibar,Culla disponibile">
+                    <span class="row__num">06</span>
+                    <span>
+                        <span class="row__name">Family Room</span>
+                        <span class="row__meta">38 mq · 4 ospiti · accesso giardino</span>
+                    </span>
+                    <span class="row__go" aria-hidden="true">Scopri →</span>
+                    <span class="row__thumb">
+                        <img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async"
+                             src="../assets/villa-crawford/villa-notte.jpg" alt="">
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== TAVOLA IV ===== -->
+        <section class="fold fold--plate">
+            <div class="fold__media">
+                <img width="1920" height="1440" loading="lazy" decoding="async"
+                     src="../assets/villa-crawford/villa-notte.jpg"
+                     alt="La torre in tufo e la terrazza della villa illuminate di sera, con le luci di Sorrento sullo sfondo">
+            </div>
+            <div class="fold__veil" aria-hidden="true"></div>
+            <div class="fold__body">
+                <p class="caption"><b>Tavola IV</b> · la torre in tufo, di sera</p>
+            </div>
+        </section>
+
+        <!-- ===== Soggiorni ===== -->
+        <div class="band band--tight" id="soggiorni">
+            <h2 class="band__title">Tre modi di fermarsi</h2>
+            <div class="index">
+                <div class="row">
+                    <span class="row__num">I</span>
+                    <span>
+                        <span class="row__name">Romantic Escape</span>
+                        <span class="stay__desc">Camera Superior, cena a lume di candela e accesso alla terrazza panoramica.</span>
+                    </span>
+                    <span class="stay__note">2 notti</span>
+                    <span class="row__go">Da definire</span>
+                </div>
+                <div class="row">
+                    <span class="row__num">II</span>
+                    <span>
+                        <span class="row__name">Sorrento al Centro</span>
+                        <span class="stay__desc">Soggiorno con colazione, a 1,5&nbsp;km da Piazza Tasso e dal centro storico.</span>
+                    </span>
+                    <span class="stay__note">3 notti</span>
+                    <span class="row__go">Da definire</span>
+                </div>
+                <div class="row">
+                    <span class="row__num">III</span>
+                    <span>
+                        <span class="row__name">Famiglia in Costiera</span>
+                        <span class="stay__desc">Junior Suite o Family Room, colazione inclusa e giardino per i più piccoli.</span>
+                    </span>
+                    <span class="stay__note">7 notti</span>
+                    <span class="row__go">Da definire</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Come arrivare ===== -->
+        <div class="band band--close" id="contatti">
+            <div class="split split--flip">
+                <div>
+                    <h2 class="band__title">Corso Marion Crawford, Sant’Agnello</h2>
+                    <p class="prose">
+                        La villa si trova sulla strada che porta il nome dello scrittore, fra
+                        Sant’Agnello e Sorrento. Si arriva a piedi dal centro in una ventina
+                        di minuti, in auto in cinque.
+                    </p>
+                    <p class="band__cta">
+                        <a class="chip chip--ink" href="https://wa.me/393926917657" target="_blank" rel="noopener">Scrivi alla villa</a>
+                    </p>
+                </div>
+                <p class="facts facts--rail">
+                    <span><b>1,5</b>km da Piazza Tasso</span>
+                    <span><b>48</b>km da Napoli Capodichino</span>
+                    <span><b>900</b>m dalla Circumvesuviana</span>
+                </p>
+            </div>
+        </div>
     </main>
 
-    <!-- ===== LIGHTBOX (GSAP Flip) ===== -->
+    <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
         <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
         <div class="lightbox__panel">
             <button class="lightbox__close" id="lightboxClose" aria-label="Chiudi dettaglio camera">×</button>
             <div class="lightbox__media" id="lightboxMedia"></div>
             <div class="lightbox__info">
-                <span class="eyebrow" id="lightboxMeta"></span>
+                <p class="caption caption--ink" id="lightboxMeta"></p>
                 <h3 id="lightboxTitle"></h3>
                 <p id="lightboxDesc"></p>
-                <ul class="lightbox__amenities" id="lightboxAmenities"></ul>
+                <ul class="lightbox__tags" id="lightboxTags"></ul>
             </div>
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-brand">Villa Crawford</div>
-                <div class="footer-note">
-                    Concept demo realizzata da
-                    <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Experiences Srl</a>
-                </div>
-            </div>
-            <div class="footer-credit">
-                Sito dimostrativo, non affiliato a villacrawford.it — Realizzato con ❤ da <strong>Experiences Srl</strong>
-            </div>
+    <!-- ===== Ft4 · COLOPHON ===== -->
+    <footer class="colophon">
+        <div class="colophon__inner">
+            <p class="colophon__name" translate="no">Villa Crawford</p>
+            <p>
+                Corso Marion Crawford, 80065 Sant’Agnello (NA) · +39 392 691 7657 ·
+                Sito dimostrativo, non affiliato a villacrawford.it. Fotografie della
+                proprietà. Composto in Georgia e Segoe&nbsp;UI. Animazioni in GSAP.
+                Concept e realizzazione <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Experiences Srl</a>, 2026.
+            </p>
         </div>
     </footer>
 
@@ -878,169 +891,76 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
     <script>
-      /* gli script GSAP sono defer: attendiamo che siano eseguiti */
       document.addEventListener('DOMContentLoaded', function () {
         gsap.registerPlugin(ScrollTrigger, Flip);
-        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        /* ---- Navbar background on scroll ---- */
-        (function () {
-            var nav = document.getElementById('navbar');
-            window.addEventListener('scroll', function () {
-                nav.classList.toggle('is-scrolled', window.scrollY > 60);
-            }, { passive: true });
-        }());
-
-        /* ---- Fullscreen menu overlay ---- */
+        /* ---- Menu mobile ---- */
         (function () {
             var toggle = document.getElementById('menuToggle');
-            var overlay = document.getElementById('menuOverlay');
-            var items = overlay.querySelectorAll('.menu-overlay__nav li');
-            var previewImgs = overlay.querySelectorAll('.menu-overlay__preview img');
-            var caption = document.getElementById('menuCaption');
-            var captions = [
-                'La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.',
-                'Vista sul Vesuvio dalla terrazza panoramica.',
-                'Nelle giornate limpide lo sguardo arriva fino a Capri.',
-                '18&nbsp;camere distribuite su 3&nbsp;piani con ascensore.',
-                'A 1,5&nbsp;km da Piazza Tasso, nel centro di Sorrento.'
-            ];
-            var isOpen = false;
+            var menu = document.getElementById('menu');
+            var open = false;
             var tl = gsap.timeline({ paused: true });
+            tl.to(menu, {
+                clipPath: 'circle(150% at calc(100% - 2rem) 2rem)',
+                duration: reduced ? 0 : 0.7, ease: 'power3.inOut'
+            });
 
-            var openDur = prefersReducedMotion ? 0 : 0.8;
-            tl.to(overlay, { clipPath: 'circle(150% at calc(100% - 46px) 56px)', duration: openDur, ease: 'power3.inOut' })
-              .from(items, {
-                  y: prefersReducedMotion ? 0 : 24, opacity: 0,
-                  duration: prefersReducedMotion ? 0 : 0.5,
-                  stagger: prefersReducedMotion ? 0 : 0.06, ease: 'power2.out'
-              }, prefersReducedMotion ? 0 : '-=0.4');
-
-            function setOpen(open) {
-                isOpen = open;
-                document.body.classList.toggle('menu-open', open);
-                toggle.setAttribute('aria-expanded', String(open));
-                toggle.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
-                if (open) {
-                    overlay.removeAttribute('inert');
+            function setOpen(next) {
+                open = next;
+                document.body.classList.toggle('menu-open', next);
+                toggle.setAttribute('aria-expanded', String(next));
+                toggle.setAttribute('aria-label', next ? 'Chiudi menu' : 'Apri menu');
+                if (next) {
+                    menu.removeAttribute('inert');
                     tl.play();
-                    var first = overlay.querySelector('a');
+                    var first = menu.querySelector('a');
                     if (first) first.focus();
                 } else {
-                    // inert dopo la chiusura, così l'animazione inversa resta visibile
                     tl.reverse().eventCallback('onReverseComplete', function () {
-                        if (!isOpen) overlay.setAttribute('inert', '');
+                        if (!open) menu.setAttribute('inert', '');
                     });
                     toggle.focus();
                 }
             }
 
-            toggle.addEventListener('click', function () { setOpen(!isOpen); });
-            overlay.querySelectorAll('[data-close-menu]').forEach(function (a) {
+            toggle.addEventListener('click', function () { setOpen(!open); });
+            menu.querySelectorAll('[data-close-menu]').forEach(function (a) {
                 a.addEventListener('click', function () { setOpen(false); });
             });
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && isOpen) setOpen(false);
-            });
-
-            items.forEach(function (li) {
-                li.addEventListener('mouseenter', function () {
-                    var idx = parseInt(li.getAttribute('data-img'), 10);
-                    previewImgs.forEach(function (img, i) { img.classList.toggle('is-active', i === idx); });
-                    caption.textContent = captions[idx] || captions[0];
-                    items.forEach(function (other) { other.classList.toggle('is-active', other === li); });
-                });
+                if (e.key === 'Escape' && open) setOpen(false);
             });
         }());
 
-        /* ---- Hero intro + floating cards + parallax ---- */
+        /* ---- L'unica entrata orchestrata: la tavola di apertura ---- */
         (function () {
-            var heroLine = document.querySelector('.hero__title .line span');
-            var cards = gsap.utils.toArray('.hero-card');
-            var cardCluster = document.querySelector('.hero__cards-inner');
-
-            if (!prefersReducedMotion) {
-                var tl = gsap.timeline({ delay: 0.2 });
-                tl.from(heroLine, { yPercent: 110, duration: 1, ease: 'power4.out' })
-                  .from('.hero__subtitle', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-                  .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-                  .from('.hero__scroll', { opacity: 0, duration: 0.6 }, '-=0.4')
-                  .from(cards, {
-                      opacity: 0, scale: 0.82, duration: 0.9, stagger: 0.14, ease: 'power3.out'
-                  }, 0.15);
-
-                /* gentle idle float per card, offset for an organic, independent feel */
-                cards.forEach(function (card, i) {
-                    gsap.to(card, {
-                        y: i % 2 === 0 ? '+=12' : '-=12',
-                        duration: parseFloat(card.getAttribute('data-float')) || 3,
-                        ease: 'sine.inOut',
-                        repeat: -1,
-                        yoyo: true,
-                        delay: i * 0.35
-                    });
-                });
-
-                /* scroll parallax on the whole cluster (subtle) */
-                if (cardCluster) {
-                    gsap.to(cardCluster, {
-                        yPercent: 22,
-                        ease: 'none',
-                        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-                    });
-                }
-            }
+            if (reduced) return;
+            gsap.from('#apertura .fold__body > *', {
+                y: 18, opacity: 0, duration: 0.8, stagger: 0.09,
+                ease: 'power2.out', delay: 0.15
+            });
         }());
 
-        /* ---- Generic scroll reveals ---- */
+        /* ---- Le fotografie derivano lentamente: nessun fade, nessuno scatto.
+               È il solo effetto legato allo scroll della pagina. ---- */
         (function () {
-            var revealEls = gsap.utils.toArray('.intro__lead, .stat-item, .room-card, .package-card, .location__list li');
-            revealEls.forEach(function (el) {
-                gsap.set(el, { opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 28 });
-            });
-            ScrollTrigger.batch('.intro__lead, .stat-item, .room-card, .package-card, .location__list li', {
-                start: 'top 92%',
-                onEnter: function (batch) {
-                    gsap.to(batch, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' });
-                }
-            });
-
-            /* Fallback: IntersectionObserver ensures elements become visible
-               even when ScrollTrigger doesn't fire after anchor-link jumps. */
-            if (!prefersReducedMotion) {
-                var io = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (e) {
-                        if (e.isIntersecting) {
-                            gsap.to(e.target, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
-                            io.unobserve(e.target);
+            if (reduced) return;
+            gsap.utils.toArray('.fold__media img').forEach(function (img) {
+                gsap.fromTo(img,
+                    { scale: 1.12, yPercent: -3 },
+                    {
+                        scale: 1, yPercent: 3, ease: 'none',
+                        scrollTrigger: {
+                            trigger: img.closest('.fold'),
+                            start: 'top bottom', end: 'bottom top', scrub: true
                         }
-                    });
-                }, { threshold: 0.05 });
-                revealEls.forEach(function (el) { io.observe(el); });
-            }
-
-            /* Nessun ScrollTrigger.refresh() sui link anchor: interrompe lo smooth
-               scroll nativo a metà corsa. Il reveal lo garantisce l'IntersectionObserver. */
-
-            gsap.utils.toArray('.amenity-col').forEach(function (col, i) {
-                gsap.from(col, {
-                    opacity: 0, y: 40, duration: 0.7, delay: i * 0.08, ease: 'power2.out',
-                    scrollTrigger: { trigger: '.amenities', start: 'top 75%' }
-                });
+                    }
+                );
             });
         }());
 
-        /* ---- Ghost text horizontal drift (scrub) ---- */
-        (function () {
-            if (prefersReducedMotion) return;
-            gsap.to('#packagesGhost', {
-                xPercent: -12,
-                ease: 'none',
-                scrollTrigger: { trigger: '.packages', start: 'top bottom', end: 'bottom top', scrub: 1 }
-            });
-        }());
-
-        /* ---- Room lightbox: GSAP Flip thumbnail -> detail ---- */
+        /* ---- Lightbox camere con GSAP Flip ---- */
         (function () {
             var lightbox = document.getElementById('lightbox');
             var backdrop = document.getElementById('lightboxBackdrop');
@@ -1049,62 +969,59 @@
             var titleEl = document.getElementById('lightboxTitle');
             var metaEl = document.getElementById('lightboxMeta');
             var descEl = document.getElementById('lightboxDesc');
-            var amenitiesEl = document.getElementById('lightboxAmenities');
-            var activeCard = null;
+            var tagsEl = document.getElementById('lightboxTags');
+            var active = null;
 
-            function openCard(card) {
-                activeCard = card;
-                var img = card.querySelector('.flip-img');
+            function open(row) {
+                active = row;
+                var img = row.querySelector('.flip-img');
                 var state = Flip.getState(img);
 
-                titleEl.textContent = card.getAttribute('data-title') || '';
-                metaEl.textContent = card.getAttribute('data-meta') || '';
-                descEl.textContent = card.getAttribute('data-desc') || '';
-                amenitiesEl.innerHTML = '';
-                (card.getAttribute('data-amenities') || '').split(',').forEach(function (a) {
-                    if (!a) return;
+                titleEl.textContent = row.getAttribute('data-title') || '';
+                metaEl.textContent = row.getAttribute('data-meta') || '';
+                descEl.textContent = row.getAttribute('data-desc') || '';
+                tagsEl.innerHTML = '';
+                (row.getAttribute('data-tags') || '').split(',').forEach(function (t) {
+                    if (!t) return;
                     var li = document.createElement('li');
-                    li.textContent = a.trim();
-                    amenitiesEl.appendChild(li);
+                    li.textContent = t.trim();
+                    tagsEl.appendChild(li);
                 });
 
                 document.body.classList.add('lightbox-open');
                 lightbox.setAttribute('aria-hidden', 'false');
                 media.appendChild(img);
-                gsap.set(backdrop, { opacity: 0 });
-                gsap.to(backdrop, { opacity: 1, duration: prefersReducedMotion ? 0 : 0.3 });
-                Flip.from(state, { duration: prefersReducedMotion ? 0 : 0.6, ease: 'power2.inOut', absolute: true });
+                gsap.fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: reduced ? 0 : 0.3 });
+                Flip.from(state, { duration: reduced ? 0 : 0.6, ease: 'power2.inOut', absolute: true });
                 closeBtn.focus();
             }
 
-            function closeLightbox() {
-                if (!activeCard) return;
-                var returnTo = activeCard;
+            function close() {
+                if (!active) return;
+                var returnTo = active;
                 var img = media.querySelector('.flip-img');
                 var state = Flip.getState(img);
-                var mediaWrap = activeCard.querySelector('.room-card__media');
-                mediaWrap.appendChild(img);
-                gsap.to(backdrop, { opacity: 0, duration: prefersReducedMotion ? 0 : 0.3 });
+                returnTo.querySelector('.row__thumb').appendChild(img);
+                gsap.to(backdrop, { opacity: 0, duration: reduced ? 0 : 0.3 });
                 Flip.from(state, {
-                    duration: prefersReducedMotion ? 0 : 0.5, ease: 'power2.inOut', absolute: true,
+                    duration: reduced ? 0 : 0.5, ease: 'power2.inOut', absolute: true,
                     onComplete: function () {
                         document.body.classList.remove('lightbox-open');
                         lightbox.setAttribute('aria-hidden', 'true');
-                        activeCard = null;
+                        active = null;
                         returnTo.focus();
                     }
                 });
             }
 
-            document.querySelectorAll('.room-card').forEach(function (card) {
-                card.addEventListener('click', function () { openCard(card); });
+            document.querySelectorAll('.index .row[data-title]').forEach(function (row) {
+                row.addEventListener('click', function () { open(row); });
             });
-            closeBtn.addEventListener('click', closeLightbox);
-            backdrop.addEventListener('click', closeLightbox);
+            closeBtn.addEventListener('click', close);
+            backdrop.addEventListener('click', close);
             document.addEventListener('keydown', function (e) {
                 if (!document.body.classList.contains('lightbox-open')) return;
-                if (e.key === 'Escape') { closeLightbox(); return; }
-                /* focus trap: il dialog ha un solo elemento focusabile */
+                if (e.key === 'Escape') { close(); return; }
                 if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
             });
         }());
