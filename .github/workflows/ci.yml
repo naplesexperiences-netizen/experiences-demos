@@ -27,8 +27,13 @@ jobs:
         # boccia per "Doctype must be declared first".
         # .htmlhintignore non basta: htmlhint lo onora solo quando espande lui
         # i glob, non quando riceve i percorsi da xargs.
+        #
+        # .claude/ e escluso perche contiene skill di terze parti copiate
+        # (vendored): i loro template HTML non sono nostri deliverable e non
+        # devono rispettare le nostre regole di lint.
         run: |
           find . -name "*.html" \
+            ! -path "./.claude/*" \
             ! -path "*-experiences-standard/*" \
             ! -path "*-new-template-experiences/*" \
             ! -path "./blog-articles/*" \
