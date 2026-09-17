@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insectron Arena — Demo Tattica</title>
+<meta name="description" content="Demo giocabile di battaglia tattica a turni 5v5 su griglia, con statistiche e mosse speciali ricavate dal minigioco Insectron di Rogue Galaxy. Prototipo Experiences Srl.">
+<meta name="demo:tags" content="videogame,gioco,tattico,turni,prototipo,canvas,javascript">
+<meta name="demo:category" content="videogame">
+<style>
+:root{
+  --bg:#0d1117; --bg2:#151b26; --panel:#1b2332; --panel2:#232d40;
+  --line:#2f3b52; --text:#e8edf5; --muted:#93a1b8;
+  --accent:#ffc24b; --accent2:#4bc3ff;
+  --ally:#4bc3ff; --foe:#ff6b6b; --ok:#5ddb8f; --warn:#ffa94d;
+  --r:12px; --font:'Trebuchet MS',Verdana,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(ellipse at 50% -10%,#1d2a3f 0%,transparent 60%);
+  color:var(--text);font-family:var(--font);min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+header.top{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:14px 16px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);margin-bottom:16px;
+}
+header.top h1{font-size:1.3rem;letter-spacing:.5px}
+header.top h1 span{color:var(--accent)}
+.badge{
+  background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+  padding:5px 13px;font-size:.8rem;color:var(--muted);white-space:nowrap
+}
+.badge b{color:var(--text)}
+.spacer{flex:1}
+button{
+  font-family:inherit;font-size:.88rem;cursor:pointer;border-radius:9px;
+  border:1px solid var(--line);background:var(--panel2);color:var(--text);
+  padding:9px 15px;transition:.14s;
+}
+button:hover:not(:disabled){background:#2e3b52;border-color:#4a5c7d}
+button:disabled{opacity:.35;cursor:not-allowed}
+button.primary{background:var(--accent);color:#231a04;border-color:#e0a83b;font-weight:bold}
+button.primary:hover:not(:disabled){background:#ffd06e}
+button.danger{border-color:#7d3a3a;color:#ffb3b3}
+.screen{display:none}
+.screen.on{display:block}
+
+/* ---------- squadra ---------- */
+.two{display:grid;grid-template-columns:1fr 330px;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card h2{font-size:1rem;margin-bottom:4px;color:var(--accent)}
+.card p.hint{font-size:.8rem;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px;max-height:56vh;overflow:auto;padding-right:4px}
+.mon{
+  background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px;
+  cursor:pointer;transition:.13s;text-align:left;display:flex;gap:9px;align-items:center;width:100%
+}
+.mon:hover{border-color:var(--accent2);transform:translateY(-1px)}
+.mon.sel{border-color:var(--accent);background:#2b3448;box-shadow:0 0 0 1px var(--accent) inset}
+.mon .art{width:38px;height:38px;flex:0 0 38px}
+.mon .grow{display:block;min-width:0}
+.mon .nm{display:block;font-size:.78rem;font-weight:bold;line-height:1.2}
+.mon .st{display:block;font-size:.68rem;color:var(--muted);margin-top:3px;font-family:ui-monospace,monospace}
+.slots{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.slot{
+  display:flex;gap:9px;align-items:center;background:var(--panel2);border:1px dashed var(--line);
+  border-radius:10px;padding:8px;min-height:52px;font-size:.78rem;color:var(--muted)
+}
+.slot.full{border-style:solid;color:var(--text)}
+.slot .art{width:32px;height:32px;flex:0 0 32px}
+.slot .grow{flex:1;min-width:0}
+.crown{color:var(--accent);font-size:.9rem}
+.kbtn{font-size:.66rem;padding:4px 8px}
+
+/* ---------- battaglia ---------- */
+.arena{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.boardwrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.board{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:4px;
+  aspect-ratio:1/1;max-width:560px;margin:0 auto;
+}
+.cell{
+  position:relative;background:#18202e;border:1px solid #232d40;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;padding:0;cursor:default;
+  transition:.1s;overflow:visible
+}
+.cell.dark{background:#141b27}
+.cell.mv{background:#16405c;border-color:var(--accent2);cursor:pointer}
+.cell.mv::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent2);opacity:.75}
+.cell.tg{background:#5c1f22;border-color:var(--foe);cursor:pointer;box-shadow:0 0 0 1px var(--foe) inset}
+.cell.heal{background:#1b4a30;border-color:var(--ok);cursor:pointer}
+.cell.cur{box-shadow:0 0 0 2px var(--accent) inset}
+.tok{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative}
+.tok .art{width:64%;height:64%;flex:0 0 auto;pointer-events:none;overflow:visible}
+.tok.p .art{filter:drop-shadow(0 0 3px rgba(75,195,255,.6))}
+.tok.e .art{filter:drop-shadow(0 0 3px rgba(255,107,107,.6))}
+.tok.done{opacity:.45}
+.hpbar{width:78%;height:4px;border-radius:2px;background:#0c1017;overflow:hidden}
+.hpbar i{display:block;height:100%;background:var(--ok);transition:.3s}
+.hpbar.p i{background:var(--ally)}
+.hpbar.e i{background:var(--foe)}
+.kmark{position:absolute;top:-2px;right:-2px;font-size:.62rem;color:var(--accent);text-shadow:0 0 3px #000}
+.fx{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:bold;
+  font-size:.95rem;color:#fff;text-shadow:0 0 5px #000,0 0 10px #000;pointer-events:none;animation:pop .85s ease-out forwards}
+@keyframes pop{0%{transform:translateY(6px) scale(.6);opacity:0}25%{transform:translateY(-4px) scale(1.15);opacity:1}100%{transform:translateY(-22px) scale(1);opacity:0}}
+.status{position:absolute;bottom:-1px;left:2px;font-size:.6rem;letter-spacing:-1px}
+
+.panel{display:flex;flex-direction:column;gap:12px}
+.unitcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:13px}
+.unitcard .row{display:flex;gap:10px;align-items:center;margin-bottom:9px}
+.unitcard .art{width:46px;height:46px;flex:0 0 46px}
+.unitcard h3{font-size:.92rem}
+.unitcard .fam{font-size:.7rem;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:.72rem;text-align:center;margin-bottom:10px}
+.stats div{background:var(--panel2);border-radius:7px;padding:5px 2px}
+.stats b{display:block;font-size:.9rem;color:var(--accent)}
+.spec{background:var(--panel2);border-radius:8px;padding:9px;font-size:.72rem;line-height:1.45;color:var(--muted)}
+.spec b{color:var(--accent2);display:block;margin-bottom:2px;font-size:.78rem}
+.acts{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.acts button{flex:1;min-width:88px;padding:8px 6px;font-size:.78rem}
+.log{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:11px;
+  font-size:.74rem;line-height:1.6;height:190px;overflow:auto;color:var(--muted)
+}
+.log div{padding:2px 0;border-bottom:1px solid #1e2636}
+.log b{color:var(--text)}
+.log .hit{color:var(--warn)}
+.log .ko{color:var(--foe);font-weight:bold}
+.log .good{color:var(--ok)}
+.turnbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.pill{padding:6px 13px;border-radius:999px;font-size:.78rem;font-weight:bold;border:1px solid}
+.pill.p{background:#12354a;border-color:var(--ally);color:var(--ally)}
+.pill.e{background:#4a1c1c;border-color:var(--foe);color:var(--foe)}
+
+/* ---------- esito ---------- */
+.result{max-width:520px;margin:6vh auto;text-align:center}
+.result h2{font-size:1.8rem;margin-bottom:10px}
+.result .win{color:var(--ok)} .result .lose{color:var(--foe)}
+.result p{color:var(--muted);line-height:1.7;margin-bottom:18px;font-size:.9rem}
+
+footer.note{
+  margin-top:20px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);font-size:.72rem;color:var(--muted);line-height:1.7
+}
+footer.note b{color:var(--text)}
+footer.note a{color:var(--accent2)}
+@media(max-width:900px){
+  .two,.arena{grid-template-columns:1fr}
+  .roster{max-height:40vh}
+  .log{height:140px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>INSECTRON <span>ARENA</span></h1>
+  <div class="badge" id="b-rank">Rank <b>E</b></div>
+  <div class="badge" id="b-round">Round <b>1</b>/5</div>
+  <div class="spacer"></div>
+  <button id="btn-reset" class="danger">Azzera torneo</button>
+</header>
+
+<!-- ============ SCHERMATA SQUADRA ============ -->
+<section id="s-team" class="screen on">
+  <div class="two">
+    <div class="card">
+      <h2>Roster Insector</h2>
+      <p class="hint">34 Insector con statistiche reali del minigioco. Scegline <b>5</b>. Ogni famiglia ha una mossa speciale diversa: leggi la scheda prima di decidere.</p>
+      <div class="roster" id="roster"></div>
+    </div>
+    <div class="card">
+      <h2>La tua squadra</h2>
+      <p class="hint">Designa un <b>Re</b>: se cade, hai perso. Il Re si muove di <b>1 sola casella</b> per turno, anche se la sua famiglia ne permette di più.</p>
+      <div class="slots" id="slots"></div>
+      <div class="acts">
+        <button id="btn-auto">Squadra rapida</button>
+        <button id="btn-clear">Svuota</button>
+      </div>
+      <div class="acts">
+        <button id="btn-start" class="primary" disabled>Entra in arena</button>
+      </div>
+      <div class="spec" id="detail" style="margin-top:12px">
+        <b>Seleziona un Insector</b>
+        Passa il mouse o tocca una scheda del roster per vederne i dettagli.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHERMATA BATTAGLIA ============ -->
+<section id="s-battle" class="screen">
+  <div class="arena">
+    <div class="boardwrap">
+      <div class="turnbar">
+        <span class="pill p" id="turnpill">Il tuo turno</span>
+        <span class="badge" id="b-opp">Avversario: <b>—</b></span>
+        <div class="spacer"></div>
+        <button id="btn-end" class="primary">Fine turno</button>
+      </div>
+      <div class="board" id="board"></div>
+    </div>
+    <div class="panel">
+      <div class="unitcard" id="ucard">
+        <div class="fam">Clicca un tuo Insector per selezionarlo.</div>
+      </div>
+      <div class="log" id="log"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHERMATA ESITO ============ -->
+<section id="s-result" class="screen">
+  <div class="result card">
+    <h2 id="r-title">—</h2>
+    <p id="r-text">—</p>
+    <div class="acts">
+      <button id="btn-next" class="primary">Continua</button>
+    </div>
+  </div>
+</section>
+
+<footer class="note">
+  <b>Demo tecnica — prototipo di gameplay.</b>
+  Statistiche (HP/Str/Def), famiglie, mosse speciali, range di movimento, regole del torneo e nomi
+  degli avversari sono estratti dalla pagina <i>Insector</i> della Rogue Galaxy Wiki
+  (testo <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="nofollow">CC BY-SA</a>).
+  <b>Tutta la grafica è originale</b>: nessuno sprite o artwork del gioco Sony/Level-5 è stato usato.
+  Le formule di danno, la dimensione della griglia (6×6) e il comportamento della IA non sono
+  documentati sul wiki e sono una ricostruzione di design — vedi <b>README.md</b> nella cartella del demo.
+  Rogue Galaxy è © Sony Interactive Entertainment / Level-5. Questo prototipo non è affiliato né autorizzato.
+</footer>
+
+</div>
+<script>
+/* =========================================================================
+   DATI — estratti dalla Rogue Galaxy Wiki (pagina Insector + schede unità)
+   ========================================================================= */
+const UNITS = [
+  {"id":"big_staggy","name":"Big Staggy","fam":"Staggy","rank":2,"hp":120,"str":18,"def":9,"mv":"step","desc":"Un forzuto che non lascia scappare nessuno: le sue chele afferrano qualsiasi nemico."},
+  {"id":"bomb_roller","name":"Bomb Roller","fam":"Dung Roller","rank":3,"hp":144,"str":22,"def":10,"mv":"step","desc":"Difensore leggendario, non dimentica mai i compagni."},
+  {"id":"butterflap","name":"Butterflap","fam":"Flutterbug","rank":4,"hp":140,"str":26,"def":12,"mv":"fly","desc":"Un idolo popolare noto per il volo elegante e l'agilità."},
+  {"id":"carver_beetle","name":"Carver Beetle","fam":"Knife Beetle","rank":5,"hp":208,"str":33,"def":17,"mv":"step","desc":"Figura dominante del mondo Insector: nel corno cova uno spirito guerriero."},
+  {"id":"dark_emperor","name":"Dark Emperor","fam":"Dark Emperor","rank":1,"hp":300,"str":30,"def":15,"mv":"step","desc":"La maschera oscura attira chiunque nell'abisso. Nessuno ne ha mai visto il vero volto."},
+  {"id":"drillerpillar","name":"Drillerpillar","fam":"Cutterpillar","rank":4,"hp":140,"str":27,"def":5,"mv":"step","desc":"Attaccante puro: carica con la forza di un ariete."},
+  {"id":"dustpan","name":"Dustpan","fam":"Flipperbug","rank":5,"hp":208,"str":33,"def":15,"mv":"step","desc":"Un fratellone che adora scavare e intrappolare i nemici nelle buche."},
+  {"id":"faerie","name":"Faerie","fam":"Faerie","rank":1,"hp":90,"str":14,"def":5,"mv":"diag","desc":"Ammalia i nemici: se incrocia il tuo sguardo, sei finito."},
+  {"id":"fishface_beetle","name":"Fishface Beetle","fam":"Bazoo Beetle","rank":3,"hp":116,"str":21,"def":8,"mv":"step","desc":"Il suo cannone devasta a distanza. Quelle labbra sporgenti non sono un vezzo."},
+  {"id":"flipperbug","name":"Flipperbug","fam":"Flipperbug","rank":1,"hp":100,"str":15,"def":6,"mv":"step","desc":"Un monello che ribalta i nemici con il suo corno particolare."},
+  {"id":"gum_roller","name":"Gum Roller","fam":"Dung Roller","rank":2,"hp":120,"str":18,"def":8,"mv":"step","desc":"Difensore leggendario, non dimentica mai i compagni."},
+  {"id":"handsome_faerie","name":"Handsome Faerie","fam":"Faerie","rank":2,"hp":108,"str":17,"def":6,"mv":"diag","desc":"Ammalia i nemici: se incrocia il tuo sguardo, sei finito."},
+  {"id":"hatchet_beetle","name":"Hatchet Beetle","fam":"Knife Beetle","rank":4,"hp":173,"str":27,"def":14,"mv":"step","desc":"Figura dominante del mondo Insector: nel corno cova uno spirito guerriero."},
+  {"id":"hercules_beetle","name":"Hercules Beetle","fam":"Hercules Beetle","rank":1,"hp":150,"str":15,"def":8,"mv":"step","desc":"Simbolo eroico: forza bruta e mistero antico in un solo guscio."},
+  {"id":"itsahorse","name":"Itsahorse","fam":"Itsahorse","rank":1,"hp":150,"str":15,"def":7,"mv":"charge","desc":"Un cavallo vero che gioca con le sue regole. Non si è accorto di essere fuori posto."},
+  {"id":"kaboom_beetle","name":"Kaboom Beetle","fam":"Bazoo Beetle","rank":5,"hp":168,"str":32,"def":12,"mv":"step","desc":"Il suo cannone devasta a distanza. Quelle labbra sporgenti non sono un vezzo."},
+  {"id":"knife_beetle","name":"Knife Beetle","fam":"Knife Beetle","rank":1,"hp":100,"str":15,"def":8,"mv":"step","desc":"Figura dominante del mondo Insector: nel corno cova uno spirito guerriero."},
+  {"id":"mantis","name":"Mantis","fam":"Mantis","rank":1,"hp":80,"str":15,"def":3,"mv":"step","desc":"Un lupo solitario che incute timore: falcia gli avversari con braccia lunghe e agili."},
+  {"id":"miss_mysterious","name":"Miss Mysterious","fam":"Faerie","rank":3,"hp":130,"str":21,"def":8,"mv":"diag","desc":"Ammalia i nemici: se incrocia il tuo sguardo, sei finito."},
+  {"id":"narcissus_beetle","name":"Narcissus Beetle","fam":"Hercules Beetle","rank":4,"hp":260,"str":27,"def":14,"mv":"step","desc":"Simbolo eroico: forza bruta e mistero antico in un solo guscio."},
+  {"id":"orion_beetle","name":"Orion Beetle","fam":"Hercules Beetle","rank":3,"hp":216,"str":22,"def":32,"mv":"step","desc":"Simbolo eroico: forza bruta e mistero antico in un solo guscio."},
+  {"id":"planet_beetle","name":"Planet Beetle","fam":"Bazoo Beetle","rank":4,"hp":140,"str":26,"def":10,"mv":"step","desc":"Il suo cannone devasta a distanza. Quelle labbra sporgenti non sono un vezzo."},
+  {"id":"saber_beetle","name":"Saber Beetle","fam":"Knife Beetle","rank":3,"hp":144,"str":22,"def":11,"mv":"step","desc":"Figura dominante del mondo Insector: nel corno cova uno spirito guerriero."},
+  {"id":"shoveler","name":"Shoveler","fam":"Flipperbug","rank":4,"hp":173,"str":27,"def":12,"mv":"step","desc":"Un fratellone che adora scavare e intrappolare i nemici nelle buche."},
+  {"id":"slaying_mantis","name":"Slaying Mantis","fam":"Mantis","rank":2,"hp":96,"str":18,"def":4,"mv":"step","desc":"Un lupo solitario che incute timore: falcia gli avversari con braccia lunghe e agili."},
+  {"id":"spotted_lady","name":"Spotted Lady","fam":"Lady Beetle","rank":3,"hp":116,"str":22,"def":10,"mv":"step","desc":"Presenza rassicurante del mondo Insector. Ma chi consolerà lei?"},
+  {"id":"staggy","name":"Staggy","fam":"Staggy","rank":1,"hp":100,"str":15,"def":8,"mv":"step","desc":"Un forzuto che non lascia scappare nessuno: le sue chele afferrano qualsiasi nemico."},
+  {"id":"stinger_bill","name":"Stinger Bill","fam":"Cutterpillar","rank":6,"hp":202,"str":40,"def":8,"mv":"step","desc":"Attaccante puro: carica con la forza di un ariete."},
+  {"id":"stun_staggy","name":"Stun Staggy","fam":"Staggy","rank":3,"hp":144,"str":22,"def":11,"mv":"step","desc":"Un forzuto che non lascia scappare nessuno: le sue chele afferrano qualsiasi nemico."},
+  {"id":"super_mantis","name":"Super Mantis","fam":"Mantis","rank":3,"hp":116,"str":22,"def":5,"mv":"step","desc":"Un lupo solitario che incute timore: falcia gli avversari con braccia lunghe e agili."},
+  {"id":"susanoo_beetle","name":"Susanoo Beetle","fam":"Hercules Beetle","rank":5,"hp":312,"str":33,"def":17,"mv":"step","desc":"Simbolo eroico: forza bruta e mistero antico in un solo guscio."},
+  {"id":"tornado_mantis","name":"Tornado Mantis","fam":"Mantis","rank":4,"hp":140,"str":27,"def":6,"mv":"step","desc":"Un lupo solitario che incute timore: falcia gli avversari con braccia lunghe e agili."},
+  {"id":"turner","name":"Turner","fam":"Flipperbug","rank":3,"hp":144,"str":22,"def":10,"mv":"step","desc":"Un monello che ribalta i nemici con il suo corno particolare."},
+  {"id":"western_beetle","name":"Western Beetle","fam":"Bazoo Beetle","rank":6,"hp":202,"str":39,"def":15,"mv":"step","desc":"Il suo cannone devasta a distanza. Quelle labbra sporgenti non sono un vezzo."}
+];
+
+/* Mosse speciali: testo e regole dalla sezione "Insector Families" del wiki. */
+const FAMS = {
+  "Knife Beetle":   {col:"#7dd3fc", sp:"jumping_stab",  spn:"Jumping Stab",     spd:"Salta in alto e cala il corno affilato: danno pesante su un singolo bersaglio adiacente."},
+  "Hercules Beetle":{col:"#fbbf24", sp:"crushing_horn", spn:"Crushing Horn",    spd:"Sbalza il nemico indietro di 1 casella. Se dietro c'è un altro Insector, si innesca una reazione a catena."},
+  "Bazoo Beetle":   {col:"#a78bfa", sp:"cannon_blast",  spn:"Cannon Blast",     spd:"Spara una cannonata in linea retta fino a 3 caselle. Colpisce senza avvicinarsi."},
+  "Flipperbug":     {col:"#34d399", sp:"over_easy",     spn:"Over Easy",        spd:"Ribalta l'avversario adiacente: resta immobilizzato per 2 turni."},
+  "Staggy":         {col:"#fb923c", sp:"scissor_throw", spn:"Scissor Throw",    spd:"Afferra il nemico e lo scaglia alle proprie spalle. Se lì c'è qualcuno, danno extra a entrambi; se c'è il vuoto, è fuori dal campo."},
+  "Mantis":         {col:"#4ade80", sp:"sickle_dance",  spn:"Sickle Dance",     spd:"Danza letale che colpisce tutti gli avversari nelle 8 direzioni adiacenti."},
+  "Cutterpillar":   {col:"#f472b6", sp:"body_blow",     spn:"Body Blow",        spd:"Carica in linea retta e travolge il primo nemico. Dopo l'impatto resta scoperto: subisce +30% di danno."},
+  "Flutterbug":     {col:"#22d3ee", sp:"wing_flap",     spn:"Wing Flap",        spd:"Un colpo d'ali spazza via tutti i nemici adiacenti di 2 caselle. Vicino al bordo significa ring-out."},
+  "Lady Beetle":    {col:"#f87171", sp:"healing_jig",   spn:"Healing Jig",      spd:"Danza curativa: recupera stamina a tutti gli alleati adiacenti e li libera da immobilizzo."},
+  "Dung Roller":    {col:"#c4b5a0", sp:"fill_hole",     spn:"Fill Hole",        spd:"Si copre con la palla di sterco: blocca completamente i 2 attacchi successivi."},
+  "Itsahorse":      {col:"#fcd34d", sp:"itsakick",      spn:"Itsakick",         spd:"Calcia contemporaneamente chi ha davanti e chi ha dietro, spingendoli via di 1 casella."},
+  "Faerie":         {col:"#e879f9", sp:"charm_beam",    spn:"Charm Beam",       spd:"Ammalia un avversario adiacente e lo fa passare dalla tua parte. Costo: metà della tua stamina."},
+  "Dark Emperor":   {col:"#818cf8", sp:"emperors_rage", spn:"The Emperor's Rage",spd:"Furia fulminea: colpisce tutti i nemici entro 2 caselle e li stordisce per 1 turno."}
+};
+
+/* Torneo: quote d'iscrizione, avversari e premi dal wiki. */
+const RANKS = [
+  {id:"E", fee:400,  pool:[1,2], mul:0.80, names:["Zak","Randall","Matilda","Keller","Robert"],        prize:"Battle Feed ×5"},
+  {id:"D", fee:800,  pool:[1,3], mul:0.92, names:["Matty","Philly","Medis","Cordison","Fabre"],        prize:"Feed Formula ×5"},
+  {id:"C", fee:1200, pool:[2,4], mul:1.00, names:["Retslyn","Sam","Denver","Matthew","Bolgo"],         prize:"Murakumo Type-S"},
+  {id:"B", fee:2000, pool:[3,5], mul:1.07, names:["Emp","Henry","Osmond","Ertessa","Bari"],            prize:"Devil Forks"},
+  {id:"A", fee:3200, pool:[4,6], mul:1.08, names:["Kalt","Gary","Jaques","Starr","Monj"],              prize:"Grand Calibur"},
+  {id:"S", fee:6000, pool:[5,6], mul:1.15, names:["Camilla","Balta","Nolli","Lucy Dyne","Jin Red"],    prize:"Demon Medium"}
+];
+
+const N = 6;                         /* griglia 6×6 (ricostruzione di design) */
+const byId = {}; UNITS.forEach(u => byId[u.id] = u);
+
+/* =========================================================================
+   GRAFICA — SVG originali, una silhouette per famiglia
+   ========================================================================= */
+function art(fam, flip){
+  const c = (FAMS[fam] || {}).col || "#9aa6b8";
+  const d = "#0d1117";
+  const g0 = flip ? '<g transform="rotate(180 32 32)">' : '';
+  const g1 = flip ? '</g>' : '';
+  const shapes = {
+    "Knife Beetle":  '<ellipse cx="32" cy="38" rx="15" ry="19" fill="C"/><path d="M32 4 L27 20 h10z" fill="C"/><rect x="29" y="16" width="6" height="12" fill="C"/><ellipse cx="32" cy="30" rx="9" ry="7" fill="D" opacity=".35"/>',
+    "Hercules Beetle":'<ellipse cx="32" cy="40" rx="18" ry="20" fill="C"/><path d="M22 18 q10 -14 20 0 q-10 -6 -20 0z" fill="C"/><path d="M24 20 q8 8 16 0" stroke="D" stroke-width="3" fill="none"/><circle cx="26" cy="36" r="3" fill="D" opacity=".4"/><circle cx="38" cy="36" r="3" fill="D" opacity=".4"/>',
+    "Bazoo Beetle":  '<ellipse cx="32" cy="40" rx="16" ry="18" fill="C"/><rect x="26" y="8" width="12" height="18" rx="5" fill="C"/><circle cx="32" cy="12" r="6" fill="D" opacity=".55"/><circle cx="32" cy="12" r="3" fill="C"/>',
+    "Flipperbug":    '<ellipse cx="32" cy="38" rx="17" ry="17" fill="C"/><path d="M18 26 q14 -16 28 0" stroke="C" stroke-width="5" fill="none"/><path d="M24 40 q8 8 16 0" stroke="D" stroke-width="3" fill="none" opacity=".5"/>',
+    "Staggy":        '<ellipse cx="32" cy="42" rx="15" ry="17" fill="C"/><path d="M20 24 q-4 -14 6 -18 q-2 10 4 14" fill="C"/><path d="M44 24 q4 -14 -6 -18 q2 10 -4 14" fill="C"/>',
+    "Mantis":        '<path d="M32 12 l12 34 h-24z" fill="C"/><ellipse cx="32" cy="50" rx="8" ry="9" fill="C"/><path d="M20 26 q-10 4 -6 16" stroke="C" stroke-width="4" fill="none"/><path d="M44 26 q10 4 6 16" stroke="C" stroke-width="4" fill="none"/><circle cx="28" cy="20" r="2.4" fill="D"/><circle cx="36" cy="20" r="2.4" fill="D"/>',
+    "Cutterpillar":  '<circle cx="32" cy="16" r="10" fill="C"/><circle cx="32" cy="32" r="11" fill="C" opacity=".85"/><circle cx="32" cy="47" r="10" fill="C" opacity=".7"/><path d="M24 10 l-6 -6 M40 10 l6 -6" stroke="C" stroke-width="3"/>',
+    "Flutterbug":    '<ellipse cx="32" cy="34" rx="5" ry="18" fill="C"/><path d="M30 24 q-22 -14 -22 8 q0 16 22 6z" fill="C" opacity=".8"/><path d="M34 24 q22 -14 22 8 q0 16 -22 6z" fill="C" opacity=".8"/><circle cx="32" cy="17" r="4" fill="C"/>',
+    "Lady Beetle":   '<circle cx="32" cy="36" r="19" fill="C"/><rect x="30.5" y="17" width="3" height="38" fill="D" opacity=".55"/><circle cx="23" cy="30" r="4" fill="D" opacity=".55"/><circle cx="41" cy="30" r="4" fill="D" opacity=".55"/><circle cx="25" cy="44" r="3.4" fill="D" opacity=".55"/><circle cx="39" cy="44" r="3.4" fill="D" opacity=".55"/><path d="M32 17 a12 12 0 0 1 -11 -7 a22 22 0 0 1 22 0 a12 12 0 0 1 -11 7z" fill="D" opacity=".7"/>',
+    "Dung Roller":   '<circle cx="32" cy="24" r="15" fill="C" opacity=".55"/><ellipse cx="32" cy="46" rx="14" ry="12" fill="C"/><circle cx="27" cy="44" r="2.6" fill="D"/><circle cx="37" cy="44" r="2.6" fill="D"/>',
+    "Itsahorse":     '<path d="M22 54 v-20 q0 -12 12 -14 l10 -8 q6 6 0 12 l-4 4 q6 6 4 14 v12z" fill="C"/><path d="M42 14 l4 -8 l2 8z" fill="C"/><circle cx="41" cy="20" r="2.2" fill="D"/>',
+    "Faerie":        '<ellipse cx="32" cy="36" rx="6" ry="13" fill="C"/><circle cx="32" cy="19" r="7" fill="C"/><path d="M27 30 q-18 -12 -16 6 q2 12 16 2z" fill="C" opacity=".55"/><path d="M37 30 q18 -12 16 6 q-2 12 -16 2z" fill="C" opacity=".55"/>',
+    "Dark Emperor":  '<ellipse cx="32" cy="40" rx="18" ry="20" fill="C"/><path d="M16 20 q6 -16 16 -6 q10 -10 16 6 q-16 -4 -32 0z" fill="C"/><path d="M22 34 h8 l-4 6z" fill="D"/><path d="M34 34 h8 l-4 6z" fill="D"/><path d="M24 48 q8 6 16 0" stroke="D" stroke-width="2.6" fill="none"/>'
+  };
+  const body = (shapes[fam] || '<circle cx="32" cy="34" r="17" fill="C"/>').replace(/C/g, c).replace(/D/g, d);
+  return '<svg class="art" viewBox="0 0 64 64" aria-hidden="true">' + g0 + body + g1 + '</svg>';
+}
+
+/* =========================================================================
+   STATO
+   ========================================================================= */
+const S = {
+  rankIdx: 0, round: 0,
+  team: [], kingId: null,
+  units: [], turn: "p", sel: null, mode: "idle", busy: false, over: false
+};
+
+const $ = s => document.querySelector(s);
+const cheb = (a,b,c,d) => Math.max(Math.abs(a-c), Math.abs(b-d));
+const inB = (x,y) => x >= 0 && y >= 0 && x < N && y < N;
+const at = (x,y) => S.units.find(u => u.alive && u.x === x && u.y === y);
+const alive = side => S.units.filter(u => u.alive && u.side === side);
+const kingOf = side => S.units.find(u => u.alive && u.side === side && u.isKing);
+
+function save(){
+  try { localStorage.setItem("insectron", JSON.stringify({r:S.rankIdx, n:S.round, t:S.team, k:S.kingId})); }
+  catch(e){ /* storage non disponibile: la partita resta valida in sessione */ }
+}
+function load(){
+  try {
+    const v = JSON.parse(localStorage.getItem("insectron") || "null");
+    if (v && Array.isArray(v.t)) { S.rankIdx = v.r|0; S.round = v.n|0; S.team = v.t.filter(id => byId[id]); S.kingId = byId[v.k] ? v.k : null; }
+  } catch(e){ /* dato corrotto o storage bloccato: si riparte da zero */ }
+}
+
+/* =========================================================================
+   SCHERMATA SQUADRA
+   ========================================================================= */
+function drawRoster(){
+  const r = $("#roster"); r.innerHTML = "";
+  UNITS.slice().sort((a,b) => a.rank - b.rank || a.name.localeCompare(b.name)).forEach(u => {
+    const b = document.createElement("button");
+    b.className = "mon" + (S.team.includes(u.id) ? " sel" : "");
+    b.innerHTML = art(u.fam) +
+      '<span class="grow"><span class="nm">' + u.name + '</span>' +
+      '<span class="st">R' + u.rank + ' · ' + u.hp + 'hp · ' + u.str + 'str · ' + u.def + 'def</span></span>';
+    b.onclick = () => toggle(u.id);
+    b.onmouseenter = () => detail(u);
+    b.onfocus = () => detail(u);
+    r.appendChild(b);
+  });
+}
+function detail(u){
+  const f = FAMS[u.fam];
+  $("#detail").innerHTML = '<b>' + u.name + ' — ' + u.fam + ' (rank ' + u.rank + ')</b>' +
+    u.desc + '<br><br><b>' + f.spn + '</b>' + f.spd +
+    '<br><br>Movimento: ' + moveLabel(u.mv);
+}
+function moveLabel(mv){
+  return { step:"1 casella in tutte le direzioni (3×3)",
+           fly:"volo, fino a 3 caselle scavalcando gli altri (7×7)",
+           diag:"fino a 3 caselle in diagonale",
+           charge:"2 caselle dritto in avanti, oppure 1 in qualsiasi direzione" }[mv];
+}
+function toggle(id){
+  const i = S.team.indexOf(id);
+  if (i >= 0){ S.team.splice(i,1); if (S.kingId === id) S.kingId = null; }
+  else if (S.team.length < 5){ S.team.push(id); if (!S.kingId) S.kingId = id; }
+  drawRoster(); drawSlots(); save();
+}
+function drawSlots(){
+  const el = $("#slots"); el.innerHTML = "";
+  for (let i = 0; i < 5; i++){
+    const id = S.team[i], u = id && byId[id];
+    const d = document.createElement("div");
+    d.className = "slot" + (u ? " full" : "");
+    if (!u){ d.textContent = "Slot " + (i+1) + " libero"; }
+    else {
+      const isK = S.kingId === id;
+      d.innerHTML = art(u.fam) +
+        '<span class="grow"><b>' + (isK ? '<span class="crown">♛ </span>' : '') + u.name + '</b><br>' +
+        '<span style="font-size:.68rem;color:var(--muted)">' + u.fam + '</span></span>';
+      const k = document.createElement("button");
+      k.className = "kbtn"; k.textContent = isK ? "Re" : "fai Re";
+      k.disabled = isK;
+      k.onclick = () => { S.kingId = id; drawSlots(); save(); };
+      d.appendChild(k);
+    }
+    el.appendChild(d);
+  }
+  $("#btn-start").disabled = !(S.team.length === 5 && S.kingId);
+}
+
+/* =========================================================================
+   COSTRUZIONE BATTAGLIA
+   ========================================================================= */
+function mk(def, side, isKing, mul){
+  return {
+    uid: side + "_" + def.id + "_" + Math.random().toString(36).slice(2,7),
+    d: def, side: side, isKing: isKing, alive: true,
+    maxHp: Math.round(def.hp * mul), hp: Math.round(def.hp * mul),
+    str: Math.round(def.str * mul), dfn: Math.round(def.def * mul),
+    x: 0, y: 0, acted: false, stun: 0, cd: 0, guard: 0, exposed: false
+  };
+}
+function buildEnemy(){
+  const R = RANKS[S.rankIdx];
+  const pool = UNITS.filter(u => u.rank >= R.pool[0] && u.rank <= R.pool[1] && u.id !== "dark_emperor");
+  const pick = [];
+  while (pick.length < 5){
+    const c = pool[Math.floor(Math.random()*pool.length)];
+    if (pick.filter(p => p.id === c.id).length < 2) pick.push(c);
+  }
+  const kIdx = pick.reduce((best,u,i) => u.hp > pick[best].hp ? i : best, 0);
+  return pick.map((u,i) => mk(u, "e", i === kIdx, R.mul));
+}
+function startBattle(){
+  const R = RANKS[S.rankIdx];
+  S.units = [];
+  S.team.forEach(id => S.units.push(mk(byId[id], "p", id === S.kingId, 1)));
+  buildEnemy().forEach(u => S.units.push(u));
+
+  const cols = [0,2,4,1,3];
+  alive("p").forEach((u,i) => { u.x = cols[i]; u.y = i < 3 ? N-1 : N-2; });
+  alive("e").forEach((u,i) => { u.x = cols[i]; u.y = i < 3 ? 0 : 1; });
+  /* il Re parte sempre nella fila più arretrata */
+  const pk = kingOf("p"), ek = kingOf("e");
+  if (pk && pk.y !== N-1){ const sw = alive("p").find(u => u.y === N-1 && u !== pk); if (sw){ [pk.x,pk.y,sw.x,sw.y] = [sw.x,sw.y,pk.x,pk.y]; } }
+  if (ek && ek.y !== 0){ const sw = alive("e").find(u => u.y === 0 && u !== ek); if (sw){ [ek.x,ek.y,sw.x,sw.y] = [sw.x,sw.y,ek.x,ek.y]; } }
+
+  S.turn = "p"; S.sel = null; S.mode = "idle"; S.over = false; S.busy = false;
+  $("#log").innerHTML = "";
+  $("#b-opp").innerHTML = "Avversario: <b>" + R.names[S.round] + "</b>";
+  log('<b>Rank ' + R.id + ' — Round ' + (S.round+1) + '/5</b> contro <b>' + R.names[S.round] + '</b>. Abbatti il Re avversario per vincere.');
+  show("s-battle"); newTurn("p"); draw();
+}
+
+/* =========================================================================
+   MOVIMENTO / BERSAGLI
+   ========================================================================= */
+function moves(u){
+  const out = [], mv = u.isKing ? "step" : u.d.mv;
+  const push = (x,y) => { if (inB(x,y) && !at(x,y)) out.push({x,y}); };
+  if (mv === "step"){
+    for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) if (dx||dy) push(u.x+dx, u.y+dy);
+  } else if (mv === "fly"){
+    for (let dx=-3; dx<=3; dx++) for (let dy=-3; dy<=3; dy++) if (dx||dy) push(u.x+dx, u.y+dy);
+  } else if (mv === "diag"){
+    [[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([dx,dy]) => {
+      for (let s=1; s<=3; s++){
+        const x = u.x+dx*s, y = u.y+dy*s;
+        if (!inB(x,y) || at(x,y)) break;
+        out.push({x,y});
+      }
+    });
+  } else if (mv === "charge"){
+    const f = u.side === "p" ? -1 : 1;
+    for (let s=1; s<=2; s++){
+      const y = u.y + f*s;
+      if (!inB(u.x,y) || at(u.x,y)) break;
+      out.push({x:u.x, y:y});
+    }
+    for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) if (dx||dy) push(u.x+dx, u.y+dy);
+  }
+  return out.filter((p,i,a) => a.findIndex(q => q.x===p.x && q.y===p.y) === i);
+}
+function foesAdj(u){
+  return S.units.filter(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) === 1);
+}
+function rayTargets(u, maxd){
+  const out = [];
+  [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([dx,dy]) => {
+    for (let s=1; s<=maxd; s++){
+      const x = u.x+dx*s, y = u.y+dy*s;
+      if (!inB(x,y)) break;
+      const o = at(x,y);
+      if (o){ if (o.side !== u.side) out.push(o); break; }
+    }
+  });
+  return out;
+}
+function specTargets(u){
+  const sp = FAMS[u.d.fam].sp;
+  if (sp === "cannon_blast") return rayTargets(u, 3);
+  if (sp === "body_blow")    return rayTargets(u, 3);
+  if (sp === "charm_beam")   return foesAdj(u).filter(f => !f.isKing);
+  if (["jumping_stab","crushing_horn","over_easy","scissor_throw"].includes(sp)) return foesAdj(u);
+  return [];  /* self-cast */
+}
+function selfCast(u){
+  return ["sickle_dance","wing_flap","emperors_rage","healing_jig","fill_hole","itsakick"].includes(FAMS[u.d.fam].sp);
+}
+function canSpecial(u){
+  if (u.cd > 0) return false;
+  const sp = FAMS[u.d.fam].sp;
+  if (sp === "healing_jig") return S.units.some(a => a.alive && a.side === u.side && a !== u && cheb(u.x,u.y,a.x,a.y) === 1);
+  if (sp === "fill_hole")   return u.guard === 0;
+  if (sp === "itsakick" || sp === "sickle_dance" || sp === "wing_flap") return foesAdj(u).length > 0;
+  if (sp === "emperors_rage") return S.units.some(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) <= 2);
+  return specTargets(u).length > 0;
+}
+
+/* =========================================================================
+   COMBATTIMENTO
+   ========================================================================= */
+function log(html, cls){
+  const l = $("#log"), d = document.createElement("div");
+  if (cls) d.className = cls;
+  d.innerHTML = html; l.appendChild(d); l.scrollTop = l.scrollHeight;
+}
+function fx(u, txt){
+  const cell = document.querySelector('[data-xy="' + u.x + "," + u.y + '"]');
+  if (!cell) return;
+  const s = document.createElement("span");
+  s.className = "fx"; s.textContent = txt;
+  cell.appendChild(s);
+  setTimeout(() => s.remove(), 850);
+}
+function raw(t, amount, why){
+  if (t.guard > 0){
+    t.guard--;
+    log('<b>' + t.d.name + '</b> para il colpo con la palla di sterco.', "good");
+    fx(t, "BLOCK"); return 0;
+  }
+  const dmg = Math.max(1, Math.round(amount * (t.exposed ? 1.3 : 1)));
+  t.hp -= dmg; fx(t, "-" + dmg);
+  return dmg;
+}
+function settle(t, why){ if (t.alive && t.hp <= 0) ko(t, why); }
+function strike(a, t, mult, label){
+  /* la difesa riduce il colpo ma non lo annulla mai: resta almeno il 30% della forza,
+     altrimenti un DEF alto renderebbe l'unità invulnerabile agli attaccanti deboli */
+  const core = Math.max(a.str * 0.3, a.str * 2 - t.dfn);
+  const d = raw(t, core * mult * (0.9 + Math.random() * 0.2), label);
+  if (d) log('<b>' + a.d.name + '</b> ' + label + ' <b>' + t.d.name + '</b>: <span class="hit">' + d + ' danni</span>');
+  settle(t, label);
+  return d;
+}
+function ko(t, why){
+  t.alive = false;
+  log('<b>' + t.d.name + '</b> è K.O.' + (why === "ring" ? " — scaraventato fuori dal campo!" : "") + (t.isKing ? " È il RE!" : ""), "ko");
+  checkEnd();
+}
+function ringOut(t){ t.hp = 0; ko(t, "ring"); }
+function shove(t, dx, dy, n, src){
+  for (let i = 0; i < n; i++){
+    const nx = t.x + dx, ny = t.y + dy;
+    if (!inB(nx,ny)){ ringOut(t); return "out"; }
+    const o = at(nx,ny);
+    if (o){
+      const chip = Math.round(6 + src.str * 0.35);
+      raw(t, chip, "crash"); raw(o, chip, "crash");
+      log('Scontro fra <b>' + t.d.name + '</b> e <b>' + o.d.name + '</b>: ' + chip + ' danni a testa.', "hit");
+      settle(t, "crash"); settle(o, "crash");
+      return "bump";
+    }
+    t.x = nx; t.y = ny;
+  }
+  return "ok";
+}
+function dirTo(a, b){
+  return [Math.sign(b.x - a.x), Math.sign(b.y - a.y)];
+}
+function doSpecial(u, target){
+  const sp = FAMS[u.d.fam].sp, nm = FAMS[u.d.fam].spn;
+  log('<b>' + u.d.name + '</b> usa <b>' + nm + '</b>!');
+  fx(u, "★");
+  if (sp === "jumping_stab") strike(u, target, 1.8, "trafigge");
+  else if (sp === "crushing_horn"){
+    strike(u, target, 1.1, "incorna");
+    if (target.alive){
+      const [dx,dy] = dirTo(u, target);
+      const behind = at(target.x + dx, target.y + dy);
+      shove(target, dx, dy, 1, u);
+      if (behind && behind.alive) log("Reazione a catena su <b>" + behind.d.name + "</b>.", "hit");
+    }
+  }
+  else if (sp === "cannon_blast") strike(u, target, 1.0, "cannoneggia");
+  else if (sp === "over_easy"){
+    strike(u, target, 0.5, "ribalta");
+    if (target.alive){ target.stun = 2; log("<b>" + target.d.name + "</b> è immobilizzato per 2 turni.", "good"); }
+  }
+  else if (sp === "scissor_throw"){
+    const [dx,dy] = dirTo(u, target);
+    strike(u, target, 0.8, "afferra");
+    if (target.alive){
+      target.x = u.x; target.y = u.y;      /* passa oltre il lanciatore */
+      const r = shove(target, -dx, -dy, 1, u);
+      if (r === "ok"){ /* atterraggio pulito */ }
+      if (!inB(u.x - dx, u.y - dy) && target.alive) ringOut(target);
+    }
+  }
+  else if (sp === "sickle_dance"){
+    foesAdj(u).forEach(f => strike(u, f, 0.75, "falcia"));
+  }
+  else if (sp === "body_blow"){
+    const [dx,dy] = dirTo(u, target);
+    u.x = target.x - dx; u.y = target.y - dy;
+    strike(u, target, 1.5, "travolge");
+    u.exposed = true;
+    log("<b>" + u.d.name + "</b> resta scoperto dopo la carica.", "hit");
+  }
+  else if (sp === "healing_jig"){
+    S.units.filter(a => a.alive && a.side === u.side && cheb(u.x,u.y,a.x,a.y) === 1).forEach(a => {
+      const h = Math.round(a.maxHp * 0.25);
+      a.hp = Math.min(a.maxHp, a.hp + h); a.stun = 0; fx(a, "+" + h);
+      log("<b>" + a.d.name + "</b> recupera " + h + " stamina.", "good");
+    });
+  }
+  else if (sp === "fill_hole"){
+    u.guard = 2; log("<b>" + u.d.name + "</b> si chiude dietro la palla: prossimi 2 attacchi bloccati.", "good");
+  }
+  else if (sp === "itsakick"){
+    const f = u.side === "p" ? -1 : 1;
+    [[0,f],[0,-f]].forEach(([dx,dy]) => {
+      const t = at(u.x+dx, u.y+dy);
+      if (t && t.side !== u.side){ strike(u, t, 1.0, "calcia"); if (t.alive) shove(t, dx, dy, 1, u); }
+    });
+  }
+  else if (sp === "charm_beam"){
+    u.hp = Math.max(1, Math.round(u.hp / 2));
+    target.side = u.side; target.acted = true; target.isKing = false;
+    fx(target, "♥");
+    log("<b>" + target.d.name + "</b> è stato ammaliato e cambia schieramento!", "good");
+  }
+  else if (sp === "wing_flap"){
+    foesAdj(u).forEach(f => {
+      strike(u, f, 0.4, "spazza via");
+      if (f.alive){ const [dx,dy] = dirTo(u,f); shove(f, dx, dy, 2, u); }
+    });
+  }
+  else if (sp === "emperors_rage"){
+    S.units.filter(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) <= 2).forEach(f => {
+      strike(u, f, 1.0, "fulmina");
+      if (f.alive) f.stun = Math.max(f.stun, 1);
+    });
+  }
+  u.cd = 3;
+}
+
+/* =========================================================================
+   TURNI
+   ========================================================================= */
+function newTurn(side){
+  S.units.filter(u => u.alive && u.side === side).forEach(u => {
+    u.exposed = false;
+    if (u.cd > 0) u.cd--;
+    if (u.stun > 0){ u.stun--; u.acted = true; }
+    else u.acted = false;
+  });
+  S.units.filter(u => u.alive && u.side !== side).forEach(u => { u.acted = true; });
+  S.turn = side;
+  $("#turnpill").className = "pill " + side;
+  $("#turnpill").textContent = side === "p" ? "Il tuo turno" : "Turno avversario";
+  $("#btn-end").disabled = side !== "p";
+}
+function endPlayerTurn(){
+  if (S.busy || S.over) return;
+  S.sel = null; S.mode = "idle"; draw();
+  newTurn("e"); draw();
+  S.busy = true;
+  setTimeout(aiStep, 420);
+}
+function aiStep(){
+  if (S.over){ S.busy = false; return; }
+  const u = S.units.find(x => x.alive && x.side === "e" && !x.acted);
+  if (!u){
+    S.busy = false; newTurn("p"); draw();
+    return;
+  }
+  aiAct(u); u.acted = true; draw();
+  setTimeout(aiStep, 420);
+}
+function aiAct(u){
+  const foes = alive(u.side === "e" ? "p" : "e");
+  if (!foes.length) return;
+  const king = foes.find(f => f.isKing);
+
+  /* speciale se conviene */
+  if (canSpecial(u)){
+    const sp = FAMS[u.d.fam].sp;
+    let go = Math.random() < 0.7;
+    if (sp === "healing_jig") go = S.units.some(a => a.alive && a.side === u.side && a !== u && cheb(u.x,u.y,a.x,a.y) === 1 && a.hp < a.maxHp * 0.6);
+    if (sp === "fill_hole")   go = u.hp < u.maxHp * 0.55;
+    if (go){
+      const tg = specTargets(u);
+      const t = tg.find(x => x.isKing) || tg.sort((a,b) => a.hp - b.hp)[0] || null;
+      if (selfCast(u) || t){ doSpecial(u, t); return; }
+    }
+  }
+  /* attacco diretto */
+  let adj = foesAdj(u);
+  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; strike(u, t, 1, "attacca"); return; }
+
+  /* avvicinamento */
+  const goal = (u.isKing ? foes.slice().sort((a,b)=>cheb(u.x,u.y,a.x,a.y)-cheb(u.x,u.y,b.x,b.y))[0]
+                         : (king || foes[0]));
+  const mv = moves(u);
+  if (!mv.length) return;
+  mv.sort((a,b) => cheb(a.x,a.y,goal.x,goal.y) - cheb(b.x,b.y,goal.x,goal.y));
+  const best = mv[0];
+  const escort = alive(u.side).filter(a => !a.isKing).length;
+  if (u.isKing && escort > 0 && cheb(best.x,best.y,goal.x,goal.y) < 2) return;  /* il Re resta coperto finché ha la scorta */
+  u.x = best.x; u.y = best.y;
+  adj = foesAdj(u);
+  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; strike(u, t, 1, "attacca"); }
+}
+
+function checkEnd(){
+  if (S.over) return;
+  const pk = kingOf("p"), ek = kingOf("e");
+  if (!pk || !alive("p").length){ S.over = true; setTimeout(() => finish(false), 700); }
+  else if (!ek || !alive("e").length){ S.over = true; setTimeout(() => finish(true), 700); }
+}
+function finish(win){
+  const R = RANKS[S.rankIdx];
+  if (win){
+    S.round++;
+    if (S.round >= 5){
+      S.round = 0;
+      const last = S.rankIdx >= RANKS.length - 1;
+      $("#r-title").innerHTML = '<span class="win">Rank ' + R.id + ' conquistato!</span>';
+      $("#r-text").innerHTML = "Cinque round vinti di fila. Premio: <b>" + R.prize + "</b>." +
+        (last ? "<br><br>Hai chiuso il Rank S: il torneo Insectron è tuo."
+              : "<br><br>Prossimo traguardo: <b>Rank " + RANKS[S.rankIdx+1].id +
+                "</b> (iscrizione " + RANKS[S.rankIdx+1].fee + "z).");
+      if (!last) S.rankIdx++;
+    } else {
+      $("#r-title").innerHTML = '<span class="win">Round vinto</span>';
+      $("#r-text").innerHTML = "Hai battuto <b>" + R.names[S.round-1] + "</b>. Avanti il prossimo: <b>" +
+        R.names[S.round] + "</b> (round " + (S.round+1) + "/5 del Rank " + R.id + ").";
+    }
+  } else {
+    $("#r-title").innerHTML = '<span class="lose">Il tuo Re è caduto</span>';
+    $("#r-text").innerHTML = "Sconfitta al round " + (S.round+1) + " del Rank " + R.id +
+      ". Il rank riparte dal primo avversario: rivedi la squadra o cambia il Re.";
+    S.round = 0;
+  }
+  save(); updBadges(); show("s-result");
+}
+
+/* =========================================================================
+   RENDER
+   ========================================================================= */
+function draw(){
+  const b = $("#board"); b.innerHTML = "";
+  const sel = S.sel;
+  const mvSet = sel && S.mode === "move" ? moves(sel) : [];
+  const tgSet = sel && S.mode === "atk" ? foesAdj(sel) : (sel && S.mode === "spec" ? specTargets(sel) : []);
+
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++){
+    const c = document.createElement("div");
+    c.className = "cell" + ((x+y) % 2 ? " dark" : "");
+    c.dataset.xy = x + "," + y;
+    const u = at(x,y);
+    if (mvSet.some(p => p.x === x && p.y === y)) c.classList.add("mv");
+    if (u && tgSet.includes(u)) c.classList.add("tg");
+    if (u && sel === u) c.classList.add("cur");
+    if (u){
+      const t = document.createElement("div");
+      t.className = "tok " + u.side + (u.acted && u.side === "p" ? " done" : "");
+      const pct = Math.max(0, u.hp / u.maxHp * 100);
+      t.innerHTML = art(u.d.fam, u.side === "e") +
+        '<div class="hpbar ' + u.side + '"><i style="width:' + pct + '%"></i></div>' +
+        (u.isKing ? '<span class="kmark">♛</span>' : '') +
+        '<span class="status">' + (u.stun ? "💤" : "") + (u.guard ? "🛡" : "") + (u.exposed ? "!" : "") + '</span>';
+      c.appendChild(t);
+    }
+    c.onclick = () => click(x, y);
+    b.appendChild(c);
+  }
+  drawCard();
+}
+function drawCard(){
+  const el = $("#ucard"), u = S.sel;
+  if (!u){ el.innerHTML = '<div class="fam">Clicca un tuo Insector per selezionarlo.</div>'; return; }
+  const f = FAMS[u.d.fam];
+  el.innerHTML =
+    '<div class="row">' + art(u.d.fam) +
+      '<div><h3>' + (u.isKing ? "♛ " : "") + u.d.name + '</h3><div class="fam">' + u.d.fam + ' · rank ' + u.d.rank + '</div></div></div>' +
+    '<div class="stats"><div>HP<b>' + Math.max(0,u.hp) + '</b></div><div>STR<b>' + u.str + '</b></div><div>DEF<b>' + u.dfn + '</b></div></div>' +
+    '<div class="spec"><b>' + f.spn + (u.cd ? ' — ricarica ' + u.cd : '') + '</b>' + f.spd + '</div>' +
+    '<div class="acts" id="acts"></div>';
+  const acts = $("#acts");
+  if (u.side !== "p" || S.turn !== "p" || u.acted || S.busy) return;
+  const mkb = (label, mode, on) => {
+    const b = document.createElement("button");
+    b.textContent = label; b.disabled = !on;
+    b.onclick = () => { S.mode = mode; draw(); };
+    if (mode === "spec") b.className = "primary";
+    acts.appendChild(b);
+  };
+  mkb("Muovi", "move", moves(u).length > 0);
+  mkb("Attacca", "atk", foesAdj(u).length > 0);
+  if (selfCast(u)){
+    const b = document.createElement("button");
+    b.className = "primary"; b.textContent = f.spn; b.disabled = !canSpecial(u);
+    b.onclick = () => { doSpecial(u, null); u.acted = true; S.sel = null; S.mode = "idle"; draw(); };
+    acts.appendChild(b);
+  } else {
+    mkb(f.spn, "spec", canSpecial(u));
+  }
+  const p = document.createElement("button");
+  p.textContent = "Passa"; p.onclick = () => { u.acted = true; S.sel = null; S.mode = "idle"; draw(); };
+  acts.appendChild(p);
+}
+function click(x, y){
+  if (S.busy || S.over || S.turn !== "p") return;
+  const u = at(x,y);
+  if (S.sel && S.mode === "move" && moves(S.sel).some(p => p.x === x && p.y === y)){
+    S.sel.x = x; S.sel.y = y; S.mode = "idle"; draw(); return;
+  }
+  if (S.sel && S.mode === "atk" && u && foesAdj(S.sel).includes(u)){
+    strike(S.sel, u, 1, "attacca"); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
+  }
+  if (S.sel && S.mode === "spec" && u && specTargets(S.sel).includes(u)){
+    doSpecial(S.sel, u); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
+  }
+  if (u && u.side === "p" && !u.acted){ S.sel = u; S.mode = "idle"; draw(); return; }
+  S.sel = null; S.mode = "idle"; draw();
+}
+
+/* =========================================================================
+   NAVIGAZIONE
+   ========================================================================= */
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on"));
+  $("#" + id).classList.add("on");
+  window.scrollTo(0,0);
+}
+function updBadges(){
+  $("#b-rank").innerHTML = "Rank <b>" + RANKS[S.rankIdx].id + "</b>";
+  $("#b-round").innerHTML = "Round <b>" + (S.round+1) + "</b>/5";
+}
+
+$("#btn-start").onclick = startBattle;
+$("#btn-end").onclick = endPlayerTurn;
+$("#btn-next").onclick = () => { drawRoster(); drawSlots(); show("s-team"); };
+$("#btn-clear").onclick = () => { S.team = []; S.kingId = null; drawRoster(); drawSlots(); save(); };
+$("#btn-auto").onclick = () => {
+  const R = RANKS[S.rankIdx];
+  const pool = UNITS.filter(u => u.rank >= Math.max(1, R.pool[0]) && u.rank <= R.pool[1] + 1);
+  S.team = []; S.kingId = null;
+  const wanted = ["Dung Roller","Lady Beetle","Mantis","Hercules Beetle","Bazoo Beetle","Staggy","Knife Beetle"];
+  wanted.forEach(fam => {
+    if (S.team.length >= 5) return;
+    const c = pool.filter(u => u.fam === fam).sort((a,b) => b.rank - a.rank)[0];
+    if (c && !S.team.includes(c.id)) S.team.push(c.id);
+  });
+  while (S.team.length < 5){
+    const c = pool[Math.floor(Math.random()*pool.length)];
+    if (!S.team.includes(c.id)) S.team.push(c.id);
+  }
+  /* Re = quello con più HP, come consiglia il wiki (un difensore) */
+  S.kingId = S.team.slice().sort((a,b) => byId[b].hp - byId[a].hp)[0];
+  drawRoster(); drawSlots(); save();
+};
+$("#btn-reset").onclick = () => {
+  S.rankIdx = 0; S.round = 0; S.team = []; S.kingId = null;
+  save(); updBadges(); drawRoster(); drawSlots(); show("s-team");
+};
+
+load(); updBadges(); drawRoster(); drawSlots();
+</script>
+</body>
+</html>
