@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marèzzo — albergo di scogliera · Demo Experiences Srl</title>
+<meta name="description" content="Marèzzo, albergo di scogliera sulla Costiera Amalfitana: sei camere sul mare. Struttura di fantasia — demo realizzata da Experiences Srl.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400&family=Geist:wght@300;400;600&family=Geist+Mono:wght@400&display=swap">
+
+<link rel="preload" as="image" href="../assets/campania-images/ebell8810-capri-854775_1920.jpg" fetchpriority="high">
+
+<style>
+/* Hallmark · genre: atmospheric · macrostructure: Photographic · theme: Midnight · enrichment: none (real photography) · nav: N5 · footer: Ft5
+ * pre-emit critique: P5 H4 E5 S4 R5 V5
+ * reveal-axis deviation: Photographic prescribes "no spatial motion"; the brief requires a
+ * cinematic scroll. Deviated deliberately — cross-dissolving frames keep the photographs as
+ * the subject rather than animating chrome around them.
+ * Tokens duplicated in tokens.css as the portable export; the page stays self-contained
+ * because every other demo in demos/ is a single file and the hub generator assumes it.
+ */
+
+:root {
+  /* Midnight — anchor hue 40 (warm). Paper dark, ink warm-light, one warm accent. */
+  --color-paper:    oklch(13%  0.010 40);
+  --color-paper-2:  oklch(17%  0.012 40);
+  --color-paper-3:  oklch(21%  0.013 40);
+  --color-rule:     oklch(31%  0.011 40);
+  --color-rule-2:   oklch(38%  0.012 40);
+  --color-neutral:  oklch(58%  0.009 40);
+  --color-muted:    oklch(72%  0.008 40);
+  --color-ink:      oklch(94%  0.007 60);
+  --color-ink-2:    oklch(84%  0.008 50);
+  --color-accent:   oklch(72%  0.155 58);
+  --color-focus:    oklch(78%  0.160 58);
+  --color-error:    oklch(68%  0.170 28);
+  --color-success:  oklch(74%  0.120 150);
+  --color-scrim:    oklch(8%   0.010 40 / 0.62);
+  --color-scrim-2:  oklch(8%   0.010 40 / 0.78);
+  --color-on-accent: oklch(18%  0.020 40);
+
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-body:    "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-caption: "Geist Mono", ui-monospace, monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.8125rem;
+  --text-base: 1rem;
+  --text-md:   1.1875rem;
+  --text-lg:   1.5rem;
+  --text-xl:   1.9375rem;
+  --text-2xl:  2.4375rem;
+  --text-display:   clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-display-s: clamp(2rem, 3.5vw + 1rem, 3.5rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  --page-gutter: clamp(1rem, 5vw, 5rem);
+  --measure: 62ch;
+
+  --rule-hair: 1px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 200;
+  --z-modal: 400;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { overflow-x: clip; }
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+.caption {
+  font-family: var(--font-caption);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ---------- Barra superiore: banner demo + pill, impilati ----------
+   Il banner e la pill vivono nello stesso contenitore fisso: così la pill non
+   può mai coprire il banner, qualunque altezza assuma il testo quando va a capo
+   (niente altezze hard-coded, niente JS di misurazione). */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-sticky);
+  display: grid;
+  justify-items: center;
+  pointer-events: none;
+}
+.topbar > * { pointer-events: auto; }
+
+.demo-banner {
+  width: 100%;
+  background: var(--color-paper-2);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  color: var(--color-ink-2);
+  text-align: center;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.demo-banner strong { font-weight: 600; color: var(--color-ink); }
+.demo-banner a { color: var(--color-accent); border-bottom: 1px solid currentColor; }
+
+/* ---------- N5 · Floating pill ---------- */
+.nav-pill {
+  margin-top: var(--space-md);
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  max-width: calc(100% - var(--space-lg));
+  background: color-mix(in oklch, var(--color-paper-2) 74%, transparent);
+  backdrop-filter: blur(14px) saturate(120%);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 999px;
+}
+.nav-pill__mark {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-pill__links { display: flex; gap: var(--space-lg); list-style: none; }
+.nav-pill__links a {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  white-space: nowrap;
+  /* 40px di area cliccabile: il testo è alto 15px, il padding fa il resto */
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--dur-micro) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-pill__links a:hover { color: var(--color-ink); }
+}
+.nav-pill__cta {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  border: var(--rule-hair) solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+  transition: background-color var(--dur-micro) var(--ease-out),
+              color var(--dur-micro) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-pill__cta:hover { background: var(--color-accent); color: var(--color-paper); }
+}
+.nav-pill__cta:active { transform: translateY(1px); }
+@media (max-width: 52rem) {
+  .nav-pill__links { display: none; }
+}
+
+/* ---------- Hero · H6 Photographic fold ---------- */
+.hero {
+  position: relative;
+  height: 92svh;
+  min-height: 34rem;
+  overflow: hidden;
+}
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 50% 60%;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--color-scrim) 0%, transparent 38%, var(--color-paper) 100%);
+  pointer-events: none;
+}
+.hero__plate {
+  position: absolute;
+  left: var(--page-gutter);
+  bottom: clamp(2rem, 8vh, 5rem);
+  z-index: var(--z-raised);
+  max-width: min(100% - (var(--page-gutter) * 2), 34rem);
+}
+.hero__name {
+  font-size: var(--text-display);
+  line-height: 0.96;
+}
+.hero__meta {
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+}
+
+/* ---------- La pellicola · fotogrammi in dissolvenza ----------
+   Base (nessun JS, nessun supporto scroll-driven): sequenza verticale statica.
+   Tutto il contenuto è raggiungibile comunque. Il cinema è un miglioramento
+   progressivo attivato più sotto da @supports, non un requisito. */
+.reel { position: relative; }
+.reel__stage { display: grid; gap: var(--space-xs); }
+.reel__frame { position: relative; height: 68svh; }
+.reel__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.reel__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* due stop, non tre: basta a tenere leggibile la didascalia anche sulle
+     inquadrature più chiare, senza spegnere la fotografia */
+  background: linear-gradient(to top, var(--color-scrim-2) 0%, transparent 52%);
+}
+.reel__caption {
+  position: absolute;
+  right: var(--page-gutter);
+  bottom: clamp(1.5rem, 6vh, 3.5rem);
+  z-index: var(--z-raised);
+  text-align: right;
+  max-width: min(100% - (var(--page-gutter) * 2), 26rem);
+}
+.reel__caption p {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: 1.16;
+  margin-top: var(--space-2xs);
+  color: var(--color-ink);
+}
+
+/* ---------- Bande di testo strette ---------- */
+.band {
+  padding-block: var(--space-3xl) var(--space-2xl);
+  padding-inline: var(--page-gutter);
+}
+.band--tight { padding-block: var(--space-2xl) var(--space-xl); }
+.band__lede {
+  max-width: var(--measure);
+  font-size: var(--text-md);
+  color: var(--color-ink-2);
+}
+.band__lede + .band__lede { margin-top: var(--space-md); }
+.band h2 {
+  font-size: var(--text-2xl);
+  max-width: 20ch;
+  margin-bottom: var(--space-lg);
+}
+.band__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+/* ---------- Le camere · fasce fotografiche annotate ---------- */
+.rooms {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xl);
+  padding-inline: var(--page-gutter);
+  padding-bottom: var(--space-3xl);
+}
+@media (min-width: 60rem) {
+  .rooms {
+    /* colonne diseguali: la prima camera domina, le altre la commentano */
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+    gap: var(--space-xl) var(--space-lg);
+  }
+  .rooms > :first-child { grid-row: span 2; }
+}
+.room figure { position: relative; }
+.room img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  outline: 1px solid rgba(255,255,255,0.1);
+  outline-offset: -1px;
+}
+.rooms > :first-child img { aspect-ratio: 3 / 4; }
+.room figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+.room__name { font-family: var(--font-display); font-size: var(--text-md); }
+.room__rate { font-family: var(--font-caption); font-size: var(--text-sm); font-variant-numeric: tabular-nums; color: var(--color-muted); }
+
+/* ---------- Prenotazioni · superficie di prodotto ---------- */
+.booking {
+  padding-block: var(--space-3xl) var(--space-4xl);
+  padding-inline: var(--page-gutter);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  background: var(--color-paper);
+}
+.booking__head { max-width: 46ch; margin-bottom: var(--space-xl); }
+.booking__head h2 { font-size: var(--text-xl); margin-bottom: var(--space-sm); }
+.booking__head p { color: var(--color-neutral); font-size: var(--text-sm); }
+
+.panel {
+  background: var(--color-paper-2);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  max-width: 62rem;
+}
+@media (min-width: 48rem) { .panel { padding: var(--space-xl); } }
+
+.field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+}
+@media (min-width: 48rem) {
+  .field-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg); }
+}
+
+.field { display: grid; gap: var(--space-2xs); }
+.field > label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink-2);
+}
+.control {
+  /* radius concentrico: esterno 10 = interno 6 + 4 di padding ottico */
+  font: inherit;
+  font-size: var(--text-base);
+  color: var(--color-ink);
+  background: var(--color-paper-3);
+  border: 1px solid var(--color-rule-2);   /* 1px in OGNI stato — nessun layout shift */
+  border-radius: var(--radius-sm);
+  outline: 2px solid transparent;          /* slot riservato al focus ring */
+  outline-offset: 1px;
+  min-height: 48px;
+  padding: 0 var(--space-sm);
+  width: 100%;
+  transition: background-color var(--dur-micro) var(--ease-out),
+              border-color var(--dur-micro) var(--ease-out);
+}
+.control::placeholder { color: var(--color-neutral); }
+@media (hover: hover) and (pointer: fine) {
+  .control:hover:not(:disabled) { background: color-mix(in oklch, var(--color-paper-3) 88%, var(--color-ink)); }
+}
+.control:focus-visible {
+  outline-color: var(--color-focus);
+  border-color: var(--color-ink-2);
+}
+.control:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.control[aria-invalid="true"] { border-color: var(--color-error); }
+
+.field__help {
+  min-height: 1lh;              /* altezza riservata: l'errore non sposta la pagina */
+  font-size: var(--text-xs);
+  color: var(--color-neutral);
+}
+.field__help[data-state="error"] { color: var(--color-error); }
+
+.panel__foot {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+.quote { display: grid; gap: 2px; }
+.quote__label { font-size: var(--text-xs); color: var(--color-neutral); }
+.quote__value {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.quote__value[data-empty="true"] { color: var(--color-neutral); }
+
+.btn {
+  font: inherit;
+  font-size: var(--text-base);
+  font-weight: 600;
+  white-space: nowrap;
+  min-height: 48px;
+  padding: 0 var(--space-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out),
+              transform var(--dur-micro) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not(:disabled) { background: color-mix(in oklch, var(--color-accent) 88%, var(--color-ink)); }
+}
+.btn:active:not(:disabled) { transform: scale(0.98); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn__spinner {
+  width: 14px; height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 640ms linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.result {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-left: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-3);
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+}
+.result[data-state="success"] { border-color: var(--color-success); }
+.result[data-state="error"]   { border-color: var(--color-error); }
+.result strong { font-weight: 600; color: var(--color-ink); }
+.result[hidden] { display: none; }
+
+/* ---------- Ft5 · Statement ---------- */
+.foot {
+  padding: var(--space-3xl) var(--page-gutter) var(--space-xl);
+  display: grid;
+  gap: var(--space-lg);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+.foot__line {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 3.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+}
+.foot__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm) var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  font-size: var(--text-sm);
+  color: var(--color-neutral);
+}
+.foot__meta a { color: var(--color-muted); white-space: nowrap; border-bottom: 1px solid var(--color-rule); }
+.foot__legal { font-size: var(--text-xs); color: var(--color-neutral); opacity: 0.75; }
+
+.wa-float {
+  position: fixed;
+  right: var(--space-md);
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  background: var(--color-paper-2);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 50%;
+  color: var(--color-ink);
+  z-index: var(--z-sticky);
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .wa-float:hover { transform: translateY(-1px); }
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ---------- Il cinema · dissolvenze pilotate dallo scroll, senza JS ----------
+   `view-timeline` mappa la posizione della sezione sull'avanzamento delle
+   keyframe: il browser lo esegue sul compositor, fuori dal main thread. Si
+   anima solo `opacity` (e una `scale` sull'apertura), mai proprietà di layout.
+   Chi non supporta scroll-driven animations tiene la sequenza statica sopra. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reel {
+      height: 400svh;
+      view-timeline: --reel block;
+    }
+    .reel__stage {
+      display: block;
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow: hidden;
+    }
+    .reel__frame {
+      position: absolute;
+      inset: 0;
+      height: auto;
+      opacity: 0;
+      animation: linear both;
+      animation-timeline: --reel;
+      animation-range: contain 0% contain 100%;
+    }
+    .reel__frame[data-frame="0"] { animation-name: frame-0; }
+    .reel__frame[data-frame="1"] { animation-name: frame-1; }
+    .reel__frame[data-frame="2"] { animation-name: frame-2; }
+    .reel__frame[data-frame="3"] { animation-name: frame-3; }
+
+    /* Le immagini si dissolvono l'una nell'altra; il testo no. Se anche le
+       didascalie incrociassero, durante il taglio si leggerebbero due frasi
+       sovrapposte. Ogni didascalia esce PRIMA che la dissolvenza cominci e
+       rientra dopo che è finita: nel mezzo non c'è testo, solo fotografia. */
+    .reel__caption {
+      animation: linear both;
+      animation-timeline: --reel;
+      animation-range: contain 0% contain 100%;
+    }
+    .reel__frame[data-frame="0"] .reel__caption { animation-name: cap-0; }
+    .reel__frame[data-frame="1"] .reel__caption { animation-name: cap-1; }
+    .reel__frame[data-frame="2"] .reel__caption { animation-name: cap-2; }
+    .reel__frame[data-frame="3"] .reel__caption { animation-name: cap-3; }
+
+    /* L'inquadratura d'apertura si allontana: è la sola che si muove, così
+       si capisce che la pagina è una sequenza e non una galleria. */
+    .hero__img {
+      animation: hero-push linear both;
+      animation-timeline: view();
+      animation-range: contain 0% cover 100%;
+    }
+  }
+}
+@keyframes frame-0 { 0%, 20% { opacity: 1 } 30%, 100% { opacity: 0 } }
+@keyframes frame-1 { 0%, 20% { opacity: 0 } 30%, 45% { opacity: 1 } 55%, 100% { opacity: 0 } }
+@keyframes frame-2 { 0%, 45% { opacity: 0 } 55%, 70% { opacity: 1 } 80%, 100% { opacity: 0 } }
+@keyframes frame-3 { 0%, 70% { opacity: 0 } 80%, 100% { opacity: 1 } }
+@keyframes cap-0 { 0%, 15% { opacity: 1 } 22%, 100% { opacity: 0 } }
+@keyframes cap-1 { 0%, 31% { opacity: 0 } 37%, 43% { opacity: 1 } 49%, 100% { opacity: 0 } }
+@keyframes cap-2 { 0%, 56% { opacity: 0 } 62%, 68% { opacity: 1 } 74%, 100% { opacity: 0 } }
+@keyframes cap-3 { 0%, 81% { opacity: 0 } 87%, 100% { opacity: 1 } }
+@keyframes hero-push { to { transform: scale(1.06) } }
+
+/* ---------- Reduced motion: la pellicola resta una sequenza statica ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  /* la reel non ha bisogno di override: il suo stato base è già statico */
+  .btn__spinner { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+<div class="demo-banner">
+  Questa è una <strong>demo gratuita</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank" rel="noopener">Experiences Srl</a> — struttura di fantasia. Vuoi un sito così? <a href="https://wa.me/393926917657" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+</div>
+
+<nav class="nav-pill" aria-label="Navigazione principale">
+  <a class="nav-pill__mark" href="#top">Marèzzo</a>
+  <ul class="nav-pill__links">
+    <li><a href="#luogo">Il luogo</a></li>
+    <li><a href="#camere">Camere</a></li>
+  </ul>
+  <a class="nav-pill__cta" href="#prenota">Prenota</a>
+</nav>
+</header>
+
+<main id="top">
+
+  <!-- Hero · fotogramma a piena pagina, targa in basso a sinistra -->
+  <section class="hero">
+    <img class="hero__img" src="../assets/campania-images/ebell8810-capri-854775_1920.jpg"
+         alt="La costa a picco sul mare vista dalla scogliera al tramonto"
+         width="1920" height="1280" fetchpriority="high" decoding="async">
+    <div class="hero__plate">
+      <h1 class="hero__name">Marèzzo</h1>
+      <div class="hero__meta">
+        <span class="caption">Albergo di scogliera</span>
+        <span class="caption">Costiera Amalfitana</span>
+        <span class="caption">Sei camere</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- La pellicola · quattro fotogrammi in dissolvenza incrociata -->
+  <section class="reel" id="luogo" aria-label="Il luogo, in quattro fotogrammi">
+    <div class="reel__stage">
+
+      <figure class="reel__frame" data-frame="0">
+        <img src="../assets/campania-images/nitell-capri-4895720_1920.jpg"
+             alt="Il mare aperto visto dall'alto nelle prime ore del mattino"
+             width="1920" height="1280" loading="lazy" decoding="async">
+        <figcaption class="reel__caption">
+          <span class="caption">06:40 · la scogliera</span>
+          <p>Il sole arriva dal mare, non dalla strada.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="reel__frame" data-frame="1">
+        <img src="../assets/campania-images/yorick77-italy-6702554_1920.jpg"
+             alt="Scalinata in pietra fra le case affacciate sulla costa"
+             width="1920" height="1280" loading="lazy" decoding="async">
+        <figcaption class="reel__caption">
+          <span class="caption">11:15 · centoquattro gradini</span>
+          <p>Non c'è strada fino alla porta. È il motivo per cui è silenzioso.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="reel__frame" data-frame="2">
+        <img src="../assets/campania-images/petrovhey-pizza-3000274_1920.jpg"
+             alt="Piatto servito sul tavolo della cucina dell'albergo"
+             width="1920" height="1280" loading="lazy" decoding="async">
+        <figcaption class="reel__caption">
+          <span class="caption">13:30 · una cucina sola</span>
+          <p>Si mangia quello che c'è. Il menù si scrive la mattina.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="reel__frame" data-frame="3">
+        <img src="../assets/campania-images/yorick77-vesuvius-4635882_1920.jpg"
+             alt="Il profilo del golfo al tramonto visto dalla terrazza"
+             width="1920" height="1280" loading="lazy" decoding="async">
+        <figcaption class="reel__caption">
+          <span class="caption">20:05 · la terrazza</span>
+          <p>Da qui il golfo si chiude come una parentesi.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>Sei camere, una scogliera, nessun ascensore</h2>
+    <p class="band__lede">Marèzzo sta a centoquattro gradini dalla strada, su un terrazzamento che
+      prima era un limoneto. Ci si arriva a piedi con il bagaglio — oppure ci pensa Nicola con
+      il carrello, se lo si avvisa la sera prima.</p>
+    <p class="band__lede">Non abbiamo una hall, una spa, né una carta dei cuscini. Abbiamo una
+      cucina che lavora con quello che arriva la mattina, sei stanze che guardano tutte lo stesso
+      mare da altezze diverse, e una terrazza dove alle otto non parla quasi nessuno.</p>
+    <a class="band__link" href="#prenota">Verifica le date →</a>
+  </section>
+
+  <!-- Le camere · fasce fotografiche annotate, colonne diseguali -->
+  <h2 class="visually-hidden" id="camere">Le camere</h2>
+  <div class="rooms" aria-labelledby="camere">
+
+    <article class="room">
+      <figure>
+        <img src="../assets/campania-images/joakant-vesuvius-677714_1920.jpg"
+             alt="La camera più alta con affaccio diretto sul golfo"
+             width="1920" height="2560" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="room__name">Limonaia</span>
+          <span class="room__rate">da 240 € / notte</span>
+        </figcaption>
+      </figure>
+    </article>
+
+    <article class="room">
+      <figure>
+        <img src="../assets/campania-images/serpae-napoli-5711208_1920.jpg"
+             alt="Camera con volta in pietra e finestra sul mare"
+             width="1920" height="1440" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="room__name">Cisterna</span>
+          <span class="room__rate">da 190 € / notte</span>
+        </figcaption>
+      </figure>
+    </article>
+
+    <article class="room">
+      <figure>
+        <img src="../assets/campania-images/ornaw-naples-4808406_1920.jpg"
+             alt="Camera d'angolo con doppia esposizione"
+             width="1920" height="1440" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="room__name">Scirocco</span>
+          <span class="room__rate">da 210 € / notte</span>
+        </figcaption>
+      </figure>
+    </article>
+
+  </div>
+
+  <!-- Prenotazioni · superficie di prodotto dentro una pagina editoriale -->
+  <section class="booking" id="prenota">
+    <div class="booking__head">
+      <h2>Verifica disponibilità</h2>
+      <p>Sei camere sole: in alta stagione si riempiono con settimane di anticipo.
+         Le tariffe qui sotto sono dimostrative e non costituiscono un'offerta.</p>
+    </div>
+
+    <form class="panel" id="bookingForm" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="arrivo">Arrivo</label>
+          <input class="control" type="date" id="arrivo" name="arrivo" required
+                 aria-describedby="arrivo-help">
+          <p class="field__help" id="arrivo-help">Check-in dalle 15:00</p>
+        </div>
+
+        <div class="field">
+          <label for="partenza">Partenza</label>
+          <input class="control" type="date" id="partenza" name="partenza" required
+                 aria-describedby="partenza-help">
+          <p class="field__help" id="partenza-help">Check-out entro le 10:30</p>
+        </div>
+
+        <div class="field">
+          <label for="camera">Camera</label>
+          <select class="control" id="camera" name="camera" aria-describedby="camera-help">
+            <option value="240">Limonaia — 240 €</option>
+            <option value="190">Cisterna — 190 €</option>
+            <option value="210">Scirocco — 210 €</option>
+          </select>
+          <p class="field__help" id="camera-help">Tutte matrimoniali, vista mare</p>
+        </div>
+      </div>
+
+      <div class="panel__foot">
+        <div class="quote">
+          <span class="quote__label" id="totaleLabel">Totale indicativo</span>
+          <span class="quote__value" id="totale" data-empty="true"
+                aria-labelledby="totaleLabel" aria-live="polite">—</span>
+        </div>
+        <button class="btn" type="submit" id="submitBtn">
+          <span id="submitLabel">Verifica disponibilità</span>
+        </button>
+      </div>
+
+      <p class="result" id="result" role="status" hidden></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p class="foot__line">Centoquattro gradini. Poi non serve più niente.</p>
+  <div class="foot__meta">
+    <span>Marèzzo — struttura di fantasia · demo di <a href="https://naplesexperiences.com" target="_blank" rel="noopener">Experiences Srl</a></span>
+    <span>
+      <a href="https://wa.me/393926917657" target="_blank" rel="noopener">+39 392 691 7657</a> ·
+      <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a>
+    </span>
+  </div>
+  <p class="foot__legal">© 2026 Experiences Srl · Rispondi con “CANCELLA” per non ricevere ulteriori comunicazioni</p>
+</footer>
+
+<a href="https://wa.me/393926917657" class="wa-float" target="_blank" rel="noopener" aria-label="Contattaci su WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------------- Prenotazioni ---------------- */
+  var form   = document.getElementById('bookingForm');
+  var arrivo = document.getElementById('arrivo');
+  var part   = document.getElementById('partenza');
+  var camera = document.getElementById('camera');
+  var totale = document.getElementById('totale');
+  var result = document.getElementById('result');
+  var btn    = document.getElementById('submitBtn');
+  var label  = document.getElementById('submitLabel');
+
+  var touched = { arrivo: false, partenza: false };
+  var HELP = {
+    arrivo:   'Check-in dalle 15:00',
+    partenza: 'Check-out entro le 10:30'
+  };
+
+  function setHelp(input, message, isError) {
+    var help = document.getElementById(input.id + '-help');
+    help.textContent = message;
+    if (isError) {
+      help.dataset.state = 'error';
+      input.setAttribute('aria-invalid', 'true');
+    } else {
+      delete help.dataset.state;
+      input.removeAttribute('aria-invalid');
+    }
+  }
+
+  function nights() {
+    if (!arrivo.value || !part.value) return 0;
+    var ms = new Date(part.value) - new Date(arrivo.value);
+    return ms > 0 ? Math.round(ms / 86400000) : 0;
+  }
+
+  // Validazione al blur, poi ri-validazione a ogni modifica una volta "toccato".
+  function validate(showErrors) {
+    var n = nights();
+    var ok = true;
+
+    if (showErrors && touched.arrivo && !arrivo.value) {
+      setHelp(arrivo, 'Manca la data di arrivo: scegline una per vedere il totale.', true);
+      ok = false;
+    } else {
+      setHelp(arrivo, HELP.arrivo, false);
+    }
+
+    if (showErrors && touched.partenza && arrivo.value && part.value && n === 0) {
+      setHelp(part, 'La partenza deve essere dopo l’arrivo.', true);
+      ok = false;
+    } else if (showErrors && touched.partenza && !part.value) {
+      setHelp(part, 'Manca la data di partenza.', true);
+      ok = false;
+    } else {
+      setHelp(part, HELP.partenza, false);
+    }
+
+    if (n > 0) {
+      totale.textContent = (n * parseInt(camera.value, 10)).toLocaleString('it-IT') + ' €';
+      totale.dataset.empty = 'false';
+      document.getElementById('totaleLabel').textContent =
+        'Totale indicativo · ' + n + (n === 1 ? ' notte' : ' notti');
+    } else {
+      totale.textContent = '—';
+      totale.dataset.empty = 'true';
+      document.getElementById('totaleLabel').textContent = 'Totale indicativo';
+    }
+    return ok && n > 0;
+  }
+
+  [arrivo, part].forEach(function (input) {
+    input.addEventListener('blur', function () {
+      touched[input.id] = true;
+      validate(true);
+    });
+    input.addEventListener('change', function () {
+      if (touched[input.id]) validate(true); else validate(false);
+    });
+  });
+  camera.addEventListener('change', function () { validate(false); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    touched.arrivo = true;
+    touched.partenza = true;
+
+    if (!validate(true)) {
+      result.hidden = false;
+      result.dataset.state = 'error';
+      result.innerHTML = 'Controlla le date evidenziate qui sopra, poi riprova.';
+      return;
+    }
+
+    // Stato loading: il campo resta modificabile, si disabilita solo l'invio.
+    btn.disabled = true;
+    label.textContent = 'Verifico…';
+    var spinner = document.createElement('span');
+    spinner.className = 'btn__spinner';
+    btn.appendChild(spinner);
+    result.hidden = true;
+
+    window.setTimeout(function () {
+      btn.disabled = false;
+      label.textContent = 'Verifica disponibilità';
+      spinner.remove();
+
+      result.hidden = false;
+      result.dataset.state = 'success';
+      result.innerHTML = '<strong>Ci sono ancora camere in queste date.</strong> ' +
+        'Questa è una demo: non c’è un gestionale collegato, quindi la richiesta non parte. ' +
+        'Su un sito reale qui partirebbe la mail alla struttura e il blocco temporaneo della camera.';
+    }, 900);
+  });
+
+});
+</script>
+
+</body>
+</html>
