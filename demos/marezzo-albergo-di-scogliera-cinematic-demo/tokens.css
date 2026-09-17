@@ -1,0 +1,69 @@
+/* Marèzzo — token export
+ * Hallmark · genre: atmospheric · theme: Midnight · anchor hue 40 (warm)
+ * Fonte di verità: il blocco :root dentro index.html (la demo è un file unico,
+ * come le altre 212 in demos/). Questo file è l'export portabile: se cambi i
+ * token, cambiali là e ri-esportali, non il contrario.
+ */
+:root {
+  /* Midnight — anchor hue 40 (warm). Paper dark, ink warm-light, one warm accent. */
+  --color-paper:    oklch(13%  0.010 40);
+  --color-paper-2:  oklch(17%  0.012 40);
+  --color-paper-3:  oklch(21%  0.013 40);
+  --color-rule:     oklch(31%  0.011 40);
+  --color-rule-2:   oklch(38%  0.012 40);
+  --color-neutral:  oklch(58%  0.009 40);
+  --color-muted:    oklch(72%  0.008 40);
+  --color-ink:      oklch(94%  0.007 60);
+  --color-ink-2:    oklch(84%  0.008 50);
+  --color-accent:   oklch(72%  0.155 58);
+  --color-focus:    oklch(78%  0.160 58);
+  --color-error:    oklch(68%  0.170 28);
+  --color-success:  oklch(74%  0.120 150);
+  --color-scrim:    oklch(8%   0.010 40 / 0.62);
+  --color-scrim-2:  oklch(8%   0.010 40 / 0.78);
+  --color-on-accent: oklch(18%  0.020 40);
+
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-body:    "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-caption: "Geist Mono", ui-monospace, monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.8125rem;
+  --text-base: 1rem;
+  --text-md:   1.1875rem;
+  --text-lg:   1.5rem;
+  --text-xl:   1.9375rem;
+  --text-2xl:  2.4375rem;
+  --text-display:   clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-display-s: clamp(2rem, 3.5vw + 1rem, 3.5rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  --page-gutter: clamp(1rem, 5vw, 5rem);
+  --measure: 62ch;
+
+  --rule-hair: 1px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 200;
+  --z-modal: 400;
+}
