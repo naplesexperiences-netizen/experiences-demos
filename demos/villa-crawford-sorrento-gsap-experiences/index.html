@@ -9,7 +9,6 @@
     <meta name="demo:category" content="hotel">
     <meta name="theme-color" content="#0d1f33">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://naplesexperiences-netizen.github.io">
     <style>
         /* =============================================
            CSS VARIABLES
@@ -261,6 +260,10 @@
             background: linear-gradient(0deg, rgba(0,0,0,0.58), transparent);
             text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
+        /* le card esterne sono coperte da quella centrale: la loro etichetta
+           risulterebbe troncata a metà parola, quindi la mostra solo la front card */
+        .hero-card--1 .hero-card__tag,
+        .hero-card--3 .hero-card__tag { display: none; }
         /* three-card fan in the right column */
         .hero-card--1 {
             width: 58%; aspect-ratio: 3/4;
@@ -585,11 +588,11 @@
             </div>
         </nav>
         <div class="menu-overlay__preview">
-            <img class="is-active" width="1920" height="1280" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="Facciata di Villa Crawford">
-            <img width="1920" height="1428" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Vista sul Vesuvio dalla terrazza">
-            <img width="1440" height="1920" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Vista su Capri">
-            <img width="1920" height="1280" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Camere di Villa Crawford">
-            <img width="1920" height="1282" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Golfo di Napoli">
+            <img class="is-active" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-dal-mare.jpg" alt="La villa a picco sul mare">
+            <img width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="Terrazza panoramica al tramonto">
+            <img width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="Vista sul Vesuvio e sul golfo">
+            <img width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-notte.jpg" alt="La dimora storica illuminata di sera">
+            <img width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="Costa sorrentina">
             <p class="menu-overlay__caption" id="menuCaption">La storica villa di Francis Marion Crawford, tra ulivi e Golfo di Napoli.</p>
         </div>
     </div>
@@ -616,16 +619,16 @@
             <div class="hero__cards" id="heroCards" aria-hidden="true">
                 <div class="hero__cards-inner">
                     <figure class="hero-card hero-card--1" data-float="3.4">
-                        <img width="1920" height="1280" fetchpriority="high" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="">
-                        <span class="hero-card__tag">Camera Superior</span>
+                        <img width="1920" height="1080" fetchpriority="high" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="">
+                        <span class="hero-card__tag">Terrazza al tramonto</span>
                     </figure>
                     <figure class="hero-card hero-card--2" data-float="2.6">
-                        <img width="1920" height="1280" fetchpriority="high" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="">
+                        <img width="1920" height="1440" fetchpriority="high" decoding="async" src="../assets/villa-crawford/villa-dal-mare.jpg" alt="">
                         <span class="hero-card__tag" translate="no">Villa Crawford</span>
                     </figure>
                     <figure class="hero-card hero-card--3" data-float="3.1">
-                        <img width="1440" height="1920" fetchpriority="high" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="">
-                        <span class="hero-card__tag">Vista Capri</span>
+                        <img width="1920" height="1080" fetchpriority="high" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="">
+                        <span class="hero-card__tag">Vista Vesuvio</span>
                     </figure>
                 </div>
             </div>
@@ -664,7 +667,7 @@
         <section class="amenities" id="esperienza">
             <h2 class="sr-only">L’esperienza</h2>
             <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg')"></div>
+                <div class="amenity-col__bg" style="background-image:url('../assets/villa-crawford/terrazza-tramonto.jpg');background-position:center"></div>
                 <div class="amenity-col__overlay"></div>
                 <div class="amenity-col__body">
                     <span class="amenity-col__num">01</span>
@@ -673,21 +676,21 @@
                 </div>
             </div>
             <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/serpae-napoli-5711208_1920.jpg')"></div>
+                <div class="amenity-col__bg" style="background-image:url('../assets/villa-crawford/villa-notte.jpg');background-position:30% 78%"></div>
                 <div class="amenity-col__overlay"></div>
                 <div class="amenity-col__body">
                     <span class="amenity-col__num">02</span>
-                    <h3 class="amenity-col__title">Camere &amp; Suite</h3>
-                    <p class="amenity-col__desc">18&nbsp;camere distribuite su 3&nbsp;piani con ascensore, arredate in stile classico sorrentino.</p>
+                    <h3 class="amenity-col__title">La Dimora Storica</h3>
+                    <p class="amenity-col__desc">La torre in tufo e il corpo ottocentesco della villa, 18&nbsp;camere su 3&nbsp;piani con ascensore.</p>
                 </div>
             </div>
             <div class="amenity-col">
-                <div class="amenity-col__bg" style="background-image:url('https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg')"></div>
+                <div class="amenity-col__bg" style="background-image:url('../assets/villa-crawford/villa-dal-mare.jpg');background-position:center 42%"></div>
                 <div class="amenity-col__overlay"></div>
                 <div class="amenity-col__body">
                     <span class="amenity-col__num">03</span>
-                    <h3 class="amenity-col__title">Ristorante &amp; Giardino</h3>
-                    <p class="amenity-col__desc">Cucina campana tra gli agrumeti del giardino storico della villa.</p>
+                    <h3 class="amenity-col__title">A Picco sul Golfo</h3>
+                    <p class="amenity-col__desc">La proprietà scende sul mare con archi e terrazzamenti scavati nel tufo.</p>
                 </div>
             </div>
         </section>
@@ -732,7 +735,7 @@
                             data-meta="22 mq · 2 ospiti"
                             data-desc="Camera accogliente in stile classico sorrentino, con bagno privato e vista giardino."
                             data-amenities="Wi-Fi,Aria condizionata,TV,Minibar">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1280" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/nitell-capri-4895720_1920.jpg" alt="Camera Classic"></div>
+                        <div class="room-card__media"><img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-notte.jpg" alt="La villa illuminata di sera"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">22 mq · 2 ospiti</div>
                             <div class="room-card__title">Camera Classic</div>
@@ -743,7 +746,7 @@
                             data-meta="26 mq · 2 ospiti"
                             data-desc="Più ampia e luminosa, con balcone affacciato sul giardino degli agrumi."
                             data-amenities="Wi-Fi,Balcone,TV,Minibar,Asciugacapelli">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1282" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/jorjoson-napoli-5337054_1920.jpg" alt="Camera Superior"></div>
+                        <div class="room-card__media"><img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="La terrazza al tramonto"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">26 mq · 2 ospiti</div>
                             <div class="room-card__title">Camera Superior</div>
@@ -754,7 +757,7 @@
                             data-meta="28 mq · 2 ospiti"
                             data-desc="Affacciata sul Golfo di Napoli, con vista sul Vesuvio dalla finestra."
                             data-amenities="Wi-Fi,Vista mare,TV,Minibar,Cassaforte">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1428" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/joakant-vesuvius-677714_1920.jpg" alt="Deluxe Vista Mare"></div>
+                        <div class="room-card__media"><img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/vista-vesuvio.jpg" alt="Il Vesuvio visto dalla proprietà"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">28 mq · 2 ospiti</div>
                             <div class="room-card__title">Deluxe Vista Mare</div>
@@ -765,7 +768,7 @@
                             data-meta="34 mq · 3 ospiti"
                             data-desc="Zona soggiorno separata e terrazzino privato, ideale per soggiorni più lunghi."
                             data-amenities="Wi-Fi,Terrazzino,TV,Minibar,Vasca">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1280" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ornaw-naples-4808406_1920.jpg" alt="Junior Suite"></div>
+                        <div class="room-card__media"><img class="flip-img" width="1920" height="1080" loading="lazy" decoding="async" src="../assets/villa-crawford/terrazza-tramonto.jpg" alt="Il tavolino sulla terrazza affacciata sul mare"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">34 mq · 3 ospiti</div>
                             <div class="room-card__title">Junior Suite</div>
@@ -776,7 +779,7 @@
                             data-meta="40 mq · 2 ospiti"
                             data-desc="La camera più esclusiva della villa, con vista che arriva fino a Capri nelle giornate limpide."
                             data-amenities="Wi-Fi,Vista Capri,TV,Minibar,Accappatoio">
-                        <div class="room-card__media"><img class="flip-img" width="1440" height="1920" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/ebell8810-capri-854775_1920.jpg" alt="Suite Panoramica"></div>
+                        <div class="room-card__media"><img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-dal-mare.jpg" alt="La villa a picco sulla scogliera, vista dal mare"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">40 mq · 2 ospiti</div>
                             <div class="room-card__title">Suite Panoramica</div>
@@ -787,7 +790,7 @@
                             data-meta="38 mq · 4 ospiti"
                             data-desc="Doppia zona notte e accesso facilitato al giardino, pensata per le famiglie."
                             data-amenities="Wi-Fi,Giardino,TV,Minibar,Culla disponibile">
-                        <div class="room-card__media"><img class="flip-img" width="1920" height="1280" loading="lazy" decoding="async" src="https://naplesexperiences-netizen.github.io/experiences-demos/demos/assets/campania-images/martinquijandria-pizza-2530169_1920.jpg" alt="Family Room"></div>
+                        <div class="room-card__media"><img class="flip-img" width="1920" height="1440" loading="lazy" decoding="async" src="../assets/villa-crawford/villa-notte.jpg" alt="La torre in tufo e la terrazza di sera"></div>
                         <div class="room-card__body">
                             <div class="room-card__meta">38 mq · 4 ospiti</div>
                             <div class="room-card__title">Family Room</div>
