@@ -61,6 +61,8 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
 }
 .mon:hover{border-color:var(--accent2);transform:translateY(-1px)}
 .mon.sel{border-color:var(--accent);background:#2b3448;box-shadow:0 0 0 1px var(--accent) inset}
+.mon.locked{opacity:.4;filter:grayscale(.85);cursor:help}
+.mon.locked:hover{border-color:var(--warn);transform:none}
 .mon .art{width:38px;height:38px;flex:0 0 38px}
 .mon .grow{display:block;min-width:0}
 .mon .nm{display:block;font-size:.78rem;font-weight:bold;line-height:1.2}
@@ -243,7 +245,7 @@ footer.note a{color:var(--accent2)}
   <div class="two">
     <div class="card">
       <h2>Roster Insector</h2>
-      <p class="hint">34 Insector con statistiche reali del minigioco. Scegline <b>5</b>. Ogni famiglia ha una mossa speciale diversa: leggi la scheda prima di decidere.</p>
+      <p class="hint" id="roster-hint">&nbsp;</p>
       <div class="roster" id="roster"></div>
     </div>
     <div class="card">
@@ -374,7 +376,7 @@ const RANKS = [
   {id:"C", fee:1200, pool:[2,4], mul:1.00, names:["Retslyn","Sam","Denver","Matthew","Bolgo"],         prize:"Murakumo Type-S"},
   {id:"B", fee:2000, pool:[3,5], mul:1.07, names:["Emp","Henry","Osmond","Ertessa","Bari"],            prize:"Devil Forks"},
   {id:"A", fee:3200, pool:[4,6], mul:1.08, names:["Kalt","Gary","Jaques","Starr","Monj"],              prize:"Grand Calibur"},
-  {id:"S", fee:6000, pool:[5,6], mul:1.15, names:["Camilla","Balta","Nolli","Lucy Dyne","Jin Red"],    prize:"Demon Medium"}
+  {id:"S", fee:6000, pool:[5,6], mul:1.10, names:["Camilla","Balta","Nolli","Lucy Dyne","Jin Red"],    prize:"Demon Medium"}
 ];
 
 const N = 6;                         /* griglia 6×6 (ricostruzione di design) */
@@ -515,7 +517,7 @@ function art(fam, flip, rank){
    STATO
    ========================================================================= */
 const S = {
-  rankIdx: 0, round: 0,
+  rankIdx: 0, round: 0, champion: false,
   team: [], kingId: null,
   units: [], turn: "p", sel: null, mode: "idle", busy: false, over: false
 };
@@ -528,28 +530,62 @@ const alive = side => S.units.filter(u => u.alive && u.side === side);
 const kingOf = side => S.units.find(u => u.alive && u.side === side && u.isKing);
 
 function save(){
-  try { localStorage.setItem("insectron", JSON.stringify({r:S.rankIdx, n:S.round, t:S.team, k:S.kingId})); }
+  try { localStorage.setItem("insectron", JSON.stringify(
+    {r:S.rankIdx, n:S.round, t:S.team, k:S.kingId, c:S.champion ? 1 : 0})); }
   catch(e){ /* storage non disponibile: la partita resta valida in sessione */ }
 }
 function load(){
   try {
     const v = JSON.parse(localStorage.getItem("insectron") || "null");
-    if (v && Array.isArray(v.t)) { S.rankIdx = v.r|0; S.round = v.n|0; S.team = v.t.filter(id => byId[id]); S.kingId = byId[v.k] ? v.k : null; }
+    if (v && Array.isArray(v.t)){
+      S.rankIdx = v.r|0; S.round = v.n|0; S.champion = !!v.c;
+      S.team = v.t.filter(id => byId[id] && unlocked(byId[id]));
+      S.kingId = S.team.includes(v.k) ? v.k : (S.team[0] || null);
+    }
   } catch(e){ /* dato corrotto o storage bloccato: si riparte da zero */ }
 }
 
 /* =========================================================================
    SCHERMATA SQUADRA
    ========================================================================= */
+/* Si comincia con le sole forme base (rank 1). Ogni rank del torneo conquistato
+   rende disponibile la generazione successiva, come se l'avessi allevata.
+   Il Dark Emperor resta fuori finché non chiudi il Rank S: sul wiki si cattura
+   solo dopo aver finito il gioco almeno una volta. */
+function maxRank(){
+  /* Al debutto solo le forme base. Dopo, il roster si allinea al tetto della fascia
+     da cui pescano gli avversari del rank corrente: altrimenti si combatte sempre
+     con una generazione di svantaggio. */
+  return S.rankIdx === 0 ? 1 : RANKS[S.rankIdx].pool[1];
+}
+function unlocked(u){
+  if (u.id === "dark_emperor") return !!S.champion;
+  return u.rank <= maxRank();
+}
+function lockNote(u){
+  if (u.id === "dark_emperor") return "Si sblocca vincendo il Rank S.";
+  for (let i = 1; i < RANKS.length; i++){
+    if (RANKS[i].pool[1] >= u.rank) return "Si sblocca conquistando il Rank " + RANKS[i-1].id + ".";
+  }
+  return "Si sblocca avanzando nel torneo.";
+}
 function drawRoster(){
   const r = $("#roster"); r.innerHTML = "";
+  const open = UNITS.filter(unlocked).length;
+  $("#roster-hint").innerHTML = "Disponibili <b>" + open + "</b> Insector su " + UNITS.length +
+    ". Scegline <b>5</b>. " + (S.champion
+      ? "Hai sbloccato tutto, Dark Emperor compreso."
+      : "Vinci un rank del torneo per sbloccare la generazione successiva.");
   UNITS.slice().sort((a,b) => a.rank - b.rank || a.name.localeCompare(b.name)).forEach(u => {
+    const ok = unlocked(u);
     const b = document.createElement("button");
-    b.className = "mon" + (S.team.includes(u.id) ? " sel" : "");
-    b.innerHTML = art(u.fam) +
-      '<span class="grow"><span class="nm">' + u.name + '</span>' +
-      '<span class="st">R' + u.rank + ' · ' + u.hp + 'hp · ' + u.str + 'str · ' + u.def + 'def</span></span>';
-    b.onclick = () => toggle(u.id);
+    b.className = "mon" + (S.team.includes(u.id) ? " sel" : "") + (ok ? "" : " locked");
+    b.innerHTML = art(u.fam, false, u.rank) +
+      '<span class="grow"><span class="nm">' + (ok ? "" : "\u{1F512} ") + u.name + '</span>' +
+      '<span class="st">' + (ok
+        ? "R" + u.rank + " \u00b7 " + u.hp + "hp \u00b7 " + u.str + "str \u00b7 " + u.def + "def"
+        : "rank " + u.rank + " \u00b7 bloccato") + '</span></span>';
+    b.onclick = () => ok ? toggle(u.id) : detail(u);
     b.onmouseenter = () => detail(u);
     b.onfocus = () => detail(u);
     r.appendChild(b);
@@ -559,7 +595,8 @@ function detail(u){
   const f = FAMS[u.fam];
   $("#detail").innerHTML = '<b>' + u.name + ' — ' + u.fam + ' (rank ' + u.rank + ')</b>' +
     u.desc + '<br><br><b>' + f.spn + '</b>' + f.spd +
-    '<br><br>Movimento: ' + moveLabel(u.mv);
+    '<br><br>Movimento: ' + moveLabel(u.mv) +
+    (unlocked(u) ? "" : '<br><br><span style="color:var(--warn)">\u{1F512} ' + lockNote(u) + '</span>');
 }
 function moveLabel(mv){
   return { step:"1 casella in tutte le direzioni (3×3)",
@@ -568,6 +605,7 @@ function moveLabel(mv){
            charge:"2 caselle dritto in avanti, oppure 1 in qualsiasi direzione" }[mv];
 }
 function toggle(id){
+  if (!unlocked(byId[id])) return;
   const i = S.team.indexOf(id);
   if (i >= 0){ S.team.splice(i,1); if (S.kingId === id) S.kingId = null; }
   else if (S.team.length < 5){ S.team.push(id); if (!S.kingId) S.kingId = id; }
@@ -998,10 +1036,10 @@ function finish(win){
       const last = S.rankIdx >= RANKS.length - 1;
       $("#r-title").innerHTML = '<span class="win">Rank ' + R.id + ' conquistato!</span>';
       $("#r-text").innerHTML = "Cinque round vinti di fila. Premio: <b>" + R.prize + "</b>." +
-        (last ? "<br><br>Hai chiuso il Rank S: il torneo Insectron è tuo."
+        (last ? "<br><br>Hai chiuso il Rank S: il torneo Insectron è tuo. Il <b>Dark Emperor</b> è ora reclutabile."
               : "<br><br>Prossimo traguardo: <b>Rank " + RANKS[S.rankIdx+1].id +
                 "</b> (iscrizione " + RANKS[S.rankIdx+1].fee + "z).");
-      if (!last) S.rankIdx++;
+      if (last) S.champion = true; else S.rankIdx++;
     } else {
       $("#r-title").innerHTML = '<span class="win">Round vinto</span>';
       $("#r-text").innerHTML = "Hai battuto <b>" + R.names[S.round-1] + "</b>. Avanti il prossimo: <b>" +
@@ -1158,8 +1196,7 @@ $("#btn-end").onclick = endPlayerTurn;
 $("#btn-next").onclick = () => { drawRoster(); drawSlots(); show("s-team"); };
 $("#btn-clear").onclick = () => { S.team = []; S.kingId = null; drawRoster(); drawSlots(); save(); };
 $("#btn-auto").onclick = () => {
-  const R = RANKS[S.rankIdx];
-  const pool = UNITS.filter(u => u.rank >= Math.max(1, R.pool[0]) && u.rank <= R.pool[1] + 1);
+  const pool = UNITS.filter(unlocked);
   S.team = []; S.kingId = null;
   const wanted = ["Dung Roller","Lady Beetle","Mantis","Hercules Beetle","Bazoo Beetle","Staggy","Knife Beetle"];
   wanted.forEach(fam => {
@@ -1176,7 +1213,7 @@ $("#btn-auto").onclick = () => {
   drawRoster(); drawSlots(); save();
 };
 $("#btn-reset").onclick = () => {
-  S.rankIdx = 0; S.round = 0; S.team = []; S.kingId = null;
+  S.rankIdx = 0; S.round = 0; S.team = []; S.kingId = null; S.champion = false;
   save(); updBadges(); drawRoster(); drawSlots(); show("s-team");
 };
 

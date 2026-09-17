@@ -37,6 +37,30 @@ Le mosse speciali sono implementate seguendo la descrizione del wiki, non solo c
 - **Wing Flap** — spinge via di 2 caselle tutti gli adiacenti
 - **The Emperor's Rage** — colpisce tutti i nemici entro 2 caselle + stordimento
 
+## Progressione del roster
+
+Si comincia con le sole **forme base**: i 7 Insector di rank 1 (Faerie, Flipperbug,
+Hercules Beetle, Itsahorse, Knife Beetle, Mantis, Staggy). Tutto il resto è visibile nel
+roster ma bloccato, con indicata la condizione di sblocco.
+
+| Rank in corso | Insector disponibili |
+|---|---|
+| E (debutto) | 7 — solo forme base |
+| D | 20 |
+| C | 27 |
+| B | 31 |
+| A e S | 33 |
+| dopo aver vinto il Rank S | 34, Dark Emperor compreso |
+
+Il **Dark Emperor** resta fuori fino alla vittoria del Rank S: sul wiki si cattura solo
+dopo aver finito il gioco almeno una volta, ed è il Re più forte disponibile.
+
+Questo sostituisce il sistema di cattura e riproduzione, che non è implementato: al suo
+posto è il torneo a "far crescere" il roster. La soglia di sblocco segue il tetto della
+fascia da cui pescano gli avversari del rank corrente — altrimenti si combatterebbe
+sempre con una generazione di svantaggio (misurato: dal Rank D in poi le vittorie
+crollavano dal 61% al 29%).
+
 ## Cosa è ricostruzione di design (non documentato sul wiki)
 
 Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
@@ -61,6 +85,7 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 
 - Cattura con trappole ed esche, luoghi di spawn, probabilità
 - Riproduzione, ereditarietà delle statistiche, special breeding, alberi delle famiglie
+  (sostituiti dallo sblocco per rank descritto sopra)
 - Sistema di alimentazione (tabella dei 22 cibi con effetti su HP/Str/Def/resistenze e costo in punti vita)
 - Le 6 resistenze (Knockback, Confusion, Cut, Explosion, Throw, Poison): i valori sono
   nel dataset `insectors.json` ma non sono ancora usati in battaglia
@@ -105,7 +130,17 @@ così un ring-out può davvero uscire dal campo. Tutte le animazioni si disattiv
 - 720 battaglie simulate headless: nessuna eccezione, nessuno stallo
 - Tutte e 13 le mosse speciali eseguite (da 48 a 554 volte ciascuna) senza errori
 - Partita completa giocata via UI automatizzata: nessun errore in console
-- Curva di difficoltà (squadra casuale, gioco non ottimale): E 88% · D 69% · C 43% · B 36% · A 35% · S 10%
+- Curva di difficoltà su 1800 battaglie, con il roster limitato dallo sblocco progressivo.
+  La colonna che conta è la seconda: scegliere bene la squadra è ora una decisione vera.
+
+  | Rank | squadra a caso | squadra scelta bene |
+  |---|---|---|
+  | E | 82% | 89% |
+  | D | 62% | 95% |
+  | C | 34% | 73% |
+  | B | 20% | 80% |
+  | A | 7% | 77% |
+  | S | 2% | 25% |
 - Layout verificato a 1280px e 390px, nessuno scroll orizzontale
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
