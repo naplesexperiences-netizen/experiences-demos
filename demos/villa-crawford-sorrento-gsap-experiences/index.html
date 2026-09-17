@@ -9,6 +9,7 @@
     <meta name="demo:category" content="hotel">
     <meta name="theme-color" content="#0d1f33">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="../assets/villa-crawford/villa-notte.jpg" fetchpriority="high">
     <style>
         /* =============================================
            CSS VARIABLES
@@ -210,11 +211,28 @@
             color: var(--on-dark);
             padding: 130px 0 80px;
         }
+        /* foto della villa di sera, sotto un velo scuro che tiene leggibile il testo.
+           villa-notte è l'unica delle quattro foto non presente anche nel ventaglio
+           di card, così la stessa immagine non compare due volte nella stessa schermata. */
         .hero__bg {
             position: absolute; inset: 0;
             background:
-                radial-gradient(55% 60% at 28% 55%, rgba(192,149,58,0.14), transparent 65%),
-                linear-gradient(155deg, #1e3a5f 0%, var(--primary-dark) 45%, var(--ink) 100%);
+                radial-gradient(55% 60% at 28% 55%, rgba(192,149,58,0.14), transparent 62%),
+                linear-gradient(155deg, rgba(30,58,95,0.42) 0%, rgba(13,31,51,0.52) 45%, rgba(17,21,28,0.68) 100%),
+                url('../assets/villa-crawford/villa-notte.jpg') center 58% / cover no-repeat;
+        }
+        /* la colonna del testo ha bisogno di più stacco della colonna delle foto */
+        .hero__bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, rgba(8,13,22,0.62) 0%, rgba(8,13,22,0.26) 48%, transparent 72%);
+        }
+        @media (max-width: 860px) {
+            /* in verticale il crop stringe molto: sposto l'inquadratura sulla torre
+               e alleggerisco il velo, che altrimenti annulla la foto */
+            .hero__bg { background-position: center, center, 38% 62%; }
+            .hero__bg::after {
+                background: linear-gradient(180deg, rgba(8,13,22,0.18) 0%, rgba(8,13,22,0.44) 52%, rgba(8,13,22,0.60) 100%);
+            }
         }
         /* ---- text column ---- */
         .hero__body {
