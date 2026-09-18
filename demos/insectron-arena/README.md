@@ -8,6 +8,14 @@ documentazione del minigioco **Insectron** di *Rogue Galaxy* (PS2, Level-5 / Son
 
 ---
 
+## Fonti
+
+1. **Rogue Galaxy Wiki** (Fandom, CC BY-SA): pagina `Insector` + 35 schede unità →
+   statistiche, famiglie, rank, torneo, avversari.
+2. **In-Depth FAQ/Walkthrough di Paul Michael "VHAYSTE"** (GameFAQs) → i **diagrammi
+   ASCII di ogni mossa speciale e di ogni range di movimento**, che il wiki non ha.
+   È da qui che arrivano le regole di targeting precise.
+
 ## Cosa c'è di autentico (dal wiki)
 
 Estratto dalla pagina `Insector` della Rogue Galaxy Wiki e dalle 35 schede unità collegate:
@@ -37,6 +45,37 @@ Le mosse speciali sono implementate seguendo la descrizione del wiki, non solo c
 - **Wing Flap** — spinge via di 2 caselle tutti gli adiacenti
 - **The Emperor's Rage** — colpisce tutti i nemici entro 2 caselle + stordimento
 
+## Regole di targeting (dai diagrammi della FAQ)
+
+Il wiki descriveva le mosse a parole; la FAQ le disegna casella per casella. La
+differenza è sostanziale: **quasi tutte le speciali colpiscono solo le 4 caselle
+ortogonali**, non le 8 attorno. Posizionarsi in diagonale è quindi una difesa reale.
+
+| Mossa | Area effettiva |
+|---|---|
+| Jumping Stab, Crushing Horn, Over Easy, Scissor Throw, Charm Beam, Healing Jig | 4 caselle ortogonali |
+| Sickle Dance | tutte e 8 le caselle attorno (unica eccezione) |
+| Cannon Blast, Wing Flap | croce ortogonale fino a 2 caselle; qualsiasi Insector in mezzo, **amico o nemico**, blocca |
+| Body Blow | solo dritto in avanti, fino a 2 caselle, l'attaccante si sposta in posizione |
+| Itsakick | solo la casella davanti e quella dietro |
+| Emperor's Rage | bersaglio singolo entro 2 caselle in ogni direzione |
+| Attacco normale | tutte e 8 le caselle attorno |
+
+Altre correzioni che la FAQ ha imposto:
+
+- **Scissor Throw non fa danno diretto.** Il danno viene solo da dove atterra il
+  bersaglio: se finisce addosso a qualcuno, **rimbalza a catena** ferendo entrambi,
+  e continua finché non trova una casella libera o esce dal campo.
+- **Over Easy** non immobilizza soltanto: chi è ribaltato è anche **vulnerabile**
+  (+30% danni subiti) per i 2 turni.
+- **Healing Jig non cura la Lady Beetle stessa.**
+- **Movimento dell'Itsahorse**: 1 casella in qualsiasi direzione, oppure 2 in linea
+  retta in una delle 8 direzioni. Il wiki diceva solo "2 caselle dritto in avanti".
+- **Dark Emperor**: la furia fulminea è a bersaglio singolo con **cariche infinite**
+  (nessuna ricarica), e il suo **attacco normale** atterra l'avversario e lo sbalza di
+  una casella, con rimbalzo a catena ed eventuale uscita dal campo. È questo che lo
+  rende il Re migliore, come dice il wiki.
+
 ## Progressione del roster
 
 Si comincia con le sole **forme base**: i 7 Insector di rank 1 (Faerie, Flipperbug,
@@ -65,9 +104,10 @@ crollavano dal 61% al 29%).
 
 Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 
-1. **Griglia 6×6.** Il wiki non indica la dimensione del campo. Sei colonne tengono
-   10 unità con densità sensata. Costante `N`.
-2. **Formula di danno.** `max(str×0.3, str×2 − def) × moltiplicatore × (0.9…1.1)`.
+1. **Griglia 6×6.** Nessuna delle due fonti indica la dimensione del campo — verificato
+   cercandola in entrambe. Sei colonne tengono 10 unità con densità sensata. Costante `N`.
+2. **Formula di danno.** Assente da entrambe le fonti.
+   `max(str×0.3, str×2 − def) × moltiplicatore × (0.9…1.1)`.
    Il pavimento al 30% della forza serve a evitare che un DEF alto renda un'unità
    letteralmente invulnerabile agli attaccanti deboli (Orion Beetle ha DEF 32
    contro STR 14 della Faerie). Funzione `strike()`.
@@ -81,6 +121,14 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
    almeno un compagno vivo. Funzione `aiAct()`.
 6. **Un'azione per unità per turno** (movimento + attacco/speciale).
 
+## Discrepanze fra le fonti
+
+- **Premio del Rank B**: il wiki dice *Devil Forks*, la FAQ dice *Spirit Calibur*.
+  Nel demo resta il valore del wiki.
+- **Movimento dei volanti**: il wiki dice 7×7 (3 caselle), i diagrammi della FAQ si
+  fermano a 2 perché la griglia disegnata è 5×5. Vale il wiki: il testo della FAQ
+  stessa cita "flying insectrons (3 square movement range)".
+
 ## Cosa NON c'è (esiste sul wiki ma è fuori dallo scopo di una demo)
 
 - Cattura con trappole ed esche, luoghi di spawn, probabilità
@@ -92,6 +140,12 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 - Le 136 unità complete: il wiki ha schede dettagliate solo per 35
 - Colore, sesso, condizione, satietà, aspettativa di vita
 - Modalità Vs. con password a 118 caratteri
+- Modalità **"Eliminate the enemy"** (documentata nella FAQ per le partite Vs.: nessun
+  Re designato, si vince solo abbattendo tutti). Implementabile rapidamente: cambia
+  solo la condizione di vittoria
+- Famiglie senza scheda statistiche sul wiki e quindi senza unità giocabili, per cui
+  la FAQ documenta comunque la mossa: Hopper (Giant Leap), Springtail (Hypnotasm),
+  Stingbee (Poison Needle), Bombsnail (Bomb Drop), Silkspider (Sticky Net)
 
 ## Grafica
 
@@ -126,6 +180,11 @@ così un ring-out può davvero uscire dal campo. Tutte le animazioni si disattiv
 `prefers-reduced-motion`.
 
 ## Verifiche fatte
+
+- 26 controlli automatici sulle regole di targeting e sugli effetti corretti dalla FAQ
+  (area ortogonale, blocco della linea di tiro, rimbalzo a catena, ring-out, vulnerabilità
+  da ribaltamento, cura non su se stessa, movimento dell'Itsahorse, cariche infinite
+  dell'Imperatore): tutti superati
 
 - 720 battaglie simulate headless: nessuna eccezione, nessuno stallo
 - Tutte e 13 le mosse speciali eseguite (da 48 a 554 volte ciascuna) senza errori
