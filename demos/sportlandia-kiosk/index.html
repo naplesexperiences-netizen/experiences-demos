@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Sportlandia Infitness - Centro Fitness Castellammare di Stabia. Sala attrezzi, Pilates, Les Mills e molto altro.">
-<title>SPORTLANDIA INFITNESS — Totem Corsi</title>
+<meta name="theme-color" content="#062c5c">
+<title translate="no">SPORTLANDIA INFITNESS — Totem Corsi</title>
 <link rel="icon" href="images/logo.webp" type="image/webp">
 
 <!-- Font non bloccante: su un totem senza rete un <link> normale ritarda il
@@ -41,6 +42,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
+html{color-scheme:dark}
 html,body{height:100%}
 body{
   font-family:var(--font-body);
@@ -66,7 +68,11 @@ body{
 /* ============ HEADER ============ */
 .header{
   position:fixed;top:0;left:0;right:0;z-index:30;
-  padding:26px 30px 52px;text-align:center;pointer-events:none;
+  /* viewport-fit=cover e' dichiarato: senza env() il contenuto finirebbe
+     sotto notch e barre di sistema quando non e' su un totem a cornice piena */
+  padding:calc(26px + env(safe-area-inset-top)) calc(30px + env(safe-area-inset-right)) 52px
+          calc(30px + env(safe-area-inset-left));
+  text-align:center;pointer-events:none;
   background:linear-gradient(180deg,rgba(4,27,52,.94) 0%,rgba(6,44,92,.72) 46%,rgba(6,44,92,.18) 82%,transparent 100%);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
 }
@@ -99,9 +105,32 @@ body{
 .slide{
   position:absolute;inset:0;
   visibility:hidden;opacity:0;
-  cursor:pointer;
   will-change:transform,opacity;
 }
+/* Superficie cliccabile: un <button> vero sopra tutta la slide, cosi' gli
+   orari si aprono anche da tastiera. Il testo resta fuori dal button
+   (un <button> non puo' contenere <h2>) e lascia passare i click. */
+.slide-hit{
+  position:absolute;inset:0;z-index:3;
+  border:0;background:none;padding:0;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+}
+.slide-hit:focus-visible{outline:5px solid var(--cyan);outline-offset:-14px;border-radius:0}
+.slide-copy{pointer-events:none}
+
+/* Se una locandina non carica, la slide non resta blu e muta */
+.slide-fallback{
+  display:none;position:absolute;inset:0;z-index:2;
+  place-items:center;text-align:center;
+  padding:var(--chrome-top) 12% var(--chrome-bottom);
+}
+.slide.no-img .slide-fallback{display:grid}
+.slide.no-img .slide-img,
+.slide.no-img .slide-media::before,
+.slide.no-img .slide-media::after{display:none}
+.slide-fallback h2{font-family:var(--font-display);font-size:2.4rem;font-weight:700;margin-bottom:10px}
+.slide-fallback p{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.85)}
+
 .slide-media{position:absolute;inset:0;overflow:hidden}
 .slide-img{
   position:absolute;inset:0;
@@ -167,7 +196,7 @@ body{
 /* ============ CONTROLLI ============ */
 .controls{
   position:fixed;left:0;right:0;bottom:var(--footer-h,78px);z-index:40;
-  padding:16px 24px 18px;
+  padding:16px calc(24px + env(safe-area-inset-right)) 18px calc(24px + env(safe-area-inset-left));
   background:linear-gradient(0deg,rgba(4,27,52,.82) 0%,rgba(6,44,92,.42) 62%,transparent 100%);
   pointer-events:none;
 }
@@ -183,9 +212,11 @@ body{
   width:30px;height:26px;padding:10px 0;border:0;background:none;cursor:pointer;
   display:grid;place-items:center;
 }
-.dot i{display:block;width:100%;height:5px;border-radius:99px;
+/* La larghezza sta qui e non in JS: il nodo <i> non va piu' ricreato a ogni
+   cambio slide, altrimenti la transizione non ha un elemento su cui animare */
+.dot i{display:block;width:60%;height:5px;border-radius:99px;
   background:rgba(255,255,255,.3);transition:background var(--dur-fast),width var(--dur-fast)}
-.dot[aria-current="true"] i{background:var(--cyan);box-shadow:0 0 12px rgba(0,188,212,.75)}
+.dot.is-on i{width:100%;background:var(--cyan);box-shadow:0 0 12px rgba(0,188,212,.75)}
 
 .nav{display:flex;justify-content:center;align-items:center;gap:14px}
 /* --btn tiene pulsanti e contatore esattamente della stessa altezza */
@@ -207,6 +238,7 @@ body{
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
   font-family:var(--font-display);font-weight:600;letter-spacing:.06em;
   font-size:calc(var(--btn) * .34);line-height:1;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
 }
 .counter b{color:var(--cyan);font-size:calc(var(--btn) * .44)}
 
@@ -214,7 +246,9 @@ body{
 .footer{
   position:fixed;left:0;right:0;bottom:0;z-index:45;
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:12px 26px;min-height:78px;
+  padding:12px calc(26px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom))
+          calc(26px + env(safe-area-inset-left));
+  min-height:78px;
   background:rgba(4,27,52,.72);
   -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
   border-top:1px solid rgba(0,188,212,.3);
@@ -234,7 +268,6 @@ body{
   border:1px solid rgba(0,188,212,.34);background:rgba(0,188,212,.12);
   transition:background var(--dur-fast),transform var(--dur-fast);
 }
-.f-brand:hover{background:rgba(0,188,212,.24);transform:translateY(-2px)}
 .f-brand small{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .f-brand strong{font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:.05em;
   background:linear-gradient(105deg,var(--cyan),var(--cyan-soft));
@@ -263,7 +296,7 @@ body{
 }
 .sheet-close svg{width:22px;height:22px}
 .sheet-close:hover{background:var(--cyan);color:#fff;transform:rotate(90deg)}
-.sheet-body{padding:26px 32px 32px;overflow-y:auto}
+.sheet-body{padding:26px 32px 32px;overflow-y:auto;overscroll-behavior:contain}
 .sheet-label{
   display:flex;align-items:center;gap:10px;margin-bottom:18px;
   font-family:var(--font-display);font-size:1.05rem;font-weight:700;
@@ -356,7 +389,7 @@ body{
 <header class="header">
   <div class="brand-mark"><img src="images/logo.webp" alt="" width="74" height="74"></div>
   <p class="brand-kicker">Infitness Castellammare</p>
-  <h1 class="brand-name">SPORTLANDIA</h1>
+  <h1 class="brand-name" translate="no">SPORTLANDIA</h1>
   <p class="brand-tag">Rendi il tuo corpo sano e in forma</p>
 </header>
 
@@ -366,7 +399,7 @@ body{
 
 <div class="controls">
   <div class="rail" aria-hidden="true"><div class="rail-fill" id="rail"></div></div>
-  <div class="dots" id="dots" role="tablist" aria-label="Scegli un corso"></div>
+  <div class="dots" id="dots" role="group" aria-label="Vai a un corso"></div>
   <div class="nav">
     <button class="btn" id="prev" type="button" aria-label="Corso precedente">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
@@ -384,7 +417,7 @@ body{
 
 <footer class="footer">
   <div class="f-rows">
-    <p class="f-name">Sportlandia · SSD Infitness ARL</p>
+    <p class="f-name" translate="no">Sportlandia · SSD Infitness ARL</p>
     <p class="f-row">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Corso Alcide De Gasperi, 177/B — Castellammare di Stabia</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>081 871 8076</span>
@@ -393,9 +426,9 @@ body{
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Lun-Ven 07:00-21:00 · Sabato 08:00-12:30</span>
     </p>
   </div>
-  <a class="f-brand" href="https://naplesexperiences.com" target="_blank" rel="noopener">
-    <small>Powered by</small><strong>naplesexperiences.com</strong>
-  </a>
+  <p class="f-brand">
+    <small>Powered by</small><strong translate="no">naplesexperiences.com</strong>
+  </p>
 </footer>
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
@@ -495,22 +528,31 @@ COURSES.forEach((c, i) => {
   s.setAttribute('aria-label', `${i+1} di ${COURSES.length}: ${c.title}`);
   s.innerHTML =
     `<div class="slide-media"><div class="slide-img" style="background-image:url('${c.img}')"></div></div>` +
+    `<div class="slide-fallback"><h2>${c.title}</h2><p>${c.text}</p></div>` +
     (c.poster ? '' :
       `<div class="slide-copy">
          <p class="tag">${c.tag}</p>
          <h2 class="slide-title">${c.title}</h2>
          <p class="slide-text">${c.text}</p>
-         <p class="cta">Vedi orari
+         <p class="cta" aria-hidden="true">Vedi orari
            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
          </p>
-       </div>`);
-  s.addEventListener('click', () => openSheet(i));
+       </div>`) +
+    `<button class="slide-hit" type="button" aria-label="Vedi gli orari di ${c.title}"></button>`;
+  s.querySelector('.slide-hit').addEventListener('click', () => openSheet(i));
   deck.appendChild(s);
   slides.push(s);
 
+  // un background-image non emette onerror: lo verifico a parte, cosi' una
+  // locandina mancante mostra nome e descrizione invece di uno schermo blu
+  const probe = new Image();
+  probe.onerror = () => s.classList.add('no-img');
+  probe.src = c.img;
+
   const d = document.createElement('button');
-  d.className = 'dot'; d.type = 'button'; d.setAttribute('role','tab');
-  d.setAttribute('aria-label', c.title);
+  d.className = 'dot'; d.type = 'button';
+  d.setAttribute('aria-label', `Vai a ${c.title}`);
+  d.innerHTML = '<i></i>';          // creato una volta sola, mai riscritto
   d.addEventListener('click', () => goTo(i, 'manual'));
   dots.appendChild(d);
 });
@@ -518,7 +560,7 @@ $('tot').textContent = COURSES.length;
 
 gsap.set(slides, { autoAlpha:0 });
 gsap.set(slides[0], { autoAlpha:1 });
-paint();
+paint(false);
 kenBurns(slides[0]);
 
 /* ---------- transizioni ---------- */
@@ -530,7 +572,7 @@ function transition(to, mode, dir) {
   gsap.killTweensOf([from, next]);
 
   index = to;
-  paint();
+  paint(mode === 'manual');
 
   if (!D()) {                      // reduced motion: stato finale, nessun moto
     gsap.set(from, { autoAlpha:0, xPercent:0, scale:1 });
@@ -571,16 +613,16 @@ function kenBurns(slide) {
     { scale:1.1, x:'1.5%', y:'-1.2%', duration:14, ease:'sine.inOut', repeat:-1, yoyo:true });
 }
 
-function paint() {
+// announce=false sullo scorrimento automatico: annunciare ogni 7 secondi
+// all'infinito rende lo screen reader inascoltabile
+function paint(announce) {
   $('cur').textContent = index + 1;
   dots.querySelectorAll('.dot').forEach((d,i) => {
     const on = i === index;
-    d.setAttribute('aria-current', on ? 'true' : 'false');
-    d.setAttribute('aria-selected', on ? 'true' : 'false');
-    d.innerHTML = '<i></i>';
-    d.querySelector('i').style.width = on ? '100%' : '60%';
+    d.classList.toggle('is-on', on);
+    on ? d.setAttribute('aria-current','true') : d.removeAttribute('aria-current');
   });
-  live.textContent = `${index+1} di ${COURSES.length}: ${COURSES[index].title}`;
+  if (announce) live.textContent = `${index+1} di ${COURSES.length}: ${COURSES[index].title}`;
 }
 
 /* ---------- avanzamento automatico ---------- */
@@ -608,17 +650,24 @@ function setPlaying(on) {
   $('icoPause').style.display = on ? 'block' : 'none';
   $('toggle').setAttribute('aria-label',
     on ? 'Metti in pausa lo scorrimento automatico' : 'Riprendi lo scorrimento automatico');
-  on ? startDwell() : stopDwell();
+  on ? startDwell() : (stopDwell(), bumpIdle());
 }
 
 /* ---------- pannello orari ---------- */
+// inert sul resto della pagina: senza, con Tab il focus scivolava sui
+// pallini dietro l'overlay mentre la modale era aperta
+const BEHIND = ['.header','.stage','.controls','.footer'].map(s => document.querySelector(s));
+let lastFocus = null;
+
 function openSheet(i) {
-  sheetOpen = true; stopDwell();
+  sheetOpen = true; stopDwell(); bumpIdle();
   const c = COURSES[i];
   $('sheetTag').textContent = c.tag;
   $('sheetTitle').textContent = c.title;
   $('sheetRows').innerHTML = Object.entries(c.hours)
     .map(([k,v]) => `<div class="row"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+  lastFocus = document.activeElement;
+  BEHIND.forEach(el => el && el.setAttribute('inert',''));
   sheet.classList.add('open');
   $('sheetClose').focus();
   if (D()) {
@@ -632,8 +681,31 @@ function closeSheet() {
   if (!sheetOpen) return;
   sheetOpen = false;
   sheet.classList.remove('open');
+  BEHIND.forEach(el => el && el.removeAttribute('inert'));
+  if (lastFocus && lastFocus.isConnected) lastFocus.focus();
+  lastFocus = null;
   startDwell();
 }
+
+/* ---------- ritorno allo stato di riposo ---------- */
+// Un totem non e' presidiato: chi apre gli orari o mette in pausa e se ne va
+// lascerebbe lo schermo bloccato li' a tempo indeterminato. Dopo IDLE secondi
+// senza tocchi si torna da soli alla prima slide, in riproduzione.
+const IDLE = 60;
+let idleTimer = null;
+
+function attract() {
+  closeSheet();
+  if (!playing) setPlaying(true);
+  if (index !== 0) goTo(0, 'auto');
+}
+function bumpIdle() {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(attract, IDLE * 1000);
+}
+// solo interazione umana: l'avanzamento automatico non conta come attivita'
+['pointerdown','touchstart','keydown'].forEach(ev =>
+  addEventListener(ev, bumpIdle, { passive:true, capture:true }));
 
 /* ---------- eventi ---------- */
 $('prev').addEventListener('click', () => step(-1));
@@ -666,6 +738,7 @@ new IntersectionObserver(([e]) => { onscreen = e.isIntersecting; onscreen ? star
 reduce.addEventListener('change', () => { stopDwell(); startDwell(); });
 
 startDwell();
+bumpIdle();
 })();
 </script>
 </body>
