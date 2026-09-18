@@ -354,19 +354,19 @@ const UNITS = [
 
 /* Mosse speciali: testo e regole dalla sezione "Insector Families" del wiki. */
 const FAMS = {
-  "Knife Beetle":   {col:"#7dd3fc", sp:"jumping_stab",  spn:"Jumping Stab",     spd:"Salta in alto e cala il corno affilato: danno pesante su un singolo bersaglio adiacente."},
-  "Hercules Beetle":{col:"#fbbf24", sp:"crushing_horn", spn:"Crushing Horn",    spd:"Sbalza il nemico indietro di 1 casella. Se dietro c'è un altro Insector, si innesca una reazione a catena."},
-  "Bazoo Beetle":   {col:"#a78bfa", sp:"cannon_blast",  spn:"Cannon Blast",     spd:"Spara una cannonata in linea retta fino a 3 caselle. Colpisce senza avvicinarsi."},
-  "Flipperbug":     {col:"#34d399", sp:"over_easy",     spn:"Over Easy",        spd:"Ribalta l'avversario adiacente: resta immobilizzato per 2 turni."},
-  "Staggy":         {col:"#fb923c", sp:"scissor_throw", spn:"Scissor Throw",    spd:"Afferra il nemico e lo scaglia alle proprie spalle. Se lì c'è qualcuno, danno extra a entrambi; se c'è il vuoto, è fuori dal campo."},
+  "Knife Beetle":   {col:"#7dd3fc", sp:"jumping_stab",  spn:"Jumping Stab",     spd:"Salta in alto e cala il corno affilato: danno pesante su un bersaglio nelle 4 caselle ortogonali."},
+  "Hercules Beetle":{col:"#fbbf24", sp:"crushing_horn", spn:"Crushing Horn",    spd:"Sbalza il nemico indietro di 1 casella. Se dietro c'è qualcuno, rimbalza a catena finché non trova spazio o esce dal campo."},
+  "Bazoo Beetle":   {col:"#a78bfa", sp:"cannon_blast",  spn:"Cannon Blast",     spd:"Cannonata in linea retta ortogonale fino a 2 caselle. Qualsiasi Insector in mezzo, amico o nemico, blocca il tiro."},
+  "Flipperbug":     {col:"#34d399", sp:"over_easy",     spn:"Over Easy",        spd:"Ribalta l'avversario ortogonale: per 2 turni resta immobile e incassa il 30% di danni in più."},
+  "Staggy":         {col:"#fb923c", sp:"scissor_throw", spn:"Scissor Throw",    spd:"Afferra il nemico e lo scaglia alle proprie spalle. La presa non fa danno: rimbalza su chi trova, ferendo entrambi, finché non atterra o esce dal campo."},
   "Mantis":         {col:"#4ade80", sp:"sickle_dance",  spn:"Sickle Dance",     spd:"Danza letale che colpisce tutti gli avversari nelle 8 direzioni adiacenti."},
-  "Cutterpillar":   {col:"#f472b6", sp:"body_blow",     spn:"Body Blow",        spd:"Carica in linea retta e travolge il primo nemico. Dopo l'impatto resta scoperto: subisce +30% di danno."},
-  "Flutterbug":     {col:"#22d3ee", sp:"wing_flap",     spn:"Wing Flap",        spd:"Un colpo d'ali spazza via tutti i nemici adiacenti di 2 caselle. Vicino al bordo significa ring-out."},
-  "Lady Beetle":    {col:"#f87171", sp:"healing_jig",   spn:"Healing Jig",      spd:"Danza curativa: recupera stamina a tutti gli alleati adiacenti e li libera da immobilizzo."},
+  "Cutterpillar":   {col:"#f472b6", sp:"body_blow",     spn:"Body Blow",        spd:"Carica dritto in avanti fino a 2 caselle e travolge il primo nemico. Dopo l'impatto resta scoperto: subisce +30% di danno."},
+  "Flutterbug":     {col:"#22d3ee", sp:"wing_flap",     spn:"Wing Flap",        spd:"Un colpo d'ali spazza via di 2 caselle i nemici nelle 4 direzioni ortogonali, fino a 2 di distanza. Vicino al bordo significa ring-out."},
+  "Lady Beetle":    {col:"#f87171", sp:"healing_jig",   spn:"Healing Jig",      spd:"Danza curativa: ridà stamina agli alleati nelle 4 caselle ortogonali e li libera dall'immobilizzo. Non cura se stessa."},
   "Dung Roller":    {col:"#c4b5a0", sp:"fill_hole",     spn:"Fill Hole",        spd:"Si copre con la palla di sterco: blocca completamente i 2 attacchi successivi."},
   "Itsahorse":      {col:"#fcd34d", sp:"itsakick",      spn:"Itsakick",         spd:"Calcia contemporaneamente chi ha davanti e chi ha dietro, spingendoli via di 1 casella."},
-  "Faerie":         {col:"#e879f9", sp:"charm_beam",    spn:"Charm Beam",       spd:"Ammalia un avversario adiacente e lo fa passare dalla tua parte. Costo: metà della tua stamina."},
-  "Dark Emperor":   {col:"#818cf8", sp:"emperors_rage", spn:"The Emperor's Rage",spd:"Furia fulminea: colpisce tutti i nemici entro 2 caselle e li stordisce per 1 turno."}
+  "Faerie":         {col:"#e879f9", sp:"charm_beam",    spn:"Charm Beam",       spd:"Ammalia un avversario ortogonale e lo fa passare dalla tua parte. Costo: metà della tua stamina."},
+  "Dark Emperor":   {col:"#818cf8", sp:"emperors_rage", spn:"The Emperor's Rage",spd:"Fulmine su un singolo bersaglio entro 2 caselle, in qualsiasi direzione. Cariche infinite: nessuna ricarica."}
 };
 
 /* Torneo: quote d'iscrizione, avversari e premi dal wiki. */
@@ -602,7 +602,7 @@ function moveLabel(mv){
   return { step:"1 casella in tutte le direzioni (3×3)",
            fly:"volo, fino a 3 caselle scavalcando gli altri (7×7)",
            diag:"fino a 3 caselle in diagonale",
-           charge:"2 caselle dritto in avanti, oppure 1 in qualsiasi direzione" }[mv];
+           charge:"1 casella ovunque, oppure 2 in linea retta in una delle 8 direzioni" }[mv];
 }
 function toggle(id){
   if (!unlocked(byId[id])) return;
@@ -698,22 +698,33 @@ function moves(u){
       }
     });
   } else if (mv === "charge"){
-    const f = u.side === "p" ? -1 : 1;
-    for (let s=1; s<=2; s++){
-      const y = u.y + f*s;
-      if (!inB(u.x,y) || at(u.x,y)) break;
-      out.push({x:u.x, y:y});
+    /* diagramma della FAQ: tutte le caselle adiacenti, più 2 in linea retta
+       in una qualsiasi delle 8 direzioni, con il percorso libero */
+    for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++){
+      if (!dx && !dy) continue;
+      push(u.x+dx, u.y+dy);
+      if (!at(u.x+dx, u.y+dy)) push(u.x+dx*2, u.y+dy*2);
     }
-    for (let dx=-1; dx<=1; dx++) for (let dy=-1; dy<=1; dy++) if (dx||dy) push(u.x+dx, u.y+dy);
   }
   return out.filter((p,i,a) => a.findIndex(q => q.x===p.x && q.y===p.y) === i);
 }
+const ORTHO = [[0,-1],[0,1],[-1,0],[1,0]];
+const man = (a,b,c,d) => Math.abs(a-c) + Math.abs(b-d);
+/* L'attacco normale raggiunge tutte e 8 le caselle attorno; le mosse speciali, salvo
+   Sickle Dance, solo le 4 ortogonali (dai diagrammi della FAQ di VHAYSTE). */
 function foesAdj(u){
   return S.units.filter(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) === 1);
 }
-function rayTargets(u, maxd){
+function foesOrtho(u){
+  return S.units.filter(f => f.alive && f.side !== u.side && man(u.x,u.y,f.x,f.y) === 1);
+}
+function alliesOrtho(u){
+  return S.units.filter(a => a.alive && a.side === u.side && a !== u && man(u.x,u.y,a.x,a.y) === 1);
+}
+/* Tiro in linea retta: si ferma sul primo occupante, amico o nemico che sia. */
+function rayTargets(u, maxd, dirs){
   const out = [];
-  [[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]].forEach(([dx,dy]) => {
+  (dirs || ORTHO).forEach(([dx,dy]) => {
     for (let s=1; s<=maxd; s++){
       const x = u.x+dx*s, y = u.y+dy*s;
       if (!inB(x,y)) break;
@@ -723,24 +734,30 @@ function rayTargets(u, maxd){
   });
   return out;
 }
+function facing(u){ return u.side === "p" ? -1 : 1; }
 function specTargets(u){
   const sp = FAMS[u.d.fam].sp;
-  if (sp === "cannon_blast") return rayTargets(u, 3);
-  if (sp === "body_blow")    return rayTargets(u, 3);
-  if (sp === "charm_beam")   return foesAdj(u).filter(f => !f.isKing);
-  if (["jumping_stab","crushing_horn","over_easy","scissor_throw"].includes(sp)) return foesAdj(u);
+  if (sp === "cannon_blast")  return rayTargets(u, 2);
+  if (sp === "body_blow")     return rayTargets(u, 2, [[0, facing(u)]]);
+  if (sp === "emperors_rage") return S.units.filter(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) <= 2);
+  if (sp === "charm_beam")    return foesOrtho(u).filter(f => !f.isKing);
+  if (["jumping_stab","crushing_horn","over_easy","scissor_throw"].includes(sp)) return foesOrtho(u);
   return [];  /* self-cast */
 }
 function selfCast(u){
-  return ["sickle_dance","wing_flap","emperors_rage","healing_jig","fill_hole","itsakick"].includes(FAMS[u.d.fam].sp);
+  return ["sickle_dance","wing_flap","healing_jig","fill_hole","itsakick"].includes(FAMS[u.d.fam].sp);
 }
 function canSpecial(u){
-  if (u.cd > 0) return false;
   const sp = FAMS[u.d.fam].sp;
-  if (sp === "healing_jig") return S.units.some(a => a.alive && a.side === u.side && a !== u && cheb(u.x,u.y,a.x,a.y) === 1);
+  if (u.cd > 0 && sp !== "emperors_rage") return false;   /* la furia ha cariche infinite */
+  if (sp === "healing_jig") return alliesOrtho(u).length > 0;
   if (sp === "fill_hole")   return u.guard === 0;
-  if (sp === "itsakick" || sp === "sickle_dance" || sp === "wing_flap") return foesAdj(u).length > 0;
-  if (sp === "emperors_rage") return S.units.some(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) <= 2);
+  if (sp === "sickle_dance") return foesAdj(u).length > 0;
+  if (sp === "wing_flap")   return rayTargets(u, 2).length > 0;
+  if (sp === "itsakick"){
+    const f = facing(u);
+    return [[0,f],[0,-f]].some(([dx,dy]) => { const t = at(u.x+dx,u.y+dy); return t && t.side !== u.side; });
+  }
   return specTargets(u).length > 0;
 }
 
@@ -812,7 +829,8 @@ function raw(t, amount, why){
     log('<b>' + t.d.name + '</b> para il colpo con la palla di sterco.', "good");
     fx(t, "BLOCK", "#c4b5a0"); wave(t, "#c4b5a0", 1.5); return 0;
   }
-  const dmg = Math.max(1, Math.round(amount * (t.exposed ? 1.3 : 1)));
+  /* scoperto dopo una carica, oppure ribaltato a pancia in su: incassa il 30% in più */
+  const dmg = Math.max(1, Math.round(amount * (t.exposed || t.stun > 0 ? 1.3 : 1)));
   t.hp -= dmg; fx(t, "-" + dmg); anim(t, "hurt", 420);
   return dmg;
 }
@@ -825,6 +843,21 @@ function strike(a, t, mult, label){
   const d = raw(t, core * mult * (0.9 + Math.random() * 0.2), label);
   if (d) log('<b>' + a.d.name + '</b> ' + label + ' <b>' + t.d.name + '</b>: <span class="hit">' + d + ' danni</span>');
   settle(t, label);
+  return d;
+}
+/* Attacco normale. Il Dark Emperor ne ha uno speciale: oltre al danno ribalta
+   l'avversario e lo spinge indietro di una casella, con rimbalzo a catena e
+   possibile uscita dal campo. */
+function basicAttack(a, t){
+  const d = strike(a, t, 1, "attacca");
+  if (!d || !t.alive || a.d.fam !== "Dark Emperor") return d;
+  t.stun = Math.max(t.stun, 2);
+  log("<b>" + t.d.name + "</b> è atterrato dalla stretta oscura.", "hit");
+  const [dx,dy] = dirTo(a, t);
+  const nx = t.x + dx, ny = t.y + dy;
+  if (!inB(nx,ny)) ringOut(t);
+  else if (at(nx,ny)) hurl(t, dx, dy, a);
+  else { t.x = nx; t.y = ny; }
   return d;
 }
 function ko(t, why){
@@ -867,6 +900,25 @@ function shove(t, dx, dy, n, src){
 function dirTo(a, b){
   return [Math.sign(b.x - a.x), Math.sign(b.y - a.y)];
 }
+/* Lancio con rimbalzo: chi viene scagliato contro un altro Insector danneggia
+   entrambi e prosegue, finché non trova una casella vuota o esce dal campo. */
+function hurl(t, dx, dy, src){
+  let cx = t.x, cy = t.y, guard = 0;
+  while (guard++ < N * 2){
+    cx += dx; cy += dy;
+    if (!inB(cx,cy)){ ringOut(t); return "out"; }
+    const o = at(cx,cy);
+    if (!o){ t.x = cx; t.y = cy; return "ok"; }
+    /* casella occupata: danno a entrambi, poi il lanciato prosegue oltre */
+    const chip = Math.round(8 + src.str * 0.4);
+    raw(t, chip, "crash"); raw(o, chip, "crash");
+    log('<b>' + t.d.name + '</b> rimbalza su <b>' + o.d.name + '</b>: ' + chip + ' danni a testa.', "hit");
+    settle(o, "crash");
+    if (!t.alive) return "ko";
+    if (!o.alive){ t.x = cx; t.y = cy; return "ok"; }   /* l'ostacolo è caduto: atterra lì */
+  }
+  return "ok";
+}
 function doSpecial(u, target){
   const sp = FAMS[u.d.fam].sp, nm = FAMS[u.d.fam].spn;
   const col = FAMS[u.d.fam].col;
@@ -874,6 +926,7 @@ function doSpecial(u, target){
   anim(u, "cast", 560);
   /* ogni mossa ha il suo effetto: onda per quelle ad area, proiettile per il cannone */
   if (sp === "cannon_blast" && target) bullet(u, target, col);
+  else if (sp === "emperors_rage" && target){ bullet(u, target, "#c7d2fe"); wave(target, col, 1.6); }
   else if (sp === "sickle_dance") wave(u, col, 3);
   else if (sp === "wing_flap") wave(u, col, 3.4);
   else if (sp === "emperors_rage") wave(u, col, 5);
@@ -885,38 +938,41 @@ function doSpecial(u, target){
     strike(u, target, 1.1, "incorna");
     if (target.alive){
       const [dx,dy] = dirTo(u, target);
-      const behind = at(target.x + dx, target.y + dy);
-      shove(target, dx, dy, 1, u);
-      if (behind && behind.alive) log("Reazione a catena su <b>" + behind.d.name + "</b>.", "hit");
+      const nx = target.x + dx, ny = target.y + dy;
+      if (!inB(nx,ny)) ringOut(target);
+      else if (at(nx,ny)) hurl(target, dx, dy, u);   /* reazione a catena */
+      else { target.x = nx; target.y = ny; }
     }
   }
   else if (sp === "cannon_blast") strike(u, target, 1.0, "cannoneggia");
   else if (sp === "over_easy"){
     strike(u, target, 0.5, "ribalta");
-    if (target.alive){ target.stun = 2; log("<b>" + target.d.name + "</b> è immobilizzato per 2 turni.", "good"); }
+    if (target.alive){
+      target.stun = 2;
+      log("<b>" + target.d.name + "</b> è ribaltato: immobile e vulnerabile per 2 turni.", "good");
+    }
   }
   else if (sp === "scissor_throw"){
+    /* La presa non fa danno: il danno arriva da dove atterra il bersaglio. */
     const [dx,dy] = dirTo(u, target);
-    strike(u, target, 0.8, "afferra");
-    if (target.alive){
-      target.x = u.x; target.y = u.y;      /* passa oltre il lanciatore */
-      const r = shove(target, -dx, -dy, 1, u);
-      if (r === "ok"){ /* atterraggio pulito */ }
-      if (!inB(u.x - dx, u.y - dy) && target.alive) ringOut(target);
-    }
+    log('<b>' + u.d.name + '</b> afferra <b>' + target.d.name + '</b> e lo scaglia alle proprie spalle.');
+    const sx = u.x, sy = u.y;
+    target.x = sx; target.y = sy;          /* passa sopra il lanciatore... */
+    if (!inB(sx - dx, sy - dy)) ringOut(target);
+    else hurl(target, -dx, -dy, u);        /* ...e prosegue rimbalzando */
   }
   else if (sp === "sickle_dance"){
     foesAdj(u).forEach(f => strike(u, f, 0.75, "falcia"));
   }
   else if (sp === "body_blow"){
-    const [dx,dy] = dirTo(u, target);
+    const dx = 0, dy = facing(u);          /* carica solo dritto davanti a sé */
     u.x = target.x - dx; u.y = target.y - dy;
     strike(u, target, 1.5, "travolge");
     u.exposed = true;
     log("<b>" + u.d.name + "</b> resta scoperto dopo la carica.", "hit");
   }
   else if (sp === "healing_jig"){
-    S.units.filter(a => a.alive && a.side === u.side && cheb(u.x,u.y,a.x,a.y) === 1).forEach(a => {
+    alliesOrtho(u).forEach(a => {
       const h = Math.round(a.maxHp * 0.25);
       a.hp = Math.min(a.maxHp, a.hp + h); a.stun = 0; fx(a, "+" + h, "#5ddb8f"); wave(a, "#5ddb8f", 1.4);
       log("<b>" + a.d.name + "</b> recupera " + h + " stamina.", "good");
@@ -939,18 +995,16 @@ function doSpecial(u, target){
     log("<b>" + target.d.name + "</b> è stato ammaliato e cambia schieramento!", "good");
   }
   else if (sp === "wing_flap"){
-    foesAdj(u).forEach(f => {
+    rayTargets(u, 2).forEach(f => {
       strike(u, f, 0.4, "spazza via");
       if (f.alive){ const [dx,dy] = dirTo(u,f); shove(f, dx, dy, 2, u); }
     });
   }
   else if (sp === "emperors_rage"){
-    S.units.filter(f => f.alive && f.side !== u.side && cheb(u.x,u.y,f.x,f.y) <= 2).forEach(f => {
-      strike(u, f, 1.0, "fulmina");
-      if (f.alive) f.stun = Math.max(f.stun, 1);
-    });
+    strike(u, target, 1.3, "fulmina");
   }
-  u.cd = 3;
+  /* la furia dell'Imperatore ha cariche infinite: nessuna ricarica */
+  if (sp !== "emperors_rage") u.cd = 3;
 }
 
 /* =========================================================================
@@ -1005,7 +1059,7 @@ function aiAct(u){
   }
   /* attacco diretto */
   let adj = foesAdj(u);
-  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; strike(u, t, 1, "attacca"); return; }
+  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; basicAttack(u, t); return; }
 
   /* avvicinamento */
   const goal = (u.isKing ? foes.slice().sort((a,b)=>cheb(u.x,u.y,a.x,a.y)-cheb(u.x,u.y,b.x,b.y))[0]
@@ -1018,7 +1072,7 @@ function aiAct(u){
   if (u.isKing && escort > 0 && cheb(best.x,best.y,goal.x,goal.y) < 2) return;  /* il Re resta coperto finché ha la scorta */
   u.x = best.x; u.y = best.y;
   adj = foesAdj(u);
-  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; strike(u, t, 1, "attacca"); }
+  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; basicAttack(u, t); }
 }
 
 function checkEnd(){
@@ -1169,7 +1223,7 @@ function click(x, y){
     S.sel.x = x; S.sel.y = y; S.mode = "idle"; draw(); return;
   }
   if (S.sel && S.mode === "atk" && u && foesAdj(S.sel).includes(u)){
-    strike(S.sel, u, 1, "attacca"); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
+    basicAttack(S.sel, u); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
   }
   if (S.sel && S.mode === "spec" && u && specTargets(S.sel).includes(u)){
     doSpecial(S.sel, u); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
