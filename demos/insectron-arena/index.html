@@ -94,6 +94,22 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
 }
 .cell.dark{background:rgba(22,30,44,.6)}
 .cell.home{border-bottom:2px solid rgba(75,195,255,.32)}
+.cell.drop{background:#153a52;border-color:var(--accent2);cursor:pointer}
+.cell.drop:hover{background:#1d5375}
+.cell.drop::after{
+  content:"";position:absolute;inset:0;margin:auto;width:11px;height:11px;
+  border:2px dashed var(--accent2);border-radius:50%;opacity:.8
+}
+.tok.pick{filter:brightness(1.35)}
+.deploylist{display:flex;flex-direction:column;gap:6px}
+.dep{
+  display:flex;gap:9px;align-items:center;background:var(--panel2);border:1px solid var(--line);
+  border-radius:9px;padding:7px;font-size:.78rem;cursor:pointer;text-align:left;width:100%
+}
+.dep:hover{border-color:var(--accent2)}
+.dep.cur{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.dep.done{opacity:.5}
+.dep .art{width:30px;height:30px;flex:0 0 30px}
 .cell.away{border-top:2px solid rgba(255,107,107,.32)}
 .cell.mv{background:#16405c;border-color:var(--accent2);cursor:pointer}
 .cell.mv::after{
@@ -271,7 +287,14 @@ footer.note a{color:var(--accent2)}
 <section id="s-battle" class="screen">
   <div class="arena">
     <div class="boardwrap">
-      <div class="turnbar">
+      <div class="turnbar" id="deploybar" style="display:none">
+        <span class="pill p">Schiera le pedine</span>
+        <span class="badge" id="b-todo">Da piazzare: <b>5</b></span>
+        <div class="spacer"></div>
+        <button id="btn-rand">Schiera a caso</button>
+        <button id="btn-fight" class="primary" disabled>Inizia battaglia</button>
+      </div>
+      <div class="turnbar" id="turnbar">
         <span class="pill p" id="turnpill">Il tuo turno</span>
         <span class="badge" id="b-opp">Avversario: <b>—</b></span>
         <div class="spacer"></div>
@@ -385,6 +408,7 @@ const byId = {}; UNITS.forEach(u => byId[u.id] = u);
 /* =========================================================================
    GRAFICA — SVG originali, una silhouette per famiglia
    ========================================================================= */
+let GRAD_SEQ = 0;
 function shade(hex, amt){
   const n = parseInt(hex.slice(1), 16);
   const ch = [(n>>16)&255, (n>>8)&255, n&255].map(v =>
@@ -399,7 +423,10 @@ function art(fam, flip, rank){
   const K = "#0a0e15";
   const lo = shade(col, -0.45), hi = shade(col, 0.34), mid = col;
   const t  = rank >= 5 ? 3 : (rank >= 3 ? 2 : 1);
-  const gid = "gr_" + fam.replace(/[^A-Za-z]/g, "") + t + (flip ? "f" : "");
+  /* Id univoco per ogni SVG: con id ripetuti il browser risolve url(#id) alla PRIMA
+     definizione del documento, che puo' trovarsi in una sezione display:none — e in quel
+     caso il gradiente non viene dipinto. */
+  const gid = "gr" + (++GRAD_SEQ);
   const S2 = ' stroke="' + K + '" stroke-width="2" stroke-linejoin="round"';
   const S1 = ' stroke="' + K + '" stroke-width="1.5" stroke-linejoin="round"';
   const G  = ' fill="url(#' + gid + ')"';
@@ -519,7 +546,8 @@ function art(fam, flip, rank){
 const S = {
   rankIdx: 0, round: 0, champion: false,
   team: [], kingId: null,
-  units: [], turn: "p", sel: null, mode: "idle", busy: false, over: false
+  units: [], turn: "p", sel: null, mode: "idle", busy: false, over: false,
+  phase: "battle", pick: null
 };
 
 const $ = s => document.querySelector(s);
@@ -663,20 +691,80 @@ function startBattle(){
   S.team.forEach(id => S.units.push(mk(byId[id], "p", id === S.kingId, 1)));
   buildEnemy().forEach(u => S.units.push(u));
 
+  /* Le pedine del giocatore restano fuori dal campo finché non le schiera lui. */
+  alive("p").forEach(u => { u.x = -1; u.y = -1; });
   const cols = [0,2,4,1,3];
-  alive("p").forEach((u,i) => { u.x = cols[i]; u.y = i < 3 ? N-1 : N-2; });
   alive("e").forEach((u,i) => { u.x = cols[i]; u.y = i < 3 ? 0 : 1; });
-  /* il Re parte sempre nella fila più arretrata */
-  const pk = kingOf("p"), ek = kingOf("e");
-  if (pk && pk.y !== N-1){ const sw = alive("p").find(u => u.y === N-1 && u !== pk); if (sw){ [pk.x,pk.y,sw.x,sw.y] = [sw.x,sw.y,pk.x,pk.y]; } }
+  const ek = kingOf("e");
   if (ek && ek.y !== 0){ const sw = alive("e").find(u => u.y === 0 && u !== ek); if (sw){ [ek.x,ek.y,sw.x,sw.y] = [sw.x,sw.y,ek.x,ek.y]; } }
 
   S.turn = "p"; S.sel = null; S.mode = "idle"; S.over = false; S.busy = false;
+  S.phase = "deploy"; S.pick = null;
   resetBoard();
   $("#log").innerHTML = "";
   $("#b-opp").innerHTML = "Avversario: <b>" + R.names[S.round] + "</b>";
-  log('<b>Rank ' + R.id + ' — Round ' + (S.round+1) + '/5</b> contro <b>' + R.names[S.round] + '</b>. Abbatti il Re avversario per vincere.');
-  show("s-battle"); newTurn("p"); draw();
+  log('<b>Rank ' + R.id + ' — Round ' + (S.round+1) + '/5</b> contro <b>' + R.names[S.round] + '</b>.');
+  log('Schiera le tue 5 pedine nelle <b>due file più vicine a te</b>, poi inizia la battaglia.');
+  show("s-battle"); draw();
+}
+
+/* =========================================================================
+   SCHIERAMENTO
+   ========================================================================= */
+const inZone = (u, y) => u.side === "p" ? y >= N-2 : y <= 1;
+const placed  = u => u.x >= 0;
+function toPlace(){ return S.units.filter(u => u.side === "p" && u.alive && !placed(u)); }
+function randomDeploy(){
+  const free = [];
+  for (let y = N-2; y < N; y++) for (let x = 0; x < N; x++) if (!at(x,y)) free.push({x,y});
+  S.units.filter(u => u.side === "p" && !placed(u)).forEach(u => {
+    if (!free.length) return;
+    const i = Math.floor(Math.random() * free.length);
+    u.x = free[i].x; u.y = free[i].y; free.splice(i,1);
+  });
+  S.pick = null; draw();
+}
+function beginFight(){
+  if (toPlace().length) return;
+  S.phase = "battle"; S.pick = null; S.sel = null;
+  log("Schieramento completato. <b>Abbatti il Re avversario per vincere.</b>");
+  newTurn("p"); draw();
+}
+function deployClick(x, y){
+  const here = at(x,y);
+  if (here && here.side === "p"){                 /* riprendi una pedina già piazzata */
+    if (S.pick === here){ S.pick = null; }
+    else if (S.pick && !placed(S.pick)){          /* scambio con una da piazzare */
+      const p = S.pick; here.x = -1; here.y = -1; p.x = x; p.y = y; S.pick = null;
+    } else { here.x = -1; here.y = -1; S.pick = here; }
+    draw(); return;
+  }
+  if (here) return;                               /* casella avversaria: niente */
+  if (!inZone({side:"p"}, y)) return;             /* fuori dalle due file */
+  const u = S.pick && !placed(S.pick) ? S.pick : toPlace()[0];
+  if (!u) return;
+  u.x = x; u.y = y; S.pick = null; draw();
+}
+function drawDeploy(){
+  const todo = toPlace();
+  $("#b-todo").innerHTML = "Da piazzare: <b>" + todo.length + "</b>";
+  $("#btn-fight").disabled = todo.length > 0;
+  const el = $("#ucard");
+  el.innerHTML = '<div class="fam" style="margin-bottom:9px">Clicca una casella illuminata per piazzare la pedina evidenziata. ' +
+    'Clicca una pedina già in campo per rimetterla in panchina.</div><div class="deploylist" id="deplist"></div>';
+  const list = $("#deplist");
+  const next = S.pick && !placed(S.pick) ? S.pick : todo[0];
+  S.units.filter(u => u.side === "p" && u.alive).forEach(u => {
+    const b = document.createElement("button");
+    b.className = "dep" + (u === next ? " cur" : "") + (placed(u) ? " done" : "");
+    b.innerHTML = art(u.d.fam, false, u.d.rank) +
+      '<span class="grow"><b>' + (u.isKing ? "\u265B " : "") + u.d.name + '</b><br>' +
+      '<span style="font-size:.68rem;color:var(--muted)">' +
+      (placed(u) ? "in campo" : "in panchina") + ' \u00b7 ' + moveLabel(u.isKing ? "step" : u.d.mv) +
+      '</span></span>';
+    b.onclick = () => { if (placed(u)){ u.x = -1; u.y = -1; } S.pick = u; draw(); };
+    list.appendChild(b);
+  });
 }
 
 /* =========================================================================
@@ -1135,9 +1223,13 @@ function resetBoard(){
 }
 function draw(){
   if (!BOARD_READY) initBoard();
+  const dep = S.phase === "deploy";
+  $("#deploybar").style.display = dep ? "" : "none";
+  $("#turnbar").style.display  = dep ? "none" : "";
+
   const sel = S.sel;
-  const mvSet = sel && S.mode === "move" ? moves(sel) : [];
-  const tgSet = sel && S.mode === "atk" ? foesAdj(sel) : (sel && S.mode === "spec" ? specTargets(sel) : []);
+  const mvSet = !dep && sel && S.mode === "move" ? moves(sel) : [];
+  const tgSet = !dep && sel ? (S.mode === "atk" ? foesAdj(sel) : (S.mode === "spec" ? specTargets(sel) : [])) : [];
 
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++){
     const c = document.querySelector('[data-xy="' + x + "," + y + '"]');
@@ -1145,18 +1237,20 @@ function draw(){
     const u = at(x,y);
     c.className = "cell" + ((x+y) % 2 ? " dark" : "")
       + (y >= N-2 ? " home" : "") + (y <= 1 ? " away" : "")
+      + (dep && y >= N-2 && !u ? " drop" : "")
       + (mvSet.some(p => p.x === x && p.y === y) ? " mv" : "")
       + (u && tgSet.includes(u) ? " tg" : "")
       + (u && sel === u ? " cur" : "");
   }
   drawTokens();
-  drawCard();
+  if (dep) drawDeploy(); else drawCard();
 }
 function drawTokens(){
   const l = layer(); if (!l) return;
   S.units.forEach(u => {
     if (!u.alive) return;                       /* la rimozione la gestisce ko() */
     let e = l.querySelector('[data-uid="' + u.uid + '"]');
+    if (u.x < 0){ if (e) e.remove(); return; }  /* ancora in panchina */
     if (!e){
       e = document.createElement("div");
       e.dataset.uid = u.uid;
@@ -1174,7 +1268,9 @@ function drawTokens(){
       e.dataset.side = u.side;
       e.querySelector(".inner").innerHTML = art(u.d.fam, u.side === "e", u.d.rank);
     }
-    e.className = "tok " + u.side + (u.acted && u.side === "p" && S.turn === "p" ? " done" : "");
+    e.className = "tok " + u.side
+      + (u.acted && u.side === "p" && S.turn === "p" && S.phase !== "deploy" ? " done" : "")
+      + (S.pick === u ? " pick" : "");
     e.style.left = (u.x * P) + "%";
     e.style.top  = (u.y * P) + "%";
     e.querySelector(".hpbar").className = "hpbar " + u.side;
@@ -1217,6 +1313,7 @@ function drawCard(){
   acts.appendChild(p);
 }
 function click(x, y){
+  if (S.phase === "deploy"){ deployClick(x, y); return; }
   if (S.busy || S.over || S.turn !== "p") return;
   const u = at(x,y);
   if (S.sel && S.mode === "move" && moves(S.sel).some(p => p.x === x && p.y === y)){
@@ -1247,6 +1344,8 @@ function updBadges(){
 
 $("#btn-start").onclick = startBattle;
 $("#btn-end").onclick = endPlayerTurn;
+$("#btn-rand").onclick = randomDeploy;
+$("#btn-fight").onclick = beginFight;
 $("#btn-next").onclick = () => { drawRoster(); drawSlots(); show("s-team"); };
 $("#btn-clear").onclick = () => { S.team = []; S.kingId = null; drawRoster(); drawSlots(); save(); };
 $("#btn-auto").onclick = () => {

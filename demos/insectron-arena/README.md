@@ -76,6 +76,21 @@ Altre correzioni che la FAQ ha imposto:
   una casella, con rimbalzo a catena ed eventuale uscita dal campo. È questo che lo
   rende il Re migliore, come dice il wiki.
 
+## Schieramento delle pedine
+
+Prima di ogni battaglia si posizionano le 5 pedine, una alla volta, **entro le due file
+più vicine** (12 caselle). Il pannello laterale elenca la squadra con il range di
+movimento di ciascuna, così la scelta si fa con i dati sott'occhio: le unità lente
+convengono avanti, il Re coperto dietro.
+
+- clic su una casella illuminata → piazza la pedina evidenziata
+- clic su una pedina già in campo → torna in panchina, pronta per un'altra casella
+- **Schiera a caso** riempie solo le caselle rimaste vuote, senza spostare ciò che hai
+  già posizionato
+- **Inizia battaglia** si attiva solo a schieramento completo
+
+Gli avversari sono schierati dalla CPU nelle loro due file, con il Re nell'ultima.
+
 ## Progressione del roster
 
 Si comincia con le sole **forme base**: i 7 Insector di rank 1 (Faerie, Flipperbug,
@@ -152,7 +167,9 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 Tutto disegnato per questo prototipo, generato da codice: nessun file immagine nel repo.
 
 **Personaggi.** La funzione `art(famiglia, ruotato, rank)` compone un SVG per ciascuna
-famiglia. Ogni corpo ha gradiente verticale, contorno scuro e ombra a terra. Il rank
+famiglia. Ogni SVG riceve un id di gradiente univoco: con id ripetuti il browser risolve
+`url(#id)` alla prima definizione del documento, e se quella sta in una sezione
+`display:none` il gradiente non viene dipinto affatto. Ogni corpo ha gradiente verticale, contorno scuro e ombra a terra. Il rank
 cambia il disegno su tre livelli (1-2, 3-4, 5-6): corna, chele, ali e spine crescono, e
 la stazza aumenta dell'11% per livello, così la progressione del torneo si vede a colpo
 d'occhio senza leggere la scheda. Le unità avversarie sono ruotate di 180° per fronteggiare
@@ -181,6 +198,9 @@ così un ring-out può davvero uscire dal campo. Tutte le animazioni si disattiv
 
 ## Verifiche fatte
 
+- 20 controlli automatici sulla fase di schieramento (zona valida, rifiuto dei click
+  fuori zona, ritorno in panchina, "schiera a caso" che non sposta il già piazzato,
+  avvio bloccato finché mancano pedine): tutti superati
 - 26 controlli automatici sulle regole di targeting e sugli effetti corretti dalla FAQ
   (area ortogonale, blocco della linea di tiro, rimbalzo a catena, ring-out, vulnerabilità
   da ribaltamento, cura non su se stessa, movimento dell'Itsahorse, cariche infinite
