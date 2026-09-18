@@ -234,13 +234,15 @@ body{
   /* flex e non grid: con inline-grid "5", "/" e "12" finirebbero su tre righe */
   display:inline-flex;align-items:center;justify-content:center;gap:.22em;
   padding:0 calc(var(--btn) * .32);border-radius:99px;
-  background:rgba(4,27,52,.6);border:1.5px solid rgba(255,255,255,.2);
+  /* stessa superficie dei pulsanti: con un fondo piu' scuro dello sfondo la
+     pillola sprofondava e sembrava piu' piccola, pur essendo alta uguale */
+  background:rgba(255,255,255,.13);border:1.5px solid rgba(255,255,255,.3);
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
   font-family:var(--font-display);font-weight:600;letter-spacing:.06em;
-  font-size:calc(var(--btn) * .34);line-height:1;white-space:nowrap;
+  font-size:calc(var(--btn) * .4);line-height:1;white-space:nowrap;
   font-variant-numeric:tabular-nums;
 }
-.counter b{color:var(--cyan);font-size:calc(var(--btn) * .44)}
+.counter b{color:var(--cyan);font-size:calc(var(--btn) * .5)}
 
 /* ============ FOOTER ============ */
 .footer{
