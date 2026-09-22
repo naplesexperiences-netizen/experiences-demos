@@ -19,7 +19,7 @@ get_header();
 $exp_q = new WP_Query([
     'post_type'      => 'post',
     'post_status'    => 'publish',
-    'posts_per_page' => 200,
+    'posts_per_page' => experiences_blog_posts_limit(),
     'orderby'        => 'date',
     'order'          => 'DESC',
 ]);

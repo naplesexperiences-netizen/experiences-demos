@@ -151,6 +151,53 @@ function experiences_customize_register( $wp_customize ) {
         'section'     => 'experiences_privacy_section',
         'type'        => 'checkbox',
     ]);
+
+    // Dati di fatturazione citati dalle pagine legali. Il tema non può
+    // conoscerli, quindi i template lasciano dei segnaposto che vengono
+    // riempiti da qui al momento della resa: chi ha già le pagine
+    // pubblicate le vede aggiornate senza doverle riscrivere.
+    $wp_customize->add_section( 'experiences_legal_section', [
+        'title'       => __( 'Dati legali', 'experiences-srl' ),
+        'description' => __( 'Compaiono nella Privacy Policy, nella Cookie Policy e nei Termini e Condizioni. Finché restano vuoti le pagine mostrano un segnaposto.', 'experiences-srl' ),
+        'priority'    => 32,
+    ]);
+
+    $exp_legal_fields = [
+        'exp_legal_company' => [
+            'label'       => __( 'Ragione sociale', 'experiences-srl' ),
+            'description' => __( 'Es: Experiences Srl', 'experiences-srl' ),
+            'default'     => 'Experiences Srl',
+        ],
+        'exp_legal_address' => [
+            'label'       => __( 'Sede legale', 'experiences-srl' ),
+            'description' => __( 'Indirizzo completo, es: Via Toledo 100, 80134 Napoli (NA)', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_vat' => [
+            'label'       => __( 'Partita IVA', 'experiences-srl' ),
+            'description' => __( 'Es: IT01234567890', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_hosting' => [
+            'label'       => __( 'Provider di hosting', 'experiences-srl' ),
+            'description' => __( 'Va indicato tra i destinatari dei dati nella Privacy Policy. Es: Aruba S.p.A., SiteGround, IONOS…', 'experiences-srl' ),
+            'default'     => '',
+        ],
+    ];
+
+    foreach ( $exp_legal_fields as $exp_key => $exp_field ) {
+        $wp_customize->add_setting( $exp_key, [
+            'default'           => $exp_field['default'],
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ]);
+        $wp_customize->add_control( $exp_key, [
+            'label'       => $exp_field['label'],
+            'description' => $exp_field['description'],
+            'section'     => 'experiences_legal_section',
+            'type'        => 'text',
+        ]);
+    }
 }
 add_action( 'customize_register', 'experiences_customize_register' );
 
@@ -220,6 +267,125 @@ function experiences_ensure_legal_pages() {
     update_option( 'experiences_legal_pages_setup_v1', time() );
 }
 add_action( 'admin_init', 'experiences_ensure_legal_pages' );
+
+// ── Segnaposto delle pagine legali ─────────────────────────────────────
+// Le pagine legali citano dati che il tema non può conoscere — sede,
+// P.IVA, hosting — e una data di ultima modifica che invecchia da sola.
+// Restano nel contenuto come token e vengono risolti a ogni resa
+// leggendo il Personalizzatore: basta compilare i campi una volta e
+// tutte e tre le pagine si allineano, comprese quelle già pubblicate
+// dalle versioni precedenti del tema.
+function experiences_legal_page_slugs() {
+    return [ 'privacy-policy', 'cookie-policy', 'termini-e-condizioni' ];
+}
+
+function experiences_legal_values() {
+    $read = static function ( $key, $fallback ) {
+        $val = trim( (string) get_theme_mod( $key, '' ) );
+        return '' !== $val ? $val : $fallback;
+    };
+
+    return [
+        'company' => $read( 'exp_legal_company', 'Experiences Srl' ),
+        'address' => $read( 'exp_legal_address', '' ),
+        'vat'     => $read( 'exp_legal_vat', '' ),
+        'hosting' => $read( 'exp_legal_hosting', '' ),
+    ];
+}
+
+function experiences_legal_resolve( $content, $post = null ) {
+    // Le pagine nate dalle versioni precedenti contengono i vecchi
+    // segnaposto scritti a mano: li si riporta ai token, così sotto la
+    // risoluzione è una sola strada.
+    $legacy = [
+        '/Ultima modifica:[^<]*?TODO data\./'   => 'Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.',
+        '/Sede legale: TODO indirizzo, Napoli/' => 'Sede legale: {{EXP_SEDE}}',
+        '/P\.IVA: TODO(?![\w-])/'               => 'P.IVA: {{EXP_PIVA}}',
+        '/\{TODO_HOSTING\}/'                    => '{{EXP_HOSTING}}',
+    ];
+    $content = preg_replace( array_keys( $legacy ), array_values( $legacy ), $content );
+
+    $values = experiences_legal_values();
+
+    // Un campo vuoto non deve lasciare "P.IVA:" a metà frase né mostrare
+    // "TODO" a chi legge: il segnaposto è esplicito e l'avviso in
+    // bacheca qui sotto ricorda di sostituirlo.
+    $todo = '<em>[da completare]</em>';
+
+    $modified = $post ? get_the_modified_date( 'j F Y', $post ) : '';
+
+    return strtr( $content, [
+        '{{EXP_RAGIONE_SOCIALE}}' => esc_html( $values['company'] ),
+        '{{EXP_SEDE}}'            => '' !== $values['address'] ? esc_html( $values['address'] ) : $todo,
+        '{{EXP_PIVA}}'            => '' !== $values['vat'] ? esc_html( $values['vat'] ) : $todo,
+        '{{EXP_HOSTING}}'         => '' !== $values['hosting'] ? esc_html( $values['hosting'] ) : $todo,
+        '{{EXP_ULTIMA_MODIFICA}}' => $modified ? $modified : date_i18n( 'j F Y' ),
+    ]);
+}
+
+function experiences_legal_filter_content( $content ) {
+    if ( ! is_page() || ! in_the_loop() || ! is_main_query() ) {
+        return $content;
+    }
+
+    $post = get_post();
+    if ( ! $post || ! in_array( $post->post_name, experiences_legal_page_slugs(), true ) ) {
+        return $content;
+    }
+
+    return experiences_legal_resolve( $content, $post );
+}
+add_filter( 'the_content', 'experiences_legal_filter_content' );
+
+// Finché i dati non ci sono, le pagine legali restano incomplete: meglio
+// dirlo dove si guarda ogni giorno che lasciarlo scoprire a un cliente.
+function experiences_legal_admin_notice() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    // Solo in bacheca e nell'elenco pagine: su ogni schermata sarebbe rumore.
+    $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+    if ( ! $screen || ! in_array( $screen->id, [ 'dashboard', 'edit-page' ], true ) ) {
+        return;
+    }
+
+    $values  = experiences_legal_values();
+    $missing = [];
+    if ( '' === $values['address'] ) {
+        $missing[] = __( 'sede legale', 'experiences-srl' );
+    }
+    if ( '' === $values['vat'] ) {
+        $missing[] = __( 'partita IVA', 'experiences-srl' );
+    }
+    if ( '' === $values['hosting'] ) {
+        $missing[] = __( 'provider di hosting', 'experiences-srl' );
+    }
+
+    if ( ! $missing ) {
+        return;
+    }
+
+    printf(
+        '<div class="notice notice-warning"><p><strong>%1$s</strong> %2$s <em>%3$s</em>. <a href="%4$s">%5$s</a></p></div>',
+        esc_html__( 'Pagine legali incomplete.', 'experiences-srl' ),
+        esc_html__( 'Privacy Policy e Termini mostrano un segnaposto al posto di:', 'experiences-srl' ),
+        esc_html( implode( ', ', $missing ) ),
+        esc_url( admin_url( 'customize.php?autofocus[section]=experiences_legal_section' ) ),
+        esc_html__( 'Compila i dati legali →', 'experiences-srl' )
+    );
+}
+add_action( 'admin_notices', 'experiences_legal_admin_notice' );
+
+// ── Quanti articoli carica l'elenco del blog ───────────────────────────
+// L'elenco è filtrato in pagina, quindi li rende tutti in una volta. Il
+// tetto evita che un catalogo cresciuto troppo generi una pagina enorme;
+// oltre quella soglia conviene passare alla paginazione.
+// Modificabile senza toccare i template:
+//   add_filter( 'experiences_blog_posts_limit', fn() => 400 );
+function experiences_blog_posts_limit() {
+    return (int) apply_filters( 'experiences_blog_posts_limit', 200 );
+}
 
 // ── Galleria demo ──────────────────────────────────────────────────────
 // Le demo vivono su GitHub Pages: l'hub (index.html alla radice del repo)
@@ -297,13 +463,12 @@ function experiences_setup_blog_archive_page() {
 add_action( 'admin_init', 'experiences_setup_blog_archive_page' );
 
 function experiences_legal_template_privacy() {
-    $site = esc_html( get_bloginfo( 'name' ) );
     $home = esc_url( home_url( '/' ) );
     return <<<HTML
-<p><em>Ultima modifica: {$site} — TODO data.</em></p>
+<p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
 <h2>Titolare del trattamento</h2>
-<p><strong>Experiences Srl</strong><br>Sede legale: TODO indirizzo, Napoli<br>P.IVA: TODO<br>Email: <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a><br>Sito: <a href="{$home}">{$home}</a></p>
+<p><strong>{{EXP_RAGIONE_SOCIALE}}</strong><br>Sede legale: {{EXP_SEDE}}<br>P.IVA: {{EXP_PIVA}}<br>Email: <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a><br>Sito: <a href="{$home}">{$home}</a></p>
 
 <h2>Dati raccolti</h2>
 <p>Raccogliamo solo i dati che ci fornisci volontariamente compilando il modulo contatti:</p>
@@ -338,7 +503,7 @@ function experiences_legal_template_privacy() {
 <p>I dati possono essere trattati da:</p>
 <ul>
 <li><strong>Google LLC</strong> (Gmail) — provider email del titolare</li>
-<li><strong>{TODO_HOSTING}</strong> — hosting del sito web</li>
+<li><strong>{{EXP_HOSTING}}</strong> — hosting del sito web</li>
 <li><strong>Cal.com / Calendly</strong> — per la prenotazione delle call (solo dati che fornisci al momento della prenotazione)</li>
 <li>Consulenti, commercialista, autorità competenti — solo quando obbligatorio per legge</li>
 </ul>
@@ -367,7 +532,7 @@ HTML;
 
 function experiences_legal_template_cookie() {
     return <<<HTML
-<p><em>Ultima modifica: TODO data.</em></p>
+<p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
 <p>Questo sito utilizza cookie per garantire il corretto funzionamento, analizzare il traffico e, previo consenso, mostrare contenuti personalizzati. Puoi gestire le tue preferenze in qualsiasi momento cliccando su <strong>"Preferenze Cookie"</strong> in fondo a ogni pagina.</p>
 
@@ -423,12 +588,12 @@ HTML;
 
 function experiences_legal_template_terms() {
     return <<<HTML
-<p><em>Ultima modifica: TODO data.</em></p>
+<p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
 <p>I presenti Termini e Condizioni regolano l'utilizzo del sito naplesexperiences.com e dei servizi offerti da Experiences Srl.</p>
 
 <h2>1. Informazioni sul titolare</h2>
-<p><strong>Experiences Srl</strong><br>Sede legale: TODO indirizzo, Napoli<br>P.IVA: TODO</p>
+<p><strong>{{EXP_RAGIONE_SOCIALE}}</strong><br>Sede legale: {{EXP_SEDE}}<br>P.IVA: {{EXP_PIVA}}</p>
 
 <h2>2. Oggetto dei servizi</h2>
 <p>Experiences Srl offre servizi di digitalizzazione per il settore turistico, tra cui sviluppo siti web, SEO/SEM marketing, gestione Channel Manager e OTA, assistenti virtuali AI.</p>
@@ -646,7 +811,12 @@ add_action( 'init', 'experiences_register_portfolio_cpt' );
 
 // ── Portfolio shortcode [experiences_portfolio] ────────────────
 function experiences_portfolio_shortcode( $atts ) {
-    $atts  = shortcode_atts([ 'posts' => -1 ], $atts);
+    $atts  = shortcode_atts([ 'posts' => -1 ], $atts );
+    $limit = (int) $atts['posts'];
+
+    // La prima query resta senza limite: serve l'elenco completo per
+    // deduplicare per titolo. Tagliare qui restituirebbe meno elementi
+    // del richiesto ogni volta che ci sono doppioni.
     $query = new WP_Query([
         'post_type'      => 'portfolio_site',
         'posts_per_page' => -1,
@@ -654,27 +824,34 @@ function experiences_portfolio_shortcode( $atts ) {
         'orderby'        => 'menu_order date',
         'order'          => 'ASC',
     ]);
-    // Static items always shown; WP_Query items are additional
-    // Deduplicate by title before output
+
     $seen_titles = [];
     if ( $query->have_posts() ) {
         $unique_posts = [];
         while ( $query->have_posts() ) {
             $query->the_post();
             $t = get_the_title();
-            if ( ! in_array( $t, $seen_titles ) ) {
-                $seen_titles[]   = $t;
-                $unique_posts[]  = get_post();
+            if ( ! in_array( $t, $seen_titles, true ) ) {
+                $seen_titles[]  = $t;
+                $unique_posts[] = get_post();
             }
         }
         wp_reset_postdata();
-        // Re-run with unique posts only
+
+        // Il limite dello shortcode si applica qui, a deduplica avvenuta.
+        if ( $limit > 0 ) {
+            $unique_posts = array_slice( $unique_posts, 0, $limit );
+        }
+
+        $ids = wp_list_pluck( $unique_posts, 'ID' );
+
+        // post__in vuoto viene ignorato da WP_Query, che restituirebbe
+        // l'intero post type: meglio una query che non trova nulla.
         $query = new WP_Query([
-            'post_type'  => 'portfolio_site',
-            'post__in'   => wp_list_pluck( $unique_posts, 'ID' ),
-            'orderby'    => 'menu_order',
-            'order'      => 'ASC',
-            'posts_per_page' => -1,
+            'post_type'      => 'portfolio_site',
+            'post__in'       => $ids ?: [ 0 ],
+            'orderby'        => 'post__in',
+            'posts_per_page' => $limit > 0 ? $limit : -1,
         ]);
     }
 
