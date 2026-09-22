@@ -73,7 +73,7 @@ if (is_category()) {
                         <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
                            class="flex-shrink-0 px-5 py-2 bg-light hover:bg-accent text-secondary hover:text-white text-sm font-semibold rounded-full transition-all">
                             <?php echo esc_html($cat->name); ?>
-                            <span class="ml-1 text-xs opacity-70">(<?php echo $cat->count; ?>)</span>
+                            <span class="ml-1 text-xs opacity-70">(<?php echo (int) $cat->count; ?>)</span>
                         </a>
                     <?php endforeach; ?>
                 </div>
