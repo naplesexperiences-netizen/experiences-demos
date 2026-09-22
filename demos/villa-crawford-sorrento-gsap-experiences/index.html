@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="anim-ready">
 <head>
+    <script>
+      /* senza JS o con moto ridotto la hero resta visibile: nessun contenuto nascosto */
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.remove('anim-ready');
+      }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villa Crawford — Sant’Agnello, Sorrento | Demo Experiences Srl</title>
@@ -28,6 +34,9 @@
             --font-sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
             --max-w:          1240px;
             --ease:           cubic-bezier(.4,0,.2,1);
+            /* curve custom richieste da top-design: mai ease/linear di default */
+            --ease-expo-out:  cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
 
             /* palette in OKLCH — nessun colore vive fuori da qui */
             --c-accent:        oklch(69.4% 0.118 83);
@@ -244,6 +253,39 @@
             .menu-overlay { grid-template-columns: 1fr; }
             .menu-overlay__preview { display: none; }
             .menu-overlay__nav { justify-content: flex-start; padding-top: 110px; }
+        }
+
+        /* selezione brandizzata: leggibile sia su carta chiara sia sul fondo scuro */
+        ::selection { background: var(--c-accent); color: var(--c-ink-deep); }
+
+        /* ---- HERO: coreografia d'ingresso ----
+           Il titolo sale parola per parola da dietro una maschera, non in blocco.
+           Gli stati iniziali stanno nel CSS e non nel JS, così non c'è sfarfallio
+           fra il primo paint e l'avvio di GSAP. .no-js li annulla. */
+        .hero__title .word {
+            display: inline-block; overflow: hidden; vertical-align: top;
+            padding-bottom: 0.08em; margin-bottom: -0.08em;
+        }
+        .hero__title .word__in { display: inline-block; will-change: transform; }
+        html.anim-ready .hero__title { opacity: 0; }
+        html.anim-ready .hero__subtitle,
+        html.anim-ready .hero__cta,
+        html.anim-ready .hero .eyebrow,
+        html.anim-ready .hero__scroll { opacity: 0; }
+        html.anim-ready .hero-card {
+            opacity: 0;
+            clip-path: inset(0 0 100% 0);
+        }
+
+        .btn { will-change: transform; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html.anim-ready .hero__title { opacity: 1; }
+            html.anim-ready .hero__subtitle,
+            html.anim-ready .hero__cta,
+            html.anim-ready .hero .eyebrow,
+            html.anim-ready .hero__scroll,
+            html.anim-ready .hero-card { opacity: 1; clip-path: none; }
         }
 
         /* ============ HERO ============ */
@@ -1028,42 +1070,79 @@
             });
         }());
 
-        /* ---- Hero intro + floating cards + parallax ---- */
+        /* ---- Hero: coreografia d'ingresso, card e parallasse ---- */
         (function () {
-            var heroLine = document.querySelector('.hero__title .line span');
+            var titleInner = document.querySelector('.hero__title .line > span');
             var cards = gsap.utils.toArray('.hero-card');
             var cardCluster = document.querySelector('.hero__cards-inner');
 
-            if (!prefersReducedMotion) {
-                var tl = gsap.timeline({ delay: 0.2 });
-                tl.from(heroLine, { yPercent: 110, duration: 1, ease: 'power4.out' })
-                  .from('.hero__subtitle', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-                  .from('.hero__cta', { y: 20, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-                  .from('.hero__scroll', { opacity: 0, duration: 0.6 }, '-=0.4')
-                  .from(cards, {
-                      opacity: 0, scale: 0.82, duration: 0.9, stagger: 0.14, ease: 'power3.out'
-                  }, 0.15);
+            /* Il titolo viene spezzato in parole, ognuna dentro la sua maschera.
+               Il testo resta identico per gli screen reader: cambiano solo i wrapper. */
+            if (titleInner) {
+                titleInner.innerHTML = titleInner.textContent.trim().split(/\s+/).map(function (w) {
+                    return '<span class="word"><span class="word__in">' + w + '</span></span>';
+                }).join(' ');
+            }
 
-                /* gentle idle float per card, offset for an organic, independent feel */
-                cards.forEach(function (card, i) {
-                    gsap.to(card, {
-                        y: i % 2 === 0 ? '+=12' : '-=12',
-                        duration: parseFloat(card.getAttribute('data-float')) || 3,
-                        ease: 'sine.inOut',
-                        repeat: -1,
-                        yoyo: true,
-                        delay: i * 0.35
-                    });
+            if (prefersReducedMotion) {
+                document.documentElement.classList.remove('anim-ready');
+                return;
+            }
+
+            /* Tempi presi dalla coreografia di top-design: struttura, poi titolo,
+               poi sottotitolo, poi azioni, infine gli elementi di supporto. */
+            var tl = gsap.timeline({
+                defaults: { ease: 'expo.out' },
+                onStart: function () { document.documentElement.classList.remove('anim-ready'); }
+            });
+
+            gsap.set('.hero__title .word__in', { yPercent: 110 });
+            gsap.set('.hero__title', { opacity: 1 });
+
+            tl.fromTo('.hero .eyebrow', { opacity: 0, y: 12 },
+                      { opacity: 1, y: 0, duration: 0.6 }, 0.2)
+              .to('.hero__title .word__in',
+                      { yPercent: 0, duration: 1.1, stagger: 0.075 }, 0.2)
+              .fromTo('.hero__subtitle', { opacity: 0, y: 18 },
+                      { opacity: 1, y: 0, duration: 0.8 }, 0.4)
+              .fromTo('.hero__cta', { opacity: 0, y: 18 },
+                      { opacity: 1, y: 0, duration: 0.8 }, 0.6)
+              /* le card si scoprono dal basso con una maschera, non in dissolvenza */
+              .fromTo(cards,
+                      { opacity: 0, clipPath: 'inset(0 0 100% 0)' },
+                      { opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.1, stagger: 0.12 }, 0.35)
+              .fromTo('.hero__scroll', { opacity: 0 },
+                      { opacity: 1, duration: 0.6 }, 1.0);
+
+            /* deriva lenta, sfasata: le card non respirano all'unisono */
+            cards.forEach(function (card, i) {
+                gsap.to(card, {
+                    y: i % 2 === 0 ? '+=12' : '-=12',
+                    duration: parseFloat(card.getAttribute('data-float')) || 3,
+                    ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.2 + i * 0.35
                 });
+            });
 
-                /* scroll parallax on the whole cluster (subtle) */
-                if (cardCluster) {
-                    gsap.to(cardCluster, {
-                        yPercent: 22,
-                        ease: 'none',
-                        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+            if (cardCluster) {
+                gsap.to(cardCluster, {
+                    yPercent: 22, ease: 'none',
+                    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+                });
+            }
+
+            /* Bottoni magnetici: il bersaglio insegue il puntatore entro pochi pixel.
+               Solo con mouse — su touch non esiste hover e il trasloco darebbe fastidio. */
+            if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                document.querySelectorAll('.hero__cta .btn').forEach(function (btn) {
+                    var setX = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3.out' });
+                    var setY = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3.out' });
+                    btn.addEventListener('pointermove', function (e) {
+                        var r = btn.getBoundingClientRect();
+                        setX((e.clientX - (r.left + r.width / 2)) * 0.28);
+                        setY((e.clientY - (r.top + r.height / 2)) * 0.5);
                     });
-                }
+                    btn.addEventListener('pointerleave', function () { setX(0); setY(0); });
+                });
             }
         }());
 
