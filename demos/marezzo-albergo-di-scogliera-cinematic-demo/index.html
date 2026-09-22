@@ -82,6 +82,7 @@
 
   --z-base: 1;
   --z-raised: 10;
+  --z-cut: 150;
   --z-sticky: 200;
   --z-modal: 400;
 }
@@ -214,6 +215,21 @@ h1, h2, h3 {
 .nav-pill__cta:active { transform: translateY(1px); }
 @media (max-width: 52rem) {
   .nav-pill__links { display: none; }
+}
+
+/* ---------- Lo stacco a nero fra le sezioni ----------
+   Base inerte: invisibile e non cliccabile. Diventa qualcosa solo dentro
+   @supports più sotto, quindi un browser senza scroll-driven animations non
+   si ritrova un pannello scuro piantato sopra la pagina. */
+.cut-mark { height: 1px; margin-block: -1px 0; pointer-events: none; }
+
+.cut {
+  position: fixed;
+  inset: 0;
+  background: var(--color-paper);
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--z-cut);
 }
 
 /* ---------- Hero · H6 Photographic fold ---------- */
@@ -599,6 +615,60 @@ h1, h2, h3 {
       animation-timeline: view();
       animation-range: contain 0% cover 100%;
     }
+
+    /* ---- 1. Lo stacco: apertura → pellicola ----
+       Il montaggio cinematografico non incolla due inquadrature molto diverse:
+       ci passa attraverso il nero. Qui serve anche a un problema concreto —
+       l'apertura è scura e il primo fotogramma della pellicola è un cielo
+       chiarissimo, e senza stacco quel salto si legge come un errore.
+       `timeline-scope` lascia che un elemento fisso, fuori dall'hero, sia
+       pilotato dall'uscita dell'hero. */
+    /* Ancorato a un segnaposto alto 1px messo ESATTAMENTE sul confine fra
+       le due sezioni, non a una delle due. Legarlo a una sezione non regge:
+       l'hero è più basso della viewport, quindi la pellicola è già in campo
+       al caricamento e il suo `entry` risulta mezzo consumato prima ancora
+       che si scrolli — il nero si accendeva sull'hero. Il `cover` di un
+       segnaposto di 1px dura invece esattamente un'altezza di viewport
+       centrata sul confine, a qualunque risoluzione. */
+    body { timeline-scope: --edge; }
+    .cut-mark { view-timeline: --edge block; }
+    .cut {
+      animation: dip-to-black linear both;
+      animation-timeline: --edge;
+      animation-range: cover 42% cover 92%;
+    }
+
+    /* ---- 2. Il cartello: pellicola → testo ----
+       Finito il film sale il testo, come un cartello di coda. Titolo e corpo
+       hanno intervalli sfalsati: il titolo arriva per primo, il testo lo
+       raggiunge. Non è lo stesso fade applicato a due elementi. */
+    .band h2 {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 58%;
+    }
+    .band__lede {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 18% entry 72%;
+    }
+    .band__link {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 26% entry 80%;
+    }
+
+    /* ---- 3. La messa a fuoco: testo → camere ----
+       Le fotografie si posano da una scala leggermente maggiore, come un
+       obiettivo che va a fuoco. Sfalsate di poco l'una dall'altra: è la
+       terza e ultima volta che la pagina si muove da sola. */
+    .room img {
+      animation: focus-pull linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 65%;
+    }
+    .rooms > :nth-child(2) img { animation-range: entry 12% entry 72%; }
+    .rooms > :nth-child(3) img { animation-range: entry 19% entry 79%; }
   }
 }
 @keyframes frame-0 { 0%, 20% { opacity: 1 } 30%, 100% { opacity: 0 } }
@@ -610,6 +680,9 @@ h1, h2, h3 {
 @keyframes cap-2 { 0%, 56% { opacity: 0 } 62%, 68% { opacity: 1 } 74%, 100% { opacity: 0 } }
 @keyframes cap-3 { 0%, 81% { opacity: 0 } 87%, 100% { opacity: 1 } }
 @keyframes hero-push { to { transform: scale(1.06) } }
+@keyframes dip-to-black { 0% { opacity: 0 } 44%, 62% { opacity: 1 } 100% { opacity: 0 } }
+@keyframes rise { from { opacity: 0; transform: translateY(2.25rem) } to { opacity: 1; transform: none } }
+@keyframes focus-pull { from { opacity: 0; transform: scale(1.06) } to { opacity: 1; transform: none } }
 
 /* ---------- Reduced motion: la pellicola resta una sequenza statica ---------- */
 @media (prefers-reduced-motion: reduce) {
@@ -640,6 +713,8 @@ h1, h2, h3 {
 </nav>
 </header>
 
+<div class="cut" aria-hidden="true"></div>
+
 <main id="top">
 
   <!-- Hero · fotogramma a piena pagina, targa in basso a sinistra -->
@@ -656,6 +731,8 @@ h1, h2, h3 {
       </div>
     </div>
   </section>
+
+  <div class="cut-mark" aria-hidden="true"></div>
 
   <!-- La pellicola · quattro fotogrammi in dissolvenza incrociata -->
   <section class="reel" id="luogo" aria-label="Il luogo, in quattro fotogrammi">
