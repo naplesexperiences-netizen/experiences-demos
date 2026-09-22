@@ -196,8 +196,35 @@ Gli effetti d'area stanno su uno strato ritagliato sul bordo della scacchiera; i
 così un ring-out può davvero uscire dal campo. Tutte le animazioni si disattivano con
 `prefers-reduced-motion`.
 
+## Accessibilità
+
+La scacchiera è una **griglia ARIA** (`role="grid"` con righe e celle), non un mucchio di
+`div` cliccabili: si gioca interamente da tastiera e uno screen reader legge il campo.
+
+- **Frecce** muovono il cursore, **Home/End** a inizio e fine riga, **PagSu/PagGiù** alla
+  prima e ultima riga, **Invio/Spazio** seleziona o conferma
+- *Roving tabindex*: si entra nella griglia con un solo Tab, poi ci si muove con le frecce,
+  senza dover attraversare 36 elementi
+- Ogni casella ha un nome parlato: posizione, chi la occupa, punti vita e stato
+  (*Re, immobilizzato, protetto, scoperto, ha già agito, bersaglio disponibile*)
+- Focus da tastiera **bianco**, selezione della pedina **gialla**: due segnali distinti
+- Il diario di battaglia è una regione `aria-live="polite"`, quindi le azioni vengono
+  annunciate mentre accadono
+- Gli strati grafici e le icone di stato sono `aria-hidden`: lo stato passa dal nome della
+  casella, non da emoji nude
+- Azzerare il torneo chiede conferma, ma solo se c'è davvero qualcosa da perdere
+
+Verificato con l'audit della skill `web-design-guidelines`. Sistemati anche:
+`transition` shorthand (equivale a `transition: all`), `color-scheme: dark`,
+`<meta name="theme-color">`, `touch-action: manipulation`, `-webkit-tap-highlight-color`,
+`font-variant-numeric: tabular-nums` sulle colonne di statistiche, `text-wrap: balance`
+sui titoli.
+
 ## Verifiche fatte
 
+- 14 controlli automatici sull'accessibilità: struttura della griglia, roving tabindex,
+  nomi delle caselle, navigazione con frecce/Home/End, cursore che non esce dal bordo,
+  selezione con Invio, contorno di focus visibile, regione live: tutti superati
 - 20 controlli automatici sulla fase di schieramento (zona valida, rifiuto dei click
   fuori zona, ritorno in panchina, "schiera a caso" che non sposta il già piazzato,
   avvio bloccato finché mancano pedine): tutti superati
