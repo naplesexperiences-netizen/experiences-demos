@@ -1,0 +1,143 @@
+# Copyright (C) 2026 Experiences Srl
+# This file is distributed under the same license as the Experiences Srl theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: Experiences Srl 2.6.0\n"
+"Report-Msgid-Bugs-To: naplesexperiences@gmail.com\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-22T04:58:21+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: experiences-srl\n"
+
+#: functions.php:22
+msgid "Menu Principale"
+msgstr ""
+
+#: functions.php:91
+msgid "Audit gratuito (Cal.com)"
+msgstr ""
+
+#: functions.php:101
+msgid "Link Cal.com o Calendly per l'audit gratuito"
+msgstr ""
+
+#: functions.php:102
+msgid "Es: https://cal.com/experiences/audit-gratuito oppure https://calendly.com/.../30min. Il modal \"Prenota Audit Gratuito\" usa questo link."
+msgstr ""
+
+#: functions.php:109
+msgid "Galleria demo"
+msgstr ""
+
+#: functions.php:119
+msgid "URL della galleria demo"
+msgstr ""
+
+#: functions.php:120
+msgid "La pagina che raccoglie tutte le demo. Per impostazione predefinita punta all'hub su GitHub Pages, rigenerato a ogni push da scripts/generate-hub.py."
+msgstr ""
+
+#: functions.php:131
+msgid "Quante demo dichiarare"
+msgstr ""
+
+#: functions.php:132
+msgid "Mostrato come \"Oltre N demo\". Tienilo prudenzialmente sotto il numero reale."
+msgstr ""
+
+#: functions.php:139
+msgid "Privacy & Cookie"
+msgstr ""
+
+#: functions.php:149
+msgid "Mostra cookie banner GDPR"
+msgstr ""
+
+#: functions.php:150
+msgid "Disattivare solo se usi un plugin di cookie consent (Iubenda, Complianz, CookieYes…)."
+msgstr ""
+
+#: functions.php:160
+msgid "Dati legali"
+msgstr ""
+
+#: functions.php:161
+msgid "Compaiono nella Privacy Policy, nella Cookie Policy e nei Termini e Condizioni. Finché restano vuoti le pagine mostrano un segnaposto."
+msgstr ""
+
+#: functions.php:167
+msgid "Ragione sociale"
+msgstr ""
+
+#: functions.php:168
+msgid "Es: Experiences Srl"
+msgstr ""
+
+#: functions.php:172
+msgid "Sede legale"
+msgstr ""
+
+#: functions.php:173
+msgid "Indirizzo completo, es: Via Toledo 100, 80134 Napoli (NA)"
+msgstr ""
+
+#: functions.php:177
+msgid "Partita IVA"
+msgstr ""
+
+#: functions.php:178
+msgid "Es: IT01234567890"
+msgstr ""
+
+#: functions.php:182
+msgid "Provider di hosting"
+msgstr ""
+
+#: functions.php:183
+msgid "Va indicato tra i destinatari dei dati nella Privacy Policy. Es: Aruba S.p.A., SiteGround, IONOS…"
+msgstr ""
+
+#: functions.php:356
+msgid "sede legale"
+msgstr ""
+
+#: functions.php:359
+msgid "partita IVA"
+msgstr ""
+
+#: functions.php:362
+msgid "provider di hosting"
+msgstr ""
+
+#: functions.php:371
+msgid "Pagine legali incomplete."
+msgstr ""
+
+#: functions.php:372
+msgid "Privacy Policy e Termini mostrano un segnaposto al posto di:"
+msgstr ""
+
+#: functions.php:375
+msgid "Compila i dati legali →"
+msgstr ""
+
+#: functions.php:797
+msgid "Portfolio Siti"
+msgstr ""
+
+#: functions.php:798
+msgid "Sito Portfolio"
+msgstr ""
+
+#: functions.php:799
+msgid "Aggiungi Nuovo Sito"
+msgstr ""
+
+#: functions.php:800
+msgid "Modifica Sito"
+msgstr ""
