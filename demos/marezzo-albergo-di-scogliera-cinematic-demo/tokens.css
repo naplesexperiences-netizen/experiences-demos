@@ -1,7 +1,7 @@
 /* Marèzzo — token export
  * Hallmark · genre: atmospheric · theme: Midnight · anchor hue 40 (warm)
  * Fonte di verità: il blocco :root dentro index.html (la demo è un file unico,
- * come le altre 212 in demos/). Questo file è l'export portabile: se cambi i
+ * come le altre in demos/). Questo file è l'export portabile: se cambi i
  * token, cambiali là e ri-esportali, non il contrario.
  */
 :root {
@@ -64,6 +64,7 @@
 
   --z-base: 1;
   --z-raised: 10;
+  --z-cut: 150;
   --z-sticky: 200;
   --z-modal: 400;
 }
