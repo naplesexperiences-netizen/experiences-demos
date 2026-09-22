@@ -30,6 +30,37 @@
   --font-display:'Barlow Condensed','Oswald','Arial Narrow',system-ui,sans-serif;
   --font-body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
 
+  /* Scala tipografica: 7 gradini, uno per ruolo. Nessun corpo fuori da questi.
+     xs microtesto - sm etichette - md corpo - lg sommario - xl/2xl/3xl titoli.
+     I tre breakpoint ridefiniscono i valori, non le regole che li usano. */
+  --text-xs:.75rem;
+  --text-sm:.9rem;
+  --text-md:1.05rem;
+  --text-lg:1.2rem;
+  --text-xl:2rem;
+  --text-2xl:2.5rem;
+  --text-3xl:3rem;
+
+  /* Interlettere: maiuscoletto spaziato entro il 5-12% leggibile.
+     Sopra il 15% le parole si disgregano in lettere sciolte. */
+  --tracking-caps:.12em;
+  --tracking-wide:.08em;
+
+  /* Scala di spaziatura: griglia da 4px. Ogni padding, margin e gap
+     del layout e' un multiplo di --space-unit, mai un valore libero.
+     I breakpoint cambiano solo l'unita': i rapporti restano identici. */
+  --space-unit:4px;
+  --space-1:calc(var(--space-unit) * 1);
+  --space-2:calc(var(--space-unit) * 2);
+  --space-3:calc(var(--space-unit) * 3);
+  --space-4:calc(var(--space-unit) * 4);
+  --space-5:calc(var(--space-unit) * 5);
+  --space-6:calc(var(--space-unit) * 6);
+  --space-7:calc(var(--space-unit) * 8);
+  --space-8:calc(var(--space-unit) * 10);
+  --space-9:calc(var(--space-unit) * 13);
+  --space-10:calc(var(--space-unit) * 18);
+
   /* Altezze delle fasce fisse: le locandine si adattano a queste */
   --chrome-top:198px;
   --chrome-bottom:252px;
@@ -70,31 +101,33 @@ body{
   position:fixed;top:0;left:0;right:0;z-index:30;
   /* viewport-fit=cover e' dichiarato: senza env() il contenuto finirebbe
      sotto notch e barre di sistema quando non e' su un totem a cornice piena */
-  padding:calc(26px + env(safe-area-inset-top)) calc(30px + env(safe-area-inset-right)) 52px
-          calc(30px + env(safe-area-inset-left));
+  padding:calc(var(--space-6) + env(safe-area-inset-top)) calc(var(--space-7) + env(safe-area-inset-right)) var(--space-9)
+          calc(var(--space-7) + env(safe-area-inset-left));
   text-align:center;pointer-events:none;
   background:linear-gradient(180deg,rgba(4,27,52,.94) 0%,rgba(6,44,92,.72) 46%,rgba(6,44,92,.18) 82%,transparent 100%);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
 }
 .brand-mark{
-  width:74px;height:74px;margin:0 auto 10px;border-radius:50%;
+  width:74px;height:74px;margin:0 auto var(--space-3);border-radius:50%;
   background:#fff;padding:9px;display:grid;place-items:center;
   box-shadow:0 10px 28px rgba(0,188,212,.35),0 0 0 1px rgba(255,255,255,.18);
 }
 .brand-mark img{width:100%;height:100%;object-fit:contain}
+/* .42em spezzava "Infitness Castellammare" in lettere sciolte: da lontano
+   si leggeva una sequenza, non una parola. Riportato nel 5-12%. */
 .brand-kicker{
-  font-family:var(--font-display);font-size:.82rem;font-weight:600;
-  letter-spacing:.42em;text-transform:uppercase;color:var(--cyan-soft);
-  margin-bottom:2px;text-indent:.42em;
+  font-family:var(--font-display);font-size:var(--text-sm);font-weight:600;
+  letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--cyan-soft);
+  margin-bottom:var(--space-1);text-indent:var(--tracking-caps);
 }
 .brand-name{
-  font-family:var(--font-display);font-size:2.6rem;font-weight:700;
-  letter-spacing:.12em;line-height:1;text-indent:.12em;
+  font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;
+  letter-spacing:var(--tracking-caps);line-height:1;text-indent:var(--tracking-caps);
   background:linear-gradient(105deg,#fff 0%,#bff0f7 45%,var(--cyan-soft) 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
 .brand-tag{
-  font-size:.96rem;font-weight:300;color:rgba(255,255,255,.82);margin-top:6px;
+  font-size:var(--text-sm);font-weight:300;color:rgba(255,255,255,.82);margin-top:var(--space-2);
   text-shadow:0 2px 12px rgba(0,0,0,.6);
 }
 
@@ -128,8 +161,8 @@ body{
 .slide.no-img .slide-img,
 .slide.no-img .slide-media::before,
 .slide.no-img .slide-media::after{display:none}
-.slide-fallback h2{font-family:var(--font-display);font-size:2.4rem;font-weight:700;margin-bottom:10px}
-.slide-fallback p{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.85)}
+.slide-fallback h2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin-bottom:var(--space-3)}
+.slide-fallback p{font-size:var(--text-md);font-weight:300;color:rgba(255,255,255,.85)}
 
 .slide-media{position:absolute;inset:0;overflow:hidden}
 .slide-img{
@@ -161,34 +194,35 @@ body{
 /* ============ TESTO (solo slide foto) ============ */
 .slide-copy{
   position:absolute;left:0;right:0;bottom:var(--chrome-bottom);
-  padding:0 40px 28px;z-index:2;
+  padding:0 var(--space-8) var(--space-7);z-index:2;
 }
 .slide[data-kind="poster"] .slide-copy{display:none}
 
 .tag{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 18px;margin-bottom:14px;
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-2) var(--space-5);margin-bottom:var(--space-4);
   background:var(--cyan);color:#052b38;border-radius:99px;
-  font-family:var(--font-display);font-size:.92rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;
+  font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;
+  letter-spacing:var(--tracking-caps);text-transform:uppercase;
   box-shadow:0 6px 20px rgba(0,188,212,.45);
 }
 .slide-title{
-  font-family:var(--font-display);font-size:3rem;font-weight:700;
-  line-height:.98;letter-spacing:.01em;margin-bottom:12px;
+  font-family:var(--font-display);font-size:var(--text-3xl);font-weight:700;
+  line-height:.98;letter-spacing:.01em;margin-bottom:var(--space-3);
   text-shadow:0 6px 28px rgba(0,0,0,.85);
 }
 .slide-text{
-  font-size:1.18rem;font-weight:300;line-height:1.45;max-width:640px;
-  color:rgba(255,255,255,.93);margin-bottom:22px;
+  font-size:var(--text-lg);font-weight:300;line-height:1.45;max-width:640px;
+  color:rgba(255,255,255,.93);margin-bottom:var(--space-6);
   text-shadow:0 2px 14px rgba(0,0,0,.85);
 }
 .cta{
-  display:inline-flex;align-items:center;gap:12px;
-  padding:15px 26px;border-radius:99px;
+  display:inline-flex;align-items:center;gap:var(--space-3);
+  padding:var(--space-4) var(--space-6);border-radius:99px;
   background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.34);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  font-family:var(--font-display);font-size:1.05rem;font-weight:600;letter-spacing:.09em;
+  font-family:var(--font-display);font-size:var(--text-md);font-weight:600;
+  letter-spacing:var(--tracking-wide);
   text-transform:uppercase;color:#fff;
 }
 .cta svg{width:22px;height:22px}
@@ -196,20 +230,20 @@ body{
 /* ============ CONTROLLI ============ */
 .controls{
   position:fixed;left:0;right:0;bottom:var(--footer-h,78px);z-index:40;
-  padding:16px calc(24px + env(safe-area-inset-right)) 18px calc(24px + env(safe-area-inset-left));
+  padding:var(--space-4) calc(var(--space-6) + env(safe-area-inset-right)) var(--space-4) calc(var(--space-6) + env(safe-area-inset-left));
   background:linear-gradient(0deg,rgba(4,27,52,.82) 0%,rgba(6,44,92,.42) 62%,transparent 100%);
   pointer-events:none;
 }
 .controls>*{pointer-events:auto}
 
-.rail{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:16px}
+.rail{height:4px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-bottom:var(--space-4)}
 .rail-fill{height:100%;width:100%;transform:scaleX(0);transform-origin:left center;
   border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--cyan-soft));
   box-shadow:0 0 14px rgba(0,188,212,.8)}
 
-.dots{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.dots{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-3);margin-bottom:var(--space-4)}
 .dot{
-  width:30px;height:26px;padding:10px 0;border:0;background:none;cursor:pointer;
+  width:30px;height:26px;padding:var(--space-2) 0;border:0;background:none;cursor:pointer;
   display:grid;place-items:center;
 }
 /* La larghezza sta qui e non in JS: il nodo <i> non va piu' ricreato a ogni
@@ -218,7 +252,7 @@ body{
   background:rgba(255,255,255,.3);transition:background var(--dur-fast),width var(--dur-fast)}
 .dot.is-on i{width:100%;background:var(--cyan);box-shadow:0 0 12px rgba(0,188,212,.75)}
 
-.nav{display:flex;justify-content:center;align-items:center;gap:14px}
+.nav{display:flex;justify-content:center;align-items:center;gap:var(--space-4)}
 /* --btn tiene pulsanti e contatore esattamente della stessa altezza */
 .btn{
   width:var(--btn);height:var(--btn);border-radius:50%;flex-shrink:0;
@@ -247,37 +281,46 @@ body{
 /* ============ FOOTER ============ */
 .footer{
   position:fixed;left:0;right:0;bottom:0;z-index:45;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:12px calc(26px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom))
-          calc(26px + env(safe-area-inset-left));
-  min-height:78px;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);
+  padding:var(--space-3) calc(var(--space-6) + env(safe-area-inset-right)) calc(var(--space-3) + env(safe-area-inset-bottom))
+          calc(var(--space-6) + env(safe-area-inset-left));
+  min-height:var(--footer-h);
   background:rgba(4,27,52,.72);
   -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
   border-top:1px solid rgba(0,188,212,.3);
 }
-.f-name{font-family:var(--font-display);font-size:.98rem;font-weight:700;
-  letter-spacing:.08em;color:var(--cyan);text-transform:uppercase}
-.f-rows{display:flex;flex-direction:column;gap:3px;flex:1 1 auto;min-width:0}
-.f-row{display:flex;align-items:center;gap:14px;flex-wrap:nowrap;min-width:0;overflow:hidden;
-  font-size:.76rem;color:rgba(255,255,255,.84);white-space:nowrap}
-.f-row span{display:inline-flex;align-items:center;gap:6px;min-width:0;overflow:hidden;text-overflow:ellipsis}
-.f-row span:last-child{flex:0 0 auto}
+.f-name{font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;
+  letter-spacing:var(--tracking-wide);color:var(--cyan);text-transform:uppercase}
+.f-rows{display:flex;flex-direction:column;gap:var(--space-1);flex:1 1 auto;min-width:0}
+.f-row{display:flex;align-items:center;gap:var(--space-4);flex-wrap:nowrap;min-width:0;overflow:hidden;
+  font-size:var(--text-xs);color:rgba(255,255,255,.84);white-space:nowrap}
+/* L'indirizzo ha la sua riga: affiancato al telefono veniva tagliato a meta'
+   parola, e su un totem l'indirizzo e' l'informazione che si va a leggere.
+   text-overflow non agisce su un contenitore flex: il taglio, se resta,
+   deve avvenire dentro .f-txt, che e' l'unico elemento di solo testo. */
+.f-row>span{display:inline-flex;align-items:center;gap:var(--space-2);min-width:0}
+.f-row>span:last-child{flex:0 0 auto}
+.f-txt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .f-row svg{width:13px;height:13px;flex-shrink:0;color:var(--cyan-soft)}
 .f-hours{color:#fff;font-weight:500}
 .f-brand{
   flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;
-  text-decoration:none;padding:9px 16px;border-radius:99px;
+  text-decoration:none;padding:var(--space-2) var(--space-4);border-radius:99px;
   border:1px solid rgba(0,188,212,.34);background:rgba(0,188,212,.12);
   transition:background var(--dur-fast),transform var(--dur-fast);
 }
-.f-brand small{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.f-brand strong{font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:.05em;
+/* .24em su un corpo da 9px rendeva "POWERED BY" illeggibile a distanza:
+   sale al gradino xs e rientra nel tracking dei maiuscoletti */
+.f-brand small{font-size:var(--text-xs);letter-spacing:var(--tracking-caps);
+  text-transform:uppercase;color:rgba(255,255,255,.6)}
+.f-brand strong{font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;
+  letter-spacing:.05em;
   background:linear-gradient(105deg,var(--cyan),var(--cyan-soft));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ============ MODALE ORARI ============ */
 .sheet{
-  position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:36px;
+  position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:var(--space-7);
   background:rgba(2,14,28,.84);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
 }
 .sheet.open{display:grid}
@@ -286,96 +329,75 @@ body{
   background:linear-gradient(180deg,#fff 0%,#f3f7fb 100%);color:var(--ink);
   display:flex;flex-direction:column;box-shadow:0 40px 90px rgba(0,0,0,.6);
 }
-.sheet-head{position:relative;padding:30px 32px;color:#fff;
+.sheet-head{position:relative;padding:var(--space-7);color:#fff;
   background:linear-gradient(120deg,var(--cobalt),var(--blue))}
-.sheet-head .tag{margin-bottom:10px}
-.sheet-title{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1.05}
+.sheet-head .tag{margin-bottom:var(--space-3)}
+.sheet-title{font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;line-height:1.05}
 .sheet-close{
-  position:absolute;top:18px;right:18px;width:48px;height:48px;border-radius:50%;
+  position:absolute;top:var(--space-5);right:var(--space-5);width:48px;height:48px;border-radius:50%;
   border:0;background:rgba(255,255,255,.94);color:var(--cobalt);
   display:grid;place-items:center;cursor:pointer;
   transition:transform var(--dur-fast),background var(--dur-fast);
 }
 .sheet-close svg{width:22px;height:22px}
 .sheet-close:hover{background:var(--cyan);color:#fff;transform:rotate(90deg)}
-.sheet-body{padding:26px 32px 32px;overflow-y:auto;overscroll-behavior:contain}
+.sheet-body{padding:var(--space-6) var(--space-7) var(--space-7);overflow-y:auto;overscroll-behavior:contain}
 .sheet-label{
-  display:flex;align-items:center;gap:10px;margin-bottom:18px;
-  font-family:var(--font-display);font-size:1.05rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt);
+  display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5);
+  font-family:var(--font-display);font-size:var(--text-md);font-weight:700;
+  letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--cobalt);
 }
 .sheet-label svg{width:22px;height:22px;color:var(--cyan)}
 .row{
-  display:flex;gap:18px;padding:16px 20px;margin-bottom:11px;border-radius:14px;
+  display:flex;gap:var(--space-5);padding:var(--space-4) var(--space-5);
+  margin-bottom:var(--space-3);border-radius:14px;
   background:linear-gradient(120deg,#f7fafd,#e9f1f8);border-left:5px solid var(--cyan);
 }
-.row dt{min-width:156px;font-weight:700;color:var(--cobalt);font-size:.98rem}
-.row dd{flex:1;color:#37485c;font-size:.96rem;font-weight:500}
+/* La colonna dei giorni si dimensiona sul corpo del testo, non su un px fisso:
+   a 230px "Sabato" lasciava mezzo riquadro vuoto prima dell'orario */
+.row dt{min-width:calc(var(--text-sm) * 8);font-weight:700;color:var(--cobalt);font-size:var(--text-sm)}
+.row dd{flex:1;color:#37485c;font-size:var(--text-sm);font-weight:500}
 
 /* ============ 42" — 1080x1920 ============ */
+/* Non ripete piu' i corpi e le spaziature una per una: ridefinisce i token e
+   tutte le regole seguono. Restano solo le misure fisiche dei componenti. */
 @media (min-height:1600px){
-  :root{--chrome-top:300px;--chrome-bottom:340px;--footer-h:112px;--btn:86px}
-  .header{padding:40px 40px 72px}
+  :root{
+    --chrome-top:300px;--chrome-bottom:340px;--footer-h:112px;--btn:86px;
+    --space-unit:6px;
+    --text-xs:1rem;--text-sm:1.25rem;--text-md:1.35rem;--text-lg:1.6rem;
+    --text-xl:2.7rem;--text-2xl:3.6rem;--text-3xl:4.2rem;
+  }
   .brand-mark{width:110px;height:110px;padding:13px}
-  .brand-kicker{font-size:1.14rem}
-  .brand-name{font-size:3.9rem}
-  .brand-tag{font-size:1.32rem}
-  .slide-copy{padding:0 62px 34px}
-  .slide-title{font-size:4.2rem}
-  .slide-text{font-size:1.58rem;max-width:860px}
-  .tag{font-size:1.2rem;padding:11px 24px}
-  .cta{font-size:1.35rem;padding:20px 34px}
+  .slide-text{max-width:860px}
   .cta svg{width:28px;height:28px}
-  .controls{padding:24px 44px 26px}
-  .rail{height:6px;margin-bottom:22px}
-  .dots{gap:14px;margin-bottom:22px}
+  .rail{height:6px}
   .dot{width:44px;height:34px}
   .dot i{height:7px}
-  .nav{gap:22px}
-  .nav{gap:22px}
-  .footer{min-height:112px;padding:18px 44px}
-  .f-name{font-size:1.32rem}
-  .f-row{font-size:.98rem;gap:20px}
   .f-row svg{width:18px;height:18px}
-  .f-brand small{font-size:.76rem}
-  .f-brand strong{font-size:1.36rem}
   .sheet-card{max-width:820px}
-  .sheet-title{font-size:2.7rem}
-  .row dt{min-width:230px;font-size:1.26rem}
-  .row dd{font-size:1.22rem}
-  .sheet-label{font-size:1.32rem}
 }
 
 /* ============ Mobile / anteprima ============ */
 @media (max-width:520px){
-  :root{--chrome-top:152px;--chrome-bottom:212px;--footer-h:86px;--btn:46px}
-  .header{padding:18px 16px 40px}
-  .brand-mark{width:52px;height:52px;padding:7px;margin-bottom:7px}
-  .brand-kicker{font-size:.62rem;letter-spacing:.3em;text-indent:.3em}
-  .brand-name{font-size:1.72rem}
-  .brand-tag{font-size:.8rem;margin-top:4px}
-  .slide-copy{padding:0 20px 20px}
-  .slide-title{font-size:1.9rem}
-  .slide-text{font-size:.94rem;margin-bottom:16px}
-  .tag{font-size:.72rem;padding:6px 13px;margin-bottom:10px}
-  .cta{font-size:.86rem;padding:12px 18px}
-  .controls{padding:10px 14px 12px}
-  .rail{margin-bottom:11px}
-  .dots{gap:7px;margin-bottom:11px}
+  :root{
+    --chrome-top:152px;--chrome-bottom:248px;--footer-h:120px;--btn:46px;
+    --space-unit:3px;
+    --text-xs:.62rem;--text-sm:.74rem;--text-md:.86rem;--text-lg:.95rem;
+    --text-xl:1.5rem;--text-2xl:1.75rem;--text-3xl:1.9rem;
+  }
+  .brand-mark{width:52px;height:52px;padding:7px}
   .dot{width:22px;height:22px}
   .dot i{height:4px}
-  .nav{gap:9px}
-  .nav{gap:9px}
-  .footer{min-height:86px;padding:9px 13px;gap:9px}
-  .f-name{font-size:.74rem}
-  .f-row{font-size:.6rem;gap:9px}
-  .f-brand{padding:6px 11px}
-  .f-brand strong{font-size:.78rem}
-  .sheet{padding:18px}
-  .sheet-head{padding:22px}
-  .sheet-title{font-size:1.5rem}
-  .sheet-body{padding:20px}
-  .row{flex-direction:column;gap:4px}
+  /* alla larghezza del telefono orario e numero non stanno sulla stessa riga:
+     invece di troncare l'orario a meta', il numero va a capo */
+  /* A 412px il bollino "naplesexperiences.com" occupa meta' del footer e
+     lascia ai contatti 169px: l'indirizzo non ci sta in nessun modo.
+     In colonna i contatti hanno tutta la larghezza e non si troncano. */
+  .footer{flex-direction:column;align-items:stretch;gap:var(--space-3)}
+  .f-brand{align-self:flex-end}
+  /* in colonna la chiave non deve piu' riservare la sua corsia */
+  .row{flex-direction:column;gap:var(--space-1)}
   .row dt{min-width:0}
 }
 
@@ -421,11 +443,11 @@ body{
   <div class="f-rows">
     <p class="f-name" translate="no">Sportlandia · SSD Infitness ARL</p>
     <p class="f-row">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Corso Alcide De Gasperi, 177/B — Castellammare di Stabia</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>081 871 8076</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="f-txt">Corso Alcide De Gasperi, 177/B — Castellammare di Stabia</span></span>
     </p>
-    <p class="f-row f-hours">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Lun-Ven 07:00-21:00 · Sabato 08:00-12:30</span>
+    <p class="f-row">
+      <span class="f-hours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="f-txt">Lun–Ven 07:00–21:00 · Sabato 08:00–12:30</span></span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg><span class="f-txt">081 871 8076</span></span>
     </p>
   </div>
   <p class="f-brand">
@@ -462,7 +484,7 @@ body{
 const COURSES = [
   { title:"Sala Attrezzi", tag:"Fitness", img:"images/sala-attrezzi.webp", poster:true,
     text:"Allenamento completo con macchinari isotonici, pesi liberi e cardio. Sala sempre aperta negli orari del centro.",
-    hours:{ "Lun - Ven":"07:00 - 21:00", "Sabato":"08:00 - 12:00" } },
+    hours:{ "Lun–Ven":"07:00–21:00", "Sabato":"08:00–12:00" } },
 
   { title:"Pilates Matwork", tag:"Pilates · Base / Intermedio / Avanzato", img:"images/pilates-matwork.webp", poster:true,
     text:"Pilates a corpo libero su tappetino. Tre livelli: Base, Intermedio e Avanzato. Migliora postura, equilibrio e forza del core.",
@@ -471,11 +493,11 @@ const COURSES = [
 
   { title:"Pilates Reformer", tag:"Pilates", img:"images/pilates-reformer.webp", poster:true,
     text:"Pilates con il macchinario professionale Reformer. Allenamento personalizzato per tonificare e allungare la muscolatura.",
-    hours:{ "Lun - Ven":"09:00 - 21:00", "Sabato":"09:00 · 10:00", "Info":"Prenotazione obbligatoria" } },
+    hours:{ "Lun–Ven":"09:00–21:00", "Sabato":"09:00 · 10:00", "Info":"Prenotazione obbligatoria" } },
 
   { title:"Pilates Studio", tag:"Pilates · Su appuntamento", img:"images/pilates-studio.webp", poster:false,
     text:"Sessioni Pilates Studio con Cadillac, Barile e attrezzi avanzati. Lezioni individuali o duette su appuntamento.",
-    hours:{ "Lun - Ven":"Su appuntamento", "Sabato":"Su prenotazione", "Info":"Tel. 081 871 8076" } },
+    hours:{ "Lun–Ven":"Su appuntamento", "Sabato":"Su prenotazione", "Info":"Tel. 081 871 8076" } },
 
   { title:"Pilates Tec Room", tag:"Pilates · Sala Tecnica", img:"images/pilates-tec-room.webp", poster:true,
     text:"Lezioni a orario fisso nella sala tecnica: Cadillac, Wunda Chair e grandi attrezzi per postura, mobilità e forza controllata.",
@@ -499,11 +521,11 @@ const COURSES = [
 
   { title:"Orari Completi", tag:"Programmazione Settimanale", img:"images/orari.webp", poster:true,
     text:"Il quadro orario completo di tutte le sale e di tutti i corsi, giorno per giorno.",
-    hours:{ "Apertura Lun - Ven":"07:00 - 21:00", "Apertura Sabato":"08:00 - 12:30", "Info e prenotazioni":"Tel. 081 871 8076" } },
+    hours:{ "Apertura Lun–Ven":"07:00–21:00", "Apertura Sabato":"08:00–12:30", "Info e prenotazioni":"Tel. 081 871 8076" } },
 
   { title:"Fisiorehab 360", tag:"Riabilitazione", img:"images/fisiorehab.webp", poster:false,
     text:"Centro di fisioterapia e riabilitazione integrata. Programmi personalizzati per il recupero funzionale.",
-    hours:{ "Lun - Ven":"Su appuntamento", "Sabato":"Su prenotazione", "Info":"Tel. 081 871 8076" } },
+    hours:{ "Lun–Ven":"Su appuntamento", "Sabato":"Su prenotazione", "Info":"Tel. 081 871 8076" } },
 
   { title:"GREENtosi", tag:"Eco-Wellness", img:"images/greentosi.webp", poster:false,
     text:"Il nostro impegno per la sostenibilità: impianto fotovoltaico, energia rinnovabile e iniziative eco-friendly.",
