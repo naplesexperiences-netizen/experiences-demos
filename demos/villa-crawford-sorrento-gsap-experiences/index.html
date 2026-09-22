@@ -587,6 +587,9 @@
             background: var(--c-white); border: 1px solid var(--c-black-06);
         }
         .room-card__media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+        /* la foto si scopre dal basso dietro una maschera, come le card della hero */
+        .room-card__media { will-change: clip-path; background: var(--c-paper-2); }
+        .room-card__media img { will-change: transform; }
         .room-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
         .room-card:hover .room-card__media img { transform: scale(1.06); }
         .room-card__body { padding: 24px 22px; }
@@ -1148,11 +1151,11 @@
 
         /* ---- Generic scroll reveals ---- */
         (function () {
-            var revealEls = gsap.utils.toArray('.intro__lead, .stat-item, .room-card, .package-card, .location__list li');
+            var revealEls = gsap.utils.toArray('.intro__lead, .stat-item, .package-card, .location__list li');
             revealEls.forEach(function (el) {
                 gsap.set(el, { opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 28 });
             });
-            ScrollTrigger.batch('.intro__lead, .stat-item, .room-card, .package-card, .location__list li', {
+            ScrollTrigger.batch('.intro__lead, .stat-item, .package-card, .location__list li', {
                 start: 'top 92%',
                 onEnter: function (batch) {
                     gsap.to(batch, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' });
@@ -1175,6 +1178,61 @@
 
             /* Nessun ScrollTrigger.refresh() sui link anchor: interrompe lo smooth
                scroll nativo a metà corsa. Il reveal lo garantisce l'IntersectionObserver. */
+
+            /* ---- Camere: reveal a maschera, stesso vocabolario della hero ----
+               La card resta sempre visibile: si scoprono la foto e il testo.
+               Così non esiste lo stato in cui la sezione appare vuota. */
+            (function () {
+                var cards = gsap.utils.toArray('.room-card');
+                if (!cards.length) return;
+
+                if (prefersReducedMotion) {
+                    gsap.set(cards, { opacity: 1, y: 0 });
+                    gsap.set('.room-card__media', { clipPath: 'none' });
+                    return;
+                }
+
+                cards.forEach(function (card) {
+                    gsap.set(card, { opacity: 0, y: 24 });
+                    gsap.set(card.querySelector('.room-card__media'), { clipPath: 'inset(0 0 100% 0)' });
+                    gsap.set(card.querySelector('.room-card__media img'), { scale: 1.14 });
+                    gsap.set(card.querySelectorAll('.room-card__body > *'), { opacity: 0, y: 14 });
+                });
+
+                function reveal(card, i) {
+                    if (card.dataset.revealed) return;
+                    card.dataset.revealed = '1';
+                    var tl = gsap.timeline({ delay: (i % 3) * 0.1, defaults: { ease: 'expo.out' } });
+                    /* card e maschera si muovono insieme: entra un oggetto solo,
+                       non una cornice vuota che poi si riempie */
+                    tl.to(card, { opacity: 1, y: 0, duration: 0.8 }, 0)
+                      .to(card.querySelector('.room-card__media'),
+                          { clipPath: 'inset(0 0 0% 0)', duration: 1.0 }, 0)
+                      /* l'immagine rientra in scala mentre la maschera sale:
+                         il movimento avviene dentro la cornice, non della cornice */
+                      .to(card.querySelector('.room-card__media img'),
+                          { scale: 1, duration: 1.4, ease: 'power2.out' }, 0)
+                      .to(card.querySelectorAll('.room-card__body > *'),
+                          { opacity: 1, y: 0, duration: 0.7, stagger: 0.06 }, 0.25);
+                }
+
+                ScrollTrigger.batch(cards, {
+                    start: 'top 88%',
+                    onEnter: function (batch) { batch.forEach(reveal); }
+                });
+
+                /* Stessa garanzia del resto della pagina: se ScrollTrigger non
+                   scatta (salto da link anchor), ci pensa l'observer. */
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) {
+                            reveal(e.target, cards.indexOf(e.target));
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.05 });
+                cards.forEach(function (c) { io.observe(c); });
+            }());
 
             gsap.utils.toArray('.amenity-col').forEach(function (col, i) {
                 gsap.from(col, {
