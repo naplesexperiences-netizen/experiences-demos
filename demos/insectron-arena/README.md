@@ -7,7 +7,7 @@ documentazione del minigioco **Insectron** di *Rogue Galaxy* (PS2, Level-5 / Son
 - `index.html` — landing page di presentazione, con il pulsante per giocare
 - `gioca.html` — il gioco vero e proprio: autonomo, nessuna dipendenza, nessun build step
 - `insectors.json` — dataset grezzo estratto dal wiki
-- `img/` — tre schermate usate dalla landing (le uniche immagini del progetto: dentro al
+- `img/` — tre schermate più la card di anteprima social (le uniche immagini del progetto: dentro al
   gioco non c'è un solo file immagine, la grafica è generata da codice)
 
 **Online**: una volta su `main`, GitHub Pages pubblica la landing a
@@ -84,10 +84,26 @@ Altre correzioni che la FAQ ha imposto:
   una casella, con rimbalzo a catena ed eventuale uscita dal campo. È questo che lo
   rende il Re migliore, come dice il wiki.
 
+## Il percorso prima della partita
+
+Tre passaggi, ognuno con le informazioni che servono a decidere:
+
+1. **Roster.** Toccando un Insector si apre a destra la sua **scheda**: ruolo in campo,
+   vita/forza/difesa, danno d'attacco, movimento, mossa speciale e relativo danno. Si
+   entra in squadra solo confermando con il pulsante — un tocco non impegna a nulla.
+2. **Riepilogo squadra.** Le cinque pedine affiancate con le stesse informazioni, ed è
+   qui che si **nomina il Re**. Finché non lo scegli non si entra in arena.
+3. **Schieramento.** Le pedine si posizionano sulle due file di casa.
+
+In battaglia, selezionando una pedina il pannello mostra **danno d'attacco, danno della
+speciale e movimento residuo**. Quando c'è un bersaglio a tiro i due danni sono quelli
+reali contro quel bersaglio (difesa inclusa); altrimenti sono valori indicativi contro un
+avversario senza difesa, utili per confrontare le unità fra loro.
+
 ## Schieramento delle pedine
 
 Prima di ogni battaglia si posizionano le 5 pedine, una alla volta, **entro le due file
-più vicine** (12 caselle). Il pannello laterale elenca la squadra con il range di
+più vicine** (10 caselle). Il pannello laterale elenca la squadra con il range di
 movimento di ciascuna, così la scelta si fa con i dati sott'occhio: le unità lente
 convengono avanti, il Re coperto dietro.
 
@@ -120,12 +136,19 @@ Cosi' l'unica variabile e' il cervello.
 
 | livello | vince l'avversario |
 |---|---|
-| Principiante | 38% |
+| Principiante | 41% |
 | Normale | 50% (≈50%, la verifica di simmetria torna) |
-| Esperto | 55% |
-| Campione | 98% |
+| Esperto | 53% |
+| Campione | 57% |
 
-Il 96% del Campione va letto bene: il metro di paragone e' un'IA che muove le pedine
+**Il passaggio al campo 5×7 ha ristretto questa scala.** Sul vecchio 6×6 il Campione
+arrivava al 98%: su un campo stretto le squadre si toccavano subito e chi sceglie
+l'ordine di azione chiudeva la partita in pochi turni. Con sette file di profondità ci
+sono più turni di avvicinamento, la partita si decide meno sul colpo di apertura e il
+vantaggio si assottiglia. Misurato, non ipotizzato: una sweep sui pesi del pianificatore
+sul nuovo campo si ferma intorno al 60%.
+
+Il vantaggio del Campione va letto bene: il metro di paragone è un'IA che muove le pedine
 **in ordine fisso**. Una persona sceglie gia' da se' quale unita' far agire per prima,
 quindi contro un umano il divario e' molto piu' stretto. Dare l'ordinamento all'IA non e'
 un trucco: e' toglierle una zavorra che il giocatore non ha mai avuto.
@@ -135,12 +158,12 @@ salgono insieme (margine ±4.4 punti):
 
 | Rank | IA avversaria | vittorie del giocatore |
 |---|---|---|
-| E | Principiante | 98% |
-| D | Normale | 95% |
-| C | Normale | 81% |
-| B | Esperto | 55% |
-| A | Esperto | 60% |
-| S | Campione | 17% |
+| E | Principiante | 99% |
+| D | Normale | 97% |
+| C | Normale | 84% |
+| B | Esperto | 69% |
+| A | Esperto | 61% |
+| S | Campione | 23% |
 
 ## Progressione del roster
 
@@ -170,8 +193,10 @@ crollavano dal 61% al 29%).
 
 Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 
-1. **Griglia 6×6.** Nessuna delle due fonti indica la dimensione del campo — verificato
-   cercandola in entrambe. Sei colonne tengono 10 unità con densità sensata. Costante `N`.
+1. ~~Griglia 6×6~~ → **Campo 5×7** (5 colonne, 7 file). Nessuna delle due fonti scritte
+   indicava la dimensione; l'informazione è arrivata dal committente sulla base del gioco
+   originale. Il campo rettangolare e profondo bilancia i movimenti obliqui, che su una
+   griglia quadrata coprivano troppo. Costanti `NX` e `NY`.
 2. **Formula di danno.** Assente da entrambe le fonti.
    `max(str×0.3, str×2 − def) × moltiplicatore × (0.9…1.1)`.
    Il pavimento al 30% della forza serve a evitare che un DEF alto renda un'unità
@@ -276,6 +301,12 @@ sui titoli.
 
 ## Verifiche fatte
 
+- 22 controlli automatici sulle tre schede introdotte: la scheda del roster mostra
+  caratteristiche, movimento, speciale e danni e non seleziona senza conferma; il
+  riepilogo genera una card per pedina e blocca l'ingresso in arena finché manca il Re;
+  la card di battaglia riporta danno d'attacco, danno speciale e movimento residuo
+- 4 controlli sul campo rettangolare: 5 colonne, 7 file, e i limiti su entrambi gli assi
+
 - 10 controlli automatici sulla landing: nessuna risorsa mancante, immagini caricate con
   dimensioni dichiarate e testo alternativo, un solo `h1` con gerarchia coerente, skip
   link funzionante, pulsante che apre davvero il gioco, nessuno scroll orizzontale a
@@ -323,9 +354,24 @@ sui titoli.
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
 
+## Testi del sito e attribuzione
+
+Su richiesta del committente, **il sito non riporta più fonti, crediti o riferimenti
+esterni**: il footer dice solo che è una demo prodotta da Experiences Srl.
+
+Perché fosse una scelta legittima e non una violazione, le descrizioni delle unità sono
+state **riscritte da zero**: ora parlano del ruolo in campo ("Artiglieria. Colpisce da
+lontano ma va tenuta al riparo") invece di tradurre la prosa del wiki. Statistiche,
+regole e diagrammi sono fatti, non materiale protetto. Così non è dovuta alcuna
+attribuzione CC BY-SA e il footer può restare di una riga.
+
+La tracciabilità delle fonti resta in questo README, che è documentazione interna e non
+viene pubblicata come pagina del sito.
+
 ## Licenze e diritti
 
-- **Testo e dati**: Rogue Galaxy Wiki (Fandom), licenza [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+- **Dati** (statistiche, famiglie, regole, torneo): Rogue Galaxy Wiki (Fandom) e la
+  In-Depth FAQ di Paul Michael «VHAYSTE». Sono fatti di gioco, non prosa riutilizzata.
 - **Grafica**: interamente originale, generata da codice. **Nessuno sprite, artwork o
   screenshot del gioco è stato usato**, e non c'è alcun file immagine nel repo.
 - *Rogue Galaxy* è © Sony Interactive Entertainment / Level-5. Questo prototipo è un
