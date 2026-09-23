@@ -134,7 +134,9 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 5. **IA avversaria.** Priorità: speciale se conviene → attacco al bersaglio più
    debole (Re in priorità) → avvicinamento. Il Re nemico resta coperto finché ha
    almeno un compagno vivo. Funzione `aiAct()`.
-6. **Un'azione per unità per turno** (movimento + attacco/speciale).
+6. **Un movimento e un'azione per unità per turno.** Lo spostamento si può fare una
+   volta sola; dopo si può ancora attaccare o usare la speciale, ma attaccare chiude il
+   turno della pedina. Attacco e speciale non si sommano.
 
 ## Discrepanze fra le fonti
 
@@ -221,6 +223,12 @@ Verificato con l'audit della skill `web-design-guidelines`. Sistemati anche:
 sui titoli.
 
 ## Verifiche fatte
+
+- 8 controlli automatici sulla regola del movimento: "Muovi" attivo a inizio turno,
+  spostamento registrato, pulsante che diventa "Già mossa" e si disattiva, nessuna casella
+  raggiungibile evidenziata dopo il primo spostamento, secondo spostamento rifiutato anche
+  forzando la modalità, azione e passo ancora disponibili, movimento di nuovo possibile al
+  turno successivo: tutti superati
 
 - 14 controlli automatici sull'accessibilità: struttura della griglia, roving tabindex,
   nomi delle caselle, navigazione con frecce/Home/End, cursore che non esce dal bordo,
