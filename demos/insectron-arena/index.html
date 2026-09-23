@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d1117">
 <title>Insectron Arena — Battaglia tattica a turni</title>
-<meta name="description" content="Battaglia tattica a turni 5v5 su griglia: cinque pedine, un Re da proteggere, tredici mosse speciali. Da soli contro il computer o in due sullo stesso schermo. Gratis nel browser, senza installare nulla. Demo Experiences Srl.">
+<meta name="description" content="Battaglia tattica a turni 5v5 su griglia: cinque pedine, un Re da proteggere, tredici mosse speciali. Human vs PC, Human vs Human sullo stesso schermo, o PC vs PC per guardarla giocare. Gratis nel browser, senza installare nulla. Demo Experiences Srl.">
 <meta name="demo:tags" content="videogame,gioco,tattico,turni,prototipo,javascript,accessibile">
 <meta name="demo:category" content="videogame">
 <meta property="og:type" content="website">
@@ -114,13 +114,13 @@ footer p{margin-bottom:9px}
     <p class="pitch">
       Cinque pedine, un campo 5×7, un Re da proteggere. Se cade il tuo, hai perso.
       Battaglia tattica a turni: tredici mosse speciali, nessuna uguale all'altra.
-      Da soli contro il computer, o in due sullo stesso schermo.
+      Contro il computer, in due sullo stesso schermo, o computer contro computer.
     </p>
     <div class="cta">
       <a class="btn play" href="gioca.html">Gioca ora</a>
       <a class="btn" href="#comesigioca">Come si gioca</a>
     </div>
-    <p class="meta">Gratis, nel browser · nessuna installazione, nessun account · funziona anche da telefono · due giocatori sullo stesso dispositivo</p>
+    <p class="meta">Gratis, nel browser · nessuna installazione, nessun account · funziona anche da telefono · tre modalità, due giocatori compresi</p>
   </div>
 </header>
 
@@ -162,8 +162,12 @@ footer p{margin-bottom:9px}
         <p>Quasi tutte le mosse speciali colpiscono solo in orizzontale e verticale. Mettersi in diagonale è una difesa vera.</p>
       </div>
       <div class="card">
-        <h3>Oppure sfida un amico</h3>
-        <p>Modalità due giocatori sullo stesso dispositivo: ognuno sceglie squadra e Re in privato, schiera al coperto, poi ci si passa lo schermo a ogni turno. Nessun account, niente connessione.</p>
+        <h3>Scegli chi gioca</h3>
+        <p>Composta la squadra, decidi la partita: <b>Human vs PC</b> per il torneo, <b>Human vs Human</b> sullo stesso dispositivo, <b>PC vs PC</b> per guardarla giocare da sola. Col computer in campo scegli anche quanto è bravo.</p>
+      </div>
+      <div class="card">
+        <h3>In due, a turno</h3>
+        <p>Ognuno sceglie squadra e Re in privato e schiera al coperto, poi ci si passa lo schermo. La scacchiera ruota a ogni consegna: chi gioca ha sempre le sue pedine davanti. Nessun account, niente connessione.</p>
       </div>
       <div class="card">
         <h3>Sali di rank</h3>
@@ -187,6 +191,11 @@ footer p{margin-bottom:9px}
         <img src="img/schieramento.png" width="812" height="638" loading="lazy"
              alt="Fase di schieramento: le due file più vicine al giocatore sono illuminate in azzurro con caselle libere segnate da un cerchio tratteggiato.">
         <figcaption>Lo schieramento. Le caselle illuminate sono quelle dove puoi piazzare.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/modalita.png" width="1148" height="340" loading="lazy"
+             alt="Schermata di scelta: tre carte affiancate, Human contro PC, Human contro Human e PC contro PC, ognuna con le icone di chi gioca, e sotto il selettore della difficoltà.">
+        <figcaption>Chi gioca questa partita. Le icone dicono a colpo d'occhio chi muove le due squadre.</figcaption>
       </figure>
       <figure>
         <img src="img/due-giocatori.png" width="1220" height="760" loading="lazy"
@@ -214,7 +223,7 @@ footer p{margin-bottom:9px}
     </table>
     <ul class="clean" style="margin-top:26px">
       <li><b>1800 battaglie simulate</b> a ogni modifica delle regole, per tenere l'equilibrio sotto controllo.</li>
-      <li><b>142 controlli automatici</b> su meccaniche, schieramento, movimento, difficoltà, accessibilità e modalità due giocatori.</li>
+      <li><b>200 controlli automatici</b> su meccaniche, schieramento, movimento, difficoltà, accessibilità, scelta della modalità, partita in due e rotazione della scacchiera.</li>
       <li><b>Si gioca anche solo da tastiera.</b> La scacchiera è una griglia ARIA: frecce per muoversi, Invio per selezionare, e ogni casella ha un nome parlato per chi usa uno screen reader.</li>
     </ul>
   </div>

@@ -86,17 +86,21 @@ Altre correzioni che la FAQ ha imposto:
 
 ## Il percorso prima della partita
 
-Tre passaggi, ognuno con le informazioni che servono a decidere:
+Quattro passaggi, ognuno con le informazioni che servono a decidere:
 
 1. **Roster.** Toccando un Insector si apre a destra la sua **scheda**: ruolo in campo,
    vita/forza/difesa, danno d'attacco, movimento, mossa speciale e relativo danno. Si
    entra in squadra solo confermando con il pulsante — un tocco non impegna a nulla.
 2. **Riepilogo squadra.** Le cinque pedine affiancate con le stesse informazioni, ed è
    qui che si **nomina il Re**. Finché non lo scegli non si entra in arena.
-3. **Schieramento.** Le pedine si posizionano sulle due file di casa.
+3. **Chi gioca.** «Entra in arena» non porta piu' dritto in campo: prima si sceglie
+   fra Human vs PC, Human vs Human e PC vs PC, e con un computer in campo il suo
+   livello (vedi «Chi gioca: le tre modalita'»).
+4. **Schieramento.** Le pedine si posizionano sulle due file di casa — tranne in
+   PC vs PC, dove le mette in fila il gioco.
 
-In modalità due giocatori gli stessi tre passaggi li fa prima uno e poi l'altro, con una
-schermata di consegna in mezzo (vedi «Due giocatori sullo stesso dispositivo»).
+In Human vs Human i primi due passaggi li rifa' anche il secondo giocatore, con una
+schermata di consegna in mezzo.
 
 In battaglia, selezionando una pedina il pannello mostra **danno d'attacco, danno della
 speciale e movimento residuo**. Quando c'è un bersaglio a tiro i due danni sono quelli
@@ -117,41 +121,81 @@ convengono avanti, il Re coperto dietro.
 - **Inizia battaglia** si attiva solo a schieramento completo
 
 Nel torneo gli avversari sono schierati dalla CPU nelle loro due file, con il Re
-nell'ultima; in due giocatori le schiera l'altra persona, nelle due file in alto.
+nell'ultima; in Human vs Human le schiera l'altra persona, nelle due file dalla sua
+parte (che la rotazione le mostra in basso); in PC vs PC non si schiera affatto.
 
-## Due giocatori sullo stesso dispositivo
+## Chi gioca: le tre modalita'
 
-Il selettore **Modalità** in testata sceglie fra il torneo contro il computer e la
-partita fra due persone. In due giocatori il secondo lato non lo muove l'IA: lo gioca
-l'altra persona, sullo stesso schermo.
+La scelta arriva **dopo** il riepilogo della squadra: si preme «Entra in arena» e prima
+del campo compare la schermata «Chi gioca questa partita?». La squadra appena composta
+scende in campo in tutti e tre i casi; qui si decide solo chi la muove.
 
-Come si svolge:
+| Modalita' | Chi muove | A cosa serve |
+|---|---|---|
+| **Human vs PC** | tu contro il computer | il torneo di sempre: cinque round per rank |
+| **Human vs Human** | due persone sullo stesso dispositivo | una partita fra amici, a turno |
+| **PC vs PC** | il computer su tutti e due i lati | guardare la demo all'opera, per provarla |
 
-1. **Nomi.** Chi gioca in basso e chi gioca in alto. Servono a dire di chi è il turno
-   nelle schermate di consegna.
-2. **Squadre in privato.** Prima uno sceglie le sue cinque pedine e il Re, poi l'altro.
-   Fra i due passaggi compare una schermata di consegna che copre tutto.
-3. **Schieramento al coperto.** Ognuno schiera nelle due file dalla sua parte; finché
+Ogni carta ha le sue icone — una sagoma umana accanto a «Human», un monitor accanto a
+«PC» — disegnate in SVG dentro la pagina come il resto della grafica.
+
+Sotto le carte compare solo quello che serve a quella modalita':
+
+- **Human vs PC** → il livello dell'avversario (era il selettore in testata, che non c'e' piu')
+- **Human vs Human** → i nomi dei due giocatori
+- **PC vs PC** → il livello di tutti e due i computer, scelti separatamente
+
+In ogni caso la descrizione del profilo scelto compare sotto il selettore, cosi' si sa
+cosa si sta per affrontare prima di entrare in campo.
+
+### Human vs Human
+
+1. **Squadre in privato.** La squadra gia' composta e' di chi gioca in basso; dopo la
+   conferma una schermata di consegna copre tutto e sceglie l'altro.
+2. **Schieramento al coperto.** Ognuno schiera nelle due file dalla sua parte; finche'
    si schiera, **le pedine dell'altro non sono disegnate**. Le due zone non si
-   sovrappongono, quindi nessuno può dedurne la posizione provando a occupare una
+   sovrappongono, quindi nessuno puo' dedurne la posizione provando a occupare una
    casella. A schieramento chiuso il campo si scopre per entrambi.
-4. **Turni alternati.** A ogni «Fine turno» compare la consegna: il campo resta coperto
-   finché chi subentra non conferma.
-5. **Esito.** Vince chi abbatte il Re avversario. Da lì si può chiedere la **rivincita**
-   con le stesse due squadre o tornare a **cambiare squadre**.
+3. **Turni alternati.** A ogni «Fine turno» compare la consegna: il campo resta coperto
+   finche' chi subentra non conferma.
+4. **Esito.** Vince chi abbatte il Re avversario, con **rivincita** a squadre invariate
+   o ritorno al roster.
 
-Scelte fatte, e perché:
+**La scacchiera ruota di mezzo giro a ogni consegna**: chi ha il turno si ritrova le
+proprie pedine in basso, come se fosse seduto da quella parte del tavolo. Ruota la
+**vista**, non lo stato: le coordinate delle unita' restano quelle logiche e passano da
+`vX()`/`vY()` solo per essere disegnate o cliccate. Di conseguenza ruotano anche
 
-- **Roster aperto a entrambi.** I progressi del torneo restano fuori: con gli sblocchi
-  attivi i due partirebbero da roster diversi. Resta escluso il solo Dark Emperor,
-  che è il premio di fine torneo.
-- **La squadra del torneo non si perde.** Entrando in due giocatori viene messa da
-  parte e ritorna intatta quando si riseleziona il torneo; il salvataggio locale
-  continua a registrare solo la carriera.
-- **Il campo non si ribalta** per il secondo giocatore: si gioca come su una scacchiera
-  fisica, uno di fronte all'altro.
+- la mappatura delle caselle (ogni casella a schermo riscrive il suo `data-xy`),
+- il verso degli sprite (guardano sempre verso il campo avversario),
+- le frecce della tastiera (giu' resta giu' *sullo schermo*),
+- le coordinate annunciate agli screen reader (riga 7 e' l'ultima riga in basso per chi
+  sta guardando).
+
+Non ruotano invece i colori: le pedine di chi sta in basso nella partita restano azzurre
+e quelle dell'altro rosse, e la tinta delle due zone segue il proprietario. Cosi' a
+scacchiera girata si riconosce comunque di chi e' cosa.
+
+Altre scelte:
+
+- **Stesso roster per tutti e due.** Si gioca su un dispositivo solo, quindi entrambi
+  pescano dagli Insector sbloccati su quel salvataggio: nessuno parte avvantaggiato.
+- **La squadra del torneo non si perde.** Mentre sceglie il secondo giocatore viene
+  messa da parte e torna intatta al ritorno nel roster; il salvataggio locale continua
+  a registrare solo la carriera.
 - **Niente rete.** Tutto resta in una pagina statica: nessun server, nessun account,
   funziona anche offline.
+
+### PC vs PC
+
+Serve a provare la demo, non a giocarla: i due lati li muove l'IA con i livelli scelti,
+il lato in basso con la squadra composta dall'utente e quello in alto con un quintetto
+pescato dagli avversari del rank corrente. Non c'e' schieramento (le pedine partono
+nelle due file di casa), il pulsante «Fine turno» sparisce e **il torneo non avanza**:
+l'esito dice solo quale dei due profili ha vinto e con quante pedine in piedi.
+
+Il livello del lato in basso e' guidato dall'utente solo qui: in tutte le altre
+modalita' resta fisso su Normale, il metro con cui sono state misurate le difficolta'.
 
 ## Difficolta degli avversari
 
@@ -166,7 +210,7 @@ gioco dell'avversario.
 | 4 | Campione | Come l'Esperto, e sceglie **l'ordine** con cui muovere la squadra: agisce per prima l'unita che ha il colpo migliore. |
 
 Il livello segue il rank del torneo (E→1, D e C→2, B e A→3, S→4) e si puo' forzare dal
-selettore in alto, per provare un profilo qualsiasi a qualunque rank.
+selettore nella schermata «Chi gioca», per provare un profilo qualsiasi a qualunque rank.
 
 **Quanto pesa davvero.** Misurato a specchio: stessa squadra e stesse statistiche sui due
 lati, il lato "giocatore" sempre sul profilo Normale, alternando chi muove per primo.
@@ -345,15 +389,31 @@ sui titoli.
   la card di battaglia riporta danno d'attacco, danno speciale e movimento residuo
 - 4 controlli sul campo rettangolare: 5 colonne, 7 file, e i limiti su entrambi gli assi
 
-- 28 controlli automatici sulla modalità due giocatori: la modalità apre la schermata
-  dei nomi e nasconde rank, round e difficoltà; il roster si apre a entrambi; le
-  consegne nominano il giocatore giusto a ogni passaggio; a inizio schieramento il
-  campo è vuoto e si vedono solo le cinque pedine di chi sta schierando; ognuno schiera
-  nella propria metà; a battaglia iniziata compaiono tutte e dieci; non si seleziona
-  una pedina avversaria; «Fine turno» è attivo per tutti e due; una partita completa
-  giocata via UI arriva a un vincitore dichiarato per nome; la rivincita riparte dalle
-  stesse squadre; tornando al torneo la squadra di carriera è intatta e i blocchi del
-  roster tornano in vigore. Nessun errore in console.
+- 30 controlli automatici su Human vs Human: la scelta della modalità compare solo
+  dopo «Entra in arena»; le consegne nominano il giocatore giusto a ogni passaggio; a
+  inizio schieramento il campo è vuoto e si vedono solo le cinque pedine di chi sta
+  schierando; ognuno schiera nella propria metà; a battaglia iniziata compaiono tutte e
+  dieci; non si seleziona una pedina avversaria; «Fine turno» è attivo per tutti e due;
+  una partita completa giocata via UI arriva a un vincitore dichiarato per nome; la
+  rivincita riparte dalle stesse squadre; tornando al roster la squadra del torneo è
+  intatta, nel salvataggio e a schermo, e i badge del torneo ricompaiono. Nessun
+  errore in console.
+
+- 37 controlli automatici sulla schermata «Chi gioca» e su PC vs PC: la testata non ha
+  più selettori; le tre carte sono nell'ordine giusto con le etichette chieste e
+  l'icona accanto a ogni parola (umana accanto a «Human», monitor accanto a «PC»);
+  sotto le carte compaiono i nomi in Human vs Human, un livello in Human vs PC e due in
+  PC vs PC, con la descrizione del profilo che segue la scelta; i livelli scelti
+  arrivano ai due lati e sopravvivono al ricaricamento; PC vs PC entra in campo senza
+  schierare, con dieci pedine e senza «Fine turno», va avanti da solo fino a un
+  vincitore, non muove rank e round e si può abbandonare a metà; Human vs PC continua a
+  passare dallo schieramento e mostra in campo il livello scelto.
+
+- 18 controlli sulla rotazione della scacchiera, a 1280 e 390 px: col primo giocatore
+  la mappatura è diretta, col secondo è girata di mezzo giro; la zona di schieramento
+  di chi sta schierando è in basso sullo schermo; le pedine di chi ha il turno stanno
+  nella metà bassa; le righe annunciate agli screen reader seguono quello che si vede;
+  la freccia «giù» muove verso il basso dello schermo anche a scacchiera girata.
 
 - 10 controlli automatici sulla landing: nessuna risorsa mancante, immagini caricate con
   dimensioni dichiarate e testo alternativo, un solo `h1` con gerarchia coerente, skip
@@ -397,11 +457,12 @@ sui titoli.
   | B | 20% | 80% |
   | A | 7% | 77% |
   | S | 2% | 25% |
-- Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate della
-  modalità due giocatori comprese (nomi, consegna, squadra, schieramento)
-- Totale dei controlli automatici sul gioco: **142** (meccaniche 30, schieramento 20,
-  schede 22, accessibilità 14, difficoltà 9, movimento 13, scheda del roster 6,
-  due giocatori 28), più 10 sulla landing
+- Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate nuove
+  comprese (scelta della modalità, consegna, squadra del secondo giocatore,
+  schieramento a scacchiera girata)
+- Totale dei controlli automatici sul gioco: **200** (meccaniche 30, schieramento 20,
+  schede 22, accessibilità 14, difficoltà 10, movimento 13, scheda del roster 6,
+  Human vs Human 30, modalità e PC vs PC 37, rotazione 18), più 10 sulla landing
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
