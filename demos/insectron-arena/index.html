@@ -5,15 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d1117">
 <title>Insectron Arena — Battaglia tattica a turni</title>
-<meta name="description" content="Prototipo giocabile di battaglia tattica 5v5 su griglia, ricostruito dalle fonti del minigioco Insectron di Rogue Galaxy. Gratis, nel browser, senza installare nulla.">
+<meta name="description" content="Battaglia tattica a turni 5v5 su griglia: cinque pedine, un Re da proteggere, tredici mosse speciali. Gratis nel browser, senza installare nulla. Demo Experiences Srl.">
 <meta name="demo:tags" content="videogame,gioco,tattico,turni,prototipo,javascript,accessibile">
 <meta name="demo:category" content="videogame">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Experiences Srl · Demo">
+<meta property="og:locale" content="it_IT">
 <meta property="og:title" content="Insectron Arena — Battaglia tattica a turni">
-<meta property="og:description" content="5 pedine, una griglia 6×6, un Re da proteggere. Gioca nel browser, senza installare nulla.">
-<meta property="og:image" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/insectron-arena/img/battaglia.png">
+<meta property="og:description" content="Cinque pedine, un campo 5×7, un Re da proteggere. Gioca nel browser, senza installare nulla.">
 <meta property="og:url" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/insectron-arena/">
+<meta property="og:image" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/insectron-arena/img/social-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Insectron Arena: il campo di gioco con una mossa ad area in corso, accanto al titolo e al pulsante Gioca ora.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Insectron Arena — Battaglia tattica a turni">
+<meta name="twitter:description" content="Cinque pedine, un campo 5×7, un Re da proteggere. Gioca nel browser, senza installare nulla.">
+<meta name="twitter:image" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/insectron-arena/img/social-card.png">
+<meta name="twitter:image:alt" content="Il campo di Insectron Arena durante una mossa ad area.">
 <style>
 html{color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -102,12 +112,12 @@ footer p{margin-bottom:9px}
     <span class="eyebrow">Prototipo giocabile</span>
     <h1>INSECTRON <span>ARENA</span></h1>
     <p class="pitch">
-      Cinque pedine, una griglia 6×6, un Re da proteggere. Se cade il tuo, hai perso.
-      Battaglia tattica a turni ricostruita dalle fonti del minigioco <i>Insectron</i> di Rogue&nbsp;Galaxy.
+      Cinque pedine, un campo 5×7, un Re da proteggere. Se cade il tuo, hai perso.
+      Battaglia tattica a turni: tredici mosse speciali, nessuna uguale all'altra.
     </p>
     <div class="cta">
       <a class="btn play" href="gioca.html">Gioca ora</a>
-      <a class="btn" href="#comefatto">Com'è fatto</a>
+      <a class="btn" href="#comesigioca">Come si gioca</a>
     </div>
     <p class="meta">Gratis, nel browser · nessuna installazione, nessun account · funziona anche da telefono</p>
   </div>
@@ -125,7 +135,7 @@ footer p{margin-bottom:9px}
   </div>
 </section>
 
-<section>
+<section id="comesigioca">
   <div class="wrap">
     <h2>Come si gioca</h2>
     <p class="sub">Le regole stanno in un minuto. La profondità arriva dalle mosse speciali, tutte diverse.</p>
@@ -177,20 +187,6 @@ footer p{margin-bottom:9px}
   </div>
 </section>
 
-<section id="comefatto">
-  <div class="wrap">
-    <h2>Da dove vengono i dati</h2>
-    <p class="sub">Non sono numeri inventati: statistiche, famiglie e regole arrivano da due fonti pubbliche, incrociate fra loro.</p>
-    <ul class="clean">
-      <li><b>Rogue Galaxy Wiki</b> — le 34 unità con HP, forza, difesa e rank reali, le 13 famiglie, il torneo con i nomi dei 30 avversari e i premi.</li>
-      <li><b>La FAQ di GameFAQs di Paul Michael «VHAYSTE»</b> — i diagrammi casella per casella di ogni mossa speciale e di ogni range di movimento. È da qui che arriva la regola per cui le speciali colpiscono solo le quattro caselle ortogonali.</li>
-      <li><b>Ricostruzione dichiarata</b> — dimensione della griglia e formula di danno non compaiono in nessuna delle due fonti. Sono scelte di design, segnalate come tali nella documentazione.</li>
-    </ul>
-    <div class="note" style="margin-top:24px">
-      <b>Le due fonti non erano sempre d'accordo.</b> Dove divergono — per esempio sul premio del Rank B — la discrepanza è annotata invece che nascosta.
-    </div>
-  </div>
-</section>
 
 <section>
   <div class="wrap">
@@ -207,7 +203,7 @@ footer p{margin-bottom:9px}
       <tr><td>S</td><td>Campioni</td><td class="num">17%</td></tr>
     </table>
     <ul class="clean" style="margin-top:26px">
-      <li><b>1800 battaglie simulate</b> senza eccezioni, per ogni modifica alle regole.</li>
+      <li><b>1800 battaglie simulate</b> a ogni modifica delle regole, per tenere l'equilibrio sotto controllo.</li>
       <li><b>102 controlli automatici</b> su meccaniche, schieramento, movimento, difficoltà e accessibilità.</li>
       <li><b>Si gioca anche solo da tastiera.</b> La scacchiera è una griglia ARIA: frecce per muoversi, Invio per selezionare, e ogni casella ha un nome parlato per chi usa uno screen reader.</li>
     </ul>
@@ -224,19 +220,7 @@ footer p{margin-bottom:9px}
 
 <footer>
   <div class="wrap">
-    <p>
-      <b>Prototipo tecnico</b> realizzato da Experiences Srl. Testo e dati dalla Rogue Galaxy Wiki
-      (<a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="nofollow">CC BY-SA 3.0</a>);
-      regole di targeting dalla In-Depth FAQ di Paul Michael «VHAYSTE».
-    </p>
-    <p>
-      Grafica interamente originale, generata da codice: nessuno sprite, artwork o screenshot
-      del gioco originale è stato usato.
-    </p>
-    <p>
-      <i>Rogue Galaxy</i> è © Sony Interactive Entertainment / Level-5. Questo prototipo non è
-      affiliato, autorizzato né commerciale.
-    </p>
+    <p>Demo prodotta da <b>Experiences Srl</b>.</p>
   </div>
 </footer>
 </body>
