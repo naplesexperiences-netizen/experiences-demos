@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d1117">
 <title>Insectron Arena — Demo Tattica</title>
-<meta name="description" content="Battaglia tattica a turni 5v5 su griglia: cinque pedine, un Re da proteggere, tredici mosse speciali. Demo prodotta da Experiences Srl.">
-<meta name="demo:tags" content="videogame,gioco,tattico,turni,prototipo,canvas,javascript">
+<meta name="description" content="Battaglia tattica a turni 5v5 su griglia: cinque pedine, un Re da proteggere, tredici mosse speciali. Da soli contro il computer o in due sullo stesso schermo. Demo prodotta da Experiences Srl.">
+<meta name="demo:tags" content="videogame,gioco,tattico,turni,multiplayer,prototipo,canvas,javascript">
 <meta name="demo:category" content="videogame">
 <style>
 :root{
@@ -288,6 +288,45 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
 .pill.p{background:#12354a;border-color:var(--ally);color:var(--ally)}
 .pill.e{background:#4a1c1c;border-color:var(--foe);color:var(--foe)}
 
+/* --- due giocatori sullo stesso dispositivo --- */
+.banner{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ally);
+  border-radius:var(--r);padding:11px 15px;margin-bottom:14px;font-size:.9rem
+}
+.banner b{color:var(--text)}
+.banner.e{border-left-color:var(--foe)}
+.banner .tag{
+  background:#12354a;border:1px solid var(--ally);color:var(--ally);
+  border-radius:999px;padding:3px 11px;font-size:.72rem;font-weight:bold
+}
+.banner.e .tag{background:#4a1c1c;border-color:var(--foe);color:var(--foe)}
+.names{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.names label{flex:1;min-width:190px;font-size:.78rem;color:var(--muted);display:block}
+.names input{
+  display:block;width:100%;margin-top:6px;font-family:inherit;font-size:.95rem;
+  background:var(--panel2);color:var(--text);border:1px solid var(--line);
+  border-radius:9px;padding:9px 11px
+}
+.steps{margin:0 0 14px 20px;font-size:.82rem;color:var(--muted);line-height:1.6}
+.pass{
+  position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:rgba(7,11,18,.94);backdrop-filter:blur(3px)
+}
+.pass[hidden]{display:none}
+.passbox{
+  max-width:420px;width:100%;text-align:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px
+}
+.passbox .who{
+  display:inline-block;margin-bottom:12px;padding:5px 14px;border-radius:999px;
+  font-size:.74rem;font-weight:bold;background:#12354a;border:1px solid var(--ally);color:var(--ally)
+}
+.passbox.e .who{background:#4a1c1c;border-color:var(--foe);color:var(--foe)}
+.passbox h2{font-size:1.25rem;margin-bottom:10px}
+.passbox p{font-size:.85rem;color:var(--muted);line-height:1.55;margin-bottom:18px}
+.passbox button{width:100%;padding:12px}
+
 /* ---------- esito ---------- */
 .result{max-width:520px;margin:6vh auto;text-align:center}
 .result h2{font-size:1.8rem;margin-bottom:10px}
@@ -314,7 +353,13 @@ footer.note a{color:var(--accent2)}
   <h1>INSECTRON <span>ARENA</span></h1>
   <div class="badge" id="b-rank">Rank <b>E</b></div>
   <div class="badge" id="b-round">Round <b>1</b>/5</div>
-  <label class="badge" for="sel-ai">Avversari
+  <label class="badge" for="sel-mode">Modalità
+    <select id="sel-mode">
+      <option value="ai">Torneo contro il computer</option>
+      <option value="duo">Due giocatori, stesso schermo</option>
+    </select>
+  </label>
+  <label class="badge" id="lbl-ai" for="sel-ai">Avversari
     <select id="sel-ai">
       <option value="0">Automatici</option>
       <option value="1">Principianti</option>
@@ -327,8 +372,35 @@ footer.note a{color:var(--accent2)}
   <button id="btn-reset" class="danger">Azzera torneo</button>
 </header>
 
+<!-- ============ DUE GIOCATORI: NOMI E REGOLE DEL PASSAGGIO ============ -->
+<section id="s-duo" class="screen">
+  <div class="card">
+    <h2>Due giocatori, stesso schermo</h2>
+    <p class="hint">Si gioca a turni sullo stesso dispositivo, passandoselo di mano.
+      Fra un turno e l’altro compare una schermata di passaggio: serve a non far
+      vedere all’avversario la mossa che stai preparando.</p>
+    <div class="names">
+      <label for="n1">Giocatore in basso<input id="n1" maxlength="16" value="Giocatore 1" autocomplete="off"></label>
+      <label for="n2">Giocatore in alto<input id="n2" maxlength="16" value="Giocatore 2" autocomplete="off"></label>
+    </div>
+    <ol class="steps">
+      <li>Ognuno sceglie in privato le sue cinque pedine e il suo Re.</li>
+      <li>Ognuno schiera le pedine nelle due file dalla sua parte: lo schieramento
+        dell’altro resta nascosto finché non si comincia.</li>
+      <li>Si alternano i turni finché un Re non cade.</li>
+    </ol>
+    <p class="hint">Qui il roster è aperto a tutti e due: nessuno parte avvantaggiato
+      dai progressi del torneo.</p>
+    <div class="acts">
+      <button id="btn-duoback">Torna al torneo</button>
+      <button id="btn-duostart" class="primary">Scegli le squadre</button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SCHERMATA SQUADRA ============ -->
 <section id="s-team" class="screen on">
+  <p class="banner" id="team-who" hidden></p>
   <div class="two">
     <div class="card">
       <h2>Roster Insector</h2>
@@ -352,8 +424,9 @@ footer.note a{color:var(--accent2)}
 
 <!-- ============ RIEPILOGO SQUADRA E SCELTA DEL RE ============ -->
 <section id="s-brief" class="screen">
+  <p class="banner" id="brief-who" hidden></p>
   <div class="card">
-    <h2>La tua squadra</h2>
+    <h2 id="brief-title">La tua squadra</h2>
     <p class="hint">Controlla le cinque pedine e scegli il <b>Re</b>. Se cade, la partita
       finisce: conviene il più resistente. Il Re si muove di <b>una sola casella</b> per
       turno, anche se la sua famiglia ne permetterebbe di più.</p>
@@ -370,7 +443,7 @@ footer.note a{color:var(--accent2)}
   <div class="arena">
     <div class="boardwrap">
       <div class="turnbar" id="deploybar" style="display:none">
-        <span class="pill p">Schiera le pedine</span>
+        <span class="pill p" id="deploypill">Schiera le pedine</span>
         <span class="badge" id="b-todo">Da piazzare: <b>5</b></span>
         <div class="spacer"></div>
         <button id="btn-rand">Schiera a caso</button>
@@ -399,6 +472,7 @@ footer.note a{color:var(--accent2)}
     <h2 id="r-title">—</h2>
     <p id="r-text">—</p>
     <div class="acts">
+      <button id="btn-newteams" hidden>Cambia squadre</button>
       <button id="btn-next" class="primary">Continua</button>
     </div>
   </div>
@@ -407,6 +481,16 @@ footer.note a{color:var(--accent2)}
 <footer class="note">
   Demo prodotta da <b>Experiences Srl</b>.
 </footer>
+
+<!-- ============ PASSAGGIO DEL DISPOSITIVO ============ -->
+<div class="pass" id="pass" hidden>
+  <div class="passbox">
+    <p class="who" id="pass-who">—</p>
+    <h2 id="pass-title">—</h2>
+    <p id="pass-text">—</p>
+    <button id="btn-pass" class="primary">Sono pronto</button>
+  </div>
+</div>
 
 </div>
 <script>
@@ -622,8 +706,21 @@ const S = {
   rankIdx: 0, round: 0, champion: false,
   team: [], kingId: null,
   units: [], turn: "p", sel: null, mode: "idle", busy: false, over: false, look: null,
-  phase: "battle", pick: null, cur: { x: 0, y: 6 }, aiForced: 0
+  phase: "battle", pick: null, cur: { x: 0, y: 6 }, aiForced: 0,
+  /* Due giocatori sullo stesso dispositivo: "ai" = torneo contro il computer,
+     "duo" = partita fra due persone che si passano lo schermo.
+     In "duo" ogni lato ha la sua squadra e il suo Re; la squadra del torneo
+     resta da parte in S.career e torna al suo posto quando si cambia modalita'. */
+  vs: "ai",
+  duo: { p: { team: [], king: null }, e: { team: [], king: null } },
+  names: { p: "Giocatore 1", e: "Giocatore 2" },
+  setup: "p", deploySide: "p",
+  career: { team: [], king: null }
 };
+const duoMode = () => S.vs === "duo";
+/* Chi sta giocando adesso: nel torneo e' sempre il lato in basso, in duo cambia a ogni turno. */
+const meSide = () => duoMode() ? S.turn : "p";
+const nameOf = side => S.names[side];
 
 const $ = s => document.querySelector(s);
 const cheb = (a,b,c,d) => Math.max(Math.abs(a-c), Math.abs(b-d));
@@ -633,8 +730,10 @@ const alive = side => S.units.filter(u => u.alive && u.side === side);
 const kingOf = side => S.units.find(u => u.alive && u.side === side && u.isKing);
 
 function save(){
+  const t = duoMode() ? S.career.team : S.team;
+  const k = duoMode() ? S.career.king : S.kingId;
   try { localStorage.setItem("insectron", JSON.stringify(
-    {r:S.rankIdx, n:S.round, t:S.team, k:S.kingId, c:S.champion ? 1 : 0, a:S.aiForced||0})); }
+    {r:S.rankIdx, n:S.round, t:t, k:k, c:S.champion ? 1 : 0, a:S.aiForced||0})); }
   catch(e){ /* storage non disponibile: la partita resta valida in sessione */ }
 }
 function load(){
@@ -662,6 +761,9 @@ function maxRank(){
 }
 function unlocked(u){
   if (u.id === "dark_emperor") return !!S.champion;
+  /* Nella partita fra due persone non ha senso portarsi dietro i progressi del
+     torneo: partirebbero da roster diversi. Il campo e' aperto a tutti e due. */
+  if (duoMode()) return true;
   return u.rank <= maxRank();
 }
 function lockNote(u){
@@ -675,9 +777,12 @@ function drawRoster(){
   const r = $("#roster"); r.innerHTML = "";
   const open = UNITS.filter(unlocked).length;
   $("#roster-hint").innerHTML = "Disponibili <b>" + open + "</b> Insector su " + UNITS.length +
-    ". Scegline <b>5</b>. " + (S.champion
-      ? "Hai sbloccato tutto, Dark Emperor compreso."
-      : "Vinci un rank del torneo per sbloccare la generazione successiva.");
+    ". Scegline <b>5</b>. " + (duoMode()
+      ? ("In due giocatori il roster \u00e8 aperto a tutti e due" + (S.champion
+          ? "." : ", tranne il Dark Emperor che resta il premio del torneo."))
+      : (S.champion
+        ? "Hai sbloccato tutto, Dark Emperor compreso."
+        : "Vinci un rank del torneo per sbloccare la generazione successiva."));
   UNITS.slice().sort((a,b) => a.rank - b.rank || a.name.localeCompare(b.name)).forEach(u => {
     const ok = unlocked(u);
     const b = document.createElement("button");
@@ -821,6 +926,105 @@ function drawBrief(){
 }
 
 /* =========================================================================
+   DUE GIOCATORI SULLO STESSO DISPOSITIVO
+   Il secondo lato non lo muove l'IA ma l'altra persona: fra un turno e l'altro
+   si passa lo schermo, e una schermata di consegna copre il campo il tempo del
+   passaggio. Schieramento a turno, con le pedine dell'altro nascoste finche'
+   non si comincia: nessuno dei due schiera sapendo dove sta l'avversario.
+   ========================================================================= */
+const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let passAction = null;
+function passTo(side, title, text, fn){
+  const box = $("#pass").querySelector(".passbox");
+  box.className = "passbox" + (side === "e" ? " e" : "");
+  $("#pass-who").textContent = nameOf(side);
+  $("#pass-title").textContent = title;
+  $("#pass-text").textContent = text;
+  passAction = fn || null;
+  $("#pass").hidden = false;
+  $("#btn-pass").focus();
+}
+function passDone(){
+  $("#pass").hidden = true;
+  const f = passAction; passAction = null;
+  if (f) f();
+}
+/* Cambio modalita'. La squadra del torneo viene messa da parte e ripresa intatta,
+   cosi' una partita in due non fa perdere il quintetto con cui si sta scalando i rank. */
+function setVs(v){
+  if (v === S.vs){ updBadges(); return; }
+  const inCorso = document.querySelector("#s-battle.on") && !S.over && S.units.length;
+  if (inCorso && !window.confirm("C'\u00e8 una partita in corso: cambiando modalit\u00e0 la abbandoni. Procedo?")){
+    updBadges(); return;
+  }
+  $("#pass").hidden = true; passAction = null;
+  if (v === "duo"){
+    S.career = { team: S.team.slice(), king: S.kingId };
+    S.vs = "duo";
+    $("#n1").value = S.names.p; $("#n2").value = S.names.e;
+    updBadges(); show("s-duo");
+  } else {
+    S.vs = "ai";
+    S.team = S.career.team.slice(); S.kingId = S.career.king;
+    S.look = S.team[0] || null;
+    updBadges(); drawRoster(); drawSlots(); detail(S.look ? byId[S.look] : null);
+    show("s-team");
+  }
+}
+function duoStart(){
+  const leggi = (sel, def) => (($(sel) && $(sel).value) || "").trim().slice(0,16) || def;
+  S.names.p = leggi("#n1", "Giocatore 1");
+  S.names.e = leggi("#n2", "Giocatore 2");
+  S.duo = { p:{ team:[], king:null }, e:{ team:[], king:null } };
+  passTo("p", "Scegli la squadra",
+    "Guarda solo tu lo schermo: adesso scegli le cinque pedine e il Re.",
+    () => enterSetup("p"));
+}
+function enterSetup(side){
+  S.setup = side;
+  S.team = S.duo[side].team.slice();
+  S.kingId = S.duo[side].king;
+  S.look = S.team[0] || null;
+  drawWho(); drawRoster(); drawSlots(); detail(S.look ? byId[S.look] : null);
+  show("s-team");
+}
+function commitSetup(){ S.duo[S.setup] = { team: S.team.slice(), king: S.kingId }; }
+/* Intestazione con il nome di chi sta scegliendo: senza, a meta' partita non si
+   capisce piu' di chi sia la squadra a schermo. */
+function drawWho(){
+  const duo = duoMode(), side = S.setup;
+  [["#team-who", "sceglie la squadra"], ["#brief-who", "controlla la squadra e nomina il Re"]].forEach(([sel, txt]) => {
+    const el = $(sel); if (!el) return;
+    el.hidden = !duo;
+    el.className = "banner" + (side === "e" ? " e" : "");
+    if (duo) el.innerHTML = '<span class="tag">' + (side === "p" ? "In basso" : "In alto") +
+      '</span><span><b>' + esc(nameOf(side)) + '</b> ' + txt + '. L\u2019altro giocatore non deve guardare.</span>';
+  });
+  const t = $("#brief-title");
+  if (t) t.textContent = duo ? "La squadra di " + nameOf(side) : "La tua squadra";
+  const a = $("#btn-toarena");
+  if (a) a.textContent = !duo ? "Entra in arena"
+    : (side === "p" ? "Conferma e passa a " + nameOf("e") : "Conferma e schiera");
+}
+function startDuo(){
+  S.units = [];
+  S.duo.p.team.forEach(id => S.units.push(mk(byId[id], "p", id === S.duo.p.king, 1)));
+  S.duo.e.team.forEach(id => S.units.push(mk(byId[id], "e", id === S.duo.e.king, 1)));
+  S.units.forEach(u => { u.x = -1; u.y = -1; });
+  S.turn = "p"; S.sel = null; S.mode = "idle"; S.over = false; S.busy = false;
+  S.phase = "deploy"; S.pick = null; S.deploySide = "p";
+  resetBoard();
+  $("#log").innerHTML = "";
+  $("#b-opp").innerHTML = "<b>" + esc(nameOf("p")) + "</b> contro <b>" + esc(nameOf("e")) + "</b>";
+  $("#b-opp").title = "Partita fra due giocatori sullo stesso dispositivo";
+  log("<b>" + esc(nameOf("p")) + "</b> contro <b>" + esc(nameOf("e")) + "</b>: vince chi abbatte il Re avversario.");
+  show("s-battle"); draw();
+  passTo("p", "Schiera le pedine",
+    "Metti le tue cinque pedine nelle due file in basso. Le pedine dell\u2019avversario restano nascoste.",
+    () => draw());
+}
+
+/* =========================================================================
    COSTRUZIONE BATTAGLIA
    ========================================================================= */
 function mk(def, side, isKing, mul){
@@ -873,11 +1077,14 @@ function startBattle(){
    ========================================================================= */
 const inZone = (u, y) => u.side === "p" ? y >= NY-2 : y <= 1;
 const placed  = u => u.x >= 0;
-function toPlace(){ return S.units.filter(u => u.side === "p" && u.alive && !placed(u)); }
+/* Chi sta schierando: nel torneo solo il giocatore, in duo prima uno e poi l'altro. */
+const depSide = () => duoMode() ? S.deploySide : "p";
+function toPlace(){ const side = depSide(); return S.units.filter(u => u.side === side && u.alive && !placed(u)); }
 function randomDeploy(){
-  const free = [];
-  for (let y = NY-2; y < NY; y++) for (let x = 0; x < NX; x++) if (!at(x,y)) free.push({x,y});
-  S.units.filter(u => u.side === "p" && !placed(u)).forEach(u => {
+  const side = depSide(), free = [];
+  const y0 = side === "p" ? NY-2 : 0;
+  for (let y = y0; y < y0 + 2; y++) for (let x = 0; x < NX; x++) if (!at(x,y)) free.push({x,y});
+  S.units.filter(u => u.side === side && !placed(u)).forEach(u => {
     if (!free.length) return;
     const i = Math.floor(Math.random() * free.length);
     u.x = free[i].x; u.y = free[i].y; free.splice(i,1);
@@ -886,13 +1093,26 @@ function randomDeploy(){
 }
 function beginFight(){
   if (toPlace().length) return;
+  if (duoMode() && S.deploySide === "p"){        /* tocca all'altro schierare */
+    S.pick = null; S.sel = null;
+    passTo("e", "Schiera le pedine",
+      "Metti le tue cinque pedine nelle due file in alto. Quelle dell\u2019avversario sono ancora coperte.",
+      () => { S.deploySide = "e"; S.pick = null; draw(); });
+    return;
+  }
   S.phase = "battle"; S.pick = null; S.sel = null;
   log("Schieramento completato. <b>Abbatti il Re avversario per vincere.</b>");
+  if (duoMode()){
+    passTo("p", "Si comincia",
+      "Schieramenti scoperti: da qui in avanti il campo \u00e8 visibile a tutti e due.",
+      () => { newTurn("p"); draw(); });
+    return;
+  }
   newTurn("p"); draw();
 }
 function deployClick(x, y){
-  const here = at(x,y);
-  if (here && here.side === "p"){                 /* riprendi una pedina già piazzata */
+  const side = depSide(), here = at(x,y);
+  if (here && here.side === side){                /* riprendi una pedina già piazzata */
     if (S.pick === here){ S.pick = null; }
     else if (S.pick && !placed(S.pick)){          /* scambio con una da piazzare */
       const p = S.pick; here.x = -1; here.y = -1; p.x = x; p.y = y; S.pick = null;
@@ -900,13 +1120,17 @@ function deployClick(x, y){
     draw(); return;
   }
   if (here) return;                               /* casella avversaria: niente */
-  if (!inZone({side:"p"}, y)) return;             /* fuori dalle due file */
+  if (!inZone({side:side}, y)) return;            /* fuori dalle due file */
   const u = S.pick && !placed(S.pick) ? S.pick : toPlace()[0];
   if (!u) return;
   u.x = x; u.y = y; S.pick = null; draw();
 }
 function drawDeploy(){
-  const todo = toPlace();
+  const side = depSide(), todo = toPlace();
+  const pill = $("#deploypill");
+  pill.className = "pill " + side;
+  pill.textContent = duoMode() ? "Schiera: " + nameOf(side) : "Schiera le pedine";
+  $("#btn-fight").textContent = duoMode() && side === "p" ? "Schieramento pronto" : "Inizia battaglia";
   $("#b-todo").innerHTML = "Da piazzare: <b>" + todo.length + "</b>";
   $("#btn-fight").disabled = todo.length > 0;
   const el = $("#ucard");
@@ -914,7 +1138,7 @@ function drawDeploy(){
     'Clicca una pedina già in campo per rimetterla in panchina.</div><div class="deploylist" id="deplist"></div>';
   const list = $("#deplist");
   const next = S.pick && !placed(S.pick) ? S.pick : todo[0];
-  S.units.filter(u => u.side === "p" && u.alive).forEach(u => {
+  S.units.filter(u => u.side === side && u.alive).forEach(u => {
     const b = document.createElement("button");
     b.className = "dep" + (u === next ? " cur" : "") + (placed(u) ? " done" : "");
     b.innerHTML = art(u.d.fam, false, u.d.rank) +
@@ -1268,12 +1492,20 @@ function newTurn(side){
   S.units.filter(u => u.alive && u.side !== side).forEach(u => { u.acted = true; u.moved = true; });
   S.turn = side;
   $("#turnpill").className = "pill " + side;
-  $("#turnpill").textContent = side === "p" ? "Il tuo turno" : "Turno avversario";
-  $("#btn-end").disabled = side !== "p";
+  $("#turnpill").textContent = duoMode()
+    ? "Turno di " + nameOf(side)
+    : (side === "p" ? "Il tuo turno" : "Turno avversario");
+  $("#btn-end").disabled = duoMode() ? false : side !== "p";
 }
 function endPlayerTurn(){
   if (S.busy || S.over) return;
   S.sel = null; S.mode = "idle"; draw();
+  if (duoMode()){                                 /* il turno successivo lo gioca l'altra persona */
+    const nxt = S.turn === "p" ? "e" : "p";
+    newTurn(nxt); draw();
+    passTo(nxt, "Tocca a te", "Passa il dispositivo a " + nameOf(nxt) + ".", () => draw());
+    return;
+  }
   newTurn("e"); draw();
   S.busy = true;
   setTimeout(aiStep, 420);
@@ -1479,6 +1711,7 @@ function checkEnd(){
   else if (!ek || !alive("e").length){ S.over = true; setTimeout(() => finish(true), 700); }
 }
 function finish(win){
+  if (duoMode()){ finishDuo(win); return; }
   const R = RANKS[S.rankIdx];
   if (win){
     S.round++;
@@ -1503,6 +1736,15 @@ function finish(win){
     S.round = 0;
   }
   save(); updBadges(); show("s-result");
+}
+/* In duo non c'e' torneo da aggiornare: si dice chi ha vinto e si offre la rivincita. */
+function finishDuo(win){
+  const vince = win ? "p" : "e", perde = win ? "e" : "p";
+  const rimaste = alive(vince).length;
+  $("#r-title").innerHTML = '<span class="win">Vince ' + esc(nameOf(vince)) + '</span>';
+  $("#r-text").innerHTML = "Il Re di <b>" + esc(nameOf(perde)) + "</b> \u00e8 caduto. " +
+    "A <b>" + esc(nameOf(vince)) + "</b> restano <b>" + rimaste + "</b> pedine su 5.";
+  show("s-result");
 }
 
 /* =========================================================================
@@ -1565,7 +1807,7 @@ function boardKeys(ev){
 /* Nome accessibile della casella: posizione, chi la occupa, in che stato. */
 function cellLabel(x, y, u, opts){
   const dove = "Colonna " + (x+1) + ", riga " + (y+1);
-  const zona = y >= NY-2 ? ", zona di schieramento" : "";
+  const zona = (y >= NY-2 || (duoMode() && y <= 1)) ? ", zona di schieramento" : "";
   if (!u){
     if (opts.drop) return dove + ", libera, casella di schieramento";
     if (opts.mv)   return dove + ", libera, raggiungibile";
@@ -1576,13 +1818,16 @@ function cellLabel(x, y, u, opts){
   if (u.stun)   stati.push("immobilizzato");
   if (u.guard)  stati.push("protetto");
   if (u.exposed) stati.push("scoperto");
-  if (u.acted && u.side === "p" && S.phase !== "deploy") stati.push("ha gia agito");
-  else if (u.moved && u.side === "p" && S.phase !== "deploy") stati.push("gia spostata, puo ancora agire");
+  if (u.acted && u.side === viewSide() && S.phase !== "deploy") stati.push("ha gia agito");
+  else if (u.moved && u.side === viewSide() && S.phase !== "deploy") stati.push("gia spostata, puo ancora agire");
   if (opts.tg)  stati.push("bersaglio disponibile");
-  return dove + ", " + u.d.name + ", " + (u.side === "p" ? "tua pedina" : "avversario") +
+  return dove + ", " + u.d.name + ", " + (u.side === viewSide() ? "tua pedina" : "avversario") +
     ", " + Math.max(0, u.hp) + " punti vita su " + u.maxHp +
     (stati.length ? ", " + stati.join(", ") : "");
 }
+/* Di chi e' il punto di vista sullo schermo in questo momento: serve alle etichette
+   e allo stile delle pedine, che nel torneo sono sempre quelle in basso. */
+const viewSide = () => S.phase === "deploy" ? depSide() : meSide();
 function draw(){
   if (!BOARD_READY) initBoard();
   const dep = S.phase === "deploy";
@@ -1598,7 +1843,7 @@ function draw(){
     if (!c) continue;
     const u = at(x,y);
     const o = {
-      drop: dep && y >= NY-2 && !u,
+      drop: dep && inZone({side:depSide()}, y) && !u,
       mv:   mvSet.some(p => p.x === x && p.y === y),
       tg:   !!(u && tgSet.includes(u))
     };
@@ -1620,6 +1865,10 @@ function drawTokens(){
     if (!u.alive) return;                       /* la rimozione la gestisce ko() */
     let e = l.querySelector('[data-uid="' + u.uid + '"]');
     if (u.x < 0){ if (e) e.remove(); return; }  /* ancora in panchina */
+    /* In duo lo schieramento e' cieco: finche' si piazza, le pedine dell'altro
+       non compaiono sul campo. Le zone non si sovrappongono, quindi nessuno
+       puo' scoprirle provando a occupare una casella. */
+    if (S.phase === "deploy" && duoMode() && u.side !== depSide()){ if (e) e.remove(); return; }
     if (!e){
       e = document.createElement("div");
       e.dataset.uid = u.uid;
@@ -1638,7 +1887,7 @@ function drawTokens(){
       e.querySelector(".inner").innerHTML = art(u.d.fam, u.side === "e", u.d.rank);
     }
     e.className = "tok " + u.side
-      + (u.acted && u.side === "p" && S.turn === "p" && S.phase !== "deploy" ? " done" : "")
+      + (u.acted && u.side === meSide() && S.turn === meSide() && S.phase !== "deploy" ? " done" : "")
       + (S.pick === u ? " pick" : "");
     e.style.left = (u.x * PX) + "%";
     e.style.top  = (u.y * PY) + "%";
@@ -1650,7 +1899,12 @@ function drawTokens(){
 }
 function drawCard(){
   const el = $("#ucard"), u = S.sel;
-  if (!u){ el.innerHTML = '<div class="fam">Clicca un tuo Insector per selezionarlo.</div>'; return; }
+  if (!u){
+    el.innerHTML = '<div class="fam">' + (duoMode()
+      ? esc(nameOf(S.turn)) + ": clicca una tua pedina per selezionarla."
+      : "Clicca un tuo Insector per selezionarlo.") + '</div>';
+    return;
+  }
   const f = FAMS[u.d.fam];
   /* Danno vero contro chi ha davvero di fronte: se un bersaglio e' a tiro mostro
      quello, altrimenti il valore indicativo contro un avversario senza difesa. */
@@ -1676,7 +1930,7 @@ function drawCard(){
     '<div class="spec">' + f.spd + '</div>' +
     '<div class="acts" id="acts"></div>';
   const acts = $("#acts");
-  if (u.side !== "p" || S.turn !== "p" || u.acted || S.busy) return;
+  if (u.side !== meSide() || S.turn !== meSide() || u.acted || S.busy) return;
   const mkb = (label, mode, on) => {
     const b = document.createElement("button");
     b.textContent = label; b.disabled = !on;
@@ -1700,7 +1954,7 @@ function drawCard(){
 }
 function click(x, y){
   if (S.phase === "deploy"){ deployClick(x, y); return; }
-  if (S.busy || S.over || S.turn !== "p") return;
+  if (S.busy || S.over || S.turn !== meSide()) return;
   const u = at(x,y);
   if (S.sel && S.mode === "move" && !S.sel.moved && moves(S.sel).some(p => p.x === x && p.y === y)){
     S.sel.x = x; S.sel.y = y; S.sel.moved = true; S.mode = "idle"; draw(); return;
@@ -1711,7 +1965,7 @@ function click(x, y){
   if (S.sel && S.mode === "spec" && u && specTargets(S.sel).includes(u)){
     doSpecial(S.sel, u); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
   }
-  if (u && u.side === "p" && !u.acted){ S.sel = u; S.mode = "idle"; draw(); return; }
+  if (u && u.side === meSide() && !u.acted){ S.sel = u; S.mode = "idle"; draw(); return; }
   S.sel = null; S.mode = "idle"; draw();
 }
 
@@ -1724,19 +1978,43 @@ function show(id){
   window.scrollTo(0,0);
 }
 function updBadges(){
+  const duo = duoMode();
   $("#b-rank").innerHTML = "Rank <b>" + RANKS[S.rankIdx].id + "</b>";
   $("#b-round").innerHTML = "Round <b>" + (S.round+1) + "</b>/5";
+  /* Rank, round, difficolta' e azzeramento riguardano solo il torneo: in duo spariscono. */
+  ["#b-rank", "#b-round", "#lbl-ai", "#btn-reset"].forEach(id => { const e = $(id); if (e) e.hidden = duo; });
+  $("#btn-newteams").hidden = !duo;
+  $("#btn-next").textContent = duo ? "Rivincita" : "Continua";
   const sel = $("#sel-ai"); if (sel) sel.value = String(S.aiForced || 0);
+  const m = $("#sel-mode"); if (m) m.value = S.vs;
 }
 
-$("#btn-start").onclick = () => { drawBrief(); show("s-brief"); };
-$("#btn-back").onclick = () => { drawRoster(); drawSlots(); show("s-team"); };
-$("#btn-toarena").onclick = startBattle;
+$("#btn-start").onclick = () => { drawWho(); drawBrief(); show("s-brief"); };
+$("#btn-back").onclick = () => { drawWho(); drawRoster(); drawSlots(); show("s-team"); };
+$("#btn-toarena").onclick = () => {
+  if (!duoMode()){ startBattle(); return; }
+  commitSetup();
+  if (S.setup === "p"){
+    passTo("e", "Scegli la squadra",
+      "Adesso tocca a te: cinque pedine e il Re. L\u2019avversario non deve guardare.",
+      () => enterSetup("e"));
+  } else {
+    startDuo();
+  }
+};
+$("#btn-pass").onclick = passDone;
+$("#btn-duostart").onclick = duoStart;
+$("#btn-duoback").onclick = () => setVs("ai");
+$("#sel-mode").onchange = e => setVs(e.target.value);
+$("#btn-newteams").onclick = () => { $("#n1").value = S.names.p; $("#n2").value = S.names.e; show("s-duo"); };
 $("#btn-end").onclick = endPlayerTurn;
 $("#sel-ai").onchange = e => { S.aiForced = parseInt(e.target.value, 10) || 0; save(); updBadges(); };
 $("#btn-rand").onclick = randomDeploy;
 $("#btn-fight").onclick = beginFight;
-$("#btn-next").onclick = () => { drawRoster(); drawSlots(); detail(byId[S.look]); show("s-team"); };
+$("#btn-next").onclick = () => {
+  if (duoMode()){ startDuo(); return; }          /* rivincita con le stesse squadre */
+  drawRoster(); drawSlots(); detail(byId[S.look]); show("s-team");
+};
 $("#btn-clear").onclick = () => { S.team = []; S.kingId = null; drawRoster(); drawSlots(); detail(byId[S.look]); save(); };
 $("#btn-auto").onclick = () => {
   const pool = UNITS.filter(unlocked);

@@ -95,6 +95,9 @@ Tre passaggi, ognuno con le informazioni che servono a decidere:
    qui che si **nomina il Re**. Finché non lo scegli non si entra in arena.
 3. **Schieramento.** Le pedine si posizionano sulle due file di casa.
 
+In modalità due giocatori gli stessi tre passaggi li fa prima uno e poi l'altro, con una
+schermata di consegna in mezzo (vedi «Due giocatori sullo stesso dispositivo»).
+
 In battaglia, selezionando una pedina il pannello mostra **danno d'attacco, danno della
 speciale e movimento residuo**. Quando c'è un bersaglio a tiro i due danni sono quelli
 reali contro quel bersaglio (difesa inclusa); altrimenti sono valori indicativi contro un
@@ -113,11 +116,46 @@ convengono avanti, il Re coperto dietro.
   già posizionato
 - **Inizia battaglia** si attiva solo a schieramento completo
 
-Gli avversari sono schierati dalla CPU nelle loro due file, con il Re nell'ultima.
+Nel torneo gli avversari sono schierati dalla CPU nelle loro due file, con il Re
+nell'ultima; in due giocatori le schiera l'altra persona, nelle due file in alto.
+
+## Due giocatori sullo stesso dispositivo
+
+Il selettore **Modalità** in testata sceglie fra il torneo contro il computer e la
+partita fra due persone. In due giocatori il secondo lato non lo muove l'IA: lo gioca
+l'altra persona, sullo stesso schermo.
+
+Come si svolge:
+
+1. **Nomi.** Chi gioca in basso e chi gioca in alto. Servono a dire di chi è il turno
+   nelle schermate di consegna.
+2. **Squadre in privato.** Prima uno sceglie le sue cinque pedine e il Re, poi l'altro.
+   Fra i due passaggi compare una schermata di consegna che copre tutto.
+3. **Schieramento al coperto.** Ognuno schiera nelle due file dalla sua parte; finché
+   si schiera, **le pedine dell'altro non sono disegnate**. Le due zone non si
+   sovrappongono, quindi nessuno può dedurne la posizione provando a occupare una
+   casella. A schieramento chiuso il campo si scopre per entrambi.
+4. **Turni alternati.** A ogni «Fine turno» compare la consegna: il campo resta coperto
+   finché chi subentra non conferma.
+5. **Esito.** Vince chi abbatte il Re avversario. Da lì si può chiedere la **rivincita**
+   con le stesse due squadre o tornare a **cambiare squadre**.
+
+Scelte fatte, e perché:
+
+- **Roster aperto a entrambi.** I progressi del torneo restano fuori: con gli sblocchi
+  attivi i due partirebbero da roster diversi. Resta escluso il solo Dark Emperor,
+  che è il premio di fine torneo.
+- **La squadra del torneo non si perde.** Entrando in due giocatori viene messa da
+  parte e ritorna intatta quando si riseleziona il torneo; il salvataggio locale
+  continua a registrare solo la carriera.
+- **Il campo non si ribalta** per il secondo giocatore: si gioca come su una scacchiera
+  fisica, uno di fronte all'altro.
+- **Niente rete.** Tutto resta in una pagina statica: nessun server, nessun account,
+  funziona anche offline.
 
 ## Difficolta degli avversari
 
-Quattro profili di IA. La difficolta' non sta solo nelle statistiche: sale il livello di
+Il torneo contro il computer usa quattro profili di IA. La difficolta' non sta solo nelle statistiche: sale il livello di
 gioco dell'avversario.
 
 | # | Profilo | Come ragiona |
@@ -307,6 +345,16 @@ sui titoli.
   la card di battaglia riporta danno d'attacco, danno speciale e movimento residuo
 - 4 controlli sul campo rettangolare: 5 colonne, 7 file, e i limiti su entrambi gli assi
 
+- 28 controlli automatici sulla modalità due giocatori: la modalità apre la schermata
+  dei nomi e nasconde rank, round e difficoltà; il roster si apre a entrambi; le
+  consegne nominano il giocatore giusto a ogni passaggio; a inizio schieramento il
+  campo è vuoto e si vedono solo le cinque pedine di chi sta schierando; ognuno schiera
+  nella propria metà; a battaglia iniziata compaiono tutte e dieci; non si seleziona
+  una pedina avversaria; «Fine turno» è attivo per tutti e due; una partita completa
+  giocata via UI arriva a un vincitore dichiarato per nome; la rivincita riparte dalle
+  stesse squadre; tornando al torneo la squadra di carriera è intatta e i blocchi del
+  roster tornano in vigore. Nessun errore in console.
+
 - 10 controlli automatici sulla landing: nessuna risorsa mancante, immagini caricate con
   dimensioni dichiarate e testo alternativo, un solo `h1` con gerarchia coerente, skip
   link funzionante, pulsante che apre davvero il gioco, nessuno scroll orizzontale a
@@ -349,7 +397,11 @@ sui titoli.
   | B | 20% | 80% |
   | A | 7% | 77% |
   | S | 2% | 25% |
-- Layout verificato a 1280px e 390px, nessuno scroll orizzontale
+- Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate della
+  modalità due giocatori comprese (nomi, consegna, squadra, schieramento)
+- Totale dei controlli automatici sul gioco: **142** (meccaniche 30, schieramento 20,
+  schede 22, accessibilità 14, difficoltà 9, movimento 13, scheda del roster 6,
+  due giocatori 28), più 10 sulla landing
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
