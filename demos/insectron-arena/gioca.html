@@ -688,9 +688,8 @@ function drawRoster(){
       '<span class="st">' + (ok
         ? "R" + u.rank + " \u00b7 " + u.hp + "hp \u00b7 " + u.str + "str \u00b7 " + u.def + "def"
         : "rank " + u.rank + " \u00b7 bloccato") + '</span></span>';
-    b.onclick = () => { S.look = u.id; detail(u); drawRoster(); };
-    b.onmouseenter = () => detail(u);
-    b.onfocus = () => detail(u);
+    b.dataset.id = u.id;
+    b.onclick = () => pickLook(u.id);
     r.appendChild(b);
   });
 }
@@ -707,6 +706,19 @@ function dannoSpeciale(u){
   const sp = FAMS[u.fam].sp, m = SP_MULT[sp];
   if (SP_LABEL[sp]) return SP_LABEL[sp];
   return Math.round(u.str * 2 * (m || 1)) + " a bersaglio";
+}
+/* Sceglie quale Insector mostrare nella scheda. Ridisegnando il roster il pulsante
+   cliccato viene ricreato, quindi gli si restituisce il focus: senza, chi naviga da
+   tastiera perderebbe il punto in cui si trovava. */
+function pickLook(id){
+  const eraTastiera = document.activeElement && document.activeElement.closest("#roster");
+  S.look = id;
+  detail(byId[id]);
+  drawRoster();
+  if (eraTastiera){
+    const b = document.querySelector('#roster [data-id="' + id + '"]');
+    if (b) b.focus();
+  }
 }
 function detail(u){
   const el = $("#detail");
@@ -752,7 +764,9 @@ function toggle(id){
   if (i >= 0){ S.team.splice(i,1); if (S.kingId === id) S.kingId = null; }
   else if (S.team.length < 5){ S.team.push(id); }
   S.look = id;
-  drawRoster(); drawSlots(); detail(byId[id]); save();
+  detail(byId[id]); drawRoster(); drawSlots(); save();
+  const b = document.querySelector("#btn-metto") || document.querySelector("#btn-tolgo");
+  if (b) b.focus();
 }
 function drawSlots(){
   const el = $("#slots"); el.innerHTML = "";
