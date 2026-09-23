@@ -3,8 +3,16 @@
 Prototipo giocabile di battaglia a turni 5v5 su griglia, costruito a partire dalla
 documentazione del minigioco **Insectron** di *Rogue Galaxy* (PS2, Level-5 / Sony).
 
-**File**: `index.html` (autonomo, nessuna dipendenza, nessun build step) ·
-`insectors.json` (dataset grezzo estratto dal wiki)
+**File**
+- `index.html` — landing page di presentazione, con il pulsante per giocare
+- `gioca.html` — il gioco vero e proprio: autonomo, nessuna dipendenza, nessun build step
+- `insectors.json` — dataset grezzo estratto dal wiki
+- `img/` — tre schermate usate dalla landing (le uniche immagini del progetto: dentro al
+  gioco non c'è un solo file immagine, la grafica è generata da codice)
+
+**Online**: una volta su `main`, GitHub Pages pubblica la landing a
+`https://naplesexperiences-netizen.github.io/experiences-demos/demos/insectron-arena/`
+e il gioco a `.../demos/insectron-arena/gioca.html`.
 
 ---
 
@@ -267,6 +275,11 @@ Verificato con l'audit della skill `web-design-guidelines`. Sistemati anche:
 sui titoli.
 
 ## Verifiche fatte
+
+- 10 controlli automatici sulla landing: nessuna risorsa mancante, immagini caricate con
+  dimensioni dichiarate e testo alternativo, un solo `h1` con gerarchia coerente, skip
+  link funzionante, pulsante che apre davvero il gioco, nessuno scroll orizzontale a
+  1280, 820 e 390 px
 
 - 9 controlli automatici sul sistema di difficoltà: selettore etichettato, default
   automatico, forzatura del livello, scelta salvata e ripristinata al ricaricamento,
