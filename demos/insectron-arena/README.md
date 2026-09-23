@@ -91,6 +91,49 @@ convengono avanti, il Re coperto dietro.
 
 Gli avversari sono schierati dalla CPU nelle loro due file, con il Re nell'ultima.
 
+## Difficolta degli avversari
+
+Quattro profili di IA. La difficolta' non sta solo nelle statistiche: sale il livello di
+gioco dell'avversario.
+
+| # | Profilo | Come ragiona |
+|---|---|---|
+| 1 | Principiante | Avanza e mena. Non punta il Re, sceglie i bersagli a caso, usa le speciali di rado. |
+| 2 | Normale | Punta il Re e il bersaglio piu debole, ma non valuta dove conviene spostarsi. |
+| 3 | Esperto | Valuta **ogni casella raggiungibile** incrociata con ogni azione possibile: cerca il colpo letale, sfrutta il ring-out, evita di esporsi, si ritira se ferito. |
+| 4 | Campione | Come l'Esperto, e sceglie **l'ordine** con cui muovere la squadra: agisce per prima l'unita che ha il colpo migliore. |
+
+Il livello segue il rank del torneo (E→1, D e C→2, B e A→3, S→4) e si puo' forzare dal
+selettore in alto, per provare un profilo qualsiasi a qualunque rank.
+
+**Quanto pesa davvero.** Misurato a specchio: stessa squadra e stesse statistiche sui due
+lati, il lato "giocatore" sempre sul profilo Normale, alternando chi muove per primo.
+Cosi' l'unica variabile e' il cervello.
+
+| livello | vince l'avversario |
+|---|---|
+| Principiante | 38% |
+| Normale | 50% (≈50%, la verifica di simmetria torna) |
+| Esperto | 55% |
+| Campione | 98% |
+
+Il 96% del Campione va letto bene: il metro di paragone e' un'IA che muove le pedine
+**in ordine fisso**. Una persona sceglie gia' da se' quale unita' far agire per prima,
+quindi contro un umano il divario e' molto piu' stretto. Dare l'ordinamento all'IA non e'
+un trucco: e' toglierle una zavorra che il giocatore non ha mai avuto.
+
+Sulla curva del torneo — 500 partite per rank, squadra scelta bene, statistiche e IA che
+salgono insieme (margine ±4.4 punti):
+
+| Rank | IA avversaria | vittorie del giocatore |
+|---|---|---|
+| E | Principiante | 98% |
+| D | Normale | 95% |
+| C | Normale | 81% |
+| B | Esperto | 55% |
+| A | Esperto | 60% |
+| S | Campione | 17% |
+
 ## Progressione del roster
 
 Si comincia con le sole **forme base**: i 7 Insector di rank 1 (Faerie, Flipperbug,
@@ -126,14 +169,15 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
    Il pavimento al 30% della forza serve a evitare che un DEF alto renda un'unità
    letteralmente invulnerabile agli attaccanti deboli (Orion Beetle ha DEF 32
    contro STR 14 della Faerie). Funzione `strike()`.
-3. **Scalatura difficoltà.** Le squadre avversarie usano un moltiplicatore di
-   statistiche crescente per rank (0.80 → 1.15) e pescano da fasce di rank
-   sempre più alte. Campo `mul` in `RANKS`.
+3. **Scalatura difficoltà.** Due assi: un moltiplicatore di statistiche crescente per
+   rank (campo `mul` in `RANKS`) e il profilo di IA (`RANK_AI`). Il secondo conta più del
+   primo: un avversario grosso ma ottuso spreca il vantaggio.
 4. **Cooldown 3 turni** sulle mosse speciali: nel gioco originale la gestione è
    diversa, qui serve a evitare lo spam della stessa mossa.
-5. **IA avversaria.** Priorità: speciale se conviene → attacco al bersaglio più
-   debole (Re in priorità) → avvicinamento. Il Re nemico resta coperto finché ha
-   almeno un compagno vivo. Funzione `aiAct()`.
+5. **IA avversaria.** Vedi la sezione sulla difficoltà. I profili 3 e 4 assegnano un
+   punteggio a ogni coppia (destinazione, azione) in `scorePlan()` e scelgono il massimo
+   in `bestPlan()`. La prudenza è pesata sulla propria stazza: in valore assoluto
+   un'unità robusta sprecava il proprio vantaggio restando alla larga.
 6. **Un movimento e un'azione per unità per turno.** Lo spostamento si può fare una
    volta sola; dopo si può ancora attaccare o usare la speciale, ma attaccare chiude il
    turno della pedina. Attacco e speciale non si sommano.
@@ -223,6 +267,12 @@ Verificato con l'audit della skill `web-design-guidelines`. Sistemati anche:
 sui titoli.
 
 ## Verifiche fatte
+
+- 9 controlli automatici sul sistema di difficoltà: selettore etichettato, default
+  automatico, forzatura del livello, scelta salvata e ripristinata al ricaricamento,
+  scala che sale col rank, profilo mostrato in battaglia, turno avversario senza errori
+- Misura a specchio dei quattro profili (300 partite ciascuno) con verifica di simmetria:
+  due IA identiche danno ≈50%, come deve essere
 
 - 8 controlli automatici sulla regola del movimento: "Muovi" attivo a inizio turno,
   spostamento registrato, pulsante che diventa "Già mossa" e si disattiva, nessuna casella

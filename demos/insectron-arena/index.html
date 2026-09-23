@@ -41,6 +41,11 @@ header.top h1 span{color:var(--accent)}
   padding:5px 13px;font-size:.8rem;color:var(--muted);white-space:nowrap
 }
 .badge b{color:var(--text)}
+.badge select{
+  background:var(--panel2);color:var(--text);     /* espliciti: su Windows in tema scuro servono */
+  border:1px solid var(--line);border-radius:7px;
+  font-family:inherit;font-size:.8rem;padding:3px 6px;margin-left:6px;cursor:pointer
+}
 .spacer{flex:1}
 button{
   font-family:inherit;font-size:.88rem;cursor:pointer;border-radius:9px;
@@ -267,6 +272,15 @@ footer.note a{color:var(--accent2)}
   <h1>INSECTRON <span>ARENA</span></h1>
   <div class="badge" id="b-rank">Rank <b>E</b></div>
   <div class="badge" id="b-round">Round <b>1</b>/5</div>
+  <label class="badge" for="sel-ai">Avversari
+    <select id="sel-ai">
+      <option value="0">Automatici</option>
+      <option value="1">Principianti</option>
+      <option value="2">Normali</option>
+      <option value="3">Esperti</option>
+      <option value="4">Campioni</option>
+    </select>
+  </label>
   <div class="spacer"></div>
   <button id="btn-reset" class="danger">Azzera torneo</button>
 </header>
@@ -562,7 +576,7 @@ const S = {
   rankIdx: 0, round: 0, champion: false,
   team: [], kingId: null,
   units: [], turn: "p", sel: null, mode: "idle", busy: false, over: false,
-  phase: "battle", pick: null, cur: { x: 0, y: 5 }
+  phase: "battle", pick: null, cur: { x: 0, y: 5 }, aiForced: 0
 };
 
 const $ = s => document.querySelector(s);
@@ -574,14 +588,14 @@ const kingOf = side => S.units.find(u => u.alive && u.side === side && u.isKing)
 
 function save(){
   try { localStorage.setItem("insectron", JSON.stringify(
-    {r:S.rankIdx, n:S.round, t:S.team, k:S.kingId, c:S.champion ? 1 : 0})); }
+    {r:S.rankIdx, n:S.round, t:S.team, k:S.kingId, c:S.champion ? 1 : 0, a:S.aiForced||0})); }
   catch(e){ /* storage non disponibile: la partita resta valida in sessione */ }
 }
 function load(){
   try {
     const v = JSON.parse(localStorage.getItem("insectron") || "null");
     if (v && Array.isArray(v.t)){
-      S.rankIdx = v.r|0; S.round = v.n|0; S.champion = !!v.c;
+      S.rankIdx = v.r|0; S.round = v.n|0; S.champion = !!v.c; S.aiForced = (v.a|0) || 0;
       S.team = v.t.filter(id => byId[id] && unlocked(byId[id]));
       S.kingId = S.team.includes(v.k) ? v.k : (S.team[0] || null);
     }
@@ -717,7 +731,9 @@ function startBattle(){
   S.phase = "deploy"; S.pick = null;
   resetBoard();
   $("#log").innerHTML = "";
-  $("#b-opp").innerHTML = "Avversario: <b>" + R.names[S.round] + "</b>";
+  const P = AI_PROFILES[aiLevel()];
+  $("#b-opp").innerHTML = "Avversario: <b>" + R.names[S.round] + "</b> \u00b7 " + P.nome;
+  $("#b-opp").title = P.desc;
   log('<b>Rank ' + R.id + ' — Round ' + (S.round+1) + '/5</b> contro <b>' + R.names[S.round] + '</b>.');
   log('Schiera le tue 5 pedine nelle <b>due file più vicine a te</b>, poi inizia la battaglia.');
   show("s-battle"); draw();
@@ -1135,7 +1151,7 @@ function endPlayerTurn(){
 }
 function aiStep(){
   if (S.over){ S.busy = false; return; }
-  const u = S.units.find(x => x.alive && x.side === "e" && !x.acted);
+  const u = nextAiUnit("e");
   if (!u){
     S.busy = false; newTurn("p"); draw();
     return;
@@ -1143,7 +1159,152 @@ function aiStep(){
   aiAct(u); u.acted = true; draw();
   setTimeout(aiStep, 420);
 }
+/* =========================================================================
+   DIFFICOLTA' — quattro profili di avversario.
+   I primi due ragionano a regole fisse, gli altri due valutano ogni mossa
+   possibile con un punteggio e scelgono la migliore.
+   ========================================================================= */
+const AI_PROFILES = {
+  1:{ nome:"Principiante", plan:false, ordina:false, specialProb:.20, mirato:false,
+      desc:"Avanza e mena. Non punta il Re, colpisce a caso, usa le speciali di rado." },
+  2:{ nome:"Normale",      plan:false, ordina:false, specialProb:.70, mirato:true,
+      desc:"Punta il Re e il bersaglio piu debole, ma non valuta dove conviene spostarsi." },
+  3:{ nome:"Esperto",      plan:true,  ordina:false, cautela:.25, avanzata:2, mira:1, sicurezzaRe:.8, ritirata:true,
+      desc:"Valuta ogni casella raggiungibile: cerca il colpo letale, sfrutta il ring-out, evita di esporsi e si ritira se ferito." },
+  4:{ nome:"Campione",     plan:true,  ordina:true,  cautela:.25, avanzata:2, mira:1, sicurezzaRe:.8, ritirata:true,
+      desc:"Come l'Esperto, e in piu sceglie l'ordine con cui muovere la squadra: agisce per prima l'unita che ha il colpo migliore." }
+};
+/* Difficolta' predefinita per rank: si comincia contro avversari ingenui. */
+const RANK_AI = { E:1, D:2, C:2, B:3, A:3, S:4 };
+function aiLevel(){
+  return S.aiForced || RANK_AI[RANKS[S.rankIdx].id] || 2;
+}
+function profileFor(u){
+  /* Solo gli avversari usano il livello scelto; il lato del giocatore, quando
+     lo muove la simulazione, resta sempre sul profilo Normale come metro fisso. */
+  return AI_PROFILES[u.side === "e" ? aiLevel() : 2];
+}
+
+/* Stima deterministica del danno: serve a valutare le mosse, non a infliggerle. */
+const SP_MULT = { jumping_stab:1.8, crushing_horn:1.1, cannon_blast:1.0, over_easy:.5,
+                  body_blow:1.5, sickle_dance:.75, emperors_rage:1.3, itsakick:1.0,
+                  wing_flap:.4, scissor_throw:0, charm_beam:0, healing_jig:0, fill_hole:0 };
+function estDmg(a, t, mult){
+  if (t.guard > 0) return 0;
+  const core = Math.max(a.str * 0.3, a.str * 2 - t.dfn);
+  return Math.max(1, Math.round(core * mult * (t.exposed || t.stun > 0 ? 1.3 : 1)));
+}
+const reachOf = u => { const mv = u.isKing ? "step" : u.d.mv;
+  return mv === "fly" ? 3 : (mv === "diag" ? 3 : (mv === "charge" ? 2 : 1)); };
+/* Quanto male puo' farmi il nemico, il prossimo turno, se mi fermo qui. */
+function threatAt(u, x, y){
+  return S.units.filter(e => e.alive && e.side !== u.side && !e.stun)
+    .reduce((s,e) => s + (cheb(e.x,e.y,x,y) <= reachOf(e) + 1 ? estDmg(e, u, 1) : 0), 0);
+}
+function valueOfHit(u, t, mult, prof){
+  const d = estDmg(u, t, mult);
+  let v = d;
+  if (d >= t.hp) v += t.isKing ? 8000 : 400;      /* chiudere la partita vale tutto */
+  else if (t.isKing) v += 60 * prof.mira;
+  return v;
+}
+/* Il bersaglio finirebbe fuori dal campo? Il ring-out uccide a prescindere dagli HP. */
+function ringOutValue(u, t, sp){
+  const dx = Math.sign(t.x - u.x), dy = Math.sign(t.y - u.y);
+  let fuori = false;
+  if (sp === "crushing_horn" || sp === "wing_flap") fuori = !inB(t.x + dx, t.y + dy);
+  if (sp === "itsakick")     fuori = !inB(t.x + dx, t.y + dy);
+  if (sp === "scissor_throw") fuori = !inB(u.x - dx, u.y - dy);
+  return fuori ? (t.isKing ? 8000 : 600) : 0;
+}
+function scorePlan(u, spot, opt, prof){
+  const foes = alive(u.side === "e" ? "p" : "e");
+  const king = foes.find(f => f.isKing);
+  const sp = FAMS[u.d.fam].sp;
+  let sc = 0;
+
+  if (opt.kind === "atk") sc += valueOfHit(u, opt.t, 1, prof);
+  else if (opt.kind === "sp" && opt.t){
+    if (sp === "charm_beam")       sc += opt.t.hp + opt.t.str * 4 - u.hp * 0.5;
+    else if (sp === "scissor_throw") sc += 25;         /* il danno arriva dal rimbalzo */
+    else sc += valueOfHit(u, opt.t, SP_MULT[sp] || 1, prof);
+    sc += ringOutValue(u, opt.t, sp);
+  } else if (opt.kind === "sp"){
+    if (sp === "healing_jig")
+      sc += alliesOrtho(u).reduce((a,x) => a + Math.min(x.maxHp * .25, x.maxHp - x.hp), 0) * 1.3;
+    else if (sp === "fill_hole") sc += u.hp < u.maxHp * .5 ? 70 : 8;
+    else foesAdj(u).forEach(f => { sc += valueOfHit(u, f, SP_MULT[sp] || .75, prof);
+                                   sc += ringOutValue(u, f, sp); });
+  }
+
+  /* La prudenza va pesata sulla propria stazza: 40 danni sono un graffio per un
+     Susanoo da 312 HP e quasi la morte per una Mantis da 80. In valore assoluto
+     un'unita' forte sprecava il proprio vantaggio restando alla larga. */
+  const th = threatAt(u, spot.x, spot.y);
+  const quota = th / Math.max(1, u.maxHp);
+  sc -= quota * 180 * prof.cautela;
+  if (prof.ritirata && u.hp < u.maxHp * .35) sc -= quota * 300;
+  if (king) sc -= cheb(spot.x, spot.y, king.x, king.y) * prof.avanzata;
+
+  if (u.isKing){
+    sc -= quota * 600 * prof.sicurezzaRe;
+    const scorta = alive(u.side).filter(a => !a.isKing && a !== u).length;
+    if (scorta && king) sc += cheb(spot.x, spot.y, king.x, king.y) * prof.avanzata * 1.4;
+  }
+  /* Nota: un termine che teneva le unita' vicine al proprio Re e' stato tolto dopo
+     averlo misurato: ammassava la squadra e la rendeva un bersaglio facile per le
+     aree e i ring-out, peggiorando il risultato invece di migliorarlo. */
+  return sc;
+}
+/* Enumera destinazione x azione e tiene la combinazione col punteggio piu alto. */
+function bestPlan(u, prof){
+  const spots = [{ x:u.x, y:u.y, move:false }];
+  if (!u.moved) moves(u).forEach(p => spots.push({ x:p.x, y:p.y, move:true }));
+  const ox = u.x, oy = u.y;
+  let best = null;
+  for (const spot of spots){
+    u.x = spot.x; u.y = spot.y;
+    const opts = [{ kind:"none", t:null }];
+    foesAdj(u).forEach(t => opts.push({ kind:"atk", t }));
+    if (canSpecial(u)){
+      if (selfCast(u)) opts.push({ kind:"sp", t:null });
+      else specTargets(u).forEach(t => opts.push({ kind:"sp", t }));
+    }
+    for (const opt of opts){
+      const sc = scorePlan(u, spot, opt, prof);
+      if (!best || sc > best.sc) best = { sc, spot, opt };
+    }
+  }
+  u.x = ox; u.y = oy;
+  return best;
+}
+function aiPlan(u, prof){
+  const best = bestPlan(u, prof);
+  if (!best) return;
+  if (best.spot.move){ u.x = best.spot.x; u.y = best.spot.y; u.moved = true; }
+  if (best.opt.kind === "atk") basicAttack(u, best.opt.t);
+  else if (best.opt.kind === "sp") doSpecial(u, best.opt.t);
+}
+/* Quale unita' far agire adesso. Un giocatore umano sceglie liberamente l'ordine
+   delle proprie pedine; l'IA che agiva in ordine di creazione era handicappata. */
+function nextAiUnit(side){
+  const pronti = S.units.filter(u => u.alive && u.side === side && !u.acted);
+  if (!pronti.length) return null;
+  const prof = AI_PROFILES[side === "e" ? aiLevel() : 2];
+  if (!prof.ordina) return pronti[0];
+  let scelta = pronti[0], migliore = -Infinity;
+  for (const u of pronti){
+    const b = bestPlan(u, prof);
+    if (b && b.sc > migliore){ migliore = b.sc; scelta = u; }
+  }
+  return scelta;
+}
 function aiAct(u){
+  const prof = profileFor(u);
+  if (prof.plan) return aiPlan(u, prof);
+  return aiSimple(u, prof);
+}
+function aiSimple(u, prof){
   const foes = alive(u.side === "e" ? "p" : "e");
   if (!foes.length) return;
   const king = foes.find(f => f.isKing);
@@ -1151,18 +1312,22 @@ function aiAct(u){
   /* speciale se conviene */
   if (canSpecial(u)){
     const sp = FAMS[u.d.fam].sp;
-    let go = Math.random() < 0.7;
+    let go = Math.random() < prof.specialProb;
     if (sp === "healing_jig") go = S.units.some(a => a.alive && a.side === u.side && a !== u && cheb(u.x,u.y,a.x,a.y) === 1 && a.hp < a.maxHp * 0.6);
     if (sp === "fill_hole")   go = u.hp < u.maxHp * 0.55;
     if (go){
       const tg = specTargets(u);
-      const t = tg.find(x => x.isKing) || tg.sort((a,b) => a.hp - b.hp)[0] || null;
+      const t = (prof.mirato ? tg.find(x => x.isKing) : null)
+        || (prof.mirato ? tg.slice().sort((a,b) => a.hp - b.hp)[0] : tg[Math.floor(Math.random()*tg.length)])
+        || null;
       if (selfCast(u) || t){ doSpecial(u, t); return; }
     }
   }
   /* attacco diretto */
+  const scegli = list => (prof.mirato ? list.find(f => f.isKing) : null)
+    || (prof.mirato ? list.slice().sort((a,b)=>a.hp-b.hp)[0] : list[Math.floor(Math.random()*list.length)]);
   let adj = foesAdj(u);
-  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; basicAttack(u, t); return; }
+  if (adj.length){ basicAttack(u, scegli(adj)); return; }
 
   /* avvicinamento */
   const goal = (u.isKing ? foes.slice().sort((a,b)=>cheb(u.x,u.y,a.x,a.y)-cheb(u.x,u.y,b.x,b.y))[0]
@@ -1175,7 +1340,7 @@ function aiAct(u){
   if (u.isKing && escort > 0 && cheb(best.x,best.y,goal.x,goal.y) < 2) return;  /* il Re resta coperto finché ha la scorta */
   u.x = best.x; u.y = best.y; u.moved = true;
   adj = foesAdj(u);
-  if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; basicAttack(u, t); }
+  if (adj.length) basicAttack(u, scegli(adj));
 }
 
 function checkEnd(){
@@ -1415,10 +1580,12 @@ function show(id){
 function updBadges(){
   $("#b-rank").innerHTML = "Rank <b>" + RANKS[S.rankIdx].id + "</b>";
   $("#b-round").innerHTML = "Round <b>" + (S.round+1) + "</b>/5";
+  const sel = $("#sel-ai"); if (sel) sel.value = String(S.aiForced || 0);
 }
 
 $("#btn-start").onclick = startBattle;
 $("#btn-end").onclick = endPlayerTurn;
+$("#sel-ai").onchange = e => { S.aiForced = parseInt(e.target.value, 10) || 0; save(); updBadges(); };
 $("#btn-rand").onclick = randomDeploy;
 $("#btn-fight").onclick = beginFight;
 $("#btn-next").onclick = () => { drawRoster(); drawSlots(); show("s-team"); };
