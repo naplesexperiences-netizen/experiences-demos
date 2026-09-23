@@ -686,7 +686,7 @@ function mk(def, side, isKing, mul){
     d: def, side: side, isKing: isKing, alive: true,
     maxHp: Math.round(def.hp * mul), hp: Math.round(def.hp * mul),
     str: Math.round(def.str * mul), dfn: Math.round(def.def * mul),
-    x: 0, y: 0, acted: false, stun: 0, cd: 0, guard: 0, exposed: false
+    x: 0, y: 0, acted: false, moved: false, stun: 0, cd: 0, guard: 0, exposed: false
   };
 }
 function buildEnemy(){
@@ -1115,12 +1115,12 @@ function doSpecial(u, target){
    ========================================================================= */
 function newTurn(side){
   S.units.filter(u => u.alive && u.side === side).forEach(u => {
-    u.exposed = false;
+    u.exposed = false; u.moved = false;
     if (u.cd > 0) u.cd--;
-    if (u.stun > 0){ u.stun--; u.acted = true; }
+    if (u.stun > 0){ u.stun--; u.acted = true; u.moved = true; }
     else u.acted = false;
   });
-  S.units.filter(u => u.alive && u.side !== side).forEach(u => { u.acted = true; });
+  S.units.filter(u => u.alive && u.side !== side).forEach(u => { u.acted = true; u.moved = true; });
   S.turn = side;
   $("#turnpill").className = "pill " + side;
   $("#turnpill").textContent = side === "p" ? "Il tuo turno" : "Turno avversario";
@@ -1173,7 +1173,7 @@ function aiAct(u){
   const best = mv[0];
   const escort = alive(u.side).filter(a => !a.isKing).length;
   if (u.isKing && escort > 0 && cheb(best.x,best.y,goal.x,goal.y) < 2) return;  /* il Re resta coperto finché ha la scorta */
-  u.x = best.x; u.y = best.y;
+  u.x = best.x; u.y = best.y; u.moved = true;
   adj = foesAdj(u);
   if (adj.length){ const t = adj.find(f => f.isKing) || adj.sort((a,b)=>a.hp-b.hp)[0]; basicAttack(u, t); }
 }
@@ -1283,6 +1283,7 @@ function cellLabel(x, y, u, opts){
   if (u.guard)  stati.push("protetto");
   if (u.exposed) stati.push("scoperto");
   if (u.acted && u.side === "p" && S.phase !== "deploy") stati.push("ha gia agito");
+  else if (u.moved && u.side === "p" && S.phase !== "deploy") stati.push("gia spostata, puo ancora agire");
   if (opts.tg)  stati.push("bersaglio disponibile");
   return dove + ", " + u.d.name + ", " + (u.side === "p" ? "tua pedina" : "avversario") +
     ", " + Math.max(0, u.hp) + " punti vita su " + u.maxHp +
@@ -1295,7 +1296,7 @@ function draw(){
   $("#turnbar").style.display  = dep ? "none" : "";
 
   const sel = S.sel;
-  const mvSet = !dep && sel && S.mode === "move" ? moves(sel) : [];
+  const mvSet = !dep && sel && S.mode === "move" && !sel.moved ? moves(sel) : [];
   const tgSet = !dep && sel ? (S.mode === "atk" ? foesAdj(sel) : (S.mode === "spec" ? specTargets(sel) : [])) : [];
 
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++){
@@ -1372,7 +1373,7 @@ function drawCard(){
     if (mode === "spec") b.className = "primary";
     acts.appendChild(b);
   };
-  mkb("Muovi", "move", moves(u).length > 0);
+  mkb(u.moved ? "Gi\u00e0 mossa" : "Muovi", "move", !u.moved && moves(u).length > 0);
   mkb("Attacca", "atk", foesAdj(u).length > 0);
   if (selfCast(u)){
     const b = document.createElement("button");
@@ -1390,8 +1391,8 @@ function click(x, y){
   if (S.phase === "deploy"){ deployClick(x, y); return; }
   if (S.busy || S.over || S.turn !== "p") return;
   const u = at(x,y);
-  if (S.sel && S.mode === "move" && moves(S.sel).some(p => p.x === x && p.y === y)){
-    S.sel.x = x; S.sel.y = y; S.mode = "idle"; draw(); return;
+  if (S.sel && S.mode === "move" && !S.sel.moved && moves(S.sel).some(p => p.x === x && p.y === y)){
+    S.sel.x = x; S.sel.y = y; S.sel.moved = true; S.mode = "idle"; draw(); return;
   }
   if (S.sel && S.mode === "atk" && u && foesAdj(S.sel).includes(u)){
     basicAttack(S.sel, u); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;
