@@ -297,9 +297,13 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
 .banner b{color:var(--text)}
 .banner.e{border-left-color:var(--foe)}
 .banner .tag{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
   background:#12354a;border:1px solid var(--ally);color:var(--ally);
   border-radius:999px;padding:3px 11px;font-size:.72rem;font-weight:bold
 }
+.banner .tag .ico{width:15px;height:15px}
+.banner .tag i{font-style:normal;font-weight:normal;opacity:.7;font-size:.66rem;text-transform:uppercase}
+.banner .kbtn{font-size:.72rem;padding:5px 12px}
 .banner.e .tag{background:#4a1c1c;border-color:var(--foe);color:var(--foe)}
 .names{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .names label{flex:1;min-width:190px;font-size:.78rem;color:var(--muted);display:block}
@@ -377,22 +381,22 @@ footer.note a{color:var(--accent2)}
 </header>
 
 <!-- ============ CHI GIOCA: MODALITA E DIFFICOLTA ============ -->
-<section id="s-mode" class="screen">
+<section id="s-mode" class="screen on">
   <div class="card">
     <h2>Chi gioca questa partita?</h2>
-    <p class="hint">La squadra che hai appena composto scende in campo comunque. Qui decidi
-      solo chi la muove e chi ha in mano l’altra metà del campo.</p>
+    <p class="hint">Prima di comporre la squadra: decidi chi muove le pedine in basso e chi
+      ha in mano l’altra metà del campo. Si cambia quando vuoi, dal roster.</p>
     <div class="modes" id="modes" role="group" aria-label="Modalità di gioco"></div>
     <div id="modeopts"></div>
     <div class="acts" style="margin-top:16px">
-      <button id="btn-modeback">Indietro</button>
+      <button id="btn-modeback" hidden>Torna alla squadra</button>
       <button id="btn-modego" class="primary">Entra in arena</button>
     </div>
   </div>
 </section>
 
 <!-- ============ SCHERMATA SQUADRA ============ -->
-<section id="s-team" class="screen on">
+<section id="s-team" class="screen">
   <p class="banner" id="team-who" hidden></p>
   <div class="two">
     <div class="card">
@@ -737,7 +741,7 @@ function save(){
   const k = S.careerHeld ? S.career.king : S.kingId;
   try { localStorage.setItem("insectron", JSON.stringify(
     {r:S.rankIdx, n:S.round, t:t, k:k, c:S.champion ? 1 : 0,
-     a:S.lvl.e||0, ap:S.lvl.p||0})); }
+     a:S.lvl.e||0, ap:S.lvl.p||0, v:S.vs})); }
   catch(e){ /* storage non disponibile: la partita resta valida in sessione */ }
 }
 function load(){
@@ -746,6 +750,7 @@ function load(){
     if (v && Array.isArray(v.t)){
       S.rankIdx = v.r|0; S.round = v.n|0; S.champion = !!v.c;
       S.lvl = { e: (v.a|0) || 0, p: (v.ap|0) || 0 };
+      if (MODES[v.v]) S.vs = v.v;
       S.team = v.t.filter(id => byId[id] && unlocked(byId[id]));
       S.kingId = S.team.includes(v.k) ? v.k : (S.team[0] || null);
     }
@@ -962,16 +967,21 @@ function icoPc(){
 }
 const MODES = {
   hvp: { ico:[icoHuman(), icoPc()],   tit:["Human","PC"],
-         desc:"Il torneo di sempre: tu contro il computer. Vinci cinque round e sali di rank." },
+         desc:"Il torneo di sempre: tu contro il computer. Vinci cinque round e sali di rank.",
+         breve:"Giochi tu contro il computer." },
   hvh: { ico:[icoHuman(), icoHuman()], tit:["Human","Human"],
-         desc:"Due persone sullo stesso dispositivo, a turno. La scacchiera ruota: chi gioca ce l\u2019ha sempre davanti." },
+         desc:"Due persone sullo stesso dispositivo, a turno. La scacchiera ruota: chi gioca ce l\u2019ha sempre davanti.",
+         breve:"Partita in due sullo stesso dispositivo." },
   pvp: { ico:[icoPc(), icoPc()],       tit:["PC","PC"],
-         desc:"Il computer gioca tutte e due le squadre: serve a vedere la demo all\u2019opera senza toccare nulla." }
+         desc:"Il computer gioca tutte e due le squadre: serve a vedere la demo all\u2019opera senza toccare nulla.",
+         breve:"Il computer gioca tutte e due le squadre." }
 };
 const LIVELLI = [[0,"Automatica (segue il rank)"],[1,"Principiante"],[2,"Normale"],[3,"Esperto"],[4,"Campione"]];
-/* Apre la scelta "chi gioca". Arriva dopo la squadra: a quel punto il quintetto
-   e' gia' deciso e resta lo stesso in tutte e tre le modalita'. */
-function openModes(){
+/* Apre la scelta "chi gioca". E' la prima schermata del gioco: si decide chi muove
+   prima ancora di comporre la squadra. Dal roster ci si torna col pulsante "Cambia",
+   e in quel caso compare anche la via di ritorno. */
+function openModes(dalRoster){
+  $("#btn-modeback").hidden = !dalRoster;
   drawModes(); show("s-mode");
 }
 function drawModes(){
@@ -1012,13 +1022,13 @@ function drawModeOpts(){
       '<label for="n1">Nome di chi gioca in basso<input id="n1" maxlength="16" autocomplete="off" value="' + esc(S.names.p) + '"></label>' +
       '<label for="n2">Nome di chi gioca in alto<input id="n2" maxlength="16" autocomplete="off" value="' + esc(S.names.e) + '"></label>' +
       '</div>' +
-      '<p class="hint">La squadra che hai appena composto \u00e8 di chi gioca in basso. ' +
-      'Dopo la conferma sceglie l\u2019altro, senza che tu guardi.</p>';
+      '<p class="hint">Sceglie prima chi gioca in basso; quando ha confermato la sua squadra ' +
+      'tocca all\u2019altro, senza che il primo guardi.</p>';
   } else if (pcMode()){
     el.innerHTML = '<div class="opts">' + sel("lv-p", "Difficolt\u00e0 del PC in basso", "p") +
       sel("lv-e", "Difficolt\u00e0 del PC in alto", "e") + '</div>' +
       '<p class="hint" id="lvdesc"></p>' +
-      '<p class="hint">Il PC in basso gioca la squadra che hai composto tu, quello in alto ' +
+      '<p class="hint">Il PC in basso gioca la squadra che comporrai tu, quello in alto ' +
       'pesca dagli avversari del rank corrente. La partita non conta per il torneo.</p>';
   } else {
     el.innerHTML = '<div class="opts">' + sel("lv-e", "Difficolt\u00e0 degli avversari", "e") + '</div>' +
@@ -1029,7 +1039,7 @@ function drawModeOpts(){
     if (s2) s2.onchange = ev => { S.lvl[side] = parseInt(ev.target.value, 10) || 0; save(); lvDesc(); };
   });
   const go = $("#btn-modego");
-  go.textContent = duoMode() ? "Passa la scelta all\u2019altro giocatore" : "Entra in arena";
+  go.textContent = duoMode() ? "Scegliete le squadre" : "Scegli la squadra";
   lvDesc();
 }
 function lvDesc(){
@@ -1041,21 +1051,20 @@ function lvDesc(){
   });
   el.innerHTML = righe.join("<br>");
 }
+/* Confermata la modalita' si passa al roster. La partita comincia piu' tardi, dal
+   riepilogo, quando la squadra (o le squadre) sono pronte. */
 function modeGo(){
   if (duoMode()){
     const leggi = (id, def) => (($(id) && $(id).value) || "").trim().slice(0,16) || def;
     S.names.p = leggi("#n1", "Giocatore 1");
     S.names.e = leggi("#n2", "Giocatore 2");
-    S.duo = { p:{ team: S.team.slice(), king: S.kingId }, e:{ team:[], king:null } };
-    S.career = { team: S.team.slice(), king: S.kingId };   /* la squadra del torneo resta questa */
-    S.careerHeld = true;                                   /* protetta finche' non si torna al roster */
-    passTo("e", "Scegli la squadra",
-      "Adesso tocca a te: cinque pedine e il Re, senza far guardare l\u2019altro.",
-      () => enterSetup("e"));
-    return;
+    S.duo = { p:{ team:[], king:null }, e:{ team:[], king:null } };
   }
   save();
-  if (pcMode()) startPvp(); else startBattle();
+  backToCareer();                                 /* se si arriva da una partita in due */
+  S.setup = "p";
+  drawWho(); drawRoster(); drawSlots(); detail(S.look ? byId[S.look] : null);
+  show("s-team");
 }
 function enterSetup(side){
   S.setup = side;
@@ -1076,13 +1085,28 @@ function backToCareer(){
    capisce piu' di chi sia la squadra a schermo. */
 function drawWho(){
   const duo = duoMode() && S.setup === "e", side = S.setup;
-  [["#team-who", "sceglie la squadra"], ["#brief-who", "controlla la squadra e nomina il Re"]].forEach(([sel, txt]) => {
-    const el = $(sel); if (!el) return;
-    el.hidden = !duo;
-    el.className = "banner" + (side === "e" ? " e" : "");
-    if (duo) el.innerHTML = '<span class="tag">' + (side === "p" ? "In basso" : "In alto") +
-      '</span><span><b>' + esc(nameOf(side)) + '</b> ' + txt + '. L\u2019altro giocatore non deve guardare.</span>';
-  });
+  const m = MODES[S.vs];
+  const chi = '<span class="tag">' + m.ico[0] + m.tit[0] + ' <i>vs</i> ' + m.ico[1] + m.tit[1] + '</span>';
+  /* Sul roster il banner ricorda la modalita' scelta e offre la via per cambiarla;
+     quando sta scegliendo il secondo giocatore dice invece di chi e' il turno. */
+  const team = $("#team-who");
+  if (team){
+    team.hidden = false;
+    team.className = "banner" + (duo ? " e" : "");
+    team.innerHTML = chi + '<span>' + (duo
+      ? '<b>' + esc(nameOf(side)) + '</b> sceglie la squadra. L\u2019altro giocatore non deve guardare.'
+      : m.breve) + '</span>' +
+      (duo ? '' : '<span class="spacer"></span><button class="kbtn" id="btn-chmode">Cambia</button>');
+    const ch = $("#btn-chmode");
+    if (ch) ch.onclick = () => openModes(true);
+  }
+  const brief = $("#brief-who");
+  if (brief){
+    brief.hidden = !duo;
+    brief.className = "banner e";
+    if (duo) brief.innerHTML = chi + '<span><b>' + esc(nameOf(side)) +
+      '</b> controlla la squadra e nomina il Re. L\u2019altro giocatore non deve guardare.</span>';
+  }
   const t = $("#brief-title");
   if (t) t.textContent = duo && side === "e" ? "La squadra di " + nameOf(side) : "La tua squadra";
   const a = $("#btn-toarena");
@@ -2145,14 +2169,26 @@ function leaveMatch(){ S.matchMode = "hvp"; updBadges(); }
 
 $("#btn-start").onclick = () => { drawWho(); drawBrief(); show("s-brief"); };
 $("#btn-back").onclick = () => { drawWho(); drawRoster(); drawSlots(); show("s-team"); };
-/* Dal riepilogo non si entra piu' dritti in campo: prima si sceglie chi gioca.
-   L'unica eccezione e' il secondo giocatore di una partita in due, che a quel
-   punto la modalita' ce l'ha gia' e passa allo schieramento. */
+/* Dal riepilogo si scende in campo. In due giocatori il primo, confermando, passa
+   il dispositivo all'altro: si scende in campo quando anche la seconda squadra c'e'. */
 $("#btn-toarena").onclick = () => {
-  if (duoMode() && S.setup === "e"){ commitSetup(); startDuo(); return; }
-  openModes();
+  if (duoMode()){
+    commitSetup();
+    if (S.setup === "p"){
+      S.career = { team: S.team.slice(), king: S.kingId };  /* la squadra del torneo resta questa */
+      S.careerHeld = true;                                  /* protetta finche' non si torna al roster */
+      passTo("e", "Scegli la squadra",
+        "Adesso tocca a te: cinque pedine e il Re, senza far guardare l\u2019altro.",
+        () => enterSetup("e"));
+    } else {
+      startDuo();
+    }
+    return;
+  }
+  if (pcMode()){ startPvp(); return; }
+  startBattle();
 };
-$("#btn-modeback").onclick = () => { drawWho(); drawBrief(); show("s-brief"); };
+$("#btn-modeback").onclick = () => { drawWho(); drawRoster(); drawSlots(); show("s-team"); };
 $("#btn-modego").onclick = modeGo;
 $("#btn-pass").onclick = passDone;
 $("#btn-newteams").onclick = () => {
@@ -2201,7 +2237,7 @@ $("#btn-reset").onclick = () => {
   save(); updBadges(); drawRoster(); drawSlots(); show("s-team");
 };
 
-load(); updBadges(); drawRoster(); drawSlots(); detail(null);
+load(); updBadges(); drawRoster(); drawSlots(); detail(null); drawModes();
 </script>
 </body>
 </html>
