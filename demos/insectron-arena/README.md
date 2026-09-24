@@ -88,18 +88,19 @@ Altre correzioni che la FAQ ha imposto:
 
 Quattro passaggi, ognuno con le informazioni che servono a decidere:
 
-1. **Roster.** Toccando un Insector si apre a destra la sua **scheda**: ruolo in campo,
+1. **Chi gioca.** È la prima schermata: si sceglie fra Human vs PC, Human vs Human e
+   PC vs PC, e con un computer in campo il suo livello (vedi «Chi gioca: le tre
+   modalita'»). Dal roster si torna a cambiarla quando si vuole.
+2. **Roster.** Toccando un Insector si apre a destra la sua **scheda**: ruolo in campo,
    vita/forza/difesa, danno d'attacco, movimento, mossa speciale e relativo danno. Si
    entra in squadra solo confermando con il pulsante — un tocco non impegna a nulla.
-2. **Riepilogo squadra.** Le cinque pedine affiancate con le stesse informazioni, ed è
+   In alto una fascia ricorda chi gioca, con il pulsante per cambiare.
+3. **Riepilogo squadra.** Le cinque pedine affiancate con le stesse informazioni, ed è
    qui che si **nomina il Re**. Finché non lo scegli non si entra in arena.
-3. **Chi gioca.** «Entra in arena» non porta piu' dritto in campo: prima si sceglie
-   fra Human vs PC, Human vs Human e PC vs PC, e con un computer in campo il suo
-   livello (vedi «Chi gioca: le tre modalita'»).
 4. **Schieramento.** Le pedine si posizionano sulle due file di casa — tranne in
    PC vs PC, dove le mette in fila il gioco.
 
-In Human vs Human i primi due passaggi li rifa' anche il secondo giocatore, con una
+In Human vs Human i passaggi 2 e 3 li rifa' anche il secondo giocatore, con una
 schermata di consegna in mezzo.
 
 In battaglia, selezionando una pedina il pannello mostra **danno d'attacco, danno della
@@ -126,9 +127,11 @@ parte (che la rotazione le mostra in basso); in PC vs PC non si schiera affatto.
 
 ## Chi gioca: le tre modalita'
 
-La scelta arriva **dopo** il riepilogo della squadra: si preme «Entra in arena» e prima
-del campo compare la schermata «Chi gioca questa partita?». La squadra appena composta
-scende in campo in tutti e tre i casi; qui si decide solo chi la muove.
+La scelta e' la **prima schermata del gioco**, prima ancora di comporre la squadra: si
+apre `gioca.html` e compare «Chi gioca questa partita?». Da li' si passa al roster, e
+la fascia in cima al roster ricorda la modalita' scelta con un pulsante **Cambia** per
+tornare indietro. La scelta viene ricordata nel salvataggio locale, quindi riaprendo il
+gioco la carta giusta e' gia' selezionata.
 
 | Modalita' | Chi muove | A cosa serve |
 |---|---|---|
@@ -150,8 +153,8 @@ cosa si sta per affrontare prima di entrare in campo.
 
 ### Human vs Human
 
-1. **Squadre in privato.** La squadra gia' composta e' di chi gioca in basso; dopo la
-   conferma una schermata di consegna copre tutto e sceglie l'altro.
+1. **Squadre in privato.** Compone prima chi gioca in basso; quando conferma il suo
+   quintetto una schermata di consegna copre tutto e tocca all'altro.
 2. **Schieramento al coperto.** Ognuno schiera nelle due file dalla sua parte; finche'
    si schiera, **le pedine dell'altro non sono disegnate**. Le due zone non si
    sovrappongono, quindi nessuno puo' dedurne la posizione provando a occupare una
@@ -389,8 +392,8 @@ sui titoli.
   la card di battaglia riporta danno d'attacco, danno speciale e movimento residuo
 - 4 controlli sul campo rettangolare: 5 colonne, 7 file, e i limiti su entrambi gli assi
 
-- 30 controlli automatici su Human vs Human: la scelta della modalità compare solo
-  dopo «Entra in arena»; le consegne nominano il giocatore giusto a ogni passaggio; a
+- 32 controlli automatici su Human vs Human: la modalità si sceglie entrando nel gioco
+  e la fascia del roster la ricorda; le consegne nominano il giocatore giusto a ogni passaggio; a
   inizio schieramento il campo è vuoto e si vedono solo le cinque pedine di chi sta
   schierando; ognuno schiera nella propria metà; a battaglia iniziata compaiono tutte e
   dieci; non si seleziona una pedina avversaria; «Fine turno» è attivo per tutti e due;
@@ -399,8 +402,10 @@ sui titoli.
   intatta, nel salvataggio e a schermo, e i badge del torneo ricompaiono. Nessun
   errore in console.
 
-- 37 controlli automatici sulla schermata «Chi gioca» e su PC vs PC: la testata non ha
-  più selettori; le tre carte sono nell'ordine giusto con le etichette chieste e
+- 44 controlli automatici sulla schermata «Chi gioca» e su PC vs PC: è la prima
+  schermata del gioco, la testata non ha selettori, il pulsante «Cambia» del roster la
+  riapre con il ritorno alla squadra e la scelta sopravvive al ricaricamento; le tre
+  carte sono nell'ordine giusto con le etichette chieste e
   l'icona accanto a ogni parola (umana accanto a «Human», monitor accanto a «PC»);
   sotto le carte compaiono i nomi in Human vs Human, un livello in Human vs PC e due in
   PC vs PC, con la descrizione del profilo che segue la scelta; i livelli scelti
@@ -460,9 +465,9 @@ sui titoli.
 - Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate nuove
   comprese (scelta della modalità, consegna, squadra del secondo giocatore,
   schieramento a scacchiera girata)
-- Totale dei controlli automatici sul gioco: **200** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **209** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, movimento 13, scheda del roster 6,
-  Human vs Human 30, modalità e PC vs PC 37, rotazione 18), più 10 sulla landing
+  Human vs Human 32, modalità e PC vs PC 44, rotazione 18), più 10 sulla landing
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
