@@ -7,7 +7,7 @@ struttura del repo → qui sotto, Figma → <https://www.figma.com/design/ESMMSz
 ## Direzione in una riga
 
 Un orario dei trasporti ben fatto, scritto con i materiali del vulcano: tipografia da
-segnaletica, colori di pietra lavica, cenere, leccio, ginestra e Golfo, e **un solo** momento
+segnaletica, i tre colori del logo (verde, azzurro, giallo) su neutri di pietra lavica e cenere, e **un solo** momento
 scenico: il percorso «Dalla stazione al cratere», disegnato come una linea di trasporto con le sue fermate.
 
 Scelte deliberate contro i tratti dei siti generati:
@@ -15,7 +15,7 @@ Scelte deliberate contro i tratti dei siti generati:
 - il prodotto principale si distingue per bordo e fondo, non per un badge «più scelto»
   (sarebbe un dato inventato); le altre schede hanno solo il bordo;
 - nessuna animazione d'ingresso sulle sezioni;
-- il rosso Scoria è riservato alle azioni di prenotazione.
+- il Giallo Vesuvio del logo è riservato alle azioni di prenotazione.
 
 ## Struttura del repo (da creare in fase 2)
 

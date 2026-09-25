@@ -3,18 +3,21 @@
  * In fase 2 questo file viene importato in app/globals.css ed esposto a Tailwind v4 con @theme.
  */
 :root {
-  /* Palette */
+  /* Palette — i tre colori del logo, più varianti scurite per il testo */
   --color-basalto: #231f1c;
   --color-basalto-2: #3a3430;
   --color-pomice: #6b635c;
   --color-cenere: #eeeae3;
   --color-cenere-2: #ddd6cb;
   --color-carta: #f7f5f1;
-  --color-scoria: #a93f24;
-  --color-scoria-scura: #8e331c;
-  --color-leccio: #3d5a3a;
-  --color-ginestra: #e6b422;
-  --color-golfo: #1d4f6e;
+  --color-giallo-vesuvio: #f7a707; /* logo */
+  --color-giallo-scuro: #de9606;
+  --color-verde-vesuvio: #009d44; /* logo */
+  --color-verde-bosco: #00662c;
+  --color-azzurro-express: #00a0e3; /* logo */
+  --color-azzurro-profondo: #006088;
+  --color-scoria: #a93f24; /* funzionale: avvisi */
+  --color-scoria-scura: #8e331c; /* funzionale: errori */
   --color-bianco: #ffffff;
 
   /* Ruoli */
@@ -26,14 +29,18 @@
   --color-text-on-dark: var(--color-cenere);
   --color-border: var(--color-cenere-2);
   --color-border-strong: var(--color-basalto);
-  --color-action: var(--color-scoria);
-  --color-action-hover: var(--color-scoria-scura);
-  --color-on-action: var(--color-bianco);
-  --color-link: var(--color-golfo);
-  --color-status-open: var(--color-leccio);
-  --color-status-warn: var(--color-ginestra);
+  --color-action: var(--color-giallo-vesuvio);
+  --color-action-hover: var(--color-giallo-scuro);
+  --color-on-action: var(--color-basalto);
+  --color-on-strong: var(--color-bianco);
+  --color-link: var(--color-azzurro-profondo);
+  --color-status-open: var(--color-verde-bosco);
+  --color-status-warn: var(--color-scoria);
   --color-error: var(--color-scoria-scura);
-  --color-focus: var(--color-golfo);
+  --color-focus: var(--color-azzurro-profondo);
+  --color-brand-green: var(--color-verde-vesuvio);
+  --color-brand-blue: var(--color-azzurro-express);
+  --color-brand-yellow: var(--color-giallo-vesuvio);
 
   /* Famiglie: ja/zh/ar sostituiscono display e body tramite :lang() */
   --font-display: "Archivo", "Noto Sans", system-ui, sans-serif;

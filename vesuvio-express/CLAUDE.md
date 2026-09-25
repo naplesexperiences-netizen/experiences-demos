@@ -65,5 +65,5 @@ Lavora in fasi. Per ogni fase: proponi il piano, aspetta la mia approvazione, im
 - **I token sono la fonte unica**: `design/tokens.json` (DTCG) → `design/tokens.css`. Nessun hex o `font-family` scritto a mano nei componenti.
 - **Figma** (design system + mockup): https://www.figma.com/design/ESMMSzTDRTsMLsVJzDG0At — se codice e Figma divergono, vince `design/tokens.json`; aggiornare Figma dopo.
 - Ogni dato non verificato è un segnaposto `TODO_*` ed è elencato in `CONTENUTI_MANCANTI.md`. Aggiungerlo lì nello stesso commit in cui compare.
-- Il colore Scoria (`--color-action`) è solo per le azioni di prenotazione. Mai decorativo.
+- I colori vengono dal logo (`design/brand/`). Il Giallo Vesuvio (`--color-action`) è solo per le azioni di prenotazione, sempre con testo Basalto. Verde e azzurro del logo non portano testo: per il testo si usano le varianti scure (`verde-bosco`, `azzurro-profondo`).
 - Proprietà CSS logiche (`margin-inline-start`, `padding-inline`…) ovunque: l'RTL deve funzionare senza override.
