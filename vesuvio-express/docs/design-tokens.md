@@ -6,33 +6,48 @@ Versione visiva: pagina **Design system** del file Figma
 
 ## Colore
 
-Sei colori legati al luogo. Ognuno ha **un solo compito**, così il colore stesso diventa informazione.
+La palette parte dai **tre colori del logo** (`design/brand/logo-vesuvio-express.png`),
+misurati sui pixel del file: verde della montagna, azzurro della scritta e delle ruote,
+giallo della «O» e del motto. Nessuno dei tre, così com'è, regge testo bianco in AA:
+per questo ognuno ha una variante scurita per il testo, e il giallo lavora con testo scuro.
 
-| Token | Hex | Compito | Perché questo colore |
+| Token | Hex | Origine | Compito |
 |---|---|---|---|
-| **Basalto** | `#231F1C` | Testo, superfici scure, linea del percorso | La pietra lavica delle colate. Un nero caldo, non il `#000` digitale. |
-| **Cenere** | `#EEEAE3` | Sfondo pagina | La cenere chiara del sentiero del Gran Cono. Riverbera meno del bianco puro quando si legge al sole, col telefono in mano. |
-| **Scoria** | `#A93F24` | **Solo** azioni di prenotazione | Il rosso ossidato dei lapilli sul bordo del cratere. Regola: se è rosso, si prenota. Nessun uso decorativo, così il bottone si trova a colpo d'occhio. |
-| **Leccio** | `#3D5A3A` | Stato «aperto», conferme, WhatsApp | Il verde scuro dei lecci e della macchia mediterranea del Parco. Dice «si può salire». |
-| **Ginestra** | `#E6B422` | Avvisi (vento, chiusure) e accento su fondo scuro | La ginestra che colonizza le colate del Vesuvio (Leopardi). Usata solo come **fondo** con testo Basalto, o come segno su Basalto. Mai testo giallo su chiaro. |
-| **Golfo** | `#1D4F6E` | Link, informazioni, anello di focus, acqua nelle mappe | Il blu del Golfo visto dal cratere. |
+| **Giallo Vesuvio** | `#F7A707` | logo | **Solo** azioni di prenotazione, con testo Basalto (8.2:1). Il colore più caldo del logo porta all'azione: se è giallo, si prenota. |
+| Giallo scuro | `#DE9606` | variante | Hover/pressed dell'azione (Basalto 6.6:1). |
+| **Verde Vesuvio** | `#009D44` | logo | Solo grafica: profilo del vulcano, illustrazioni, fasce senza testo piccolo. |
+| Verde bosco | `#00662C` | variante | Stato «Gran Cono aperto», conferme, bottone WhatsApp, spunte «incluso» (bianco 7.2:1, su Cenere 6.0:1). |
+| **Azzurro Express** | `#00A0E3` | logo | Linea del percorso su fondo Basalto (5.6:1), acqua nelle mappe. Mai testo su chiaro. |
+| Azzurro profondo | `#006088` | variante | Link, informazioni, anello di focus (su Cenere 5.8:1). |
+| **Basalto** | `#231F1C` | neutro | Testo, superfici scure. Nero caldo, legato alla pietra lavica. |
+| **Cenere** | `#EEEAE3` | neutro | Sfondo pagina: fa risaltare i tre colori del logo meglio del bianco e riverbera meno al sole. |
+| Scoria | `#A93F24` | funzionale | Fuori dal logo, di proposito: solo avvisi (vento, chiusure) con testo bianco. Deve distinguersi dal giallo dell'azione. |
 
 Neutri di supporto: `basalto-2 #3A3430` (footer), `pomice #6B635C` (testo secondario),
-`cenere-2 #DDD6CB` (bordi), `carta #F7F5F1` (schede e campi), `scoria-scura #8E331C` (hover ed errori).
+`cenere-2 #DDD6CB` (bordi), `carta #F7F5F1` (schede e campi), `scoria-scura #8E331C` (testo errori).
 
 ### Contrasti verificati (WCAG 2.2)
 
 | Coppia | Rapporto | Esito |
 |---|---|---|
 | Basalto su Cenere | 13.6:1 | AAA |
-| Pomice su Cenere | 4.9:1 | AA testo normale |
-| Bianco su Scoria | 6.1:1 | AA |
-| Bianco su Scoria scura (hover) | 8.0:1 | AAA |
-| Bianco su Leccio | 7.7:1 | AAA |
-| Basalto su Ginestra | 8.5:1 | AAA |
-| Ginestra su Basalto | 8.5:1 | AAA |
-| Golfo su Cenere (link, focus) | 7.3:1 | AAA |
-| Scoria su Carta (testo errore) | 5.6:1 | AA |
+| Pomice su Cenere | 4.9:1 | AA |
+| Basalto su Giallo Vesuvio (bottone) | 8.2:1 | AAA |
+| Basalto su Giallo scuro (hover) | 6.6:1 | AA |
+| Bianco su Verde bosco | 7.2:1 | AAA |
+| Verde bosco su Cenere (spunte, stato) | 6.0:1 | AA |
+| Azzurro profondo su Cenere (link, focus) | 5.8:1 | AA |
+| Azzurro Express su Basalto (linea percorso) | 5.6:1 | AA |
+| Giallo Vesuvio su Basalto (fermate percorso) | 8.2:1 | AAA |
+| Bianco su Scoria (avvisi) | 6.1:1 | AA |
+| Scoria scura su Carta (errori) | 7.3:1 | AAA |
+
+Non passano, e quindi **non si usano per il testo**: bianco su Verde Vesuvio (3.6:1),
+bianco su Azzurro Express (2.9:1), bianco su Giallo Vesuvio (2.0:1).
+
+**Da sapere**: il bottone giallo su fondo Cenere ha poco contrasto di bordo (1.7:1). Il
+bottone resta riconoscibile perché l'etichetta è a 8.2:1 e il giallo compare solo sulle
+azioni. Se nei test con utenti non basta, aggiungiamo un bordo inferiore Basalto di 2 px.
 
 ## Tipografia
 
@@ -76,4 +91,4 @@ Titoli sempre in tondo, mai corsivo; nessuna etichetta in maiuscolo sopra i tito
 
 - 150 ms (stati) e 250 ms (aperture), `cubic-bezier(0.2, 0.7, 0.2, 1)`; solo `transform` e `opacity`.
 - Nessuna animazione d'ingresso sulle sezioni. L'unico movimento «narrativo» è il riempimento della linea nel percorso «Dalla stazione al cratere», e con `prefers-reduced-motion` viene mostrato già completo.
-- L'anello di focus (Golfo, 3 px) compare subito, senza transizione.
+- L'anello di focus (Azzurro profondo, 3 px) compare subito, senza transizione.

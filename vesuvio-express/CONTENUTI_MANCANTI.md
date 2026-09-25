@@ -26,6 +26,7 @@ stesso commit in cui un segnaposto compare o viene sostituito.
 | `TODO_RAGIONE_SOCIALE`, `TODO_PIVA`, `TODO_INDIRIZZO` | Dati societari | Footer, pagine legali, JSON-LD | Cliente |
 | `TODO_CODICE` | Codice prenotazione | Voucher | Proxy |
 | `TODO_DATA` | Solo segnaposto di layout nei mockup | Mockup | — |
+| Logo vettoriale | Originale SVG o AI del logo (in repo c’è solo il PNG 1545×483 preso dal sito attuale) e, se esiste, una versione per fondo scuro | Header, footer, voucher, favicon | Cliente |
 
 ## Foto (servizio fotografico, niente immagini generate)
 

@@ -10,7 +10,7 @@ Tutti i dati sono segnaposto `TODO_*` (vedi `CONTENUTI_MANCANTI.md`).
 ┌────────────────────────────────────┐ 0
 │ Vesuvio Express        IT    Menu  │ header 56
 ├────────────────────────────────────┤
-│ ● Gran Cono aperto oggi · agg. hh:mm│ stato del giorno (Leccio / Ginestra)
+│ ● Gran Cono aperto oggi · agg. hh:mm│ stato del giorno (Verde bosco / Scoria)
 ├────────────────────────────────────┤ 100
 │ Dalla stazione al                  │
 │ cratere in 30                      │ display 40/1.04
@@ -22,7 +22,7 @@ Tutti i dati sono segnaposto `TODO_*` (vedi `CONTENUTI_MANCANTI.md`).
 │ │ [█Navetta + cratere█|Solo nav.]│ │ prodotto: 2 opzioni principali
 │ │ ✓ Biglietto del Gran Cono      │ │ cosa è incluso, cambia con la scelta
 │ │   incluso · da € TODO_PREZZO   │ │
-│ │ [ Vedi orari: navetta + ingr. ]│ │ CTA Scoria, fondo a ~565 px
+│ │ [ Vedi orari: navetta + ingr. ]│ │ CTA Giallo Vesuvio, fondo a ~565 px
 │ │ Combo con gli Scavi o tour da  │ │ link agli altri prodotti
 │ │ Napoli                         │ │
 │ └────────────────────────────────┘ │
@@ -55,7 +55,7 @@ In 5 secondi si leggono: **punto di partenza** (sottotitolo), **prezzo da** (rig
 │ └─────────────────────────────────┘ │
 │████████████████████████████████████│ ← MOMENTO MEMORABILE (fondo Basalto)
 │█ Dalla stazione al cratere        █│
-│█  ●  Uscita stazione Ercolano  0′ █│ linea verticale, fermate Ginestra
+│█  ●  Uscita stazione Ercolano  0′ █│ linea Azzurro Express, fermate Giallo
 │█  │  [FOTO 3:2]                   █│
 │█  ●  Ufficio Vesuvio Express  TODO█│
 │█  │  [FOTO 3:2]                   █│
@@ -72,7 +72,7 @@ In 5 secondi si leggono: **punto di partenza** (sottotitolo), **prezzo da** (rig
 │ ┆ TODO_RECENSIONI (widget reale)  ┆ │ nessuna recensione inventata
 │ Domande rapide                     │ 4 accordion + «Tutte le domande»
 │ Hai un dubbio prima di partire?    │
-│ [ Scrivici su WhatsApp ]           │ Leccio
+│ [ Scrivici su WhatsApp ]           │ Verde bosco
 │████ footer Basalto-2 ██████████████│ «Sito ufficiale: vesuvioexpress.it,
 │                                    │  nessun legame con vesuvioexpress.info»
 ├────────────────────────────────────┤
@@ -186,7 +186,7 @@ fissa a destra; su mobile è la barra sticky in basso, che si espande in un pann
 - Le fasce incompatibili o esaurite restano visibili, con il motivo scritto
   («La navetta arriva dopo l'inizio della fascia», «Esaurito»), `aria-disabled="true"` e
   nessuna risposta al tap: si capisce perché, non si sbaglia.
-- Con Gran Cono chiuso (flag) il passo 1 mostra l'avviso Ginestra e blocca i prodotti con
+- Con Gran Cono chiuso (flag) il passo 1 mostra l'avviso Scoria e blocca i prodotti con
   ingresso; resta prenotabile solo ciò che la politica consente (`TODO_POLICY_VENTO`).
 - Il widget ha altezze riservate (skeleton delle stesse dimensioni) mentre carica le
   disponibilità: CLS = 0.
