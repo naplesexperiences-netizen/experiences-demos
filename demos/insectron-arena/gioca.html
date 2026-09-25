@@ -206,12 +206,19 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
 .kmark{position:absolute;top:2%;right:8%;font-size:.66rem;color:var(--accent);text-shadow:0 0 4px #000}
 .status{position:absolute;bottom:20%;left:6%;font-size:.6rem;letter-spacing:-1px}
 
-/* ---- animazioni ---- */
+/* ---- animazioni ----
+   Regola che tiene insieme tutto: prima di ogni azione forte c'e' un piccolo
+   movimento contrario (anticipo), e ogni impatto deforma la sagoma invece di
+   spostarla soltanto. Sono i due trucchi che fanno leggere il peso. */
 @keyframes idle{0%,100%{transform:translateY(0)}50%{transform:translateY(-7%)}}
-.tok.lunge .inner{animation:lunge .36s ease-out}
+.art .wing{transform-box:view-box;transform-origin:32px 34px;animation:flap .5s ease-in-out infinite alternate}
+@keyframes flap{from{transform:scaleX(1) rotate(0)}to{transform:scaleX(.82) rotate(.8deg)}}
+/* l'attacco: si carica all'indietro, poi parte */
+.tok.lunge .inner{animation:lunge .46s cubic-bezier(.3,.9,.4,1)}
 @keyframes lunge{
   0%{transform:translate(0,0)}
-  40%{transform:translate(var(--lx,0),var(--ly,0)) scale(1.1)}
+  22%{transform:translate(calc(var(--lx,0) * -.24),calc(var(--ly,0) * -.24)) scale(.95,1.05)}
+  52%{transform:translate(var(--lx,0),var(--ly,0)) scale(1.14,.9)}
   100%{transform:translate(0,0)}
 }
 .tok.hurt .inner{animation:hurt .4s ease-out}
@@ -220,12 +227,52 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
   15%{transform:translate(-15%,0)}45%{transform:translate(11%,0)}
   70%{transform:translate(-7%,0)}88%{transform:translate(4%,0)}
 }
-.tok.hurt .art{animation:flash .4s ease-out}
+/* l'impatto schiaccia e rimbalza, oltre a far lampeggiare */
+.tok.hurt .art{animation:flash .4s ease-out,squash .44s cubic-bezier(.2,.9,.3,1);transform-origin:50% 84%}
 @keyframes flash{0%,100%{filter:none}25%{filter:brightness(3.5) saturate(.15)}}
+@keyframes squash{
+  0%,100%{transform:scale(1,1)}
+  18%{transform:scale(1.2,.8)}
+  55%{transform:scale(.93,1.07)}
+  80%{transform:scale(1.03,.97)}
+}
+/* il passo: stacco, volo breve, atterraggio schiacciato */
+.tok.step .inner{animation:step .42s cubic-bezier(.3,.8,.35,1)}
+@keyframes step{
+  0%{transform:translateY(0) scale(1,1)}
+  18%{transform:translateY(4%) scale(1.1,.9)}
+  55%{transform:translateY(-16%) scale(.94,1.08)}
+  82%{transform:translateY(2%) scale(1.08,.93)}
+  100%{transform:translateY(0) scale(1,1)}
+}
+/* l'ombra segue il salto: si stringe quando la pedina e' in aria */
+.tok.step .shadow{animation:shadowstep .42s cubic-bezier(.3,.8,.35,1)}
+@keyframes shadowstep{
+  0%,100%{transform:translateX(-50%) scale(1);opacity:1}
+  55%{transform:translateX(-50%) scale(.55);opacity:.45}
+}
 .tok.cast .inner{animation:cast .55s ease-out}
-@keyframes cast{0%,100%{transform:scale(1)}30%{transform:scale(1.2) translateY(-10%)}}
-.tok.dead{animation:dead .45s ease-in forwards;z-index:4}
-@keyframes dead{to{opacity:0;transform:scale(.5) rotate(20deg)}}
+@keyframes cast{
+  0%,100%{transform:scale(1)}
+  14%{transform:scale(.9,1.08) translateY(4%)}
+  38%{transform:scale(1.2) translateY(-12%)}
+}
+/* la pedina scelta respira dentro un alone del suo colore */
+.tok.sel .inner::after{
+  content:"";position:absolute;left:50%;top:52%;width:86%;height:86%;
+  transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(75,195,255,.42),transparent 68%);
+  animation:halo 1.7s ease-in-out infinite
+}
+.tok.sel.e .inner::after{background:radial-gradient(circle,rgba(255,107,107,.42),transparent 68%)}
+@keyframes halo{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(.88)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+/* il K.O.: cede su se stessa prima di sparire */
+.tok.dead{animation:dead .5s cubic-bezier(.4,0,.7,.6) forwards;z-index:4}
+@keyframes dead{
+  0%{opacity:1;transform:scale(1,1) rotate(0)}
+  22%{opacity:1;transform:scale(1.16,.84) rotate(0)}
+  100%{opacity:0;transform:scale(.55,.5) rotate(22deg) translateY(14%)}
+}
 .tok.ringout{animation:ringout .8s cubic-bezier(.15,.6,.5,1) forwards;z-index:5}
 @keyframes ringout{
   35%{opacity:1}
@@ -251,7 +298,8 @@ button.danger{border-color:#7d3a3a;color:#ffb3b3}
   100%{transform:translate(-50%,-135%) scale(1);opacity:0}
 }
 @media(prefers-reduced-motion:reduce){
-  .tok,.tok .inner,.tok .art,.cell.mv::after{animation:none!important;transition:none!important}
+  .tok,.tok .inner,.tok .art,.tok .shadow,.art .wing,.tok.sel .inner::after,
+  .cell.mv::after{animation:none!important;transition:none!important}
   .wave,.bullet{display:none}
 }
 
@@ -587,103 +635,330 @@ function art(fam, flip, rank){
   const S2 = ' stroke="' + K + '" stroke-width="2" stroke-linejoin="round"';
   const S1 = ' stroke="' + K + '" stroke-width="1.5" stroke-linejoin="round"';
   const G  = ' fill="url(#' + gid + ')"';
-  const sc = 1 + (t - 1) * 0.11;                 /* le unità di rank alto sono più massicce */
+  const sc = 1 + (t - 1) * 0.085;                /* le unità di rank alto sono più massicce */
+
+  /* --- attrezzi di disegno condivisi ---------------------------------------
+     Tre cose separano un insetto da una macchia colorata: le zampe, un punto di
+     luce che dia volume al guscio e un filo di luce sul bordo superiore. Stanno
+     qui perché ogni famiglia possa pescarle senza riscriverle.
+     Il lato avversario è ruotato di 180°, quindi la luce va specchiata a mano:
+     altrimenti il riflesso finisce sotto la pancia. */
+  const upY = y => flip ? 64 - y : y;
+  /* Zampa articolata: parte dal fianco, piega al ginocchio, appoggia a terra. */
+  const leg = (x, y, dx, dy, w) =>
+    '<path d="M' + x + ' ' + y + ' q' + (dx*0.75) + ' ' + (dy*0.35) + ' ' + dx + ' ' + dy + '"' +
+    ' stroke="' + K + '" stroke-width="' + (w || 2.4) + '" fill="none" stroke-linecap="round"/>';
+  /* Sei zampe, tre per lato, sfalsate come nell\u2019insetto vero. */
+  const zampe = (cx, cy, span, len, w) =>
+    [-1, 0, 1].map(i =>
+      leg(cx - span, cy + i*4.5, -len*(1 - Math.abs(i)*0.18), 6 + i*3, w) +
+      leg(cx + span, cy + i*4.5,  len*(1 - Math.abs(i)*0.18), 6 + i*3, w)).join("");
+  /* Riflesso speculare: un\u2019ovale chiara sul guscio, ammorbidita. */
+  const luce = (cx, cy, rx, ry, op) =>
+    '<ellipse cx="' + cx + '" cy="' + upY(cy) + '" rx="' + rx + '" ry="' + ry +
+    '" fill="#ffffff" opacity="' + (op || 0.16) + '"/>';
+  /* Filo di luce sul bordo: separa la sagoma dallo sfondo scuro della casella. */
+  const bordo = d => '<path d="' + d + '" stroke="' + hi + '" stroke-width="1.8" fill="none" ' +
+    'stroke-linecap="round" opacity=".55"/>';
+  const antenne = (cx, y, sp, h) =>
+    '<path d="M' + (cx-2) + ' ' + y + ' q-' + sp + ' -' + h + ' -' + (sp+2) + ' -' + (h+3) + '"' +
+    ' stroke="' + K + '" stroke-width="1.8" fill="none" stroke-linecap="round"/>' +
+    '<path d="M' + (cx+2) + ' ' + y + ' q' + sp + ' -' + h + ' ' + (sp+2) + ' -' + (h+3) + '"' +
+    ' stroke="' + K + '" stroke-width="1.8" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="' + (cx-sp-2) + '" cy="' + (y-h-3) + '" r="1.9" fill="' + hi + '"/>' +
+    '<circle cx="' + (cx+sp+2) + '" cy="' + (y-h-3) + '" r="1.9" fill="' + hi + '"/>';
+  const occhi = (cx, cy, sp, r) =>
+    '<circle cx="' + (cx-sp) + '" cy="' + cy + '" r="' + r + '" fill="' + K + '"/>' +
+    '<circle cx="' + (cx+sp) + '" cy="' + cy + '" r="' + r + '" fill="' + K + '"/>' +
+    '<circle cx="' + (cx-sp+r*0.35) + '" cy="' + (cy-r*0.35) + '" r="' + (r*0.34) + '" fill="#fff" opacity=".85"/>' +
+    '<circle cx="' + (cx+sp+r*0.35) + '" cy="' + (cy-r*0.35) + '" r="' + (r*0.34) + '" fill="#fff" opacity=".85"/>';
 
   const shapes = {
+    /* Knife Beetle: corazza stretta e una lama al posto del corno. La lama si
+       allunga e mette barbe salendo di rank. */
     "Knife Beetle": () => {
-      const h = 16 - t*4;                        /* punta del corno: più alta salendo di rank */
-      return '<ellipse cx="32" cy="42" rx="15" ry="18"' + G + S2 + '/>' +
-        '<path d="M32 25 v32" stroke="' + K + '" stroke-width="1.6" opacity=".55"/>' +
-        (t >= 2 ? '<path d="M18 36 l-7 -6 M46 36 l7 -6"' + S2 + ' fill="none"/>' : '') +
-        '<path d="M27 26 L32 ' + h + ' L37 26z" fill="' + hi + '"' + S2 + '/>' +
-        (t >= 2 ? '<path d="M29 ' + (h+9) + ' l-6 -4 M35 ' + (h+9) + ' l6 -4"' + S2 + ' fill="none" stroke-linecap="round"/>' : '') +
-        (t >= 3 ? '<path d="M30 ' + (h+16) + ' l-7 -3 M34 ' + (h+16) + ' l7 -3"' + S2 + ' fill="none" stroke-linecap="round"/>' : '');
+      const punta = 20 - t*4;
+      return zampe(32, 44, 13, 8, 2.4) +
+        '<ellipse cx="32" cy="44" rx="14" ry="15"' + G + S2 + '/>' +
+        '<path d="M32 30 v29" stroke="' + K + '" stroke-width="1.8" opacity=".55"/>' +
+        bordo("M20 41 q4 -9 12 -10 q8 1 12 10") +
+        luce(26, 39, 3.6, 2.6, .18) +
+        '<path d="M23 30 q9 -5 18 0 q1 4 0 6 h-18 q-1 -2 0 -6z"' + G + S2 + '/>' +
+        occhi(32, 29, 6, 2) +
+        '<path d="M28 28 L32 ' + punta + ' L36 28z" fill="' + hi + '"' + S2 + '/>' +
+        '<path d="M32 ' + (punta+2) + ' v22" stroke="' + K + '" stroke-width="1.2" opacity=".35"/>' +
+        (t >= 2 ? '<path d="M29.5 ' + (punta+8) + ' l-6 -3 M34.5 ' + (punta+8) + ' l6 -3"' + S2 + ' fill="none" stroke-linecap="round"/>' : '') +
+        (t >= 3 ? '<path d="M30 ' + (punta+15) + ' l-7 -3 M34 ' + (punta+15) + ' l7 -3"' + S2 + ' fill="none" stroke-linecap="round"/>' : '');
     },
+    /* Hercules: massa e corno. Pinza superiore e inferiore che si allungano col
+       rank, guscio bombato con la fessura delle elitre e piastre sulle spalle. */
     "Hercules Beetle": () => {
-      const g = 8 + t*3;
-      return '<path d="M' + (32-g) + ' 22 q' + g + ' -18 ' + (g*2) + ' 0 q-' + g + ' -8 -' + (g*2) + ' 0z" fill="' + hi + '"' + S1 + '/>' +
-        '<ellipse cx="32" cy="41" rx="17" ry="19"' + G + S2 + '/>' +
-        '<path d="M22 32 q10 9 20 0" stroke="' + K + '" stroke-width="2" fill="none" opacity=".6"/>' +
-        '<circle cx="26" cy="38" r="3.2" fill="' + lo + '"/><circle cx="38" cy="38" r="3.2" fill="' + lo + '"/>' +
-        (t >= 3 ? '<circle cx="32" cy="48" r="3" fill="' + lo + '"/>' : '');
+      const hy = 27 - (9 + t*3.4);                /* quota della punta del corno */
+      const largo = 6 + t;                       /* base del corno */
+      return zampe(32, 46, 15, 9, 2.8) +
+        /* corno: base larga sul capo, punta biforcuta. Cresce e si allarga col rank. */
+        '<path d="M' + (32-largo) + ' 28 q-1 -' + (28-hy)*0.62 + ' ' + (largo-3) + ' -' + (28-hy)*0.86 +
+          ' l3 ' + ((28-hy)*0.2).toFixed(1) + ' l3 -' + ((28-hy)*0.2).toFixed(1) +
+          ' q' + (largo-2) + ' ' + (28-hy)*0.24 + ' ' + (largo-3) + ' ' + (28-hy)*0.86 +
+          ' q-' + largo + ' 4 -' + (largo*2) + ' 0z" fill="' + hi + '"' + S2 + '/>' +
+        '<path d="M32 ' + (hy+4).toFixed(1) + ' v' + (24-hy).toFixed(1) + '" stroke="' + K +
+          '" stroke-width="1.5" opacity=".4"/>' +
+        (t >= 3 ? '<path d="M' + (32-largo+1) + ' ' + (hy+7).toFixed(1) + ' l-5 -3 M' + (32+largo-1) + ' ' +
+          (hy+7).toFixed(1) + ' l5 -3"' + S1 + ' fill="none" stroke-linecap="round"/>' : '') +
+        /* torace */
+        '<path d="M22 30 q10 -6 20 0 q2 6 0 9 h-20 q-2 -3 0 -9z"' + G + S2 + '/>' +
+        (t >= 2 ? '<path d="M22 33 h20" stroke="' + K + '" stroke-width="1.4" opacity=".5"/>' : '') +
+        /* elitre */
+        '<ellipse cx="32" cy="45" rx="17" ry="15"' + G + S2 + '/>' +
+        '<path d="M32 31 v28" stroke="' + K + '" stroke-width="2" opacity=".65"/>' +
+        bordo("M19 42 q4 -10 13 -11 q9 1 13 11") +
+        luce(25, 39, 4.5, 3, .18) +
+        (t >= 2 ? '<circle cx="22" cy="48" r="2.4" fill="' + lo + '"/><circle cx="42" cy="48" r="2.4" fill="' + lo + '"/>' : '') +
+        occhi(32, 28, 7, 2.2);
     },
-    "Bazoo Beetle": () =>
-      '<rect x="' + (27-t) + '" y="4" width="' + (10+t*2) + '" height="26" rx="5" fill="' + lo + '"' + S2 + '/>' +
-      '<rect x="' + (24-t) + '" y="' + (6+t) + '" width="' + (16+t*2) + '" height="5" rx="2.5" fill="' + mid + '"' + S1 + '/>' +
-      '<circle cx="32" cy="8" r="' + (4+t) + '" fill="' + K + '"/>' +
-      '<ellipse cx="32" cy="44" rx="16" ry="17"' + G + S2 + '/>' +
-      '<ellipse cx="32" cy="39" rx="7" ry="5" fill="' + hi + '" opacity=".4"/>' +
-      (t >= 2 ? '<circle cx="32" cy="8" r="2" fill="' + hi + '"/>' : ''),
-    "Flipperbug": () =>
-      '<path d="M16 26 q16 -' + (14+t*4) + ' 32 0" fill="none"' + ' stroke="' + hi + '" stroke-width="' + (4+t) + '" stroke-linecap="round"/>' +
-      '<ellipse cx="32" cy="40" rx="17" ry="17"' + G + S2 + '/>' +
-      '<path d="M24 42 q8 9 16 0" stroke="' + K + '" stroke-width="2.4" fill="none" opacity=".6"/>' +
-      (t >= 2 ? '<circle cx="25" cy="34" r="2.4" fill="' + K + '"/><circle cx="39" cy="34" r="2.4" fill="' + K + '"/>' : ''),
+    /* Bazoo: il cannone e' la sagoma. Canna con volata e anello di rinforzo,
+       corpo tozzo che la regge; col rank la canna si allunga e prende gli sfiati. */
+    "Bazoo Beetle": () => {
+      const ly = 12 - t*2, lar = 11 + t*2;
+      return zampe(32, 46, 14, 8, 2.6) +
+        '<rect x="' + (32 - lar/2) + '" y="' + ly + '" width="' + lar + '" height="' + (32 - ly) +
+          '" rx="' + (lar/2.6).toFixed(1) + '" fill="' + shade(col,-0.32) + '"' + S2 + '/>' +
+        '<rect x="' + (32 - lar/2 - 2) + '" y="' + (ly + 1) + '" width="' + (lar + 4) +
+          '" height="5" rx="2.5" fill="' + mid + '"' + S1 + '/>' +
+        '<ellipse cx="32" cy="' + (ly + 3) + '" rx="' + (lar/2 - 1) + '" ry="2.6" fill="' + K + '"/>' +
+        (t >= 2 ? '<path d="M' + (32 - lar/2) + ' ' + (ly + 12) + ' h' + lar + ' M' + (32 - lar/2) + ' ' +
+          (ly + 17) + ' h' + lar + '" stroke="' + K + '" stroke-width="1.4" opacity=".45"/>' : '') +
+        (t >= 3 ? '<path d="M' + (32 - lar/2 - 3) + ' ' + (ly + 8) + ' h3 M' + (32 + lar/2) + ' ' +
+          (ly + 8) + ' h3"' + S1 + ' fill="none" stroke-linecap="round"/>' : '') +
+        '<path d="M23 32 q9 -4 18 0 q1 4 0 6 h-18 q-1 -2 0 -6z"' + G + S2 + '/>' +
+        occhi(32, 33, 6, 2) +
+        '<ellipse cx="32" cy="47" rx="16" ry="13"' + G + S2 + '/>' +
+        bordo("M19 45 q5 -9 13 -10 q8 1 13 10") +
+        luce(26, 43, 4, 2.8, .18) +
+        '<path d="M32 36 v24" stroke="' + K + '" stroke-width="1.6" opacity=".45"/>';
+    },
+    /* Flipperbug: il ribaltatore. Una pala larga davanti al guscio, fatta per
+       infilarsi sotto l'avversario; col rank si allarga e si rinforza. */
+    "Flipperbug": () => {
+      const pa = 15 + t*3;
+      return zampe(32, 44, 15, 8, 2.5) +
+        '<path d="M' + (32-pa) + ' 26 q' + pa + ' -' + (9+t*2) + ' ' + (pa*2) + ' 0 q-' + (pa*0.55) + ' 7 -' +
+          pa + ' 7 q-' + (pa*0.45) + ' 0 -' + pa + ' -7z" fill="' + hi + '"' + S2 + '/>' +
+        (t >= 2 ? '<path d="M' + (32-pa+5) + ' 24 q' + (pa-5) + ' -6 ' + ((pa-5)*2) + ' 0"' +
+          ' stroke="' + K + '" stroke-width="1.5" fill="none" opacity=".4"/>' : '') +
+        (t >= 3 ? '<circle cx="' + (32-pa+3) + '" cy="27" r="1.8" fill="' + K + '" opacity=".5"/>' +
+          '<circle cx="' + (32+pa-3) + '" cy="27" r="1.8" fill="' + K + '" opacity=".5"/>' : '') +
+        '<ellipse cx="32" cy="42" rx="17" ry="15"' + G + S2 + '/>' +
+        '<path d="M32 28 v29" stroke="' + K + '" stroke-width="1.8" opacity=".5"/>' +
+        bordo("M19 40 q5 -10 13 -11 q8 1 13 11") +
+        luce(26, 37, 4.2, 3, .18) +
+        occhi(32, 33, 7, 2.2) +
+        '<path d="M24 48 q8 7 16 0" stroke="' + K + '" stroke-width="2.2" fill="none" opacity=".45"/>';
+    },
+    /* Staggy: cervo volante. Le mandibole sono l'arma: si allungano e si
+       dentellano col rank, il corpo resta tozzo e basso. */
     "Staggy": () => {
-      const w = 5 + t*2;
-      return '<path d="M21 26 q-' + w + ' -15 5 -20 q-2 11 4 15z" fill="' + hi + '"' + S1 + '/>' +
-        '<path d="M43 26 q' + w + ' -15 -5 -20 q2 11 -4 15z" fill="' + hi + '"' + S1 + '/>' +
-        '<ellipse cx="32" cy="43" rx="15" ry="17"' + G + S2 + '/>' +
-        '<path d="M32 28 v30" stroke="' + K + '" stroke-width="1.5" opacity=".5"/>';
+      /* Una sola tenaglia disegnata, specchiata e ingrandita col rank: le due
+         mandibole restano identiche, che e' quello che le fa leggere come tali. */
+      const k = (0.86 + t*0.16).toFixed(2);
+      const tenaglia = dir =>
+        '<g transform="translate(32 28) scale(' + (dir*k) + ' ' + k + ') translate(-32 -28)">' +
+          '<path d="M38 28 C44 24 48 20 46 14 C45 10 41 9 39 11 C41 13 42 16 40 19 C37 22 35 25 35 28z"' +
+            ' fill="' + hi + '"' + S1 + '/>' +
+          (t >= 2 ? '<path d="M40.5 18 l-3.5 1.5 M43 13.5 l-3.5 1.5"' +
+            ' stroke="' + K + '" stroke-width="1.4" fill="none" stroke-linecap="round"/>' : '') +
+        '</g>';
+      return zampe(32, 46, 14, 8, 2.6) +
+        tenaglia(-1) + tenaglia(1) +
+        '<path d="M24 28 q8 -5 16 0 q1 4 0 7 h-16 q-1 -3 0 -7z"' + G + S2 + '/>' +
+        occhi(32, 28, 6, 2) +
+        '<ellipse cx="32" cy="46" rx="15" ry="14"' + G + S2 + '/>' +
+        '<path d="M32 33 v27" stroke="' + K + '" stroke-width="1.8" opacity=".55"/>' +
+        bordo("M20 44 q5 -9 12 -10 q7 1 12 10") +
+        luce(26, 42, 3.8, 2.8, .17) +
+        (t >= 3 ? '<circle cx="23" cy="50" r="2.2" fill="' + lo + '"/><circle cx="41" cy="50" r="2.2" fill="' + lo + '"/>' : '');
     },
+    /* Mantide: torace stretto e verticale, braccia raptatorie ripiegate davanti,
+       addome affusolato. Le lame crescono e si dentellano col rank. */
     "Mantis": () => {
-      const a = 8 + t*3;
-      return '<path d="M20 28 q-' + a + ' 5 -5 17"' + ' stroke="' + mid + '" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
-        '<path d="M44 28 q' + a + ' 5 5 17"' + ' stroke="' + mid + '" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
-        '<path d="M32 12 l12 33 h-24z"' + G + S2 + '/>' +
-        '<ellipse cx="32" cy="51" rx="8" ry="9"' + G + S2 + '/>' +
-        '<circle cx="28.5" cy="20" r="2.4" fill="' + K + '"/><circle cx="35.5" cy="20" r="2.4" fill="' + K + '"/>' +
-        (t >= 3 ? '<path d="M15 45 l-5 4 M49 45 l5 4"' + S1 + ' fill="none"/>' : '');
+      const lama = 9 + t*2;
+      const braccio = (dir) => {
+        const x = 32 + dir*7;
+        return '<path d="M' + x + ' 30 q' + (dir*9) + ' 3 ' + (dir*10) + ' 11"' +
+            ' stroke="' + shade(col,-0.25) + '" stroke-width="4.6" fill="none" stroke-linecap="round"/>' +
+          '<path d="M' + (x + dir*10) + ' 41 q' + (dir*2) + ' -' + lama + ' ' + (-dir*4) + ' -' + (lama+3) + '"' +
+            ' stroke="' + hi + '" stroke-width="3.6" fill="none" stroke-linecap="round"/>' +
+          (t >= 2 ? '<path d="M' + (x + dir*9) + ' 38 l' + (dir*4) + ' -2 M' + (x + dir*7) + ' 33 l' + (dir*4) + ' -2"' +
+            ' stroke="' + K + '" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".75"/>' : '');
+      };
+      return zampe(32, 44, 7, 8, 2.2) +
+        /* addome */
+        '<path d="M32 58 q-7 -6 -6 -15 q6 -4 12 0 q1 9 -6 15z"' + G + S2 + '/>' +
+        /* torace */
+        '<path d="M32 17 l9 26 h-18z"' + G + S2 + '/>' +
+        bordo("M27 35 l5 -15 l5 15") +
+        luce(30, 28, 2.6, 6, .2) +
+        braccio(-1) + braccio(1) +
+        /* testa triangolare */
+        '<path d="M32 11 l6.5 7 q-6.5 4 -13 0z"' + G + S2 + '/>' +
+        occhi(32, 15, 4, 2.4) +
+        antenne(32, 12, 4, 3) +
+        (t >= 3 ? '<path d="M25 20 l-5 -3 M39 20 l5 -3"' + S1 + ' fill="none" stroke-linecap="round"/>' : '');
     },
-    "Cutterpillar": () =>
-      '<circle cx="32" cy="48" r="10"' + G + S2 + '/>' +
-      '<circle cx="32" cy="33" r="11"' + G + S2 + '/>' +
-      '<circle cx="32" cy="17" r="10" fill="' + hi + '"' + S2 + '/>' +
-      '<path d="M25 10 l-6 -6 M39 10 l6 -6"' + ' stroke="' + K + '" stroke-width="2.6" fill="none"/>' +
-      (t >= 2 ? '<circle cx="28.5" cy="16" r="2" fill="' + K + '"/><circle cx="35.5" cy="16" r="2" fill="' + K + '"/>' : '') +
-      (t >= 3 ? '<path d="M21 31 l-6 -3 M43 31 l6 -3 M22 47 l-6 3 M42 47 l6 3"' + S2 + ' fill="none" stroke-linecap="round"/>' : ''),
+    /* Cutterpillar: bruco a segmenti, ognuno con la sua coppia di zampette e le
+       lame davanti. Col rank i segmenti mettono spine. */
+    "Cutterpillar": () => {
+      const seg = [[50,8.5],[39.5,10],[29,10.5]];
+      return seg.map(([cy,r]) =>
+        leg(32-r+1, cy+2, -5, 5, 2.2) + leg(32+r-1, cy+2, 5, 5, 2.2)).join("") +
+        seg.map(([cy,r],i) =>
+          '<circle cx="32" cy="' + cy + '" r="' + r + '"' + G + S2 + '/>' +
+          (t >= 2 ? '<path d="M' + (32-r+2) + ' ' + (cy-3) + ' q' + (r-2) + ' -4 ' + ((r-2)*2) + ' 0"' +
+            ' stroke="' + K + '" stroke-width="1.3" fill="none" opacity=".35"/>' : '') +
+          (t >= 3 ? '<path d="M' + (32-r-1) + ' ' + (cy-2) + ' l-4 -3 M' + (32+r+1) + ' ' + (cy-2) +
+            ' l4 -3"' + S1 + ' fill="none" stroke-linecap="round"/>' : '')).join("") +
+        luce(27, 38, 3.4, 5, .16) +
+        /* capo con le lame */
+        '<circle cx="32" cy="19" r="10" fill="' + hi + '"' + S2 + '/>' +
+        '<path d="M26 12 q-5 -4 -7 -9 q6 2 9 6z" fill="' + mid + '"' + S1 + '/>' +
+        '<path d="M38 12 q5 -4 7 -9 q-6 2 -9 6z" fill="' + mid + '"' + S1 + '/>' +
+        occhi(32, 18, 4, 2.2) +
+        '<path d="M26 24 q6 4 12 0" stroke="' + K + '" stroke-width="1.8" fill="none" opacity=".5"/>';
+    },
+    /* Flutterbug: quattro ali, superiori piu' larghe. Col rank compaiono gli
+       ocelli, le macchie a occhio che spaventano i predatori. */
     "Flutterbug": () => {
-      const w = 18 + t*3;
-      return '<path d="M30 26 q-' + w + ' -16 -' + w + ' 8 q0 17 ' + w + ' 6z" fill="' + hi + '" opacity=".92"' + S1 + '/>' +
-        '<path d="M34 26 q' + w + ' -16 ' + w + ' 8 q0 17 -' + w + ' 6z" fill="' + hi + '" opacity=".92"' + S1 + '/>' +
-        '<ellipse cx="32" cy="35" rx="5" ry="17"' + G + S2 + '/>' +
-        '<circle cx="32" cy="17" r="4.2"' + G + S1 + '/>' +
-        (t >= 2 ? '<circle cx="20" cy="30" r="3" fill="' + lo + '" opacity=".7"/><circle cx="44" cy="30" r="3" fill="' + lo + '" opacity=".7"/>' : '');
-    },
-    "Lady Beetle": () =>
-      '<circle cx="32" cy="37" r="19"' + G + S2 + '/>' +
-      '<path d="M32 18 v38" stroke="' + K + '" stroke-width="2.4" opacity=".7"/>' +
-      '<circle cx="23" cy="31" r="4" fill="' + K + '" opacity=".7"/><circle cx="41" cy="31" r="4" fill="' + K + '" opacity=".7"/>' +
-      '<circle cx="25" cy="45" r="3.4" fill="' + K + '" opacity=".7"/><circle cx="39" cy="45" r="3.4" fill="' + K + '" opacity=".7"/>' +
-      '<path d="M32 18 a12 12 0 0 1 -11 -7 a22 22 0 0 1 22 0 a12 12 0 0 1 -11 7z" fill="' + K + '" opacity=".8"/>' +
-      (t >= 2 ? '<circle cx="32" cy="52" r="3" fill="' + K + '" opacity=".7"/>' : ''),
-    "Dung Roller": () =>
-      '<circle cx="32" cy="23" r="' + (13+t) + '" fill="' + shade(col,-0.2) + '"' + S2 + ' opacity=".9"/>' +
-      '<circle cx="27" cy="19" r="2.4" fill="' + K + '" opacity=".28"/><circle cx="37" cy="26" r="3" fill="' + K + '" opacity=".22"/>' +
-      '<ellipse cx="32" cy="47" rx="14" ry="12"' + G + S2 + '/>' +
-      '<circle cx="27" cy="45" r="2.6" fill="' + K + '"/><circle cx="37" cy="45" r="2.6" fill="' + K + '"/>',
-    "Itsahorse": () =>
-      '<ellipse cx="30" cy="46" rx="15" ry="13"' + G + S2 + '/>' +
-      '<path d="M26 40 q-2 -18 8 -22 l6 -10 q6 4 2 11 l-2 4 q4 8 -2 14z"' + G + S2 + '/>' +
-      '<path d="M38 8 l3 -7 l4 7z" fill="' + hi + '"' + S1 + '/>' +
-      '<path d="M28 20 q9 -6 14 -1" stroke="' + hi + '" stroke-width="3.5" fill="none" stroke-linecap="round"/>' +
-      '<circle cx="39" cy="17" r="2.2" fill="' + K + '"/>' +
-      '<path d="M41 22 q4 2 3 6" stroke="' + K + '" stroke-width="1.6" fill="none" opacity=".6"/>' +
-      (t >= 2 ? '<path d="M18 52 v7 M26 54 v6 M34 54 v6"' + S1 + ' fill="none" stroke-linecap="round"/>' : ''),
-    "Faerie": () => {
       const w = 15 + t*3;
-      return '<path d="M27 31 q-' + w + ' -13 -' + (w-2) + ' 6 q2 13 ' + (w-2) + ' 2z" fill="' + hi + '" opacity=".6"' + S1 + '/>' +
-        '<path d="M37 31 q' + w + ' -13 ' + (w-2) + ' 6 q-2 13 -' + (w-2) + ' 2z" fill="' + hi + '" opacity=".6"' + S1 + '/>' +
-        '<ellipse cx="32" cy="37" rx="6" ry="13"' + G + S2 + '/>' +
-        '<circle cx="32" cy="20" r="7"' + G + S2 + '/>' +
-        (t >= 2 ? '<circle cx="32" cy="12" r="2.6" fill="' + hi + '"/>' : '');
+      const ala = (dir, su) =>
+        '<path class="wing" d="M32 ' + (su ? 28 : 38) + ' q' + (dir*w) + ' ' + (su ? -14 : 0) + ' ' +
+          (dir*w) + ' ' + (su ? 6 : 12) + ' q' + (-dir*w*0.5) + ' ' + (su ? 6 : 4) + ' ' +
+          (-dir*w) + ' ' + (su ? -2 : -10) + 'z" fill="' + hi + '" opacity="' + (su ? .95 : .8) + '"' + S1 + '/>';
+      return ala(-1, false) + ala(1, false) + ala(-1, true) + ala(1, true) +
+        (t >= 2 ? '<circle class="wing" cx="' + (32-w*0.62) + '" cy="30" r="3.2" fill="' + lo + '" opacity=".75"/>' +
+          '<circle class="wing" cx="' + (32+w*0.62) + '" cy="30" r="3.2" fill="' + lo + '" opacity=".75"/>' : '') +
+        (t >= 3 ? '<circle class="wing" cx="' + (32-w*0.55) + '" cy="43" r="2.2" fill="' + lo + '" opacity=".6"/>' +
+          '<circle class="wing" cx="' + (32+w*0.55) + '" cy="43" r="2.2" fill="' + lo + '" opacity=".6"/>' : '') +
+        leg(29, 46, -4, 7, 1.9) + leg(35, 46, 4, 7, 1.9) +
+        '<ellipse cx="32" cy="37" rx="4.6" ry="15"' + G + S2 + '/>' +
+        '<path d="M28 34 h8 M28.5 41 h7" stroke="' + K + '" stroke-width="1.2" opacity=".45"/>' +
+        '<circle cx="32" cy="20" r="5"' + G + S2 + '/>' +
+        occhi(32, 20, 2.4, 1.8) +
+        antenne(32, 15, 4, 4);
     },
+    /* Lady Beetle: cupola liscia e macchie. Il numero delle macchie sale col
+       rank, come il conto degli anni sul guscio. */
+    "Lady Beetle": () => {
+      const macchie = [[-9,-6,4],[9,-6,4],[-8,6,3.4],[8,6,3.4]]
+        .concat(t >= 2 ? [[0,12,2.8],[0,-12,2.6]] : [])
+        .concat(t >= 3 ? [[-13,1,2.4],[13,1,2.4]] : []);
+      return zampe(32, 42, 16, 8, 2.4) +
+        '<circle cx="32" cy="40" r="17"' + G + S2 + '/>' +
+        '<path d="M32 23 v34" stroke="' + K + '" stroke-width="2.4" opacity=".7"/>' +
+        macchie.map(([dx,dy,r]) =>
+          '<circle cx="' + (32+dx) + '" cy="' + (40+dy) + '" r="' + r + '" fill="' + K + '" opacity=".72"/>').join("") +
+        bordo("M17 38 q5 -12 15 -13 q10 1 15 13") +
+        luce(25, 34, 4.6, 3.2, .2) +
+        '<path d="M32 24 a11 11 0 0 1 -10 -6 a20 20 0 0 1 20 0 a11 11 0 0 1 -10 6z" fill="' + K + '" opacity=".85"/>' +
+        occhi(32, 19, 5, 1.9) +
+        antenne(32, 15, 4, 3);
+    },
+    /* Dung Roller: tozzo, testa bassa, spinge la palla. La palla e\u2019 ruvida e
+       cresce col rank; il corpo e\u2019 piatto e largo, con le zampe posteriori lunghe. */
+    "Dung Roller": () => {
+      const r = 11 + t*1.8;
+      const cy = 37 - r;                         /* la palla appoggia sul dorso */
+      const pois = [[-5,-5,2.6],[4,-2,3.2],[-2,5,2.2],[6,4,1.8],[-7,1,1.6]];
+      return '<circle cx="32" cy="' + cy + '" r="' + r + '" fill="' + shade(col,-0.18) + '"' + S2 + '/>' +
+        pois.map(([dx,dy,rr]) =>
+          '<circle cx="' + (32+dx) + '" cy="' + (cy+dy) + '" r="' + rr + '" fill="' + K + '" opacity=".22"/>').join("") +
+        luce(32 - r*0.42, cy - r*0.44, r*0.3, r*0.21, .16) +
+        /* zampe: le anteriori spingono la palla, le altre restano a terra */
+        leg(21, 42, -6, -7, 2.6) + leg(43, 42, 6, -7, 2.6) +
+        leg(20, 47, -8, 3, 2.8) + leg(44, 47, 8, 3, 2.8) +
+        leg(23, 52, -7, 6, 2.6) + leg(41, 52, 7, 6, 2.6) +
+        /* dorso largo e basso */
+        '<ellipse cx="32" cy="46" rx="15" ry="10"' + G + S2 + '/>' +
+        bordo("M19 47 q5 -8 13 -8 q8 0 13 8") +
+        '<path d="M32 38 v14" stroke="' + K + '" stroke-width="1.6" opacity=".4"/>' +
+        (t >= 2 ? '<path d="M21 49 q11 4 22 0" stroke="' + K + '" stroke-width="1.4" fill="none" opacity=".4"/>' : '') +
+        /* capo piccolo, davanti al dorso */
+        '<path d="M25 52 q7 -4 14 0 q-1 6 -7 6 q-6 0 -7 -6z"' + G + S1 + '/>' +
+        occhi(32, 53, 4, 1.8) +
+        (t >= 3 ? '<path d="M26 51 l-4 -3 M38 51 l4 -3"' + S1 + ' fill="none" stroke-linecap="round"/>' : '');
+    },
+    /* Itsahorse: la sagoma equina resta, ma con criniera, orecchio e zoccoli.
+       Col rank la criniera si allunga e arriva il ciuffo sulla fronte. */
+    "Itsahorse": () => {
+      const cri = 3 + t;
+      return '<path d="M20 52 q-2 6 0 8 M28 54 q-1 5 1 7 M38 52 q2 6 0 8"' +
+          ' stroke="' + K + '" stroke-width="2.8" fill="none" stroke-linecap="round"/>' +
+        '<ellipse cx="29" cy="45" rx="15" ry="12"' + G + S2 + '/>' +
+        bordo("M16 43 q5 -8 13 -9 q9 1 13 8") +
+        luce(24, 41, 4, 2.8, .16) +
+        /* collo e testa */
+        '<path d="M26 41 q-3 -17 8 -21 l5 -9 q6 4 3 11 l-2 4 q5 9 -4 15 q-6 3 -10 0z"' + G + S2 + '/>' +
+        '<path d="M38 12 l2.5 -7 l4.5 6z" fill="' + hi + '"' + S1 + '/>' +
+        /* criniera a ciocche */
+        /* criniera a ciuffi appoggiati sul bordo posteriore del collo */
+        Array.from({length: cri}, (_, i) => {
+          const px = 29.5 - i*0.7, py = 20 + i*4.4;
+          return '<path d="M' + px + ' ' + py + ' l-5.5 -.5 l2.6 4.6z" fill="' + shade(col,-0.3) + '"' +
+            ' stroke="' + K + '" stroke-width="1.1" stroke-linejoin="round"/>';
+        }).join("") +
+        '<circle cx="39" cy="16" r="2.3" fill="' + K + '"/>' +
+        '<circle cx="39.8" cy="15.2" r=".8" fill="#fff" opacity=".85"/>' +
+        '<path d="M41 21 q4 2 3 6" stroke="' + K + '" stroke-width="1.6" fill="none" opacity=".55"/>' +
+        (t >= 3 ? '<path d="M37 9 q3 -4 6 -3" stroke="' + hi + '" stroke-width="2.4" fill="none" stroke-linecap="round"/>' : '');
+    },
+    /* Faerie: due paia d\u2019ali velate, corpo sottile, alone. Le ali portano la
+       classe "wing": la CSS le fa battere, ferma se l\u2019utente chiede meno moto. */
+    "Faerie": () => {
+      const w = 13 + t*3;
+      const ala = (dir, su) =>
+        '<path class="wing" d="M32 ' + (su ? 30 : 36) + ' q' + (dir*w) + ' ' + (su ? -16 : -2) +
+          ' ' + (dir*(w-1)) + ' ' + (su ? 4 : 13) + ' q' + (-dir*(w-4)) + ' ' + (su ? 7 : 2) + ' ' +
+          (-dir*(w-1)) + ' ' + (su ? -4 : -13) + 'z"' +
+        ' fill="' + hi + '" opacity="' + (su ? .5 : .38) + '"' +
+        ' stroke="' + hi + '" stroke-width="1.2" stroke-linejoin="round"/>';
+      return ala(-1, false) + ala(1, false) + ala(-1, true) + ala(1, true) +
+        /* venature */
+        '<path d="M32 30 q-' + (w-3) + ' -4 -' + (w-2) + ' 2 M32 30 q' + (w-3) + ' -4 ' + (w-2) + ' 2"' +
+          ' stroke="' + hi + '" stroke-width=".9" fill="none" opacity=".55"/>' +
+        /* corpo a segmenti */
+        '<ellipse cx="32" cy="40" rx="5" ry="12"' + G + S2 + '/>' +
+        '<path d="M28 38 h8 M28.5 44 h7" stroke="' + K + '" stroke-width="1.3" opacity=".5"/>' +
+        leg(29, 50, -4, 7, 1.8) + leg(35, 50, 4, 7, 1.8) +
+        /* testa e alone */
+        '<circle cx="32" cy="22" r="7"' + G + S2 + '/>' +
+        luce(29.5, 19.5, 2.4, 1.8, .3) +
+        occhi(32, 22, 2.8, 2) +
+        antenne(32, 16, 4, 5) +
+        (t >= 2 ? '<ellipse cx="32" cy="' + upY(11) + '" rx="7" ry="2.2" fill="none" stroke="' + hi +
+          '" stroke-width="1.6" opacity=".8"/>' : '') +
+        (t >= 3 ? '<circle cx="20" cy="' + upY(20) + '" r="1.7" fill="' + hi + '" opacity=".9"/>' +
+          '<circle cx="45" cy="' + upY(26) + '" r="1.4" fill="' + hi + '" opacity=".75"/>' : '');
+    },
+    /* Dark Emperor: il premio finale. Corona di punte, mantello di elitre,
+       occhi che brillano. Sta sempre al tier massimo, ma resta parametrico. */
     "Dark Emperor": () =>
-      '<path d="M15 21 q7 -17 17 -6 q10 -11 17 6 q-17 -5 -34 0z" fill="' + hi + '"' + S2 + '/>' +
-      '<ellipse cx="32" cy="41" rx="18" ry="20"' + G + S2 + '/>' +
-      '<path d="M22 34 h9 l-4.5 7z" fill="' + K + '"/><path d="M33 34 h9 l-4.5 7z" fill="' + K + '"/>' +
-      '<path d="M24 50 q8 7 16 0" stroke="' + K + '" stroke-width="2.8" fill="none"/>' +
-      '<path d="M32 22 l-3 6 h6z" fill="' + K + '" opacity=".6"/>'
+      zampe(32, 46, 17, 10, 3) +
+      /* mantello, piu' largo del corpo perche' si veda spuntare ai lati */
+      '<path d="M32 27 q-24 5 -21 30 q10 -10 21 -10 q11 0 21 10 q3 -25 -21 -30z" fill="' + lo + '"' + S2 + '/>' +
+      /* corona a cinque punte */
+      '<path d="M18 27 l2 -11 l5 7 l4 -13 l3 13 l4 -7 l3 11z" fill="' + hi + '"' + S2 + '/>' +
+      '<circle cx="32" cy="8" r="2.6" fill="' + hi + '"/>' +
+      '<ellipse cx="32" cy="43" rx="16" ry="17"' + G + S2 + '/>' +
+      bordo("M18 41 q6 -13 14 -14 q8 1 14 14") +
+      luce(25, 37, 4.6, 3.4, .2) +
+      /* occhi a fessura, con il bagliore dentro */
+      '<path d="M20 34 l11 4 l-2 6 l-9 -4z" fill="' + K + '"/>' +
+      '<path d="M44 34 l-11 4 l2 6 l9 -4z" fill="' + K + '"/>' +
+      '<path d="M23 36.5 l5 2 l-1 2.6 l-4 -1.8z" fill="' + hi + '"/>' +
+      '<path d="M41 36.5 l-5 2 l1 2.6 l4 -1.8z" fill="' + hi + '"/>' +
+      /* zanne, non un sorriso */
+      '<path d="M25 51 l3 5 l3 -5 l3 5 l3 -5" stroke="' + K + '" stroke-width="2.4" fill="none" stroke-linejoin="round"/>' +
+      '<path d="M32 56 v5" stroke="' + K + '" stroke-width="2" opacity=".5"/>' +
+      '<path d="M32 26 l-3.5 6 h7z" fill="' + K + '" opacity=".65"/>'
   };
 
   const body = (shapes[fam] || (() => '<circle cx="32" cy="34" r="17"' + G + S2 + '/>'))();
@@ -1382,6 +1657,9 @@ const PX = 100 / NX, PY = 100 / NY;              /* lato di una casella, in % de
 function layer(){ return document.getElementById("layer"); }
 function fxLayer(){ return document.getElementById("fxlayer"); }
 function tokEl(u){ const l = layer(); return l ? l.querySelector('[data-uid="' + u.uid + '"]') : null; }
+/* Il passo va lanciato dopo draw(): il token e' gia' partito verso la nuova
+   casella e l'animazione ci si sovrappone, invece di annullarla. */
+function passo(u){ anim(u, "step", 440); }
 function anim(u, cls, ms){
   const e = tokEl(u); if (!e) return;
   e.classList.remove(cls);
@@ -1788,7 +2066,7 @@ function bestPlan(u, prof){
 function aiPlan(u, prof){
   const best = bestPlan(u, prof);
   if (!best) return;
-  if (best.spot.move){ u.x = best.spot.x; u.y = best.spot.y; u.moved = true; }
+  if (best.spot.move){ u.x = best.spot.x; u.y = best.spot.y; u.moved = true; draw(); passo(u); }
   if (best.opt.kind === "atk") basicAttack(u, best.opt.t);
   else if (best.opt.kind === "sp") doSpecial(u, best.opt.t);
 }
@@ -1845,7 +2123,7 @@ function aiSimple(u, prof){
   const best = mv[0];
   const escort = alive(u.side).filter(a => !a.isKing).length;
   if (u.isKing && escort > 0 && cheb(best.x,best.y,goal.x,goal.y) < 2) return;  /* il Re resta coperto finché ha la scorta */
-  u.x = best.x; u.y = best.y; u.moved = true;
+  u.x = best.x; u.y = best.y; u.moved = true; draw(); passo(u);
   adj = foesAdj(u);
   if (adj.length) basicAttack(u, scegli(adj));
 }
@@ -2065,6 +2343,7 @@ function drawTokens(){
     }
     e.className = "tok " + u.side
       + (u.acted && u.side === meSide() && S.turn === meSide() && S.phase !== "deploy" ? " done" : "")
+      + (S.sel === u && S.phase !== "deploy" ? " sel" : "")
       + (S.pick === u ? " pick" : "");
     e.style.left = (vX(u.x) * PX) + "%";
     e.style.top  = (vY(u.y) * PY) + "%";
@@ -2134,7 +2413,7 @@ function click(x, y){
   if (S.busy || S.over || S.turn !== meSide()) return;
   const u = at(x,y);
   if (S.sel && S.mode === "move" && !S.sel.moved && moves(S.sel).some(p => p.x === x && p.y === y)){
-    S.sel.x = x; S.sel.y = y; S.sel.moved = true; S.mode = "idle"; draw(); return;
+    S.sel.x = x; S.sel.y = y; S.sel.moved = true; S.mode = "idle"; draw(); passo(S.sel); return;
   }
   if (S.sel && S.mode === "atk" && u && foesAdj(S.sel).includes(u)){
     basicAttack(S.sel, u); S.sel.acted = true; S.sel = null; S.mode = "idle"; draw(); return;

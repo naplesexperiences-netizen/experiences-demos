@@ -333,27 +333,57 @@ Tutto disegnato per questo prototipo, generato da codice: nessun file immagine n
 **Personaggi.** La funzione `art(famiglia, ruotato, rank)` compone un SVG per ciascuna
 famiglia. Ogni SVG riceve un id di gradiente univoco: con id ripetuti il browser risolve
 `url(#id)` alla prima definizione del documento, e se quella sta in una sezione
-`display:none` il gradiente non viene dipinto affatto. Ogni corpo ha gradiente verticale, contorno scuro e ombra a terra. Il rank
-cambia il disegno su tre livelli (1-2, 3-4, 5-6): corna, chele, ali e spine crescono, e
-la stazza aumenta dell'11% per livello, così la progressione del torneo si vede a colpo
-d'occhio senza leggere la scheda. Le unità avversarie sono ruotate di 180° per fronteggiare
-il giocatore, con le fermate del gradiente invertite: altrimenti la luce arriverebbe dal
-basso e sembrerebbero capovolte.
+`display:none` il gradiente non viene dipinto affatto.
+
+Tutte e 13 le famiglie condividono quattro attrezzi, definiti una volta sola dentro
+`art()` e richiamati da ogni sagoma:
+
+| Attrezzo | Cosa fa |
+|---|---|
+| `zampe()` | sei zampe articolate, tre per lato, sfalsate come nell'insetto vero |
+| `luce()` | riflesso speculare sul guscio, **specchiato** sul lato ruotato |
+| `bordo()` | filo di luce sul bordo superiore, che stacca la sagoma dallo sfondo scuro |
+| `occhi()` / `antenne()` | occhi con il punto di luce, antenne con il bulbo in punta |
+
+Sono le zampe, più di ogni altra cosa, a togliere l'effetto «macchia colorata»: prima
+di averle, ogni famiglia era un ovale con un dettaglio sopra.
+
+Ogni sagoma ha poi la sua anatomia: torace e addome separati nella mantide, corno
+biforcuto attaccato al capo nell'Hercules, mandibole specchiate nello Staggy (una sola
+disegnata e ribaltata, così restano identiche), canna con volata nel Bazoo, quattro ali
+velate in Faerie e Flutterbug, segmenti con zampette nel Cutterpillar, palla appoggiata
+al dorso nel Dung Roller, criniera a ciuffi nell'Itsahorse, corona a punte e mantello nel
+Dark Emperor.
+
+Il rank cambia il disegno su tre livelli (1-2, 3-4, 5-6): corna più lunghe e speronate,
+denti nelle mandibole, ocelli sulle ali, macchie sul guscio, alone e scintille, piastre
+sul dorso — e la stazza cresce dell'8,5% per livello (era l'11%: con le sagome più
+articolate le unità di rank alto uscivano dalla casella). Le unità avversarie sono
+ruotate di 180° per fronteggiare il giocatore, con le fermate del gradiente invertite e
+il riflesso specchiato: altrimenti la luce arriverebbe dal basso e sembrerebbero
+capovolte.
 
 **Animazione.** I token non vengono ridisegnati a ogni azione: vivono su uno strato sopra
 la griglia e si spostano con una transizione, quindi movimento, spinte e lanci sono animati
 gratis. Sopra a questo:
 
+Due regole tengono insieme il movimento: **prima di ogni azione forte c'è un piccolo
+movimento contrario** (l'anticipo), e **ogni impatto deforma la sagoma** invece di
+spostarla soltanto. Sono i due trucchi che fanno leggere il peso.
+
 | Evento | Effetto |
 |---|---|
 | Riposo | oscillazione lenta, con sfasamento casuale per unità |
-| Attacco | affondo verso il bersaglio |
-| Colpo subito | scossa laterale + lampo bianco |
-| Mossa speciale | ingrandimento dell'attaccante |
+| Ali (Faerie, Flutterbug) | battito continuo, solo per chi le ha |
+| Selezione | alone pulsante del colore dello schieramento |
+| Spostamento | passo: stacco, volo breve, atterraggio schiacciato, con l'ombra che si stringe mentre la pedina è in aria |
+| Attacco | carica all'indietro e poi affondo sul bersaglio |
+| Colpo subito | scossa laterale + lampo bianco + schiacciamento elastico |
+| Mossa speciale | raccolta e poi ingrandimento dell'attaccante |
 | Aree (Sickle Dance, Wing Flap, Emperor's Rage) | onda circolare espansiva |
 | Cannon Blast | proiettile che viaggia da attaccante a bersaglio |
 | Healing Jig / Fill Hole | onda verde / beige |
-| K.O. | dissolvenza con rotazione |
+| K.O. | cede su se stessa, poi dissolvenza con rotazione |
 | Ring-out | volo fuori dal campo con rotazione di 560° |
 
 Gli effetti d'area stanno su uno strato ritagliato sul bordo della scacchiera; i token no,
@@ -414,6 +444,11 @@ sui titoli.
   vincitore, non muove rank e round e si può abbandonare a metà; Human vs PC continua a
   passare dallo schieramento e mostra in campo il livello scelto.
 
+- 13 controlli sul movimento delle pedine: respiro a riposo, alone sulla selezione,
+  passo con ombra che si stringe, anticipo dell'attacco, schiacciamento di chi incassa,
+  battito d'ali solo per le famiglie alate, animazione del K.O., e tutto fermo quando il
+  sistema chiede meno animazioni
+
 - 18 controlli sulla rotazione della scacchiera, a 1280 e 390 px: col primo giocatore
   la mappatura è diretta, col secondo è girata di mezzo giro; la zona di schieramento
   di chi sta schierando è in basso sullo schermo; le pedine di chi ha il turno stanno
@@ -465,9 +500,10 @@ sui titoli.
 - Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate nuove
   comprese (scelta della modalità, consegna, squadra del secondo giocatore,
   schieramento a scacchiera girata)
-- Totale dei controlli automatici sul gioco: **209** (meccaniche 30, schieramento 20,
-  schede 22, accessibilità 14, difficoltà 10, movimento 13, scheda del roster 6,
-  Human vs Human 32, modalità e PC vs PC 44, rotazione 18), più 10 sulla landing
+- Totale dei controlli automatici sul gioco: **222** (meccaniche 30, schieramento 20,
+  schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
+  Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13), più 10 sulla
+  landing
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
