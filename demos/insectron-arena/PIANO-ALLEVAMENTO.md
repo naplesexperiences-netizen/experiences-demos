@@ -1,7 +1,11 @@
 # Allevamento: cibo, crescita e riproduzione — piano di lavoro
 
-Documento di decisione, non ancora implementazione. Stessa struttura del piano per il
-multiplayer, così i due si confrontano. Alla fine c'è la decisione da prendere.
+Documento di decisione. Stessa struttura del piano per il multiplayer, così i due si
+confrontano. Alla fine c'è la decisione da prendere.
+
+> **Esito: fatta la versione ridotta.** Gabbie, cibo e crescita sono in `gioca.html`
+> (sezione «Allevamento» del README, con i numeri misurati). **La riproduzione non è
+> stata implementata**: resta qui descritta, pronta se la si vorrà.
 
 Stato attuale: le unità si sbloccano vincendo i rank del torneo. Le statistiche sono
 fisse, decise dalla famiglia e dal rank. Il cibo esiste già — ma solo come nome dei premi.
