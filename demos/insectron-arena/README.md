@@ -298,6 +298,50 @@ fascia da cui pescano gli avversari del rank corrente — altrimenti si combatte
 sempre con una generazione di svantaggio (misurato: dal Rank D in poi le vittorie
 crollavano dal 61% al 29%).
 
+## Allevamento (versione ridotta)
+
+Del sistema del gioco originale è implementata **solo la crescita per alimentazione**:
+niente cattura, niente riproduzione, niente ereditarietà. Il piano completo e le ragioni
+del taglio stanno in `PIANO-ALLEVAMENTO.md`.
+
+**Modello.** Dalla scheda del roster si crea un **esemplare** (`nuovoEsemplare()`), che
+vive in `S.zoo` — al massimo `MAX_GABBIE = 12`. Gli esemplari sono referenziati come
+`"@" + uid` e convivono con gli id di catalogo nella squadra: `defOf()` e `statsOf()`
+risolvono le due forme, e `mk()` accetta entrambe. Un esemplare porta in campo le
+statistiche della famiglia **più** i bonus accumulati (`e.b`), ed è marcato `allevato`.
+
+**Economia.** Ogni esemplare ha `VITA_MAX = 40` punti di vita da spendere, e non si
+recuperano; a `VITA_ADULTO = 6` punti spesi smette di essere larva e può entrare in
+squadra. I 22 cibi della tabella del wiki sono in `CIBI` con i loro effetti reali; i
+premi pescano da `CIBI_PREMIO` (13 cibi che toccano le statistiche). Il cibo si vince
+**solo conquistando un rank**: `PREMIO_RANK = 4` pezzi, più un Royal Fruit dal Rank B in
+su. Le vittorie di round non danno niente.
+
+I numeri del wiki (160 punti di vita, 20 per l'età adulta) sono **scalati, non copiati**:
+nell'originale l'allevamento è un ciclo di gioco lungo decine di ore, qui la partita
+intera dura un pomeriggio. Con i valori originali il cibo di un torneo completo non
+avrebbe mosso niente; con questi, muove il giusto — misurato sotto.
+
+**Resistenze.** I cibi che danno resistenze le accumulano in `e.res`, e la scheda le
+mostra dicendo per esteso che **non contano ancora in battaglia**: le regole di stato non
+sono implementate. Mostrare un numero che non fa niente senza dirlo sarebbe peggio che
+non mostrarlo.
+
+**Equilibrio misurato** (200 battaglie per scenario, `sim-alleva.js`): la dispensa di un
+torneo intero, spesa in modi diversi.
+
+| Rank | senza allevamento | tutto su uno | diviso su due | sparso sui cinque |
+|---|---|---|---|---|
+| E | 100% | 100% | 100% | 99% |
+| B | 70% | 92% | 90% | 83% |
+| S | 20% | 45% | 47% | 61% |
+
+Due cose da leggere in questa tabella. La prima: allevare aiuta davvero (il Rank S passa
+da 20% a 45-61%) ma non regala la vittoria, che era il rischio — la prima taratura, con
+i punti a 160, portava il Rank S al 69% e rendeva il torneo una formalità. La seconda:
+**spargere il cibo batte concentrarlo**, perché in 5v5 cinque pedine discrete valgono più
+di un campione e quattro comparse. È la decisione interessante, ed è quella giusta.
+
 ## Cosa è ricostruzione di design (non documentato sul wiki)
 
 Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
@@ -336,12 +380,14 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 
 - Cattura con trappole ed esche, luoghi di spawn, probabilità
 - Riproduzione, ereditarietà delle statistiche, special breeding, alberi delle famiglie
-  (sostituiti dallo sblocco per rank descritto sopra)
-- Sistema di alimentazione (tabella dei 22 cibi con effetti su HP/Str/Def/resistenze e costo in punti vita)
-- Le 6 resistenze (Knockback, Confusion, Cut, Explosion, Throw, Poison): i valori sono
-  nel dataset `insectors.json` ma non sono ancora usati in battaglia
+  (l'allevamento implementato è solo la crescita per alimentazione: vedi sopra)
+- Cattura con trappole, sesso, condizione, satietà: l'esemplare si crea dalla scheda del
+  roster, non si trova sul campo
+- Le 6 resistenze (Knockback, Confusion, Cut, Explosion, Throw, Poison): i cibi le
+  accumulano e la scheda le mostra, ma in battaglia non fanno ancora niente e il gioco
+  lo dice
 - Le 136 unità complete: il wiki ha schede dettagliate solo per 35
-- Colore, sesso, condizione, satietà, aspettativa di vita
+- Colore e aspettativa di vita reale (qui la "vita" è solo il budget di crescita)
 - Modalità Vs. con password a 118 caratteri
 - Modalità **"Eliminate the enemy"** (documentata nella FAQ per le partite Vs.: nessun
   Re designato, si vince solo abbattendo tutti). Implementabile rapidamente: cambia
@@ -534,10 +580,13 @@ sui titoli.
   | S | 2% | 25% |
 - Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate nuove
   comprese (scelta della modalità, consegna, squadra del secondo giocatore,
-  schieramento a scacchiera girata)
-- Totale dei controlli automatici sul gioco: **247** (meccaniche 30, schieramento 20,
+  schieramento a scacchiera girata, gabbie e dispensa)
+- Allevamento: 200 battaglie per scenario su tre rank, tabella nella sezione
+  «Allevamento»; la prima taratura è stata rifatta perché rendeva il Rank S troppo facile
+- Totale dei controlli automatici sul gioco: **271** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
-  Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25),
+  Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
+  allevamento 24),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
