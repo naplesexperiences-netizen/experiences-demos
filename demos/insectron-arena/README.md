@@ -16,6 +16,24 @@ e il gioco a `.../demos/insectron-arena/gioca.html`.
 
 ---
 
+## Dove vive questo gioco
+
+Il gioco ha un **sito proprio**, in un repository pubblico dedicato:
+
+- sito: <https://naplesexperiences-netizen.github.io/insectorarena/>
+- codice: <https://github.com/naplesexperiences-netizen/insectorarena>
+
+Quel repository è pubblico, quindi contiene **solo quello che serve a chi gioca e a chi
+mantiene il sito**: il gioco, la landing, le immagini, il necessario per l'installazione
+offline, e un README breve (come si gioca, come si pubblica, come si collega un dominio,
+licenze). Tutto il resto — ricostruzione delle regole dalle fonti, discrepanze fra le
+fonti, misure sull'IA, curva di difficoltà, elenco delle verifiche, e il dataset grezzo
+`insectors.json` — **resta qui**, in questo repository privato: è il documento che stai
+leggendo.
+
+Esistono quindi due copie del gioco: questa, dentro l'hub delle demo, e quella del sito.
+Quando si modifica il gioco vanno riallineate, oppure questa va fatta puntare al sito.
+
 ## Fonti
 
 1. **Rogue Galaxy Wiki** (Fandom, CC BY-SA): pagina `Insector` + 35 schede unità →
