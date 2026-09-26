@@ -33,6 +33,12 @@ leggendo.
 
 Esistono quindi due copie del gioco: questa, dentro l'hub delle demo, e quella del sito.
 Quando si modifica il gioco vanno riallineate, oppure questa va fatta puntare al sito.
+Le due copie differiscono **solo** nella testa della pagina: il sito ha `canonical`,
+icone, manifest e registrazione del service worker; questa ha i meta `demo:tags` e
+`demo:category` che servono al generatore dell'hub. Il gioco è identico.
+
+I **salvataggi** (codice di esportazione, ripristino, versione dello schema) sono
+descritti nel README del repository pubblico, che è la guida di chi mantiene il sito.
 
 ## Fonti
 
@@ -462,6 +468,17 @@ sui titoli.
   vincitore, non muove rank e round e si può abbandonare a metà; Human vs PC continua a
   passare dallo schieramento e mostra in campo il livello scelto.
 
+- 25 controlli sui salvataggi: il salvataggio porta il numero di versione dello schema;
+  la finestra si apre col fuoco dentro e si chiude con Esc restituendo il fuoco; il
+  codice esportato ha marca e impronta e sta in poche righe; il file scaricato ha il
+  nome con la data; in un browser pulito il ripristino riporta rank, round, campione,
+  squadra e difficoltà, anche se il codice viene incollato spezzato su più righe; un
+  codice vuoto, estraneo, troncato o mutilato viene rifiutato con un messaggio e
+  **senza toccare il salvataggio esistente**; un salvataggio vecchio senza numero di
+  versione viene letto lo stesso e portato alla versione corrente alla prima scrittura;
+  un salvataggio scritto da una versione futura non viene interpretato, viene detto a
+  schermo e resta intatto
+
 - 13 controlli sul movimento delle pedine: respiro a riposo, alone sulla selezione,
   passo con ombra che si stringe, anticipo dell'attacco, schiacciamento di chi incassa,
   battito d'ali solo per le famiglie alate, animazione del K.O., e tutto fermo quando il
@@ -518,10 +535,11 @@ sui titoli.
 - Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate nuove
   comprese (scelta della modalità, consegna, squadra del secondo giocatore,
   schieramento a scacchiera girata)
-- Totale dei controlli automatici sul gioco: **222** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **247** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
-  Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13), più 10 sulla
-  landing
+  Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25),
+  più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
+  prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
