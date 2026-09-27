@@ -46,7 +46,7 @@ descritti nel README del repository pubblico, che è la guida di chi mantiene il
 |---|---|---|
 | `PIANO-MULTIPLAYER.md` | partita online fra due dispositivi, con relay | da decidere |
 | `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **versione ridotta fatta** (crescita); riproduzione no |
-| `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | da decidere |
+| `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | **forma C fatta**; la mappa a caselle no |
 
 ## Fonti
 
@@ -350,6 +350,66 @@ i punti a 160, portava il Rank S al 69% e rendeva il torneo una formalità. La s
 **spargere il cibo batte concentrarlo**, perché in 5v5 cinque pedine discrete valgono più
 di un campione e quattro comparse. È la decisione interessante, ed è quella giusta.
 
+## Mondo e cattura (forma C del piano)
+
+Implementata la **forma C** di `PIANO-MONDO.md`: spedizioni (niente mappa percorribile) e
+mondo generato da un seme condivisibile. La mappa a caselle resta fuori, ed è prezzata a
+parte nel piano.
+
+**Il dato che ha deciso la fattibilità.** Il dataset ha tre campi mai usati prima —
+`traps`, `bait`, `location`. Contati per unità coprono un terzo del roster (12 su 35 hanno
+tutti e tre); ma una tabella di cattura lavora **per famiglia**, ed è la famiglia a
+decidere l'esca come decide la mossa speciale: così contate, **11 famiglie su 13** sono
+documentate. Mancano solo Cutterpillar e Flutterbug, e per quelle la scelta è dichiarata
+come nostra nel commento del codice.
+
+**Le `location` non sono state usate**, ed è una scelta di merito: sono i livelli di
+*Rogue Galaxy* (Juraika, Zerard, Rosencaster Prison…), cioè l'ambientazione altrui, che è
+l'unica cosa che questo progetto ha sempre evitato. I cinque habitat — Frutteto, Cava,
+Fornace, Pantano, Radura reale — sono nostri, e sono ricavati **raggruppando le esche per
+tipo**. Chi vive dove resta documentato (`ESCA_FAM` nel codice è la tabella delle fonti,
+riga per riga); inventati sono i nomi.
+
+**Il seme.** Il mondo non si salva: si **ricalcola**. `luoghiDi(seme)` genera luoghi,
+abitanti e fortuna con un mulberry32 innescato da un FNV-1a del seme, quindi nel
+salvataggio stanno sei caratteri invece di una mappa, e lo stesso seme dà lo stesso mondo
+su qualsiasi dispositivo. Anche **l'esito di una spedizione** è deciso dal seme più il
+numero della spedizione: lo stesso mondo, giocato con le stesse scelte, dà gli stessi
+risultati.
+
+Il piano prevedeva anche un codice `INSECTRON-MONDO-…` con marca e impronta: si è
+rivelato ridondante. Un mondo *è* sei caratteri, e il salvataggio completo se lo porta
+già dentro.
+
+**L'economia.** Una trappola per rank conquistato (I fino al Rank D, II fino al B, III da
+lì in su), un'esca per spedizione presa dalla dispensa, due partite di attesa, tre
+trappole in giro al massimo. Se la trappola torna vuota, l'esca è persa ma **la trappola
+torna nel magazzino**: perdere due cose per un tiro andato male sarebbe solo punitivo.
+Il selvatico nasce con le statistiche minime della sua unità **più 0-10%**: il `max` del
+dataset (999 HP, 99 sulle altre) è il tetto di crescita dell'originale, non la forbice di
+ciò che si trova in natura, quindi la varianza è nostra e tenuta stretta.
+
+Non si cattura mai oltre `maxRank()`, cioè oltre quello che il torneo ha già aperto:
+altrimenti si va a prendere un rango 6 al Rank E e la curva misurata salta.
+
+**La variante scelta è «affianca»** (§12 del piano): tre esemplari restano in regalo, così
+chi apre il gioco per due minuti vede comunque le gabbie; dal quarto in poi si cattura.
+
+**Equilibrio rimisurato** (200 battaglie per scenario, `sim-mondo2.js`). La domanda era se
+la cattura gonfi la squadra. Non la gonfia:
+
+| Rank | squadra del roster | tre esemplari in regalo | col Mondo: cinque | col Mondo: tutto su uno |
+|---|---|---|---|---|
+| E | 99% | 100% | 100% | 100% |
+| B | 72% | 88% | 84% | 93% |
+| S | 20% | 57% | 56% | 55% |
+
+Al Rank S le tre strade si chiudono a **55-57%**: nessuna domina. Il senso è quello
+giusto — la cattura non aggiunge potenza, cambia **da dove vengono** gli esemplari e
+permette di schierarne cinque invece di tre, al prezzo di un quarto del cibo che va in
+esche. Le cifre restano in linea con quelle misurate per l'allevamento (Rank S attorno al
+60%), e il Rank S resta una partita da giocare.
+
 ## Cosa è ricostruzione di design (non documentato sul wiki)
 
 Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
@@ -389,8 +449,10 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 - Cattura con trappole ed esche, luoghi di spawn, probabilità
 - Riproduzione, ereditarietà delle statistiche, special breeding, alberi delle famiglie
   (l'allevamento implementato è solo la crescita per alimentazione: vedi sopra)
-- Cattura con trappole, sesso, condizione, satietà: l'esemplare si crea dalla scheda del
-  roster, non si trova sul campo
+- La **mappa percorribile**: si sceglie il luogo da un elenco, non ci si cammina dentro
+  (è la forma B del piano, prezzata a parte)
+- Sesso, condizione e satietà; i luoghi veri dell'originale (vedi sopra: sono i suoi
+  livelli, e restano fuori di proposito)
 - Le 6 resistenze (Knockback, Confusion, Cut, Explosion, Throw, Poison): i cibi le
   accumulano e la scheda le mostra, ma in battaglia non fanno ancora niente e il gioco
   lo dice
@@ -588,13 +650,16 @@ sui titoli.
   | S | 2% | 25% |
 - Layout verificato a 1280px e 390px, nessuno scroll orizzontale, schermate nuove
   comprese (scelta della modalità, consegna, squadra del secondo giocatore,
-  schieramento a scacchiera girata, gabbie e dispensa)
+  schieramento a scacchiera girata, gabbie, dispensa, mondo e spedizione)
 - Allevamento: 200 battaglie per scenario su tre rank, tabella nella sezione
   «Allevamento»; la prima taratura è stata rifatta perché rendeva il Rank S troppo facile
-- Totale dei controlli automatici sul gioco: **271** (meccaniche 30, schieramento 20,
+- Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
+  verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
+  10.000 estrazioni
+- Totale dei controlli automatici sul gioco: **315** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
-  allevamento 24),
+  allevamento 24, mondo e cattura 44),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
