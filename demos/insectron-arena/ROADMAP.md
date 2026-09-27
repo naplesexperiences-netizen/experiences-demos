@@ -18,15 +18,11 @@ controlli sono in casa, e la build si genera in un comando quando servirà.
 
 ---
 
-## Priorità 1 — Che sia piacevole · 1,5 giornate
+## ~~Priorità 1 — Che sia piacevole~~ · **fatta** (27 settembre)
 
-| Passo | Giornate | Nota |
-|---|---|---|
-| **Audio** | 1 | Il gioco è completamente muto, e un gioco muto legge come non finito. Si genera da codice con WebAudio: nessun file, nessuna dipendenza, niente da scaricare |
-| Primo minuto guidato | 0,5 | Oggi si entra e si trovano 34 unità. Bastano tre passaggi accompagnati fino alla prima battaglia |
-
-È la differenza fra «carino» e «ci torno»: un colpo che si sente e un inizio che non
-spaventa valgono più di qualunque funzione nuova.
+**Audio**: tredici suoni sintetizzati con WebAudio, nessun file, si spengono dalla
+testata. **Guida del primo minuto**: quattro righe che compaiono quando servono e
+spariscono da sole; non la vede chi ha già un torneo in corso. 41 controlli nuovi.
 
 ## Priorità 2 — Che si rigiochi · 1,5 giornate
 

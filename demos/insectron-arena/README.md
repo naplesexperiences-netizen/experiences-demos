@@ -412,6 +412,36 @@ permette di schierarne cinque invece di tre, al prezzo di un quarto del cibo che
 esche. Le cifre restano in linea con quelle misurate per l'allevamento (Rank S attorno al
 60%), e il Rank S resta una partita da giocare.
 
+## Suono e guida del primo minuto
+
+**Suono.** Tredici suoni sintetizzati con WebAudio: oscillatori che scivolano di frequenza
+più scariche di rumore bianco filtrato. Nessun file, quindi la promessa «dentro al gioco
+non c'è un solo file immagine» vale ora anche per l'audio, e il peso non cambia di un byte.
+
+Tre scelte tecniche che vale la pena ricordare, perché nascono da come si comportano i
+browser e non da preferenze:
+
+1. **Il contesto audio si crea al primo suono**, non al caricamento: prima di un gesto
+   dell'utente i browser lo tengono sospeso, e crearlo a vuoto tiene occupata la scheda
+   audio per niente. `suona()` lo istanzia alla prima chiamata e lo risveglia se sospeso.
+2. **Ogni chiamata torna `true`/`false` invece di lanciare.** Su un browser senza
+   `AudioContext` il gioco resta muto e continua: c'è un controllo che glielo toglie di
+   mano apposta per verificarlo.
+3. **Volume a 0,22** sul guadagno principale. Si gioca anche in ufficio.
+
+Il pulsante in testata porta l'etichetta corta «Suono» e dice il suo stato con `title`,
+`aria-label`, `aria-pressed` e il tratto sopra il testo: in testata ci sono già cinque
+pulsanti e su un telefono ogni parola in più è una riga in più prima del gioco.
+
+**Guida.** Quattro passi (`squadra`, `re`, `schiera`, `muovi`), ognuno con una condizione
+invece che con un pulsante «avanti»: la riga compare quando la condizione è vera e sparisce
+da sola quando smette di esserlo. `guidaAggiorna()` è chiamata dai punti dove il gioco già
+si ridisegna — `show()`, `drawSlots()`, `drawBrief()`, `draw()` — quindi non c'è nessun
+timer e nessuno stato parallelo da tenere allineato.
+
+Non la vede chi ha già un torneo in corso (rank, round, squadra o titolo di campione nel
+salvataggio), e «Salta la guida» la spegne per sempre in `insectron-guida`.
+
 ## Edizione demo ed eco (priorità 1 della roadmap)
 
 **Edizione.** `EDIZIONE` in `gioca.html` vale `"completa"` o `"demo"`; `crea-demo.sh`
@@ -699,10 +729,11 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **356** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **397** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
-  allevamento 24, mondo e cattura 44, edizione demo 14, eco e feedback 27),
+  allevamento 24, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 22,
+  guida 19),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
