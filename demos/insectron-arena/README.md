@@ -433,15 +433,23 @@ Il pulsante in testata porta l'etichetta corta «Suono» e dice il suo stato con
 `aria-label`, `aria-pressed` e il tratto sopra il testo: in testata ci sono già cinque
 pulsanti e su un telefono ogni parola in più è una riga in più prima del gioco.
 
-**Colonna sonora.** Ambient generata, non registrata: `GIRO` è un giro di quattro accordi
-in minore naturale, e ogni battuta ne prende uno, ci stende sopra tre note lunghe che si
-accavallano con la battuta successiva, e ci sparge otto possibili note brevi due ottave
-sopra, ognuna con la sua probabilità di non suonare. È da lì che viene la variazione: due
-battute sullo stesso accordo non escono mai identiche, e c'è un controllo che lo verifica.
+**Colonna sonora.** Due **melodie scritte**, non generate: `BRANI` è una tabella di note.
+Formato: un brano è una griglia di sedicesimi, ogni voce è una fila di coppie
+`[semitono, quanti passi dura]`, `null` è una pausa, `ott` sposta la voce di un'ottava.
+Qualche riga di dati invece di un file audio — è il modo in cui facevano musica le
+macchine con 64 KB.
 
-Due scene, decise dalla **schermata** e non dall'andamento della partita (scelta del
-committente): `calma` fuori dal campo, `campo` in battaglia, che aggiunge un basso
-un'ottava sotto e due colpi di rumore filtrato per battuta.
+Due brani, entrambi in la minore naturale su quattro battute: `roster` (88 bpm: melodia,
+basso tenuto, controcanto rado) e `campo` (132 bpm: melodia staccata, basso in ottavi,
+percussione di rumore filtrato sul quarto). Cambiano con la **schermata** e non con
+l'andamento della partita, per scelta del committente; cambiando brano si riparte dalla
+prima battuta, perché i due tempi sono diversi e riprenderli a metà suona come un inciampo.
+
+I controlli verificano che il secondo giro sia **identico** al primo (è scritto, non
+improvvisato), che tutte le note stiano nella scala dichiarata, e che i due temi stiano
+**allo stesso livello** — il campo è più intenso perché è tre volte più fitto (9,2 note al
+secondo contro 2,8), non perché è più forte: un salto di volume fra due schermate sarebbe
+un difetto.
 
 Il punto tecnico che conta è lo **scheduler con anticipo**: le note non partono con
 `setTimeout`, si programmano sul clock audio 250 ms prima del momento giusto, in una
@@ -455,9 +463,16 @@ audio prima di un gesto vuol dire tenere accesa la scheda audio per una musica c
 browser terrebbe sospesa — e stop automatico quando la scheda va in secondo piano.
 
 **Livello tarato a misura, non a orecchio.** Il controllo rende nove secondi di musica in
-un `OfflineAudioContext` e misura il segnale: valore efficace attorno a **0,016**
-(≈ −36 dBFS) per la scena calma, **0,017** per quella in battaglia, picchi a 0,14 — cioè
-sottofondo udibile, più o meno metà del picco di un colpo, e nessun rischio di clipping.
+un `OfflineAudioContext` e misura il segnale: valore efficace attorno a **0,013**
+(≈ −38 dBFS) per entrambi i temi, con **2% di differenza** fra i due, picchi sotto 0,15 —
+sottofondo udibile, circa metà del picco di un colpo, nessun clipping e nessun salto di
+volume quando si cambia schermata.
+
+**Il menu.** In testata restano tre pulsanti; `Mondo`, `Gabbie`, `Suono` e `Musica` stanno
+in un pannello con `role="menu"`, gli interruttori come `menuitemcheckbox` con
+`aria-checked` e lo stato scritto accanto. Esc chiude e restituisce il fuoco, un clic fuori
+chiude, scegliere una destinazione chiude — toccare un interruttore no, così si regolano
+tutti e due. Nella demo il pannello resta con i soli due interruttori, separatore compreso.
 
 **Guida.** Quattro passi (`squadra`, `re`, `schiera`, `muovi`), ognuno con una condizione
 invece che con un pulsante «avanti»: la riga compare quando la condizione è vera e sparisce
@@ -755,11 +770,11 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **423** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **450** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
-  allevamento 24, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 22,
-  guida 19, musica 26),
+  allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
+  guida 19, musica 31, menu 17),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
