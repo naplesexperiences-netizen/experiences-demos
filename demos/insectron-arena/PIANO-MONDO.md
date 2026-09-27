@@ -1,8 +1,12 @@
 # Un mondo esportabile per catturare gli Insector — piano di lavoro
 
-Documento di decisione, non implementazione. Stessa struttura dei piani per il
-multiplayer e per l'allevamento, così i tre si confrontano. Alla fine c'è la decisione
-da prendere.
+Documento di decisione. Stessa struttura dei piani per il multiplayer e per
+l'allevamento, così i tre si confrontano. Alla fine c'è la decisione da prendere.
+
+> **Esito: fatta la forma C.** Spedizioni, cattura con trappola ed esca, mondo generato da
+> un seme di sei caratteri. È in `gioca.html`; il resoconto, con i numeri rimisurati, sta
+> nella sezione «Mondo e cattura» del README. **La forma B — la mappa percorribile — non è
+> stata fatta**, e resta qui descritta e prezzata.
 
 Stato attuale: pagina statica, file unico da **3093 righe / 162 KB**, nessuna dipendenza,
 funziona offline. Le unità si sbloccano vincendo i rank; gli esemplari da allevare si
