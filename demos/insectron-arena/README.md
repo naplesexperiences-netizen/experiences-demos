@@ -483,6 +483,35 @@ timer e nessuno stato parallelo da tenere allineato.
 Non la vede chi ha già un torneo in corso (rank, round, squadra o titolo di campione nel
 salvataggio), e «Salta la guida» la spegne per sempre in `insectron-guida`.
 
+## Uso da telefono
+
+Il difetto, segnalato giocando e poi **misurato** su 390×844: selezionata una pedina, i
+pulsanti delle azioni finivano a 1084 px con una finestra di 844 — **311 pixel di
+scorrimento per ogni mossa**, e lo stesso in schieramento, con la panchina fuori dallo
+schermo.
+
+La soluzione, tutta sotto `@media(max-width:900px)`: `#ucard` prende la classe `ancorata` e
+diventa una barra `position:fixed` in fondo allo schermo, con i pulsanti a 46 px (sopra la
+soglia dei 44 delle linee guida), la prosa della speciale nascosta — sta nel roster — e la
+lista della panchina a scorrimento interno.
+
+Tre dettagli che sono costati più del resto:
+
+1. **La scacchiera si restringe da sola.** `.conScheda .board` calcola la larghezza massima
+   dall'altezza libera (`100vh` meno la barra meno l'ingombro fisso), tenendo il rapporto
+   5:7. Un campo un po' più piccolo è meglio di un campo da inseguire scorrendo.
+2. **La pagina si sposta solo se serve.** `avvicinaCampo()` confronta il rettangolo della
+   scacchiera con il bordo superiore della barra e non fa niente se si vede già tutto:
+   scorrere a ogni tocco sarebbe fastidioso quanto doverlo fare a mano.
+3. **Misurare a schermata nascosta non funziona.** La prima versione non scorreva mai,
+   perché `drawDeploy()` gira quando `#s-battle` è ancora `display:none` e tutti i
+   rettangoli sono a zero. La chiamata giusta parte da `show()`, un tick dopo.
+
+I 15 controlli di `mobile.js` girano in una finestra da telefono e verificano i numeri, non
+l'aspetto: zero pixel da scorrere per arrivare alle azioni, nessuna delle dieci caselle di
+schieramento coperta dalla barra, scacchiera interamente sopra la barra, pulsanti ≥ 44 px,
+e che su schermo largo non cambi niente.
+
 ## Edizione demo ed eco (priorità 1 della roadmap)
 
 **Edizione.** `EDIZIONE` in `gioca.html` vale `"completa"` o `"demo"`; `crea-demo.sh`
@@ -770,11 +799,11 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **450** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **465** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
-  guida 19, musica 31, menu 17),
+  guida 19, musica 31, menu 17, telefono 15),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
