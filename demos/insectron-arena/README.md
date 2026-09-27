@@ -45,7 +45,7 @@ descritti nel README del repository pubblico, che è la guida di chi mantiene il
 | Documento | Cosa propone | Stato |
 |---|---|---|
 | `PIANO-MULTIPLAYER.md` | partita online fra due dispositivi, con relay | da decidere |
-| `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **versione ridotta fatta** (crescita); riproduzione no |
+| `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **fatto per intero** |
 | `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | **forma C fatta**; la mappa a caselle no |
 | `PIANO-VENDITE.md` | edizioni, pubblicità, store interno | da decidere |
 | `ROADMAP.md` | i prossimi passi in ordine di priorità | riordinata sulla rigiocabilità; la demo è fatta ma in attesa |
@@ -351,6 +351,49 @@ da 20% a 45-61%) ma non regala la vittoria, che era il rischio — la prima tara
 i punti a 160, portava il Rank S al 69% e rendeva il torneo una formalità. La seconda:
 **spargere il cibo batte concentrarlo**, perché in 5v5 cinque pedine discrete valgono più
 di un campione e quattro comparse. È la decisione interessante, ed è quella giusta.
+
+## Riproduzione
+
+Chiuso il piano dell'allevamento: mancava solo questa. Due adulti di sesso diverso danno
+un figlio del **gradino successivo**, che eredita il **90% del meglio** dei due genitori —
+i quali **si consumano**. È questo a rendere l'allevamento un ciclo invece di un accumulo.
+
+**Le 18 coppie speciali.** Le fonti ne danno 23; cinque chiamano in causa unità che il
+nostro roster non ha (Cold Cuts, Itsareindeer, Flappillon, Rollerover, Blade Beetle) e
+sono state scartate. Le altre sono in `COPPIE`, riga per riga. Sono documentate come
+orientate — maschio di X e femmina di Y — ma qui **valgono nei due versi**: pretendere
+anche l'orientamento avrebbe trasformato una scoperta in una lotteria.
+
+**Il gradino successivo** non è «rango + 1»: le scale di famiglia hanno buchi (Flipperbug
+va 1, 3, 4, 5), quindi `successore()` prende il prossimo che esiste. Se né il padre né la
+madre hanno un gradino sopra, la coppia non ha discendenza, e la schermata lo dice invece
+di mostrare un pulsante che non funziona.
+
+**Il tetto.** Il figlio non supera di più di un gradino quello che il torneo ha aperto
+(`tettoNascita()`), per la stessa ragione della cattura: altrimenti si arriva al rango 6
+al Rank E e la curva misurata salta.
+
+**Il sesso si alterna** (`ZOO_SEQ % 2`) invece di essere casuale: con dodici gabbie, una
+serie sfortunata di soli maschi renderebbe impossibile riprodursi, e non sarebbe una
+difficoltà interessante — sarebbe un dado.
+
+**Equilibrio rimisurato** (200 battaglie per scenario, `sim-ripro.js`). La domanda era se
+una linea allevata sfondi la curva. Non la sfonda:
+
+| Rank | roster | tre regalati | cinque (cattura) | tutto su uno | linea allevata |
+|---|---|---|---|---|---|
+| E | 99% | 100% | 100% | 100% | 100% |
+| B | 74% | 89% | 82% | 88% | 87% |
+| S | 26% | 55% | 50% | 46% | 46% |
+
+Al Rank S la linea allevata sta al **46%**, cioè come «tutto su uno» e **sotto** i tre
+esemplari in regalo. Il motivo è che il cibo è lo stesso in tutti gli scenari: riprodursi
+non moltiplica niente, **converte** due adulti in uno di gradino superiore al 90%, e in
+cambio dà una base migliore. È un modo diverso di spendere lo stesso cibo, non una
+scorciatoia — ed è esattamente quello che serviva.
+
+Un difetto trovato dai controlli e non a occhio: nella prima versione il figlio non veniva
+mai messo nelle gabbie. I genitori sparivano e non nasceva nessuno.
 
 ## Mondo e cattura (forma C del piano)
 
@@ -799,11 +842,11 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **465** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **497** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
-  guida 19, musica 31, menu 17, telefono 15),
+  guida 19, musica 31, menu 17, telefono 15, riproduzione 32),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
