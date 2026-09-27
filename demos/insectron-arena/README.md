@@ -433,6 +433,32 @@ Il pulsante in testata porta l'etichetta corta «Suono» e dice il suo stato con
 `aria-label`, `aria-pressed` e il tratto sopra il testo: in testata ci sono già cinque
 pulsanti e su un telefono ogni parola in più è una riga in più prima del gioco.
 
+**Colonna sonora.** Ambient generata, non registrata: `GIRO` è un giro di quattro accordi
+in minore naturale, e ogni battuta ne prende uno, ci stende sopra tre note lunghe che si
+accavallano con la battuta successiva, e ci sparge otto possibili note brevi due ottave
+sopra, ognuna con la sua probabilità di non suonare. È da lì che viene la variazione: due
+battute sullo stesso accordo non escono mai identiche, e c'è un controllo che lo verifica.
+
+Due scene, decise dalla **schermata** e non dall'andamento della partita (scelta del
+committente): `calma` fuori dal campo, `campo` in battaglia, che aggiunge un basso
+un'ottava sotto e due colpi di rumore filtrato per battuta.
+
+Il punto tecnico che conta è lo **scheduler con anticipo**: le note non partono con
+`setTimeout`, si programmano sul clock audio 250 ms prima del momento giusto, in una
+finestra che un timer da 120 ms tiene sempre piena. È la differenza fra una musica a tempo
+e una che zoppica ogni volta che il browser è occupato a disegnare. Il controllo verifica
+proprio questo: che ogni nota sia programmata **nel futuro** di `currentTime`.
+
+Tre accorgimenti: bus separato dagli effetti (interruttori indipendenti: c'è chi vuole i
+colpi ma non la musica), avvio rimandato al primo cambio di schermata — creare il contesto
+audio prima di un gesto vuol dire tenere accesa la scheda audio per una musica che il
+browser terrebbe sospesa — e stop automatico quando la scheda va in secondo piano.
+
+**Livello tarato a misura, non a orecchio.** Il controllo rende nove secondi di musica in
+un `OfflineAudioContext` e misura il segnale: valore efficace attorno a **0,016**
+(≈ −36 dBFS) per la scena calma, **0,017** per quella in battaglia, picchi a 0,14 — cioè
+sottofondo udibile, più o meno metà del picco di un colpo, e nessun rischio di clipping.
+
 **Guida.** Quattro passi (`squadra`, `re`, `schiera`, `muovi`), ognuno con una condizione
 invece che con un pulsante «avanti»: la riga compare quando la condizione è vera e sparisce
 da sola quando smette di esserlo. `guidaAggiorna()` è chiamata dai punti dove il gioco già
@@ -729,11 +755,11 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **397** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **423** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 24, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 22,
-  guida 19),
+  guida 19, musica 26),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
