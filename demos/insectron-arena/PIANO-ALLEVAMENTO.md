@@ -3,9 +3,9 @@
 Documento di decisione. Stessa struttura del piano per il multiplayer, così i due si
 confrontano. Alla fine c'è la decisione da prendere.
 
-> **Esito: fatta la versione ridotta.** Gabbie, cibo e crescita sono in `gioca.html`
-> (sezione «Allevamento» del README, con i numeri misurati). **La riproduzione non è
-> stata implementata**: resta qui descritta, pronta se la si vorrà.
+> **Esito: fatto per intero.** Gabbie, cibo e crescita prima; **la riproduzione poi**,
+> con le 18 coppie speciali giocabili delle 23 documentate. Il resoconto, con i numeri
+> rimisurati, sta nelle sezioni «Allevamento» e «Riproduzione» del README.
 
 Stato attuale: le unità si sbloccano vincendo i rank del torneo. Le statistiche sono
 fisse, decise dalla famiglia e dal rank. Il cibo esiste già — ma solo come nome dei premi.
