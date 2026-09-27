@@ -286,3 +286,50 @@ L'ordine che consiglio, ognuno indipendente dal successivo:
 
 Le prime due fanno **una giornata in tutto** e non impegnano a niente: si possono fare
 adesso e decidere dopo, con dei numeri in mano.
+
+---
+
+## 14. Per la chat dedicata al marketing e alle vendite
+
+Questa sezione esiste perché il seguito si farà altrove. Qui c'è tutto quello che serve per
+ripartire senza rileggere il resto.
+
+**Lo stato del prodotto, al 27 settembre 2026**
+
+- Gioco completo e gratuito online: <https://naplesexperiences-netizen.github.io/insectorarena/>
+- Una pagina statica, 3.599 righe, 187 KB (57 KB compressi sul filo), zero dipendenze,
+  funziona offline ed è installabile come app (PWA) su Android e iOS
+- Contenuto: torneo a 6 rank con 34 Insector, tre modalità di gioco, gabbie e allevamento,
+  mondo e cattura con semi condivisibili, salvataggi esportabili
+- 315 controlli automatici, equilibrio misurato a simulazione
+- **Nessun account, nessun tracciamento, nessun pagamento, nessun cookie**
+
+**Cosa è già deciso in questo documento**
+
+1. La demo è «solo arena» e va **senza pubblicità**: è la vetrina.
+2. Si vende **contenuto e comodità, mai potenza**. Cibo, trappole e punti vita non si
+   vendono, perché sono l'economia misurata del gioco.
+3. Le trappole a sorteggio non si vendono in nessun caso: sarebbero loot box.
+4. L'edizione a pagamento è un **file diverso** consegnato dallo store, non un flag.
+
+**Cosa resta aperto, e tocca a quella chat**
+
+| Domanda | Serve per |
+|---|---|
+| Prezzo dello sblocco senza pubblicità | il modello di §8 |
+| Pubblico: adulti o anche bambini? | decide le regole su pubblicità e acquisti (§9) |
+| Store: Play, Apple, web, o più d'uno? | decide chi è il venditore e le commissioni (§7) |
+| Nomi nuovi: chi li trova, e con che tono? | il prerequisito di §10 |
+| Si vuole una valuta interna, sapendo §2? | l'unico punto dove consiglio di dire no |
+
+**Le ipotesi da sostituire con dati veri** (oggi sono aritmetica, non misure): sessioni al
+mese per giocatore, inserzioni a sessione, eCPM, tasso di conversione, spesa media. Escono
+tutte dalla telemetria di §5, che va messa **prima** di decidere qualsiasi prezzo.
+
+**Il vincolo che non si tratta:** i 118 nomi (§10) vengono prima di qualsiasi incasso, su
+qualsiasi canale. Non è un parere prudenziale, è la condizione per poter vendere.
+
+**Gli altri piani**, per chi arriva da fuori: `PIANO-MULTIPLAYER.md` (partita online, da
+decidere), `PIANO-ALLEVAMENTO.md` (fatta la versione ridotta), `PIANO-MONDO.md` (fatta la
+forma C; la mappa percorribile no). La documentazione tecnica completa è nel `README.md`
+di questa cartella.
