@@ -38,12 +38,12 @@ che «non contano ancora»: è l'unico punto dove il gioco ammette un pezzo inco
 macchina degli stati esiste già (stordimento, ribaltamento, vulnerabilità), quindi è
 collegarle, non inventarle. Mezza giornata di rimisurazione compresa.
 
-## Priorità 4 — Un obiettivo lungo · 2 giornate
+## ~~Priorità 4 — Un obiettivo lungo~~ · **fatta** (27 settembre)
 
-**Riproduzione** (il resto di `PIANO-ALLEVAMENTO.md`): accoppiamenti, ereditarietà, 23
-coppie speciali da scoprire. È la cosa che dà un motivo per tornare *per settimane*
-invece che per giorni — ma ha senso solo dopo le tre sopra, altrimenti si aggiunge
-profondità a un gioco che non trattiene ancora.
+**Riproduzione**: due adulti danno un figlio del gradino successivo che eredita il 90% del
+meglio, i genitori si consumano, e 18 coppie documentate danno risultati fuori linea.
+Rimisurata: al Rank S una linea allevata sta al 46%, come le altre strade. 32 controlli
+nuovi.
 
 ## Priorità 5 — Sapere davvero cosa succede · 0,5 giornate + un servizio
 
