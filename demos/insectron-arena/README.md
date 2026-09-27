@@ -48,7 +48,7 @@ descritti nel README del repository pubblico, che è la guida di chi mantiene il
 | `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **versione ridotta fatta** (crescita); riproduzione no |
 | `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | **forma C fatta**; la mappa a caselle no |
 | `PIANO-VENDITE.md` | edizioni, pubblicità, store interno | da decidere |
-| `ROADMAP.md` | i prossimi passi in ordine di priorità | **priorità 1 fatta** |
+| `ROADMAP.md` | i prossimi passi in ordine di priorità | riordinata sulla rigiocabilità; la demo è fatta ma in attesa |
 
 ## Fonti
 
