@@ -48,6 +48,7 @@ descritti nel README del repository pubblico, che è la guida di chi mantiene il
 | `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **versione ridotta fatta** (crescita); riproduzione no |
 | `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | **forma C fatta**; la mappa a caselle no |
 | `PIANO-VENDITE.md` | edizioni, pubblicità, store interno | da decidere |
+| `ROADMAP.md` | i prossimi passi in ordine di priorità | **priorità 1 fatta** |
 
 ## Fonti
 
@@ -411,6 +412,47 @@ permette di schierarne cinque invece di tre, al prezzo di un quarto del cibo che
 esche. Le cifre restano in linea con quelle misurate per l'allevamento (Rank S attorno al
 60%), e il Rank S resta una partita da giocare.
 
+## Edizione demo ed eco (priorità 1 della roadmap)
+
+**Edizione.** `EDIZIONE` in `gioca.html` vale `"completa"` o `"demo"`; `crea-demo.sh`
+genera la build della demo cambiando quella riga sola. Nella demo i due pulsanti laterali
+spariscono **e** `apriGabbie()`/`apriMondo()` si rifiutano, la scheda del roster spiega
+invece di offrire, e il premio di rank non nomina gabbie e mondo. I salvataggi restano
+compatibili nelle due direzioni: un salvataggio della demo ha semplicemente zoo e dispensa
+vuoti.
+
+Un flag lato client non protegge niente, e va bene così: in una demo non c'è niente da
+proteggere, e chi lo scopre ha visto il gioco intero. L'edizione a pagamento, se ci sarà,
+sarà un file diverso consegnato dallo store — vedi `PIANO-VENDITE.md` §4.
+
+**La demo non è pubblicata**: lo script c'è, il file si genera in un comando, ma sul sito
+oggi resta solo il gioco completo, che è gratuito. La demo serve quando il completo va
+altrove.
+
+**Eco.** Cinque tappe (`apre`, `squadra`, `prima`, `rankD`, `ritorno`) più i conteggi di
+partite, vittorie, sconfitte e modalità. Stanno in `localStorage` sotto `insectron-eco`,
+**separati dal salvataggio**, perché azzerare il torneo non deve azzerare quello che
+sappiamo, e viceversa.
+
+Le regole che il codice rispetta, e che i controlli verificano:
+
+1. niente cookie, niente identificatori, niente profilazione: il rapporto è fatto di
+   numeri e di date al giorno, e non contiene un solo campo che dica chi sei;
+2. **non parte niente da solo.** `eco.js` registra ogni richiesta di rete della pagina e
+   pretende che siano zero per l'intera sessione;
+3. quello che si manda si vede prima, per intero, nello stesso testo che verrà copiato;
+4. l'invito compare **una volta sola**, dopo la prima vittoria, e ha il suo «non adesso».
+
+`EMAIL_FEEDBACK` e `TELEMETRIA_URL` sono vuote di proposito: la prima accende il pulsante
+email, la seconda un `sendBeacon` che parte **solo alla pressione dell'utente**. Finché
+sono vuote la pagina non ha bisogno di nessun banner del consenso, che è la ragione per cui
+sono vuote.
+
+Limite da dire chiaro, perché condiziona quanto vale il dato raccolto: **questa è raccolta
+volontaria, non telemetria passiva.** Arriva quello che la gente decide di mandare. Per
+avere numeri su tutti i giocatori servirebbe un endpoint — mezza giornata di lavoro e un
+servizio da mantenere — ed è una decisione, non un dettaglio.
+
 ## Cosa è ricostruzione di design (non documentato sul wiki)
 
 Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
@@ -657,10 +699,10 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **315** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **356** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
-  allevamento 24, mondo e cattura 44),
+  allevamento 24, mondo e cattura 44, edizione demo 14, eco e feedback 27),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
