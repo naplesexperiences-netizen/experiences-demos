@@ -47,6 +47,7 @@ descritti nel README del repository pubblico, che è la guida di chi mantiene il
 | `PIANO-MULTIPLAYER.md` | partita online fra due dispositivi, con relay | da decidere |
 | `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **versione ridotta fatta** (crescita); riproduzione no |
 | `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | **forma C fatta**; la mappa a caselle no |
+| `PIANO-VENDITE.md` | edizioni, pubblicità, store interno | da decidere |
 
 ## Fonti
 
