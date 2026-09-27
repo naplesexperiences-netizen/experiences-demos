@@ -40,6 +40,14 @@ icone, manifest e registrazione del service worker; questa ha i meta `demo:tags`
 I **salvataggi** (codice di esportazione, ripristino, versione dello schema) sono
 descritti nel README del repository pubblico, che è la guida di chi mantiene il sito.
 
+**Piani di lavoro** (documenti di decisione, non implementazione):
+
+| Documento | Cosa propone | Stato |
+|---|---|---|
+| `PIANO-MULTIPLAYER.md` | partita online fra due dispositivi, con relay | da decidere |
+| `PIANO-ALLEVAMENTO.md` | cibo, crescita e riproduzione | **versione ridotta fatta** (crescita); riproduzione no |
+| `PIANO-MONDO.md` | mondo esportabile, cattura con trappole ed esche | da decidere |
+
 ## Fonti
 
 1. **Rogue Galaxy Wiki** (Fandom, CC BY-SA): pagina `Insector` + 35 schede unità →
