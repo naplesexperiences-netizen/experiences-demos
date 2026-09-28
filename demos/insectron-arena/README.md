@@ -352,6 +352,36 @@ i punti a 160, portava il Rank S al 69% e rendeva il torneo una formalità. La s
 **spargere il cibo batte concentrarlo**, perché in 5v5 cinque pedine discrete valgono più
 di un campione e quattro comparse. È la decisione interessante, ed è quella giusta.
 
+## Sfida del giorno e collezione (priorità 2 della roadmap)
+
+**Il nodo era il determinismo.** Una sfida uguale per tutti non serve a niente se le due
+partite divergono: tutto il caso della battaglia — la squadra avversaria, il tiro del
+danno nel `strike()`, le scelte dell'IA — passa ora da `caso()`, che di norma è
+`Math.random` e durante la sfida è il generatore col seme del giorno. Restano fuori di
+proposito gli identificativi delle pedine, il ritardo delle animazioni e il rumore
+dell'audio: non cambiano una partita. Il controllo gioca due volte la stessa sfida con le
+stesse scelte e pretende la **stessa sequenza di punti vita, colpo per colpo**.
+
+La squadra è pescata dal seme fra le unità **fino al rango 4**, così la sfida non premia
+chi ha allevato di più; l'avversario è sempre allo stesso livello (esperto). Il profilo di
+rank è `SFIDA_PROF`, che sostituisce `RANKS[S.rankIdx]` via `profRank()` — così
+`buildEnemy()` e i badge funzionano senza sapere niente della sfida.
+
+**Non tocca il torneo**: la squadra della carriera viene messa da parte con lo stesso
+meccanismo del secondo giocatore (`S.career` / `careerHeld`) e rimessa a posto alla fine.
+Si gioca **una volta al giorno**: se si potesse riprovare, il punteggio non direbbe niente.
+
+**Collezione e traguardi.** `S.visti` si riempie in `startBattle()` — si conoscono
+incontrandoli, da una parte o dall'altra — e gli otto traguardi si accendono dove le cose
+succedono (prima vittoria, battaglia senza perdite, adulto, cattura, figlio, sfida, Rank S,
+collezione completa). Nel salvataggio entrambi vengono **ripuliti in migrazione**: un id
+inventato a mano sparisce.
+
+Un difetto trovato guardando le schermate e non dai test: nella prima versione la riga
+introduttiva della collezione mostrava `c\u00e8` invece di «c'è». Gli accenti dentro
+all'HTML devono restare lettere, e la conversione che uso per il codice JavaScript li
+aveva toccati anche lì.
+
 ## Riproduzione
 
 Chiuso il piano dell'allevamento: mancava solo questa. Due adulti di sesso diverso danno
@@ -842,11 +872,12 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **497** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **545** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
-  guida 19, musica 31, menu 17, telefono 15, riproduzione 32),
+  guida 19, musica 31, menu 17, telefono 15, riproduzione 32, sfida del giorno 28,
+  collezione 20),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
