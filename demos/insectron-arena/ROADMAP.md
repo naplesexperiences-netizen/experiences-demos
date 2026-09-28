@@ -24,12 +24,13 @@ controlli sono in casa, e la build si genera in un comando quando servirà.
 testata. **Guida del primo minuto**: quattro righe che compaiono quando servono e
 spariscono da sole; non la vede chi ha già un torneo in corso. 41 controlli nuovi.
 
-## Priorità 2 — Che si rigiochi · 1,5 giornate
+## ~~Priorità 2 — Che si rigiochi~~ · **fatta** (28 settembre)
 
-| Passo | Giornate | Perché fa tornare |
-|---|---|---|
-| **Sfida del giorno** | 1 | Un seme ricavato dalla data: tutti giocano la stessa identica battaglia, e a fine partita esce una riga da condividere. È l'unica meccanica di ritorno che non richiede né account né server — e il generatore col seme esiste già. Va instradato il caso della battaglia attraverso quel generatore (11 punti nel codice, pochi nella battaglia) |
-| Collezione e traguardi | 0,5 | «Hai incontrato 17 Insector su 34», «mai perso un Re»: una schermata che mostra cosa manca è la ragione più economica che esista per riaprire il gioco |
+**Sfida del giorno**: una battaglia uguale per tutti, dal seme della data, giocabile una
+volta al giorno, col risultato da copiare in una riga. Ha richiesto di far passare tutto
+il caso della battaglia da un punto solo, così due partite con le stesse scelte escono
+identiche colpo per colpo. **Collezione e traguardi**: i 34 Insector si scoprono
+incontrandoli, più otto traguardi. 48 controlli nuovi.
 
 ## Priorità 3 — Che abbia fondo · 2 giornate
 
