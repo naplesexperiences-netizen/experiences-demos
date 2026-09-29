@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fogli Google, passo per passo</title>
+<meta name="description" content="Una guida pratica a Fogli Google: celle e riferimenti, formule e funzioni, riferimenti assoluti, ordinamento, filtri, grafici, condivisione e scorciatoie. Con un foglio di calcolo vero da provare nella pagina.">
+<meta name="demo:tags" content="didattica,fogli di calcolo,google sheets,interattivo">
+<meta name="demo:category" content="education">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbf8;
+    --bg-2: #f1f2ec;
+    --card: #ffffff;
+    --ink: #17201a;
+    --ink-soft: #56615a;
+    --rule: #d9ddd3;
+    --grid: #e6e9e1;
+    --accent: #1b7a45;
+    --accent-ink: #ffffff;
+    --accent-soft: #dcefe2;
+    --sel: #2f6fdf;
+    --sel-soft: rgba(47, 111, 223, .10);
+    --warn: #b3261e;
+    --warn-soft: #fbe3e0;
+    --hi: #fff1b8;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --sans: "Source Sans 3", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --measure: 66ch;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111613; --bg-2: #18201b; --card: #1b231e; --ink: #e8ede8; --ink-soft: #a3aea6;
+      --rule: #2f3a33; --grid: #26302a; --accent: #52c483; --accent-ink: #0c1a11; --accent-soft: #1e3a2a;
+      --sel: #78a6ff; --sel-soft: rgba(120, 166, 255, .14); --warn: #ff8a80; --warn-soft: #3a1f1d; --hi: #4a4120;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111613; --bg-2: #18201b; --card: #1b231e; --ink: #e8ede8; --ink-soft: #a3aea6;
+    --rule: #2f3a33; --grid: #26302a; --accent: #52c483; --accent-ink: #0c1a11; --accent-soft: #1e3a2a;
+    --sel: #78a6ff; --sel-soft: rgba(120, 166, 255, .14); --warn: #ff8a80; --warn-soft: #3a1f1d; --hi: #4a4120;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 1.125rem/1.6 var(--sans);
+    text-rendering: optimizeLegibility; font-kerning: normal;
+  }
+  a { color: var(--accent); text-underline-offset: .18em; }
+  code, kbd, .mono { font-family: var(--mono); font-size: .88em; }
+  code { background: var(--bg-2); border: 1px solid var(--rule); padding: .05em .35em; border-radius: 5px; white-space: nowrap; }
+  kbd { display: inline-block; min-width: 1.7em; text-align: center; padding: .1em .45em; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 6px; background: var(--card); font-size: .8em; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+  p { margin: 0 0 1em; max-width: var(--measure); text-wrap: pretty; }
+  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; }
+
+  /* ---------- top bar ---------- */
+  .top {
+    position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule);
+  }
+  .top-in { max-width: 1180px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 16px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-decoration: none; color: var(--ink); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .brand-mark { width: 22px; height: 22px; border-radius: 5px; background: var(--accent); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 4px; }
+  .brand-mark i { background: var(--accent-ink); opacity: .85; border-radius: 1px; }
+  .toc { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
+  .toc::-webkit-scrollbar { display: none; }
+  .toc a { font-size: .9rem; color: var(--ink-soft); text-decoration: none; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+  .toc a:hover, .toc a.on { background: var(--accent-soft); color: var(--ink); }
+  .theme-btn { border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 999px; width: 34px; height: 34px; cursor: pointer; flex: none; font-size: 1rem; }
+
+  /* ---------- hero ---------- */
+  .hero { max-width: 1180px; margin: 0 auto; padding: 72px 16px 40px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .eyebrow { font-family: var(--mono); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5rem); font-weight: 800; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 1.25rem; color: var(--ink-soft); margin-top: 22px; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font: 600 1rem var(--sans); padding: 12px 18px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); text-decoration: none; cursor: pointer; transition: transform .15s ease, background .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn.small { padding: 7px 12px; font-size: .9rem; }
+
+  .hero-sheet { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 1px 0 var(--rule), 0 24px 60px -30px rgba(0,0,0,.35); overflow: hidden; font-family: var(--mono); font-size: .85rem; }
+  .hero-sheet .fx { display: flex; gap: 10px; padding: 10px 12px; border-bottom: 1px solid var(--rule); align-items: center; }
+  .hero-sheet .fx b { color: var(--ink-soft); font-weight: 600; font-style: italic; }
+  .hero-sheet .fx span { flex: 1; min-height: 1.4em; }
+  .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--sel); vertical-align: -3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-sheet table { width: 100%; border-collapse: collapse; }
+  .hero-sheet th, .hero-sheet td { border: 1px solid var(--grid); padding: 7px 10px; height: 34px; }
+  .hero-sheet th { background: var(--bg-2); color: var(--ink-soft); font-weight: 400; font-size: .75rem; width: 36px; }
+  .hero-sheet thead th { width: auto; }
+  .hero-sheet td.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .hero-sheet td.target { outline: 2px solid var(--sel); outline-offset: -2px; background: var(--sel-soft); }
+  .hero-sheet td.pop { animation: pop .5s ease; }
+  @keyframes pop { 0% { background: var(--hi); } 100% { background: var(--sel-soft); } }
+
+  /* ---------- sections ---------- */
+  main { max-width: 1180px; margin: 0 auto; padding: 0 16px 80px; }
+  section.ch { padding: 72px 0 24px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; scroll-margin-top: 60px; }
+  .ch-num { font-family: var(--mono); font-size: .85rem; color: var(--ink-soft); position: sticky; top: 84px; align-self: start; }
+  .ch-num b { display: block; font-family: var(--display); font-size: 3.4rem; color: var(--accent); line-height: 1; margin-bottom: 6px; font-weight: 800; }
+  .ch h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 800; margin-bottom: 20px; }
+  .ch h3 { font-size: 1.3rem; font-weight: 600; margin: 32px 0 12px; }
+  .ch ul, .ch ol { max-width: var(--measure); padding-left: 1.2em; }
+  .ch li { margin-bottom: .45em; }
+  .note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 var(--radius) var(--radius) 0; max-width: var(--measure); margin: 20px 0; }
+  .note p:last-child { margin-bottom: 0; }
+  .note.warn { border-color: var(--warn); background: var(--warn-soft); }
+
+  .steps { counter-reset: s; list-style: none; padding: 0 !important; display: grid; gap: 12px; }
+  .steps li { counter-increment: s; position: relative; padding: 14px 16px 14px 56px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); margin: 0; }
+  .steps li::before { content: counter(s); position: absolute; left: 14px; top: 12px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 600 .9rem var(--mono); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px 18px; }
+  .card h4 { margin: 0 0 6px; font: 600 1.05rem var(--display); }
+  .card p { font-size: 1rem; color: var(--ink-soft); margin: 0; }
+
+  /* ---------- anatomy diagram ---------- */
+  .anat { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 18px; margin: 20px 0; }
+  .anat-grid { display: grid; grid-template-columns: 40px repeat(5, minmax(0, 1fr)); font-family: var(--mono); font-size: .8rem; user-select: none; }
+  .anat-grid > div { border: 1px solid var(--grid); margin: -1px 0 0 -1px; height: 34px; display: grid; place-items: center; cursor: pointer; transition: background .12s; }
+  .anat-grid .h { background: var(--bg-2); color: var(--ink-soft); }
+  .anat-grid .c.row, .anat-grid .c.col { background: var(--accent-soft); }
+  .anat-grid .c.cell { background: var(--sel-soft); outline: 2px solid var(--sel); outline-offset: -2px; position: relative; z-index: 1; }
+  .anat-grid .h.on { background: var(--accent); color: var(--accent-ink); }
+  .anat-read { margin-top: 14px; font-size: 1rem; color: var(--ink-soft); min-height: 3em; }
+  .anat-read strong { color: var(--ink); font-family: var(--mono); }
+
+  /* ---------- playground ---------- */
+  .sheet-wrap { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; margin: 20px 0; box-shadow: 0 18px 50px -34px rgba(0,0,0,.4); }
+  .fbar { display: flex; align-items: stretch; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: .9rem; }
+  .fbar .addr { width: 72px; flex: none; display: grid; place-items: center; border-right: 1px solid var(--rule); color: var(--ink-soft); font-weight: 600; }
+  .fbar .fx-label { padding: 0 10px; display: grid; place-items: center; color: var(--ink-soft); font-style: italic; border-right: 1px solid var(--rule); }
+  .fbar input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); font: inherit; padding: 11px 12px; }
+  .fbar input:focus { outline: none; background: var(--sel-soft); }
+  .grid-scroll { overflow-x: auto; }
+  table.sheet { border-collapse: collapse; font-family: var(--mono); font-size: .88rem; min-width: 100%; }
+  table.sheet th { background: var(--bg-2); color: var(--ink-soft); font-weight: 400; font-size: .75rem; border: 1px solid var(--grid); height: 26px; padding: 0 6px; }
+  table.sheet th.on { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  table.sheet th.rh { width: 40px; }
+  table.sheet td { border: 1px solid var(--grid); min-width: 112px; height: 34px; padding: 0 8px; cursor: cell; white-space: nowrap; position: relative; }
+  table.sheet td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.sheet td.bold { font-weight: 600; }
+  table.sheet td.err { color: var(--warn); }
+  table.sheet td.inrange { background: var(--sel-soft); }
+  table.sheet td.sel { outline: 2px solid var(--sel); outline-offset: -2px; z-index: 1; }
+  table.sheet td.flash { animation: flash .6s ease; }
+  @keyframes flash { from { background: var(--hi); } to { background: transparent; } }
+  table.sheet td input { position: absolute; inset: 0; width: 100%; border: 0; font: inherit; padding: 0 8px; background: var(--card); color: var(--ink); outline: 2px solid var(--sel); outline-offset: -2px; }
+  .sheet-foot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 12px; border-top: 1px solid var(--rule); font-size: .9rem; color: var(--ink-soft); }
+  .sheet-foot .stat { font-family: var(--mono); font-size: .8rem; }
+
+  .missions { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; max-width: 760px; }
+  .missions li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); font-size: 1rem; }
+  .missions .tick { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--rule); display: grid; place-items: center; font-size: .75rem; margin-top: 2px; transition: .2s; }
+  .missions li.done { border-color: var(--accent); }
+  .missions li.done .tick { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .missions small { display: block; color: var(--ink-soft); }
+  .progress { font-family: var(--mono); font-size: .85rem; color: var(--ink-soft); margin-top: 10px; }
+
+  /* ---------- function table ---------- */
+  .ftable { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 1rem; }
+  .ftable th, .ftable td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .ftable th { font: 600 .8rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
+  .ftable td:first-child { font-family: var(--mono); font-size: .88rem; white-space: nowrap; color: var(--accent); font-weight: 600; }
+  .ftable td:nth-child(2) { font-family: var(--mono); font-size: .85rem; }
+  .ftable-wrap { overflow-x: auto; }
+
+  /* ---------- absolute refs ---------- */
+  .toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 3px; background: var(--card); gap: 2px; flex-wrap: wrap; }
+  .toggle button { border: 0; background: transparent; color: var(--ink-soft); font: 600 .9rem var(--mono); padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+  .toggle button.on { background: var(--accent); color: var(--accent-ink); }
+  .fill-demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 16px; }
+  .fill-demo .sheet-wrap { margin: 0; }
+  .fill-legend { font-size: 1rem; color: var(--ink-soft); }
+  .fill-legend code.shift { background: var(--hi); }
+  .dollar { color: var(--warn); font-weight: 600; }
+
+  /* ---------- sort/filter ---------- */
+  .sf-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
+  .chip { border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 999px; padding: 6px 12px; font: 500 .9rem var(--sans); cursor: pointer; }
+  .chip.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  table.sheet th.sortable { cursor: pointer; }
+  table.sheet th.sortable:hover { color: var(--ink); }
+  table.sheet tr.hide { display: none; }
+  td.cf-hi { background: color-mix(in srgb, var(--accent) 22%, transparent) !important; }
+  td.cf-lo { background: color-mix(in srgb, var(--warn) 18%, transparent) !important; }
+
+  /* ---------- chart ---------- */
+  .chart-box { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 18px; margin: 16px 0; }
+  .chart-box svg { width: 100%; height: auto; display: block; }
+  .chart-box .bar { fill: var(--accent); transition: height .4s ease, y .4s ease; }
+  .chart-box .bar:hover { fill: var(--sel); }
+  .chart-box text { fill: var(--ink-soft); font: 12px var(--mono); }
+  .chart-box .val { fill: var(--ink); font-weight: 600; }
+  .chart-box line { stroke: var(--grid); }
+  .chart-box .line-path { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+  .chart-box .dot { fill: var(--card); stroke: var(--accent); stroke-width: 2.5; }
+  .chart-box .slice { stroke: var(--card); stroke-width: 2; }
+
+  /* ---------- share ---------- */
+  .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+  .role { border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px; background: var(--card); cursor: pointer; text-align: left; font: inherit; color: inherit; }
+  .role.on { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .role h4 { margin: 0 0 4px; font: 700 1.1rem var(--display); }
+  .role p { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+  .can { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 6px; }
+  .can li { font-size: 1rem; display: flex; gap: 8px; align-items: center; }
+  .can li span { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: .7rem; flex: none; }
+  .can li.y span { background: var(--accent); color: var(--accent-ink); }
+  .can li.n span { background: var(--bg-2); color: var(--ink-soft); border: 1px solid var(--rule); }
+  .can li.n { color: var(--ink-soft); }
+
+  /* ---------- shortcuts ---------- */
+  .kb-os { margin-bottom: 12px; }
+  .kb { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; }
+  .kb div { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 10px 14px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); font-size: 1rem; }
+  .kb div span:last-child { white-space: nowrap; }
+
+  /* ---------- quiz ---------- */
+  .quiz { display: grid; gap: 16px; max-width: 760px; }
+  .q { border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); padding: 18px; }
+  .q p { font-weight: 600; margin-bottom: 10px; }
+  .q .opts { display: grid; gap: 6px; }
+  .q button { text-align: left; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); font: 400 1rem var(--sans); padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .q button:hover:not(:disabled) { border-color: var(--ink-soft); }
+  .q button.right { border-color: var(--accent); background: var(--accent-soft); }
+  .q button.wrong { border-color: var(--warn); background: var(--warn-soft); }
+  .q .why { margin: 10px 0 0; font-size: .95rem; color: var(--ink-soft); display: none; }
+  .q.answered .why { display: block; }
+  .score { font: 600 1.1rem var(--display); margin-top: 8px; }
+
+  footer { border-top: 1px solid var(--rule); padding: 32px 16px 48px; text-align: center; color: var(--ink-soft); font-size: .95rem; }
+  footer p { margin: 0 auto 6px; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; }
+    section.ch { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-top: 52px; }
+    .ch-num { position: static; display: flex; align-items: baseline; gap: 12px; }
+    .ch-num b { font-size: 2.2rem; margin: 0; }
+    .fill-demo { grid-template-columns: 1fr; }
+    .roles { grid-template-columns: 1fr; }
+    .toc { display: none; }
+    .theme-btn { margin-left: auto; }
+  }
+  @media (max-width: 600px) {
+    .ftable thead { display: none; }
+    .ftable tr { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+    .ftable td { border: 0; padding: 0; white-space: normal; }
+    .ftable td:nth-child(2) { overflow-wrap: anywhere; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 1.0625rem; }
+    p code, li code { white-space: normal; overflow-wrap: anywhere; }
+    table.sheet td { min-width: 92px; }
+    .anat-grid { grid-template-columns: 32px repeat(5, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Fogli, passo per passo</a>
+    <nav class="toc" aria-label="Capitoli">
+      <a href="#basi">Basi</a>
+      <a href="#inizio">Iniziare</a>
+      <a href="#formule">Formule</a>
+      <a href="#riferimenti">Riferimenti</a>
+      <a href="#dati">Ordina e filtra</a>
+      <a href="#grafici">Grafici</a>
+      <a href="#condividi">Condividi</a>
+      <a href="#scorciatoie">Scorciatoie</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" aria-label="Cambia tema chiaro/scuro">◐</button>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div>
+    <div class="eyebrow">Guida pratica · 9 capitoli · ~25 minuti</div>
+    <h1>Impara Fogli Google <em>scrivendo</em> formule vere.</h1>
+    <p class="lede">Dalle celle alle funzioni, dai riferimenti assoluti ai grafici e alla condivisione. In questa pagina c’è un piccolo foglio di calcolo funzionante: ogni concetto lo provi subito.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#basi">Comincia dalle basi ↓</a>
+      <a class="btn" href="#formule">Vai al foglio di prova</a>
+    </div>
+  </div>
+  <div class="hero-sheet" aria-hidden="true">
+    <div class="fx"><b>fx</b><span id="heroFx"></span></div>
+    <table>
+      <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td>Voce</td><td>Gennaio</td><td>Febbraio</td></tr>
+        <tr><th>2</th><td>Affitto</td><td class="n">650</td><td class="n">650</td></tr>
+        <tr><th>3</th><td>Spesa</td><td class="n">310</td><td class="n">284</td></tr>
+        <tr><th>4</th><td>Bollette</td><td class="n">120</td><td class="n">138</td></tr>
+        <tr><th>5</th><td><strong>Totale</strong></td><td class="n target" id="heroTarget"></td><td class="n" id="heroTarget2"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<main>
+
+<!-- 01 -->
+<section class="ch reveal" id="basi">
+  <div class="ch-num"><b>01</b>Le basi</div>
+  <div>
+    <h2>Un foglio è una griglia di celle con un indirizzo.</h2>
+    <p>Un foglio di calcolo è una tabella infinita. Le <strong>colonne</strong> hanno una lettera (A, B, C…), le <strong>righe</strong> hanno un numero (1, 2, 3…). Dove si incrociano c’è una <strong>cella</strong>, e il suo nome è <em>lettera + numero</em>: la cella nella colonna C alla riga 4 si chiama <code>C4</code>.</p>
+    <p>Quell’indirizzo è tutto: le formule non lavorano sui numeri che vedi, ma sugli indirizzi delle celle. Se cambi il contenuto di una cella, ogni formula che la usa si ricalcola da sola.</p>
+
+    <div class="anat">
+      <div class="anat-grid" id="anat" role="grid" aria-label="Griglia di esempio: clicca una cella"></div>
+      <div class="anat-read" id="anatRead" aria-live="polite">Clicca una cella qualsiasi della griglia qui sopra.</div>
+    </div>
+
+    <h3>Le parole da sapere</h3>
+    <div class="cards">
+      <div class="card"><h4>File</h4><p>Il documento intero, salvato nel tuo Google Drive. Si chiama anche <em>foglio di lavoro</em>.</p></div>
+      <div class="card"><h4>Scheda</h4><p>Le linguette in basso: un file può contenere più fogli (Foglio1, Foglio2…).</p></div>
+      <div class="card"><h4>Intervallo</h4><p>Un blocco di celle, scritto con i due punti: <code>A1:B3</code> sono 6 celle.</p></div>
+      <div class="card"><h4>Formula</h4><p>Un calcolo che inizia sempre con <code>=</code>, per esempio <code>=A1+A2</code>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="ch reveal" id="inizio">
+  <div class="ch-num"><b>02</b>Iniziare</div>
+  <div>
+    <h2>Creare un foglio e orientarsi nell’interfaccia.</h2>
+    <ol class="steps">
+      <li>Accedi con un account Google e apri <strong>Google Drive</strong>, oppure vai direttamente all’app <strong>Fogli</strong>.</li>
+      <li>Premi <strong>+ Nuovo → Fogli Google</strong>. Scorciatoia: digita <code>sheets.new</code> nella barra degli indirizzi del browser.</li>
+      <li>Clicca su «Foglio di lavoro senza titolo» in alto a sinistra e dagli un nome. Il file si <strong>salva da solo</strong> a ogni modifica: non esiste un tasto «Salva».</li>
+      <li>Hai già un file Excel? Trascinalo in Drive e aprilo con Fogli, oppure usa <strong>File → Importa</strong>.</li>
+    </ol>
+
+    <h3>Cosa c’è sullo schermo</h3>
+    <div class="cards">
+      <div class="card"><h4>Barra dei menu</h4><p>File, Modifica, Visualizza, Inserisci, Formato, Dati, Strumenti, Estensioni, Guida.</p></div>
+      <div class="card"><h4>Barra degli strumenti</h4><p>Annulla, formato numero (€, %), grassetto, colori, bordi, allineamento, unisci celle.</p></div>
+      <div class="card"><h4>Barra della formula</h4><p>Accanto a <em>fx</em>: mostra cosa c’è davvero dentro la cella selezionata, formula compresa.</p></div>
+      <div class="card"><h4>Casella del nome</h4><p>A sinistra della barra formula: dice dove sei (es. <code>B7</code>). Scrivici un indirizzo per saltarci.</p></div>
+    </div>
+
+    <h3>Inserire e formattare i dati</h3>
+    <ul>
+      <li>Seleziona una cella, scrivi, premi <kbd>Invio</kbd> (va giù) o <kbd>Tab</kbd> (va a destra).</li>
+      <li>Per modificare senza cancellare: doppio clic sulla cella o <kbd>F2</kbd>.</li>
+      <li>I <strong>numeri</strong> si allineano a destra, i <strong>testi</strong> a sinistra: è un modo rapido per capire se Fogli ha riconosciuto un numero.</li>
+      <li><strong>Formato → Numero</strong> per scegliere valuta, percentuale, data. Il valore resta lo stesso, cambia solo come viene mostrato.</li>
+      <li>Trascina il quadratino blu nell’angolo della selezione per <strong>completare automaticamente</strong> serie come 1, 2, 3… o gennaio, febbraio…</li>
+    </ul>
+    <div class="note"><p><strong>Separatore decimale.</strong> Con le impostazioni italiane (File → Impostazioni → Impostazioni internazionali: Italia) i decimali si scrivono con la virgola: <code>3,50</code>. Il punto è riservato alle migliaia.</p></div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="ch reveal" id="formule">
+  <div class="ch-num"><b>03</b>Formule e funzioni</div>
+  <div>
+    <h2>Il foglio qui sotto funziona davvero. Provalo.</h2>
+    <p>Una formula comincia con <code>=</code> e può usare operatori (<code>+ - * / ^</code>), indirizzi di celle e <strong>funzioni</strong>, cioè calcoli già pronti come <code>SOMMA</code> o <code>MEDIA</code>. Clicca una cella, poi scrivi nella barra <em>fx</em> e premi <kbd>Invio</kbd>. Doppio clic per scrivere direttamente nella cella.</p>
+
+    <div class="sheet-wrap" id="pg">
+      <div class="fbar">
+        <div class="addr" id="pgAddr">A1</div>
+        <div class="fx-label">fx</div>
+        <input id="pgInput" type="text" spellcheck="false" autocomplete="off" aria-label="Contenuto della cella selezionata">
+      </div>
+      <div class="grid-scroll"><table class="sheet" id="pgTable"></table></div>
+      <div class="sheet-foot">
+        <span class="stat" id="pgStat">Seleziona un intervallo trascinando per vedere somma e media.</span>
+        <button class="btn small" id="pgReset">Ripristina esempio</button>
+      </div>
+    </div>
+
+    <h3>Missioni</h3>
+    <ul class="missions" id="missions"></ul>
+    <div class="progress" id="missionProgress"></div>
+
+    <div class="note">
+      <p><strong>Punto e virgola o virgola?</strong> Con le impostazioni italiane gli argomenti si separano con il punto e virgola: <code>=SE(B7&gt;1000;"Troppo";"Ok")</code>. Fogli accetta sia i nomi italiani (<code>SOMMA</code>, <code>MEDIA</code>, <code>SE</code>) sia quelli inglesi (<code>SUM</code>, <code>AVERAGE</code>, <code>IF</code>). Anche il foglio di questa pagina li accetta entrambi.</p>
+    </div>
+
+    <h3>Le funzioni che userai più spesso</h3>
+    <div class="ftable-wrap">
+      <table class="ftable">
+        <thead><tr><th>Funzione</th><th>Esempio</th><th>Cosa fa</th></tr></thead>
+        <tbody>
+          <tr><td>SOMMA</td><td>=SOMMA(B2:B6)</td><td>Somma tutti i numeri dell’intervallo.</td></tr>
+          <tr><td>MEDIA</td><td>=MEDIA(B2:B6)</td><td>Media aritmetica.</td></tr>
+          <tr><td>MIN / MAX</td><td>=MAX(C2:C6)</td><td>Il valore più piccolo / più grande.</td></tr>
+          <tr><td>CONTA.NUMERI</td><td>=CONTA.NUMERI(B2:B6)</td><td>Quante celle contengono un numero. <code>CONTA.VALORI</code> conta anche il testo.</td></tr>
+          <tr><td>SE</td><td>=SE(D2&gt;500;"Alto";"Ok")</td><td>Restituisce un valore se la condizione è vera, un altro se è falsa.</td></tr>
+          <tr><td>SOMMA.SE</td><td>=SOMMA.SE(A2:A6;"Spesa";B2:B6)</td><td>Somma solo le righe che rispettano un criterio.</td></tr>
+          <tr><td>CONTA.SE</td><td>=CONTA.SE(B2:B6;"&gt;200")</td><td>Conta le celle che rispettano un criterio.</td></tr>
+          <tr><td>CERCA.VERT</td><td>=CERCA.VERT("Bollette";A2:C6;3;FALSO)</td><td>Cerca un valore nella prima colonna e restituisce quello della colonna indicata.</td></tr>
+          <tr><td>ARROTONDA</td><td>=ARROTONDA(MEDIA(B2:B6);1)</td><td>Arrotonda al numero di decimali scelto.</td></tr>
+          <tr><td>CONCATENA</td><td>=CONCATENA(A2;" – ";B2)</td><td>Unisce testi. Si può usare anche <code>&amp;</code>: <code>=A2&amp;" "&amp;B2</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Quando qualcosa va storto</h3>
+    <div class="cards">
+      <div class="card"><h4>#DIV/0!</h4><p>Stai dividendo per zero o per una cella vuota.</p></div>
+      <div class="card"><h4>#NAME?</h4><p>Nome di funzione scritto male, o testo senza virgolette.</p></div>
+      <div class="card"><h4>#REF!</h4><p>La formula punta a una cella che non esiste più, o a sé stessa (riferimento circolare).</p></div>
+      <div class="card"><h4>#N/A</h4><p>Una ricerca (come CERCA.VERT) non ha trovato il valore.</p></div>
+      <div class="card"><h4>#VALUE!</h4><p>Hai fatto un calcolo con un testo al posto di un numero.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="ch reveal" id="riferimenti">
+  <div class="ch-num"><b>04</b>Riferimenti</div>
+  <div>
+    <h2>Relativi e assoluti: il simbolo <span class="dollar">$</span> che salva le formule.</h2>
+    <p>Quando copi una formula in un’altra cella, Fogli <strong>sposta gli indirizzi</strong> della stessa distanza. È comodissimo: scrivi <code>=B2*C2</code> una volta, trascini verso il basso e ottieni <code>=B3*C3</code>, <code>=B4*C4</code>…</p>
+    <p>A volte però una cella deve restare ferma, come un’aliquota IVA scritta una volta sola. Il <code>$</code> blocca la colonna, la riga o entrambe: <code>$F$1</code> non si sposta mai. Premi <kbd>F4</kbd> mentre scrivi un riferimento per passare da una forma all’altra.</p>
+
+    <div class="toggle" role="tablist" aria-label="Tipo di riferimento">
+      <button class="on" data-mode="rel" role="tab" aria-selected="true">=B2*F1</button>
+      <button data-mode="abs" role="tab" aria-selected="false">=B2*$F$1</button>
+    </div>
+
+    <div class="fill-demo">
+      <div class="sheet-wrap"><div class="grid-scroll"><table class="sheet" id="fillTable"></table></div></div>
+      <div class="fill-legend" id="fillLegend" aria-live="polite"></div>
+    </div>
+    <p style="margin-top:14px"><button class="btn small" id="fillPlay">▶ Trascina di nuovo verso il basso</button></p>
+
+    <div class="cards">
+      <div class="card"><h4><code>A1</code></h4><p>Relativo: si sposta sia in riga sia in colonna.</p></div>
+      <div class="card"><h4><code>$A$1</code></h4><p>Assoluto: non si sposta mai.</p></div>
+      <div class="card"><h4><code>$A1</code></h4><p>Misto: colonna bloccata, riga libera.</p></div>
+      <div class="card"><h4><code>A$1</code></h4><p>Misto: riga bloccata, colonna libera.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="ch reveal" id="dati">
+  <div class="ch-num"><b>05</b>Ordina e filtra</div>
+  <div>
+    <h2>Rendere leggibili cento righe di dati.</h2>
+    <p>Con i dati in tabella (una riga di intestazione, un record per riga, niente righe vuote in mezzo) Fogli ti aiuta a trovarci qualcosa. Prova sulla tabella: clicca le intestazioni per ordinare, usa i filtri e la formattazione condizionale.</p>
+
+    <div class="sf-tools" id="sfTools">
+      <span style="font-size:.95rem;color:var(--ink-soft)">Filtra città:</span>
+      <button class="chip on" data-city="*">Tutte</button>
+      <button class="chip" data-city="Napoli">Napoli</button>
+      <button class="chip" data-city="Salerno">Salerno</button>
+      <button class="chip" data-city="Caserta">Caserta</button>
+      <span style="width:12px"></span>
+      <button class="chip" id="cfBtn">Formattazione condizionale</button>
+    </div>
+    <div class="sheet-wrap"><div class="grid-scroll"><table class="sheet" id="sfTable"></table></div>
+      <div class="sheet-foot"><span class="stat" id="sfStat"></span></div>
+    </div>
+
+    <h3>Come si fa in Fogli</h3>
+    <ul>
+      <li><strong>Blocca l’intestazione:</strong> Visualizza → Blocca → 1 riga. Resta visibile mentre scorri.</li>
+      <li><strong>Ordina:</strong> seleziona i dati, poi Dati → Ordina intervallo → «I dati hanno una riga di intestazione». Non ordinare mai una sola colonna: le righe si mescolerebbero.</li>
+      <li><strong>Filtro:</strong> Dati → Crea un filtro. Appare un imbuto su ogni intestazione. Le <strong>visualizzazioni filtrate</strong> (Dati → Visualizzazioni filtro) permettono a ognuno di filtrare senza disturbare gli altri.</li>
+      <li><strong>Formattazione condizionale:</strong> Formato → Formattazione condizionale. Colora le celle in base al valore, per esempio «maggiore di 1000».</li>
+      <li><strong>Convalida dei dati:</strong> Dati → Convalida dei dati. Crea menu a discesa o impedisce valori sbagliati.</li>
+      <li><strong>Tabelle pivot:</strong> Inserisci → Tabella pivot. Riassumono migliaia di righe (per esempio: totale vendite per città e per mese) senza scrivere formule.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="ch reveal" id="grafici">
+  <div class="ch-num"><b>06</b>Grafici</div>
+  <div>
+    <h2>Dai numeri a un’immagine in tre clic.</h2>
+    <ol class="steps">
+      <li>Seleziona i dati <strong>con le intestazioni</strong> (es. <code>A1:B6</code>).</li>
+      <li>Inserisci → Grafico. Fogli propone il tipo che ritiene più adatto.</li>
+      <li>Nel pannello a destra, <em>Configurazione</em> cambia tipo e intervallo, <em>Personalizza</em> titoli, colori e assi.</li>
+    </ol>
+    <p>Il grafico è collegato ai dati: cambia un numero e il grafico si aggiorna. Questo qui sotto legge le colonne A e B del foglio di prova del capitolo 3. Torna su, cambia un importo e guarda cosa succede.</p>
+
+    <div class="toggle" id="chartType" role="tablist" aria-label="Tipo di grafico">
+      <button class="on" data-type="bar" role="tab" aria-selected="true">Colonne</button>
+      <button data-type="line" role="tab" aria-selected="false">Linee</button>
+      <button data-type="pie" role="tab" aria-selected="false">Torta</button>
+    </div>
+    <div class="chart-box"><svg id="chart" viewBox="0 0 640 300" role="img" aria-label="Grafico dei dati del foglio di prova"></svg></div>
+
+    <div class="cards">
+      <div class="card"><h4>Colonne / barre</h4><p>Confrontare categorie: spese per voce, vendite per negozio.</p></div>
+      <div class="card"><h4>Linee</h4><p>Andamento nel tempo: incassi mese per mese.</p></div>
+      <div class="card"><h4>Torta</h4><p>Parti di un totale, con poche fette (massimo 5 o 6).</p></div>
+      <div class="card"><h4>Sparkline</h4><p>Un mini-grafico dentro una cella: <code>=SPARKLINE(B2:M2)</code>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="ch reveal" id="condividi">
+  <div class="ch-num"><b>07</b>Collaborare</div>
+  <div>
+    <h2>Lavorare in più persone sullo stesso file.</h2>
+    <p>È il punto forte di Fogli: più persone modificano lo stesso foglio nello stesso momento e vedono i cursori colorati degli altri. Premi <strong>Condividi</strong> in alto a destra, inserisci gli indirizzi email e scegli un ruolo.</p>
+
+    <div class="roles" id="roles">
+      <button class="role on" data-role="view"><h4>Visualizzatore</h4><p>Può solo guardare.</p></button>
+      <button class="role" data-role="comment"><h4>Commentatore</h4><p>Guarda e lascia commenti.</p></button>
+      <button class="role" data-role="edit"><h4>Editor</h4><p>Può modificare tutto.</p></button>
+    </div>
+    <ul class="can" id="can"></ul>
+
+    <h3>Strumenti di collaborazione</h3>
+    <ul>
+      <li><strong>Commenti:</strong> tasto destro → Commento, oppure <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd>. Scrivi <code>@nome</code> per assegnare un’attività a qualcuno.</li>
+      <li><strong>Cronologia versioni:</strong> File → Cronologia versioni. Vedi chi ha cambiato cosa e torni a una versione precedente.</li>
+      <li><strong>Proteggi intervalli:</strong> Dati → Proteggi fogli e intervalli. Solo alcune persone potranno modificare quelle celle.</li>
+      <li><strong>Link:</strong> «Chiunque abbia il link» è comodo ma rischioso. Per dati personali, condividi solo con persone specifiche.</li>
+      <li><strong>Offline:</strong> attiva l’accesso offline da Drive per modificare senza connessione. Le modifiche si sincronizzano appena torni online.</li>
+    </ul>
+    <div class="note warn"><p><strong>Attenzione.</strong> Chi è editor può anche ricondividere il file e cambiare i permessi. Se non vuoi, apri Condividi → ⚙︎ e togli la spunta a «Gli editor possono modificare le autorizzazioni e condividere».</p></div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="ch reveal" id="scorciatoie">
+  <div class="ch-num"><b>08</b>Scorciatoie</div>
+  <div>
+    <h2>Le dieci scorciatoie che fanno la differenza.</h2>
+    <div class="toggle kb-os" id="kbOs" role="tablist" aria-label="Sistema operativo">
+      <button class="on" data-os="win" role="tab" aria-selected="true">Windows / ChromeOS</button>
+      <button data-os="mac" role="tab" aria-selected="false">Mac</button>
+    </div>
+    <div class="kb" id="kb"></div>
+    <p style="margin-top:16px">Tutte le altre: <kbd id="kbAll">Ctrl</kbd> + <kbd>/</kbd> dentro Fogli.</p>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="ch reveal" id="quiz">
+  <div class="ch-num"><b>09</b>Verifica</div>
+  <div>
+    <h2>Cinque domande per vedere cosa è rimasto.</h2>
+    <div class="quiz" id="quizBox"></div>
+    <div class="score" id="quizScore" aria-live="polite"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Guida didattica indipendente. Fogli Google è un prodotto di Google LLC; questa pagina non è affiliata né approvata da Google.</p>
+  <p>Il foglio di prova è una simulazione semplificata: supporta le funzioni più comuni, non tutte.</p>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ================= theme ================= */
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("fg-theme"); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("fg-theme", root.dataset.theme); } catch (e) {}
+  });
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ================= helpers ================= */
+  const $ = (s, el = document) => el.querySelector(s);
+  const colName = i => String.fromCharCode(65 + i);
+  const colIdx = s => s.toUpperCase().charCodeAt(0) - 65;
+  const fmtNum = n => {
+    if (typeof n !== "number") return n;
+    if (!isFinite(n)) return "#DIV/0!";
+    const r = Math.round(n * 100) / 100;
+    return r.toLocaleString("it-IT", { maximumFractionDigits: 2 });
+  };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  /* ================= formula engine ================= */
+  class FErr { constructor(code) { this.code = code; } toString() { return this.code; } }
+  const isErr = v => v instanceof FErr;
+
+  function tokenize(src) {
+    const out = []; let i = 0;
+    while (i < src.length) {
+      const c = src[i];
+      if (/\s/.test(c)) { i++; continue; }
+      if (c === '"') {
+        let j = i + 1, s = "";
+        while (j < src.length && src[j] !== '"') s += src[j++];
+        if (j >= src.length) throw new FErr("#ERROR!");
+        out.push({ t: "str", v: s }); i = j + 1; continue;
+      }
+      let m = src.slice(i).match(/^\$?[A-Za-z]\$?\d+(:\$?[A-Za-z]\$?\d+)?(?![A-Za-z0-9_.(])/);
+      if (m) { out.push({ t: m[1] ? "range" : "ref", v: m[0].replace(/\$/g, "").toUpperCase() }); i += m[0].length; continue; }
+      m = src.slice(i).match(/^\d+(?:[.,]\d+)?(?![A-Za-z])/);
+      if (m) {
+        // comma is decimal only when followed by digits and not used as separator context — treat "1,5" as 1.5
+        out.push({ t: "num", v: parseFloat(m[0].replace(",", ".")) }); i += m[0].length; continue;
+      }
+      m = src.slice(i).match(/^[A-Za-z][A-Za-z0-9_.]*/);
+      if (m) { out.push({ t: "name", v: m[0].toUpperCase() }); i += m[0].length; continue; }
+      m = src.slice(i).match(/^(<=|>=|<>|[+\-*/^&=<>(),;%])/);
+      if (m) { out.push({ t: "op", v: m[0] }); i += m[0].length; continue; }
+      throw new FErr("#ERROR!");
+    }
+    return out;
+  }
+
+  // argument separators: ";" always; "," only when not part of a decimal (tokenizer already consumed decimals)
+  function parse(tokens) {
+    let p = 0;
+    const peek = () => tokens[p];
+    const eat = v => { const t = tokens[p]; if (!t || (v && t.v !== v)) throw new FErr("#ERROR!"); p++; return t; };
+    const isOp = (...vs) => peek() && peek().t === "op" && vs.includes(peek().v);
+
+    function cmp() {
+      let l = concat();
+      while (isOp("=", "<>", "<", ">", "<=", ">=")) { const o = eat().v; l = { k: "bin", o, l, r: concat() }; }
+      return l;
+    }
+    function concat() {
+      let l = add();
+      while (isOp("&")) { eat(); l = { k: "bin", o: "&", l, r: add() }; }
+      return l;
+    }
+    function add() {
+      let l = mul();
+      while (isOp("+", "-")) { const o = eat().v; l = { k: "bin", o, l, r: mul() }; }
+      return l;
+    }
+    function mul() {
+      let l = pow();
+      while (isOp("*", "/")) { const o = eat().v; l = { k: "bin", o, l, r: pow() }; }
+      return l;
+    }
+    function pow() {
+      let l = unary();
+      while (isOp("^")) { eat(); l = { k: "bin", o: "^", l, r: unary() }; }
+      return l;
+    }
+    function unary() {
+      if (isOp("-")) { eat(); return { k: "neg", e: unary() }; }
+      if (isOp("+")) { eat(); return unary(); }
+      let e = primary();
+      while (isOp("%")) { eat(); e = { k: "bin", o: "/", l: e, r: { k: "num", v: 100 } }; }
+      return e;
+    }
+    function primary() {
+      const t = peek();
+      if (!t) throw new FErr("#ERROR!");
+      if (t.t === "num") { p++; return { k: "num", v: t.v }; }
+      if (t.t === "str") { p++; return { k: "str", v: t.v }; }
+      if (t.t === "ref") { p++; return { k: "ref", v: t.v }; }
+      if (t.t === "range") { p++; return { k: "range", v: t.v }; }
+      if (t.t === "name") {
+        p++;
+        if (isOp("(")) {
+          eat("("); const args = [];
+          if (!isOp(")")) {
+            args.push(cmp());
+            while (isOp(";", ",")) { eat(); args.push(cmp()); }
+          }
+          eat(")");
+          return { k: "call", n: t.v, args };
+        }
+        if (t.v === "TRUE" || t.v === "VERO") return { k: "bool", v: true };
+        if (t.v === "FALSE" || t.v === "FALSO") return { k: "bool", v: false };
+        throw new FErr("#NAME?");
+      }
+      if (isOp("(")) { eat("("); const e = cmp(); eat(")"); return e; }
+      throw new FErr("#ERROR!");
+    }
+    const ast = cmp();
+    if (p !== tokens.length) throw new FErr("#ERROR!");
+    return ast;
+  }
+
+  const ALIAS = {
+    SOMMA: "SUM", MEDIA: "AVERAGE", "CONTA.NUMERI": "COUNT", "CONTA.VALORI": "COUNTA", SE: "IF",
+    "SOMMA.SE": "SUMIF", "CONTA.SE": "COUNTIF", "CERCA.VERT": "VLOOKUP", ARROTONDA: "ROUND",
+    CONCATENA: "CONCATENATE", PRODOTTO: "PRODUCT", E: "AND", O: "OR", ASS: "ABS", "MEDIA.SE": "AVERAGEIF",
+    MAIUSC: "UPPER", MINUSC: "LOWER", LUNGHEZZA: "LEN", "SE.ERRORE": "IFERROR", OGGI: "TODAY"
+  };
+
+  function makeSheet(cols, rows, initial) {
+    const raw = {};
+    Object.assign(raw, initial || {});
+    let cache = {};
+    const inBounds = a => { const c = colIdx(a[0]), r = +a.slice(1); return c >= 0 && c < cols && r >= 1 && r <= rows; };
+
+    function rangeCells(rv) {
+      const [a, b] = rv.split(":");
+      const c1 = colIdx(a[0]), c2 = colIdx(b[0]), r1 = +a.slice(1), r2 = +b.slice(1);
+      const out = [];
+      for (let r = Math.min(r1, r2); r <= Math.max(r1, r2); r++) {
+        const row = [];
+        for (let c = Math.min(c1, c2); c <= Math.max(c1, c2); c++) row.push(colName(c) + r);
+        out.push(row);
+      }
+      return out;
+    }
+
+    function value(addr, stack) {
+      if (!inBounds(addr)) return new FErr("#REF!");
+      if (addr in cache) return cache[addr];
+      if (stack.includes(addr)) return new FErr("#REF!");
+      const src = raw[addr];
+      let v;
+      if (src == null || src === "") v = null;
+      else if (String(src).startsWith("=")) {
+        try { v = evalNode(parse(tokenize(String(src).slice(1))), [...stack, addr]); }
+        catch (e) { v = isErr(e) ? e : new FErr("#ERROR!"); }
+        if (Array.isArray(v)) v = v[0] && v[0][0] !== undefined ? v[0][0] : null;
+      } else {
+        const s = String(src).trim();
+        const n = s.replace(/\./g, "").replace(",", ".");
+        v = /^-?\d+(\.\d+)?$/.test(n) ? parseFloat(n) : /^-?\d+([.,]\d+)?%$/.test(s) ? parseFloat(s.replace(",", ".")) / 100 : src;
+      }
+      cache[addr] = v;
+      return v;
+    }
+
+    const flat = a => Array.isArray(a) ? a.flat(Infinity) : [a];
+    const num = v => {
+      if (isErr(v)) throw v;
+      if (v === null) return 0;
+      if (typeof v === "number") return v;
+      if (typeof v === "boolean") return v ? 1 : 0;
+      const n = parseFloat(String(v).replace(",", "."));
+      if (isNaN(n)) throw new FErr("#VALUE!");
+      return n;
+    };
+    const str = v => { if (isErr(v)) throw v; if (v === null) return ""; if (typeof v === "boolean") return v ? "TRUE" : "FALSE"; if (typeof v === "number") return fmtNum(v); return String(v); };
+    const truthy = v => { if (isErr(v)) throw v; if (typeof v === "string") return v !== ""; return !!v; };
+
+    function criterion(c) {
+      const s = String(c);
+      const m = s.match(/^(<=|>=|<>|<|>|=)?(.*)$/);
+      const op = m[1] || "=", rhs = m[2];
+      const rn = parseFloat(rhs.replace(",", "."));
+      const numeric = rhs !== "" && !isNaN(rn);
+      return v => {
+        if (numeric && typeof v === "number") {
+          return { "=": v === rn, "<>": v !== rn, "<": v < rn, ">": v > rn, "<=": v <= rn, ">=": v >= rn }[op];
+        }
+        const a = String(v ?? "").toLowerCase(), b = rhs.toLowerCase();
+        return op === "<>" ? a !== b : op === "=" ? a === b : false;
+      };
+    }
+
+    const FN = {
+      SUM: a => flat(a).filter(v => typeof v === "number" || isErr(v)).reduce((s, v) => s + num(v), 0),
+      AVERAGE: a => { const n = flat(a).filter(v => typeof v === "number" || isErr(v)).map(num); if (!n.length) throw new FErr("#DIV/0!"); return n.reduce((s, v) => s + v, 0) / n.length; },
+      MIN: a => { const n = flat(a).filter(v => typeof v === "number" || isErr(v)).map(num); return n.length ? Math.min(...n) : 0; },
+      MAX: a => { const n = flat(a).filter(v => typeof v === "number" || isErr(v)).map(num); return n.length ? Math.max(...n) : 0; },
+      COUNT: a => flat(a).filter(v => typeof v === "number").length,
+      COUNTA: a => flat(a).filter(v => v !== null && v !== "").length,
+      PRODUCT: a => flat(a).filter(v => typeof v === "number").reduce((s, v) => s * v, 1),
+      ABS: a => Math.abs(num(a[0])),
+      ROUND: a => { const d = a.length > 1 ? num(a[1]) : 0, f = Math.pow(10, d); return Math.round(num(a[0]) * f) / f; },
+      CONCATENATE: a => flat(a).map(str).join(""),
+      UPPER: a => str(a[0]).toUpperCase(),
+      LOWER: a => str(a[0]).toLowerCase(),
+      LEN: a => str(a[0]).length,
+      AND: a => flat(a).every(truthy),
+      OR: a => flat(a).some(truthy),
+      TODAY: () => new Date().toLocaleDateString("it-IT"),
+      SUMIF: (a) => {
+        const rng = flat(a[0]), test = criterion(a[1]), sum = a.length > 2 ? flat(a[2]) : rng;
+        return rng.reduce((s, v, i) => test(v) && typeof sum[i] === "number" ? s + sum[i] : s, 0);
+      },
+      AVERAGEIF: (a) => {
+        const rng = flat(a[0]), test = criterion(a[1]), src = a.length > 2 ? flat(a[2]) : rng;
+        const n = rng.map((v, i) => test(v) && typeof src[i] === "number" ? src[i] : null).filter(v => v !== null);
+        if (!n.length) throw new FErr("#DIV/0!");
+        return n.reduce((s, v) => s + v, 0) / n.length;
+      },
+      COUNTIF: a => flat(a[0]).filter(criterion(a[1])).length,
+      VLOOKUP: a => {
+        const key = a[0], table = a[1], ci = num(a[2]) - 1;
+        if (!Array.isArray(table) || ci < 0 || ci >= table[0].length) throw new FErr("#REF!");
+        // sempre corrispondenza esatta: la ricerca approssimata richiede dati ordinati
+        const k = String(key).toLowerCase();
+        for (const row of table) if (String(row[0] ?? "").toLowerCase() === k || row[0] === key) return row[ci];
+        throw new FErr("#N/A");
+      }
+    };
+
+    function evalNode(n, stack) {
+      switch (n.k) {
+        case "num": case "str": case "bool": return n.v;
+        case "ref": { const v = value(n.v, stack); if (isErr(v)) throw v; return v; }
+        case "range": return rangeCells(n.v).map(r => r.map(a => value(a, stack)));
+        case "neg": return -num(evalNode(n.e, stack));
+        case "bin": {
+          const l = evalNode(n.l, stack), r = evalNode(n.r, stack);
+          const L = Array.isArray(l) ? l[0][0] : l, R = Array.isArray(r) ? r[0][0] : r;
+          switch (n.o) {
+            case "+": return num(L) + num(R);
+            case "-": return num(L) - num(R);
+            case "*": return num(L) * num(R);
+            case "/": { const d = num(R); if (d === 0) throw new FErr("#DIV/0!"); return num(L) / d; }
+            case "^": return Math.pow(num(L), num(R));
+            case "&": return str(L) + str(R);
+            default: {
+              if (isErr(L)) throw L; if (isErr(R)) throw R;
+              const a = typeof L === "string" ? L.toLowerCase() : (L ?? 0), b = typeof R === "string" ? R.toLowerCase() : (R ?? 0);
+              return { "=": a === b, "<>": a !== b, "<": a < b, ">": a > b, "<=": a <= b, ">=": a >= b }[n.o];
+            }
+          }
+        }
+        case "call": {
+          const name = ALIAS[n.n] || n.n;
+          if (name === "IF") {
+            const c = truthy(evalNode(n.args[0], stack));
+            const pick = c ? n.args[1] : n.args[2];
+            return pick ? evalNode(pick, stack) : c;
+          }
+          if (name === "IFERROR") {
+            try { const v = evalNode(n.args[0], stack); if (isErr(v)) throw v; return v; }
+            catch (e) { return n.args[1] ? evalNode(n.args[1], stack) : ""; }
+          }
+          const f = FN[name];
+          if (!f) throw new FErr("#NAME?");
+          const args = n.args.map(a => evalNode(a, stack));
+          const v = f(args);
+          return v;
+        }
+      }
+      throw new FErr("#ERROR!");
+    }
+
+    return {
+      cols, rows, raw,
+      get: a => raw[a] ?? "",
+      set: (a, v) => { raw[a] = v; cache = {}; },
+      val: a => value(a, []),
+      reset: data => { for (const k of Object.keys(raw)) delete raw[k]; Object.assign(raw, data); cache = {}; },
+      display: a => {
+        const v = value(a, []);
+        if (isErr(v)) return { text: v.code, cls: "err" };
+        if (v === null) return { text: "", cls: "" };
+        if (typeof v === "number") return { text: isFinite(v) ? fmtNum(v) : "#DIV/0!", cls: "num" };
+        if (typeof v === "boolean") return { text: v ? "VERO" : "FALSO", cls: "num" };
+        return { text: String(v), cls: "" };
+      }
+    };
+  }
+
+  /* ================= hero typing ================= */
+  (function hero() {
+    const fx = $("#heroFx"), t1 = $("#heroTarget"), t2 = $("#heroTarget2");
+    const formula = "=SOMMA(B2:B4)";
+    t2.textContent = "1.072";
+    const run = () => {
+      let i = 0; t1.textContent = ""; t1.classList.remove("pop");
+      fx.innerHTML = '<span class="caret"></span>';
+      const step = () => {
+        i++;
+        fx.innerHTML = esc(formula.slice(0, i)) + '<span class="caret"></span>';
+        if (i < formula.length) setTimeout(step, 90);
+        else setTimeout(() => { t1.textContent = "1.080"; t1.classList.add("pop"); fx.textContent = formula; setTimeout(run, 4200); }, 500);
+      };
+      setTimeout(step, 600);
+    };
+    if (reduced) { fx.textContent = formula; t1.textContent = "1.080"; } else run();
+  })();
+
+  /* ================= anatomy ================= */
+  (function anatomy() {
+    const g = $("#anat"), read = $("#anatRead"), C = 5, R = 5;
+    let html = '<div class="h"></div>';
+    for (let c = 0; c < C; c++) html += `<div class="h" data-col="${c}">${colName(c)}</div>`;
+    for (let r = 1; r <= R; r++) {
+      html += `<div class="h" data-row="${r}">${r}</div>`;
+      for (let c = 0; c < C; c++) html += `<div class="c" data-c="${c}" data-r="${r}" tabindex="0" role="gridcell" aria-label="${colName(c)}${r}"></div>`;
+    }
+    g.innerHTML = html;
+    const pick = (c, r) => {
+      g.querySelectorAll(".c").forEach(el => {
+        const ec = +el.dataset.c, er = +el.dataset.r;
+        el.classList.toggle("cell", ec === c && er === r);
+        el.classList.toggle("col", ec === c && er !== r);
+        el.classList.toggle("row", er === r && ec !== c);
+      });
+      g.querySelectorAll(".h").forEach(el => el.classList.toggle("on", +el.dataset.col === c && el.dataset.col !== undefined || +el.dataset.row === r && el.dataset.row !== undefined));
+      read.innerHTML = `Hai selezionato la cella <strong>${colName(c)}${r}</strong>: colonna <strong>${colName(c)}</strong> (in verde, verticale), riga <strong>${r}</strong> (in verde, orizzontale). In una formula la scriveresti <strong>=${colName(c)}${r}</strong>.`;
+    };
+    g.addEventListener("click", e => { const el = e.target.closest(".c"); if (el) pick(+el.dataset.c, +el.dataset.r); });
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { const el = e.target.closest(".c"); if (el) { e.preventDefault(); pick(+el.dataset.c, +el.dataset.r); } } });
+    pick(2, 4);
+  })();
+
+  /* ================= playground ================= */
+  const PG_DATA = {
+    A1: "Voce", B1: "Gennaio", C1: "Febbraio", D1: "Totale",
+    A2: "Affitto", B2: "650", C2: "650",
+    A3: "Spesa", B3: "310", C3: "284",
+    A4: "Bollette", B4: "120", C4: "138",
+    A5: "Trasporti", B5: "85", C5: "92",
+    A6: "Svago", B6: "140", C6: "210",
+    A7: "Totale"
+  };
+  const PG_COLS = 5, PG_ROWS = 9;
+  const pg = makeSheet(PG_COLS, PG_ROWS, { ...PG_DATA });
+  const pgTable = $("#pgTable"), pgInput = $("#pgInput"), pgAddr = $("#pgAddr"), pgStat = $("#pgStat");
+  let sel = "B7", anchor = "B7", selEnd = "B7", editing = null;
+
+  function buildPg() {
+    let h = "<thead><tr><th class='rh'></th>";
+    for (let c = 0; c < PG_COLS; c++) h += `<th data-col="${c}">${colName(c)}</th>`;
+    h += "</tr></thead><tbody>";
+    for (let r = 1; r <= PG_ROWS; r++) {
+      h += `<tr><th class="rh" data-row="${r}">${r}</th>`;
+      for (let c = 0; c < PG_COLS; c++) h += `<td data-a="${colName(c)}${r}" tabindex="-1"></td>`;
+      h += "</tr>";
+    }
+    pgTable.innerHTML = h + "</tbody>";
+  }
+  function renderPg(changed) {
+    pgTable.querySelectorAll("td").forEach(td => {
+      const a = td.dataset.a, d = pg.display(a);
+      if (td.querySelector("input")) return;
+      const before = td.textContent;
+      td.textContent = d.text;
+      td.className = d.cls + (a[1] === "1" && a.length === 2 || a[0] === "A" && a === "A7" ? " bold" : "");
+      if (changed && before !== d.text && !reduced) td.classList.add("flash");
+    });
+    paintSel();
+    checkMissions();
+    drawChart();
+  }
+  function rectOf(a, b) {
+    const c1 = colIdx(a[0]), c2 = colIdx(b[0]), r1 = +a.slice(1), r2 = +b.slice(1);
+    return { c1: Math.min(c1, c2), c2: Math.max(c1, c2), r1: Math.min(r1, r2), r2: Math.max(r1, r2) };
+  }
+  function paintSel() {
+    const R = rectOf(anchor, selEnd);
+    pgTable.querySelectorAll("td").forEach(td => {
+      const a = td.dataset.a, c = colIdx(a[0]), r = +a.slice(1);
+      td.classList.toggle("sel", a === sel);
+      td.classList.toggle("inrange", (R.c1 !== R.c2 || R.r1 !== R.r2) && c >= R.c1 && c <= R.c2 && r >= R.r1 && r <= R.r2);
+    });
+    pgTable.querySelectorAll("th[data-col]").forEach(th => th.classList.toggle("on", +th.dataset.col >= R.c1 && +th.dataset.col <= R.c2));
+    pgTable.querySelectorAll("th[data-row]").forEach(th => th.classList.toggle("on", +th.dataset.row >= R.r1 && +th.dataset.row <= R.r2));
+    const multi = R.c1 !== R.c2 || R.r1 !== R.r2;
+    pgAddr.textContent = multi ? `${colName(R.c1)}${R.r1}:${colName(R.c2)}${R.r2}` : sel;
+    if (document.activeElement !== pgInput) pgInput.value = pg.get(sel);
+    if (multi) {
+      const nums = [];
+      for (let r = R.r1; r <= R.r2; r++) for (let c = R.c1; c <= R.c2; c++) { const v = pg.val(colName(c) + r); if (typeof v === "number") nums.push(v); }
+      const s = nums.reduce((x, y) => x + y, 0);
+      pgStat.textContent = nums.length ? `Somma: ${fmtNum(s)} · Media: ${fmtNum(s / nums.length)} · Conteggio: ${nums.length}` : "Nessun numero nell’intervallo.";
+    } else pgStat.textContent = "Trascina su più celle per vedere somma e media, come in basso a destra in Fogli.";
+  }
+  function select(a, extend) {
+    sel = extend ? sel : a;
+    if (!extend) anchor = a;
+    selEnd = a;
+    if (!extend) sel = a;
+    paintSel();
+  }
+  function commit(a, v) { pg.set(a, v); renderPg(true); }
+  function startEdit(td, initial) {
+    if (editing) return;
+    const a = td.dataset.a;
+    const inp = document.createElement("input");
+    inp.value = initial != null ? initial : pg.get(a);
+    inp.spellcheck = false;
+    td.textContent = ""; td.appendChild(inp); inp.focus();
+    editing = { td, inp, a };
+    const done = (save, move) => {
+      if (!editing) return;
+      const val = inp.value; editing = null; inp.remove();
+      if (save) commit(a, val); else renderPg(false);
+      if (move) moveSel(move[0], move[1]);
+      focusCell();
+    };
+    inp.addEventListener("keydown", e => {
+      if (e.key === "Enter") { e.preventDefault(); done(true, [0, 1]); }
+      else if (e.key === "Tab") { e.preventDefault(); done(true, [1, 0]); }
+      else if (e.key === "Escape") { e.preventDefault(); done(false); }
+      e.stopPropagation();
+    });
+    inp.addEventListener("input", () => { pgInput.value = inp.value; });
+    inp.addEventListener("blur", () => done(true));
+  }
+  function focusCell() { const td = pgTable.querySelector(`td[data-a="${sel}"]`); if (td) td.focus({ preventScroll: true }); }
+  function moveSel(dc, dr) {
+    const c = Math.max(0, Math.min(PG_COLS - 1, colIdx(sel[0]) + dc)), r = Math.max(1, Math.min(PG_ROWS, +sel.slice(1) + dr));
+    select(colName(c) + r);
+  }
+
+  buildPg();
+  let dragging = false;
+  pgTable.addEventListener("mousedown", e => {
+    const td = e.target.closest("td"); if (!td || td.querySelector("input")) return;
+    e.preventDefault(); dragging = true; select(td.dataset.a, e.shiftKey); focusCell();
+  });
+  pgTable.addEventListener("mouseover", e => { if (!dragging) return; const td = e.target.closest("td"); if (td) select(td.dataset.a, true); });
+  addEventListener("mouseup", () => { dragging = false; });
+  pgTable.addEventListener("click", e => { const td = e.target.closest("td"); if (td && !dragging && e.detail === 0) select(td.dataset.a); });
+  pgTable.addEventListener("dblclick", e => { const td = e.target.closest("td"); if (td) startEdit(td); });
+  pgTable.addEventListener("touchend", e => {
+    const td = e.target.closest("td"); if (!td || td.querySelector("input")) return;
+    if (td.dataset.a === sel) { e.preventDefault(); startEdit(td); } else select(td.dataset.a);
+  });
+  pgTable.addEventListener("keydown", e => {
+    if (editing) return;
+    const map = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], Enter: [0, 1], Tab: [1, 0] };
+    if (e.key === "F2") { e.preventDefault(); startEdit(pgTable.querySelector(`td[data-a="${sel}"]`)); return; }
+    if (e.key === "Delete" || e.key === "Backspace") { e.preventDefault(); const R = rectOf(anchor, selEnd); for (let r = R.r1; r <= R.r2; r++) for (let c = R.c1; c <= R.c2; c++) pg.set(colName(c) + r, ""); renderPg(true); return; }
+    if (map[e.key]) {
+      e.preventDefault();
+      if (e.shiftKey && e.key.startsWith("Arrow")) {
+        const c = Math.max(0, Math.min(PG_COLS - 1, colIdx(selEnd[0]) + map[e.key][0])), r = Math.max(1, Math.min(PG_ROWS, +selEnd.slice(1) + map[e.key][1]));
+        select(colName(c) + r, true);
+      } else { moveSel(...map[e.key]); focusCell(); }
+      return;
+    }
+    if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); startEdit(pgTable.querySelector(`td[data-a="${sel}"]`), e.key); }
+  });
+  pgInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); pgInputFor = null; commit(sel, pgInput.value); moveSel(0, 1); focusCell(); }
+    if (e.key === "Escape") { pgInput.value = pg.get(sel); focusCell(); }
+  });
+  let pgInputFor = null;
+  pgInput.addEventListener("focus", () => { pgInputFor = sel; });
+  pgInput.addEventListener("blur", () => { const a = pgInputFor; pgInputFor = null; if (a && pgInput.value !== pg.get(a)) commit(a, pgInput.value); });
+  $("#pgReset").addEventListener("click", () => { doneMissions.clear(); pg.reset({ ...PG_DATA }); select("B7"); renderPg(true); });
+
+  /* ---- missions ---- */
+  const norm = s => String(s || "").toUpperCase().replace(/\s/g, "");
+  const hasFn = (a, names) => names.some(n => norm(pg.get(a)).includes(n + "("));
+  const MISSIONS = [
+    { t: "Somma le spese di gennaio", h: "Seleziona B7 e scrivi <code>=SOMMA(B2:B6)</code>", ok: () => pg.val("B7") === 1305 && norm(pg.get("B7")).startsWith("=") },
+    { t: "Fai lo stesso per febbraio", h: "In C7: <code>=SOMMA(C2:C6)</code>", ok: () => pg.val("C7") === 1374 && norm(pg.get("C7")).startsWith("=") },
+    { t: "Totale per voce", h: "In D2: <code>=B2+C2</code>", ok: () => pg.val("D2") === 1300 && norm(pg.get("D2")).startsWith("=") },
+    { t: "La spesa media di gennaio", h: "In B8: <code>=MEDIA(B2:B6)</code>", ok: () => pg.val("B8") === 261 && hasFn("B8", ["MEDIA", "AVERAGE"]) },
+    { t: "Un avviso automatico", h: "In E2: <code>=SE(D2&gt;1000;\"Alto\";\"Ok\")</code>. Serve prima D2.", ok: () => hasFn("E2", ["SE", "IF"]) && ["Alto", "Ok"].includes(pg.val("E2")) },
+    { t: "Cambia un numero e guarda tutto ricalcolarsi", h: "Modifica una qualsiasi cella fra B2 e C6.", ok: () => ["B2", "B3", "B4", "B5", "B6", "C2", "C3", "C4", "C5", "C6"].some(a => pg.get(a) !== PG_DATA[a]) }
+  ];
+  const mList = $("#missions");
+  mList.innerHTML = MISSIONS.map((m, i) => `<li data-i="${i}"><span class="tick" aria-hidden="true">✓</span><div>${m.t}<small>${m.h}</small></div></li>`).join("");
+  const doneMissions = new Set();
+  function checkMissions() {
+    MISSIONS.forEach((m, i) => { let ok = false; try { ok = m.ok(); } catch (e) {} if (ok) doneMissions.add(i); mList.children[i].classList.toggle("done", doneMissions.has(i)); });
+    const n = doneMissions.size;
+    $("#missionProgress").textContent = n === MISSIONS.length ? `Tutte e ${n} le missioni completate. Ottimo lavoro.` : `${n} di ${MISSIONS.length} missioni completate`;
+  }
+
+  /* ================= absolute refs demo ================= */
+  (function fill() {
+    const table = $("#fillTable"), legend = $("#fillLegend");
+    let mode = "rel", shown = 5;
+    const prices = [12, 30, 8.5, 45, 20];
+    function formulaFor(r) { return mode === "rel" ? `=B${r}*F${r - 1}` : `=B${r}*$F$1`; }
+    function render() {
+      const s = makeSheet(6, 6, {});
+      s.set("A1", "Prodotto"); s.set("B1", "Prezzo"); s.set("C1", "IVA"); s.set("E1", "Aliquota"); s.set("F1", "0,22");
+      ["Caffè", "Libro", "Penne", "Borsa", "Tazza"].forEach((p, i) => { s.set("A" + (i + 2), p); s.set("B" + (i + 2), String(prices[i]).replace(".", ",")); });
+      for (let r = 2; r <= 6; r++) if (r - 2 < shown) s.set("C" + r, formulaFor(r));
+      let h = "<thead><tr><th class='rh'></th>" + ["A", "B", "C", "E", "F"].map(c => `<th>${c}</th>`).join("") + "</tr></thead><tbody>";
+      for (let r = 1; r <= 6; r++) {
+        h += `<tr><th class="rh">${r}</th>`;
+        for (const c of ["A", "B", "C", "E", "F"]) {
+          const a = c + r, d = s.display(a);
+          const hl = c === "C" && r >= 2 && r - 2 < shown ? " inrange" : "";
+          const bad = c === "C" && r > 2 && mode === "rel" && r - 2 < shown;
+          h += `<td class="${d.cls}${hl}${r === 1 ? " bold" : ""}${c === "F" && r === 1 ? " sel" : ""}" title="${esc(s.get(a))}"${bad ? ' style="color:var(--warn)"' : ""}>${esc(d.text)}</td>`;
+        }
+        h += "</tr>";
+      }
+      table.innerHTML = h + "</tbody>";
+      const rows = [];
+      for (let r = 2; r < 2 + shown; r++) {
+        const f = formulaFor(r).replace(/\$/g, '<span class="dollar">$</span>');
+        rows.push(`<div style="margin:4px 0">C${r}: <code${r > 2 ? ' class="shift"' : ""}>${f}</code></div>`);
+      }
+      legend.innerHTML = (mode === "rel"
+        ? `<p><strong>Senza $</strong> il riferimento all’aliquota scende insieme alla formula: da <code>F1</code> diventa <code>F2</code>, <code>F3</code>… che sono vuote. Risultato: IVA a zero dalla seconda riga in giù.</p>`
+        : `<p><strong>Con $F$1</strong> la colonna B scorre (B2, B3, B4…) ma l’aliquota resta ancorata alla cella F1. Tutte le righe sono giuste.</p>`) + rows.join("");
+    }
+    function play() {
+      if (reduced) { shown = 5; render(); return; }
+      shown = 1; render();
+      const t = setInterval(() => { shown++; render(); if (shown >= 5) clearInterval(t); }, 380);
+    }
+    document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      document.querySelectorAll('[data-mode]').forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-selected", x === b); });
+      play();
+    }));
+    $("#fillPlay").addEventListener("click", play);
+    render();
+  })();
+
+  /* ================= sort & filter ================= */
+  (function sortFilter() {
+    const rows = [
+      ["Anna", "Napoli", "Marzo", 1240], ["Luca", "Salerno", "Marzo", 860], ["Sara", "Caserta", "Marzo", 450],
+      ["Marco", "Napoli", "Aprile", 1520], ["Giulia", "Salerno", "Aprile", 390], ["Paolo", "Caserta", "Aprile", 980],
+      ["Elena", "Napoli", "Maggio", 710], ["Davide", "Salerno", "Maggio", 1310]
+    ];
+    const head = ["Venditore", "Città", "Mese", "Vendite €"];
+    const table = $("#sfTable"), stat = $("#sfStat");
+    let sortCol = null, dir = 1, city = "*", cf = false;
+    function render() {
+      const data = rows.slice();
+      if (sortCol !== null) data.sort((a, b) => (a[sortCol] > b[sortCol] ? 1 : a[sortCol] < b[sortCol] ? -1 : 0) * dir);
+      let h = "<thead><tr><th class='rh'></th>" + head.map((_, i) => `<th>${colName(i)}</th>`).join("") + "</tr></thead><tbody>";
+      h += `<tr><th class="rh">1</th>${head.map((t, i) => `<th class="sortable" data-i="${i}" style="text-align:left;padding:0 8px;font-weight:600;color:var(--ink)" role="button" tabindex="0" aria-label="Ordina per ${t}">${t} ${sortCol === i ? (dir > 0 ? "↑" : "↓") : "↕"}</th>`).join("")}</tr>`;
+      let vis = 0, tot = 0;
+      data.forEach((r, i) => {
+        const hide = city !== "*" && r[1] !== city;
+        if (!hide) { vis++; tot += r[3]; }
+        const c3 = cf ? (r[3] >= 1000 ? " cf-hi" : r[3] < 500 ? " cf-lo" : "") : "";
+        h += `<tr class="${hide ? "hide" : ""}"><th class="rh">${i + 2}</th><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="num${c3}">${fmtNum(r[3])}</td></tr>`;
+      });
+      table.innerHTML = h + "</tbody>";
+      const range = city === "*" ? "D2:D9" : `B2:B9;"${city}";D2:D9`;
+      stat.textContent = (city === "*" ? `=SOMMA(${range})` : `=SOMMA.SE(${range})`) + ` → ${fmtNum(tot)} € · ${vis} righe visibili` + (cf ? " · verde ≥ 1.000, rosso < 500" : "");
+    }
+    table.addEventListener("click", e => {
+      const th = e.target.closest("th.sortable"); if (!th) return;
+      const i = +th.dataset.i; if (sortCol === i) dir = -dir; else { sortCol = i; dir = 1; } render();
+    });
+    table.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("th.sortable")) { e.preventDefault(); e.target.click(); } });
+    document.querySelectorAll("[data-city]").forEach(b => b.addEventListener("click", () => {
+      city = b.dataset.city; document.querySelectorAll("[data-city]").forEach(x => x.classList.toggle("on", x === b)); render();
+    }));
+    $("#cfBtn").addEventListener("click", e => { cf = !cf; e.currentTarget.classList.toggle("on", cf); render(); });
+    render();
+  })();
+
+  /* ================= chart ================= */
+  let chartType = "bar";
+  function drawChart() {
+    const svg = $("#chart"); if (!svg) return;
+    const items = [];
+    for (let r = 2; r <= PG_ROWS; r++) {
+      const lab = pg.val("A" + r), v = pg.val("B" + r);
+      if (typeof v === "number" && lab && typeof lab === "string" && !/^totale$/i.test(lab)) items.push({ lab, v });
+    }
+    const W = 640, H = 300, P = { l: 48, r: 16, t: 28, b: 36 };
+    if (!items.length) { svg.innerHTML = `<text x="${W / 2}" y="${H / 2}" text-anchor="middle">Nessun dato numerico nelle colonne A e B</text>`; return; }
+    const title = String(pg.val("B1") || "Valori");
+    let s = `<text x="${P.l}" y="16" class="val">${esc(title)}</text>`;
+    if (chartType === "pie") {
+      const tot = items.reduce((a, b) => a + Math.max(0, b.v), 0) || 1;
+      const cx = 200, cy = 160, R = 110; let ang = -Math.PI / 2;
+      const shades = [100, 78, 58, 42, 28, 18];
+      items.forEach((it, i) => {
+        const a = Math.max(0, it.v) / tot * Math.PI * 2, a2 = ang + a;
+        const large = a > Math.PI ? 1 : 0;
+        const x1 = cx + R * Math.cos(ang), y1 = cy + R * Math.sin(ang), x2 = cx + R * Math.cos(a2), y2 = cy + R * Math.sin(a2);
+        const col = `color-mix(in srgb, var(--accent) ${shades[i % shades.length]}%, var(--bg-2))`;
+        const d = a >= Math.PI * 2 - 1e-6 ? `M${cx - R},${cy}a${R},${R} 0 1,0 ${R * 2},0a${R},${R} 0 1,0 -${R * 2},0` : `M${cx},${cy}L${x1},${y1}A${R},${R} 0 ${large} 1 ${x2},${y2}Z`;
+        s += `<path class="slice" d="${d}" style="fill:${col}"><title>${esc(it.lab)}: ${fmtNum(it.v)}</title></path>`;
+        s += `<rect x="360" y="${60 + i * 30}" width="14" height="14" rx="3" style="fill:${col}"/><text x="382" y="${72 + i * 30}">${esc(it.lab)} · ${Math.round(Math.max(0, it.v) / tot * 100)}%</text>`;
+        ang = a2;
+      });
+      svg.innerHTML = s; return;
+    }
+    const max = Math.max(...items.map(i => i.v), 0) || 1;
+    const nice = Math.pow(10, Math.floor(Math.log10(max))) * (max / Math.pow(10, Math.floor(Math.log10(max))) > 5 ? 2 : 1);
+    const top = Math.ceil(max / nice) * nice;
+    const ih = H - P.t - P.b, iw = W - P.l - P.r;
+    for (let k = 0; k <= 4; k++) {
+      const y = P.t + ih - ih * k / 4;
+      s += `<line x1="${P.l}" x2="${W - P.r}" y1="${y}" y2="${y}"/><text x="${P.l - 8}" y="${y + 4}" text-anchor="end">${fmtNum(top * k / 4)}</text>`;
+    }
+    const bw = iw / items.length;
+    const pts = [];
+    items.forEach((it, i) => {
+      const h = Math.max(0, it.v) / top * ih, x = P.l + i * bw, y = P.t + ih - h;
+      if (chartType === "bar") s += `<rect class="bar" x="${x + bw * .2}" y="${y}" width="${bw * .6}" height="${h}" rx="4"><title>${esc(it.lab)}: ${fmtNum(it.v)}</title></rect><text class="val" x="${x + bw / 2}" y="${y - 6}" text-anchor="middle">${fmtNum(it.v)}</text>`;
+      pts.push([x + bw / 2, y, it]);
+      s += `<text x="${x + bw / 2}" y="${H - 12}" text-anchor="middle">${esc(String(it.lab).slice(0, 12))}</text>`;
+    });
+    if (chartType === "line") {
+      s += `<path class="line-path" d="${pts.map((p, i) => (i ? "L" : "M") + p[0] + "," + p[1]).join("")}"/>`;
+      pts.forEach(p => { s += `<circle class="dot" cx="${p[0]}" cy="${p[1]}" r="5"><title>${esc(p[2].lab)}: ${fmtNum(p[2].v)}</title></circle><text class="val" x="${p[0]}" y="${p[1] - 12}" text-anchor="middle">${fmtNum(p[2].v)}</text>`; });
+    }
+    svg.innerHTML = s;
+  }
+  document.querySelectorAll("#chartType button").forEach(b => b.addEventListener("click", () => {
+    chartType = b.dataset.type;
+    document.querySelectorAll("#chartType button").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-selected", x === b); });
+    drawChart();
+  }));
+
+  renderPg(false);
+
+  /* ================= roles ================= */
+  (function roles() {
+    const caps = [
+      ["Vedere i dati", ["view", "comment", "edit"]],
+      ["Scaricare o stampare*", ["view", "comment", "edit"]],
+      ["Aggiungere commenti", ["comment", "edit"]],
+      ["Modificare celle e formule", ["edit"]],
+      ["Aggiungere o eliminare schede", ["edit"]],
+      ["Condividere con altri*", ["edit"]],
+      ["Vedere la cronologia versioni", ["edit"]]
+    ];
+    const box = $("#can");
+    const show = role => { box.innerHTML = caps.map(([t, who]) => { const y = who.includes(role); return `<li class="${y ? "y" : "n"}"><span>${y ? "✓" : "–"}</span>${t}</li>`; }).join("") + `<li class="n" style="grid-column:1/-1;font-size:.9rem">* il proprietario può disattivarlo nelle impostazioni di condivisione.</li>`; };
+    document.querySelectorAll(".role").forEach(b => b.addEventListener("click", () => {
+      document.querySelectorAll(".role").forEach(x => x.classList.toggle("on", x === b)); show(b.dataset.role);
+    }));
+    show("view");
+  })();
+
+  /* ================= shortcuts ================= */
+  (function kb() {
+    const list = [
+      ["Copia / Incolla", "C", "V", "cv"],
+      ["Annulla / Ripeti", "Z", "Y", "zy"],
+      ["Incolla solo valori", "Shift + V", null, "pv"],
+      ["Grassetto", "B"],
+      ["Trova e sostituisci", "H"],
+      ["Vai all’ultima cella con dati", "↓ / →"],
+      ["Seleziona colonna", null, null, "col"],
+      ["Inserisci data di oggi", ";"],
+      ["Nuova riga dentro una cella", null, null, "nl"],
+      ["Blocca il riferimento ($)", null, null, "f4"]
+    ];
+    const box = $("#kb");
+    const k = s => s.split(" + ").map(x => `<kbd>${x}</kbd>`).join(" + ");
+    const show = os => {
+      const M = os === "mac" ? "⌘" : "Ctrl";
+      box.innerHTML = list.map(([t, a, b, sp]) => {
+        let keys;
+        if (sp === "cv") keys = `${k(M + " + C")} / ${k(M + " + V")}`;
+        else if (sp === "zy") keys = `${k(M + " + Z")} / ${k(M + " + " + (os === "mac" ? "Shift + Z" : "Y"))}`;
+        else if (sp === "pv") keys = k(M + " + Shift + V");
+        else if (sp === "col") keys = k("Ctrl + Spazio");
+        else if (sp === "nl") keys = k((os === "mac" ? "⌥" : "Alt") + " + Invio");
+        else if (sp === "f4") keys = os === "mac" ? k("fn + F4") + " o " + k("⌘ + T") : k("F4");
+        else keys = k(M + " + " + a);
+        return `<div><span>${t}</span><span>${keys}</span></div>`;
+      }).join("");
+      $("#kbAll").textContent = M;
+    };
+    document.querySelectorAll("[data-os]").forEach(b => b.addEventListener("click", () => {
+      document.querySelectorAll("[data-os]").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-selected", x === b); }); show(b.dataset.os);
+    }));
+    show(/Mac|iPhone|iPad/.test(navigator.platform) ? "mac" : "win");
+    if (/Mac|iPhone|iPad/.test(navigator.platform)) document.querySelectorAll("[data-os]").forEach(x => { x.classList.toggle("on", x.dataset.os === "mac"); x.setAttribute("aria-selected", x.dataset.os === "mac"); });
+  })();
+
+  /* ================= quiz ================= */
+  (function quiz() {
+    const Q = [
+      { q: "Con cosa deve iniziare una formula?", o: ["Con il simbolo =", "Con la parola FORMULA", "Con le virgolette"], a: 0, w: "Senza = Fogli considera ciò che scrivi come testo normale." },
+      { q: "Quante celle ci sono nell’intervallo A1:B3?", o: ["3", "5", "6"], a: 2, w: "Due colonne (A e B) per tre righe (1, 2, 3) fanno 6 celle." },
+      { q: "Copi =A2*C1 una riga più in basso. Cosa diventa?", o: ["=A2*C1", "=A3*C2", "=A3*C1"], a: 1, w: "Senza $ entrambi i riferimenti si spostano di una riga." },
+      { q: "Vuoi che un’aliquota in F1 resti fissa quando copi la formula. Come la scrivi?", o: ["F1", "$F$1", "#F1"], a: 1, w: "Il $ davanti alla lettera e al numero blocca colonna e riga." },
+      { q: "Un collega deve solo lasciare suggerimenti senza toccare i dati. Che ruolo gli dai?", o: ["Editor", "Commentatore", "Visualizzatore"], a: 1, w: "Il commentatore vede tutto e può commentare, ma non modificare le celle." }
+    ];
+    const box = $("#quizBox"); let right = 0, done = 0;
+    box.innerHTML = Q.map((q, i) => `<div class="q" data-i="${i}"><p>${i + 1}. ${q.q}</p><div class="opts">${q.o.map((o, j) => `<button data-j="${j}">${o}</button>`).join("")}</div><p class="why">${q.w}</p></div>`).join("");
+    box.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      const qd = b.closest(".q"); if (qd.classList.contains("answered")) return;
+      const q = Q[+qd.dataset.i], j = +b.dataset.j;
+      qd.classList.add("answered");
+      qd.querySelectorAll("button").forEach((x, k) => { x.disabled = true; if (k === q.a) x.classList.add("right"); });
+      if (j !== q.a) b.classList.add("wrong"); else right++;
+      done++;
+      if (done === Q.length) $("#quizScore").textContent = `Risultato: ${right} su ${Q.length}. ` + (right === Q.length ? "Sei pronto per usare Fogli sul serio." : "Rileggi i capitoli delle risposte sbagliate e riprova.");
+    });
+  })();
+
+  /* ================= toc + reveal ================= */
+  const links = [...document.querySelectorAll(".toc a")];
+  const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); const i = secs.indexOf(e.target); if (i >= 0) links.forEach((l, k) => l.classList.toggle("on", k === i)); }
+    }), { rootMargin: "-30% 0px -60% 0px" });
+    secs.forEach(s => io.observe(s));
+    const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); rv.unobserve(e.target); } }), { threshold: .05 });
+    document.querySelectorAll(".reveal").forEach(el => rv.observe(el));
+  } else document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+})();
+</script>
+</body>
+</html>
