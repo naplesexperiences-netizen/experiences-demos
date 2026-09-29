@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elementi di informatica</title>
-<meta name="description" content="Un sito per capire le basi dell’informatica: cos’è, da cosa è fatto un computer, il sistema binario e i software. Con esempi interattivi.">
+<meta name="description" content="Un sito per capire le basi dell’informatica: cos’è, da cosa è fatto un computer, il sistema binario, i software, i file e la compressione. Con esempi interattivi.">
 <meta name="demo:tags" content="didattica,informatica,scuola,interattivo">
 <meta name="demo:category" content="education">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,37 +140,9 @@
   @media (max-width: 480px) { .timeline { grid-template-columns: 1fr; border-top: 0; border-left: 2px solid var(--ink); padding-left: 20px; } .timeline li { padding: 0; } .timeline li::before { top: 12px; left: -27px; } }
 
   /* ---------- computer explorer ---------- */
-  .explorer { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: start; }
+  .grid-2 > *, .explorer > *, .grid-3 > * { min-width: 0; }
+  .explorer { display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: start; }
   @media (max-width: 860px) { .explorer { grid-template-columns: 1fr; } }
-  .board {
-    background: var(--card); border: 1px solid var(--rule); border-radius: 18px; padding: 20px;
-    display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(84px, auto); gap: 10px;
-  }
-  .part {
-    appearance: none; border: 1.5px solid var(--rule); background: var(--paper); color: var(--ink);
-    border-radius: 12px; padding: 12px; text-align: left; cursor: pointer; font: inherit;
-    display: flex; flex-direction: column; justify-content: space-between; gap: 8px;
-    transition: border-color .2s, background .2s, transform .15s;
-  }
-  .part:hover { border-color: var(--ink-soft); }
-  .part:active { transform: scale(0.98); }
-  .part[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
-  .part .abbr { font: 600 0.75rem var(--mono); color: var(--accent); letter-spacing: 0.05em; }
-  .part .name { font-weight: 600; line-height: 1.2; font-size: 0.98rem; }
-  .p-cpu { grid-column: 2 / 4; grid-row: 1 / 3; }
-  .p-ram { grid-column: 4; grid-row: 1 / 3; }
-  .p-mb  { grid-column: 1; grid-row: 1 / 3; }
-  .p-gpu { grid-column: 1 / 3; }
-  .p-ssd { grid-column: 3; }
-  .p-psu { grid-column: 4; }
-  .p-in  { grid-column: 1 / 3; }
-  .p-out { grid-column: 3 / 5; }
-  .p-cpu .name { font-family: var(--serif); font-size: 1.6rem; }
-  @media (max-width: 480px) {
-    .board { grid-template-columns: 1fr 1fr; }
-    .board .part { grid-column: auto; grid-row: auto; }
-    .board .p-cpu { grid-column: 1 / 3; }
-  }
   .detail { position: sticky; top: 88px; }
   .detail h3 { font-size: 2rem; }
   .detail .abbr { font: 600 0.8rem var(--mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
@@ -179,15 +151,6 @@
   .detail .analogy b { color: var(--ink); }
   @media (max-width: 860px) { .detail { position: static; } }
 
-  .vn { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 12px; align-items: center; text-align: center; }
-  .vn .box { border: 1.5px solid var(--ink); border-radius: 12px; padding: 14px 10px; background: var(--card); font-weight: 600; }
-  .vn .box small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.85rem; }
-  .vn .cpu { border-color: var(--accent); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
-  .vn .cpu .title { grid-column: 1 / -1; }
-  .vn .cpu .sub { border: 1px dashed var(--rule); border-radius: 8px; padding: 8px; font-weight: 500; font-size: 0.9rem; }
-  .vn .mem { grid-column: 1 / -1; }
-  .vn .bus { grid-column: 1 / -1; font: 600 0.8rem var(--mono); color: var(--accent); letter-spacing: 0.1em; border-top: 2px dashed var(--accent); border-bottom: 2px dashed var(--accent); padding: 6px; }
-  @media (max-width: 600px) { .vn { grid-template-columns: 1fr; } }
 
   /* ---------- binary ---------- */
   .bits { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
@@ -276,6 +239,218 @@
   .fb { font-size: 0.95rem; color: var(--ink-soft); margin-top: 8px; min-height: 1.4em; }
   .score { font: 600 1.1rem var(--serif); }
 
+  /* ---------- schemi SVG ---------- */
+  :root { --pcb: #dde6d6; --pcb-line: #b9c9b0; --warm: #e0a000; }
+  @media (prefers-color-scheme: dark) { :root { --pcb: #1b2620; --pcb-line: #2e4035; --warm: #ffc233; } }
+  .fig { margin: 0; }
+  .fig figcaption { font-size: 0.92rem; color: var(--ink-soft); margin-top: 12px; max-width: var(--measure); }
+  .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .scroll-hint { display: none; font: 500 0.8rem var(--mono); color: var(--ink-soft); margin: 8px 0 0; }
+  @media (max-width: 600px) { .scroll-hint { display: block; } }
+  svg.diagram { display: block; width: 100%; height: auto; font-family: var(--sans); }
+  svg.diagram text { fill: var(--ink); font-size: 14px; }
+  svg.diagram .muted { fill: var(--ink-soft); font-size: 12px; }
+  svg.diagram .mono { font-family: var(--mono); }
+  svg.diagram .serif { font-family: var(--serif); font-weight: 600; }
+  svg.diagram .box { fill: var(--card); stroke: var(--ink); stroke-width: 1.5; }
+  svg.diagram .box-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  svg.diagram .box-on { fill: var(--on-soft); stroke: var(--on); stroke-width: 1.5; }
+  svg.diagram .box-ink { fill: var(--ink); stroke: var(--ink); }
+  svg.diagram .box-ink + text, svg.diagram text.inv { fill: var(--paper); }
+  svg.diagram .wire { fill: none; stroke: var(--ink-soft); stroke-width: 2; }
+  svg.diagram .arrow { fill: none; stroke: var(--accent); stroke-width: 2; }
+  svg.diagram .arrow.back { stroke-dasharray: 6 5; stroke: var(--on); }
+  svg.diagram marker path { fill: var(--accent); }
+  svg.diagram marker.m-on path { fill: var(--on); }
+  svg.diagram .life { stroke: var(--rule); stroke-width: 1.5; stroke-dasharray: 4 5; }
+  svg.diagram .num { fill: var(--accent); font: 600 12px var(--mono); }
+
+  /* scheda madre */
+  .mobo { min-width: 560px; }
+  .mobo .pcb { fill: var(--pcb); stroke: var(--pcb-line); stroke-width: 2; }
+  .mobo .trace { fill: none; stroke: var(--pcb-line); stroke-width: 1.5; }
+  .mobo .comp { cursor: pointer; outline: none; }
+  .mobo .comp .body { fill: var(--card); stroke: var(--ink-soft); stroke-width: 1.5; transition: fill .2s, stroke .2s; }
+  .mobo .comp .deco { fill: none; stroke: var(--ink-soft); stroke-width: 1.2; }
+  .mobo .comp .solid { fill: var(--ink-soft); }
+  .mobo .comp:hover .body { stroke: var(--ink); }
+  .mobo .comp:focus-visible .body { stroke: var(--accent); stroke-dasharray: 5 3; }
+  .mobo .comp.active .body { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; }
+  .mobo .comp.active .deco { stroke: var(--accent); }
+  .mobo .comp.board.active .pcb { stroke: var(--accent); stroke-width: 3; }
+  .mobo .lbl { font-weight: 600; pointer-events: none; }
+  .mobo .link { fill: none; stroke: var(--pcb-line); stroke-width: 3.5; stroke-linecap: round; transition: stroke .2s; pointer-events: none; }
+  .mobo .link.cable { stroke: var(--ink-soft); stroke-width: 3; opacity: .45; }
+  .mobo .link.active { stroke: var(--accent); opacity: 1; stroke-dasharray: 2 9; animation: flow .9s linear infinite; }
+  .mobo .link.power.active { stroke: var(--warm); }
+  @keyframes flow { to { stroke-dashoffset: -22; } }
+  .detail .links-list { font-size: 0.95rem; margin-top: 16px; }
+  .detail .links-list b { color: var(--ink); }
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-soft); margin-top: 12px; }
+  .legend i { display: inline-block; width: 22px; height: 0; border-top: 3px dotted var(--accent); vertical-align: middle; margin-right: 6px; }
+  .legend i.p { border-color: var(--warm); }
+
+  /* ciclo */
+  .cycle .node { fill: var(--card); stroke: var(--ink-soft); stroke-width: 1.5; transition: fill .3s, stroke .3s; }
+  .cycle .node.on { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; }
+
+  /* piramide memorie */
+  .pyr { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: stretch; }
+  .pyr .axis { display: flex; flex-direction: column; justify-content: space-between; align-items: center; font: 600 0.72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+  .pyr .axis .bar { flex: 1; width: 2px; background: linear-gradient(var(--accent), var(--on)); margin: 6px 0; }
+  .pyr ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .pyr li { border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; gap: 12px; font-size: 0.92rem; background: var(--card); border: 1px solid var(--rule); }
+  .pyr li b { font-weight: 600; }
+  .pyr li span { color: var(--ink-soft); font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; }
+  .pyr li:nth-child(1) { width: 56%; border-color: var(--accent); background: var(--accent-soft); }
+  .pyr li:nth-child(2) { width: 67%; }
+  .pyr li:nth-child(3) { width: 78%; }
+  .pyr li:nth-child(4) { width: 89%; }
+  .pyr li:nth-child(5) { width: 100%; border-color: var(--on); background: var(--on-soft); }
+  @media (max-width: 600px) { .pyr li { width: 100% !important; flex-direction: column; gap: 0; } }
+
+  /* lampadina */
+  .lamp-btn { appearance: none; border: 1px solid var(--rule); background: var(--card); border-radius: 14px; padding: 12px; cursor: pointer; width: 100%; color: var(--ink); font: inherit; text-align: left; }
+  .lamp-btn:hover { border-color: var(--ink-soft); }
+  .lamp .bulb { fill: var(--paper-2); stroke: var(--ink-soft); stroke-width: 2; transition: fill .3s; }
+  .lamp .glow { fill: var(--warm); opacity: 0; transition: opacity .3s; }
+  .lamp .lever { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; transition: transform .25s; transform-origin: 140px 40px; transform: rotate(-32deg); }
+  .lamp .circuit { fill: none; stroke: var(--ink-soft); stroke-width: 3; }
+  .lamp.on .bulb { fill: var(--warm); }
+  .lamp.on .glow { opacity: .35; }
+  .lamp.on .lever { transform: rotate(0deg); }
+  .lamp.on .circuit { stroke: var(--on); stroke-dasharray: 3 9; animation: flow 1s linear infinite; }
+  .lamp-state { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; font-size: 0.95rem; color: var(--ink-soft); }
+  .lamp-state b { font: 800 2rem var(--serif); color: var(--ink); }
+
+  /* valore posizionale */
+  .pv { display: grid; gap: 20px; }
+  .pv-row { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 6px; text-align: center; }
+  .pv-row .d { font: 800 2rem var(--serif); background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 6px 0; }
+  .pv-row .w { font: 400 0.8rem var(--mono); color: var(--ink-soft); }
+  .pv-row .p { font: 600 0.85rem var(--mono); color: var(--on); }
+  .pv-cap { font-size: 0.95rem; margin: 0 0 8px; }
+  .pv-cap b { font-family: var(--mono); }
+
+  /* pixel */
+  .pix-wrap { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; }
+  .pix { display: grid; grid-template-columns: repeat(8, 32px); gap: 2px; background: var(--rule); padding: 2px; border-radius: 8px; }
+  .px { width: 32px; height: 32px; border: 0; padding: 0; background: var(--card); cursor: pointer; }
+  .px[aria-pressed="true"] { background: var(--ink); }
+  .rows { font: 400 0.9rem/34px var(--mono); color: var(--ink-soft); padding-top: 2px; }
+  .rows span { color: var(--on); font-weight: 600; }
+  @media (max-width: 480px) { .pix-wrap { grid-template-columns: 1fr; } .pix { width: max-content; } .rows { display: grid; grid-template-columns: 1fr 1fr; line-height: 1.8; font-size: 0.8rem; } }
+  .rgb { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; }
+  .swatch { width: 120px; height: 120px; border-radius: 14px; border: 1px solid var(--rule); }
+  .rgb label { display: grid; grid-template-columns: 18px 1fr 11ch; gap: 10px; align-items: center; font: 600 0.85rem var(--mono); margin-bottom: 8px; }
+  .rgb input[type=range] { width: 100%; }
+  .rgb output { font: 400 0.8rem var(--mono); color: var(--ink-soft); }
+  @media (max-width: 480px) { .rgb { grid-template-columns: 1fr; } .swatch { width: 100%; height: 72px; } }
+
+  .ico { width: 36px; height: 36px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 8px; display: block; }
+  .machine { background: var(--ink); color: var(--on); border-radius: 0 0 14px 14px; padding: 12px 20px; font: 400 0.85rem/1.5 var(--mono); margin: 0; border-top: 1px dashed color-mix(in srgb, var(--paper) 30%, transparent); overflow-x: auto; }
+  .machine small { display: block; color: color-mix(in srgb, var(--paper) 55%, transparent); font-size: 0.75rem; }
+  .code-demo.joined { border-radius: 14px 14px 0 0; }
+
+  /* ---------- 05 file ---------- */
+  .toc a:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .anat { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+  .anat-name { display: flex; align-items: stretch; font: 600 clamp(1.3rem, 3.5vw, 1.9rem) var(--mono); border-bottom: 1px solid var(--rule); }
+  .anat-name span { padding: 18px 16px 10px; position: relative; }
+  .anat-name small { position: absolute; left: 16px; bottom: -2px; font: 600 0.65rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .anat-name .n { background: var(--on-soft); color: var(--on); }
+  .anat-name .dot { padding: 18px 2px 10px; }
+  .anat-name .e { background: var(--accent-soft); color: var(--accent); }
+  .anat-row { padding: 14px 16px; border-bottom: 1px solid var(--rule); }
+  .anat-row:last-child { border-bottom: 0; }
+  .anat-row h4 { margin: 0 0 6px; font: 600 0.72rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .hex { font: 400 0.85rem/1.7 var(--mono); color: var(--ink); word-break: break-all; }
+  .hex b { color: var(--accent); font-weight: 600; }
+  .meta { display: grid; grid-template-columns: auto 1fr; gap: 2px 16px; font-size: 0.92rem; margin: 0; }
+  .meta dt { color: var(--ink-soft); }
+  .meta dd { margin: 0; font-family: var(--mono); font-size: 0.88rem; }
+
+  .fsvg { display: none; }
+  .fi { width: 18px; height: 18px; flex: none; }
+  .fi.folder { fill: var(--warm); }
+  .fi.file { fill: none; stroke: var(--ink-soft); stroke-width: 1.5; }
+  .tree-box { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 16px; }
+  .tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+  .tree ul { margin-left: 12px; padding-left: 14px; border-left: 1px dashed var(--rule); }
+  .tree button { appearance: none; border: 0; background: none; color: var(--ink); font: 500 0.95rem var(--sans); display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 6px; cursor: pointer; width: 100%; text-align: left; }
+  .tree button:hover { background: var(--paper-2); }
+  .tree button[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+  .tree .ext { font-family: var(--mono); font-size: 0.85rem; }
+  .pathbar { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 12px; }
+  .pathbar small { display: block; font: 600 0.68rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px; }
+  .pathbar code { display: block; font-size: 0.92rem; word-break: break-all; }
+  .pathbar code .sep { color: var(--accent); font-weight: 600; }
+
+  .types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 960px) { .types { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .types { grid-template-columns: 1fr; } }
+  .types .card { padding: 18px; }
+  .types h4 { margin: 0 0 4px; font: 600 1.1rem var(--serif); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+  .chips span { font: 600 0.75rem var(--mono); background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 6px; }
+  .guess { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 700px) { .guess { grid-template-columns: 1fr; } }
+  .guess input { font: 600 1.1rem var(--mono); padding: 10px 14px; width: 100%; border-radius: 10px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); }
+  .guess input:focus { border-color: var(--accent); outline: none; }
+  .guess-out { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 16px; min-height: 52px; font-size: 0.95rem; color: var(--ink-soft); }
+  .guess-out b { color: var(--ink); }
+
+  .rle { display: grid; grid-template-columns: repeat(16, 1fr); gap: 3px; max-width: 520px; }
+  .rle button { aspect-ratio: 1; border: 1px solid var(--rule); background: var(--card); border-radius: 4px; cursor: pointer; padding: 0; }
+  .rle button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+  .rle-out { font: 400 0.95rem/1.7 var(--mono); margin-top: 12px; }
+  .rle-out b { color: var(--on); }
+
+  .jpeg { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .jpeg { grid-template-columns: 1fr; } }
+  .jpeg canvas, .jpeg img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--rule); display: block; }
+  .jpeg .zoom { image-rendering: pixelated; }
+  .jpeg small { display: block; font: 600 0.7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+  .slider-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+  .slider-row input[type=range] { flex: 1; min-width: 180px; }
+  .stat { font: 800 1.6rem var(--serif); font-variant-numeric: tabular-nums; }
+  .stat small { font: 400 0.85rem var(--sans); color: var(--ink-soft); }
+
+  .bars { display: grid; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 70px; gap: 12px; align-items: center; font-size: 0.92rem; }
+  .bar-row .track { height: 14px; background: var(--paper-2); border-radius: 4px; overflow: hidden; }
+  .bar-row .fill { height: 100%; background: var(--on); border-radius: 4px; }
+  .bar-row.lossless .fill { background: var(--ink-soft); }
+  .bar-row .v { font: 600 0.85rem var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-row small { display: block; color: var(--ink-soft); font-size: 0.78rem; }
+  @media (max-width: 480px) { .bar-row { grid-template-columns: 110px 1fr 58px; gap: 8px; } }
+
+  .wave .sig { fill: none; stroke: var(--ink-soft); stroke-width: 2; }
+  .wave .stair { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+  .wave .smp { stroke: var(--rule); stroke-width: 1; }
+  .wave .dot { fill: var(--accent); }
+  .wave .axis { stroke: var(--rule); stroke-width: 1; }
+
+  .film .frame { fill: var(--card); stroke: var(--ink); stroke-width: 1.5; }
+  .film .keyf { stroke: var(--accent); stroke-width: 2.5; }
+  .film .sky { fill: var(--on-soft); }
+  .film .ground { fill: var(--pcb-line); }
+  .film .ball { fill: var(--accent); }
+  .film .faded { opacity: .22; }
+  .film .diff { fill: none; stroke: var(--on); stroke-width: 2; stroke-dasharray: 4 3; }
+  .film .perf { fill: var(--ink); }
+
+  .vcalc { display: grid; grid-template-columns: repeat(3, auto); gap: 12px 20px; align-items: end; }
+  .vcalc label { display: grid; gap: 4px; font: 600 0.8rem var(--sans); color: var(--ink-soft); }
+  .vcalc select, .vcalc input[type=number] { font: 500 1rem var(--sans); padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); }
+  @media (max-width: 480px) { .vcalc { grid-template-columns: 1fr 1fr; } }
+  .vres { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .vres .card small { display: block; font: 600 0.7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .vres .card output { font: 800 1.8rem var(--serif); font-variant-numeric: tabular-nums; }
+  .vres .card.big { border-color: var(--accent); }
+  .vres .card.small { border-color: var(--on); }
+  @media (max-width: 480px) { .vres { grid-template-columns: 1fr; } }
+
   footer { padding: 48px 0 64px; color: var(--ink-soft); font-size: 0.92rem; }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 </style>
@@ -290,6 +465,7 @@
       <li><a class="link" href="#computer"><span>02</span>Computer</a></li>
       <li><a class="link" href="#binario"><span>03</span>Binario</a></li>
       <li><a class="link" href="#software"><span>04</span>Software</a></li>
+      <li><a class="link" href="#file"><span>05</span>File</a></li>
       <li><a class="link" href="#quiz"><span>?</span>Quiz</a></li>
     </ol>
   </div>
@@ -298,7 +474,7 @@
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <p class="kicker">Un corso breve, in quattro capitoli</p>
+      <p class="kicker">Un corso breve, in cinque capitoli</p>
       <h1>Elementi di <em>informatica</em></h1>
       <p class="lede">Che cosa fa davvero un computer, di che pezzi è fatto, perché «pensa» solo con 0 e 1 e come i programmi gli dicono cosa fare. Spiegato semplice, con esempi da toccare.</p>
       <div class="toc">
@@ -306,6 +482,7 @@
         <a href="#computer"><span class="n">02</span><span class="t">Com’è fatto un computer</span></a>
         <a href="#binario"><span class="n">03</span><span class="t">Il sistema binario</span></a>
         <a href="#software"><span class="n">04</span><span class="t">I software</span></a>
+        <a href="#file"><span class="n">05</span><span class="t">I file e la compressione</span></a>
       </div>
     </div>
     <div class="bitwall" id="bitwall" aria-hidden="true"></div>
@@ -336,11 +513,17 @@
         <h3>Ogni computer fa tre cose</h3>
         <p style="color:var(--ink-soft);margin:0 0 20px">Dalla calcolatrice allo smartphone, qualsiasi sistema informatico segue lo stesso schema.</p>
         <div class="flow">
-          <div class="step"><b>Input</b><small>Riceve dati: tasti, clic, tocchi, voce, foto.</small></div>
+          <div class="step">
+            <svg class="ico" viewBox="0 0 36 36" aria-hidden="true"><rect x="3" y="11" width="30" height="16" rx="3"/><path d="M8 16h2M13 16h2M18 16h2M23 16h2M28 16h0M10 22h16"/></svg>
+            <b>Input</b><small>Riceve dati: tasti, clic, tocchi, voce, foto.</small></div>
           <div class="arrow" aria-hidden="true">→</div>
-          <div class="step mid"><b>Elaborazione</b><small>Li trasforma seguendo le istruzioni di un programma.</small></div>
+          <div class="step mid">
+            <svg class="ico" viewBox="0 0 36 36" aria-hidden="true"><rect x="9" y="9" width="18" height="18" rx="2"/><rect x="14" y="14" width="8" height="8"/><path d="M13 4v5M18 4v5M23 4v5M13 27v5M18 27v5M23 27v5M4 13h5M4 18h5M4 23h5M27 13h5M27 18h5M27 23h5"/></svg>
+            <b>Elaborazione</b><small>Li trasforma seguendo le istruzioni di un programma.</small></div>
           <div class="arrow" aria-hidden="true">→</div>
-          <div class="step"><b>Output</b><small>Restituisce un risultato: testo, immagine, suono.</small></div>
+          <div class="step">
+            <svg class="ico" viewBox="0 0 36 36" aria-hidden="true"><rect x="3" y="5" width="30" height="20" rx="2"/><path d="M13 31h10M18 25v6M9 17l5-5 4 4 6-6 3 3"/></svg>
+            <b>Output</b><small>Restituisce un risultato: testo, immagine, suono.</small></div>
         </div>
         <p class="note">Esempio: scrivi «2+3» (input), la calcolatrice somma (elaborazione), sullo schermo compare «5» (output).</p>
       </div>
@@ -381,20 +564,90 @@
     </div>
 
     <div class="explorer">
-      <div class="board" role="group" aria-label="Componenti del computer">
-        <button class="part p-mb"  type="button" data-k="mb"><span class="abbr">MB</span><span class="name">Scheda madre</span></button>
-        <button class="part p-cpu" type="button" data-k="cpu" aria-pressed="true"><span class="abbr">CPU</span><span class="name">Processore</span></button>
-        <button class="part p-ram" type="button" data-k="ram"><span class="abbr">RAM</span><span class="name">Memoria centrale</span></button>
-        <button class="part p-gpu" type="button" data-k="gpu"><span class="abbr">GPU</span><span class="name">Scheda video</span></button>
-        <button class="part p-ssd" type="button" data-k="ssd"><span class="abbr">SSD / HDD</span><span class="name">Memoria di massa</span></button>
-        <button class="part p-psu" type="button" data-k="psu"><span class="abbr">PSU</span><span class="name">Alimentatore</span></button>
-        <button class="part p-in"  type="button" data-k="in"><span class="abbr">INPUT</span><span class="name">Periferiche di ingresso</span></button>
-        <button class="part p-out" type="button" data-k="out"><span class="abbr">OUTPUT</span><span class="name">Periferiche di uscita</span></button>
-      </div>
+      <figure class="fig">
+        <div class="scroll-x">
+        <svg class="diagram mobo" viewBox="0 0 690 470" role="group" aria-label="Schema di una scheda madre con i componenti e i collegamenti">
+          <!-- scheda madre (sfondo cliccabile) -->
+          <g class="comp board" data-k="mb" tabindex="0" role="button" aria-label="Scheda madre">
+            <rect class="pcb" x="20" y="20" width="520" height="440" rx="14"/>
+            <path class="trace" d="M40 60 H120 V230 M60 240 H180 M110 330 H270 V350 M430 240 V360 M150 60 V40 H180"/>
+            <text class="lbl muted mono" x="40" y="450">SCHEDA MADRE</text>
+          </g>
+
+          <!-- collegamenti (bus e cavi) -->
+          <g class="link" data-l="cpu-ram"><path d="M340 100 H384"/><path d="M340 123 H384"/><path d="M340 146 H384"/><path d="M340 169 H384"/></g>
+          <g class="link" data-l="cpu-gpu"><path d="M235 200 V372"/><path d="M255 200 V372"/></g>
+          <path class="link" data-l="cpu-chip" d="M320 200 V260"/>
+          <path class="link" data-l="chip-ssd" d="M290 288 H200"/>
+          <path class="link" data-l="chip-io" d="M370 290 H470"/>
+          <path class="link power" data-l="pwr" d="M470 70 H462 V38 H270 V60"/>
+          <path class="link cable" data-l="io-in" d="M525 285 C560 285, 545 182, 575 182"/>
+          <path class="link cable" data-l="gpu-out" d="M525 399 C560 399, 550 330, 580 330"/>
+          <path class="link cable power" data-l="psu-pwr" d="M575 70 C552 70, 548 80, 525 80"/>
+
+          <!-- componenti -->
+          <g class="comp" data-k="cpu" tabindex="0" role="button" aria-label="Processore, CPU">
+            <rect class="body" x="200" y="60" width="140" height="140" rx="8"/>
+            <rect class="deco" x="224" y="84" width="92" height="92" rx="4"/>
+            <text class="lbl serif" x="270" y="136" text-anchor="middle" style="font-size:24px">CPU</text>
+          </g>
+          <g class="comp" data-k="ram" tabindex="0" role="button" aria-label="Memoria RAM">
+            <rect class="body" x="384" y="60" width="14" height="160" rx="2"/>
+            <rect class="body" x="402" y="60" width="14" height="160" rx="2"/>
+            <rect class="body" x="420" y="60" width="14" height="160" rx="2"/>
+            <rect class="body" x="438" y="60" width="14" height="160" rx="2"/>
+            <text class="lbl" x="418" y="240" text-anchor="middle">RAM</text>
+          </g>
+          <g class="comp" data-k="chip" tabindex="0" role="button" aria-label="Chipset">
+            <rect class="body" x="290" y="260" width="80" height="60" rx="6"/>
+            <text class="lbl" x="330" y="295" text-anchor="middle" style="font-size:13px">Chipset</text>
+          </g>
+          <g class="comp" data-k="ssd" tabindex="0" role="button" aria-label="Memoria di massa SSD">
+            <rect class="body" x="60" y="270" width="140" height="36" rx="4"/>
+            <rect class="solid" x="72" y="280" width="16" height="16" rx="2"/><rect class="solid" x="96" y="280" width="16" height="16" rx="2"/>
+            <text class="lbl" x="158" y="293" text-anchor="middle" style="font-size:13px">SSD</text>
+          </g>
+          <g class="comp" data-k="gpu" tabindex="0" role="button" aria-label="Scheda video, GPU">
+            <rect class="body" x="60" y="372" width="465" height="54" rx="6"/>
+            <circle class="deco" cx="340" cy="399" r="20"/><circle class="deco" cx="420" cy="399" r="20"/>
+            <path class="deco" d="M330 399 H350 M340 389 V409 M410 399 H430 M420 389 V409"/>
+            <text class="lbl" x="80" y="404">Scheda video (GPU)</text>
+          </g>
+          <g class="comp" data-k="io" tabindex="0" role="button" aria-label="Porte di ingresso e uscita">
+            <rect class="body" x="470" y="250" width="55" height="105" rx="4"/>
+            <rect class="deco" x="482" y="264" width="30" height="10" rx="2"/><rect class="deco" x="482" y="280" width="30" height="10" rx="2"/>
+            <rect class="deco" x="482" y="296" width="30" height="10" rx="2"/><circle class="deco" cx="497" cy="322" r="5"/>
+            <text class="lbl muted mono" x="497" y="346" text-anchor="middle">USB</text>
+          </g>
+          <g class="comp" data-k="psu" tabindex="0" role="button" aria-label="Alimentatore">
+            <rect class="body" x="470" y="55" width="55" height="50" rx="4"/>
+            <path class="deco" d="M480 68 H515 M480 80 H515 M480 92 H515"/>
+            <rect class="body" x="575" y="30" width="105" height="80" rx="6"/>
+            <circle class="deco" cx="605" cy="70" r="18"/><path class="deco" d="M595 70 H615 M605 60 V80"/>
+            <text class="lbl" x="627" y="128" text-anchor="middle" style="font-size:13px">Alimentatore</text>
+          </g>
+          <g class="comp" data-k="in" tabindex="0" role="button" aria-label="Periferiche di input">
+            <rect class="body" x="575" y="160" width="105" height="44" rx="6"/>
+            <path class="deco" d="M585 172 H670 M585 182 H670 M600 193 H655"/>
+            <text class="lbl" x="627" y="224" text-anchor="middle" style="font-size:13px">Tastiera · input</text>
+          </g>
+          <g class="comp" data-k="out" tabindex="0" role="button" aria-label="Periferiche di output">
+            <rect class="body" x="580" y="290" width="95" height="66" rx="5"/>
+            <path class="deco" d="M627 356 V372 M607 374 H647"/>
+            <path class="deco" d="M592 340 l14 -14 10 10 16 -18 12 12"/>
+            <text class="lbl" x="627" y="396" text-anchor="middle" style="font-size:13px">Monitor · output</text>
+          </g>
+        </svg>
+        </div>
+        <p class="scroll-hint">← scorri lo schema →</p>
+        <div class="legend"><span><i></i>dati in viaggio sui bus e nei cavi</span><span><i class="p"></i>corrente elettrica</span></div>
+        <figcaption>Tocca un componente: si illuminano le «strade» (i bus) che usa per parlare con gli altri. Tocca un punto vuoto della scheda per vederle tutte.</figcaption>
+      </figure>
       <div class="detail" aria-live="polite">
         <span class="abbr" id="d-abbr"></span>
         <h3 id="d-name"></h3>
         <p id="d-text"></p>
+        <p class="links-list" id="d-links"></p>
         <div class="analogy" id="d-analogy"></div>
       </div>
     </div>
@@ -409,25 +662,71 @@
           <li><b>Decode</b> — capisce che cosa deve fare;</li>
           <li><b>Execute</b> — la esegue, poi ricomincia.</li>
         </ul>
+        <svg class="diagram cycle" viewBox="0 0 300 250" role="img" aria-label="Il ciclo fetch, decode, execute" style="max-width:320px;margin-top:24px">
+          <defs><marker id="m-cyc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z"/></marker></defs>
+          <path class="arrow" d="M186 58 Q250 90 244 150" marker-end="url(#m-cyc)"/>
+          <path class="arrow" d="M200 206 Q150 236 100 206" marker-end="url(#m-cyc)"/>
+          <path class="arrow" d="M56 150 Q50 90 114 58" marker-end="url(#m-cyc)"/>
+          <circle class="node" data-c="0" cx="150" cy="50" r="40"/><text x="150" y="47" text-anchor="middle" class="serif">Fetch</text><text x="150" y="64" text-anchor="middle" class="muted">preleva</text>
+          <circle class="node" data-c="1" cx="240" cy="190" r="40"/><text x="240" y="187" text-anchor="middle" class="serif">Decode</text><text x="240" y="204" text-anchor="middle" class="muted">capisce</text>
+          <circle class="node" data-c="2" cx="60" cy="190" r="40"/><text x="60" y="187" text-anchor="middle" class="serif">Execute</text><text x="60" y="204" text-anchor="middle" class="muted">esegue</text>
+        </svg>
       </div>
-      <div class="vn" aria-label="Schema dell’architettura di von Neumann">
-        <div class="box">Input<small>tastiera, mouse</small></div>
-        <div class="box cpu">
-          <span class="title">CPU</span>
-          <span class="sub">Unità di controllo</span>
-          <span class="sub">ALU<br><small>calcoli e confronti</small></span>
-        </div>
-        <div class="box">Output<small>schermo, stampante</small></div>
-        <div class="bus">BUS · i dati viaggiano qui</div>
-        <div class="box mem">Memoria<small>contiene istruzioni e dati</small></div>
-      </div>
+      <figure class="fig">
+        <svg class="diagram vn-svg" viewBox="0 0 600 350" role="img" aria-label="Schema di von Neumann: input e output collegati alla CPU, la CPU collegata alla memoria tramite il bus">
+          <defs>
+            <marker id="m-vn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z"/></marker>
+          </defs>
+          <rect class="box" x="10" y="50" width="120" height="70" rx="10"/>
+          <text x="70" y="82" text-anchor="middle" class="serif">Input</text><text x="70" y="102" text-anchor="middle" class="muted">tastiera, mouse</text>
+          <rect class="box" x="455" y="50" width="140" height="70" rx="10"/>
+          <text x="525" y="82" text-anchor="middle" class="serif">Output</text><text x="525" y="102" text-anchor="middle" class="muted">schermo, stampante</text>
+
+          <rect class="box-acc" x="175" y="10" width="250" height="160" rx="12"/>
+          <text x="300" y="36" text-anchor="middle" class="serif" style="font-size:18px">CPU</text>
+          <rect class="box" x="190" y="50" width="105" height="100" rx="8"/>
+          <text x="242" y="88" text-anchor="middle" style="font-size:13px;font-weight:600">Unità di</text><text x="242" y="105" text-anchor="middle" style="font-size:13px;font-weight:600">controllo</text><text x="242" y="128" text-anchor="middle" class="muted">dirige</text>
+          <rect class="box" x="305" y="50" width="105" height="100" rx="8"/>
+          <text x="357" y="96" text-anchor="middle" style="font-size:13px;font-weight:600">ALU</text><text x="357" y="116" text-anchor="middle" class="muted">calcoli</text><text x="357" y="131" text-anchor="middle" class="muted">e confronti</text>
+
+
+          <rect class="box-on" x="40" y="205" width="520" height="28" rx="6"/>
+          <text x="300" y="224" text-anchor="middle" class="mono" style="font-size:12px;font-weight:600;letter-spacing:.1em">BUS DI SISTEMA</text>
+          <path class="arrow" d="M300 172 V203" marker-start="url(#m-vn)" marker-end="url(#m-vn)"/>
+          <path class="arrow" d="M300 235 V268" marker-start="url(#m-vn)" marker-end="url(#m-vn)"/>
+          <path class="arrow" d="M70 122 V203" marker-end="url(#m-vn)"/>
+          <path class="arrow" d="M525 203 V122" marker-end="url(#m-vn)"/>
+
+          <rect class="box" x="150" y="270" width="300" height="70" rx="10"/>
+          <text x="300" y="296" text-anchor="middle" class="serif">Memoria</text>
+          <rect class="box-acc" x="170" y="308" width="120" height="22" rx="4"/><text x="230" y="323" text-anchor="middle" style="font-size:12px">istruzioni</text>
+          <rect class="box-on" x="310" y="308" width="120" height="22" rx="4"/><text x="370" y="323" text-anchor="middle" style="font-size:12px">dati</text>
+        </svg>
+        <figcaption>Tutti i componenti si parlano attraverso il <b>bus</b>, un fascio di collegamenti condiviso. Nella stessa memoria convivono le istruzioni del programma e i dati su cui lavora.</figcaption>
+      </figure>
     </div>
 
     <div class="block">
       <h3>RAM o memoria di massa?</h3>
       <div class="grid-2">
-        <div class="card"><span class="tag">RAM · volatile</span><p>Velocissima ma si svuota quando spegni il computer. Contiene ciò che stai usando <i>adesso</i>. Tipico oggi: 8–32 GB.</p></div>
-        <div class="card"><span class="tag">SSD / HDD · permanente</span><p>Più lenta ma conserva i dati anche a computer spento: sistema operativo, programmi, foto, documenti. Tipico oggi: 256 GB – 2 TB.</p></div>
+        <div>
+          <div class="card" style="margin-bottom:16px"><span class="tag">RAM · volatile</span><p>Velocissima ma si svuota quando spegni il computer. Contiene ciò che stai usando <i>adesso</i>. Tipico oggi: 8–32 GB.</p></div>
+          <div class="card"><span class="tag">SSD / HDD · permanente</span><p>Più lenta ma conserva i dati anche a computer spento: sistema operativo, programmi, foto, documenti. Tipico oggi: 256 GB – 2 TB.</p></div>
+          <p class="note">Quando apri un programma, i suoi file vengono <b>copiati dall’SSD alla RAM</b>, e da lì la CPU li legge. Per questo con poca RAM il computer rallenta.</p>
+        </div>
+        <figure class="fig">
+          <div class="pyr" role="img" aria-label="Piramide delle memorie: in alto le più veloci e piccole, in basso le più capienti e lente">
+            <div class="axis"><span>veloce</span><span class="bar"></span><span>capiente</span></div>
+            <ol>
+              <li><b>Registri</b><span>byte · &lt;1 ns</span></li>
+              <li><b>Cache</b><span>MB · ~2 ns</span></li>
+              <li><b>RAM</b><span>GB · ~100 ns</span></li>
+              <li><b>SSD</b><span>TB · ~0,1 ms</span></li>
+              <li><b>HDD · cloud</b><span>TB e oltre · ms</span></li>
+            </ol>
+          </div>
+          <figcaption>La piramide delle memorie: più si sale, più la memoria è veloce, piccola e costosa. Registri e cache stanno <i>dentro</i> il processore.</figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -441,6 +740,51 @@
       <div>
         <h2 id="h-bin">Il sistema binario</h2>
         <p>Noi contiamo con dieci cifre (da 0 a 9). Il computer ne usa solo due: <b>0</b> e <b>1</b>. Perché? Perché i suoi circuiti conoscono solo due stati: corrente che passa, corrente che non passa.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:64px">
+      <figure class="fig">
+        <button class="lamp-btn" type="button" id="lamp-btn" aria-pressed="false" aria-label="Interruttore: accendi o spegni la lampadina">
+          <svg class="diagram lamp" id="lamp" viewBox="0 0 320 170" aria-hidden="true">
+            <path class="circuit" d="M40 70 V40 H140 M180 40 H250 V62 M250 108 V140 H40 V100"/>
+            <rect x="22" y="70" width="36" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="40" y="90" text-anchor="middle" class="mono" style="font-size:12px">+ −</text>
+            <text x="66" y="90" class="muted">pila</text>
+            <circle cx="140" cy="40" r="4" fill="currentColor"/><circle cx="180" cy="40" r="4" fill="currentColor"/>
+            <line class="lever" x1="140" y1="40" x2="180" y2="40"/>
+            <text x="160" y="70" text-anchor="middle" class="muted">interruttore</text>
+            <circle class="glow" cx="250" cy="85" r="40"/>
+            <circle class="bulb" cx="250" cy="85" r="22"/>
+            <path d="M242 92 l4 -10 4 8 4 -8 4 10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <text x="250" y="162" text-anchor="middle" class="muted">lampadina</text>
+          </svg>
+          <div class="lamp-state"><span id="lamp-text">Circuito aperto: la corrente non passa</span><b id="lamp-bit">0</b></div>
+        </button>
+        <figcaption>Tocca il circuito. Dentro il processore ci sono miliardi di interruttori microscopici, i <b>transistor</b>: ognuno memorizza un bit.</figcaption>
+      </figure>
+      <div>
+        <h3>Il valore della posizione</h3>
+        <div class="pv">
+          <div>
+            <p class="pv-cap">In decimale <b>305</b> significa:</p>
+            <div class="pv-row" style="--n:3">
+              <span class="w">×100</span><span class="w">×10</span><span class="w">×1</span>
+              <span class="d">3</span><span class="d">0</span><span class="d">5</span>
+              <span class="p">300</span><span class="p">0</span><span class="p">5</span>
+            </div>
+            <p class="pv-cap" style="margin-top:8px">300 + 0 + 5 = <b>305</b></p>
+          </div>
+          <div>
+            <p class="pv-cap">In binario <b>1101</b> significa:</p>
+            <div class="pv-row" style="--n:4">
+              <span class="w">×8</span><span class="w">×4</span><span class="w">×2</span><span class="w">×1</span>
+              <span class="d">1</span><span class="d">1</span><span class="d">0</span><span class="d">1</span>
+              <span class="p">8</span><span class="p">4</span><span class="p">0</span><span class="p">1</span>
+            </div>
+            <p class="pv-cap" style="margin-top:8px">8 + 4 + 0 + 1 = <b>13</b></p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -507,6 +851,32 @@
       <input id="ascii-in" type="text" maxlength="12" value="Ciao" autocomplete="off" spellcheck="false" style="max-width:360px">
       <div class="chars" id="chars" aria-live="polite"></div>
     </div>
+
+    <div class="block grid-2">
+      <figure class="fig">
+        <h3>Anche le immagini sono bit</h3>
+        <p style="color:var(--ink-soft);margin:0 0 16px">Un’immagine è una griglia di punti, i <b>pixel</b>. In bianco e nero basta un bit per pixel: 1 = nero, 0 = bianco. Tocca i quadratini per disegnare e guarda i byte cambiare.</p>
+        <div class="pix-wrap">
+          <div class="pix" id="pix" role="group" aria-label="Griglia di 8 per 8 pixel"></div>
+          <div class="rows" id="pix-rows" aria-hidden="true"></div>
+        </div>
+        <div class="btn-row"><button class="btn" type="button" id="pix-clear">Pulisci</button><button class="btn" type="button" id="pix-smile">Faccina</button><button class="btn" type="button" id="pix-invert">Inverti</button></div>
+        <figcaption>8 righe × 8 bit = 8 byte. Una foto dello smartphone ha circa 12 milioni di pixel!</figcaption>
+      </figure>
+      <figure class="fig">
+        <h3>E i colori?</h3>
+        <p style="color:var(--ink-soft);margin:0 0 16px">Ogni pixel a colori mescola tre luci: <b>rosso</b>, <b>verde</b> e <b>blu</b> (RGB). Ogni luce ha un’intensità da 0 a 255, cioè un byte. Quindi un pixel occupa <b>3 byte</b>.</p>
+        <div class="rgb">
+          <div class="swatch" id="swatch"></div>
+          <div>
+            <label><span style="color:#d33">R</span><input type="range" min="0" max="255" value="210" id="r" aria-label="Rosso"><output id="r-o"></output></label>
+            <label><span style="color:#2a2">G</span><input type="range" min="0" max="255" value="73" id="g" aria-label="Verde"><output id="g-o"></output></label>
+            <label><span style="color:#36d">B</span><input type="range" min="0" max="255" value="28" id="b" aria-label="Blu"><output id="b-o"></output></label>
+          </div>
+        </div>
+        <figcaption>Tre byte permettono 256 × 256 × 256 ≈ <b>16,7 milioni</b> di colori diversi.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -547,16 +917,66 @@
       </div>
     </div>
 
-    <div class="block grid-2">
+    <div class="block">
+      <h3>Un clic attraversa tutti gli strati</h3>
+      <p class="prose" style="color:var(--ink-soft);margin:0 0 20px">Cosa succede, passo dopo passo, quando premi «Stampa» in un programma di videoscrittura.</p>
+      <figure class="fig">
+        <div class="scroll-x">
+        <svg class="diagram" viewBox="0 0 660 330" role="img" aria-label="Diagramma di sequenza: utente, applicazione, sistema operativo, driver e stampante si passano la richiesta di stampa" style="min-width:560px;max-width:860px">
+          <defs>
+            <marker id="m-seq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z"/></marker>
+            <marker id="m-seq-on" class="m-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z"/></marker>
+          </defs>
+          <line class="life" x1="70" y1="56" x2="70" y2="320"/><line class="life" x1="200" y1="56" x2="200" y2="320"/>
+          <line class="life" x1="330" y1="56" x2="330" y2="320"/><line class="life" x1="460" y1="56" x2="460" y2="320"/><line class="life" x1="590" y1="56" x2="590" y2="320"/>
+          <rect class="box" x="15" y="14" width="110" height="40" rx="8" style="stroke-dasharray:4 3"/><text x="70" y="39" text-anchor="middle" style="font-weight:600">Utente</text>
+          <rect class="box-on" x="145" y="14" width="110" height="40" rx="8"/><text x="200" y="39" text-anchor="middle" style="font-weight:600">App</text>
+          <rect class="box-acc" x="275" y="14" width="110" height="40" rx="8"/><text x="330" y="39" text-anchor="middle" style="font-weight:600">Sistema op.</text>
+          <rect class="box-acc" x="405" y="14" width="110" height="40" rx="8"/><text x="460" y="39" text-anchor="middle" style="font-weight:600">Driver</text>
+          <rect class="box-ink" x="535" y="14" width="110" height="40" rx="8"/><text x="590" y="39" text-anchor="middle" class="inv" style="font-weight:600">Stampante</text>
+
+          <path class="arrow" d="M70 90 H198" marker-end="url(#m-seq)"/><text x="80" y="82" class="num">1</text><text x="94" y="82" style="font-size:13px">clic su «Stampa»</text>
+          <path class="arrow" d="M200 130 H328" marker-end="url(#m-seq)"/><text x="210" y="122" class="num">2</text><text x="224" y="122" style="font-size:13px">«stampa il file»</text>
+          <path class="arrow" d="M330 170 H458" marker-end="url(#m-seq)"/><text x="340" y="162" class="num">3</text><text x="354" y="162" style="font-size:13px">prepara i dati</text>
+          <path class="arrow" d="M460 210 H588" marker-end="url(#m-seq)"/><text x="470" y="202" class="num">4</text><text x="484" y="202" style="font-size:13px">comandi e bit</text>
+          <path class="arrow back" d="M590 255 H332" marker-end="url(#m-seq-on)"/><text x="360" y="247" class="num">5</text><text x="374" y="247" style="font-size:13px">«foglio stampato»</text>
+          <path class="arrow back" d="M330 300 H72" marker-end="url(#m-seq-on)"/><text x="100" y="292" class="num">6</text><text x="114" y="292" style="font-size:13px">notifica sullo schermo</text>
+        </svg>
+        </div>
+        <p class="scroll-hint">← scorri lo schema →</p>
+        <figcaption>L’app non sa come è fatta la tua stampante: chiede al sistema operativo, che usa il <b>driver</b> giusto per tradurre la richiesta nel «linguaggio» di quel modello.</figcaption>
+      </figure>
+    </div>
+
+    <div class="block">
+      <h3>Come nasce un programma</h3>
       <div class="prose">
-        <h3>Come nasce un programma</h3>
-        <p>Un programmatore scrive il <b>codice sorgente</b> in un <b>linguaggio di programmazione</b> (Python, JavaScript, C, Java…) che le persone possono leggere. Un programma speciale, il <b>compilatore</b> o l’<b>interprete</b>, lo traduce in <b>linguaggio macchina</b>: le sequenze di 0 e 1 che la CPU capisce.</p>
+        <p>Prima di scrivere codice si pensa all’<b>algoritmo</b>: la sequenza precisa di passi che risolve il problema, spesso disegnata come <b>diagramma di flusso</b>. Poi il programmatore la scrive in un <b>linguaggio di programmazione</b> (Python, JavaScript, C, Java…) e un <b>compilatore</b> o un <b>interprete</b> la traduce in <b>linguaggio macchina</b>: le sequenze di 0 e 1 che la CPU capisce.</p>
         <div class="pipeline" aria-label="Dal problema al programma">
           <span>Problema</span><i>→</i><span>Algoritmo</span><i>→</i><span>Codice</span><i>→</i><span>Traduzione</span><i>→</i><span>0101…</span>
         </div>
       </div>
-      <pre class="code-demo"><span class="c"># Un piccolo programma in Python</span>
-<span class="c"># chiede un numero e dice se è pari</span>
+      <div class="grid-2" style="margin-top:32px">
+        <figure class="fig">
+          <svg class="diagram" viewBox="0 0 360 450" role="img" aria-label="Diagramma di flusso: leggi un numero, se il resto della divisione per 2 è zero scrivi pari, altrimenti dispari" style="max-width:380px">
+            <defs><marker id="m-fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z"/></marker></defs>
+            <rect class="box-ink" x="130" y="10" width="100" height="36" rx="18"/><text x="180" y="33" text-anchor="middle" class="inv" style="font-weight:600">Inizio</text>
+            <path class="arrow" d="M180 46 V78" marker-end="url(#m-fl)"/>
+            <path class="box" d="M110 80 H270 L250 124 H90 Z"/><text x="180" y="107" text-anchor="middle">Leggi numero</text>
+            <path class="arrow" d="M180 124 V156" marker-end="url(#m-fl)"/>
+            <path class="box-acc" d="M180 158 L275 213 L180 268 L85 213 Z"/><text x="180" y="208" text-anchor="middle" style="font-size:13px">resto di</text><text x="180" y="225" text-anchor="middle" style="font-size:13px">numero ÷ 2 = 0?</text>
+            <path class="arrow" d="M85 213 H55 V298" marker-end="url(#m-fl)"/><text x="60" y="205" class="num">sì</text>
+            <path class="arrow" d="M275 213 H305 V298" marker-end="url(#m-fl)"/><text x="290" y="205" class="num">no</text>
+            <path class="box-on" d="M20 300 H160 L145 340 H5 Z"/><text x="82" y="325" text-anchor="middle">Scrivi «pari»</text>
+            <path class="box-on" d="M215 300 H355 L340 340 H200 Z"/><text x="277" y="325" text-anchor="middle">Scrivi «dispari»</text>
+            <path class="arrow" d="M82 340 V370 H180 V398" marker-end="url(#m-fl)"/>
+            <path class="arrow" d="M277 340 V370 H180"/>
+            <rect class="box-ink" x="130" y="400" width="100" height="36" rx="18"/><text x="180" y="423" text-anchor="middle" class="inv" style="font-weight:600">Fine</text>
+          </svg>
+          <figcaption><b>Algoritmo</b> — il diagramma di flusso: ovali per inizio e fine, parallelogrammi per input e output, rombi per le decisioni.</figcaption>
+        </figure>
+        <figure class="fig">
+          <pre class="code-demo joined"><span class="c"># Lo stesso algoritmo in Python</span>
 
 numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k">"Scrivi un numero: "</span>))
 
@@ -564,6 +984,10 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
     <span class="k">print</span>(<span class="k">"È pari"</span>)
 <span class="k">else</span>:
     <span class="k">print</span>(<span class="k">"È dispari"</span>)</pre>
+          <p class="machine"><small>↓ dopo la traduzione, la CPU riceve qualcosa come:</small>10001011 01000101 11111100<br>10000011 11100000 00000001<br>01110101 00001010 …</p>
+          <figcaption><b>Codice</b> e <b>linguaggio macchina</b> — ogni blocco del diagramma diventa una o più righe di codice, e ogni riga diventa molte istruzioni binarie.</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="block">
@@ -577,6 +1001,236 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
   </div>
 </section>
 
+<!-- 05 ─────────────────────────────────────────── -->
+<section class="chapter" id="file" aria-labelledby="h-file">
+  <svg class="fsvg" aria-hidden="true">
+    <symbol id="i-folder" viewBox="0 0 20 20"><path d="M2 5a1 1 0 0 1 1-1h5l2 2h7a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 20 20"><path d="M5 2h7l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM12 2v4h4"/></symbol>
+  </svg>
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">05</div>
+      <div>
+        <h2 id="h-file">I file</h2>
+        <p>Tutto quello che salvi — un compito, una foto, una canzone, un video — diventa un <b>file</b>. Vediamo com’è fatto, come si organizza in cartelle e come si fa a farlo pesare meno.</p>
+      </div>
+    </div>
+
+    <!-- cos'è un file -->
+    <div class="grid-2">
+      <div class="prose">
+        <h3>Cos’è un file</h3>
+        <p>Un file è una <b>sequenza di byte</b> salvata sulla memoria di massa, con un <b>nome</b> che la identifica. Per il computer, una foto e un tema sono la stessa cosa: una lunga fila di 0 e 1. A fare la differenza è <i>come</i> quei byte vanno interpretati.</p>
+        <p>Per questo il nome ha due parti separate da un punto: il <b>nome</b> vero e proprio, scelto da te, e l’<b>estensione</b>, che dice che tipo di contenuto c’è dentro. Il sistema operativo usa l’estensione per scegliere il programma giusto con cui aprirlo.</p>
+        <p>Oltre al contenuto, ogni file ha dei <b>metadati</b>: informazioni <i>sul</i> file, come dimensione, data di creazione e di modifica, e chi ha il permesso di leggerlo o modificarlo.</p>
+        <p class="note">Rinominare <code>foto.jpg</code> in <code>foto.txt</code> non trasforma la foto in testo: cambia solo l’etichetta. Il blocco note la aprirà e mostrerà caratteri senza senso.</p>
+      </div>
+      <figure class="fig">
+        <div class="anat" aria-label="Anatomia del file vacanze.jpg">
+          <div class="anat-name"><span class="n">vacanze<small>nome</small></span><span class="dot">.</span><span class="e">jpg<small>estensione</small></span></div>
+          <div class="anat-row">
+            <h4>Contenuto · i primi byte</h4>
+            <div class="hex"><b>FF D8 FF E0</b> 00 10 4A 46 49 46 00 01 01 01 00 48 00 48 00 00 FF DB 00 43 00 08 06 06 07 06 05 08 07 07 07 09 09 08 0A 0C 14 0D 0C 0B …</div>
+          </div>
+          <div class="anat-row">
+            <h4>Metadati</h4>
+            <dl class="meta">
+              <dt>Dimensione</dt><dd>2,4 MB (2.516.582 byte)</dd>
+              <dt>Creato</dt><dd>14/08/2026 18:32</dd>
+              <dt>Modificato</dt><dd>15/08/2026 09:10</dd>
+              <dt>Permessi</dt><dd>lettura e scrittura</dd>
+            </dl>
+          </div>
+        </div>
+        <figcaption>I byte sono scritti in <b>esadecimale</b> (base 16), più compatto del binario: <code>FF</code> = 11111111. Ogni JPEG inizia con <code>FF D8 FF</code>: è la sua «firma», che i programmi controllano oltre all’estensione.</figcaption>
+      </figure>
+    </div>
+
+    <!-- directory -->
+    <div class="block grid-2">
+      <div class="prose">
+        <h3>Le directory (cartelle)</h3>
+        <p>Su un disco ci sono centinaia di migliaia di file. Per ritrovarli si raggruppano in <b>directory</b>, che nelle interfacce grafiche chiamiamo <b>cartelle</b>. Una cartella può contenere file e altre cartelle (le <b>sottocartelle</b>), formando una struttura ad <b>albero</b>.</p>
+        <p>In cima c’è la <b>radice</b> (<i>root</i>): su Windows è l’unità <code>C:</code>, su macOS e Linux è semplicemente <code>/</code>.</p>
+        <p>L’indirizzo completo di un file, dalla radice fino al file, si chiama <b>percorso</b> (<i>path</i>). Le cartelle sono separate da <code>\</code> su Windows e da <code>/</code> su macOS e Linux.</p>
+        <p>Due file possono avere lo stesso nome, purché stiano in cartelle diverse: il loro percorso resta unico.</p>
+      </div>
+      <figure class="fig">
+        <div class="tree-box">
+          <ul class="tree" id="tree" aria-label="Albero delle cartelle">
+            <li><button type="button" data-p="C:"><svg class="fi folder"><use href="#i-folder"/></svg>C: <span class="muted" style="color:var(--ink-soft);font-size:.85rem">(radice)</span></button>
+              <ul>
+                <li><button type="button" data-p="C:/Utenti"><svg class="fi folder"><use href="#i-folder"/></svg>Utenti</button>
+                  <ul>
+                    <li><button type="button" data-p="C:/Utenti/Anna"><svg class="fi folder"><use href="#i-folder"/></svg>Anna</button>
+                      <ul>
+                        <li><button type="button" data-p="C:/Utenti/Anna/Documenti"><svg class="fi folder"><use href="#i-folder"/></svg>Documenti</button>
+                          <ul>
+                            <li><button type="button" data-p="C:/Utenti/Anna/Documenti/Scuola"><svg class="fi folder"><use href="#i-folder"/></svg>Scuola</button>
+                              <ul>
+                                <li><button type="button" data-p="C:/Utenti/Anna/Documenti/Scuola/tema.docx"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">tema.docx</span></button></li>
+                                <li><button type="button" data-p="C:/Utenti/Anna/Documenti/Scuola/ricerca.pdf"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">ricerca.pdf</span></button></li>
+                              </ul>
+                            </li>
+                            <li><button type="button" data-p="C:/Utenti/Anna/Documenti/curriculum.pdf"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">curriculum.pdf</span></button></li>
+                          </ul>
+                        </li>
+                        <li><button type="button" data-p="C:/Utenti/Anna/Immagini"><svg class="fi folder"><use href="#i-folder"/></svg>Immagini</button>
+                          <ul><li><button type="button" data-p="C:/Utenti/Anna/Immagini/vacanze.jpg" aria-pressed="true"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">vacanze.jpg</span></button></li></ul>
+                        </li>
+                        <li><button type="button" data-p="C:/Utenti/Anna/Musica"><svg class="fi folder"><use href="#i-folder"/></svg>Musica</button>
+                          <ul><li><button type="button" data-p="C:/Utenti/Anna/Musica/canzone.mp3"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">canzone.mp3</span></button></li></ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="pathbar" aria-live="polite">
+            <small>Percorso su Windows</small><code id="path-win"></code>
+            <small>Lo stesso su macOS / Linux</small><code id="path-nix"></code>
+          </div>
+        </div>
+        <figcaption>Tocca una cartella o un file: sotto compare il suo percorso completo.</figcaption>
+      </figure>
+    </div>
+
+    <!-- tipologie -->
+    <div class="block">
+      <h3>Le tipologie di file</h3>
+      <p class="prose" style="color:var(--ink-soft);margin:0 0 20px">Le estensioni si raggruppano in famiglie. Eccone alcune che incontri ogni giorno.</p>
+      <div class="types">
+        <div class="card"><span class="tag">Testo e documenti</span><h4>Da leggere</h4><p>Testo semplice o impaginato, pronto da stampare.</p><div class="chips"><span>.txt</span><span>.docx</span><span>.odt</span><span>.pdf</span></div></div>
+        <div class="card"><span class="tag">Immagini</span><h4>Da guardare</h4><p>Fotografie, disegni, icone e grafica.</p><div class="chips"><span>.jpg</span><span>.png</span><span>.gif</span><span>.webp</span><span>.svg</span></div></div>
+        <div class="card"><span class="tag">Audio</span><h4>Da ascoltare</h4><p>Musica, podcast, messaggi vocali.</p><div class="chips"><span>.mp3</span><span>.aac</span><span>.wav</span><span>.flac</span><span>.ogg</span></div></div>
+        <div class="card"><span class="tag">Video</span><h4>Da vedere</h4><p>Film, clip, registrazioni dello schermo.</p><div class="chips"><span>.mp4</span><span>.mov</span><span>.mkv</span><span>.avi</span><span>.webm</span></div></div>
+        <div class="card"><span class="tag">Fogli e dati</span><h4>Da calcolare</h4><p>Tabelle, elenchi, dati scambiati tra programmi.</p><div class="chips"><span>.xlsx</span><span>.ods</span><span>.csv</span><span>.json</span></div></div>
+        <div class="card"><span class="tag">Presentazioni</span><h4>Da proiettare</h4><p>Diapositive con testo, immagini e animazioni.</p><div class="chips"><span>.pptx</span><span>.odp</span><span>.key</span></div></div>
+        <div class="card"><span class="tag">Archivi compressi</span><h4>Da spedire</h4><p>Tanti file impacchettati in uno solo, più leggero.</p><div class="chips"><span>.zip</span><span>.rar</span><span>.7z</span><span>.tar.gz</span></div></div>
+        <div class="card"><span class="tag">Programmi e web</span><h4>Da eseguire</h4><p>Applicazioni e pagine web.</p><div class="chips"><span>.exe</span><span>.apk</span><span>.app</span><span>.html</span><span>.js</span></div></div>
+      </div>
+      <div class="guess">
+        <div>
+          <label for="guess-in" style="display:block;font-weight:600;margin-bottom:8px">Che tipo di file è?</label>
+          <input id="guess-in" type="text" value="canzone.mp3" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="guess-out" id="guess-out" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- compressione -->
+    <div class="block">
+      <h3>La compressione: far pesare meno i file</h3>
+      <div class="grid-2">
+        <div class="prose">
+          <p>Comprimere significa <b>rappresentare le stesse informazioni con meno byte</b>, così i file occupano meno spazio e viaggiano più veloci su Internet. Esistono due strategie.</p>
+          <ul class="checklist">
+            <li><b>Senza perdita</b> (<i>lossless</i>) — si eliminano solo le ripetizioni. Decomprimendo si riottiene il file identico, bit per bit. Es. ZIP, PNG, FLAC.</li>
+            <li><b>Con perdita</b> (<i>lossy</i>) — si eliminano anche i dettagli che occhi e orecchie notano poco. Il file diventa molto più piccolo, ma quello che si è tolto non torna più. Es. JPEG, MP3, MP4.</li>
+          </ul>
+          <p class="note">Un documento o un programma si comprime sempre <b>senza perdita</b>: se sparisse anche un solo bit, il file non funzionerebbe più.</p>
+        </div>
+        <figure class="fig">
+          <h4 style="margin:0 0 8px;font:600 1.1rem var(--serif)">Prova: compressione senza perdita</h4>
+          <p style="color:var(--ink-soft);margin:0 0 12px;font-size:.95rem">Una riga di 16 pixel. Invece di scriverli uno per uno, si conta quante volte si ripete lo stesso colore (<i>run-length encoding</i>). Tocca i pixel.</p>
+          <div class="rle" id="rle" role="group" aria-label="Riga di 16 pixel"></div>
+          <div class="rle-out" id="rle-out" aria-live="polite"></div>
+          <figcaption>Più ripetizioni ci sono, più si risparmia. Una riga tutta a scacchi, invece, non si comprime affatto.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="fig" style="margin-top:48px">
+        <h4 style="margin:0 0 8px;font:600 1.1rem var(--serif)">Prova: compressione con perdita (JPEG vero)</h4>
+        <p style="color:var(--ink-soft);margin:0 0 16px;font-size:.95rem;max-width:var(--measure)">Il browser comprime davvero questa immagine in JPEG. Abbassa la qualità: il file si rimpicciolisce, e nell’ingrandimento compaiono i «quadrettoni» e le sbavature tipiche della compressione.</p>
+        <div class="jpeg">
+          <div><small>Risultato JPEG</small><img id="jpeg-img" alt="Immagine di prova compressa in JPEG" width="480" height="300"></div>
+          <div><small>Ingrandimento ×4</small><canvas id="jpeg-zoom" class="zoom" width="480" height="300"></canvas></div>
+        </div>
+        <div class="slider-row">
+          <label for="jpeg-q" style="font-weight:600">Qualità</label>
+          <input type="range" id="jpeg-q" min="1" max="100" value="80">
+          <span class="stat" id="jpeg-stat">—</span>
+        </div>
+        <figcaption id="jpeg-cap">Senza compressione questa immagine occuperebbe 480 × 300 pixel × 3 byte = <b>432 KB</b>.</figcaption>
+        <canvas id="jpeg-src" width="480" height="300" hidden></canvas>
+      </figure>
+    </div>
+
+    <!-- audio -->
+    <div class="block grid-2">
+      <div class="prose">
+        <h3>La compressione audio</h3>
+        <p>Il suono è un’onda continua. Per trasformarlo in numeri, il computer ne misura l’altezza a intervalli regolari: è il <b>campionamento</b>. Un CD fa <b>44.100 misure al secondo</b>, ciascuna da 16 bit, per 2 canali (sinistro e destro).</p>
+        <p>Il conto è presto fatto: 44.100 × 16 × 2 = <b>1.411.200 bit al secondo</b>. Una canzone di 3 minuti occupa circa <b>32 MB</b>.</p>
+        <p>Gli <b>MP3</b> e gli <b>AAC</b> la riducono anche di 10 volte eliminando ciò che non sentiamo: i suoni troppo acuti o troppo gravi per il nostro orecchio, e quelli deboli «coperti» da un suono più forte nello stesso istante (<i>mascheramento</i>).</p>
+      </div>
+      <figure class="fig">
+        <svg class="diagram wave" id="wave" viewBox="0 0 600 240" role="img" aria-label="Un’onda sonora e la sua versione campionata a gradini"></svg>
+        <div class="slider-row" style="margin-top:8px">
+          <label for="smp" style="font-weight:600">Campioni</label>
+          <input type="range" id="smp" min="6" max="80" value="16">
+          <span class="stat" id="smp-stat" style="font-size:1.2rem"></span>
+        </div>
+        <figcaption>In grigio l’onda reale, in arancione quella ricostruita dai campioni. Più campioni al secondo = suono più fedele, ma file più grande.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="fig" style="margin-top:32px">
+      <h4 style="margin:0 0 16px;font:600 1.1rem var(--serif)">Quanto pesa una canzone di 3 minuti</h4>
+      <div class="bars" id="audio-bars"></div>
+      <figcaption>In grigio i formati <b>senza perdita</b>, in verde quelli <b>con perdita</b>. Il numero in kbps (<i>bitrate</i>) indica quanti kilobit servono per ogni secondo di audio.</figcaption>
+    </figure>
+
+    <!-- video -->
+    <div class="block">
+      <h3>La compressione video</h3>
+      <div class="grid-2">
+        <div class="prose">
+          <p>Un video è una sequenza di immagini, i <b>fotogrammi</b>, mostrati così in fretta (25–60 al secondo) che l’occhio li percepisce come movimento. Più l’audio.</p>
+          <p>Senza compressione sarebbe enorme: un solo secondo in Full HD sono 30 immagini da 1920 × 1080 pixel × 3 byte, cioè circa <b>187 MB</b>.</p>
+          <p>I codec video (H.264, H.265, AV1) usano due trucchi:</p>
+          <ul class="checklist">
+            <li><b>Dentro ogni fotogramma</b> comprimono come un JPEG;</li>
+            <li><b>Tra un fotogramma e l’altro</b> salvano per intero solo alcuni <b>fotogrammi chiave</b> (<i>I-frame</i>); per gli altri memorizzano soltanto <b>cosa è cambiato</b> rispetto al precedente.</li>
+          </ul>
+          <p class="note">L’estensione <code>.mp4</code> indica il <b>contenitore</b>: una «scatola» che tiene insieme la traccia video (per esempio H.264), quella audio (AAC) e magari i sottotitoli.</p>
+        </div>
+        <figure class="fig">
+          <svg class="diagram film" viewBox="0 0 660 200" role="img" aria-label="Cinque fotogrammi: il primo è completo, negli altri si salva solo la zona in cui la palla si è spostata">
+            <g id="film"></g>
+          </svg>
+          <figcaption>Il primo fotogramma è salvato per intero. Nei successivi cambia solo la posizione della palla: si salva solo il riquadro tratteggiato, il resto si copia dal fotogramma precedente.</figcaption>
+        </figure>
+      </div>
+
+      <div style="margin-top:32px">
+        <h4 style="margin:0 0 16px;font:600 1.1rem var(--serif)">Calcola il peso di un video</h4>
+        <div class="vcalc">
+          <label>Risoluzione
+            <select id="v-res">
+              <option value="1280x720|3">HD 720p</option>
+              <option value="1920x1080|6" selected>Full HD 1080p</option>
+              <option value="3840x2160|20">4K</option>
+            </select>
+          </label>
+          <label>Fotogrammi al secondo
+            <select id="v-fps"><option>25</option><option selected>30</option><option>60</option></select>
+          </label>
+          <label>Durata (minuti)
+            <input type="number" id="v-min" min="1" max="600" value="10">
+          </label>
+        </div>
+        <div class="vres">
+          <div class="card big"><small>Senza compressione</small><output id="v-raw">—</output></div>
+          <div class="card small"><small>Compresso (H.264, tipico)</small><output id="v-cmp">—</output><p id="v-ratio" style="margin-top:4px"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- quiz ─────────────────────────────────────────── -->
 <section class="chapter" id="quiz" aria-labelledby="h-quiz">
   <div class="wrap">
@@ -584,7 +1238,7 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
       <div class="chap-num">?</div>
       <div>
         <h2 id="h-quiz">Mettiti alla prova</h2>
-        <p>Cinque domande veloci per ripassare i quattro capitoli.</p>
+        <p>Sette domande veloci per ripassare i cinque capitoli.</p>
       </div>
     </div>
     <div class="quiz" id="quiz-box"></div>
@@ -646,18 +1300,106 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
     ssd: ["SSD / HDD", "Memoria di massa", "Conserva i dati in modo permanente, anche a computer spento: sistema operativo, programmi, documenti, foto. L’HDD usa dischi magnetici che girano; l’SSD usa chip di memoria senza parti in movimento ed è molto più veloce.", "<b>Come in cucina:</b> la memoria di massa è la dispensa, dove gli ingredienti restano conservati a lungo."],
     psu: ["PSU · Power Supply Unit", "Alimentatore", "Trasforma la corrente alternata della presa di casa (230 V) nella corrente continua a bassa tensione di cui hanno bisogno i componenti. Nei portatili lavora insieme alla batteria.", "<b>Come in cucina:</b> l’alimentatore è il contatore del gas e della luce: senza, non si accende nulla."],
     in: ["Periferiche di input", "Periferiche di ingresso", "Permettono di inserire dati nel computer: tastiera, mouse, touchpad, touchscreen, microfono, webcam, scanner, lettore di codici a barre.", "<b>Come in cucina:</b> sono le ordinazioni dei clienti che arrivano al cuoco."],
-    out: ["Periferiche di output", "Periferiche di uscita", "Mostrano i risultati dell’elaborazione: monitor, stampante, altoparlanti, cuffie, proiettore. Alcune fanno entrambe le cose, come il touchscreen o le cuffie con microfono.", "<b>Come in cucina:</b> sono i piatti pronti che escono dalla cucina verso i tavoli."]
+    out: ["Periferiche di output", "Periferiche di uscita", "Mostrano i risultati dell’elaborazione: monitor, stampante, altoparlanti, cuffie, proiettore. Alcune fanno entrambe le cose, come il touchscreen o le cuffie con microfono.", "<b>Come in cucina:</b> sono i piatti pronti che escono dalla cucina verso i tavoli."],
+    chip: ["Chipset", "Chipset", "È il «vigile urbano» della scheda madre: smista il traffico tra il processore e i componenti più lenti, come la memoria di massa, le porte USB, l’audio e la rete.", "<b>Come in cucina:</b> il chipset è il cameriere che fa avanti e indietro tra la cucina, la dispensa e la sala."],
+    io: ["Porte I/O · Input/Output", "Porte di collegamento", "Le prese sul retro (e sul lato) del computer: USB, audio, rete, HDMI. Sono il punto di contatto tra il computer e le periferiche esterne.", "<b>Come in cucina:</b> sono le porte da cui entrano le ordinazioni ed escono i piatti."]
   };
+  const LINKS = {
+    cpu: ["cpu-ram", "cpu-gpu", "cpu-chip", "pwr"],
+    ram: ["cpu-ram"],
+    chip: ["cpu-chip", "chip-ssd", "chip-io"],
+    ssd: ["chip-ssd", "cpu-chip"],
+    gpu: ["cpu-gpu", "gpu-out"],
+    io: ["chip-io", "io-in"],
+    in: ["io-in", "chip-io", "cpu-chip"],
+    out: ["gpu-out", "cpu-gpu"],
+    psu: ["psu-pwr", "pwr"]
+  };
+  const CONN = {
+    cpu: "RAM (direttamente, per la massima velocità), scheda video, chipset; riceve corrente dall’alimentatore.",
+    ram: "processore, con un bus dedicato e velocissimo.",
+    chip: "processore, SSD e porte USB: fa da smistamento.",
+    ssd: "chipset, e attraverso di esso al processore.",
+    gpu: "processore (slot PCI Express) e, con un cavo, al monitor.",
+    io: "chipset all’interno, periferiche all’esterno.",
+    in: "porte USB → chipset → processore. I dati viaggiano verso l’interno.",
+    out: "scheda video, che le invia l’immagine già calcolata.",
+    psu: "scheda madre (connettore a 24 pin), da cui la corrente arriva a tutti i componenti.",
+    mb: "tutto: è la base su cui ogni componente è montato. Qui sono evidenziati tutti i bus."
+  };
+  const comps = $$(".mobo .comp"), linkEls = $$(".mobo .link");
   const showPart = k => {
     const [abbr, name, text, analogy] = parts[k];
     $("#d-abbr").textContent = abbr;
     $("#d-name").textContent = name;
     $("#d-text").innerHTML = text;
     $("#d-analogy").innerHTML = analogy;
-    $$(".part").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"));
+    $("#d-links").innerHTML = "<b>Collegato a:</b> " + CONN[k];
+    const on = k === "mb" ? linkEls.map(l => l.dataset.l) : LINKS[k];
+    comps.forEach(c => {
+      const act = c.dataset.k === k;
+      c.classList.toggle("active", act);
+      c.setAttribute("aria-pressed", act ? "true" : "false");
+    });
+    linkEls.forEach(l => l.classList.toggle("active", on.includes(l.dataset.l)));
   };
-  $$(".part").forEach(b => b.addEventListener("click", () => showPart(b.dataset.k)));
+  comps.forEach(c => {
+    c.addEventListener("click", e => { e.stopPropagation(); showPart(c.dataset.k); });
+    c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showPart(c.dataset.k); } });
+  });
   showPart("cpu");
+
+  /* ---- ciclo fetch/decode/execute ---- */
+  const nodes = $$(".cycle .node");
+  let cyc = 0;
+  const stepCycle = () => { nodes.forEach(n => n.classList.toggle("on", +n.dataset.c === cyc)); cyc = (cyc + 1) % 3; };
+  stepCycle();
+  if (!reduced) setInterval(stepCycle, 1200);
+
+  /* ---- lampadina ---- */
+  const lampBtn = $("#lamp-btn");
+  lampBtn.addEventListener("click", () => {
+    const on = lampBtn.getAttribute("aria-pressed") !== "true";
+    lampBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    $("#lamp").classList.toggle("on", on);
+    $("#lamp-bit").textContent = on ? "1" : "0";
+    $("#lamp-text").textContent = on ? "Circuito chiuso: la corrente passa" : "Circuito aperto: la corrente non passa";
+  });
+
+  /* ---- pixel ---- */
+  const SMILE = [0x3C, 0x42, 0xA5, 0x81, 0xA5, 0x99, 0x42, 0x3C];
+  const pix = $("#pix"), pixRows = $("#pix-rows");
+  const grid = SMILE.slice();
+  const pxEls = [];
+  for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "px";
+    b.setAttribute("aria-label", `Pixel riga ${r + 1}, colonna ${c + 1}`);
+    b.addEventListener("click", () => { grid[r] ^= 1 << (7 - c); renderPix(); });
+    pix.appendChild(b); pxEls.push(b);
+  }
+  function renderPix() {
+    pxEls.forEach((b, i) => {
+      const r = i >> 3, c = i & 7;
+      b.setAttribute("aria-pressed", (grid[r] >> (7 - c)) & 1 ? "true" : "false");
+    });
+    pixRows.innerHTML = grid.map(v => `<div>${v.toString(2).padStart(8, "0")} = <span>${v}</span></div>`).join("");
+  }
+  const setGrid = arr => { arr.forEach((v, i) => grid[i] = v); renderPix(); };
+  $("#pix-clear").addEventListener("click", () => setGrid(Array(8).fill(0)));
+  $("#pix-smile").addEventListener("click", () => setGrid(SMILE));
+  $("#pix-invert").addEventListener("click", () => setGrid(grid.map(v => v ^ 0xFF)));
+  renderPix();
+
+  /* ---- RGB ---- */
+  const rgbIn = ["r", "g", "b"].map(id => $("#" + id));
+  function renderRGB() {
+    const v = rgbIn.map(i => +i.value);
+    $("#swatch").style.background = `rgb(${v.join(",")})`;
+    rgbIn.forEach((i, k) => { $("#" + i.id + "-o").textContent = v[k].toString(2).padStart(8, "0"); });
+  }
+  rgbIn.forEach(i => i.addEventListener("input", renderRGB));
+  renderRGB();
 
   /* ---- 8-bit toggler ---- */
   const bitsEl = $("#bits"), wEl = $("#weights");
@@ -729,13 +1471,210 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
   asciiIn.addEventListener("input", renderAscii);
   renderAscii();
 
+  /* ---- 05 · percorsi ---- */
+  const treeBtns = $$("#tree button");
+  const showPath = p => {
+    const parts = p.split("/");
+    const sep = c => `<span class="sep">${c}</span>`;
+    $("#path-win").innerHTML = parts.length === 1 ? "C:" + sep("\\") : parts.join(sep("\\"));
+    const nix = parts.slice(1).map((x, i) => i === 0 ? "home" : i === 1 ? x.toLowerCase() : x);
+    $("#path-nix").innerHTML = sep("/") + nix.join(sep("/"));
+    treeBtns.forEach(b => b.setAttribute("aria-pressed", b.dataset.p === p ? "true" : "false"));
+  };
+  treeBtns.forEach(b => b.addEventListener("click", () => showPath(b.dataset.p)));
+  showPath("C:/Utenti/Anna/Immagini/vacanze.jpg");
+
+  /* ---- 05 · che tipo di file ---- */
+  const EXT = {
+    txt: ["Testo semplice", "solo caratteri, senza formattazione", "nessuna"],
+    docx: ["Documento di Word", "testo impaginato con immagini e stili", "senza perdita (è un archivio ZIP)"],
+    odt: ["Documento di LibreOffice", "testo impaginato, formato aperto", "senza perdita"],
+    pdf: ["Documento PDF", "impaginato: appare identico su ogni dispositivo", "senza perdita (le immagini interne possono essere JPEG)"],
+    jpg: ["Immagine JPEG", "ideale per le fotografie", "con perdita"], jpeg: ["Immagine JPEG", "ideale per le fotografie", "con perdita"],
+    png: ["Immagine PNG", "ideale per grafica, schermate e trasparenze", "senza perdita"],
+    gif: ["Immagine GIF", "massimo 256 colori, può essere animata", "senza perdita"],
+    webp: ["Immagine WebP", "formato moderno per il web", "con o senza perdita"],
+    svg: ["Grafica vettoriale SVG", "forme descritte con coordinate: si ingrandisce senza sgranare", "nessuna (è testo)"],
+    mp3: ["Audio MP3", "il formato musicale più diffuso", "con perdita"],
+    aac: ["Audio AAC", "usato da streaming e smartphone", "con perdita"], m4a: ["Audio AAC", "usato da streaming e smartphone", "con perdita"],
+    wav: ["Audio WAV", "audio non compresso, qualità CD", "nessuna"],
+    flac: ["Audio FLAC", "qualità CD in circa metà spazio", "senza perdita"],
+    ogg: ["Audio Ogg", "formato aperto per musica e giochi", "con perdita"],
+    mp4: ["Video MP4", "contenitore per video H.264/H.265 e audio AAC", "con perdita"],
+    mov: ["Video QuickTime", "il formato dei video di iPhone e Mac", "con perdita"],
+    mkv: ["Video Matroska", "contenitore che può tenere più audio e sottotitoli", "con perdita"],
+    avi: ["Video AVI", "vecchio formato di Windows", "di solito con perdita"],
+    webm: ["Video WebM", "formato aperto per il web", "con perdita"],
+    xlsx: ["Foglio di calcolo Excel", "tabelle con formule e grafici", "senza perdita (è un archivio ZIP)"],
+    ods: ["Foglio di calcolo LibreOffice", "tabelle con formule, formato aperto", "senza perdita"],
+    csv: ["Tabella CSV", "valori separati da virgole, leggibile da qualsiasi programma", "nessuna (è testo)"],
+    json: ["Dati JSON", "dati strutturati scambiati tra programmi e siti", "nessuna (è testo)"],
+    pptx: ["Presentazione PowerPoint", "diapositive", "senza perdita (è un archivio ZIP)"],
+    odp: ["Presentazione LibreOffice", "diapositive, formato aperto", "senza perdita"],
+    key: ["Presentazione Keynote", "diapositive di Apple", "senza perdita"],
+    zip: ["Archivio ZIP", "più file impacchettati in uno", "senza perdita"],
+    rar: ["Archivio RAR", "più file impacchettati in uno", "senza perdita"], "7z": ["Archivio 7-Zip", "più file impacchettati in uno, molto compresso", "senza perdita"],
+    gz: ["Archivio gzip", "comune su Linux, spesso come .tar.gz", "senza perdita"],
+    exe: ["Programma per Windows", "un eseguibile: aprilo solo se ti fidi di chi te l’ha mandato!", "—"],
+    apk: ["App per Android", "pacchetto di installazione", "senza perdita (è un archivio ZIP)"],
+    app: ["Applicazione per macOS", "in realtà è una cartella che contiene il programma", "—"],
+    html: ["Pagina web", "testo con i tag che descrivono la pagina", "nessuna (è testo)"],
+    js: ["Codice JavaScript", "istruzioni eseguite dal browser", "nessuna (è testo)"],
+    css: ["Foglio di stile CSS", "descrive l’aspetto di una pagina web", "nessuna (è testo)"],
+    py: ["Codice Python", "un programma sorgente", "nessuna (è testo)"]
+  };
+  const gIn = $("#guess-in"), gOut = $("#guess-out");
+  const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function guess() {
+    const v = gIn.value.trim();
+    const dot = v.lastIndexOf(".");
+    if (dot < 0 || dot === v.length - 1) { gOut.innerHTML = "Scrivi un nome con l’estensione, per esempio <b>foto.png</b>."; return; }
+    const ext = v.slice(dot + 1).toLowerCase();
+    const d = EXT[ext];
+    gOut.innerHTML = d
+      ? `<b>.${esc(ext)}</b> → <b>${d[0]}</b>: ${d[1]}.<br>Compressione: ${d[2]}.`
+      : `Non conosco l’estensione <b>.${esc(ext)}</b>. Prova con jpg, mp3, pdf, zip, mp4…`;
+  }
+  gIn.addEventListener("input", guess);
+  guess();
+
+  /* ---- 05 · RLE ---- */
+  const rleRow = [0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0];
+  const rleEl = $("#rle"), rleOut = $("#rle-out");
+  rleRow.forEach((v, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.setAttribute("aria-label", "Pixel " + (i + 1));
+    b.addEventListener("click", () => { rleRow[i] ^= 1; renderRLE(); });
+    rleEl.appendChild(b);
+  });
+  function renderRLE() {
+    $$("button", rleEl).forEach((b, i) => b.setAttribute("aria-pressed", rleRow[i] ? "true" : "false"));
+    const runs = [];
+    rleRow.forEach(v => { const c = v ? "N" : "B"; if (runs.length && runs[runs.length - 1][1] === c) runs[runs.length - 1][0]++; else runs.push([1, c]); });
+    const raw = rleRow.map(v => v ? "N" : "B").join("");
+    const enc = runs.map(r => r[0] + r[1]).join(" ");
+    const encLen = runs.length * 2;
+    const saved = Math.round((1 - encLen / 16) * 100);
+    rleOut.innerHTML = `Originale: ${raw} <span style="color:var(--ink-soft)">(16 simboli)</span><br>Compresso: <b>${enc}</b> <span style="color:var(--ink-soft)">(${encLen} simboli)</span><br>` +
+      (saved > 0 ? `Risparmio: <b>${saved}%</b>` : `Nessun risparmio: il «compresso» è ${saved === 0 ? "uguale" : "più lungo"}!`) +
+      ` <span style="color:var(--ink-soft)">· B = bianco, N = nero</span>`;
+  }
+  renderRLE();
+
+  /* ---- 05 · JPEG ---- */
+  const src = $("#jpeg-src"), sctx = src.getContext("2d");
+  (function draw() {
+    const g = sctx.createLinearGradient(0, 0, 0, 300);
+    g.addColorStop(0, "#2b6cb0"); g.addColorStop(.6, "#f6ad55"); g.addColorStop(1, "#c05621");
+    sctx.fillStyle = g; sctx.fillRect(0, 0, 480, 300);
+    sctx.fillStyle = "#fff3c4"; sctx.beginPath(); sctx.arc(340, 150, 44, 0, Math.PI * 2); sctx.fill();
+    sctx.fillStyle = "#1a202c";
+    sctx.beginPath(); sctx.moveTo(0, 240); sctx.lineTo(90, 170); sctx.lineTo(160, 215); sctx.lineTo(250, 120); sctx.lineTo(330, 210); sctx.lineTo(480, 180); sctx.lineTo(480, 300); sctx.lineTo(0, 300); sctx.fill();
+    sctx.fillStyle = "#1e4e8c"; sctx.fillRect(0, 262, 480, 38);
+    sctx.strokeStyle = "#fff3c4"; sctx.lineWidth = 2;
+    for (let i = 0; i < 8; i++) { sctx.beginPath(); sctx.moveTo(300 + i * 6, 270 + i * 3); sctx.lineTo(380 - i * 6, 270 + i * 3); sctx.stroke(); }
+    sctx.fillStyle = "#ffffff"; sctx.font = "700 44px Georgia, serif"; sctx.fillText("Napoli", 24, 60);
+    sctx.font = "400 14px Georgia, serif"; sctx.fillText("tramonto sul Vesuvio · testo piccolo e dettagli fini", 26, 84);
+  })();
+  const img = $("#jpeg-img"), zoom = $("#jpeg-zoom"), zctx = zoom.getContext("2d");
+  zctx.imageSmoothingEnabled = false;
+  function renderJPEG() {
+    const q = +$("#jpeg-q").value;
+    const url = src.toDataURL("image/jpeg", q / 100);
+    const bytes = Math.round((url.length - url.indexOf(",") - 1) * 3 / 4);
+    img.onload = () => { zctx.clearRect(0, 0, 480, 300); zctx.drawImage(img, 14, 26, 120, 75, 0, 0, 480, 300); };
+    img.src = url;
+    $("#jpeg-stat").innerHTML = `${(bytes / 1024).toFixed(1).replace(".", ",")} KB <small>· ${Math.round(432000 / bytes)} volte più piccolo</small>`;
+  }
+  $("#jpeg-q").addEventListener("input", renderJPEG);
+  renderJPEG();
+
+  /* ---- 05 · campionamento ---- */
+  const NS = "http://www.w3.org/2000/svg";
+  const wave = $("#wave");
+  const f = x => 110 - 70 * Math.sin(x * 2 * Math.PI * 2) - 22 * Math.sin(x * 2 * Math.PI * 5 + 1);
+  const X0 = 20, W = 560;
+  const mk = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+  function renderWave() {
+    const n = +$("#smp").value;
+    wave.innerHTML = "";
+    wave.appendChild(mk("line", { class: "axis", x1: X0, y1: 110, x2: X0 + W, y2: 110 }));
+    let d = "";
+    for (let i = 0; i <= 300; i++) { const x = i / 300; d += (i ? "L" : "M") + (X0 + x * W).toFixed(1) + " " + f(x).toFixed(1); }
+    wave.appendChild(mk("path", { class: "sig", d }));
+    let st = "";
+    for (let i = 0; i < n; i++) {
+      const x = i / n, px = X0 + x * W, py = f(x), nx = X0 + (i + 1) / n * W;
+      wave.appendChild(mk("line", { class: "smp", x1: px, y1: 110, x2: px, y2: py }));
+      st += (i ? "L" : "M") + px.toFixed(1) + " " + py.toFixed(1) + "H" + nx.toFixed(1);
+    }
+    wave.appendChild(mk("path", { class: "stair", d: st }));
+    for (let i = 0; i < n; i++) { const x = i / n; wave.appendChild(mk("circle", { class: "dot", cx: X0 + x * W, cy: f(x), r: n > 40 ? 2 : 3.5 })); }
+    const t = mk("text", { x: X0, y: 232, class: "muted" }); t.textContent = "tempo →"; wave.appendChild(t);
+    $("#smp-stat").textContent = n + " misure";
+  }
+  $("#smp").addEventListener("input", renderWave);
+  renderWave();
+
+  /* ---- 05 · barre audio ---- */
+  const AUD = [
+    ["WAV · qualità CD", 1411, 1], ["FLAC", 850, 1], ["MP3 alta qualità", 320, 0],
+    ["AAC · streaming", 160, 0], ["MP3 standard", 128, 0], ["Messaggio vocale", 32, 0]
+  ];
+  $("#audio-bars").innerHTML = AUD.map(([n, k, ll]) => {
+    const mb = k * 180 / 8 / 1000;
+    return `<div class="bar-row${ll ? " lossless" : ""}"><div>${n}<small>${k} kbps</small></div><div class="track"><div class="fill" style="width:${(k / 1411 * 100).toFixed(1)}%"></div></div><div class="v">${mb.toFixed(1).replace(".", ",")} MB</div></div>`;
+  }).join("");
+
+  /* ---- 05 · fotogrammi ---- */
+  const film = $("#film");
+  for (let i = 0; i < 5; i++) {
+    const ox = 8 + i * 130, oy = 30, fw = 120, fh = 80;
+    const g = mk("g", {});
+    g.appendChild(mk("rect", { class: "frame" + (i === 0 ? " keyf" : ""), x: ox, y: oy, width: fw, height: fh, rx: 4 }));
+    const scene = mk("g", { class: i === 0 ? "" : "faded" });
+    scene.appendChild(mk("rect", { class: "sky", x: ox + 1, y: oy + 1, width: fw - 2, height: 55 }));
+    scene.appendChild(mk("rect", { class: "ground", x: ox + 1, y: oy + 56, width: fw - 2, height: fh - 57 }));
+    scene.appendChild(mk("path", { class: "ground", d: `M${ox + 70} ${oy + 56} l15 -22 15 22z` }));
+    g.appendChild(scene);
+    const bx = ox + 18 + i * 20, by = oy + 46;
+    if (i > 0) g.appendChild(mk("rect", { class: "diff", x: bx - 30, y: by - 12, width: 42, height: 24, rx: 3 }));
+    g.appendChild(mk("circle", { class: "ball", cx: bx, cy: by, r: 8 }));
+    for (let k = 0; k < 6; k++) { g.appendChild(mk("rect", { class: "perf", x: ox + 6 + k * 20, y: oy - 14, width: 10, height: 6, rx: 1 })); g.appendChild(mk("rect", { class: "perf", x: ox + 6 + k * 20, y: oy + fh + 8, width: 10, height: 6, rx: 1 })); }
+    const t = mk("text", { x: ox + fw / 2, y: 150, "text-anchor": "middle", class: "serif" }); t.textContent = i === 0 ? "I-frame" : "P-frame";
+    const t2 = mk("text", { x: ox + fw / 2, y: 170, "text-anchor": "middle", class: "muted" }); t2.textContent = i === 0 ? "completo" : "solo differenze";
+    g.append(t, t2); film.appendChild(g);
+  }
+
+  /* ---- 05 · calcolatore video ---- */
+  const fmtB = b => {
+    const u = ["byte", "KB", "MB", "GB", "TB"]; let i = 0;
+    while (b >= 1000 && i < u.length - 1) { b /= 1000; i++; }
+    return (b >= 100 ? Math.round(b) : b.toFixed(1).replace(".", ",")) + " " + u[i];
+  };
+  function renderVideo() {
+    const [res, mbps] = $("#v-res").value.split("|");
+    const [w, h] = res.split("x").map(Number);
+    const fps = +$("#v-fps").value;
+    const sec = Math.max(1, Math.min(600, +$("#v-min").value || 1)) * 60;
+    const raw = w * h * 3 * fps * sec;
+    const cmp = (+mbps * (fps === 60 ? 1.5 : 1)) * 1e6 / 8 * sec;
+    $("#v-raw").textContent = fmtB(raw);
+    $("#v-cmp").textContent = fmtB(cmp);
+    $("#v-ratio").textContent = `circa ${Math.round(raw / cmp)} volte più piccolo`;
+  }
+  ["#v-res", "#v-fps", "#v-min"].forEach(id => $(id).addEventListener("input", renderVideo));
+  renderVideo();
+
   /* ---- quiz ---- */
   const Q = [
     ["La parola «informatica» nasce dall’unione di…", ["informazione + automatica", "informazione + matematica", "internet + tecnica"], 0, "Informazione + automatica: trattare le informazioni in modo automatico."],
     ["Quale componente si svuota quando spegni il computer?", ["SSD", "RAM", "Scheda madre"], 1, "La RAM è volatile: conserva i dati solo finché c’è corrente."],
     ["Quanto vale 1010 in decimale?", ["10", "12", "5"], 0, "8 + 0 + 2 + 0 = 10."],
     ["Quanti bit ci sono in un byte?", ["4", "8", "10"], 1, "Un byte è formato da 8 bit: 256 combinazioni possibili."],
-    ["Quale di questi è un sistema operativo?", ["Chrome", "Linux", "Excel"], 1, "Linux è un sistema operativo; Chrome ed Excel sono applicazioni."]
+    ["Quale di questi è un sistema operativo?", ["Chrome", "Linux", "Excel"], 1, "Linux è un sistema operativo; Chrome ed Excel sono applicazioni."],
+    ["Nel file C:\\Utenti\\Anna\\foto.jpg, che cosa indica «jpg»?", ["la cartella", "l’estensione, cioè il tipo di file", "la dimensione"], 1, "L’estensione dice al sistema operativo che si tratta di un’immagine JPEG."],
+    ["Quale formato usa una compressione con perdita?", ["ZIP", "PNG", "MP3"], 2, "L’MP3 elimina i suoni che l’orecchio non percepisce; ZIP e PNG non perdono nulla."]
   ];
   const box = $("#quiz-box");
   let answered = 0, correct = 0;
