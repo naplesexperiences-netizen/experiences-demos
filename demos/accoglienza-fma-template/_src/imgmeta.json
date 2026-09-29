@@ -1,0 +1,506 @@
+{
+ "strutture/casa-per-feriemaria-mazzarello/hero": {
+  "w": 1920,
+  "h": 1180,
+  "kb": 110,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/hero-casa-per-ferie-maria-mazzarello-verbania-lago-maggiore.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/card": {
+  "w": 720,
+  "h": 443,
+  "kb": 36,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/hero-casa-per-ferie-maria-mazzarello-verbania-lago-maggiore.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g1": {
+  "w": 1024,
+  "h": 664,
+  "kb": 92,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/verbania-1024x664-1.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g2": {
+  "w": 1024,
+  "h": 664,
+  "kb": 22,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/ritiri-spirirualita-casa-per-ferie-maria-mazzarello-verbania-lago-maggione-1024x664-1.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g3": {
+  "w": 1024,
+  "h": 664,
+  "kb": 41,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/ospitalita-casa-per-ferie-maria-mazzarello-verbania-lago-maggiore-1024x664-1.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g4": {
+  "w": 1080,
+  "h": 700,
+  "kb": 127,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/Lago-Maggiore.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g5": {
+  "w": 567,
+  "h": 682,
+  "kb": 26,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/hotel-verbania.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g6": {
+  "w": 567,
+  "h": 682,
+  "kb": 32,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/hotel-lago-maggiore.jpg"
+ },
+ "strutture/casa-per-feriemaria-mazzarello/g7": {
+  "w": 1024,
+  "h": 664,
+  "kb": 65,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/Foto-eremo-Santa-Maria-lago-Maggiore-1024x664-1.jpg"
+ },
+ "loghi/ref-6279": {
+  "w": 210,
+  "h": 224,
+  "kb": 6,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2026/05/Logo-casa-per-ferie-mazzarello-e1778145245280.png"
+ },
+ "strutture/san-giuseppe-caorle/hero": {
+  "w": 1920,
+  "h": 896,
+  "kb": 151,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/caorle-vacanze-casa-san-giuseppe-high-1-1.webp"
+ },
+ "strutture/san-giuseppe-caorle/card": {
+  "w": 720,
+  "h": 336,
+  "kb": 36,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/caorle-vacanze-casa-san-giuseppe-high-1-1.webp"
+ },
+ "strutture/san-giuseppe-caorle/g1": {
+  "w": 1280,
+  "h": 960,
+  "kb": 92,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/camera-quadrupla-caorle.webp"
+ },
+ "strutture/san-giuseppe-caorle/g2": {
+  "w": 1280,
+  "h": 854,
+  "kb": 66,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/camera-singola-caorle-sangiuseppe-casa-vacanze-1.webp"
+ },
+ "strutture/san-giuseppe-caorle/g3": {
+  "w": 1280,
+  "h": 853,
+  "kb": 84,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/camera-tripla2-caorle-1536x1024-1.jpg"
+ },
+ "strutture/san-giuseppe-caorle/g4": {
+  "w": 1280,
+  "h": 881,
+  "kb": 19,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/bagno-privato2.webp"
+ },
+ "strutture/san-giuseppe-caorle/g5": {
+  "w": 1280,
+  "h": 854,
+  "kb": 47,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/bambini-spiaggia-infanzia-vacanze-1.webp"
+ },
+ "strutture/san-giuseppe-caorle/g6": {
+  "w": 1280,
+  "h": 603,
+  "kb": 66,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/caorle-citta-turismo-mare-veneto.webp"
+ },
+ "strutture/san-giuseppe-caorle/g7": {
+  "w": 1280,
+  "h": 651,
+  "kb": 55,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/chiesa-caorle-paesaggio.webp"
+ },
+ "loghi/ref-6231": {
+  "w": 320,
+  "h": 91,
+  "kb": 8,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/11/Screenshot-2025-11-27-alle-08.49.18.png"
+ },
+ "strutture/villa-crawford/hero": {
+  "w": 1024,
+  "h": 684,
+  "kb": 168,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/Villa-Crawford-Garden-1024x684-1.jpg"
+ },
+ "strutture/villa-crawford/card": {
+  "w": 720,
+  "h": 481,
+  "kb": 84,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/Villa-Crawford-Garden-1024x684-1.jpg"
+ },
+ "strutture/villa-crawford/g1": {
+  "w": 1024,
+  "h": 684,
+  "kb": 59,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/Villa-Crawford-Quadruple-Room-1024x684-1.jpg"
+ },
+ "strutture/villa-crawford/g2": {
+  "w": 800,
+  "h": 600,
+  "kb": 34,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/cappella.jpg"
+ },
+ "strutture/villa-crawford/g3": {
+  "w": 1024,
+  "h": 720,
+  "kb": 87,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/Villa-Crawford-Reception-1024x720-1.jpg"
+ },
+ "strutture/villa-crawford/g4": {
+  "w": 800,
+  "h": 533,
+  "kb": 26,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/IMG_3228.jpg"
+ },
+ "strutture/villa-crawford/g5": {
+  "w": 1024,
+  "h": 684,
+  "kb": 40,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/Villa-Crawford-View-From-Centre-Terrace-1024x684-1.jpg"
+ },
+ "loghi/ref-6234": {
+  "w": 97,
+  "h": 128,
+  "kb": 10,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/logo-Villa-Crawford.png"
+ },
+ "strutture/fma-soverato/hero": {
+  "w": 1920,
+  "h": 1280,
+  "kb": 163,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0046-scaled.jpg"
+ },
+ "strutture/fma-soverato/card": {
+  "w": 720,
+  "h": 480,
+  "kb": 31,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0046-scaled.jpg"
+ },
+ "strutture/fma-soverato/g1": {
+  "w": 1280,
+  "h": 854,
+  "kb": 44,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0042-scaled.jpg"
+ },
+ "strutture/fma-soverato/g2": {
+  "w": 1280,
+  "h": 854,
+  "kb": 46,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0039-scaled.jpg"
+ },
+ "strutture/fma-soverato/g3": {
+  "w": 1280,
+  "h": 854,
+  "kb": 51,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0034-scaled.jpg"
+ },
+ "strutture/fma-soverato/g4": {
+  "w": 1280,
+  "h": 854,
+  "kb": 101,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0026-scaled.jpg"
+ },
+ "strutture/fma-soverato/g5": {
+  "w": 1280,
+  "h": 1920,
+  "kb": 30,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_0045-scaled.jpg"
+ },
+ "loghi/ref-6226": {
+  "w": 200,
+  "h": 175,
+  "kb": 4,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/iconaFMA-copia-e1748852796230.png"
+ },
+ "strutture/fma-roma/hero": {
+  "w": 1920,
+  "h": 1200,
+  "kb": 0,
+  "src": "1686403152856-scaled.jpg"
+ },
+ "strutture/fma-roma/card": {
+  "w": 720,
+  "h": 480,
+  "kb": 0,
+  "src": ""
+ },
+ "strutture/fma-roma/g1": {
+  "w": 1280,
+  "h": 2276,
+  "kb": 54,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/20240408_152644-rotated.jpg"
+ },
+ "strutture/fma-roma/g2": {
+  "w": 1280,
+  "h": 720,
+  "kb": 30,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/20240408_152913.jpg"
+ },
+ "strutture/fma-roma/g3": {
+  "w": 1280,
+  "h": 1707,
+  "kb": 137,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/1686403152908-scaled.jpg"
+ },
+ "strutture/fma-roma/g4": {
+  "w": 1280,
+  "h": 1707,
+  "kb": 72,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/1686403152830-scaled.jpg"
+ },
+ "strutture/fma-roma/g5": {
+  "w": 1280,
+  "h": 1707,
+  "kb": 49,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/1686403152826-scaled.jpg"
+ },
+ "strutture/fma-roma/g6": {
+  "w": 1280,
+  "h": 1707,
+  "kb": 99,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/1686403152792-scaled.jpg"
+ },
+ "strutture/fma-roma/g7": {
+  "w": 1280,
+  "h": 1704,
+  "kb": 54,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/1686403152747-scaled.jpg"
+ },
+ "loghi/ref-6224": {
+  "w": 200,
+  "h": 175,
+  "kb": 4,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/iconaFMA-copia-e1748852796230.png"
+ },
+ "strutture/villa-tabor/hero": {
+  "w": 1000,
+  "h": 667,
+  "kb": 83,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-18.jpg"
+ },
+ "strutture/villa-tabor/card": {
+  "w": 720,
+  "h": 480,
+  "kb": 45,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-18.jpg"
+ },
+ "strutture/villa-tabor/g1": {
+  "w": 1000,
+  "h": 667,
+  "kb": 63,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-24.jpg"
+ },
+ "strutture/villa-tabor/g2": {
+  "w": 1000,
+  "h": 667,
+  "kb": 62,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/cappella_votiva_casa_vacanze_asiago-4.jpg"
+ },
+ "strutture/villa-tabor/g3": {
+  "w": 1000,
+  "h": 667,
+  "kb": 64,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-28.jpg"
+ },
+ "strutture/villa-tabor/g4": {
+  "w": 1000,
+  "h": 667,
+  "kb": 49,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-27.jpg"
+ },
+ "strutture/villa-tabor/g5": {
+  "w": 1000,
+  "h": 667,
+  "kb": 57,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-23.jpg"
+ },
+ "strutture/villa-tabor/g6": {
+  "w": 1000,
+  "h": 667,
+  "kb": 89,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-20.jpg"
+ },
+ "strutture/villa-tabor/g7": {
+  "w": 1000,
+  "h": 667,
+  "kb": 86,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/esterni_casa_vacanze_asiago-10.jpg"
+ },
+ "loghi/ref-6228": {
+  "w": 320,
+  "h": 113,
+  "kb": 7,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/11/villa_tabor-logo.png"
+ },
+ "strutture/fma-napoli/hero": {
+  "w": 1920,
+  "h": 1280,
+  "kb": 205,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7610-scaled.jpeg"
+ },
+ "strutture/fma-napoli/card": {
+  "w": 720,
+  "h": 480,
+  "kb": 49,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7610-scaled.jpeg"
+ },
+ "strutture/fma-napoli/g1": {
+  "w": 1280,
+  "h": 854,
+  "kb": 95,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7544-scaled.jpeg"
+ },
+ "strutture/fma-napoli/g2": {
+  "w": 1280,
+  "h": 854,
+  "kb": 107,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7524-scaled.jpeg"
+ },
+ "strutture/fma-napoli/g3": {
+  "w": 1280,
+  "h": 854,
+  "kb": 60,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7574-scaled.jpeg"
+ },
+ "strutture/fma-napoli/g4": {
+  "w": 1280,
+  "h": 854,
+  "kb": 40,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7567-scaled.jpeg"
+ },
+ "strutture/fma-napoli/g5": {
+  "w": 1280,
+  "h": 854,
+  "kb": 52,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/DSC_7595-scaled.jpeg"
+ },
+ "loghi/ref-6236": {
+  "w": 200,
+  "h": 175,
+  "kb": 4,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/iconaFMA-copia-e1748852796230.png"
+ },
+ "strutture/villa-tiberiade/hero": {
+  "w": 1564,
+  "h": 1043,
+  "kb": 202,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-esterno-2.webp"
+ },
+ "strutture/villa-tiberiade/card": {
+  "w": 720,
+  "h": 480,
+  "kb": 40,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-esterno-2.webp"
+ },
+ "strutture/villa-tiberiade/g1": {
+  "w": 1280,
+  "h": 853,
+  "kb": 49,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-camera-2-singola.webp"
+ },
+ "strutture/villa-tiberiade/g2": {
+  "w": 1280,
+  "h": 853,
+  "kb": 64,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-camera-singola.webp"
+ },
+ "strutture/villa-tiberiade/g3": {
+  "w": 768,
+  "h": 511,
+  "kb": 29,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-convegni.webp"
+ },
+ "strutture/villa-tiberiade/g4": {
+  "w": 806,
+  "h": 611,
+  "kb": 31,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-mare.webp"
+ },
+ "strutture/villa-tiberiade/g5": {
+  "w": 1280,
+  "h": 719,
+  "kb": 119,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-esterno.jpeg"
+ },
+ "strutture/villa-tiberiade/g6": {
+  "w": 1280,
+  "h": 853,
+  "kb": 117,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade.webp"
+ },
+ "strutture/villa-tiberiade/g7": {
+  "w": 1280,
+  "h": 853,
+  "kb": 127,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-matrimonio.jpeg"
+ },
+ "loghi/ref-5707": {
+  "w": 200,
+  "h": 175,
+  "kb": 4,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/iconaFMA-copia-e1748852796230.png"
+ },
+ "blog/la-storia-dellaltopiano-di-asiago": {
+  "w": 1000,
+  "h": 667,
+  "kb": 146,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/10/IMG_4134-copia.jpg"
+ },
+ "blog/soverato-la-perla-della-calabria": {
+  "w": 1440,
+  "h": 811,
+  "kb": 127,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/10/254428-Soverato.jpg"
+ },
+ "blog/il-giubileo-a-roma": {
+  "w": 1440,
+  "h": 950,
+  "kb": 183,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/10/tiber-river-4529605_1920.jpg"
+ },
+ "blog/cosa-fare-a-napoli": {
+  "w": 1440,
+  "h": 810,
+  "kb": 135,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/10/napoli.04.jpg"
+ },
+ "blog/perche-visitare-torre-annunziata": {
+  "w": 1440,
+  "h": 809,
+  "kb": 148,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2020/11/villa-tiberiade-esterno.jpeg"
+ },
+ "loghi/partner-villa-crawford": {
+  "w": 97,
+  "h": 128,
+  "kb": 10,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/11/logo-Villa-Crawford.png"
+ },
+ "loghi/partner-partner-one": {
+  "w": 338,
+  "h": 119,
+  "kb": 5,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2017/06/villa_tabor-logo.png"
+ },
+ "loghi/partner-partner-two": {
+  "w": 100,
+  "h": 107,
+  "kb": 6,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/Logo-Experiences-e1724770856862.png"
+ },
+ "loghi/partner-partner-three": {
+  "w": 100,
+  "h": 100,
+  "kb": 6,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2024/08/cropped-fma-logo-e1724770902277.png"
+ },
+ "loghi/accoglienza-fma": {
+  "w": 500,
+  "h": 121,
+  "kb": 7,
+  "src": "https://accoglienzafma.com/wp-content/uploads/2025/06/Logo-nome-disegno-accoglienza-e1748855196407.png"
+ }
+}
