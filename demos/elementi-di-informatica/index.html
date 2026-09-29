@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elementi di informatica</title>
-<meta name="description" content="Un sito per capire le basi dell’informatica: cos’è, da cosa è fatto un computer, il sistema binario e i software. Con esempi interattivi.">
+<meta name="description" content="Un sito per capire le basi dell’informatica: cos’è, da cosa è fatto un computer, il sistema binario, i software, i file e la compressione. Con esempi interattivi.">
 <meta name="demo:tags" content="didattica,informatica,scuola,interattivo">
 <meta name="demo:category" content="education">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -352,6 +352,105 @@
   .machine small { display: block; color: color-mix(in srgb, var(--paper) 55%, transparent); font-size: 0.75rem; }
   .code-demo.joined { border-radius: 14px 14px 0 0; }
 
+  /* ---------- 05 file ---------- */
+  .toc a:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .anat { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+  .anat-name { display: flex; align-items: stretch; font: 600 clamp(1.3rem, 3.5vw, 1.9rem) var(--mono); border-bottom: 1px solid var(--rule); }
+  .anat-name span { padding: 18px 16px 10px; position: relative; }
+  .anat-name small { position: absolute; left: 16px; bottom: -2px; font: 600 0.65rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .anat-name .n { background: var(--on-soft); color: var(--on); }
+  .anat-name .dot { padding: 18px 2px 10px; }
+  .anat-name .e { background: var(--accent-soft); color: var(--accent); }
+  .anat-row { padding: 14px 16px; border-bottom: 1px solid var(--rule); }
+  .anat-row:last-child { border-bottom: 0; }
+  .anat-row h4 { margin: 0 0 6px; font: 600 0.72rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .hex { font: 400 0.85rem/1.7 var(--mono); color: var(--ink); word-break: break-all; }
+  .hex b { color: var(--accent); font-weight: 600; }
+  .meta { display: grid; grid-template-columns: auto 1fr; gap: 2px 16px; font-size: 0.92rem; margin: 0; }
+  .meta dt { color: var(--ink-soft); }
+  .meta dd { margin: 0; font-family: var(--mono); font-size: 0.88rem; }
+
+  .fsvg { display: none; }
+  .fi { width: 18px; height: 18px; flex: none; }
+  .fi.folder { fill: var(--warm); }
+  .fi.file { fill: none; stroke: var(--ink-soft); stroke-width: 1.5; }
+  .tree-box { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 16px; }
+  .tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+  .tree ul { margin-left: 12px; padding-left: 14px; border-left: 1px dashed var(--rule); }
+  .tree button { appearance: none; border: 0; background: none; color: var(--ink); font: 500 0.95rem var(--sans); display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 6px; cursor: pointer; width: 100%; text-align: left; }
+  .tree button:hover { background: var(--paper-2); }
+  .tree button[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+  .tree .ext { font-family: var(--mono); font-size: 0.85rem; }
+  .pathbar { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 12px; }
+  .pathbar small { display: block; font: 600 0.68rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px; }
+  .pathbar code { display: block; font-size: 0.92rem; word-break: break-all; }
+  .pathbar code .sep { color: var(--accent); font-weight: 600; }
+
+  .types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 960px) { .types { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .types { grid-template-columns: 1fr; } }
+  .types .card { padding: 18px; }
+  .types h4 { margin: 0 0 4px; font: 600 1.1rem var(--serif); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+  .chips span { font: 600 0.75rem var(--mono); background: var(--paper-2); border: 1px solid var(--rule); border-radius: 6px; padding: 2px 6px; }
+  .guess { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 700px) { .guess { grid-template-columns: 1fr; } }
+  .guess input { font: 600 1.1rem var(--mono); padding: 10px 14px; width: 100%; border-radius: 10px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); }
+  .guess input:focus { border-color: var(--accent); outline: none; }
+  .guess-out { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 16px; min-height: 52px; font-size: 0.95rem; color: var(--ink-soft); }
+  .guess-out b { color: var(--ink); }
+
+  .rle { display: grid; grid-template-columns: repeat(16, 1fr); gap: 3px; max-width: 520px; }
+  .rle button { aspect-ratio: 1; border: 1px solid var(--rule); background: var(--card); border-radius: 4px; cursor: pointer; padding: 0; }
+  .rle button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+  .rle-out { font: 400 0.95rem/1.7 var(--mono); margin-top: 12px; }
+  .rle-out b { color: var(--on); }
+
+  .jpeg { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .jpeg { grid-template-columns: 1fr; } }
+  .jpeg canvas, .jpeg img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--rule); display: block; }
+  .jpeg .zoom { image-rendering: pixelated; }
+  .jpeg small { display: block; font: 600 0.7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+  .slider-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+  .slider-row input[type=range] { flex: 1; min-width: 180px; }
+  .stat { font: 800 1.6rem var(--serif); font-variant-numeric: tabular-nums; }
+  .stat small { font: 400 0.85rem var(--sans); color: var(--ink-soft); }
+
+  .bars { display: grid; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 70px; gap: 12px; align-items: center; font-size: 0.92rem; }
+  .bar-row .track { height: 14px; background: var(--paper-2); border-radius: 4px; overflow: hidden; }
+  .bar-row .fill { height: 100%; background: var(--on); border-radius: 4px; }
+  .bar-row.lossless .fill { background: var(--ink-soft); }
+  .bar-row .v { font: 600 0.85rem var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-row small { display: block; color: var(--ink-soft); font-size: 0.78rem; }
+  @media (max-width: 480px) { .bar-row { grid-template-columns: 110px 1fr 58px; gap: 8px; } }
+
+  .wave .sig { fill: none; stroke: var(--ink-soft); stroke-width: 2; }
+  .wave .stair { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+  .wave .smp { stroke: var(--rule); stroke-width: 1; }
+  .wave .dot { fill: var(--accent); }
+  .wave .axis { stroke: var(--rule); stroke-width: 1; }
+
+  .film .frame { fill: var(--card); stroke: var(--ink); stroke-width: 1.5; }
+  .film .keyf { stroke: var(--accent); stroke-width: 2.5; }
+  .film .sky { fill: var(--on-soft); }
+  .film .ground { fill: var(--pcb-line); }
+  .film .ball { fill: var(--accent); }
+  .film .faded { opacity: .22; }
+  .film .diff { fill: none; stroke: var(--on); stroke-width: 2; stroke-dasharray: 4 3; }
+  .film .perf { fill: var(--ink); }
+
+  .vcalc { display: grid; grid-template-columns: repeat(3, auto); gap: 12px 20px; align-items: end; }
+  .vcalc label { display: grid; gap: 4px; font: 600 0.8rem var(--sans); color: var(--ink-soft); }
+  .vcalc select, .vcalc input[type=number] { font: 500 1rem var(--sans); padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); }
+  @media (max-width: 480px) { .vcalc { grid-template-columns: 1fr 1fr; } }
+  .vres { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .vres .card small { display: block; font: 600 0.7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .vres .card output { font: 800 1.8rem var(--serif); font-variant-numeric: tabular-nums; }
+  .vres .card.big { border-color: var(--accent); }
+  .vres .card.small { border-color: var(--on); }
+  @media (max-width: 480px) { .vres { grid-template-columns: 1fr; } }
+
   footer { padding: 48px 0 64px; color: var(--ink-soft); font-size: 0.92rem; }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 </style>
@@ -366,6 +465,7 @@
       <li><a class="link" href="#computer"><span>02</span>Computer</a></li>
       <li><a class="link" href="#binario"><span>03</span>Binario</a></li>
       <li><a class="link" href="#software"><span>04</span>Software</a></li>
+      <li><a class="link" href="#file"><span>05</span>File</a></li>
       <li><a class="link" href="#quiz"><span>?</span>Quiz</a></li>
     </ol>
   </div>
@@ -374,7 +474,7 @@
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <p class="kicker">Un corso breve, in quattro capitoli</p>
+      <p class="kicker">Un corso breve, in cinque capitoli</p>
       <h1>Elementi di <em>informatica</em></h1>
       <p class="lede">Che cosa fa davvero un computer, di che pezzi è fatto, perché «pensa» solo con 0 e 1 e come i programmi gli dicono cosa fare. Spiegato semplice, con esempi da toccare.</p>
       <div class="toc">
@@ -382,6 +482,7 @@
         <a href="#computer"><span class="n">02</span><span class="t">Com’è fatto un computer</span></a>
         <a href="#binario"><span class="n">03</span><span class="t">Il sistema binario</span></a>
         <a href="#software"><span class="n">04</span><span class="t">I software</span></a>
+        <a href="#file"><span class="n">05</span><span class="t">I file e la compressione</span></a>
       </div>
     </div>
     <div class="bitwall" id="bitwall" aria-hidden="true"></div>
@@ -900,6 +1001,236 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
   </div>
 </section>
 
+<!-- 05 ─────────────────────────────────────────── -->
+<section class="chapter" id="file" aria-labelledby="h-file">
+  <svg class="fsvg" aria-hidden="true">
+    <symbol id="i-folder" viewBox="0 0 20 20"><path d="M2 5a1 1 0 0 1 1-1h5l2 2h7a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 20 20"><path d="M5 2h7l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM12 2v4h4"/></symbol>
+  </svg>
+  <div class="wrap">
+    <div class="chap-head">
+      <div class="chap-num">05</div>
+      <div>
+        <h2 id="h-file">I file</h2>
+        <p>Tutto quello che salvi — un compito, una foto, una canzone, un video — diventa un <b>file</b>. Vediamo com’è fatto, come si organizza in cartelle e come si fa a farlo pesare meno.</p>
+      </div>
+    </div>
+
+    <!-- cos'è un file -->
+    <div class="grid-2">
+      <div class="prose">
+        <h3>Cos’è un file</h3>
+        <p>Un file è una <b>sequenza di byte</b> salvata sulla memoria di massa, con un <b>nome</b> che la identifica. Per il computer, una foto e un tema sono la stessa cosa: una lunga fila di 0 e 1. A fare la differenza è <i>come</i> quei byte vanno interpretati.</p>
+        <p>Per questo il nome ha due parti separate da un punto: il <b>nome</b> vero e proprio, scelto da te, e l’<b>estensione</b>, che dice che tipo di contenuto c’è dentro. Il sistema operativo usa l’estensione per scegliere il programma giusto con cui aprirlo.</p>
+        <p>Oltre al contenuto, ogni file ha dei <b>metadati</b>: informazioni <i>sul</i> file, come dimensione, data di creazione e di modifica, e chi ha il permesso di leggerlo o modificarlo.</p>
+        <p class="note">Rinominare <code>foto.jpg</code> in <code>foto.txt</code> non trasforma la foto in testo: cambia solo l’etichetta. Il blocco note la aprirà e mostrerà caratteri senza senso.</p>
+      </div>
+      <figure class="fig">
+        <div class="anat" aria-label="Anatomia del file vacanze.jpg">
+          <div class="anat-name"><span class="n">vacanze<small>nome</small></span><span class="dot">.</span><span class="e">jpg<small>estensione</small></span></div>
+          <div class="anat-row">
+            <h4>Contenuto · i primi byte</h4>
+            <div class="hex"><b>FF D8 FF E0</b> 00 10 4A 46 49 46 00 01 01 01 00 48 00 48 00 00 FF DB 00 43 00 08 06 06 07 06 05 08 07 07 07 09 09 08 0A 0C 14 0D 0C 0B …</div>
+          </div>
+          <div class="anat-row">
+            <h4>Metadati</h4>
+            <dl class="meta">
+              <dt>Dimensione</dt><dd>2,4 MB (2.516.582 byte)</dd>
+              <dt>Creato</dt><dd>14/08/2026 18:32</dd>
+              <dt>Modificato</dt><dd>15/08/2026 09:10</dd>
+              <dt>Permessi</dt><dd>lettura e scrittura</dd>
+            </dl>
+          </div>
+        </div>
+        <figcaption>I byte sono scritti in <b>esadecimale</b> (base 16), più compatto del binario: <code>FF</code> = 11111111. Ogni JPEG inizia con <code>FF D8 FF</code>: è la sua «firma», che i programmi controllano oltre all’estensione.</figcaption>
+      </figure>
+    </div>
+
+    <!-- directory -->
+    <div class="block grid-2">
+      <div class="prose">
+        <h3>Le directory (cartelle)</h3>
+        <p>Su un disco ci sono centinaia di migliaia di file. Per ritrovarli si raggruppano in <b>directory</b>, che nelle interfacce grafiche chiamiamo <b>cartelle</b>. Una cartella può contenere file e altre cartelle (le <b>sottocartelle</b>), formando una struttura ad <b>albero</b>.</p>
+        <p>In cima c’è la <b>radice</b> (<i>root</i>): su Windows è l’unità <code>C:</code>, su macOS e Linux è semplicemente <code>/</code>.</p>
+        <p>L’indirizzo completo di un file, dalla radice fino al file, si chiama <b>percorso</b> (<i>path</i>). Le cartelle sono separate da <code>\</code> su Windows e da <code>/</code> su macOS e Linux.</p>
+        <p>Due file possono avere lo stesso nome, purché stiano in cartelle diverse: il loro percorso resta unico.</p>
+      </div>
+      <figure class="fig">
+        <div class="tree-box">
+          <ul class="tree" id="tree" aria-label="Albero delle cartelle">
+            <li><button type="button" data-p="C:"><svg class="fi folder"><use href="#i-folder"/></svg>C: <span class="muted" style="color:var(--ink-soft);font-size:.85rem">(radice)</span></button>
+              <ul>
+                <li><button type="button" data-p="C:/Utenti"><svg class="fi folder"><use href="#i-folder"/></svg>Utenti</button>
+                  <ul>
+                    <li><button type="button" data-p="C:/Utenti/Anna"><svg class="fi folder"><use href="#i-folder"/></svg>Anna</button>
+                      <ul>
+                        <li><button type="button" data-p="C:/Utenti/Anna/Documenti"><svg class="fi folder"><use href="#i-folder"/></svg>Documenti</button>
+                          <ul>
+                            <li><button type="button" data-p="C:/Utenti/Anna/Documenti/Scuola"><svg class="fi folder"><use href="#i-folder"/></svg>Scuola</button>
+                              <ul>
+                                <li><button type="button" data-p="C:/Utenti/Anna/Documenti/Scuola/tema.docx"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">tema.docx</span></button></li>
+                                <li><button type="button" data-p="C:/Utenti/Anna/Documenti/Scuola/ricerca.pdf"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">ricerca.pdf</span></button></li>
+                              </ul>
+                            </li>
+                            <li><button type="button" data-p="C:/Utenti/Anna/Documenti/curriculum.pdf"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">curriculum.pdf</span></button></li>
+                          </ul>
+                        </li>
+                        <li><button type="button" data-p="C:/Utenti/Anna/Immagini"><svg class="fi folder"><use href="#i-folder"/></svg>Immagini</button>
+                          <ul><li><button type="button" data-p="C:/Utenti/Anna/Immagini/vacanze.jpg" aria-pressed="true"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">vacanze.jpg</span></button></li></ul>
+                        </li>
+                        <li><button type="button" data-p="C:/Utenti/Anna/Musica"><svg class="fi folder"><use href="#i-folder"/></svg>Musica</button>
+                          <ul><li><button type="button" data-p="C:/Utenti/Anna/Musica/canzone.mp3"><svg class="fi file"><use href="#i-file"/></svg><span class="ext">canzone.mp3</span></button></li></ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="pathbar" aria-live="polite">
+            <small>Percorso su Windows</small><code id="path-win"></code>
+            <small>Lo stesso su macOS / Linux</small><code id="path-nix"></code>
+          </div>
+        </div>
+        <figcaption>Tocca una cartella o un file: sotto compare il suo percorso completo.</figcaption>
+      </figure>
+    </div>
+
+    <!-- tipologie -->
+    <div class="block">
+      <h3>Le tipologie di file</h3>
+      <p class="prose" style="color:var(--ink-soft);margin:0 0 20px">Le estensioni si raggruppano in famiglie. Eccone alcune che incontri ogni giorno.</p>
+      <div class="types">
+        <div class="card"><span class="tag">Testo e documenti</span><h4>Da leggere</h4><p>Testo semplice o impaginato, pronto da stampare.</p><div class="chips"><span>.txt</span><span>.docx</span><span>.odt</span><span>.pdf</span></div></div>
+        <div class="card"><span class="tag">Immagini</span><h4>Da guardare</h4><p>Fotografie, disegni, icone e grafica.</p><div class="chips"><span>.jpg</span><span>.png</span><span>.gif</span><span>.webp</span><span>.svg</span></div></div>
+        <div class="card"><span class="tag">Audio</span><h4>Da ascoltare</h4><p>Musica, podcast, messaggi vocali.</p><div class="chips"><span>.mp3</span><span>.aac</span><span>.wav</span><span>.flac</span><span>.ogg</span></div></div>
+        <div class="card"><span class="tag">Video</span><h4>Da vedere</h4><p>Film, clip, registrazioni dello schermo.</p><div class="chips"><span>.mp4</span><span>.mov</span><span>.mkv</span><span>.avi</span><span>.webm</span></div></div>
+        <div class="card"><span class="tag">Fogli e dati</span><h4>Da calcolare</h4><p>Tabelle, elenchi, dati scambiati tra programmi.</p><div class="chips"><span>.xlsx</span><span>.ods</span><span>.csv</span><span>.json</span></div></div>
+        <div class="card"><span class="tag">Presentazioni</span><h4>Da proiettare</h4><p>Diapositive con testo, immagini e animazioni.</p><div class="chips"><span>.pptx</span><span>.odp</span><span>.key</span></div></div>
+        <div class="card"><span class="tag">Archivi compressi</span><h4>Da spedire</h4><p>Tanti file impacchettati in uno solo, più leggero.</p><div class="chips"><span>.zip</span><span>.rar</span><span>.7z</span><span>.tar.gz</span></div></div>
+        <div class="card"><span class="tag">Programmi e web</span><h4>Da eseguire</h4><p>Applicazioni e pagine web.</p><div class="chips"><span>.exe</span><span>.apk</span><span>.app</span><span>.html</span><span>.js</span></div></div>
+      </div>
+      <div class="guess">
+        <div>
+          <label for="guess-in" style="display:block;font-weight:600;margin-bottom:8px">Che tipo di file è?</label>
+          <input id="guess-in" type="text" value="canzone.mp3" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="guess-out" id="guess-out" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- compressione -->
+    <div class="block">
+      <h3>La compressione: far pesare meno i file</h3>
+      <div class="grid-2">
+        <div class="prose">
+          <p>Comprimere significa <b>rappresentare le stesse informazioni con meno byte</b>, così i file occupano meno spazio e viaggiano più veloci su Internet. Esistono due strategie.</p>
+          <ul class="checklist">
+            <li><b>Senza perdita</b> (<i>lossless</i>) — si eliminano solo le ripetizioni. Decomprimendo si riottiene il file identico, bit per bit. Es. ZIP, PNG, FLAC.</li>
+            <li><b>Con perdita</b> (<i>lossy</i>) — si eliminano anche i dettagli che occhi e orecchie notano poco. Il file diventa molto più piccolo, ma quello che si è tolto non torna più. Es. JPEG, MP3, MP4.</li>
+          </ul>
+          <p class="note">Un documento o un programma si comprime sempre <b>senza perdita</b>: se sparisse anche un solo bit, il file non funzionerebbe più.</p>
+        </div>
+        <figure class="fig">
+          <h4 style="margin:0 0 8px;font:600 1.1rem var(--serif)">Prova: compressione senza perdita</h4>
+          <p style="color:var(--ink-soft);margin:0 0 12px;font-size:.95rem">Una riga di 16 pixel. Invece di scriverli uno per uno, si conta quante volte si ripete lo stesso colore (<i>run-length encoding</i>). Tocca i pixel.</p>
+          <div class="rle" id="rle" role="group" aria-label="Riga di 16 pixel"></div>
+          <div class="rle-out" id="rle-out" aria-live="polite"></div>
+          <figcaption>Più ripetizioni ci sono, più si risparmia. Una riga tutta a scacchi, invece, non si comprime affatto.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="fig" style="margin-top:48px">
+        <h4 style="margin:0 0 8px;font:600 1.1rem var(--serif)">Prova: compressione con perdita (JPEG vero)</h4>
+        <p style="color:var(--ink-soft);margin:0 0 16px;font-size:.95rem;max-width:var(--measure)">Il browser comprime davvero questa immagine in JPEG. Abbassa la qualità: il file si rimpicciolisce, e nell’ingrandimento compaiono i «quadrettoni» e le sbavature tipiche della compressione.</p>
+        <div class="jpeg">
+          <div><small>Risultato JPEG</small><img id="jpeg-img" alt="Immagine di prova compressa in JPEG" width="480" height="300"></div>
+          <div><small>Ingrandimento ×4</small><canvas id="jpeg-zoom" class="zoom" width="480" height="300"></canvas></div>
+        </div>
+        <div class="slider-row">
+          <label for="jpeg-q" style="font-weight:600">Qualità</label>
+          <input type="range" id="jpeg-q" min="1" max="100" value="80">
+          <span class="stat" id="jpeg-stat">—</span>
+        </div>
+        <figcaption id="jpeg-cap">Senza compressione questa immagine occuperebbe 480 × 300 pixel × 3 byte = <b>432 KB</b>.</figcaption>
+        <canvas id="jpeg-src" width="480" height="300" hidden></canvas>
+      </figure>
+    </div>
+
+    <!-- audio -->
+    <div class="block grid-2">
+      <div class="prose">
+        <h3>La compressione audio</h3>
+        <p>Il suono è un’onda continua. Per trasformarlo in numeri, il computer ne misura l’altezza a intervalli regolari: è il <b>campionamento</b>. Un CD fa <b>44.100 misure al secondo</b>, ciascuna da 16 bit, per 2 canali (sinistro e destro).</p>
+        <p>Il conto è presto fatto: 44.100 × 16 × 2 = <b>1.411.200 bit al secondo</b>. Una canzone di 3 minuti occupa circa <b>32 MB</b>.</p>
+        <p>Gli <b>MP3</b> e gli <b>AAC</b> la riducono anche di 10 volte eliminando ciò che non sentiamo: i suoni troppo acuti o troppo gravi per il nostro orecchio, e quelli deboli «coperti» da un suono più forte nello stesso istante (<i>mascheramento</i>).</p>
+      </div>
+      <figure class="fig">
+        <svg class="diagram wave" id="wave" viewBox="0 0 600 240" role="img" aria-label="Un’onda sonora e la sua versione campionata a gradini"></svg>
+        <div class="slider-row" style="margin-top:8px">
+          <label for="smp" style="font-weight:600">Campioni</label>
+          <input type="range" id="smp" min="6" max="80" value="16">
+          <span class="stat" id="smp-stat" style="font-size:1.2rem"></span>
+        </div>
+        <figcaption>In grigio l’onda reale, in arancione quella ricostruita dai campioni. Più campioni al secondo = suono più fedele, ma file più grande.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="fig" style="margin-top:32px">
+      <h4 style="margin:0 0 16px;font:600 1.1rem var(--serif)">Quanto pesa una canzone di 3 minuti</h4>
+      <div class="bars" id="audio-bars"></div>
+      <figcaption>In grigio i formati <b>senza perdita</b>, in verde quelli <b>con perdita</b>. Il numero in kbps (<i>bitrate</i>) indica quanti kilobit servono per ogni secondo di audio.</figcaption>
+    </figure>
+
+    <!-- video -->
+    <div class="block">
+      <h3>La compressione video</h3>
+      <div class="grid-2">
+        <div class="prose">
+          <p>Un video è una sequenza di immagini, i <b>fotogrammi</b>, mostrati così in fretta (25–60 al secondo) che l’occhio li percepisce come movimento. Più l’audio.</p>
+          <p>Senza compressione sarebbe enorme: un solo secondo in Full HD sono 30 immagini da 1920 × 1080 pixel × 3 byte, cioè circa <b>187 MB</b>.</p>
+          <p>I codec video (H.264, H.265, AV1) usano due trucchi:</p>
+          <ul class="checklist">
+            <li><b>Dentro ogni fotogramma</b> comprimono come un JPEG;</li>
+            <li><b>Tra un fotogramma e l’altro</b> salvano per intero solo alcuni <b>fotogrammi chiave</b> (<i>I-frame</i>); per gli altri memorizzano soltanto <b>cosa è cambiato</b> rispetto al precedente.</li>
+          </ul>
+          <p class="note">L’estensione <code>.mp4</code> indica il <b>contenitore</b>: una «scatola» che tiene insieme la traccia video (per esempio H.264), quella audio (AAC) e magari i sottotitoli.</p>
+        </div>
+        <figure class="fig">
+          <svg class="diagram film" viewBox="0 0 660 200" role="img" aria-label="Cinque fotogrammi: il primo è completo, negli altri si salva solo la zona in cui la palla si è spostata">
+            <g id="film"></g>
+          </svg>
+          <figcaption>Il primo fotogramma è salvato per intero. Nei successivi cambia solo la posizione della palla: si salva solo il riquadro tratteggiato, il resto si copia dal fotogramma precedente.</figcaption>
+        </figure>
+      </div>
+
+      <div style="margin-top:32px">
+        <h4 style="margin:0 0 16px;font:600 1.1rem var(--serif)">Calcola il peso di un video</h4>
+        <div class="vcalc">
+          <label>Risoluzione
+            <select id="v-res">
+              <option value="1280x720|3">HD 720p</option>
+              <option value="1920x1080|6" selected>Full HD 1080p</option>
+              <option value="3840x2160|20">4K</option>
+            </select>
+          </label>
+          <label>Fotogrammi al secondo
+            <select id="v-fps"><option>25</option><option selected>30</option><option>60</option></select>
+          </label>
+          <label>Durata (minuti)
+            <input type="number" id="v-min" min="1" max="600" value="10">
+          </label>
+        </div>
+        <div class="vres">
+          <div class="card big"><small>Senza compressione</small><output id="v-raw">—</output></div>
+          <div class="card small"><small>Compresso (H.264, tipico)</small><output id="v-cmp">—</output><p id="v-ratio" style="margin-top:4px"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- quiz ─────────────────────────────────────────── -->
 <section class="chapter" id="quiz" aria-labelledby="h-quiz">
   <div class="wrap">
@@ -907,7 +1238,7 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
       <div class="chap-num">?</div>
       <div>
         <h2 id="h-quiz">Mettiti alla prova</h2>
-        <p>Cinque domande veloci per ripassare i quattro capitoli.</p>
+        <p>Sette domande veloci per ripassare i cinque capitoli.</p>
       </div>
     </div>
     <div class="quiz" id="quiz-box"></div>
@@ -1140,13 +1471,210 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
   asciiIn.addEventListener("input", renderAscii);
   renderAscii();
 
+  /* ---- 05 · percorsi ---- */
+  const treeBtns = $$("#tree button");
+  const showPath = p => {
+    const parts = p.split("/");
+    const sep = c => `<span class="sep">${c}</span>`;
+    $("#path-win").innerHTML = parts.length === 1 ? "C:" + sep("\\") : parts.join(sep("\\"));
+    const nix = parts.slice(1).map((x, i) => i === 0 ? "home" : i === 1 ? x.toLowerCase() : x);
+    $("#path-nix").innerHTML = sep("/") + nix.join(sep("/"));
+    treeBtns.forEach(b => b.setAttribute("aria-pressed", b.dataset.p === p ? "true" : "false"));
+  };
+  treeBtns.forEach(b => b.addEventListener("click", () => showPath(b.dataset.p)));
+  showPath("C:/Utenti/Anna/Immagini/vacanze.jpg");
+
+  /* ---- 05 · che tipo di file ---- */
+  const EXT = {
+    txt: ["Testo semplice", "solo caratteri, senza formattazione", "nessuna"],
+    docx: ["Documento di Word", "testo impaginato con immagini e stili", "senza perdita (è un archivio ZIP)"],
+    odt: ["Documento di LibreOffice", "testo impaginato, formato aperto", "senza perdita"],
+    pdf: ["Documento PDF", "impaginato: appare identico su ogni dispositivo", "senza perdita (le immagini interne possono essere JPEG)"],
+    jpg: ["Immagine JPEG", "ideale per le fotografie", "con perdita"], jpeg: ["Immagine JPEG", "ideale per le fotografie", "con perdita"],
+    png: ["Immagine PNG", "ideale per grafica, schermate e trasparenze", "senza perdita"],
+    gif: ["Immagine GIF", "massimo 256 colori, può essere animata", "senza perdita"],
+    webp: ["Immagine WebP", "formato moderno per il web", "con o senza perdita"],
+    svg: ["Grafica vettoriale SVG", "forme descritte con coordinate: si ingrandisce senza sgranare", "nessuna (è testo)"],
+    mp3: ["Audio MP3", "il formato musicale più diffuso", "con perdita"],
+    aac: ["Audio AAC", "usato da streaming e smartphone", "con perdita"], m4a: ["Audio AAC", "usato da streaming e smartphone", "con perdita"],
+    wav: ["Audio WAV", "audio non compresso, qualità CD", "nessuna"],
+    flac: ["Audio FLAC", "qualità CD in circa metà spazio", "senza perdita"],
+    ogg: ["Audio Ogg", "formato aperto per musica e giochi", "con perdita"],
+    mp4: ["Video MP4", "contenitore per video H.264/H.265 e audio AAC", "con perdita"],
+    mov: ["Video QuickTime", "il formato dei video di iPhone e Mac", "con perdita"],
+    mkv: ["Video Matroska", "contenitore che può tenere più audio e sottotitoli", "con perdita"],
+    avi: ["Video AVI", "vecchio formato di Windows", "di solito con perdita"],
+    webm: ["Video WebM", "formato aperto per il web", "con perdita"],
+    xlsx: ["Foglio di calcolo Excel", "tabelle con formule e grafici", "senza perdita (è un archivio ZIP)"],
+    ods: ["Foglio di calcolo LibreOffice", "tabelle con formule, formato aperto", "senza perdita"],
+    csv: ["Tabella CSV", "valori separati da virgole, leggibile da qualsiasi programma", "nessuna (è testo)"],
+    json: ["Dati JSON", "dati strutturati scambiati tra programmi e siti", "nessuna (è testo)"],
+    pptx: ["Presentazione PowerPoint", "diapositive", "senza perdita (è un archivio ZIP)"],
+    odp: ["Presentazione LibreOffice", "diapositive, formato aperto", "senza perdita"],
+    key: ["Presentazione Keynote", "diapositive di Apple", "senza perdita"],
+    zip: ["Archivio ZIP", "più file impacchettati in uno", "senza perdita"],
+    rar: ["Archivio RAR", "più file impacchettati in uno", "senza perdita"], "7z": ["Archivio 7-Zip", "più file impacchettati in uno, molto compresso", "senza perdita"],
+    gz: ["Archivio gzip", "comune su Linux, spesso come .tar.gz", "senza perdita"],
+    exe: ["Programma per Windows", "un eseguibile: aprilo solo se ti fidi di chi te l’ha mandato!", "—"],
+    apk: ["App per Android", "pacchetto di installazione", "senza perdita (è un archivio ZIP)"],
+    app: ["Applicazione per macOS", "in realtà è una cartella che contiene il programma", "—"],
+    html: ["Pagina web", "testo con i tag che descrivono la pagina", "nessuna (è testo)"],
+    js: ["Codice JavaScript", "istruzioni eseguite dal browser", "nessuna (è testo)"],
+    css: ["Foglio di stile CSS", "descrive l’aspetto di una pagina web", "nessuna (è testo)"],
+    py: ["Codice Python", "un programma sorgente", "nessuna (è testo)"]
+  };
+  const gIn = $("#guess-in"), gOut = $("#guess-out");
+  const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function guess() {
+    const v = gIn.value.trim();
+    const dot = v.lastIndexOf(".");
+    if (dot < 0 || dot === v.length - 1) { gOut.innerHTML = "Scrivi un nome con l’estensione, per esempio <b>foto.png</b>."; return; }
+    const ext = v.slice(dot + 1).toLowerCase();
+    const d = EXT[ext];
+    gOut.innerHTML = d
+      ? `<b>.${esc(ext)}</b> → <b>${d[0]}</b>: ${d[1]}.<br>Compressione: ${d[2]}.`
+      : `Non conosco l’estensione <b>.${esc(ext)}</b>. Prova con jpg, mp3, pdf, zip, mp4…`;
+  }
+  gIn.addEventListener("input", guess);
+  guess();
+
+  /* ---- 05 · RLE ---- */
+  const rleRow = [0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0];
+  const rleEl = $("#rle"), rleOut = $("#rle-out");
+  rleRow.forEach((v, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.setAttribute("aria-label", "Pixel " + (i + 1));
+    b.addEventListener("click", () => { rleRow[i] ^= 1; renderRLE(); });
+    rleEl.appendChild(b);
+  });
+  function renderRLE() {
+    $$("button", rleEl).forEach((b, i) => b.setAttribute("aria-pressed", rleRow[i] ? "true" : "false"));
+    const runs = [];
+    rleRow.forEach(v => { const c = v ? "N" : "B"; if (runs.length && runs[runs.length - 1][1] === c) runs[runs.length - 1][0]++; else runs.push([1, c]); });
+    const raw = rleRow.map(v => v ? "N" : "B").join("");
+    const enc = runs.map(r => r[0] + r[1]).join(" ");
+    const encLen = runs.length * 2;
+    const saved = Math.round((1 - encLen / 16) * 100);
+    rleOut.innerHTML = `Originale: ${raw} <span style="color:var(--ink-soft)">(16 simboli)</span><br>Compresso: <b>${enc}</b> <span style="color:var(--ink-soft)">(${encLen} simboli)</span><br>` +
+      (saved > 0 ? `Risparmio: <b>${saved}%</b>` : `Nessun risparmio: il «compresso» è ${saved === 0 ? "uguale" : "più lungo"}!`) +
+      ` <span style="color:var(--ink-soft)">· B = bianco, N = nero</span>`;
+  }
+  renderRLE();
+
+  /* ---- 05 · JPEG ---- */
+  const src = $("#jpeg-src"), sctx = src.getContext("2d");
+  (function draw() {
+    const g = sctx.createLinearGradient(0, 0, 0, 300);
+    g.addColorStop(0, "#2b6cb0"); g.addColorStop(.6, "#f6ad55"); g.addColorStop(1, "#c05621");
+    sctx.fillStyle = g; sctx.fillRect(0, 0, 480, 300);
+    sctx.fillStyle = "#fff3c4"; sctx.beginPath(); sctx.arc(340, 150, 44, 0, Math.PI * 2); sctx.fill();
+    sctx.fillStyle = "#1a202c";
+    sctx.beginPath(); sctx.moveTo(0, 240); sctx.lineTo(90, 170); sctx.lineTo(160, 215); sctx.lineTo(250, 120); sctx.lineTo(330, 210); sctx.lineTo(480, 180); sctx.lineTo(480, 300); sctx.lineTo(0, 300); sctx.fill();
+    sctx.fillStyle = "#1e4e8c"; sctx.fillRect(0, 262, 480, 38);
+    sctx.strokeStyle = "#fff3c4"; sctx.lineWidth = 2;
+    for (let i = 0; i < 8; i++) { sctx.beginPath(); sctx.moveTo(300 + i * 6, 270 + i * 3); sctx.lineTo(380 - i * 6, 270 + i * 3); sctx.stroke(); }
+    sctx.fillStyle = "#ffffff"; sctx.font = "700 44px Georgia, serif"; sctx.fillText("Napoli", 24, 60);
+    sctx.font = "400 14px Georgia, serif"; sctx.fillText("tramonto sul Vesuvio · testo piccolo e dettagli fini", 26, 84);
+  })();
+  const img = $("#jpeg-img"), zoom = $("#jpeg-zoom"), zctx = zoom.getContext("2d");
+  zctx.imageSmoothingEnabled = false;
+  function renderJPEG() {
+    const q = +$("#jpeg-q").value;
+    const url = src.toDataURL("image/jpeg", q / 100);
+    const bytes = Math.round((url.length - url.indexOf(",") - 1) * 3 / 4);
+    img.onload = () => { zctx.clearRect(0, 0, 480, 300); zctx.drawImage(img, 14, 26, 120, 75, 0, 0, 480, 300); };
+    img.src = url;
+    $("#jpeg-stat").innerHTML = `${(bytes / 1024).toFixed(1).replace(".", ",")} KB <small>· ${Math.round(432000 / bytes)} volte più piccolo</small>`;
+  }
+  $("#jpeg-q").addEventListener("input", renderJPEG);
+  renderJPEG();
+
+  /* ---- 05 · campionamento ---- */
+  const NS = "http://www.w3.org/2000/svg";
+  const wave = $("#wave");
+  const f = x => 110 - 70 * Math.sin(x * 2 * Math.PI * 2) - 22 * Math.sin(x * 2 * Math.PI * 5 + 1);
+  const X0 = 20, W = 560;
+  const mk = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+  function renderWave() {
+    const n = +$("#smp").value;
+    wave.innerHTML = "";
+    wave.appendChild(mk("line", { class: "axis", x1: X0, y1: 110, x2: X0 + W, y2: 110 }));
+    let d = "";
+    for (let i = 0; i <= 300; i++) { const x = i / 300; d += (i ? "L" : "M") + (X0 + x * W).toFixed(1) + " " + f(x).toFixed(1); }
+    wave.appendChild(mk("path", { class: "sig", d }));
+    let st = "";
+    for (let i = 0; i < n; i++) {
+      const x = i / n, px = X0 + x * W, py = f(x), nx = X0 + (i + 1) / n * W;
+      wave.appendChild(mk("line", { class: "smp", x1: px, y1: 110, x2: px, y2: py }));
+      st += (i ? "L" : "M") + px.toFixed(1) + " " + py.toFixed(1) + "H" + nx.toFixed(1);
+    }
+    wave.appendChild(mk("path", { class: "stair", d: st }));
+    for (let i = 0; i < n; i++) { const x = i / n; wave.appendChild(mk("circle", { class: "dot", cx: X0 + x * W, cy: f(x), r: n > 40 ? 2 : 3.5 })); }
+    const t = mk("text", { x: X0, y: 232, class: "muted" }); t.textContent = "tempo →"; wave.appendChild(t);
+    $("#smp-stat").textContent = n + " misure";
+  }
+  $("#smp").addEventListener("input", renderWave);
+  renderWave();
+
+  /* ---- 05 · barre audio ---- */
+  const AUD = [
+    ["WAV · qualità CD", 1411, 1], ["FLAC", 850, 1], ["MP3 alta qualità", 320, 0],
+    ["AAC · streaming", 160, 0], ["MP3 standard", 128, 0], ["Messaggio vocale", 32, 0]
+  ];
+  $("#audio-bars").innerHTML = AUD.map(([n, k, ll]) => {
+    const mb = k * 180 / 8 / 1000;
+    return `<div class="bar-row${ll ? " lossless" : ""}"><div>${n}<small>${k} kbps</small></div><div class="track"><div class="fill" style="width:${(k / 1411 * 100).toFixed(1)}%"></div></div><div class="v">${mb.toFixed(1).replace(".", ",")} MB</div></div>`;
+  }).join("");
+
+  /* ---- 05 · fotogrammi ---- */
+  const film = $("#film");
+  for (let i = 0; i < 5; i++) {
+    const ox = 8 + i * 130, oy = 30, fw = 120, fh = 80;
+    const g = mk("g", {});
+    g.appendChild(mk("rect", { class: "frame" + (i === 0 ? " keyf" : ""), x: ox, y: oy, width: fw, height: fh, rx: 4 }));
+    const scene = mk("g", { class: i === 0 ? "" : "faded" });
+    scene.appendChild(mk("rect", { class: "sky", x: ox + 1, y: oy + 1, width: fw - 2, height: 55 }));
+    scene.appendChild(mk("rect", { class: "ground", x: ox + 1, y: oy + 56, width: fw - 2, height: fh - 57 }));
+    scene.appendChild(mk("path", { class: "ground", d: `M${ox + 70} ${oy + 56} l15 -22 15 22z` }));
+    g.appendChild(scene);
+    const bx = ox + 18 + i * 20, by = oy + 46;
+    if (i > 0) g.appendChild(mk("rect", { class: "diff", x: bx - 30, y: by - 12, width: 42, height: 24, rx: 3 }));
+    g.appendChild(mk("circle", { class: "ball", cx: bx, cy: by, r: 8 }));
+    for (let k = 0; k < 6; k++) { g.appendChild(mk("rect", { class: "perf", x: ox + 6 + k * 20, y: oy - 14, width: 10, height: 6, rx: 1 })); g.appendChild(mk("rect", { class: "perf", x: ox + 6 + k * 20, y: oy + fh + 8, width: 10, height: 6, rx: 1 })); }
+    const t = mk("text", { x: ox + fw / 2, y: 150, "text-anchor": "middle", class: "serif" }); t.textContent = i === 0 ? "I-frame" : "P-frame";
+    const t2 = mk("text", { x: ox + fw / 2, y: 170, "text-anchor": "middle", class: "muted" }); t2.textContent = i === 0 ? "completo" : "solo differenze";
+    g.append(t, t2); film.appendChild(g);
+  }
+
+  /* ---- 05 · calcolatore video ---- */
+  const fmtB = b => {
+    const u = ["byte", "KB", "MB", "GB", "TB"]; let i = 0;
+    while (b >= 1000 && i < u.length - 1) { b /= 1000; i++; }
+    return (b >= 100 ? Math.round(b) : b.toFixed(1).replace(".", ",")) + " " + u[i];
+  };
+  function renderVideo() {
+    const [res, mbps] = $("#v-res").value.split("|");
+    const [w, h] = res.split("x").map(Number);
+    const fps = +$("#v-fps").value;
+    const sec = Math.max(1, Math.min(600, +$("#v-min").value || 1)) * 60;
+    const raw = w * h * 3 * fps * sec;
+    const cmp = (+mbps * (fps === 60 ? 1.5 : 1)) * 1e6 / 8 * sec;
+    $("#v-raw").textContent = fmtB(raw);
+    $("#v-cmp").textContent = fmtB(cmp);
+    $("#v-ratio").textContent = `circa ${Math.round(raw / cmp)} volte più piccolo`;
+  }
+  ["#v-res", "#v-fps", "#v-min"].forEach(id => $(id).addEventListener("input", renderVideo));
+  renderVideo();
+
   /* ---- quiz ---- */
   const Q = [
     ["La parola «informatica» nasce dall’unione di…", ["informazione + automatica", "informazione + matematica", "internet + tecnica"], 0, "Informazione + automatica: trattare le informazioni in modo automatico."],
     ["Quale componente si svuota quando spegni il computer?", ["SSD", "RAM", "Scheda madre"], 1, "La RAM è volatile: conserva i dati solo finché c’è corrente."],
     ["Quanto vale 1010 in decimale?", ["10", "12", "5"], 0, "8 + 0 + 2 + 0 = 10."],
     ["Quanti bit ci sono in un byte?", ["4", "8", "10"], 1, "Un byte è formato da 8 bit: 256 combinazioni possibili."],
-    ["Quale di questi è un sistema operativo?", ["Chrome", "Linux", "Excel"], 1, "Linux è un sistema operativo; Chrome ed Excel sono applicazioni."]
+    ["Quale di questi è un sistema operativo?", ["Chrome", "Linux", "Excel"], 1, "Linux è un sistema operativo; Chrome ed Excel sono applicazioni."],
+    ["Nel file C:\\Utenti\\Anna\\foto.jpg, che cosa indica «jpg»?", ["la cartella", "l’estensione, cioè il tipo di file", "la dimensione"], 1, "L’estensione dice al sistema operativo che si tratta di un’immagine JPEG."],
+    ["Quale formato usa una compressione con perdita?", ["ZIP", "PNG", "MP3"], 2, "L’MP3 elimina i suoni che l’orecchio non percepisce; ZIP e PNG non perdono nulla."]
   ];
   const box = $("#quiz-box");
   let answered = 0, correct = 0;
