@@ -265,6 +265,31 @@
   svg.diagram .life { stroke: var(--rule); stroke-width: 1.5; stroke-dasharray: 4 5; }
   svg.diagram .num { fill: var(--accent); font: 600 12px var(--mono); }
 
+  /* ---------- PC esploso ---------- */
+  .pc-block { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+  @media (max-width: 860px) { .pc-block { grid-template-columns: minmax(0, 1fr); } }
+  .pc-stage { min-width: 560px; }
+  .pc { cursor: pointer; }
+  .pc.open { cursor: default; }
+  .pc .part { transition: transform .9s cubic-bezier(.2, .8, .2, 1); transform-box: fill-box; transform-origin: center; outline: none; }
+  .pc.open .part { cursor: pointer; }
+  .pc .part .hl { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 5 4; opacity: 0; transition: opacity .2s; vector-effect: non-scaling-stroke; }
+  .pc.open .part:hover .hl, .pc.open .part:focus-visible .hl { opacity: .6; }
+  .pc .part.sel .hl { opacity: 1 !important; }
+  .pc .panel { transition: opacity .5s, transform .8s cubic-bezier(.2, .8, .2, 1); }
+  .pc.open .panel { opacity: 0; transform: translate(90px, -12px); pointer-events: none; }
+  .pc .hint { transition: opacity .3s; }
+  .pc.open .hint { opacity: 0; }
+  .pc:not(.open):hover .hint rect { filter: brightness(1.1); }
+  .pc .pc-lbl, .pc .lead, .pc .mb-lbl { opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .pc.open .pc-lbl, .pc.open .lead, .pc.open .mb-lbl { opacity: 1; transition: opacity .5s .7s; }
+  .pc .lead { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 5; fill: none; }
+  .pc .pc-lbl { font-weight: 600; font-size: 17px; }
+  .pc .pc-lbl.sel { fill: var(--accent); }
+  .pc-info h4 { margin: 0 0 6px; font: 600 1.3rem var(--serif); }
+  .pc-info p { margin: 0 0 12px; }
+  .pc-info p:last-child { margin: 0; }
+
   /* scheda madre */
   .mobo { min-width: 560px; }
   .mobo .pcb { fill: var(--pcb); stroke: var(--pcb-line); stroke-width: 2; }
@@ -559,9 +584,34 @@
       <div class="chap-num">02</div>
       <div>
         <h2 id="h-comp">Da cosa è composto il computer</h2>
-        <p>Un computer è fatto di <b>hardware</b>, la parte fisica che puoi toccare, e di <b>software</b>, i programmi che la fanno funzionare. Qui parliamo dell’hardware: tocca un componente per scoprire a cosa serve.</p>
+        <p>Un computer è fatto di <b>hardware</b>, la parte fisica che puoi toccare, e di <b>software</b>, i programmi che la fanno funzionare. Qui parliamo dell’hardware: prima apriamo il case per vedere cosa c’è dentro, poi scopriamo come i pezzi si parlano.</p>
       </div>
     </div>
+
+    <div class="pc-block">
+      <figure class="fig">
+        <div class="scroll-x">
+          <div class="pc-stage" id="pc-stage">
+            <svg class="diagram pc" id="pc" viewBox="20 20 830 510" aria-label="Disegno di un computer desktop che si scompone nei suoi componenti"></svg>
+          </div>
+        </div>
+        <p class="scroll-hint">← scorri il disegno →</p>
+      </figure>
+      <div class="pc-side">
+        <h3>Apri il computer</h3>
+        <p style="color:var(--ink-soft);margin:0 0 16px">Dentro il <b>case</b>, la «scatola» del computer, i componenti sono montati sulla <b>scheda madre</b> o collegati a lei. Tocca il PC per smontarlo: ogni pezzo esce dal suo posto.</p>
+        <div class="btn-row" style="margin:0 0 16px"><button class="btn primary" type="button" id="pc-toggle" aria-pressed="false">Apri il computer</button></div>
+        <div class="card pc-info" id="pc-info" aria-live="polite">
+          <span class="tag" id="pc-info-tag">Suggerimento</span>
+          <h4 id="pc-info-title">Il PC è chiuso</h4>
+          <p id="pc-info-text">Attraverso il vetro laterale si intravedono i componenti. Aprilo per vederli uno per uno.</p>
+          <button class="btn" type="button" id="pc-info-link" hidden>Guarda come è collegato ↓</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:64px 0 8px">Come si parlano: la scheda madre</h3>
+    <p style="color:var(--ink-soft);margin:0 0 24px;max-width:var(--measure)">Ora guardiamo la scheda madre dall’alto. Tocca un componente per vedere i collegamenti che usa.</p>
 
     <div class="explorer">
       <figure class="fig">
@@ -1348,6 +1398,113 @@ numero = <span class="k">int</span>(<span class="k">input</span>(<span class="k"
     c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showPart(c.dataset.k); } });
   });
   showPart("cpu");
+
+  /* ---- PC esploso ---- */
+  const pcSvg = $("#pc");
+  const PC_CASE = `
+    <rect x="335" y="490" width="40" height="10" rx="2" fill="#1b1a17"/><rect x="525" y="490" width="40" height="10" rx="2" fill="#1b1a17"/>
+    <rect x="320" y="40" width="260" height="452" rx="12" fill="#34322d" stroke="#1b1a17" stroke-width="2"/>
+    <rect x="335" y="55" width="208" height="422" rx="4" fill="#1d1c19"/>
+    <rect x="548" y="48" width="26" height="436" rx="6" fill="#45423c"/>
+    <circle cx="561" cy="72" r="6" fill="var(--accent)"/>
+    <rect x="556" y="90" width="10" height="4" rx="1" fill="#111"/><rect x="556" y="100" width="10" height="4" rx="1" fill="#111"/>
+    ${Array.from({ length: 34 }, (_, i) => `<line x1="553" x2="569" y1="${135 + i * 10}" y2="${135 + i * 10}" stroke="#34322d" stroke-width="3"/>`).join("")}
+    <rect x="325" y="75" width="10" height="60" fill="#8a8f94"/>`;
+  const PC_MB = `
+    <rect x="345" y="70" width="190" height="250" rx="3" fill="#2f6b4f" stroke="#214d39" stroke-width="1.5"/>
+    <path d="M355 90 H400 M355 100 H395 V115 M470 190 H530 M360 200 H410 M445 300 V315 M500 225 H525" stroke="#3f8a66" stroke-width="2" fill="none"/>
+    <rect x="415" y="120" width="50" height="50" rx="3" fill="#c9c3b3" stroke="#8a8577"/>
+    <rect x="420" y="125" width="40" height="40" fill="none" stroke="#8a8577" stroke-dasharray="2 2"/>
+    <rect x="495" y="92" width="7" height="116" rx="1" fill="#111"/><rect x="507" y="92" width="7" height="116" rx="1" fill="#111"/>
+    <rect x="370" y="220" width="70" height="16" rx="2" fill="none" stroke="#9fd3b8" stroke-dasharray="3 2"/>
+    <rect x="360" y="258" width="160" height="6" rx="1" fill="#111"/>
+    <rect x="455" y="280" width="34" height="26" rx="2" fill="#555"/>
+    <text class="mb-lbl" x="440" y="312" text-anchor="middle" style="fill:#dff3e8;font:600 11px var(--mono);letter-spacing:.1em">SCHEDA MADRE</text>`;
+  const PC_PARTS = [
+    { k: "cpu", x: 422, y: 127, w: 36, h: 36, cx: 700, cy: 250, s: 1.6, label: "Processore",
+      svg: `<rect x="422" y="127" width="36" height="36" rx="3" fill="#c8c2b2" stroke="#8a8577"/><rect x="430" y="135" width="20" height="20" fill="#8a8577"/><text x="440" y="149" text-anchor="middle" style="fill:#fff;font:700 7px var(--mono)">CPU</text>` },
+    { k: "cooler", x: 405, y: 105, w: 70, h: 80, cx: 690, cy: 95, s: 1, label: "Dissipatore",
+      svg: `<rect x="405" y="105" width="70" height="80" rx="4" fill="#d5d9dc" stroke="#8d9499"/>${Array.from({ length: 11 }, (_, i) => `<line x1="${410 + i * 6}" x2="${410 + i * 6}" y1="108" y2="182" stroke="#aab0b5"/>`).join("")}<circle cx="440" cy="145" r="27" fill="#3a3d40"/><circle cx="440" cy="145" r="9" fill="#77797c"/><path d="M440 136 q14 -8 20 6 M449 149 q2 16 -14 16 M431 148 q-14 4 -14 -12" stroke="#77797c" stroke-width="5" fill="none"/>` },
+    { k: "ram", x: 495, y: 95, w: 19, h: 110, cx: 822, cy: 110, s: 1.1, label: "RAM",
+      svg: [495, 507].map(x => `<rect x="${x}" y="95" width="7" height="110" rx="1" fill="#1f5f45"/><rect x="${x}" y="95" width="7" height="4" fill="#d4a017"/>${Array.from({ length: 6 }, (_, i) => `<rect x="${x + 1}" y="${102 + i * 17}" width="5" height="11" fill="#111"/>`).join("")}`).join("") },
+    { k: "ssd", x: 372, y: 222, w: 64, h: 12, cx: 130, cy: 228, s: 2, label: "SSD",
+      svg: `<rect x="372" y="222" width="64" height="12" rx="1" fill="#1d3557"/><rect x="372" y="222" width="5" height="12" fill="#d4a017"/><rect x="382" y="224" width="14" height="8" fill="#0d1b2a"/><rect x="400" y="224" width="14" height="8" fill="#0d1b2a"/><rect x="420" y="225" width="9" height="6" fill="#0d1b2a"/>` },
+    { k: "gpu", x: 348, y: 258, w: 167, h: 42, cx: 130, cy: 110, s: 1.2, label: "Scheda video",
+      svg: `<rect x="348" y="258" width="7" height="42" fill="#9aa0a6"/><rect x="355" y="262" width="160" height="34" rx="3" fill="#2b2b30" stroke="#555"/><rect x="360" y="262" width="80" height="3" fill="#d4a017"/><circle cx="410" cy="279" r="13" fill="#1c1c1f" stroke="#777"/><circle cx="470" cy="279" r="13" fill="#1c1c1f" stroke="#777"/><circle cx="410" cy="279" r="4" fill="#777"/><circle cx="470" cy="279" r="4" fill="#777"/><line x1="360" y1="294" x2="510" y2="294" stroke="var(--accent)" stroke-width="2"/>` },
+    { k: "psu", x: 340, y: 400, w: 140, h: 70, cx: 130, cy: 405, s: 1.1, label: "Alimentatore",
+      svg: `<rect x="340" y="400" width="140" height="70" rx="3" fill="#262626" stroke="#555"/><circle cx="385" cy="435" r="25" fill="#1a1a1a" stroke="#666"/>${[-14, -7, 0, 7, 14].map(d => `<line x1="${385 - 22}" x2="${385 + 22}" y1="${435 + d}" y2="${435 + d}" stroke="#555"/>`).join("")}<rect x="425" y="415" width="42" height="26" rx="2" fill="#f0c419"/><path d="M430 422 H460 M430 429 H452 M430 435 H456" stroke="#333" stroke-width="2"/>` },
+    { k: "hdd", x: 480, y: 360, w: 55, h: 75, cx: 790, cy: 310, s: 1.1, label: "Disco rigido",
+      svg: `<rect x="480" y="360" width="55" height="75" rx="3" fill="#b9bec3" stroke="#7d8488"/><circle cx="507" cy="390" r="19" fill="#d9dde0" stroke="#7d8488"/><circle cx="507" cy="390" r="4" fill="#7d8488"/><path d="M527 425 L512 396" stroke="#555" stroke-width="3" stroke-linecap="round"/>` }
+  ];
+  const PC_PANEL = `
+    <g class="panel">
+      <rect x="332" y="52" width="214" height="428" rx="5" fill="#8fb0c8" fill-opacity=".38" stroke="#cfd8e0" stroke-opacity=".6" stroke-width="2"/>
+      <polygon points="352,52 402,52 360,480 332,480 332,190" fill="#fff" fill-opacity=".1"/>
+      <circle cx="342" cy="62" r="3" fill="#cfd8e0"/><circle cx="536" cy="62" r="3" fill="#cfd8e0"/><circle cx="342" cy="470" r="3" fill="#cfd8e0"/><circle cx="536" cy="470" r="3" fill="#cfd8e0"/>
+    </g>
+    <g class="hint"><rect x="362" y="252" width="152" height="40" rx="20" fill="var(--accent)"/><text x="438" y="277" text-anchor="middle" style="fill:#fff;font-weight:600;font-size:15px">Tocca per aprire</text></g>`;
+  pcSvg.innerHTML = PC_CASE + PC_MB +
+    `<g>${PC_PARTS.map(p => `<line class="lead" x1="${p.x + p.w / 2}" y1="${p.y + p.h / 2}" x2="${p.cx}" y2="${p.cy}"/>`).join("")}</g>` +
+    PC_PARTS.map((p, i) => `<g class="part" data-k="${p.k}" style="transition-delay:${i * 60}ms"><rect class="hl" x="${p.x - 5}" y="${p.y - 5}" width="${p.w + 10}" height="${p.h + 10}" rx="4"/>${p.svg}</g>`).join("") +
+    PC_PANEL +
+    PC_PARTS.map(p => `<text class="pc-lbl" data-k="${p.k}" x="${p.cx}" y="${p.cy + p.h * p.s / 2 + 24}" text-anchor="middle">${p.label}</text>`).join("") +
+    `<text class="pc-lbl" x="450" y="522" text-anchor="middle">Case</text>`;
+
+  const PC_INFO = {
+    cpu: ["Processore (CPU)", "Il «cervello»: esegue le istruzioni dei programmi. È un quadratino di pochi centimetri, inserito in uno zoccolo (il <i>socket</i>) sulla scheda madre."],
+    cooler: ["Dissipatore e ventola", "Il processore lavorando scalda molto, anche oltre 80 °C. Il dissipatore di metallo, con le sue alette, assorbe il calore e la ventola lo porta via."],
+    ram: ["Memoria RAM", "I «banchi» di RAM si infilano negli slot vicino al processore. Contengono i programmi aperti in questo momento e si svuotano allo spegnimento."],
+    ssd: ["SSD (M.2)", "Una memoria di massa grande come una gomma da masticare, avvitata direttamente sulla scheda madre. Conserva i file anche a computer spento."],
+    gpu: ["Scheda video (GPU)", "Si infila nello slot lungo PCI Express. Ha un suo processore e una sua memoria, e ventole proprie perché scalda molto. Il monitor si collega qui."],
+    psu: ["Alimentatore", "In basso nel case: prende la corrente dalla presa e la distribuisce, con i suoi cavi, alla scheda madre e agli altri componenti."],
+    hdd: ["Disco rigido (HDD)", "Una memoria di massa più vecchia dell’SSD: dentro ci sono dischi magnetici che girano e una testina che li legge. Più lento, ma costa meno per ogni gigabyte."]
+  };
+  const PC_LINK = { cpu: "cpu", ram: "ram", ssd: "ssd", gpu: "gpu", psu: "psu", hdd: "ssd", cooler: "cpu" };
+  const pcParts = $$(".part", pcSvg), pcLbls = $$(".pc-lbl[data-k]", pcSvg);
+  const pcBtn = $("#pc-toggle"), pcLinkBtn = $("#pc-info-link");
+  let pcSel = null;
+  const setInfo = (tag, title, text) => { $("#pc-info-tag").textContent = tag; $("#pc-info-title").textContent = title; $("#pc-info-text").innerHTML = text; };
+  function selectPc(k) {
+    pcSel = k;
+    pcParts.forEach(g => g.classList.toggle("sel", g.dataset.k === k));
+    pcLbls.forEach(t => t.classList.toggle("sel", t.dataset.k === k));
+    const [title, text] = PC_INFO[k];
+    setInfo("Componente", title, text);
+    pcLinkBtn.hidden = false;
+  }
+  function setPc(open) {
+    pcSvg.classList.toggle("open", open);
+    pcBtn.textContent = open ? "Richiudi il computer" : "Apri il computer";
+    pcBtn.setAttribute("aria-pressed", open ? "true" : "false");
+    PC_PARTS.forEach((p, i) => {
+      const g = pcParts[i];
+      const dx = p.cx - (p.x + p.w / 2), dy = p.cy - (p.y + p.h / 2);
+      g.style.transform = open ? `translate(${dx}px, ${dy}px) scale(${p.s})` : "";
+      g.style.transitionDelay = (open ? i : PC_PARTS.length - i) * 60 + "ms";
+      g.setAttribute("tabindex", open ? "0" : "-1");
+      g.setAttribute("role", "button");
+      g.setAttribute("aria-label", p.label);
+    });
+    if (open) setInfo("Suggerimento", "Il PC è aperto", "Tocca un componente per sapere cos’è e a cosa serve.");
+    else { setInfo("Suggerimento", "Il PC è chiuso", "Attraverso il vetro laterale si intravedono i componenti. Aprilo per vederli uno per uno."); pcSel = null; pcParts.forEach(g => g.classList.remove("sel")); pcLbls.forEach(t => t.classList.remove("sel")); }
+    if (!open || !pcSel) pcLinkBtn.hidden = true;
+  }
+  const pcScroller = $("#pc-stage").parentElement;
+  const centerPc = () => { pcScroller.scrollLeft = (pcScroller.scrollWidth - pcScroller.clientWidth) / 2; };
+  centerPc();
+  pcBtn.addEventListener("click", () => setPc(!pcSvg.classList.contains("open")));
+  pcSvg.addEventListener("click", e => {
+    if (!pcSvg.classList.contains("open")) { setPc(true); return; }
+    const g = e.target.closest(".part");
+    if (g) selectPc(g.dataset.k);
+  });
+  pcParts.forEach(g => g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectPc(g.dataset.k); } }));
+  pcLinkBtn.addEventListener("click", () => {
+    if (!pcSel) return;
+    showPart(PC_LINK[pcSel]);
+    $(".mobo").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+  });
+  setPc(false);
 
   /* ---- ciclo fetch/decode/execute ---- */
   const nodes = $$(".cycle .node");
