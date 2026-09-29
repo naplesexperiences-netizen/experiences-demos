@@ -30,6 +30,25 @@ I campi sono le chiavi di `_src/data.json` → `strutture[]`. Quelli marcati *op
 - `gallery[]`, foto hero, `booking_url` *opz.*
 - `contatti`: logo, email, telefono, WhatsApp, sito (oggi sono il CPT "agente" di RealHomes)
 
-## Modulo di richiesta
+## Modulo di richiesta → email della struttura
 
-Nella demo l'invio è simulato (nessun messaggio parte). In WordPress: invio via `admin-post.php` con nonce, mail a `contatti.email` della struttura e copia all'ospite.
+Nella demo statica l'invio è simulato: nessun messaggio parte.
+
+Nel sito WordPress lo gestisce il plugin `wordpress/fma-richieste/`. Nel template della struttura basta `<?php fma_richieste_form( get_the_ID() ); ?>`, che usa lo stesso markup della demo, con stessi CSS e JS.
+
+- **Destinatario**: sempre ricavato lato server dalla struttura. Prima il meta `fma_email` della struttura, poi l'email del referente RealHomes collegato (`REAL_HOMES_agents` → `REAL_HOMES_agent_email`), cioè i dati del sito di oggi. Il modulo non trasporta indirizzi, quindi non può scrivere a destinatari arbitrari.
+- **Email**: alla struttura con `Reply-To` dell'ospite (la casa risponde direttamente) e copia all'ospite con `Reply-To` della casa. Se l'invio fallisce, il visitatore vede l'email della casa a cui scrivere.
+- **Antispam senza nonce**: honeypot, tempo minimo di compilazione e 5 richieste ogni 15 minuti per IP. Un nonce scaduto nelle pagine in cache (WP-Optimize) farebbe perdere richieste.
+- **Funziona anche senza JavaScript**: POST classico e ritorno alla pagina con `?richiesta=inviata`.
+- **Filtri**: `fma_richieste_destinatario`, `fma_richieste_intestazioni`, `fma_richieste_camere`, `fma_richieste_tipi_struttura`; azione `fma_richieste_inviata`.
+
+Test su un WordPress vero, usa-e-getta, con SQLite:
+
+```bash
+cd demos/accoglienza-fma-template/wordpress/fma-richieste
+bash tests/setup.sh
+php -S 127.0.0.1:8899 tests/router.php &
+python3 tests/test_richieste.py      # 26 controlli
+```
+
+Le email vengono intercettate (`wp-content/mail-log.json`) e non partono. In produzione serve un SMTP autenticato (per esempio WP Mail SMTP), altrimenti `wp_mail` rischia di finire in spam.
