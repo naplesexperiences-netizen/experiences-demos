@@ -5,7 +5,7 @@ lavoro, non di calendario.
 
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
-salvataggi esportabili, eco ed edizione demo. 356 controlli automatici, equilibrio
+salvataggi esportabili, eco ed edizione demo. 584 controlli automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il
@@ -32,12 +32,17 @@ il caso della battaglia da un punto solo, così due partite con le stesse scelte
 identiche colpo per colpo. **Collezione e traguardi**: i 34 Insector si scoprono
 incontrandoli, più otto traguardi. 48 controlli nuovi.
 
-## Priorità 3 — Che abbia fondo · 2 giornate
+## ~~Priorità 3 — Che abbia fondo~~ · **fatta** (29 settembre)
 
-**Le sei resistenze in battaglia.** Si accumulano col cibo e la scheda dice onestamente
-che «non contano ancora»: è l'unico punto dove il gioco ammette un pezzo incompiuto. La
-macchina degli stati esiste già (stordimento, ribaltamento, vulnerabilità), quindi è
-collegarle, non inventarle. Mezza giornata di rimisurazione compresa.
+**Le sei resistenze in battaglia.** Taglio ed Esplosione riducono il danno delle mosse di
+quel tipo (3% a punto, tetto 30%), Knockback accorcia le spinte e insieme a Lancio dà una
+presa sul bordo contro il ring-out, Confusione fa fallire ammaliamento e ribaltamento. Il
+Veleno resta fermo e il gioco lo dice: nel roster giocabile non c'è una mossa che
+avveleni, e inventarla sarebbe stato peggio. I sei cibi che davano solo resistenze erano
+fuori dal premio perché inerti: adesso che contano, sono dentro. Rimisurata a 400
+battaglie per scenario: una quota piccola di corazza pareggia le statistiche pure (48%
+contro 46% al Rank S), una quota grossa peggiora (35%) — una scelta, non un potenziamento.
+39 controlli nuovi. **Non resta nessuna promessa aperta nella scheda.**
 
 ## ~~Priorità 4 — Un obiettivo lungo~~ · **fatta** (27 settembre)
 
@@ -95,9 +100,12 @@ riproduzione basta; se invita qualcuno, serve il multiplayer.
 
 ## Se si potessero fare solo tre cose
 
-**Audio** (1), **sfida del giorno** (1), **resistenze in battaglia** (2). Quattro
-giornate che rendono il gioco più bello da giocare, gli danno un motivo per riaprirlo
-domani e completano l'unica promessa rimasta aperta.
+Erano **audio** (1), **sfida del giorno** (1), **resistenze in battaglia** (2): quattro
+giornate per rendere il gioco più bello da giocare, dargli un motivo per riaprirlo domani
+e chiudere l'unica promessa rimasta aperta. Sono fatte tutte e tre. Se se ne potessero
+fare altre tre, adesso: **endpoint della telemetria** (5), **nomi e inglese** (6), **link
+play** (7) — cioè sapere cosa succede, farlo capire a chi non parla italiano, e dare due
+giocatori allo stesso schermo anche quando non sono nella stessa stanza.
 
 ---
 
