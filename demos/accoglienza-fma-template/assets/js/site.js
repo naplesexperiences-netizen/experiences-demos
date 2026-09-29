@@ -386,6 +386,8 @@
     var done = $('[data-request-done]'), slot = $('[data-request-slot]'), aside = $('[data-aside]');
     var errBox = $('[data-request-error]', req);
     linkDates(req); steppers(req);
+    var started = $('[data-started]', req);
+    if (started) started.value = Math.floor(Date.now() / 1000);
 
     // precompila dai parametri della ricerca
     var q = new URLSearchParams(location.search);
@@ -403,11 +405,12 @@
 
     // form in fondo alla pagina su mobile, nella colonna su desktop
     function place() {
+      if (!slot || !aside) return;
       if (mqMobile.matches) { if (req.parentNode !== slot) { slot.appendChild(req); slot.appendChild(done); } }
       else if (req.parentNode !== aside) { aside.appendChild(req); aside.appendChild(done); }
       stickyCheck();
     }
-    function stickyCheck() { aside.classList.toggle('is-sticky', !mqMobile.matches && aside.offsetHeight < innerHeight - 120); }
+    function stickyCheck() { if (aside) aside.classList.toggle('is-sticky', !mqMobile.matches && aside.offsetHeight < innerHeight - 120); }
     mqMobile.addEventListener('change', place); addEventListener('resize', stickyCheck); place();
 
     // "Richiedi questa camera"
@@ -455,22 +458,51 @@
       var btn = $('.request__send', req);
       btn.disabled = true;
       var spin = setTimeout(function () { btn.classList.add('is-loading'); }, 150);
-      setTimeout(function () {
-        clearTimeout(spin); btn.classList.remove('is-loading'); btn.disabled = false;
+      function stop() { clearTimeout(spin); btn.classList.remove('is-loading'); btn.disabled = false; }
+      function riepilogo(conCasa) {
         var casa = ($('.stay__title') || {}).textContent || 'la casa';
         var a = req.arrivo.value, p = req.partenza.value, ad = +req.adulti.value, bb = +req.bambini.value;
         var chi = ad + (ad === 1 ? ' adulto' : ' adulti') + (bb ? ', ' + bb + (bb === 1 ? ' bambino' : ' bambini') : '');
         var camera = req.camera.value || 'camera da concordare';
-        $('[data-request-summary]', done).textContent = casa + ' · dal ' + short(a) + ' al ' + short(p) + ' (' + nights(a, p) + (nights(a, p) === 1 ? ' notte' : ' notti') + ') · ' + chi + ' · ' + camera + ' · ' + req.tipo.value + '.';
+        return (conCasa ? casa + ' · dal ' : 'Dal ') + short(a) + ' al ' + short(p) + ' (' + nights(a, p) + (nights(a, p) === 1 ? ' notte' : ' notti') + ') · ' + chi + ' · ' + camera + ' · ' + req.tipo.value + '.';
+      }
+      function mostraConferma(testo) {
+        $('[data-request-summary]', done).textContent = testo;
         req.hidden = true; done.hidden = false; done.focus();
         if (motion) gsap.fromTo(done, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-      }, 900);
+      }
+
+      // Sito WordPress: il plugin fma-richieste manda la richiesta all'email della struttura.
+      if (req.dataset.endpoint) {
+        var body = new FormData(req);
+        body.append('ajax', '1');
+        fetch(req.dataset.endpoint, { method: 'POST', body: body, credentials: 'same-origin' })
+          .then(function (r) { return r.json(); })
+          .then(function (esito) {
+            stop();
+            if (esito.ok) { mostraConferma(esito.messaggio + ' ' + riepilogo(false)); return; }
+            var campi = esito.campi || {}, primo = null;
+            Object.keys(campi).forEach(function (n) { if (req[n]) { fieldError(req[n], campi[n]); primo = primo || req[n]; } });
+            errBox.textContent = esito.messaggio; errBox.hidden = false;
+            if (primo) primo.focus();
+          })
+          .catch(function () {
+            stop();
+            var to = $('.request__to strong', req);
+            errBox.textContent = 'Connessione non riuscita: la richiesta non è partita.' + (to ? ' Puoi scrivere direttamente a ' + to.textContent + '.' : '');
+            errBox.hidden = false;
+          });
+        return;
+      }
+
+      // Demo statica: nessun invio reale.
+      setTimeout(function () { stop(); mostraConferma(riepilogo(true)); }, 900);
     });
     $('[data-request-again]').addEventListener('click', function () { done.hidden = true; req.hidden = false; req.arrivo.focus(); });
 
     // barra in basso su mobile
     var bottom = $('[data-bottom-bar]'), gallery = $('.gallery');
-    if (bottom && gallery) {
+    if (bottom && gallery && slot) {
       bottom.hidden = false;
       var pastGallery = false, formSeen = false;
       function upd() { bottom.classList.toggle('is-on', mqMobile.matches && pastGallery && !formSeen); }
