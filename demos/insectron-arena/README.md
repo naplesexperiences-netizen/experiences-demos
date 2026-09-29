@@ -323,7 +323,8 @@ statistiche della famiglia **più** i bonus accumulati (`e.b`), ed è marcato `a
 **Economia.** Ogni esemplare ha `VITA_MAX = 40` punti di vita da spendere, e non si
 recuperano; a `VITA_ADULTO = 6` punti spesi smette di essere larva e può entrare in
 squadra. I 22 cibi della tabella del wiki sono in `CIBI` con i loro effetti reali; i
-premi pescano da `CIBI_PREMIO` (13 cibi che toccano le statistiche). Il cibo si vince
+premi pescano da `CIBI_PREMIO` (19 cibi: quelli che toccano le statistiche e, da quando
+le resistenze contano, anche i sei che danno solo quelle). Il cibo si vince
 **solo conquistando un rank**: `PREMIO_RANK = 4` pezzi, più un Royal Fruit dal Rank B in
 su. Le vittorie di round non danno niente.
 
@@ -332,10 +333,38 @@ nell'originale l'allevamento è un ciclo di gioco lungo decine di ore, qui la pa
 intera dura un pomeriggio. Con i valori originali il cibo di un torneo completo non
 avrebbe mosso niente; con questi, muove il giusto — misurato sotto.
 
-**Resistenze.** I cibi che danno resistenze le accumulano in `e.res`, e la scheda le
-mostra dicendo per esteso che **non contano ancora in battaglia**: le regole di stato non
-sono implementate. Mostrare un numero che non fa niente senza dirlo sarebbe peggio che
-non mostrarlo.
+**Resistenze.** I cibi le accumulano in `e.res`, `mk()` le porta in campo sull'unità di
+battaglia, e da lì agiscono (`fattoreRes`, `passiSpinta`, `reggeIlBordo`,
+`reggeConfusione`, vicino a `strike`):
+
+| | dove agisce | quanto |
+|---|---|---|
+| `ct`, `ex` | danno delle mosse di quel tipo, via `MOSSA_TIPO` | −3% a punto, tetto −30%, simmetrico sui valori negativi |
+| `kb` | `shove()`, la spinta della cornata e quella del Dark Emperor | una casella in meno ogni 4 punti (`Math.trunc`, così −3…3 non fa scalini) |
+| `kb`, `th` | ring-out da spinta e da lancio | 8% a punto di restare aggrappati, tetto 60% |
+| `cf` | ammaliamento della Faerie, ribaltamento del Flipperbug, stretta del Dark Emperor | 6% a punto, tetto 50% |
+| `po` | niente | nessuna delle 13 famiglie giocabili avvelena, e la dispensa lo dice |
+
+Il tipo di danno vale anche per l'attacco normale: chi porta le lame taglia comunque.
+`resDi()` taglia i valori a ±10, e con resistenza ≤ 0 **non si tira il dado**: una squadra
+non allevata gioca esattamente la partita di prima, seme per seme — la sfida del giorno
+resta deterministica. Gli avversari sono esemplari del roster, quindi hanno sempre zero:
+per questo i tetti sono bassi.
+
+**Equilibrio delle corazze** (400 battaglie per scenario, `sim-res.js`). Stesso budget di
+40 punti vita, speso in modi diversi sullo stesso esemplare; un pasto costa 1 punto e vale
++2 su una resistenza.
+
+| Rank | roster | 40 stat | 30 stat + 10 corazza | 20 + 20 | solo corazza | cinque 8 stat | cinque 4+4 |
+|---|---|---|---|---|---|---|---|
+| E | 98% | 100% | 100% | 100% | 99% | 100% | 100% |
+| B | 75% | 92% | 85% | 89% | 83% | 81% | 82% |
+| S | 25% | 46% | 48% | 35% | 25% | 53% | 44% |
+
+La corazza è un'alternativa, non un potenziamento: una quota piccola pareggia le
+statistiche pure (48% contro 46% al Rank S), una quota grossa peggiora (35%), e la corazza
+da sola non porta da nessuna parte (25%, come giocare senza allevare). È la forma che
+serviva: una scelta con un costo, non un bottone che vince.
 
 **Equilibrio misurato** (200 battaglie per scenario, `sim-alleva.js`): la dispensa di un
 torneo intero, spesa in modi diversi.
@@ -772,6 +801,13 @@ sui titoli.
 
 ## Verifiche fatte
 
+- 39 controlli automatici sulle resistenze: la scala del danno e il suo tetto nei due
+  versi, la resistenza sbagliata che non serve, quello che l'esemplare ha mangiato che
+  arriva in campo e l'avversario che resta a zero, la spinta che si accorcia di una
+  casella ogni quattro punti, la presa sul bordo che salva dal ring-out **e che qualche
+  volta cede**, l'ammaliamento della Faerie che fallisce ma si paga lo stesso, la stima
+  della scheda che coincide col danno che poi arriva, e il dado che **non viene tirato**
+  quando la resistenza è zero — cioè le partite di prima restano identiche
 - 22 controlli automatici sulle tre schede introdotte: la scheda del roster mostra
   caratteristiche, movimento, speciale e danni e non seleziona senza conferma; il
   riepilogo genera una card per pedina e blocca l'ingresso in arena finché manca il Re;
@@ -872,12 +908,14 @@ sui titoli.
 - Cattura: altre 200 battaglie per scenario, tabella nella sezione «Mondo e cattura»;
   verificato in particolare che la probabilità **dichiarata** sia quella applicata, su
   10.000 estrazioni
-- Totale dei controlli automatici sul gioco: **545** (meccaniche 30, schieramento 20,
+- Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
+  «Allevamento»
+- Totale dei controlli automatici sul gioco: **584** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
   guida 19, musica 31, menu 17, telefono 15, riproduzione 32, sfida del giorno 28,
-  collezione 20),
+  collezione 20, resistenze 39),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out

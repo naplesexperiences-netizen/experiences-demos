@@ -4,8 +4,10 @@ Documento di decisione. Stessa struttura del piano per il multiplayer, così i d
 confrontano. Alla fine c'è la decisione da prendere.
 
 > **Esito: fatto per intero.** Gabbie, cibo e crescita prima; **la riproduzione poi**,
-> con le 18 coppie speciali giocabili delle 23 documentate. Il resoconto, con i numeri
-> rimisurati, sta nelle sezioni «Allevamento» e «Riproduzione» del README.
+> con le 18 coppie speciali giocabili delle 23 documentate; e dal 29 settembre anche
+> **le sei resistenze in battaglia**, che erano l'ultimo pezzo promesso e non mantenuto.
+> Il resoconto, con i numeri rimisurati, sta nelle sezioni «Allevamento» e
+> «Riproduzione» del README.
 
 Stato attuale: le unità si sbloccano vincendo i rank del torneo. Le statistiche sono
 fisse, decise dalla famiglia e dal rank. Il cibo esiste già — ma solo come nome dei premi.
@@ -59,7 +61,9 @@ produce un Dung Roller di rango 3. Quindi l'albero si ricostruisce.
 
 **Le sei resistenze sono già nel dataset** (Knockback, Confusion, Cut, Explosion, Throw,
 Poison) e oggi **non sono usate in battaglia**. L'allevamento darebbe loro un senso: le
-alleneresti per poi vederle contare.
+alleneresti per poi vederle contare. *(Fatto il 29 settembre: cinque contano davvero, il
+Veleno no, perché nel roster giocabile non c'è una mossa che avveleni — e il gioco lo
+dice invece di inventarla.)*
 
 **Le regole di eredità** stanno nella prosa delle fonti: il figlio prende circa il **90%
 della statistica migliore fra i due genitori**, sale di un rango rispetto al genitore più
