@@ -58,6 +58,10 @@ descritti nel README del repository pubblico, che è la guida di chi mantiene il
    ASCII di ogni mossa speciale e di ogni range di movimento**, che il wiki non ha.
    È da qui che arrivano le regole di targeting precise.
 
+Da qui vengono **i dati**, non i nomi: la nomenclatura dell'originale è stata sostituita
+per intero (vedi «I 118 nomi»). In questo documento si usano i nomi nostri; quelli vecchi
+restano solo in `insectors.json`, che è il dataset grezzo, e nella tabella di conversione.
+
 ## Cosa c'è di autentico (dal wiki)
 
 Estratto dalla pagina `Insector` della Rogue Galaxy Wiki e dalle 35 schede unità collegate:
@@ -69,23 +73,23 @@ Estratto dalla pagina `Insector` della Rogue Galaxy Wiki e dalle 35 schede unit�
 | **Range di movimento** | `3×3` (1 casella), `7×7` (volo, 3 caselle), `3 diagonali`, `2 dritto avanti` |
 | **Regola del Re** | squadra da 5, uno è il Re; se cade hai perso; il Re si muove di 1 casella anche se la famiglia ne concede di più |
 | **Torneo** | 6 rank (E→S), 5 round ciascuno, quote d'iscrizione (400z → 6000z), nomi dei 30 avversari, premi |
-| **Ring-out** | Scissor Throw, Wing Flap, Itsakick e Crushing Horn possono buttare un Insector fuori dal campo |
+| **Ring-out** | Proiezione, Colpo d’ali, Doppio calcio e Cornata d’urto possono buttare un Insector fuori dal campo |
 
 Le mosse speciali sono implementate seguendo la descrizione del wiki, non solo citate:
 
-- **Jumping Stab** — danno singolo maggiorato
-- **Crushing Horn** — spinta di 1 casella + reazione a catena su chi sta dietro
-- **Cannon Blast** — attacco in linea retta fino a 3 caselle
-- **Over Easy** — ribaltamento, bersaglio immobilizzato 2 turni
-- **Scissor Throw** — lancio alle spalle del lanciatore, danno extra se la casella è occupata, ring-out se è fuori campo
-- **Sickle Dance** — colpisce tutte le 8 caselle adiacenti
-- **Body Blow** — carica in linea retta, l'attaccante resta scoperto (+30% danni subiti)
-- **Healing Jig** — cura gli alleati adiacenti e rimuove l'immobilizzo
-- **Fill Hole** — blocca completamente i 2 attacchi successivi
-- **Itsakick** — colpisce davanti e dietro con spinta
-- **Charm Beam** — converte un avversario, al costo di metà stamina
-- **Wing Flap** — spinge via di 2 caselle tutti gli adiacenti
-- **The Emperor's Rage** — colpisce tutti i nemici entro 2 caselle + stordimento
+- **Stoccata alta** — danno singolo maggiorato
+- **Cornata d’urto** — spinta di 1 casella + reazione a catena su chi sta dietro
+- **Cannonata** — attacco in linea retta fino a 3 caselle
+- **Ribaltone** — ribaltamento, bersaglio immobilizzato 2 turni
+- **Proiezione** — lancio alle spalle del lanciatore, danno extra se la casella è occupata, ring-out se è fuori campo
+- **Danza delle falci** — colpisce tutte le 8 caselle adiacenti
+- **Carica a trivella** — carica in linea retta, l'attaccante resta scoperto (+30% danni subiti)
+- **Danza balsamica** — cura gli alleati adiacenti e rimuove l'immobilizzo
+- **Sfera scudo** — blocca completamente i 2 attacchi successivi
+- **Doppio calcio** — colpisce davanti e dietro con spinta
+- **Raggio di malia** — converte un avversario, al costo di metà stamina
+- **Colpo d’ali** — spinge via di 2 caselle tutti gli adiacenti
+- **Ira del Tonante** — colpisce tutti i nemici entro 2 caselle + stordimento
 
 ## Regole di targeting (dai diagrammi della FAQ)
 
@@ -95,25 +99,25 @@ ortogonali**, non le 8 attorno. Posizionarsi in diagonale è quindi una difesa r
 
 | Mossa | Area effettiva |
 |---|---|
-| Jumping Stab, Crushing Horn, Over Easy, Scissor Throw, Charm Beam, Healing Jig | 4 caselle ortogonali |
-| Sickle Dance | tutte e 8 le caselle attorno (unica eccezione) |
-| Cannon Blast, Wing Flap | croce ortogonale fino a 2 caselle; qualsiasi Insector in mezzo, **amico o nemico**, blocca |
-| Body Blow | solo dritto in avanti, fino a 2 caselle, l'attaccante si sposta in posizione |
-| Itsakick | solo la casella davanti e quella dietro |
-| Emperor's Rage | bersaglio singolo entro 2 caselle in ogni direzione |
+| Stoccata alta, Cornata d’urto, Ribaltone, Proiezione, Raggio di malia, Danza balsamica | 4 caselle ortogonali |
+| Danza delle falci | tutte e 8 le caselle attorno (unica eccezione) |
+| Cannonata, Colpo d’ali | croce ortogonale fino a 2 caselle; qualsiasi Insector in mezzo, **amico o nemico**, blocca |
+| Carica a trivella | solo dritto in avanti, fino a 2 caselle, l'attaccante si sposta in posizione |
+| Doppio calcio | solo la casella davanti e quella dietro |
+| Ira del Tonante | bersaglio singolo entro 2 caselle in ogni direzione |
 | Attacco normale | tutte e 8 le caselle attorno |
 
 Altre correzioni che la FAQ ha imposto:
 
-- **Scissor Throw non fa danno diretto.** Il danno viene solo da dove atterra il
+- **Proiezione non fa danno diretto.** Il danno viene solo da dove atterra il
   bersaglio: se finisce addosso a qualcuno, **rimbalza a catena** ferendo entrambi,
   e continua finché non trova una casella libera o esce dal campo.
-- **Over Easy** non immobilizza soltanto: chi è ribaltato è anche **vulnerabile**
+- **Ribaltone** non immobilizza soltanto: chi è ribaltato è anche **vulnerabile**
   (+30% danni subiti) per i 2 turni.
-- **Healing Jig non cura la Lady Beetle stessa.**
-- **Movimento dell'Itsahorse**: 1 casella in qualsiasi direzione, oppure 2 in linea
+- **La Danza balsamica non cura la Coccinide che la esegue.**
+- **Movimento dei Corsidi**: 1 casella in qualsiasi direzione, oppure 2 in linea
   retta in una delle 8 direzioni. Il wiki diceva solo "2 caselle dritto in avanti".
-- **Dark Emperor**: la furia fulminea è a bersaglio singolo con **cariche infinite**
+- **Folgore**: la furia fulminea è a bersaglio singolo con **cariche infinite**
   (nessuna ricarica), e il suo **attacco normale** atterra l'avversario e lo sbalza di
   una casella, con rimbalzo a catena ed eventuale uscita dal campo. È questo che lo
   rende il Re migliore, come dice il wiki.
@@ -286,8 +290,8 @@ salgono insieme (margine ±4.4 punti):
 
 ## Progressione del roster
 
-Si comincia con le sole **forme base**: i 7 Insector di rank 1 (Faerie, Flipperbug,
-Hercules Beetle, Itsahorse, Knife Beetle, Mantis, Staggy). Tutto il resto è visibile nel
+Si comincia con le sole **forme base**: i 7 Insector di rank 1 (Lusinga, Ribalta,
+Bastione, Galoppo, Sfregio, Falcetta, Tenaglia). Tutto il resto è visibile nel
 roster ma bloccato, con indicata la condizione di sblocco.
 
 | Rank in corso | Insector disponibili |
@@ -297,9 +301,9 @@ roster ma bloccato, con indicata la condizione di sblocco.
 | C | 27 |
 | B | 31 |
 | A e S | 33 |
-| dopo aver vinto il Rank S | 34, Dark Emperor compreso |
+| dopo aver vinto il Rank S | 34, Folgore compreso |
 
-Il **Dark Emperor** resta fuori fino alla vittoria del Rank S: sul wiki si cattura solo
+**Folgore** resta fuori fino alla vittoria del Rank S: sul wiki si cattura solo
 dopo aver finito il gioco almeno una volta, ed è il Re più forte disponibile.
 
 Questo sostituisce il sistema di cattura e riproduzione, che non è implementato: al suo
@@ -325,7 +329,7 @@ recuperano; a `VITA_ADULTO = 6` punti spesi smette di essere larva e può entrar
 squadra. I 22 cibi della tabella del wiki sono in `CIBI` con i loro effetti reali; i
 premi pescano da `CIBI_PREMIO` (19 cibi: quelli che toccano le statistiche e, da quando
 le resistenze contano, anche i sei che danno solo quelle). Il cibo si vince
-**solo conquistando un rank**: `PREMIO_RANK = 4` pezzi, più un Royal Fruit dal Rank B in
+**solo conquistando un rank**: `PREMIO_RANK = 4` pezzi, più un Frutto regale dal Rank B in
 su. Le vittorie di round non danno niente.
 
 I numeri del wiki (160 punti di vita, 20 per l'età adulta) sono **scalati, non copiati**:
@@ -340,9 +344,9 @@ battaglia, e da lì agiscono (`fattoreRes`, `passiSpinta`, `reggeIlBordo`,
 | | dove agisce | quanto |
 |---|---|---|
 | `ct`, `ex` | danno delle mosse di quel tipo, via `MOSSA_TIPO` | −3% a punto, tetto −30%, simmetrico sui valori negativi |
-| `kb` | `shove()`, la spinta della cornata e quella del Dark Emperor | una casella in meno ogni 4 punti (`Math.trunc`, così −3…3 non fa scalini) |
+| `kb` | `shove()`, la spinta della cornata e quella di Folgore | una casella in meno ogni 4 punti (`Math.trunc`, così −3…3 non fa scalini) |
 | `kb`, `th` | ring-out da spinta e da lancio | 8% a punto di restare aggrappati, tetto 60% |
-| `cf` | ammaliamento della Faerie, ribaltamento del Flipperbug, stretta del Dark Emperor | 6% a punto, tetto 50% |
+| `cf` | ammaliamento dei Silfidi, ribaltamento dei Voltidi, stretta di Folgore | 6% a punto, tetto 50% |
 | `po` | niente | nessuna delle 13 famiglie giocabili avvelena, e la dispensa lo dice |
 
 Il tipo di danno vale anche per l'attacco normale: chi porta le lame taglia comunque.
@@ -418,12 +422,12 @@ un figlio del **gradino successivo**, che eredita il **90% del meglio** dei due 
 i quali **si consumano**. È questo a rendere l'allevamento un ciclo invece di un accumulo.
 
 **Le 18 coppie speciali.** Le fonti ne danno 23; cinque chiamano in causa unità che il
-nostro roster non ha (Cold Cuts, Itsareindeer, Flappillon, Rollerover, Blade Beetle) e
+nostro roster non ha — e che quindi non hanno nemmeno un nome nostro — e
 sono state scartate. Le altre sono in `COPPIE`, riga per riga. Sono documentate come
 orientate — maschio di X e femmina di Y — ma qui **valgono nei due versi**: pretendere
 anche l'orientamento avrebbe trasformato una scoperta in una lotteria.
 
-**Il gradino successivo** non è «rango + 1»: le scale di famiglia hanno buchi (Flipperbug
+**Il gradino successivo** non è «rango + 1»: le scale di famiglia hanno buchi (i Voltidi
 va 1, 3, 4, 5), quindi `successore()` prende il prossimo che esiste. Se né il padre né la
 madre hanno un gradino sopra, la coppia non ha discendenza, e la schermata lo dice invece
 di mostrare un pulsante che non funziona.
@@ -464,7 +468,7 @@ parte nel piano.
 `traps`, `bait`, `location`. Contati per unità coprono un terzo del roster (12 su 35 hanno
 tutti e tre); ma una tabella di cattura lavora **per famiglia**, ed è la famiglia a
 decidere l'esca come decide la mossa speciale: così contate, **11 famiglie su 13** sono
-documentate. Mancano solo Cutterpillar e Flutterbug, e per quelle la scelta è dichiarata
+documentate. Mancano solo Trivellidi e Ventalidi, e per quelle la scelta è dichiarata
 come nostra nel commento del codice.
 
 **Le `location` non sono state usate**, ed è una scelta di merito: sono i livelli di
@@ -666,8 +670,8 @@ Queste scelte sono nostre e si possono cambiare in un punto solo del codice:
 2. **Formula di danno.** Assente da entrambe le fonti.
    `max(str×0.3, str×2 − def) × moltiplicatore × (0.9…1.1)`.
    Il pavimento al 30% della forza serve a evitare che un DEF alto renda un'unità
-   letteralmente invulnerabile agli attaccanti deboli (Orion Beetle ha DEF 32
-   contro STR 14 della Faerie). Funzione `strike()`.
+   letteralmente invulnerabile agli attaccanti deboli (Barbacane ha DEF 32
+   contro STR 14 di Lusinga). Funzione `strike()`.
 3. **Scalatura difficoltà.** Due assi: un moltiplicatore di statistiche crescente per
    rank (campo `mul` in `RANKS`) e il profilo di IA (`RANK_AI`). Il secondo conta più del
    primo: un avversario grosso ma ottuso spreca il vantaggio.
@@ -734,11 +738,11 @@ Sono le zampe, più di ogni altra cosa, a togliere l'effetto «macchia colorata�
 di averle, ogni famiglia era un ovale con un dettaglio sopra.
 
 Ogni sagoma ha poi la sua anatomia: torace e addome separati nella mantide, corno
-biforcuto attaccato al capo nell'Hercules, mandibole specchiate nello Staggy (una sola
-disegnata e ribaltata, così restano identiche), canna con volata nel Bazoo, quattro ali
-velate in Faerie e Flutterbug, segmenti con zampette nel Cutterpillar, palla appoggiata
-al dorso nel Dung Roller, criniera a ciuffi nell'Itsahorse, corona a punte e mantello nel
-Dark Emperor.
+biforcuto attaccato al capo nei Bastidi, mandibole specchiate nei Tenaglidi (una sola
+disegnata e ribaltata, così restano identiche), canna con volata nei Bombardidi, quattro
+ali velate in Silfidi e Ventalidi, segmenti con zampette nei Trivellidi, palla appoggiata
+al dorso nei Sferidi, criniera a ciuffi nei Corsidi, corona a punte e mantello nei
+Tonantidi.
 
 Il rank cambia il disegno su tre livelli (1-2, 3-4, 5-6): corna più lunghe e speronate,
 denti nelle mandibole, ocelli sulle ali, macchie sul guscio, alone e scintille, piastre
@@ -759,15 +763,15 @@ spostarla soltanto. Sono i due trucchi che fanno leggere il peso.
 | Evento | Effetto |
 |---|---|
 | Riposo | oscillazione lenta, con sfasamento casuale per unità |
-| Ali (Faerie, Flutterbug) | battito continuo, solo per chi le ha |
+| Ali (Silfidi, Ventalidi) | battito continuo, solo per chi le ha |
 | Selezione | alone pulsante del colore dello schieramento |
 | Spostamento | passo: stacco, volo breve, atterraggio schiacciato, con l'ombra che si stringe mentre la pedina è in aria |
 | Attacco | carica all'indietro e poi affondo sul bersaglio |
 | Colpo subito | scossa laterale + lampo bianco + schiacciamento elastico |
 | Mossa speciale | raccolta e poi ingrandimento dell'attaccante |
-| Aree (Sickle Dance, Wing Flap, Emperor's Rage) | onda circolare espansiva |
-| Cannon Blast | proiettile che viaggia da attaccante a bersaglio |
-| Healing Jig / Fill Hole | onda verde / beige |
+| Aree (Danza delle falci, Colpo d’ali, Ira del Tonante) | onda circolare espansiva |
+| Cannonata | proiettile che viaggia da attaccante a bersaglio |
+| Danza balsamica / Sfera scudo | onda verde / beige |
 | K.O. | cede su se stessa, poi dissolvenza con rotazione |
 | Ring-out | volo fuori dal campo con rotazione di 560° |
 
@@ -801,11 +805,19 @@ sui titoli.
 
 ## Verifiche fatte
 
+- 23 controlli automatici sulla nomenclatura: tutte e 118 le stringhe vecchie cercate nei
+  dati **e nel testo della pagina**, i 118 nomi nuovi contati e verificati senza doppioni,
+  la coerenza fra le tabelle (ogni unità in una famiglia che esiste, esche e habitat che
+  nominano cibi e famiglie vere), e la migrazione allo schema 6 — un salvataggio vecchio
+  che ritrova la dispensa, somma le quantità se ha entrambe le forme del nome, converte
+  l'esca di una trappola già piazzata e non perde né squadra né gabbie né collezione;
+  e che nella tabella di conversione i nomi vecchi non compaiano nemmeno lì, perché sono
+  ridotti a 22 impronte FNV-1a distinte
 - 39 controlli automatici sulle resistenze: la scala del danno e il suo tetto nei due
   versi, la resistenza sbagliata che non serve, quello che l'esemplare ha mangiato che
   arriva in campo e l'avversario che resta a zero, la spinta che si accorcia di una
   casella ogni quattro punti, la presa sul bordo che salva dal ring-out **e che qualche
-  volta cede**, l'ammaliamento della Faerie che fallisce ma si paga lo stesso, la stima
+  volta cede**, l'ammaliamento dei Silfidi che fallisce ma si paga lo stesso, la stima
   della scheda che coincide col danno che poi arriva, e il dado che **non viene tirato**
   quando la resistenza è zero — cioè le partite di prima restano identiche
 - 22 controlli automatici sulle tre schede introdotte: la scheda del roster mostra
@@ -883,7 +895,7 @@ sui titoli.
   avvio bloccato finché mancano pedine): tutti superati
 - 26 controlli automatici sulle regole di targeting e sugli effetti corretti dalla FAQ
   (area ortogonale, blocco della linea di tiro, rimbalzo a catena, ring-out, vulnerabilità
-  da ribaltamento, cura non su se stessa, movimento dell'Itsahorse, cariche infinite
+  da ribaltamento, cura non su se stessa, movimento dei Corsidi, cariche infinite
   dell'Imperatore): tutti superati
 
 - 720 battaglie simulate headless: nessuna eccezione, nessuno stallo
@@ -910,12 +922,12 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **584** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **607** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
   guida 19, musica 31, menu 17, telefono 15, riproduzione 32, sfida del giorno 28,
-  collezione 20, resistenze 39),
+  collezione 20, resistenze 39, nomenclatura 23),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
@@ -936,10 +948,152 @@ attribuzione CC BY-SA e il footer può restare di una riga.
 La tracciabilità delle fonti resta in questo README, che è documentazione interna e non
 viene pubblicata come pagina del sito.
 
+## I 118 nomi
+
+Fino al 30 settembre 2026 la nomenclatura era quella dell'originale, presa dal wiki
+insieme alle statistiche. Le statistiche sono fatti di gioco; i nomi no. Prima di
+qualunque passo commerciale andavano sostituiti (`PIANO-VENDITE.md` §10), e la
+sostituzione è questa. **Nel gioco non resta nessun nome dell'originale**: lo verifica
+`nomi.js`, che cerca tutte e 118 le stringhe vecchie nei dati e nella pagina.
+
+Cosa **non** è cambiato, di proposito: gli **id interni** (`knife_beetle`, `jumping_stab`,
+`frutteto`…). Stanno nei salvataggi della gente e nei codici di esportazione, e cambiarli
+avrebbe buttato via le partite in corso senza guadagnare niente — un id non si vede.
+Restano invece dell'originale le **regole, le statistiche e la struttura del torneo**, che
+sono la cosa che stiamo dichiaratamente ricostruendo, e il nome **Insectron** nel titolo:
+quello è una decisione a parte, perché cambia URL, manifest e chiave di salvataggio.
+
+**Le famiglie** diventano nomi tassonomici inventati, in `-idi`: si leggono come una
+famiglia di insetti e non hanno bisogno di traduzione quando arriverà l'inglese.
+
+| Famiglia | Prima | Unità (rank) |
+|---|---|---|
+| **Lamidi** | Knife Beetle | Sfregio (1), Rasoio (3), Bipenne (4), Trinciaferro (5) |
+| **Voltidi** | Flipperbug | Ribalta (1), Girandola (3), Capovolta (4), Rovescio (5) |
+| **Bombardidi** | Bazoo Beetle | Mortaio (3), Colubrina (4), Bombarda (5), Basilisco (6) |
+| **Bastidi** | Hercules Beetle | Bastione (1), Barbacane (3), Rivellino (4), Mastio (5) |
+| **Falcidi** | Mantis | Falcetta (1), Falcione (2), Roncola (3), Turbine (4) |
+| **Tenaglidi** | Staggy | Tenaglia (1), Morsa (2), Ganascia (3) |
+| **Silfidi** | Faerie | Lusinga (1), Malia (2), Incanto (3) |
+| **Sferidi** | Dung Roller | Ruzzola (2), Macigno (3) |
+| **Trivellidi** | Cutterpillar | Trivella (4), Punteruolo (6) |
+| **Ventalidi** | Flutterbug | Bufera (4) |
+| **Tonantidi** | Dark Emperor | Folgore (1) |
+| **Corsidi** | Itsahorse | Galoppo (1) |
+| **Coccinidi** | Lady Beetle | Balsamina (3) |
+
+**Le unità**, una per una:
+
+| id (invariato) | Prima | Adesso |
+|---|---|---|
+| `hercules_beetle` | Hercules Beetle | Bastione |
+| `orion_beetle` | Orion Beetle | Barbacane |
+| `narcissus_beetle` | Narcissus Beetle | Rivellino |
+| `susanoo_beetle` | Susanoo Beetle | Mastio |
+| `fishface_beetle` | Fishface Beetle | Mortaio |
+| `planet_beetle` | Planet Beetle | Colubrina |
+| `kaboom_beetle` | Kaboom Beetle | Bombarda |
+| `western_beetle` | Western Beetle | Basilisco |
+| `spotted_lady` | Spotted Lady | Balsamina |
+| `itsahorse` | Itsahorse | Galoppo |
+| `mantis` | Mantis | Falcetta |
+| `slaying_mantis` | Slaying Mantis | Falcione |
+| `super_mantis` | Super Mantis | Roncola |
+| `tornado_mantis` | Tornado Mantis | Turbine |
+| `knife_beetle` | Knife Beetle | Sfregio |
+| `saber_beetle` | Saber Beetle | Rasoio |
+| `hatchet_beetle` | Hatchet Beetle | Bipenne |
+| `carver_beetle` | Carver Beetle | Trinciaferro |
+| `gum_roller` | Gum Roller | Ruzzola |
+| `bomb_roller` | Bomb Roller | Macigno |
+| `faerie` | Faerie | Lusinga |
+| `handsome_faerie` | Handsome Faerie | Malia |
+| `miss_mysterious` | Miss Mysterious | Incanto |
+| `staggy` | Staggy | Tenaglia |
+| `big_staggy` | Big Staggy | Morsa |
+| `stun_staggy` | Stun Staggy | Ganascia |
+| `dark_emperor` | Dark Emperor | Folgore |
+| `drillerpillar` | Drillerpillar | Trivella |
+| `stinger_bill` | Stinger Bill | Punteruolo |
+| `butterflap` | Butterflap | Bufera |
+| `flipperbug` | Flipperbug | Ribalta |
+| `turner` | Turner | Girandola |
+| `shoveler` | Shoveler | Capovolta |
+| `dustpan` | Dustpan | Rovescio |
+
+**Le mosse** passano all'italiano: la scheda che le descrive è già in italiano,
+e tenerle in inglese era un residuo della fonte.
+
+| Prima | Adesso |
+|---|---|
+| Jumping Stab | Stoccata alta |
+| Crushing Horn | Cornata d’urto |
+| Cannon Blast | Cannonata |
+| Over Easy | Ribaltone |
+| Scissor Throw | Proiezione |
+| Sickle Dance | Danza delle falci |
+| Body Blow | Carica a trivella |
+| Wing Flap | Colpo d’ali |
+| Healing Jig | Danza balsamica |
+| Fill Hole | Sfera scudo |
+| Itsakick | Doppio calcio |
+| Charm Beam | Raggio di malia |
+| The Emperor’s Rage | Ira del Tonante |
+
+**I cibi**. Qui c'è un effetto collaterale sui salvataggi: la dispensa e le trappole
+già piazzate sono indicizzate **per nome del cibo**, non per id. Senza conversione
+chi aveva giocato avrebbe riaperto il gioco con la dispensa vuota. Da qui lo
+**schema 6**: `CIBI_VECCHI` mappa i 22 nomi vecchi sui nuovi, `migra()` li converte
+una volta sola e somma le quantità se il salvataggio contiene entrambe le forme.
+
+| Prima | Adesso | | Prima | Adesso |
+|---|---|---|---|---|
+| Battle Feed | Mangime | | Dark Onyx | Onice scura |
+| Diamond | Diamante | | Edensia | Ambrosia |
+| Electric Eel | Anguilla elettrica | | Firestone | Pietrafuoco |
+| Hard Candy | Caramella dura | | Juraikan Coffee Beans | Chicchi di caffè |
+| Lapis Lazuli | Lapislazzuli | | Mellow Banana | Banana matura |
+| Nebula Opal | Opale di nebulosa | | Pirate’s Grog | Grog del corsaro |
+| Primeval Beef | Bistecca primordiale | | Royal Fruit | Frutto regale |
+| Ruby | Rubino | | Sanchez Fruit | Frutto del Vesuvio |
+| Seventhmoon | Settima luna | | Smoked Rainbow Newt | Tritone affumicato |
+| Stella Crystal | Cristallo di stella | | Sticky Gum | Gomma appiccicosa |
+| Ultraspicy Pepper | Peperoncino infernale | | Yago Milk | Latte di rugiada |
+
+**Gli avversari del torneo** diventano nomi italiani, con gli epiteti che compaiono
+solo salendo di rank: ai primi gradini si affrontano persone, agli ultimi personaggi.
+
+| Rank | Prima | Adesso |
+|---|---|---|
+| E | Zak, Randall, Matilda, Keller, Robert | Nino, Rosa, Peppe, Lilla, Carmine |
+| D | Matty, Philly, Medis, Cordison, Fabre | Sasà, Immacolata, Mimmo, Concetta, Gaetano |
+| C | Retslyn, Sam, Denver, Matthew, Bolgo | Vincenzo, Assunta, Rocco, Nunzia, Salvo |
+| B | Emp, Henry, Osmond, Ertessa, Bari | Ferdinando, Zaira, Ottavio, Marisa, Fulvio |
+| A | Kalt, Gary, Jaques, Starr, Monj | Nando il Secco, Ada, Corrado, Ersilia, Tancredi |
+| S | Camilla, Balta, Nolli, Lucy Dyne, Jin Red | Donna Amalia, Bartolo, Isaura, Fosca, Don Gerardo |
+
+**I premi di rank** sono trofei, non oggetti usabili: cambiano solo di nome.
+
+| Prima | Adesso |
+|---|---|
+| Battle Feed ×5 | Mangime ×5 |
+| Feed Formula ×5 | Mangime rinforzato ×5 |
+| Murakumo Type-S | Sciabola Tipo S |
+| Devil Forks | Forconi del diavolo |
+| Grand Calibur | Gran Calibro |
+| Demon Medium | Sigillo del Demone |
+
+Il conto torna: 34 unità + 13 famiglie + 13 mosse + 22 cibi + 30 avversari + 6 premi =
+**118**, tutti diversi. La mappatura completa sta anche in `nomi.json` nello scratchpad
+della sessione, ed è quella che ha guidato la sostituzione: nessun nome è stato scritto
+a mano due volte.
+
 ## Licenze e diritti
 
 - **Dati** (statistiche, famiglie, regole, torneo): Rogue Galaxy Wiki (Fandom) e la
   In-Depth FAQ di Paul Michael «VHAYSTE». Sono fatti di gioco, non prosa riutilizzata.
+- **Nomi**: nostri, tutti e 118, dal 30 settembre 2026 — vedi «I 118 nomi». Dall'originale
+  non resta nemmeno un nome di unità, famiglia, mossa, cibo, avversario o premio.
 - **Grafica**: interamente originale, generata da codice. **Nessuno sprite, artwork o
   screenshot del gioco è stato usato**, e non c'è alcun file immagine nel repo.
 - *Rogue Galaxy* è © Sony Interactive Entertainment / Level-5. Questo prototipo è un

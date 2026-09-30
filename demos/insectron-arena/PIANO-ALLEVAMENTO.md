@@ -3,6 +3,11 @@
 Documento di decisione. Stessa struttura del piano per il multiplayer, così i due si
 confrontano. Alla fine c'è la decisione da prendere.
 
+> **Nota del 30 settembre 2026.** I nomi che compaiono qui sotto sono quelli
+> **dell'originale**, perché questo documento serve a dire da dove vengono i dati.
+> Nel gioco non ci sono più: la corrispondenza fra vecchi e nuovi sta nella sezione
+> «I 118 nomi» del `README.md`.
+
 > **Esito: fatto per intero.** Gabbie, cibo e crescita prima; **la riproduzione poi**,
 > con le 18 coppie speciali giocabili delle 23 documentate; e dal 29 settembre anche
 > **le sei resistenze in battaglia**, che erano l'ultimo pezzo promesso e non mantenuto.
