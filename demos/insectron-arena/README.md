@@ -690,15 +690,53 @@ Le regole che il codice rispetta, e che i controlli verificano:
 3. quello che si manda si vede prima, per intero, nello stesso testo che verrà copiato;
 4. l'invito compare **una volta sola**, dopo la prima vittoria, e ha il suo «non adesso».
 
-`EMAIL_FEEDBACK` e `TELEMETRIA_URL` sono vuote di proposito: la prima accende il pulsante
-email, la seconda un `sendBeacon` che parte **solo alla pressione dell'utente**. Finché
-sono vuote la pagina non ha bisogno di nessun banner del consenso, che è la ragione per cui
-sono vuote.
+`EMAIL_FEEDBACK` e `TELEMETRIA_URL` sono vuote di proposito. Finché lo sono, la pagina non
+fa una richiesta di rete e non ha bisogno di nessun banner del consenso.
 
-Limite da dire chiaro, perché condiziona quanto vale il dato raccolto: **questa è raccolta
-volontaria, non telemetria passiva.** Arriva quello che la gente decide di mandare. Per
-avere numeri su tutti i giocatori servirebbe un endpoint — mezza giornata di lavoro e un
-servizio da mantenere — ed è una decisione, non un dettaglio.
+### Telemetria passiva (priorità 5 della roadmap) — costruita, spenta
+
+Il limite della raccolta volontaria era che **arriva quello che la gente decide di
+mandare**: poco, e distorto verso chi è contento. Il meccanismo passivo adesso c'è per
+intero, e si accende con una riga.
+
+**Nel gioco.** `ecoAuto()` manda un rapporto **una volta per visita**, su
+`visibilitychange → hidden` e su `pagehide`: è l'unico momento in cui il quadro è completo,
+e `sendBeacon` sopravvive alla chiusura della scheda mentre una `fetch` no. Il corpo è
+`ecoRapporto()` con `auto: 1` e **senza** il commento libero. `TELEMETRIA_URL` vuota
+significa zero richieste, come prima; `ECO_INVIO` (chiave `insectron-eco-invio`) è
+l'interruttore che compare nel menu e nel pannello quando la raccolta è accesa.
+
+Due scelte che valgono più del codice:
+
+1. **Il testo segue la configurazione.** `ecoPrivacy()` genera la frase del pannello a
+   partire da `TELEMETRIA_URL` e da `ECO_INVIO`. Scritta a mano, quella frase sarebbe vera
+   in una versione e falsa nella successiva: così non può.
+2. **Quello che parte è identico a quello che si vede**, e il controllo lo verifica
+   confrontando i due oggetti serializzati — non a parole, campo per campo.
+
+**Il servizio** sta in `telemetria/`, in questo repository privato: Worker Cloudflare più
+database D1, 153 righe di README con la procedura, e `prova.mjs` che gira il Worker in un
+contesto vuoto con un D1 finto — 19 controlli, **senza toccare la rete**. Le regole che
+quel codice difende:
+
+| Regola | Come |
+|---|---|
+| l'IP non si conserva | il Worker non legge mai `CF-Connecting-IP`, e `[observability] enabled = false` tiene spenti i log di Cloudflare — con quelli accesi l'informativa direbbe il falso |
+| si scrivono solo le colonne dichiarate | un campo sconosciuto viene buttato via; il controllo prova a mandare nome, email e IP e verifica che non arrivino in nessuna colonna |
+| l'ora si arrotonda alla mezz'ora | un orario al secondo, su pochi giocatori, è di fatto un modo per riconoscere una visita |
+| dodici mesi e poi via | un cron notturno cancella le righe vecchie |
+| gli aggregati hanno una chiave | `/numeri` risponde 401 senza il secret, e non restituisce mai una riga singola |
+
+**L'informativa** è `privacy.html`, pubblicata e collegata dal piè di pagina di entrambe le
+landing, con dieci controlli in `land.js`. Dichiara lo stato di oggi — raccolta spenta — e
+il riquadro va cambiato insieme alla costante: è il passo 3 della procedura in
+`telemetria/README.md`, insieme all'indirizzo email che manca e senza il quale
+un'informativa non è un'informativa.
+
+**Perché è spenta.** Passare da volontario a passivo cambia la posizione giuridica anche a
+parità di dati raccolti. Quella conferma la deve dare un consulente privacy, non il codice:
+finché non arriva, `TELEMETRIA_URL` resta vuota e il gioco non manda niente. Le tre cose da
+fargli guardare sono elencate in cima a `telemetria/README.md`.
 
 ## Cosa è ricostruzione di design (non documentato sul wiki)
 
@@ -963,14 +1001,15 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **630** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **647** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
-  allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
+  allevamento 28, mondo e cattura 44, edizione demo 14, eco e telemetria 44, suono 23,
   guida 19, musica 31, menu 17, telefono 26, riproduzione 32, sfida del giorno 40,
   collezione 20, resistenze 39, nomenclatura 23),
-  più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
-  prova offline con la rete staccata)
+  più 21 sulla landing e sull'informativa, 19 sul sito installabile (manifest, icone,
+  service worker e prova offline con la rete staccata) e 19 sull'endpoint della
+  telemetria, che gira in un contesto vuoto con un D1 finto e senza toccare la rete
 - Animazioni: affondo, scossa, numero di danno, proiettile, onda, movimento e ring-out
   verificati attivi nel browser; 3 partite complete giocate via UI senza errori in console
   e senza token fantasma rimasti sul campo
