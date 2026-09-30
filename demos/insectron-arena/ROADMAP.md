@@ -5,7 +5,7 @@ lavoro, non di calendario.
 
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
-salvataggi esportabili, eco, edizione demo e nomenclatura tutta nostra. 630 controlli
+salvataggi esportabili, eco, edizione demo e nomenclatura tutta nostra. 647 controlli
 automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
@@ -52,11 +52,25 @@ meglio, i genitori si consumano, e 18 coppie documentate danno risultati fuori l
 Rimisurata: al Rank S una linea allevata sta al 46%, come le altre strade. 32 controlli
 nuovi.
 
-## Priorità 5 — Sapere davvero cosa succede · 0,5 giornate + un servizio
+## ~~Priorità 5 — Sapere davvero cosa succede~~ · **costruita** (30 settembre), **spenta**
 
-**Endpoint per la telemetria.** L'eco è già in casa e oggi raccoglie **solo su base
-volontaria**: arriva quello che la gente decide di mandare, che è poco e distorto. Un
-endpoint lo rende passivo e anonimo; nel gioco è cambiare una costante.
+**Endpoint per la telemetria.** Fatto per intero e non acceso, che non è un rinvio ma
+l'ordine giusto. Nel gioco: un rapporto per visita alla chiusura della pagina, con lo
+stesso contenuto che il pannello mostra in chiaro, senza il commento libero, con
+l'interruttore per spegnerlo nel menu; il testo del pannello lo genera il codice a partire
+dalla costante, così non può promettere una cosa mentre il codice ne fa un'altra. Il
+servizio in `telemetria/`: Worker Cloudflare più D1, che non legge mai l'IP, scrive solo le
+colonne dichiarate, arrotonda l'ora alla mezz'ora e cancella tutto dopo dodici mesi. Più
+`privacy.html`, pubblicata. 17 controlli nuovi nel gioco, 19 sull'endpoint, 11 sulla
+landing e sull'informativa.
+
+**Resta da fare una cosa sola, e non è codice**: la verifica di un consulente privacy sul
+passaggio da volontario a passivo, e l'indirizzo email da mettere nell'informativa. Con
+quelle due, accendere è cambiare `TELEMETRIA_URL` e alzare la versione del service worker —
+procedura completa in `telemetria/README.md`.
+
+*Com'era prima:* l'eco raccoglieva **solo su base volontaria**: arrivava quello che la
+gente decideva di mandare, che è poco e distorto.
 
 | Strada | Costo | Lavoro | Cosa comporta |
 |---|---|---|---|
@@ -66,7 +80,9 @@ endpoint lo rende passivo e anonimo; nel gioco è cambiare una costante.
 | Server proprio (VPS) | 4-6 €/mese | 1 gg | Manutenzione vera, aggiornamenti, sicurezza: sconsigliato qui |
 
 **Quando**, non se: ha senso accenderlo quando c'è gente che gioca. Con dieci visite al
-mese non c'è niente da raccogliere, e resta solo una cosa in più che si può rompere.
+mese non c'è niente da raccogliere, e resta solo una cosa in più che si può rompere. Per
+questo è stato costruito adesso e acceso dopo: il lavoro è fatto, il servizio si pubblica
+in dieci minuti quando serve.
 
 **Nota da verificare con un consulente prima di accendere:** passare da volontario a
 passivo significa raccogliere senza che l'utente prema. Senza cookie, senza
