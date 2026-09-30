@@ -3,6 +3,11 @@
 Documento di decisione. Stessa struttura dei piani per il multiplayer e per
 l'allevamento, così i tre si confrontano. Alla fine c'è la decisione da prendere.
 
+> **Nota del 30 settembre 2026.** I nomi che compaiono qui sotto sono quelli
+> **dell'originale**, perché questo documento serve a dire da dove vengono i dati.
+> Nel gioco non ci sono più: la corrispondenza fra vecchi e nuovi sta nella sezione
+> «I 118 nomi» del `README.md`.
+
 > **Esito: fatta la forma C.** Spedizioni, cattura con trappola ed esca, mondo generato da
 > un seme di sei caratteri. È in `gioca.html`; il resoconto, con i numeri rimisurati, sta
 > nella sezione «Mondo e cattura» del README. **La forma B — la mappa percorribile — non è

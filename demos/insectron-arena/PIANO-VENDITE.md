@@ -16,7 +16,8 @@ Tre cose, in ordine di quanto pesano.
 1. **Prima di ogni euro vanno cambiati i 118 nomi** presi dall'originale (§10). Non è una
    raccomandazione prudenziale: è la differenza fra un esercizio tecnico gratuito, che
    nessuno tocca, e un prodotto a pagamento costruito su materiale altrui, che gli store
-   rimuovono su segnalazione in pochi giorni.
+   rimuovono su segnalazione in pochi giorni. **Fatto il 30 settembre 2026**; resta da
+   decidere sul titolo (§10).
 2. **La struttura a tre edizioni ha un punto che non torna**, ed è meglio scoprirlo adesso:
    così com'è scritta, la terza edizione offre a chi paga *un negozio dove spendere altri
    soldi*. Va girata: si paga per **togliere la pubblicità**, non per avere accesso a un
@@ -223,7 +224,14 @@ acquisti.
 
 ## 10. Il prerequisito: i 118 nomi
 
-Non è aggirabile, e per fortuna è poco lavoro, perché il resto è già nostro: le 34
+> **Fatto il 30 settembre 2026.** Tutte e 118 le stringhe sono state sostituite e nel
+> gioco non resta nessun nome dell'originale; la mappatura completa e il perché di ogni
+> scelta stanno nella sezione «I 118 nomi» del `README.md`. Resta aperta una sola cosa,
+> più piccola ma non nulla: il nome **Insectron** nel titolo e la parola **Insector**
+> usata per le creature vengono dal minigioco. Cambiarli tocca URL, manifest, chiave di
+> salvataggio e prefisso dei codici esportati, quindi è una decisione a sé.
+
+Non era aggirabile, e per fortuna era poco lavoro, perché il resto era già nostro: le 34
 descrizioni sono riscritte da zero, la grafica è interamente generata da codice, e regole e
 statistiche sono fatti. Resta solo la nomenclatura:
 

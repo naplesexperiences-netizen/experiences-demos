@@ -5,7 +5,8 @@ lavoro, non di calendario.
 
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
-salvataggi esportabili, eco ed edizione demo. 584 controlli automatici, equilibrio
+salvataggi esportabili, eco, edizione demo e nomenclatura tutta nostra. 607 controlli
+automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il
@@ -76,7 +77,8 @@ dieci righe, ma è una verifica che va fatta, non data per scontata.
 
 | Passo | Giornate | Serve per |
 |---|---|---|
-| I 118 nomi | 0,5 | Prerequisito assoluto per vendere o stare in uno store (`PIANO-VENDITE.md` §10) |
+| ~~I 118 nomi~~ · **fatto** (30 settembre) | 0,5 | Era il prerequisito assoluto per vendere o stare in uno store (`PIANO-VENDITE.md` §10). Nel gioco non resta nessun nome dell'originale; 20 controlli nuovi lo verificano a ogni giro |
+| Il nome «Insectron» e la parola «Insector» | 0,5 | Sono le ultime due parole che vengono dal minigioco. Toccano URL, manifest, chiave di salvataggio e prefisso dei codici: decisione a sé, non un rinvio |
 | Inglese | 2 | ~276 stringhe nel codice più 22 nell'HTML: senza, qualsiasi store serve solo l'Italia |
 | Pacchetto Android (TWA) | 1 | Essere trovabili come app |
 | **Demo** | *(già fatta, in attesa)* | Si pubblica quando il completo va altrove |
