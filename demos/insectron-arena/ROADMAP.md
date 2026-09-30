@@ -5,7 +5,7 @@ lavoro, non di calendario.
 
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
-salvataggi esportabili, eco, edizione demo e nomenclatura tutta nostra. 607 controlli
+salvataggi esportabili, eco, edizione demo e nomenclatura tutta nostra. 630 controlli
 automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 

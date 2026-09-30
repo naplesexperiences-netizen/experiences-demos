@@ -404,6 +404,17 @@ rank è `SFIDA_PROF`, che sostituisce `RANKS[S.rankIdx]` via `profRank()` — co
 meccanismo del secondo giocatore (`S.career` / `careerHeld`) e rimessa a posto alla fine.
 Si gioca **una volta al giorno**: se si potesse riprovare, il punteggio non direbbe niente.
 
+**La modalità si mette da parte insieme alla squadra** *(difetto segnalato giocando, 30
+settembre)*. `avviaSfida()` non toccava `S.vs`, quindi la sfida ereditava la modalità del
+torneo: chi stava in **PC vs PC** vedeva la propria sfida giocata dal computer, con «Fine
+turno» nascosto e al suo posto «Torna al roster»; chi stava in **due giocatori** non vedeva
+il pulsante affatto. Adesso `S.vs` finisce in `S.career` accanto alla squadra e la sfida
+parte sempre in `hvp`; `backToCareer()` lo rimette com'era, e `datiSalvataggio()` salva
+sempre la modalità **del torneo**, non quella prestata alla sfida. Nello stesso giro è
+sparita un'altra promessa sbagliata: l'esito offriva «Rivincita» e «Cambia squadra» per una
+partita che si gioca una volta al giorno — adesso dice «Torna al roster». Dodici controlli
+nuovi in `sfida.js` partono dalle tre modalità e verificano tutte e quattro le cose.
+
 **Collezione e traguardi.** `S.visti` si riempie in `startBattle()` — si conoscono
 incontrandoli, da una parte o dall'altra — e gli otto traguardi si accendono dove le cose
 succedono (prima vittoria, battaglia senza perdite, adulto, cattura, figlio, sfida, Rank S,
@@ -613,10 +624,40 @@ Tre dettagli che sono costati più del resto:
    perché `drawDeploy()` gira quando `#s-battle` è ancora `display:none` e tutti i
    rettangoli sono a zero. La chiamata giusta parte da `show()`, un tick dopo.
 
-I 15 controlli di `mobile.js` girano in una finestra da telefono e verificano i numeri, non
+### Secondo passaggio (30 settembre)
+
+Con la barra a posto restava scomodo tutto quello che le sta **intorno**, misurato sulla
+stessa finestra:
+
+| | Prima | Adesso |
+|---|---|---|
+| testata | 3 righe, ~250 px, con «Azzera torneo» accanto al pollice | 2 righe, 104 px; Salvataggio e Azzera nel menu |
+| pulsanti | 32-36 px di altezza | nessuno sotto i 44 |
+| «Fine turno» | in cima alla pagina, fuori schermo appena si scorre | `.turnbar` in `position:sticky`, sempre a vista |
+| slot della squadra | 5 righe «Slot libero», ~300 px | le pedine scelte + una riga che dice quante mancano |
+| scheda del roster | sotto la lista, da cercare | portata a vista al tocco, se non c'è già |
+| «Entra in arena» | dopo 5 schede e ~1.700 px | barra azioni `sticky` in basso |
+| carte del roster | 3 per riga sui telefoni larghi, col nome a capo | 1 o 2 per riga (`minmax` da 148 a 158 px) |
+| roster in tutto | 1.404 px | 1.143 px |
+
+Due cose imparate, che valgono oltre questa schermata:
+
+1. **`hidden` è un attributo, e qualsiasi regola con `display` lo batte.** Era già successo
+   a cinque elementi, corretti uno per uno con `.classe[hidden]{display:none}`; al banner
+   del riepilogo no, e restava una striscia vuota sotto la testata su **ogni** schermo.
+   Adesso c'è una regola sola, `[hidden]{display:none!important}`, e le cinque toppe sono
+   sparite.
+2. **Le voci del menu non duplicano il comportamento**: premono il pulsante vero, che sullo
+   schermo stretto è solo nascosto dal CSS. Un solo `onclick` da mantenere.
+
+Girando il telefono si riattraversa la soglia dei 900 px: un ascoltatore su `matchMedia`
+ridisegna gli slot e, se si è in campo, la scacchiera — altrimenti resta la forma di prima.
+
+I 26 controlli di `mobile.js` girano in una finestra da telefono e verificano i numeri, non
 l'aspetto: zero pixel da scorrere per arrivare alle azioni, nessuna delle dieci caselle di
-schieramento coperta dalla barra, scacchiera interamente sopra la barra, pulsanti ≥ 44 px,
-e che su schermo largo non cambi niente.
+schieramento coperta dalla barra, scacchiera interamente sopra la barra, **nessun pulsante
+sotto i 44 px**, testata sotto i 170, menu a sette voci che aprono davvero quello che
+promettono, slot riassunti, scheda portata a vista, e che su schermo largo non cambi niente.
 
 ## Edizione demo ed eco (priorità 1 della roadmap)
 
@@ -922,11 +963,11 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **607** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **630** (meccaniche 30, schieramento 20,
   schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e feedback 27, suono 23,
-  guida 19, musica 31, menu 17, telefono 15, riproduzione 32, sfida del giorno 28,
+  guida 19, musica 31, menu 17, telefono 26, riproduzione 32, sfida del giorno 40,
   collezione 20, resistenze 39, nomenclatura 23),
   più 10 sulla landing e 19 sul sito installabile (manifest, icone, service worker e
   prova offline con la rete staccata)
