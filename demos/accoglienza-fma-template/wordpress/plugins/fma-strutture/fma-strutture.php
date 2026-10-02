@@ -20,8 +20,13 @@ require FMA_STRUTTURE_DIR . 'includes/tipi.php';
 require FMA_STRUTTURE_DIR . 'includes/campi.php';
 require FMA_STRUTTURE_DIR . 'includes/dati.php';
 
+if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+	require FMA_STRUTTURE_DIR . 'includes/importatore.php';
+}
+
 if ( is_admin() ) {
 	require FMA_STRUTTURE_DIR . 'includes/admin.php';
+	require FMA_STRUTTURE_DIR . 'includes/importa-pagina.php';
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

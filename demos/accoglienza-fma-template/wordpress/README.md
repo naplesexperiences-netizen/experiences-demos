@@ -18,13 +18,15 @@ Tema e plugin sono separati apposta: strutture e richieste restano nel sito anch
    - **Plugin → Aggiungi nuovo → Carica plugin**: carica e attiva `fma-strutture.zip` e `fma-richieste.zip`.
    - **Aspetto → Temi → Aggiungi nuovo → Carica tema**: carica e attiva `accoglienza-fma.zip`.
 3. **Impostazioni → Permalink**: scegli «Nome articolo» e salva. Servono gli indirizzi `/strutture/<nome>/`.
-4. Contenuti, con uno di questi due modi:
-   - **A mano**: in **Strutture → Aggiungi nuova** compila i box *Scheda della struttura*, *Contatti e richieste di soggiorno*, *Camere*, *Galleria foto*, *Nei dintorni e “Da sapere”* e *Home page*. Assegna regione e servizi e imposta l'immagine in evidenza.
-   - **Con l'importatore** (serve WP-CLI, disponibile su quasi tutti gli hosting con SSH): scompatta `fma-contenuti.zip` sul server e lancia
+4. Contenuti, in uno di questi tre modi. Tutti importano 8 strutture, 6 partner e 5 articoli con le foto. Si possono rilanciare: aggiornano quello che c'è già e non creano doppioni.
+   - **Dal browser** (consigliato): **Strumenti → Importa contenuti FMA**, scegli `fma-contenuti.zip` e premi *Importa*. Una barra mostra l'avanzamento, una struttura alla volta, in circa un minuto. Se la pagina si chiude o un passo fallisce, riaprendola riprende da dove era rimasta.
+     - Se lo zip supera il limite di caricamento dell'hosting (indicato nella pagina), caricalo via FTP in `wp-content/uploads/fma-contenuti.zip` e scegli «File già sul server». A importazione finita il file viene cancellato.
+     - «Configura anche il sito» crea le pagine Home e Blog, il menu, i permalink e il logo, e rimuove i contenuti di esempio di WordPress. È già spuntato su un sito nuovo; lascialo spento se il sito è già avviato.
+   - **Con WP-CLI** (via SSH): scompatta `fma-contenuti.zip` nella cartella di WordPress e lancia
      ```bash
      wp fma importa fma-contenuti/data.json --immagini=fma-contenuti/img --configura-sito
      ```
-     Importa 8 strutture, 6 partner e 5 articoli con tutte le foto. `--configura-sito` crea le pagine Home e Blog, il menu e il logo, e rimuove i contenuti di esempio di WordPress. Si può rilanciare: aggiorna, non duplica.
+   - **A mano**: in **Strutture → Aggiungi nuova** compila i box *Scheda della struttura*, *Contatti e richieste di soggiorno*, *Camere*, *Galleria foto*, *Nei dintorni e “Da sapere”* e *Home page*. Assegna regione e servizi e imposta l'immagine in evidenza.
 5. **Aspetto → Personalizza → Home page**: testi di hero, chi siamo, sezione strutture e blog, più la foto del «Chi siamo».
 6. **Email**: installa un plugin SMTP autenticato (per esempio WP Mail SMTP), altrimenti le richieste rischiano di finire in spam.
 
@@ -48,12 +50,14 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 - **Script con `defer`** e nessuna dipendenza da jQuery nel sito pubblico. Il tema regge l'ottimizzazione degli script di WP-Optimize, che oggi rompe hero e galleria del sito attuale.
 - **Leaflet solo dove c'è una mappa**: home, archivio, regioni, singola struttura.
 - **Nessun nonce nel modulo di richiesta**, perché le pagine sono in cache. L'antispam usa honeypot, tempo minimo e limite per IP (dettagli in `../README.md`).
+- **Importazione dal browser senza rischi**: la pagina è riservata agli amministratori e ogni passo è protetto da nonce. Dallo zip si estraggono solo `data.json` e le immagini, in una cartella temporanea che a fine lavoro viene cancellata: niente PHP in uploads, e i percorsi con `../` vengono scartati sia nello zip sia nel file dati.
 - **Compatibile con il sito di oggi**: `fma-richieste` trova l'email anche nelle proprietà RealHomes (`property` + agente), quindi si può attivare prima della migrazione.
 
 ## Sito locale di prova
 
 ```bash
 ./dev/setup.sh                                               # WordPress + SQLite in dev/wp, contenuti importati
+SENZA_CONTENUTI=1 ./dev/setup.sh                             # oppure vuoto, per provare la pagina di importazione
 php -S 127.0.0.1:8890 -t dev/wp/wordpress dev/router.php     # http://127.0.0.1:8890 — admin / admin
 ```
 

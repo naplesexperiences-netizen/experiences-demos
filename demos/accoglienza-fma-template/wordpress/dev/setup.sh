@@ -2,6 +2,7 @@
 # Sito WordPress locale usa-e-getta (SQLite) con tema + plugin FMA e i contenuti della demo importati.
 #   ./dev/setup.sh            installa in dev/wp (ignorata da git)
 #   php -S 127.0.0.1:8890 -t dev/wp/wordpress dev/router.php    poi apri http://127.0.0.1:8890  (admin / admin)
+#   SENZA_CONTENUTI=1 ./dev/setup.sh   sito vuoto, per provare Strumenti → Importa contenuti FMA
 # Le email non partono: il mu-plugin dev/fma-dev-mail.php le salva in wp-content/mail-log.json.
 set -euo pipefail
 DEV="$(cd "$(dirname "$0")" && pwd)"; WPROOT="$(cd "$DEV/.." && pwd)"; DEMO="$(cd "$WPROOT/.." && pwd)"
@@ -27,6 +28,8 @@ ln -sfn "$WPROOT/plugins/fma-richieste" wp-content/plugins/fma-richieste
 mkdir -p wp-content/mu-plugins; cp "$DEV/fma-dev-mail.php" wp-content/mu-plugins/
 $WP theme activate accoglienza-fma --quiet
 $WP plugin activate fma-strutture fma-richieste --quiet
-$WP fma importa "$DEMO/_src/data.json" --immagini="$DEMO/img" --configura-sito
+if [ -z "${SENZA_CONTENUTI:-}" ]; then
+  $WP fma importa "$DEMO/_src/data.json" --immagini="$DEMO/img" --configura-sito
+fi
 $WP rewrite flush --quiet
 echo "Pronto: php -S 127.0.0.1:$PORTA -t $DEV/wp/wordpress $DEV/router.php"
