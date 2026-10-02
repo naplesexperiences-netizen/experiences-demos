@@ -192,11 +192,30 @@ crocetta nell'angolo di ogni pedina al posto del pulsante «Togli» (resta un be
 44 px, e `aria-label` dice «Togli Falcetta dalla squadra»). I 223 px risparmiati sono
 andati al roster, che su un 360×740 passa da **una pedina visibile a tre e mezza**.
 
+**La scelta della partita**, che il primo giro aveva lasciato fuori. Era la schermata
+d'apertura e chiedeva di scorrere fin sotto alla sfida del giorno per trovare «Scegli la
+squadra». Adesso sta nella finestra come le altre due: a scorrere, quando serve, è
+l'elenco delle modalità, mentre la riga dei pulsanti resta dove è. Quando sotto c'è
+ancora qualcosa l'ultima riga **sfuma**, perché il taglio netto faceva credere che
+l'elenco finisse lì e la sfida del giorno non la vedeva nessuno; la sfumatura sparisce
+arrivati in fondo. Su un 412×915 non serve nemmeno scorrere l'elenco: le tre modalità,
+la difficoltà e la sfida ci stanno tutte.
+
+**Il pannello del menu** usciva dallo schermo. La testata va a capo secondo la larghezza
+e il pulsante «Menu» finisce ora a destra ora a sinistra: ancorato sempre al proprio
+bordo destro, su un telefono dove il pulsante sta a sinistra il pannello sbordava fuori
+dalla finestra. Adesso parte dalla posizione naturale e, se sborda, viene riportato
+dentro — misurando la larghezza vera del pannello, che dipende dalle voci che contiene
+(nella demo sono meno). Verificato a undici larghezze fra 320 e 1280 px.
+
 **Dove la promessa non vale, e lo diciamo.** Sotto i 640 px di altezza — telefono di
 traverso, schermi vecchi da 568 — la testata, la striscia della squadra e i suoi
 pulsanti non ci stanno nemmeno a schermata vuota. Lì il blocco dell'altezza si disattiva
 e la pagina torna a scorrere: peggio, ma onesto. L'alternativa sarebbe nascondere
-qualcosa e far finta che ci stia.
+qualcosa e far finta che ci stia. Nella scelta della partita, però, la riga dei pulsanti
+resta appoggiata al bordo basso anche lì, così il passo avanti non si va a cercare in
+fondo. Nella squadra no: quel riquadro è più corto della finestra e `position:sticky`
+non avrebbe spazio in cui stare.
 
 ## Schieramento delle pedine
 
@@ -957,7 +976,7 @@ sui titoli.
   genera una card per pedina, **senza una riga di prosa**, col tondo «i» che apre la
   scheda completa, e blocca l'ingresso in arena finché manca il Re; la card di battaglia
   riporta danno d'attacco, danno speciale e movimento residuo
-- 38 controlli automatici sulla schermata unica: squadra e riepilogo stanno dentro il
+- 52 controlli automatici sulla schermata unica: squadra e riepilogo stanno dentro il
   viewport senza scorrimento di pagina a 1280×900, 412×915 e 360×740, anche a squadra
   piena; il roster elenca **solo** gli Insector disponibili e dice quanti ne restano da
   sbloccare; il pop-up è un `dialog` con `aria-modal`, il fuoco ci entra e torna sulla
@@ -966,7 +985,12 @@ sui titoli.
   cinque scelte sono una striscia orizzontale alta 65 px invece di cinque righe da 288,
   con tutte e cinque le pedine dentro e la crocetta per toglierle; e sotto i 640 px di
   altezza, dove la schermata non ci sta comunque, la pagina torna a scorrere **senza
-  tagliare niente** e i tre pulsanti restano raggiungibili
+  tagliare niente** e i tre pulsanti restano raggiungibili. Più, dalla segnalazione del
+  2 ottobre: il pannello del menu sta dentro la finestra a **undici larghezze** fra 320 e
+  1280 px, e «Scegli la squadra» si vede senza scorrere su schermo largo, telefono e
+  telefono piccolo, con la sfumatura che compare solo quando sotto c'è davvero altro e
+  sparisce arrivati in fondo; sugli schermi bassi, dove la pagina scorre comunque, la
+  riga dei pulsanti resta appoggiata al bordo
 - 11 controlli sul passaggio del mouse, da cui era nato il bug della scheda che cambiava
   mentre andavi verso il pulsante: ora che la scheda è un pop-up il giro del mouse per
   tutta la finestra non la tocca, e il click aggiunge proprio quello che stai leggendo
@@ -1068,12 +1092,12 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **702** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **716** (meccaniche 30, schieramento 20,
   schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 11,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e telemetria 44, suono 23,
   guida 19, musica 31, menu 17, telefono 30, riproduzione 32, sfida del giorno 40,
-  collezione 20, resistenze 39, nomenclatura 23, schermata unica 38),
+  collezione 20, resistenze 39, nomenclatura 23, schermata unica 52),
   più 21 sulla landing e sull'informativa, 19 sul sito installabile (manifest, icone,
   service worker e prova offline con la rete staccata) e 19 sull'endpoint della
   telemetria, che gira in un contesto vuoto con un D1 finto e senza toccare la rete

@@ -6,7 +6,7 @@ lavoro, non di calendario.
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
 salvataggi esportabili, eco, edizione demo, nomenclatura tutta nostra e le due schermate
-prima della partita che stanno in una finestra sola. 702 controlli automatici, equilibrio
+prima della partita che stanno in una finestra sola. 716 controlli automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il
@@ -101,7 +101,14 @@ scheda è un pop-up con dentro i pulsanti per scegliere; il riepilogo è fatto d
 numeri, con la descrizione dietro a un tondo «i». Sul telefono la squadra scelta è una
 striscia orizzontale da 65 px al posto di una colonna da 288, e il roster passa da una
 pedina visibile a tre e mezza. Sotto i 640 px di altezza la pagina torna a scorrere, che
-è peggio ma è l'unica cosa onesta. 38 controlli nuovi, dettaglio in `README.md`.
+è peggio ma è l'unica cosa onesta. 52 controlli nuovi, dettaglio in `README.md`.
+
+*Secondo giro, stesso giorno, da due segnalazioni su un telefono vero*: il pannello del
+menu usciva dallo schermo (la testata va a capo e il pulsante cambia lato: ora la
+posizione si misura, e il pannello sta dentro a undici larghezze fra 320 e 1280 px), e la
+schermata d'apertura chiedeva ancora di scorrere per trovare «Scegli la squadra» — adesso
+sta in una finestra come le altre due, con l'elenco delle modalità che scorre dentro e
+l'ultima riga che sfuma quando sotto c'è altro.
 
 ## Priorità 6 — Quando si esce di casa
 
