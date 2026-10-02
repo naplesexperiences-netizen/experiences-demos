@@ -5,8 +5,8 @@ lavoro, non di calendario.
 
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
-salvataggi esportabili, eco, edizione demo e nomenclatura tutta nostra. 647 controlli
-automatici, equilibrio
+salvataggi esportabili, eco, edizione demo, nomenclatura tutta nostra e le due schermate
+prima della partita che stanno in una finestra sola. 702 controlli automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il
@@ -88,6 +88,20 @@ in dieci minuti quando serve.
 passivo significa raccogliere senza che l'utente prema. Senza cookie, senza
 identificatori e senza conservare l'IP la posizione resta pulita e l'informativa è di
 dieci righe, ma è una verifica che va fatta, non data per scontata.
+
+## ~~Fuori fila — Tutto in una schermata~~ · **fatta** (2 ottobre)
+
+Non era in questa lista: è arrivata guardando il gioco su un telefono. Le due schermate
+prima della partita si leggevano scorrendo — fino a **1069 px di scorrimento** su un
+360×740 per arrivare in fondo al riepilogo, 417 su un monitor da 1280×900 per vedere la
+scheda di un Insector. Adesso sono **zero**, su ogni schermo alto almeno 640 px.
+
+Il roster elenca solo gli Insector disponibili invece di 27 caselle col lucchetto; la
+scheda è un pop-up con dentro i pulsanti per scegliere; il riepilogo è fatto di soli
+numeri, con la descrizione dietro a un tondo «i». Sul telefono la squadra scelta è una
+striscia orizzontale da 65 px al posto di una colonna da 288, e il roster passa da una
+pedina visibile a tre e mezza. Sotto i 640 px di altezza la pagina torna a scorrere, che
+è peggio ma è l'unica cosa onesta. 38 controlli nuovi, dettaglio in `README.md`.
 
 ## Priorità 6 — Quando si esce di casa
 

@@ -129,12 +129,18 @@ Quattro passaggi, ognuno con le informazioni che servono a decidere:
 1. **Chi gioca.** È la prima schermata: si sceglie fra Human vs PC, Human vs Human e
    PC vs PC, e con un computer in campo il suo livello (vedi «Chi gioca: le tre
    modalita'»). Dal roster si torna a cambiarla quando si vuole.
-2. **Roster.** Toccando un Insector si apre a destra la sua **scheda**: ruolo in campo,
-   vita/forza/difesa, danno d'attacco, movimento, mossa speciale e relativo danno. Si
-   entra in squadra solo confermando con il pulsante — un tocco non impegna a nulla.
-   In alto una fascia ricorda chi gioca, con il pulsante per cambiare.
-3. **Riepilogo squadra.** Le cinque pedine affiancate con le stesse informazioni, ed è
-   qui che si **nomina il Re**. Finché non lo scegli non si entra in arena.
+2. **Roster.** Elenca **solo gli Insector che hai**, non quelli ancora chiusi: una riga
+   sotto dice quanti ne restano e che si aprono vincendo i rank. Toccandone uno si apre
+   un **pop-up** con ruolo in campo, vita/forza/difesa, danno d'attacco, movimento,
+   mossa speciale e relativo danno, e lì dentro stanno i pulsanti per metterlo in
+   squadra o toglierlo: un tocco non impegna a nulla, e appena hai deciso il pop-up si
+   chiude e torni alla lista. In alto una fascia ricorda chi gioca, con il pulsante per
+   cambiare.
+3. **Riepilogo squadra.** Le cinque pedine affiancate in schede **di soli numeri** —
+   vita, forza, difesa, danno d'attacco, danno della speciale, movimento — perché qui si
+   confronta, non si legge; la descrizione per esteso sta dietro al tondo «i» in alto a
+   destra di ogni scheda, che riapre lo stesso pop-up del roster. È qui che si
+   **nomina il Re**: finché non lo scegli non si entra in arena.
 4. **Schieramento.** Le pedine si posizionano sulle due file di casa — tranne in
    PC vs PC, dove le mette in fila il gioco.
 
@@ -145,6 +151,52 @@ In battaglia, selezionando una pedina il pannello mostra **danno d'attacco, dann
 speciale e movimento residuo**. Quando c'è un bersaglio a tiro i due danni sono quelli
 reali contro quel bersaglio (difesa inclusa); altrimenti sono valori indicativi contro un
 avversario senza difesa, utili per confrontare le unità fra loro.
+
+## Tutto in una schermata
+
+Le due schermate che precedono la partita si leggevano scorrendo. Misurato, in pixel di
+scorrimento necessari per vedere tutto quello che c'è:
+
+| schermo | schermata | prima | dopo |
+|---|---|---:|---:|
+| 1280×900 | squadra, scheda aperta | 417 | **0** |
+| 1280×900 | squadra piena | 302 | **0** |
+| 1366×768 | squadra, scheda aperta | 549 | **0** |
+| 768×1024 | squadra piena | 678 | **0** |
+| 412×915 | squadra piena | 869 | **0** |
+| 412×915 | riepilogo | 842 | **0** |
+| 360×740 | squadra, scheda aperta | 1007 | **0** |
+| 360×740 | riepilogo | 1069 | **0** |
+
+Quattro cose, nessuna delle quali aggiunge pagina:
+
+1. **La pagina non scorre più: scorrono gli elenchi.** `.wrap` prende `height:100dvh`
+   sulle due schermate, e dentro sono il roster e la lista della squadra ad avere il
+   proprio scorrimento. Quel che si cercava scorrendo adesso sta dove ci si aspetta.
+2. **Il roster mostra solo gli Insector che hai.** Prima elencava tutti e 34 con 27
+   caselle grigie e un lucchetto: ventisette righe per dire «no». Adesso ci sono i sette
+   disponibili, e una riga dice quanti restano e come si aprono.
+3. **La scheda è un pop-up**, non più una colonna a fianco. È `role="dialog"` con
+   `aria-modal`, il fuoco ci entra e torna sulla pedina da cui sei partito, si chiude con
+   Esc, con la ×, con un clic fuori, cambiando schermata e appena hai scelto. Dentro ci
+   stanno anche i pulsanti per mettere in squadra o togliere: si decide dove si legge.
+4. **Il riepilogo è fatto di numeri.** Cinque descrizioni per esteso non stanno in una
+   schermata, e lì si confronta, non si legge: restano vita, forza, difesa, danno
+   d'attacco, danno della speciale e movimento. La prosa sta dietro al tondo «i» in alto
+   a destra di ogni scheda, che riapre lo stesso pop-up del roster.
+
+Sul telefono si è aggiunto un quinto pezzo: la squadra scelta era una **colonna di
+cinque righe alta 288 px**, su uno schermo da 740 — metà della schermata per dire cinque
+nomi. Adesso è una **striscia orizzontale alta 65 px** che si scorre col pollice, con la
+crocetta nell'angolo di ogni pedina al posto del pulsante «Togli» (resta un bersaglio da
+44 px, e `aria-label` dice «Togli Falcetta dalla squadra»). I 223 px risparmiati sono
+andati al roster, che su un 360×740 passa da **una pedina visibile a tre e mezza**.
+
+**Dove la promessa non vale, e lo diciamo.** Sotto i 640 px di altezza — telefono di
+traverso, schermi vecchi da 568 — la testata, la striscia della squadra e i suoi
+pulsanti non ci stanno nemmeno a schermata vuota. Lì il blocco dell'altezza si disattiva
+e la pagina torna a scorrere: peggio, ma onesto. L'alternativa sarebbe nascondere
+qualcosa e far finta che ci stia.
 
 ## Schieramento delle pedine
 
@@ -899,10 +951,25 @@ sui titoli.
   volta cede**, l'ammaliamento dei Silfidi che fallisce ma si paga lo stesso, la stima
   della scheda che coincide col danno che poi arriva, e il dado che **non viene tirato**
   quando la resistenza è zero — cioè le partite di prima restano identiche
-- 22 controlli automatici sulle tre schede introdotte: la scheda del roster mostra
-  caratteristiche, movimento, speciale e danni e non seleziona senza conferma; il
-  riepilogo genera una card per pedina e blocca l'ingresso in arena finché manca il Re;
-  la card di battaglia riporta danno d'attacco, danno speciale e movimento residuo
+- 30 controlli automatici sulle tre schede: il pop-up del roster si apre toccando la
+  pedina, mostra caratteristiche, movimento, speciale e danni, non mette in squadra senza
+  conferma, si chiude da solo appena hai scelto e riaperto offre «Togli»; il riepilogo
+  genera una card per pedina, **senza una riga di prosa**, col tondo «i» che apre la
+  scheda completa, e blocca l'ingresso in arena finché manca il Re; la card di battaglia
+  riporta danno d'attacco, danno speciale e movimento residuo
+- 38 controlli automatici sulla schermata unica: squadra e riepilogo stanno dentro il
+  viewport senza scorrimento di pagina a 1280×900, 412×915 e 360×740, anche a squadra
+  piena; il roster elenca **solo** gli Insector disponibili e dice quanti ne restano da
+  sbloccare; il pop-up è un `dialog` con `aria-modal`, il fuoco ci entra e torna sulla
+  pedina di partenza, si chiude con Esc, con la ×, col clic fuori e cambiando schermata;
+  il tondo «i» del riepilogo apre la scheda **senza** nominare il Re; sul telefono le
+  cinque scelte sono una striscia orizzontale alta 65 px invece di cinque righe da 288,
+  con tutte e cinque le pedine dentro e la crocetta per toglierle; e sotto i 640 px di
+  altezza, dove la schermata non ci sta comunque, la pagina torna a scorrere **senza
+  tagliare niente** e i tre pulsanti restano raggiungibili
+- 11 controlli sul passaggio del mouse, da cui era nato il bug della scheda che cambiava
+  mentre andavi verso il pulsante: ora che la scheda è un pop-up il giro del mouse per
+  tutta la finestra non la tocca, e il click aggiunge proprio quello che stai leggendo
 - 4 controlli sul campo rettangolare: 5 colonne, 7 file, e i limiti su entrambi gli assi
 
 - 32 controlli automatici su Human vs Human: la modalità si sceglie entrando nel gioco
@@ -1001,12 +1068,12 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **647** (meccaniche 30, schieramento 20,
-  schede 22, accessibilità 14, difficoltà 10, regola del movimento 13, scheda del roster 6,
+- Totale dei controlli automatici sul gioco: **702** (meccaniche 30, schieramento 20,
+  schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 11,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e telemetria 44, suono 23,
-  guida 19, musica 31, menu 17, telefono 26, riproduzione 32, sfida del giorno 40,
-  collezione 20, resistenze 39, nomenclatura 23),
+  guida 19, musica 31, menu 17, telefono 30, riproduzione 32, sfida del giorno 40,
+  collezione 20, resistenze 39, nomenclatura 23, schermata unica 38),
   più 21 sulla landing e sull'informativa, 19 sul sito installabile (manifest, icone,
   service worker e prova offline con la rete staccata) e 19 sull'endpoint della
   telemetria, che gira in un contesto vuoto con un D1 finto e senza toccare la rete
