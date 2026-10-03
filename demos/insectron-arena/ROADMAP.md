@@ -6,7 +6,7 @@ lavoro, non di calendario.
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
 salvataggi esportabili, eco, edizione demo, nomenclatura tutta nostra e le due schermate
-prima della partita che stanno in una finestra sola. 716 controlli automatici, equilibrio
+prima della partita che stanno in una finestra sola. 764 controlli automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il
@@ -109,6 +109,20 @@ posizione si misura, e il pannello sta dentro a undici larghezze fra 320 e 1280 
 schermata d'apertura chiedeva ancora di scorrere per trovare «Scegli la squadra» — adesso
 sta in una finestra come le altre due, con l'elenco delle modalità che scorre dentro e
 l'ultima riga che sfuma quando sotto c'è altro.
+
+## ~~Fuori fila — Le due schermate difficili si spiegano da sole~~ · **fatta** (3 ottobre)
+
+Gabbie e Mondo hanno le regole più difficili del gioco — un budget di vita che non si
+rigenera, un'esca che è cibo tolto a qualcun altro, una trappola che costa partite — e
+quelle regole stavano scritte in cima alla schermata, dove si leggono una volta e non si
+rileggono più.
+
+Adesso ogni regola sta attaccata al pezzo di interfaccia che la applica: nuvolette
+piccole e ancorate, con l'anello intorno a quello di cui parlano, il becco che lo indica
+e dentro `‹ 3 di 5 › ×`. Cinque passi per l'allevamento, sei per la cattura. Si aprono da
+sole al primo ingresso, si riaprono dal punto interrogativo accanto al titolo, non si
+mangiano i clic di quello che coprono e non indicano mai un pezzo di schermo vuoto.
+48 controlli nuovi, dettaglio in `README.md`.
 
 ## Priorità 6 — Quando si esce di casa
 
