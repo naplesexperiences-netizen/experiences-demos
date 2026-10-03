@@ -42,3 +42,22 @@ register_activation_hook(
 	}
 );
 register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );
+
+/**
+ * Regole degli indirizzi sempre allineate: dopo un aggiornamento del plugin caricato come zip
+ * (che non riattiva il plugin) o un cambio di permalink fatto senza salvare la pagina Permalink,
+ * le regole si rigenerano una volta. Evita i 404 su /strutture/<nome>/ e /regione/<nome>/.
+ */
+add_action(
+	'init',
+	function () {
+		$firma = FMA_STRUTTURE_VERSIONE . '|' . get_option( 'permalink_structure' );
+		$regole = get_option( 'rewrite_rules' );
+		$mancano = get_option( 'permalink_structure' ) && is_array( $regole ) && ! preg_grep( '#^strutture/#', array_keys( $regole ) );
+		if ( $mancano || get_option( 'fma_strutture_regole' ) !== $firma ) {
+			flush_rewrite_rules( false );
+			update_option( 'fma_strutture_regole', $firma, true );
+		}
+	},
+	99
+);
