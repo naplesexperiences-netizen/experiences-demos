@@ -135,6 +135,12 @@ while ( have_posts() ) :
 
 			<?php echo $contenuto; // phpcs:ignore WordPress.Security.EscapeOutput -- contenuto dell'editor già filtrato. ?>
 
+			<?php
+			if ( function_exists( 'fma_recensioni' ) ) {
+				get_template_part( 'template-parts/recensioni', null, array( 'recensioni' => fma_recensioni( get_the_ID(), 3 ), 'titolo' => 'Cosa dicono gli ospiti', 'casa' => false, 'stile' => 'blocco' ) );
+			}
+			?>
+
 			<?php if ( $s['dintorni'] ) : ?>
 				<section class="block" aria-labelledby="h-dintorni">
 					<h2 id="h-dintorni" class="block__title">Nei dintorni</h2>

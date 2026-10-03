@@ -29,8 +29,12 @@ function fma_tema_setup(): void {
 		)
 	);
 
+	// Stesso taglio 16:10 in tre larghezze: così lo srcset dello slider offre la misura giusta per ogni schermo.
 	add_image_size( 'fma-hero', 1920, 1200, true );
+	add_image_size( 'fma-hero-m', 1200, 750, true );
+	add_image_size( 'fma-hero-s', 800, 500, true );
 	add_image_size( 'fma-card', 720, 480, true );
+	add_image_size( 'fma-card-s', 400, 267, true ); // miniature dell'elenco strutture su schermi ad alta densità
 	add_image_size( 'fma-quadrato', 320, 320, true );
 }
 

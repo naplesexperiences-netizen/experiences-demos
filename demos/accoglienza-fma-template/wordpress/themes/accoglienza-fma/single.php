@@ -60,7 +60,7 @@ while ( have_posts() ) :
 			<ul class="journal__list journal__list--wide">
 				<?php foreach ( $altri as $a ) : ?>
 					<li class="post post--row"><a href="<?php echo esc_url( get_permalink( $a ) ); ?>">
-						<span class="post__thumb"><?php echo get_the_post_thumbnail( $a, 'fma-quadrato', array( 'alt' => '' ) ); ?></span>
+						<span class="post__thumb"><?php echo get_the_post_thumbnail( $a, 'fma-quadrato', array( 'alt' => '', 'sizes' => '7.5rem' ) ); ?></span>
 						<span class="post__body"><span class="post__meta"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $a ) ); ?>"><?php echo esc_html( fma_data( $a ) ); ?></time> · <?php echo (int) fma_minuti_lettura( $a ); ?> min</span><span class="post__title"><?php echo esc_html( get_the_title( $a ) ); ?></span></span>
 					</a></li>
 				<?php endforeach; ?>
