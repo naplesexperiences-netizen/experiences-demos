@@ -600,6 +600,48 @@ permette di schierarne cinque invece di tre, al prezzo di un quarto del cibo che
 esche. Le cifre restano in linea con quelle misurate per l'allevamento (Rank S attorno al
 60%), e il Rank S resta una partita da giocare.
 
+## Spiegazioni in contesto: le nuvolette
+
+Gabbie e Mondo sono le due schermate che hanno regole vere da capire — un budget di
+vita che non si rigenera, un'esca che è cibo tolto a qualcun altro, una trappola che
+costa partite di torneo. Quelle regole stavano scritte in cima alla schermata, dove si
+leggono una volta e non si rileggono più.
+
+Adesso ogni regola sta **attaccata al pezzo di interfaccia che la applica**: una
+nuvoletta piccola, ancorata, con un anello azzurro (il «faro») intorno a quello di cui
+parla e un becco che lo indica. Dentro ci sono tre comandi: `‹` indietro, il contatore
+(«3 di 5»), `›` avanti e `×` per chiudere.
+
+| | Allevamento | Cattura |
+|---|---|---|
+| passi | 5 | 6 |
+| vanno su | gabbie · dispensa · un cibo · anteprima · «Accoppia due adulti» | un luogo · trappola · esca · probabilità · «Posa la trappola» · trappole posate |
+
+**Le regole che il sistema si dà.**
+
+- **Si apre da sola la prima volta** che entri in una delle due schermate, e una volta
+  chiusa non torna più: la scelta resta in `localStorage`, come la guida del primo minuto.
+- **Si riapre quando vuoi**, dal punto interrogativo tondo accanto al titolo. Un
+  onboarding che non si può rivedere è un onboarding che hai perso.
+- **Non si mangia i clic.** Il corpo della nuvoletta ha `pointer-events: none`: un
+  pulsante che le finisce sotto resta cliccabile. Intercettano solo i tre comandi, non
+  il contatore. Questo era un bug vero, trovato dalla suite dell'allevamento che non
+  riusciva più a cliccare un cibo.
+- **Non indica il vuoto.** Ogni passo elenca più ancore e usa la prima che esiste **e
+  occupa spazio** (almeno 8×8 px): a dispensa vuota il passo del cibo ripiega sul
+  riquadro, e un riquadro svuotato — che nel DOM esiste ancora, alto zero — non viene
+  mai scelto. Se nessuna ancora è viva, il passo sparisce e il contatore dice quelli
+  veri, non cinque.
+- **Sta dentro la finestra.** Il lato preferito vale se ci sta; se non ci sta si prende
+  quello con più spazio, e in ogni caso viene riportata dentro con 10 px di margine. Il
+  becco punta comunque al centro del bersaglio, anche quando la nuvoletta è stata
+  spostata.
+- **Segue quello che spiega.** Gabbie e Mondo si ridisegnano a ogni clic: `drawGabbie`,
+  `drawMondo` e `drawSpedizione` chiamano `spiegaRiposiziona()`, e scorrimento e
+  ridimensionamento la rimettono a posto una volta per frame.
+- **Da tastiera**: `←` e `→` scorrono i passi, `Esc` chiude, e il fuoco torna dov'era.
+- **Nella demo non esiste**, perché nella demo non esistono gabbie e mondo.
+
 ## Suono e guida del primo minuto
 
 **Suono.** Tredici suoni sintetizzati con WebAudio: oscillatori che scivolano di frequenza
@@ -976,6 +1018,14 @@ sui titoli.
   genera una card per pedina, **senza una riga di prosa**, col tondo «i» che apre la
   scheda completa, e blocca l'ingresso in arena finché manca il Re; la card di battaglia
   riporta danno d'attacco, danno speciale e movimento residuo
+- 48 controlli automatici sulle spiegazioni in contesto: la nuvoletta si apre da sola
+  al primo ingresso e non torna più dopo averla chiusa; il punto interrogativo la
+  riapre dal primo passo; avanti e indietro si spengono agli estremi e il testo cambia;
+  ogni passo sta **attaccato al suo pezzo** (misurato: mai più di 26 px di distanza, col
+  faro sul bersaglio al pixel), non lo copre e non esce dalla finestra, né su schermo
+  largo né a 360×740; a gabbie e dispensa vuote nessun passo indica un pezzo di schermo
+  vuoto; un pulsante che finisce sotto alla nuvoletta **resta cliccabile**, mentre i suoi
+  tre comandi intercettano; `←` `→` `Esc` funzionano; e nella demo non si apre
 - 52 controlli automatici sulla schermata unica: squadra e riepilogo stanno dentro il
   viewport senza scorrimento di pagina a 1280×900, 412×915 e 360×740, anche a squadra
   piena; il roster elenca **solo** gli Insector disponibili e dice quanti ne restano da
@@ -1092,12 +1142,12 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **716** (meccaniche 30, schieramento 20,
+- Totale dei controlli automatici sul gioco: **764** (meccaniche 30, schieramento 20,
   schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 11,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e telemetria 44, suono 23,
   guida 19, musica 31, menu 17, telefono 30, riproduzione 32, sfida del giorno 40,
-  collezione 20, resistenze 39, nomenclatura 23, schermata unica 52),
+  collezione 20, resistenze 39, nomenclatura 23, schermata unica 52, spiegazioni 48),
   più 21 sulla landing e sull'informativa, 19 sul sito installabile (manifest, icone,
   service worker e prova offline con la rete staccata) e 19 sull'endpoint della
   telemetria, che gira in un contesto vuoto con un D1 finto e senza toccare la rete
