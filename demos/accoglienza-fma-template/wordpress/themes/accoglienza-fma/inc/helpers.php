@@ -132,3 +132,16 @@ function fma_sezioni_contenuto( string $html ): string {
 function fma_prezzo( float $valore ): string {
 	return floor( $valore ) === $valore ? number_format_i18n( $valore ) : number_format_i18n( $valore, 2 );
 }
+
+/**
+ * Immagine da caricare più tardi via JS (slide dello slider non ancora visibili):
+ * src, srcset e sizes passano in attributi data-, al loro posto un segnaposto trasparente.
+ */
+function fma_immagine_rimandata( string $html ): string {
+	if ( '' === $html ) {
+		return '';
+	}
+	$html = preg_replace( '/\s(srcset|sizes|src)="/', ' data-$1="', $html );
+	$html = preg_replace( '/\sloading="[^"]*"|\sfetchpriority="[^"]*"|\sdecoding="[^"]*"/', '', $html );
+	return str_replace( '<img ', '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" ', $html );
+}
