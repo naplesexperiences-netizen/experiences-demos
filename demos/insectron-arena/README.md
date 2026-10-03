@@ -600,6 +600,44 @@ permette di schierarne cinque invece di tre, al prezzo di un quarto del cibo che
 esche. Le cifre restano in linea con quelle misurate per l'allevamento (Rank S attorno al
 60%), e il Rank S resta una partita da giocare.
 
+## Un gesto solo, in tutto il gioco
+
+**Tocco breve: scegli. Tocco lungo: ti dico tutto quello che so.** La stessa coppia nel
+roster e in battaglia, col dito e col mouse, perché un'interfaccia dove lo stesso comando
+fa cose diverse a seconda dello schermo è un'interfaccia da reimparare ogni volta.
+
+| | tocco breve | tocco lungo (450 ms) |
+|---|---|---|
+| **roster** | mette l'Insector in squadra, o lo toglie | apre la scheda: vita, forza, difesa, movimento, speciale |
+| **battaglia** | sceglie la pedina da muovere | apre la scheda, anche di una pedina avversaria |
+
+Il tocco lungo ha due vie in più, che non sono un di più: il **tasto destro** e, da
+tastiera, il tasto Menu o `Maiusc+F10`. Sono il modo standard di dire «dimmi di più», e
+senza di esse chi non può tenere premuto resterebbe fuori. Da tastiera `Invio` vale come
+tocco breve, e il fuoco **resta sulla scheda** anche quando il roster si ridisegna — prima
+si perdeva, e il secondo `Invio` finiva nel vuoto.
+
+Dettagli che decidono se il gesto funziona davvero: se il dito si sposta di più di 10 px
+il conto si ferma, perché sta scorrendo la pagina e non tenendo premuto; il menu di
+sistema, la lente e la selezione del testo sono disattivati sui bersagli del gesto; e dove
+il tocco breve non potrebbe fare niente — una larva, la squadra già al completo — invece
+di non succedere nulla si apre la scheda, che il perché lo dice.
+
+## Il campo risponde da solo
+
+Scelta una pedina, il campo si illumina **subito**: in blu (`#16405c`, bordo azzurro)
+dove può andare, in rosso (`#5c1f22`, bordo rosso) chi può colpire. Prima bisognava
+premere «Muovi» o «Attacca» per vedere la stessa cosa: due pulsanti che dicevano quello
+che il campo sapeva già mostrare. Toccare una casella illuminata **fa partire l'azione**,
+senza passare dai pulsanti — che restano, perché servono alla speciale, a passare il turno
+e a chi gioca da tastiera.
+
+**La ricarica della speciale è scritta sulla pedina.** Il numero dei turni che mancano
+compare in una targhetta sotto all'unità, e sparisce invece di dire «0» quando è pronta:
+a colpo d'occhio si vede quale dei cinque può usarla, senza selezionarle una per una. Lo
+stesso numero sta sul pulsante («Danza delle falci · fra 2») e per esteso nella scheda
+(«pronta fra 2 turni»).
+
 ## Spiegazioni in contesto: le nuvolette
 
 Gabbie e Mondo sono le due schermate che hanno regole vere da capire — un budget di
@@ -612,10 +650,15 @@ nuvoletta piccola, ancorata, con un anello azzurro (il «faro») intorno a quell
 parla e un becco che lo indica. Dentro ci sono tre comandi: `‹` indietro, il contatore
 («3 di 5»), `›` avanti e `×` per chiudere.
 
-| | Allevamento | Cattura |
-|---|---|---|
-| passi | 5 | 6 |
-| vanno su | gabbie · dispensa · un cibo · anteprima · «Accoppia due adulti» | un luogo · trappola · esca · probabilità · «Posa la trappola» · trappole posate |
+| | Il roster | In battaglia | Allevamento | Cattura |
+|---|---|---|---|---|
+| passi | 3 | 4 | 5 | 6 |
+| vanno su | una scheda · la stessa scheda · la striscia della squadra | la pedina scelta · una casella blu · il pulsante della speciale · «Fine turno» | gabbie · dispensa · un cibo · anteprima · «Accoppia due adulti» | un luogo · trappola · esca · probabilità · «Posa la trappola» · trappole posate |
+
+I primi due giri sono quelli che spiegano il gesto: dicono per esteso che il tocco breve
+sceglie, che tenendo premuto si vedono le caratteristiche, che il tasto destro fa lo
+stesso, che il blu è dove si va e il rosso chi si colpisce, e che il numero sulla pedina
+è la ricarica.
 
 **Le regole che il sistema si dà.**
 
@@ -1018,6 +1061,17 @@ sui titoli.
   genera una card per pedina, **senza una riga di prosa**, col tondo «i» che apre la
   scheda completa, e blocca l'ingresso in arena finché manca il Re; la card di battaglia
   riporta danno d'attacco, danno speciale e movimento residuo
+- 39 controlli automatici sul gesto e sul campo: nel roster il tocco breve mette e toglie
+  dalla squadra senza aprire niente, il tocco lungo apre la scheda senza mettere in
+  squadra, e lo stesso fa il tasto destro; da tastiera `Invio` vale come tocco breve e il
+  fuoco resta dov'era; a squadra piena il tocco breve apre la scheda invece di non fare
+  nulla. In battaglia: senza pedina scelta il campo è spento; scelta una pedina compaiono
+  **tante caselle blu quante sono le mosse e tante rosse quanti i nemici a tiro**, col
+  colore misurato a transizione finita (`rgb(22, 64, 92)` e `rgb(92, 31, 34)`); toccando
+  una casella blu la pedina ci si sposta senza premere «Muovi»; il tocco lungo apre la
+  scheda anche di un avversario, e non lo seleziona. Più il countdown: la targhetta sulla
+  pedina dice i turni che mancano, il pulsante li ripete, la scheda li scrive per esteso,
+  e a ricarica finita la targhetta sparisce invece di dire zero
 - 48 controlli automatici sulle spiegazioni in contesto: la nuvoletta si apre da sola
   al primo ingresso e non torna più dopo averla chiusa; il punto interrogativo la
   riapre dal primo passo; avanti e indietro si spengono agli estremi e il testo cambia;
@@ -1142,12 +1196,13 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **764** (meccaniche 30, schieramento 20,
-  schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 11,
+- Totale dei controlli automatici sul gioco: **806** (meccaniche 30, schieramento 20,
+  schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 14,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e telemetria 44, suono 23,
   guida 19, musica 31, menu 17, telefono 30, riproduzione 32, sfida del giorno 40,
-  collezione 20, resistenze 39, nomenclatura 23, schermata unica 52, spiegazioni 48),
+  collezione 20, resistenze 39, nomenclatura 23, schermata unica 52, spiegazioni 48,
+  gesto e campo 39),
   più 21 sulla landing e sull'informativa, 19 sul sito installabile (manifest, icone,
   service worker e prova offline con la rete staccata) e 19 sull'endpoint della
   telemetria, che gira in un contesto vuoto con un D1 finto e senza toccare la rete

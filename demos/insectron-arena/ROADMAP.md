@@ -6,7 +6,7 @@ lavoro, non di calendario.
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
 generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
 salvataggi esportabili, eco, edizione demo, nomenclatura tutta nostra e le due schermate
-prima della partita che stanno in una finestra sola. 764 controlli automatici, equilibrio
+prima della partita che stanno in una finestra sola. 806 controlli automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il
@@ -123,6 +123,22 @@ e dentro `‹ 3 di 5 › ×`. Cinque passi per l'allevamento, sei per la cattura
 sole al primo ingresso, si riaprono dal punto interrogativo accanto al titolo, non si
 mangiano i clic di quello che coprono e non indicano mai un pezzo di schermo vuoto.
 48 controlli nuovi, dettaglio in `README.md`.
+
+## ~~Fuori fila — Un gesto solo, e il campo che risponde~~ · **fatta** (3 ottobre)
+
+**Tocco breve: scegli. Tocco lungo: ti dico tutto.** Nel roster il tocco breve mette in
+squadra (una toccata invece di tre), in battaglia sceglie la pedina; tenendo premuto si
+apre la scheda, in tutti e due i posti, col dito e col mouse. Tasto destro e tasto Menu
+fanno lo stesso, così chi non può tenere premuto non resta fuori.
+
+**Il campo risponde da solo**: scelta una pedina compaiono subito le caselle blu dove può
+andare e rosse chi può colpire, e toccarle fa partire l'azione. Prima servivano «Muovi» o
+«Attacca» per vedere quello che il campo sapeva già mostrare; i due pulsanti restano, ma
+non sono più di strada.
+
+**La ricarica della speciale si vede sulla pedina**: una targhetta col numero dei turni
+che mancano, che sparisce invece di dire zero. A colpo d'occhio si sa quale dei cinque può
+usarla. 39 controlli nuovi, più due giri di nuvolette che spiegano il gesto.
 
 ## Priorità 6 — Quando si esce di casa
 
