@@ -279,7 +279,10 @@ class FMA_Importatore {
 		update_option( 'page_on_front', $home );
 		update_option( 'page_for_posts', $blog );
 		update_option( 'posts_per_page', 9 );
-		update_option( 'permalink_structure', '/%postname%/' );
+		// set_permalink_structure aggiorna anche $wp_rewrite: con il solo update_option le regole
+		// verrebbero rigenerate con i permalink vecchi e il .htaccess non verrebbe scritto.
+		global $wp_rewrite;
+		$wp_rewrite->set_permalink_structure( '/%postname%/' );
 		update_option( 'blogdescription', 'Ti sentirai come a casa' );
 		update_option( 'default_comment_status', 'closed' );
 
@@ -314,7 +317,7 @@ class FMA_Importatore {
 		if ( $chi ) {
 			set_theme_mod( 'fma_chi_immagine', (int) $chi[0] );
 		}
-		flush_rewrite_rules();
+		flush_rewrite_rules( true ); // true: aggiorna anche il .htaccess, se il server lo usa e il file è scrivibile
 		$this->log( 'Sito configurato: Home, Blog, menu “Principale”, permalink, logo.' );
 	}
 }
