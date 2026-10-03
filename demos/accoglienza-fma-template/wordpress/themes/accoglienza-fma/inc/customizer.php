@@ -71,6 +71,10 @@ function fma_customizer( WP_Customize_Manager $wp ): void {
 	foreach ( $campi as $chiave => $def ) {
 		$wp->add_setting( 'fma_' . $chiave, array( 'default' => $predefiniti[ $chiave ], 'sanitize_callback' => 'textarea' === $def[1] ? 'sanitize_textarea_field' : 'sanitize_text_field' ) );
 		$wp->add_control( 'fma_' . $chiave, array( 'label' => $def[0], 'section' => 'fma_home', 'type' => $def[1] ) );
+		if ( preg_match( '/^passo(\d)_testo$/', $chiave, $m ) ) {
+			$wp->add_setting( "fma_passo{$m[1]}_immagine", array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
+			$wp->add_control( new WP_Customize_Media_Control( $wp, "fma_passo{$m[1]}_immagine", array( 'label' => "Passo {$m[1]}: foto", 'description' => 'Se vuota si usa una foto delle case.', 'section' => 'fma_home', 'mime_type' => 'image' ) ) );
+		}
 		if ( 'chi_didascalia' === $chiave ) {
 			$wp->add_setting( 'fma_chi_immagine', array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
 			$wp->add_control( new WP_Customize_Media_Control( $wp, 'fma_chi_immagine', array( 'label' => 'Chi siamo: foto', 'section' => 'fma_home', 'mime_type' => 'image' ) ) );

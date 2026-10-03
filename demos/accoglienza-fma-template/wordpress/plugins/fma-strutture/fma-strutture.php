@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       FMA Strutture
  * Description:       Strutture ricettive, partner e articoli collegati per il sito Accoglienza delle Salesiane.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            experiences srl
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_STRUTTURE_VERSIONE', '1.0.0' );
+define( 'FMA_STRUTTURE_VERSIONE', '1.1.0' );
 define( 'FMA_STRUTTURE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FMA_STRUTTURE_URL', plugin_dir_url( __FILE__ ) );
 

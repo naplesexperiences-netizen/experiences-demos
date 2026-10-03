@@ -72,10 +72,19 @@
 /* Home: come si prenota, tre passi in sequenza. */
 .steps { max-width: var(--page-max); margin: 0 auto; padding: var(--space-3xl) var(--gutter); border-top: var(--rule); display: grid; gap: var(--space-xl); }
 .steps__list { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-xl); }
-.step { display: grid; align-content: start; gap: var(--space-xs); padding-top: var(--space-md); border-top: var(--rule-2); min-width: 0; }
-.step__num { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 350; font-size: var(--text-xl); line-height: 1; color: var(--color-accent); font-variant-numeric: lining-nums; }
+.step { display: grid; align-content: start; gap: var(--space-sm); min-width: 0; }
+.step__media { position: relative; margin: 0 0 var(--space-xs); aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; border-radius: var(--radius-lg); background: var(--color-paper-2); }
+.step__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.step__num { position: absolute; top: var(--space-md); left: var(--space-md); display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--color-paper); color: var(--color-accent); font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: var(--text-md); line-height: 1; font-variant-numeric: lining-nums; box-shadow: var(--shadow-whisper); }
+.step__chip { position: absolute; left: var(--space-md); bottom: var(--space-md); max-width: calc(100% - 2 * var(--space-md)); display: inline-flex; align-items: center; gap: var(--space-2xs); padding: 0.4rem 0.8rem; border-radius: var(--radius-pill); background: var(--color-paper); color: var(--color-ink); font-size: var(--text-sm); font-weight: 500; line-height: 1.2; box-shadow: var(--shadow-whisper); }
+.step__chip .icon { color: var(--color-accent); flex: none; }
 .step__title { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 450; font-size: var(--text-md); line-height: 1.2; text-wrap: balance; }
 .step__text { color: var(--color-ink-2); max-width: 38ch; }
+/* Senza foto: numero ed etichetta in riga, senza riquadro. */
+.step--testo .step__media { aspect-ratio: auto; background: none; overflow: visible; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); }
+.step--testo .step__num, .step--testo .step__chip { position: static; box-shadow: none; }
+.step--testo .step__num { background: var(--color-accent-tint); }
+.step--testo .step__chip { background: var(--color-paper-2); }
 
 /* Recensioni: in home come sezione, nella pagina della struttura come blocco della colonna. */
 .reviews { max-width: var(--page-max); margin: 0 auto; padding: var(--space-3xl) var(--gutter); border-top: var(--rule); display: grid; gap: var(--space-xl); }
@@ -96,7 +105,6 @@
 
 @media (max-width: 60rem) {
   .steps, .reviews { padding-block: var(--space-2xl); }
-  .steps__list { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); }
-  .step { grid-template-columns: 1.75rem minmax(0, 1fr); column-gap: var(--space-sm); }
-  .step__num { grid-row: span 2; font-size: var(--text-lg); }
+  .steps__list { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); }
+  .step__media { aspect-ratio: 16 / 10; }
 }
