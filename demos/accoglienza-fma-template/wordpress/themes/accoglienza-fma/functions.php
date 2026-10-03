@@ -5,7 +5,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_TEMA_VERSIONE', '1.0.0' );
+define( 'FMA_TEMA_VERSIONE', '1.1.0' );
 
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/customizer.php';
@@ -42,12 +42,16 @@ add_action( 'wp_enqueue_scripts', 'fma_tema_asset' );
 
 function fma_tema_asset(): void {
 	$uri = get_template_directory_uri() . '/assets';
-	$v   = FMA_TEMA_VERSIONE;
+	// La versione nell'indirizzo cambia a ogni modifica del file: browser e cache (WP-Optimize, CDN) prendono subito quello nuovo.
+	$v = function ( string $file ): string {
+		$percorso = get_template_directory() . '/assets/' . $file;
+		return FMA_TEMA_VERSIONE . ( is_file( $percorso ) ? '.' . filemtime( $percorso ) : '' );
+	};
 
-	wp_enqueue_style( 'fma-font', "$uri/css/fonts.css", array(), $v );
-	wp_enqueue_style( 'fma-token', "$uri/css/tokens.css", array( 'fma-font' ), $v );
-	wp_enqueue_style( 'fma-sito', "$uri/css/site.css", array( 'fma-token' ), $v );
-	wp_enqueue_style( 'fma-wp', "$uri/css/wp.css", array( 'fma-sito' ), $v );
+	wp_enqueue_style( 'fma-font', "$uri/css/fonts.css", array(), $v( 'css/fonts.css' ) );
+	wp_enqueue_style( 'fma-token', "$uri/css/tokens.css", array( 'fma-font' ), $v( 'css/tokens.css' ) );
+	wp_enqueue_style( 'fma-sito', "$uri/css/site.css", array( 'fma-token' ), $v( 'css/site.css' ) );
+	wp_enqueue_style( 'fma-wp', "$uri/css/wp.css", array( 'fma-sito' ), $v( 'css/wp.css' ) );
 
 	$mappa = is_front_page() || is_singular( 'struttura' ) || is_post_type_archive( 'struttura' ) || is_tax( 'regione' );
 	$dip   = array( 'fma-gsap', 'fma-scrolltrigger' );
@@ -60,7 +64,7 @@ function fma_tema_asset(): void {
 		wp_enqueue_script( 'fma-leaflet', "$uri/vendor/leaflet/leaflet.js", array(), '1.9.4', $def );
 		$dip[] = 'fma-leaflet';
 	}
-	wp_enqueue_script( 'fma-sito', "$uri/js/site.js", $dip, $v, $def );
+	wp_enqueue_script( 'fma-sito', "$uri/js/site.js", $dip, $v( 'js/site.js' ), $def );
 }
 
 /** Classi "js" e "motion" prima del primo disegno, come nella demo (evita il lampo delle animazioni). */
