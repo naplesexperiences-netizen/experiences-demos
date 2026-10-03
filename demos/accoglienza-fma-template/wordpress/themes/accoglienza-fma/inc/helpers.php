@@ -145,3 +145,30 @@ function fma_immagine_rimandata( string $html ): string {
 	$html = preg_replace( '/\sloading="[^"]*"|\sfetchpriority="[^"]*"|\sdecoding="[^"]*"/', '', $html );
 	return str_replace( '<img ', '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" ', $html );
 }
+
+/**
+ * Foto di un passo di «Come si prenota»: quella scelta in Personalizza, altrimenti una foto delle case
+ * importate (riconosciuta dal percorso d'origine), altrimenti la foto principale della prima struttura.
+ */
+function fma_passo_immagine( int $n ): int {
+	$scelta = (int) get_theme_mod( "fma_passo{$n}_immagine", 0 );
+	if ( $scelta && wp_attachment_is_image( $scelta ) ) {
+		return $scelta;
+	}
+	$predefinite = array(
+		1 => 'strutture/san-giuseppe-caorle/hero.webp',
+		2 => 'strutture/villa-crawford/g1.webp',
+		3 => 'strutture/villa-crawford/g3.webp',
+	);
+	if ( isset( $predefinite[ $n ] ) ) {
+		$trovate = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => '_fma_origine', 'meta_value' => $predefinite[ $n ] ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		if ( $trovate ) {
+			return (int) $trovate[0];
+		}
+	}
+	if ( 1 === $n && fma_plugin_attivo() ) {
+		$prima = get_posts( array( 'post_type' => 'struttura', 'numberposts' => 1, 'orderby' => 'menu_order', 'order' => 'ASC', 'fields' => 'ids' ) );
+		return $prima ? (int) get_post_thumbnail_id( $prima[0] ) : 0;
+	}
+	return 0;
+}

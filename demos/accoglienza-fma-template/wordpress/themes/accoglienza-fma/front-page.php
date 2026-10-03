@@ -176,13 +176,25 @@ if ( $partner ) :
 </section>
 
 <?php if ( $strutture ) : ?>
+	<?php
+	$etichette = array(
+		1 => array( 'pin', $conteggi['case'] ? sprintf( '%d case · %d regioni', $conteggi['case'], $conteggi['regioni'] ) : 'Tutte le case' ),
+		2 => array( 'check', 'Date · persone · camera' ),
+		3 => array( 'mail', 'Risposta via email dalla casa' ),
+	);
+	?>
 	<section class="steps" aria-labelledby="steps-title">
 		<h2 id="steps-title" class="section-title"><?php echo esc_html( fma_testo( 'passi_titolo' ) ); ?></h2>
-		<ol class="steps__list">
+		<ol class="steps__list" data-unveil-group>
 			<?php for ( $n = 1; $n <= 3; $n++ ) : ?>
-				<li class="step">
-					<span class="step__num" aria-hidden="true"><?php echo (int) $n; ?></span>
-					<h3 class="step__title"><?php echo esc_html( fma_testo( "passo{$n}_titolo" ) ); ?></h3>
+				<?php $foto = fma_passo_immagine( $n ); ?>
+				<li class="step<?php echo $foto ? '' : ' step--testo'; ?>">
+					<figure class="step__media">
+						<?php echo fma_immagine( $foto, 'fma-card', array( 'class' => 'step__img', 'alt' => '', 'sizes' => '(max-width: 60rem) 100vw, 30vw' ) ); // phpcs:ignore ?>
+						<span class="step__num" aria-hidden="true"><?php echo (int) $n; ?></span>
+						<span class="step__chip"><?php fma_e_icona( $etichette[ $n ][0], 'icon icon--sm' ); ?><?php echo esc_html( $etichette[ $n ][1] ); ?></span>
+					</figure>
+					<h3 class="step__title"><span class="visually-hidden"><?php echo esc_html( "Passo $n: " ); ?></span><?php echo esc_html( fma_testo( "passo{$n}_titolo" ) ); ?></h3>
 					<p class="step__text"><?php echo esc_html( fma_testo( "passo{$n}_testo" ) ); ?></p>
 				</li>
 			<?php endfor; ?>
