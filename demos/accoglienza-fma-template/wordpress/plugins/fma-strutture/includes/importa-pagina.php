@@ -23,19 +23,30 @@ function fma_importa_menu(): void {
 	add_action( "admin_print_scripts-$pagina", 'fma_importa_asset' );
 }
 
-/** Compare anche in Strumenti → Importa, accanto agli importatori di WordPress. */
+/**
+ * Compare anche in Strumenti → Importa, accanto agli importatori di WordPress.
+ *
+ * WordPress stampa l'intestazione dell'amministrazione prima di chiamare la funzione dell'importatore:
+ * lì un reindirizzamento non funziona più. Si reindirizza quindi su load-importer-*, che arriva prima,
+ * e la funzione dell'importatore disegna comunque la pagina se il reindirizzamento non avviene.
+ */
 function fma_importa_registra_importatore(): void {
 	if ( defined( 'WP_LOAD_IMPORTERS' ) && function_exists( 'register_importer' ) ) {
-		register_importer(
-			'fma-contenuti',
-			'Contenuti Accoglienza FMA',
-			'Strutture, partner e articoli da fma-contenuti.zip.',
-			function () {
-				wp_safe_redirect( admin_url( 'tools.php?page=fma-importa' ) );
-				exit;
-			}
-		);
+		register_importer( 'fma-contenuti', 'Contenuti Accoglienza FMA', 'Strutture, partner e articoli da fma-contenuti.zip.', 'fma_importa_pagina_importatore' );
 	}
+}
+
+add_action(
+	'load-importer-fma-contenuti',
+	function (): void {
+		wp_safe_redirect( admin_url( 'tools.php?page=fma-importa' ) );
+		exit;
+	}
+);
+
+function fma_importa_pagina_importatore(): void {
+	fma_importa_asset(); // stampati nel piè di pagina: l'intestazione è già uscita
+	fma_importa_pagina();
 }
 
 function fma_importa_url( array $args = array() ): string {
