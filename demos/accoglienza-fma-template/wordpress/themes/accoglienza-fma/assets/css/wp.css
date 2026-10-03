@@ -64,3 +64,39 @@
 @media (max-width: 40rem) {
   .article__body .alignleft, .article__body .alignright { float: none; margin: var(--space-lg) 0; max-width: 100%; }
 }
+
+/* ==========================================================================
+   Sezioni aggiunte nel tema (non presenti nella demo statica)
+   ========================================================================== */
+
+/* Home: come si prenota, tre passi in sequenza. */
+.steps { max-width: var(--page-max); margin: 0 auto; padding: var(--space-3xl) var(--gutter); border-top: var(--rule); display: grid; gap: var(--space-xl); }
+.steps__list { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-xl); }
+.step { display: grid; align-content: start; gap: var(--space-xs); padding-top: var(--space-md); border-top: var(--rule-2); min-width: 0; }
+.step__num { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 350; font-size: var(--text-xl); line-height: 1; color: var(--color-accent); font-variant-numeric: lining-nums; }
+.step__title { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 450; font-size: var(--text-md); line-height: 1.2; text-wrap: balance; }
+.step__text { color: var(--color-ink-2); max-width: 38ch; }
+
+/* Recensioni: in home come sezione, nella pagina della struttura come blocco della colonna. */
+.reviews { max-width: var(--page-max); margin: 0 auto; padding: var(--space-3xl) var(--gutter); border-top: var(--rule); display: grid; gap: var(--space-xl); }
+.reviews__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-xs) var(--space-lg); }
+.reviews__note { color: var(--color-muted); font-size: var(--text-sm); }
+.reviews__list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); align-items: start; gap: var(--space-lg); }
+.review { display: grid; align-content: start; gap: var(--space-sm); padding: var(--space-lg); background: var(--color-paper-2); border-radius: var(--radius-lg); min-width: 0; }
+.review__text p { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-size: var(--text-md); line-height: 1.45; color: var(--color-ink); quotes: "“" "”"; overflow-wrap: anywhere; }
+.review__text p::before { content: open-quote; }
+.review__text p::after { content: close-quote; }
+.review__by { font-size: var(--text-sm); }
+.review__by a { color: inherit; text-underline-offset: 0.16em; }
+.review__src { font-size: var(--text-xs); color: var(--color-muted); }
+.review__src a { color: var(--color-accent); text-underline-offset: 0.16em; }
+.reviews--block { max-width: none; margin: 0; padding: var(--space-xl) 0 0; gap: var(--space-md); }
+.reviews--block .reviews__list { grid-template-columns: minmax(0, 1fr); gap: var(--space-md); }
+.reviews--block .review__text p { font-size: var(--text-base); }
+
+@media (max-width: 60rem) {
+  .steps, .reviews { padding-block: var(--space-2xl); }
+  .steps__list { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); }
+  .step { grid-template-columns: 1.75rem minmax(0, 1fr); column-gap: var(--space-sm); }
+  .step__num { grid-row: span 2; font-size: var(--text-lg); }
+}

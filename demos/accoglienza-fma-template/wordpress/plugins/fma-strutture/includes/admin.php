@@ -15,7 +15,14 @@ add_action( 'admin_enqueue_scripts', 'fma_admin_asset' );
 
 function fma_admin_asset( string $pagina ): void {
 	$schermo = get_current_screen();
-	if ( ! in_array( $pagina, array( 'post.php', 'post-new.php' ), true ) || ! $schermo || 'struttura' !== $schermo->post_type ) {
+	if ( ! in_array( $pagina, array( 'post.php', 'post-new.php' ), true ) || ! $schermo ) {
+		return;
+	}
+	if ( 'recensione' === $schermo->post_type ) {
+		wp_enqueue_style( 'fma-admin', FMA_STRUTTURE_URL . 'assets/admin.css', array(), FMA_STRUTTURE_VERSIONE );
+		return;
+	}
+	if ( 'struttura' !== $schermo->post_type ) {
 		return;
 	}
 	wp_enqueue_media();

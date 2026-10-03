@@ -28,14 +28,18 @@ $regioni   = $attivo ? fma_regioni() : array();
 					<?php
 					$titolo = $s['titolo_hero'] ?: $s['nome'];
 					$sotto  = $s['titolo_hero'] ? $s['nome'] : $s['tipo'];
-					$attr   = array( 'class' => 'slide__img', 'alt' => trim( $s['nome'] . ( $s['localita'] ? ', ' . $s['localita'] : '' ) ), 'sizes' => '(max-width: 960px) 100vw, 58vw' );
+					$attr   = array( 'class' => 'slide__img', 'alt' => trim( $s['nome'] . ( $s['localita'] ? ', ' . $s['localita'] : '' ) ), 'sizes' => '(max-width: 60rem) 100vw, 58vw' );
 					if ( 0 === $i ) {
 						$attr['loading']       = 'eager';
 						$attr['fetchpriority'] = 'high';
 					}
+					$img = fma_immagine( $s['foto'], 'fma-hero', $attr );
+					if ( $i > 0 ) {
+						$img = fma_immagine_rimandata( $img ); // le altre slide si caricano quando stanno per comparire
+					}
 					?>
 					<figure class="slide<?php echo 0 === $i ? ' is-active' : ''; ?>" data-slide role="group" aria-roledescription="slide" aria-label="<?php echo esc_attr( sprintf( '%d di %d: %s', $i + 1, count( $slider ), $s['nome'] ) ); ?>"<?php echo 0 === $i ? '' : ' aria-hidden="true"'; ?>>
-						<?php echo fma_immagine( $s['foto'], 'fma-hero', $attr ); // phpcs:ignore ?>
+						<?php echo $img; // phpcs:ignore WordPress.Security.EscapeOutput -- HTML di wp_get_attachment_image. ?>
 						<figcaption class="slide__cap">
 							<?php if ( fma_luogo( $s ) ) : ?>
 								<span class="slide__where"><?php fma_e_icona( 'pin', 'icon icon--sm' ); ?><?php echo esc_html( fma_luogo( $s ) ); ?></span>
@@ -137,7 +141,7 @@ if ( $partner ) :
 	<?php $foto_chi = (int) get_theme_mod( 'fma_chi_immagine', 0 ); ?>
 	<?php if ( $foto_chi ) : ?>
 		<figure class="about__photo" data-unveil>
-			<?php echo fma_immagine( $foto_chi, 'large', array( 'alt' => fma_testo( 'chi_didascalia' ) ) ); // phpcs:ignore ?>
+			<?php echo fma_immagine( $foto_chi, 'large', array( 'alt' => fma_testo( 'chi_didascalia' ), 'sizes' => '(max-width: 60rem) 100vw, 36vw' ) ); // phpcs:ignore ?>
 			<?php if ( fma_testo( 'chi_didascalia' ) ) : ?>
 				<figcaption><?php echo esc_html( fma_testo( 'chi_didascalia' ) ); ?></figcaption>
 			<?php endif; ?>
@@ -171,6 +175,21 @@ if ( $partner ) :
 	</div>
 </section>
 
+<?php if ( $strutture ) : ?>
+	<section class="steps" aria-labelledby="steps-title">
+		<h2 id="steps-title" class="section-title"><?php echo esc_html( fma_testo( 'passi_titolo' ) ); ?></h2>
+		<ol class="steps__list">
+			<?php for ( $n = 1; $n <= 3; $n++ ) : ?>
+				<li class="step">
+					<span class="step__num" aria-hidden="true"><?php echo (int) $n; ?></span>
+					<h3 class="step__title"><?php echo esc_html( fma_testo( "passo{$n}_titolo" ) ); ?></h3>
+					<p class="step__text"><?php echo esc_html( fma_testo( "passo{$n}_testo" ) ); ?></p>
+				</li>
+			<?php endfor; ?>
+		</ol>
+	</section>
+<?php endif; ?>
+
 <?php
 if ( $strutture ) {
 	get_template_part(
@@ -182,6 +201,11 @@ if ( $strutture ) {
 			'testo'     => fma_testo( 'strutture_testo' ),
 		)
 	);
+}
+
+$recensioni = function_exists( 'fma_recensioni' ) ? fma_recensioni( 0, 3 ) : array();
+if ( $recensioni ) {
+	get_template_part( 'template-parts/recensioni', null, array( 'recensioni' => $recensioni, 'titolo' => fma_testo( 'recensioni_titolo' ) ) );
 }
 
 $articoli = get_posts( array( 'numberposts' => 3, 'post_status' => 'publish', 'ignore_sticky_posts' => true ) );
@@ -201,7 +225,7 @@ if ( $articoli ) :
 			<article class="post post--lead">
 				<a href="<?php echo esc_url( get_permalink( $primo ) ); ?>">
 					<?php if ( has_post_thumbnail( $primo ) ) : ?>
-						<span class="post__media" data-unveil><?php echo get_the_post_thumbnail( $primo, 'large', array( 'alt' => '' ) ); ?></span>
+						<span class="post__media" data-unveil><?php echo get_the_post_thumbnail( $primo, 'large', array( 'alt' => '', 'sizes' => '(max-width: 60rem) 100vw, 50vw' ) ); ?></span>
 					<?php endif; ?>
 					<span class="post__meta"><?php if ( $cat ) : ?><span class="post__cat"><?php echo esc_html( $cat[0]->name ); ?></span> · <?php endif; ?><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $primo ) ); ?>"><?php echo esc_html( fma_data( $primo ) ); ?></time> · <?php echo (int) fma_minuti_lettura( $primo ); ?> min</span>
 					<span class="post__title"><?php echo esc_html( get_the_title( $primo ) ); ?></span>
@@ -213,7 +237,7 @@ if ( $articoli ) :
 					<?php foreach ( $articoli as $a ) : ?>
 						<li class="post post--row">
 							<a href="<?php echo esc_url( get_permalink( $a ) ); ?>">
-								<span class="post__thumb"><?php echo get_the_post_thumbnail( $a, 'fma-quadrato', array( 'alt' => '' ) ); ?></span>
+								<span class="post__thumb"><?php echo get_the_post_thumbnail( $a, 'fma-quadrato', array( 'alt' => '', 'sizes' => '7.5rem' ) ); ?></span>
 								<span class="post__body">
 									<span class="post__meta"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $a ) ); ?>"><?php echo esc_html( fma_data( $a ) ); ?></time> · <?php echo (int) fma_minuti_lettura( $a ); ?> min</span>
 									<span class="post__title"><?php echo esc_html( get_the_title( $a ) ); ?></span>
@@ -227,6 +251,12 @@ if ( $articoli ) :
 	</section>
 <?php endif; ?>
 
+<?php if ( $strutture ) : ?>
+	<div class="bottom-bar" data-bottom-bar="home" hidden>
+		<p><strong><?php echo esc_html( sprintf( '%d case per ferie', count( $strutture ) ) ); ?></strong><span>Ti risponde direttamente la casa</span></p>
+		<a class="btn btn--primary" href="#strutture">Scegli la casa</a>
+	</div>
+<?php endif; ?>
 </main>
 <?php
 get_footer();

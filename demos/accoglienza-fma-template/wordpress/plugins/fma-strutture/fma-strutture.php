@@ -19,6 +19,7 @@ define( 'FMA_STRUTTURE_URL', plugin_dir_url( __FILE__ ) );
 require FMA_STRUTTURE_DIR . 'includes/tipi.php';
 require FMA_STRUTTURE_DIR . 'includes/campi.php';
 require FMA_STRUTTURE_DIR . 'includes/dati.php';
+require FMA_STRUTTURE_DIR . 'includes/recensioni.php';
 
 if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 	require FMA_STRUTTURE_DIR . 'includes/importatore.php';

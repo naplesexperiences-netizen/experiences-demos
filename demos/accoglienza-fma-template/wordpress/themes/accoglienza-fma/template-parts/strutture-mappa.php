@@ -64,7 +64,7 @@ foreach ( $strutture as $s ) {
 				<li class="place" data-place="<?php echo esc_attr( get_post_field( 'post_name', $s['id'] ) ); ?>" data-regione="<?php echo esc_attr( $s['regione'] ); ?>">
 					<a class="place__link" href="<?php echo esc_url( $s['url'] ); ?>" data-place-link>
 						<span class="place__num" aria-hidden="true"><?php echo (int) $i + 1; ?></span>
-						<span class="place__media"><?php echo fma_immagine( $s['foto'], 'fma-card', array( 'class' => 'place__img', 'alt' => '' ) ); // phpcs:ignore ?></span>
+						<span class="place__media"><?php echo fma_immagine( $s['foto'], 'fma-card', array( 'class' => 'place__img', 'alt' => '', 'sizes' => '6.5rem' ) ); // phpcs:ignore ?></span>
 						<span class="place__body">
 							<span class="place__name"><?php echo esc_html( $s['nome'] ); ?></span>
 							<span class="place__where"><?php echo esc_html( trim( fma_luogo( $s ) . ( $s['regione'] ? ' · ' . $s['regione'] : '' ), ' ·' ) ); ?></span>

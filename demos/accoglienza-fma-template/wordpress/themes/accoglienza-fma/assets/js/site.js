@@ -106,6 +106,17 @@
     var DUR = 6.5;
     var index = 0, paused = reduce, hoverHold = false, progressTween = null, timer = null;
 
+    // Le slide oltre la prima arrivano con data-src: si caricano quando stanno per comparire.
+    function load(s) {
+      var img = s && $('img[data-src]', s);
+      if (!img) return;
+      if (img.dataset.sizes) img.sizes = img.dataset.sizes;
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src'); img.removeAttribute('data-srcset'); img.removeAttribute('data-sizes');
+    }
+    function preloadNext() { load(slides[(index + 1) % slides.length]); }
+
     function setA11y(i) {
       slides.forEach(function (s, k) {
         var on = k === i;
@@ -121,6 +132,7 @@
       if (next === index) return;
       var cur = slides[index], nxt = slides[next];
       index = next;
+      load(nxt);
       if (hasGsap && !reduce) {
         gsap.killTweensOf([cur, nxt]);
         slides.forEach(function (s) { if (s !== cur && s !== nxt) gsap.set(s, { autoAlpha: 0, zIndex: 0 }); });
@@ -138,6 +150,7 @@
       }
       if (user) sliderEl.setAttribute('aria-live', 'polite');
       restart();
+      preloadNext();
     }
 
     function restart() {
@@ -183,6 +196,24 @@
     });
 
     if (reduce) setPaused(true); else setTimeout(restart, motion ? 1200 : 0);
+    // La seconda slide si prepara a pagina carica, così il primo passaggio non mostra un riquadro vuoto.
+    if (document.readyState === 'complete') preloadNext(); else window.addEventListener('load', preloadNext);
+  })();
+
+  /* ------------------------------------------------------------ home: barra in basso su mobile */
+  // Porta all'elenco delle case (ogni casa si contatta dalla sua pagina). Nascosta su hero, elenco e piè di pagina.
+  var homeBar = $('[data-bottom-bar="home"]');
+  if (homeBar && 'IntersectionObserver' in window) (function () {
+    var mq = window.matchMedia('(max-width: 60rem)');
+    var hero = $('.hero'), places = $('#strutture'), foot = $('.foot');
+    var pastHero = false, placesOn = false, footOn = false;
+    function upd() { var on = mq.matches && pastHero && !placesOn && !footOn; homeBar.classList.toggle('is-on', on); homeBar.inert = !on; }
+    homeBar.hidden = false;
+    upd();
+    if (hero) new IntersectionObserver(function (en) { pastHero = !en[0].isIntersecting && en[0].boundingClientRect.top < 0; upd(); }).observe(hero);
+    if (places) new IntersectionObserver(function (en) { placesOn = en[0].isIntersecting; upd(); }, { rootMargin: '0px 0px -30% 0px' }).observe(places);
+    if (foot) new IntersectionObserver(function (en) { footOn = en[0].isIntersecting; upd(); }).observe(foot);
+    mq.addEventListener('change', upd);
   })();
 
   /* ------------------------------------------------------------ strutture: filtri, mappa, ricerca */
@@ -505,7 +536,7 @@
     if (bottom && gallery && slot) {
       bottom.hidden = false;
       var pastGallery = false, formSeen = false;
-      function upd() { bottom.classList.toggle('is-on', mqMobile.matches && pastGallery && !formSeen); }
+      function upd() { var on = mqMobile.matches && pastGallery && !formSeen; bottom.classList.toggle('is-on', on); bottom.inert = !on; }
       new IntersectionObserver(function (en) { pastGallery = !en[0].isIntersecting && en[0].boundingClientRect.top < 0; upd(); }).observe(gallery);
       new IntersectionObserver(function (en) { formSeen = en.some(function (x) { return x.isIntersecting; }); upd(); }, { rootMargin: '0px 0px -20% 0px' }).observe(slot);
       mqMobile.addEventListener('change', upd);

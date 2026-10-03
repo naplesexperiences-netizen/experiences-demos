@@ -42,12 +42,16 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Chi siamo, testata, piè di pagina | **Personalizza → Home page**. Logo: **Personalizza → Identità del sito**. |
 | Pagina della struttura | Riassunto = introduzione; il testo dell'editor diventa una sezione per ogni titolo H2. Camere, galleria, dintorni, regole, contatti e prezzo sono nei box sotto l'editor. |
 | Box «Dormi vicino» negli articoli | Box *Casa collegata* nella modifica dell'articolo. |
+| «Come si prenota» (3 passi) in home | **Personalizza → Home page**, campi «Passo 1/2/3». |
+| Recensioni («Dicono di noi» in home, «Cosa dicono gli ospiti» nella pagina della casa) | **Strutture → Tutte le recensioni**: nome dell'ospite, testo, casa, fonte, voto, periodo e link all'originale. Solo recensioni reali. Senza recensioni pubblicate le sezioni non compaiono. |
+| Barra in basso su telefono (home) | Compare scorrendo oltre l'hero e porta all'elenco delle case. Non ci sono numeri di telefono centrali: ogni ospite scrive direttamente alla casa. |
 | Menu | **Aspetto → Menu**, posizioni «Menu principale» e «Menu a piè di pagina». |
 
 ## Scelte tecniche
 
 - **Niente risorse esterne**: font (Fraunces, Geist), GSAP e Leaflet sono nel tema, quindi niente Google Fonts né CDN (GDPR). Le tessere della mappa arrivano da OpenStreetMap.
 - **Script con `defer`** e nessuna dipendenza da jQuery nel sito pubblico. Il tema regge l'ottimizzazione degli script di WP-Optimize, che oggi rompe hero e galleria del sito attuale.
+- **Home leggera**: lo slider carica subito solo la prima foto e prepara la successiva; le altre arrivano quando stanno per comparire. Le foto hanno più misure (16:10 da 800, 1200 e 1920 px; miniature da 400 px) e ogni immagine dichiara la sua larghezza a schermo, così il browser scarica la misura giusta. Su un sito già popolato, dopo l'aggiornamento del tema rigenera le miniature (`wp media regenerate --only-missing` oppure il plugin *Regenerate Thumbnails*).
 - **Leaflet solo dove c'è una mappa**: home, archivio, regioni, singola struttura.
 - **Nessun nonce nel modulo di richiesta**, perché le pagine sono in cache. L'antispam usa honeypot, tempo minimo e limite per IP (dettagli in `../README.md`).
 - **Importazione dal browser senza rischi**: la pagina è riservata agli amministratori e ogni passo è protetto da nonce. Dallo zip si estraggono solo `data.json` e le immagini, in una cartella temporanea che a fine lavoro viene cancellata: niente PHP in uploads, e i percorsi con `../` vengono scartati sia nello zip sia nel file dati.
