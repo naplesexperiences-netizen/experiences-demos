@@ -45,8 +45,10 @@ garantiscono. Quindi: generatori per un pezzo singolo (una card social, un'icona
 un'illustrazione per la landing), Figma per vettori da rifinire a mano, il codice per
 gli sprite di gioco.
 
-**Prossima prova utile, se si vuole andare avanti:** Canva su tre famiglie diverse,
-misurando quanto si assomigliano fra loro. È lì che si vede se la strada regge per un
-roster intero.
+**La prova successiva è stata fatta:** Canva su tre famiglie diverse, in
+[`canva-tre-famiglie/`](canva-tre-famiglie/). In breve: lo stile tiene bene fra una
+generazione e l'altra, ma lo sfondo esce diverso ogni volta e due famiglie su tre si
+distinguono fra loro meno della metà delle altre. Per un pezzo singolo va benissimo;
+per un roster servirebbe misurare e rigenerare a una a una.
 
 File Figma della prova: <https://www.figma.com/design/3bGEHU1iqL88J4Et4qvL9G>
