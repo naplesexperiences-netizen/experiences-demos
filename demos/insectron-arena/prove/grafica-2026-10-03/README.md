@@ -37,7 +37,7 @@ famiglia sono il dettaglio che o regge a 28 px o sparisce.
   crediti ma in tempo, per ogni singolo insetto.
 
 **La conclusione che riguarda il gioco.** Oggi non c'è un solo file immagine: una
-funzione produce 34 Insector da 12 famiglie e 5 rank, col colore della famiglia come
+funzione produce 34 Insector da 13 famiglie e 6 rank, col colore della famiglia come
 parametro, 2,7 KB in tutto. Un generatore dà *una* figura; per sostituire il sistema
 servirebbero 34 immagini coerenti fra loro, più le varianti per rank, più il
 ribaltamento — e la coerenza fra generazioni è proprio quello che questi modelli non
