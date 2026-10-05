@@ -55,7 +55,7 @@ Qui serve il contrario: numeri **alti** e soprattutto **tutti simili fra loro**.
 distinguono fra loro il 44% di quanto si distinguono le altre coppie. Nel gioco quel
 rapporto è il 69%: tutte le coppie si riconoscono più o meno uguale.
 
-Con dodici famiglie le coppie da controllare diventano **66**, e non c'è modo di
+Con tredici famiglie le coppie da controllare diventano **78**, e non c'è modo di
 accorgersi di una coppia debole se non misurandola a una a una, dopo averla generata.
 
 ## Conclusione
