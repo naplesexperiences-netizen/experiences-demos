@@ -269,12 +269,25 @@ class FMA_Importatore {
 	}
 
 	public function configura_sito(): void {
+		// Una pagina «home» o «blog» già presente ma in bozza, privata o programmata darebbe 404
+		// ai visitatori una volta impostata come pagina iniziale: si pubblica.
 		$pagina = function ( string $titolo, string $slug ) {
 			$id = $this->trova( 'page', $slug );
-			return $id ?: wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $titolo, 'post_name' => $slug ) );
+			if ( ! $id ) {
+				return (int) wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $titolo, 'post_name' => $slug ) );
+			}
+			$stato = (string) get_post_status( $id );
+			if ( 'publish' !== $stato ) {
+				wp_update_post( array( 'ID' => $id, 'post_status' => 'publish', 'post_password' => '' ) );
+				$this->log( "Pagina «{$titolo}» pubblicata (era in stato: {$stato})" );
+			}
+			return $id;
 		};
 		$home = $pagina( 'Home', 'home' );
 		$blog = $pagina( 'Blog', 'blog' );
+		if ( ! $home || ! $blog ) {
+			throw new RuntimeException( 'Non riesco a creare le pagine Home e Blog.' );
+		}
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $home );
 		update_option( 'page_for_posts', $blog );
