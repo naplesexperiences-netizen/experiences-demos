@@ -34,24 +34,15 @@ WHAT I WANT IMPROVED:
 A. Cells that share a border colour are ONE FAMILY. They must read as
    relatives: same body plan, same signature weapon.
 
-B. But inside each family every creature must be CLEARLY DIFFERENT from its
-   siblings. Right now nine pairs are literally the same picture - measured,
-   0% different at the size they are played. These are the pairs to separate
-   (row/column in the grid):
-
-      r1c2 / r1c3    - Lamidi, light blue
-      r1c6 / r2c1    - Bastidi, yellow
-      r2c3 / r2c4    - Bombardidi, purple
-      r2c5 / r2c6    - Bombardidi, purple
-      r3c2 / r3c3    - Voltidi, green
-      r3c5 / r3c6    - Tenaglidi, orange
-      r4c2 / r4c3    - Falcidi, light green
-      r4c4 / r4c5    - Falcidi, light green
-      r6c1 / r6c2    - Silfidi, magenta
-
-   Within a family, cells go left to right from the weakest to the strongest.
-   Make that progression visible: bigger body, heavier armour, more segments,
-   longer or doubled weapons as you move along.
+B. But inside each family every creature must stay CLEARLY DIFFERENT from its
+   siblings. They already are: as of 5 October 2026 no two members of a family
+   share a silhouette, and the smallest step between one grade and the next is
+   5% of the silhouette, measured at the 46 pixels the pieces are played at.
+   Do not lose that. Within a family, cells go left to right from the weakest
+   to the strongest, and the progression is carried by real shape - longer
+   weapon, heavier body, extra parts - not by size alone. Keep every part you
+   see: if a creature has barbs, plates, wheels or hooks that its weaker
+   sibling does not have, those are what tell them apart on the board.
 
 C. Give each family a stronger, more readable signature. One family, one idea:
 

@@ -4,9 +4,10 @@ Sintesi dei quattro piani più le cose che nei piani non stanno. Le giornate son
 lavoro, non di calendario.
 
 **Dove siamo.** Arena completa (tre modalità, sei rank, 34 Insector), sprite e animazioni
-generati da codice, gabbie e allevamento, mondo e cattura con semi condivisibili,
+generati da codice — e dal 5 ottobre ogni Insector ha il suo disegno, perché la figura
+segue il grado dentro la famiglia e non più il rank assoluto — gabbie e allevamento, mondo e cattura con semi condivisibili,
 salvataggi esportabili, eco, edizione demo, nomenclatura tutta nostra e le due schermate
-prima della partita che stanno in una finestra sola. 806 controlli automatici, equilibrio
+prima della partita che stanno in una finestra sola. 816 controlli automatici, equilibrio
 misurato a simulazione. Quel che manca non sono pezzi rotti: sono pezzi mancanti.
 
 **La decisione che riordina tutto** *(27 settembre 2026)*: la demo si ferma finché il

@@ -979,13 +979,37 @@ ali velate in Silfidi e Ventalidi, segmenti con zampette nei Trivellidi, palla a
 al dorso nei Sferidi, criniera a ciuffi nei Corsidi, corona a punte e mantello nei
 Tonantidi.
 
-Il rank cambia il disegno su tre livelli (1-2, 3-4, 5-6): corna più lunghe e speronate,
-denti nelle mandibole, ocelli sulle ali, macchie sul guscio, alone e scintille, piastre
-sul dorso — e la stazza cresce dell'8,5% per livello (era l'11%: con le sagome più
-articolate le unità di rank alto uscivano dalla casella). Le unità avversarie sono
-ruotate di 180° per fronteggiare il giocatore, con le fermate del gradiente invertite e
-il riflesso specchiato: altrimenti la luce arriverebbe dal basso e sembrerebbero
-capovolte.
+**Il grado dentro la famiglia** *(rifatto il 5 ottobre 2026)*. Prima il disegno cambiava
+su tre livelli di rank (1-2, 3-4, 5-6). Siccome i rank di una famiglia non sono
+consecutivi — i Lamidi hanno R1, R3, R4, R5 — due membri su quattro finivano nello stesso
+livello e uscivano **identici al pixel**: misurate a 46 px, la dimensione in cui le pedine
+si vedono davvero, nove coppie erano diverse allo 0%.
+
+Adesso `gradoDi(famiglia, rank)` dice quanti gradini ha quella famiglia e a quale sei, e
+il disegno dipende da quello: una famiglia da quattro membri ha quattro figure. Ogni
+gradino cambia le misure del pezzo che dà il nome alla famiglia (la lama dei Lamidi, il
+corno dei Bastidi, la canna dei Bombardidi, la pala dei Voltidi, la falce dei Falcidi) e
+aggiunge un elemento in una zona sua, perché i segni non si coprano fra loro: barbe e
+elsa, mandibole e piastre di coda, culatta, sfiati e ruote dell'affusto, pattini e punte
+del forcone, dentellatura, spine e uncino.
+
+| | prima | adesso |
+|---|---:|---:|
+| coppie identiche | 9 | **0** |
+| passo minimo fra un grado e il successivo | 0% | **5,0%** |
+| passo medio | — | **8,0%** |
+| distanza fra le due famiglie più somiglianti | 7% | 11% |
+| sprite tagliati dal bordo della casella | 5 | **0** (margine minimo 2 px) |
+
+La stazza d'insieme non cresce più oltre la taglia naturale del disegno: i gradi alti
+arrivano a 1, i bassi stanno a 0,93. Era il contrario — cresceva fino a +14% — ed è il
+motivo per cui cinque sprite uscivano dalla casella. Chi è solo nella sua famiglia
+(Bufera, Balsamina, Galoppo, Folgore) e gli sprite dei luoghi del Mondo che chiedono un
+rank inesistente ricadono sulla vecchia taglia e sono rimasti **identici al byte**.
+
+Le unità avversarie sono ruotate di 180° per fronteggiare il giocatore, con le fermate del
+gradiente invertite e il riflesso specchiato: altrimenti la luce arriverebbe dal basso e
+sembrerebbero capovolte.
 
 **Animazione.** I token non vengono ridisegnati a ogni azione: vivono su uno strato sopra
 la griglia e si spostano con una transizione, quindi movimento, spinte e lanci sono animati
@@ -1196,13 +1220,17 @@ sui titoli.
   10.000 estrazioni
 - Resistenze: 400 battaglie per scenario a budget di cibo pari, tabella nella sezione
   «Allevamento»
-- Totale dei controlli automatici sul gioco: **806** (meccaniche 30, schieramento 20,
+- Sprite: tutti e 34 resi e confrontati fra loro a maschera alfa. Nessuna coppia della
+  stessa famiglia produce lo stesso disegno; fra un grado e il successivo cambia almeno
+  il 5% della sagoma (in media l'8%), contro l'11% che separa le due famiglie più
+  somiglianti; nessuno sprite tocca il bordo della sua casella
+- Totale dei controlli automatici sul gioco: **816** (meccaniche 30, schieramento 20,
   schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 14,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
   allevamento 28, mondo e cattura 44, edizione demo 14, eco e telemetria 44, suono 23,
   guida 19, musica 31, menu 17, telefono 30, riproduzione 32, sfida del giorno 40,
   collezione 20, resistenze 39, nomenclatura 23, schermata unica 52, spiegazioni 48,
-  gesto e campo 39),
+  gesto e campo 39, sprite 10),
   più 21 sulla landing e sull'informativa, 19 sul sito installabile (manifest, icone,
   service worker e prova offline con la rete staccata) e 19 sull'endpoint della
   telemetria, che gira in un contesto vuoto con un D1 finto e senza toccare la rete

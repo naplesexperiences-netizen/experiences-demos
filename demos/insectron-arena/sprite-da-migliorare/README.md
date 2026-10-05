@@ -11,31 +11,52 @@ risultato si ritaglia e si rimette dentro al gioco.
 | `prova-una-famiglia.png` | I quattro Falcidi soli. Per provare la strada su quattro invece che su 34 prima di spendere. |
 | `prompt.txt` | Il testo da incollare insieme all'immagine. |
 
-## La cosa che conta, misurata
+Le tre immagini mostrano gli sprite **di oggi**, cioè dopo il rifacimento di
+`art()` descritto qui sotto: a un generatore si chiede di migliorarli, non di
+rifare un lavoro già fatto.
 
-Gli sprite sono disegnati da `art(fam, flip, rank)`, che ha **tre taglie per
-sei rank**: `rank >= 5 ? 3 : rank >= 3 ? 2 : 1`. Conseguenza: R1 e R2 danno la
-stessa figura, R3 e R4 pure, R5 e R6 pure.
+## Che cosa è cambiato, e perché
 
-Misurato alla dimensione in cui gli sprite compaiono davvero (46 px, la scheda
-del riepilogo), **nove coppie sono identiche allo 0%**:
+Nella prima versione di questa cartella gli sprite erano disegnati con **tre
+taglie per sei rank** (`rank >= 5 ? 3 : rank >= 3 ? 2 : 1`). Conseguenza
+misurata: R1 e R2 davano la stessa figura, R3 e R4 pure, R5 e R6 pure, e alla
+dimensione in cui le pedine si vedono davvero — 46 px, la scheda del riepilogo —
+**nove coppie erano identiche allo 0%**: Rasoio/Bipenne, Barbacane/Rivellino,
+Mortaio/Colubrina, Bombarda/Basilisco, Girandola/Capovolta, Tenaglia/Morsa,
+Falcetta/Falcione, Roncola/Turbine, Lusinga/Malia. Nove casi in cui due pedine
+diverse, in campo, erano lo stesso disegno.
 
-| famiglia | i due Insector | celle |
-|---|---|---|
-| Lamidi | R3 Rasoio = R4 Bipenne | r1c2 / r1c3 |
-| Bastidi | R3 Barbacane = R4 Rivellino | r1c6 / r2c1 |
-| Bombardidi | R3 Mortaio = R4 Colubrina | r2c3 / r2c4 |
-| Bombardidi | R5 Bombarda = R6 Basilisco | r2c5 / r2c6 |
-| Voltidi | R3 Girandola = R4 Capovolta | r3c2 / r3c3 |
-| Tenaglidi | R1 Tenaglia = R2 Morsa | r3c5 / r3c6 |
-| Falcidi | R1 Falcetta = R2 Falcione | r4c2 / r4c3 |
-| Falcidi | R3 Roncola = R4 Turbine | r4c4 / r4c5 |
-| Silfidi | R1 Lusinga = R2 Malia | r6c1 / r6c2 |
+`art()` è stata rifatta a mano. Adesso la taglia non conta più il rank in
+assoluto ma il **grado dentro la famiglia** (`gradoDi` → quanti gradini ha
+quella famiglia e a quale sei), così una famiglia da quattro membri ha quattro
+figure e non due. Ogni gradino cambia le misure del pezzo che dà il nome alla
+famiglia e aggiunge un elemento nuovo, in una zona sua, perché i segni non si
+coprano fra loro:
 
-Dentro a una famiglia la coppia più diversa arriva al 4,5% di differenza. Fra
-famiglie diverse, le due più simili (Bastidi e Tenaglidi) stanno al 7%.
-**Separare quelle nove coppie vale più di qualunque rifinitura estetica**: sono
-nove casi in cui due pedine diverse, in campo, sono la stessa figura.
+| famiglia | 2° grado | 3° grado | 4° grado |
+|---|---|---|---|
+| Lamidi | barbe sul filo | due lame sulle spalle | l'elsa |
+| Bastidi | mandibole | barbe sul corno | piastre di coda |
+| Bombardidi | la culatta | gli sfiati | le ruote dell'affusto |
+| Voltidi | pattini | puntoni | le punte del forcone |
+| Falcidi | dentellatura | spine del torace | l'uncino interno |
+
+### Com'è adesso, misurato
+
+- **0 coppie identiche** (erano 9).
+- Fra un grado e il successivo cambia dal **5%** al 14,1% della sagoma, in media
+  l'**8,0%** (prima: nove passi a 0, il migliore al 4,5%).
+- Le due **famiglie** più somiglianti distano l'**11%**. Il passo medio fra
+  fratelli resta sotto quella soglia: i gradi si leggono come gradi, non come
+  generi diversi.
+- Nessuno dei 34 sprite esce dalla sua casella: il margine più stretto dentro
+  al `viewBox` da 64 è di 2 px. Prima cinque sprite erano tagliati dal bordo.
+- Chi è solo nella sua famiglia (Bufera, Balsamina, Galoppo, Folgore) e gli
+  sprite dei luoghi del Mondo che chiedono un rank inesistente sono rimasti
+  **identici al byte**: nessun disegno è cambiato senza motivo.
+
+Il tutto è sorvegliato da una batteria dedicata (`sprite`, 10 controlli) che
+rifà queste misure a ogni modifica.
 
 ## Dove va ogni cella
 
@@ -84,12 +105,13 @@ contigui, e dentro ogni famiglia i rank salgono.
 
 Vale quello che è venuto fuori dalla prova su Canva del 3 ottobre
 (`prove/grafica-2026-10-03/canva-tre-famiglie/`): quello che torna da un
-generatore è **un'immagine**, mentre il gioco oggi non ha un solo file
-immagine — una funzione produce tutti e 34 gli sprite in 2,7 KB, col colore
-della famiglia come parametro, e per costruzione non può sbagliare lo sfondo.
+generatore è **un'immagine**, mentre il gioco non ha un solo file immagine —
+una funzione produce tutti e 34 gli sprite in 2,7 KB, col colore della famiglia
+come parametro, e per costruzione non può sbagliare lo sfondo.
 
 Quindi, se il ritorno piace, la domanda da farsi non è «li incolliamo?» ma
 «questi 34 PNG valgono il peso, lo scontorno e la perdita del parametro
 colore?». La risposta può benissimo essere sì — ma è una decisione, non un
-passaggio automatico. Una terza strada: usare il ritorno come **riferimento**
-per rifare `art()` a mano, tenendo il sistema e guadagnando le silhouette.
+passaggio automatico. La terza strada — usare il ritorno come **riferimento**
+per rifare `art()` a mano, tenendo il sistema — è quella che abbiamo già
+percorso una volta, ed è quella che ha separato le nove coppie.
