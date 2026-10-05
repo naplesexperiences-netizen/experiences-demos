@@ -46,6 +46,8 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Recensioni («Dicono di noi» in home, «Cosa dicono gli ospiti» nella pagina della casa) | **Strutture → Tutte le recensioni**: nome dell'ospite, testo, casa, fonte, voto, periodo e link all'originale. Solo recensioni reali. Senza recensioni pubblicate le sezioni non compaiono. |
 | Barra in basso su telefono (home) | Compare scorrendo oltre l'hero e porta all'elenco delle case. Non ci sono numeri di telefono centrali: ogni ospite scrive direttamente alla casa. |
 | Menu | **Aspetto → Menu**, posizioni «Menu principale» e «Menu a piè di pagina». |
+| Anteprima dei link condivisi (WhatsApp, Facebook, LinkedIn) | Strutture e articoli usano l'immagine in evidenza; home e altre pagine la foto di **Personalizza → Condivisione sui social** (se vuota, la prima casa dello slider). I tag si disattivano da soli con Yoast, Rank Math, AIOSEO, SEOPress o The SEO Framework. |
+| Icona nella scheda del browser | **Personalizza → Identità del sito → Icona del sito** (PNG quadrato di almeno 512 px). |
 
 ## Scelte tecniche
 

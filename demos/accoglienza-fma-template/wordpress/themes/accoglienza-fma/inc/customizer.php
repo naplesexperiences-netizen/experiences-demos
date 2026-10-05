@@ -67,6 +67,10 @@ function fma_customizer( WP_Customize_Manager $wp ): void {
 		'blog_titolo'        => array( 'Blog: titolo in home', 'text' ),
 		'piede_nota'         => array( 'Nota a piè di pagina', 'text' ),
 	);
+	$wp->add_section( 'fma_condivisione', array( 'title' => 'Condivisione sui social', 'priority' => 31, 'description' => 'Foto dell’anteprima quando qualcuno condivide la home o una pagina senza foto propria (WhatsApp, Facebook, LinkedIn). Le strutture e gli articoli usano la loro immagine in evidenza. Misura ideale: 1200 × 630 pixel.' ) );
+	$wp->add_setting( 'fma_social_immagine', array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
+	$wp->add_control( new WP_Customize_Media_Control( $wp, 'fma_social_immagine', array( 'label' => 'Foto per la condivisione', 'description' => 'Se vuota si usa la foto della prima casa dello slider.', 'section' => 'fma_condivisione', 'mime_type' => 'image' ) ) );
+
 	$predefiniti = fma_testi_predefiniti();
 	foreach ( $campi as $chiave => $def ) {
 		$wp->add_setting( 'fma_' . $chiave, array( 'default' => $predefiniti[ $chiave ], 'sanitize_callback' => 'textarea' === $def[1] ? 'sanitize_textarea_field' : 'sanitize_text_field' ) );
