@@ -77,6 +77,25 @@ function fma_importa_base(): string {
 	return wp_normalize_path( wp_upload_dir( null, false )['basedir'] );
 }
 
+/**
+ * Zip caricato via FTP: in wp-content/uploads/ oppure direttamente in wp-content/.
+ * Restituisce il percorso del primo trovato, o stringa vuota.
+ */
+function fma_importa_zip_server(): string {
+	foreach ( array( fma_importa_base(), wp_normalize_path( WP_CONTENT_DIR ) ) as $cartella ) {
+		$file = $cartella . '/fma-contenuti.zip';
+		if ( is_file( $file ) && is_readable( $file ) ) {
+			return $file;
+		}
+	}
+	return '';
+}
+
+/** Percorso da mostrare in pagina, a partire da wp-content. */
+function fma_importa_percorso_breve( string $file ): string {
+	return ltrim( str_replace( wp_normalize_path( dirname( WP_CONTENT_DIR ) ), '', wp_normalize_path( $file ) ), '/' );
+}
+
 /** Cancella la cartella temporanea, solo se è davvero una nostra cartella dentro uploads. */
 function fma_importa_pulisci( string $cartella ): void {
 	$cartella = wp_normalize_path( $cartella );
@@ -174,9 +193,9 @@ function fma_importa_carica(): void {
 
 	$sorgente = isset( $_POST['sorgente'] ) ? sanitize_key( wp_unslash( $_POST['sorgente'] ) ) : 'upload';
 	if ( 'server' === $sorgente ) {
-		$zip = fma_importa_base() . '/fma-contenuti.zip';
-		if ( ! is_file( $zip ) ) {
-			fma_importa_fallisci( 'Non trovo fma-contenuti.zip nella cartella uploads.' );
+		$zip = fma_importa_zip_server();
+		if ( '' === $zip ) {
+			fma_importa_fallisci( 'Non trovo fma-contenuti.zip né in wp-content/uploads né in wp-content.' );
 		}
 	} else {
 		$file = $_FILES['fma_zip'] ?? null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -322,10 +341,10 @@ function fma_importa_passo(): void {
 		fma_importa_pulisci( $stato['cartella'] );
 		delete_option( FMA_IMPORTA_STATO );
 		// Lo zip caricato via FTP in uploads sarebbe scaricabile da chiunque: a lavoro finito si toglie.
-		$zip_server = fma_importa_base() . '/fma-contenuti.zip';
-		if ( 'server' === ( $stato['sorgente'] ?? '' ) && is_file( $zip_server ) ) {
+		$zip_server = fma_importa_zip_server();
+		if ( 'server' === ( $stato['sorgente'] ?? '' ) && '' !== $zip_server ) {
 			wp_delete_file( $zip_server );
-			$stato['conti']['zip_rimosso'] = true;
+			$stato['conti']['zip_rimosso'] = fma_importa_percorso_breve( $zip_server );
 		}
 		set_transient( 'fma_importa_esito_' . get_current_user_id(), $stato['conti'], HOUR_IN_SECONDS );
 	} else {
@@ -372,7 +391,7 @@ function fma_importa_pagina(): void {
 		<?php if ( is_array( $conti ) ) : ?>
 			<div class="notice notice-success">
 				<p><strong>Importazione completata:</strong> <?php echo esc_html( sprintf( '%d strutture, %d partner, %d articoli.', $conti['strutture'], $conti['partner'], $conti['articoli'] ) ); ?>
-					<?php echo ! empty( $conti['zip_rimosso'] ) ? esc_html( 'Il file uploads/fma-contenuti.zip è stato cancellato dal server.' ) : ''; ?></p>
+					<?php echo ! empty( $conti['zip_rimosso'] ) ? esc_html( sprintf( 'Il file %s è stato cancellato dal server.', is_string( $conti['zip_rimosso'] ) ? $conti['zip_rimosso'] : 'fma-contenuti.zip' ) ) : ''; ?></p>
 				<p><a class="button button-primary" href="<?php echo esc_url( home_url( '/' ) ); ?>">Vedi il sito</a> <a class="button" href="<?php echo esc_url( admin_url( 'edit.php?post_type=struttura' ) ); ?>">Vai alle strutture</a></p>
 			</div>
 		<?php endif; ?>
@@ -396,7 +415,8 @@ function fma_importa_pagina(): void {
 			</div>
 		<?php else : ?>
 			<?php
-			$sul_server = is_file( fma_importa_base() . '/fma-contenuti.zip' ) ? (int) filesize( fma_importa_base() . '/fma-contenuti.zip' ) : 0;
+			$zip_server = fma_importa_zip_server();
+			$sul_server = '' !== $zip_server ? (int) filesize( $zip_server ) : 0;
 			$esistenti  = (int) wp_count_posts( 'struttura' )->publish;
 			$sito_nuovo = 0 === $esistenti && 'page' !== get_option( 'show_on_front' );
 			?>
@@ -417,9 +437,9 @@ function fma_importa_pagina(): void {
 								<legend class="screen-reader-text">Da dove prendere lo zip</legend>
 								<label><input type="radio" name="sorgente" value="upload" checked> Carica dal computer</label><br>
 								<input type="file" name="fma_zip" accept=".zip,application/zip" aria-label="fma-contenuti.zip">
-								<p class="description">Limite di caricamento del server: <?php echo esc_html( size_format( wp_max_upload_size() ) ); ?>. Se lo zip è più grande, caricalo via FTP in <code>wp-content/uploads/fma-contenuti.zip</code>.</p>
+								<p class="description">Limite di caricamento del server: <?php echo esc_html( size_format( wp_max_upload_size() ) ); ?>. Se lo zip è più grande, caricalo via FTP o con il File Manager in <code>wp-content/uploads/</code> (va bene anche <code>wp-content/</code>).</p>
 								<?php if ( $sul_server ) : ?>
-									<p><label><input type="radio" name="sorgente" value="server"> File già sul server: <code>uploads/fma-contenuti.zip</code> (<?php echo esc_html( size_format( $sul_server ) ); ?>)</label></p>
+									<p><label><input type="radio" name="sorgente" value="server"> File già sul server: <code><?php echo esc_html( fma_importa_percorso_breve( $zip_server ) ); ?></code> (<?php echo esc_html( size_format( $sul_server ) ); ?>)</label></p>
 								<?php endif; ?>
 							</fieldset>
 						</td>
