@@ -9,6 +9,7 @@ define( 'FMA_TEMA_VERSIONE', '1.1.0' );
 
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/condivisione.php';
 
 add_action( 'after_setup_theme', 'fma_tema_setup' );
 
@@ -34,6 +35,7 @@ function fma_tema_setup(): void {
 	add_image_size( 'fma-hero-m', 1200, 750, true );
 	add_image_size( 'fma-hero-s', 800, 500, true );
 	add_image_size( 'fma-card', 720, 480, true );
+	add_image_size( 'fma-social', 1200, 630, true ); // anteprima dei link condivisi (Open Graph)
 	add_image_size( 'fma-card-s', 400, 267, true ); // miniature dell'elenco strutture su schermi ad alta densità
 	add_image_size( 'fma-quadrato', 320, 320, true );
 }
