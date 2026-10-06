@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+    xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:wp="http://wordpress.org/export/1.2/"
+>
+<channel>
+    <title>Experiences Srl Portfolio</title>
+    <link>https://www.naplesexperiences.com</link>
+    <description>Portfolio Siti</description>
+    <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+    <language>it-IT</language>
+    <wp:wxr_version>1.2</wp:wxr_version>
+    <wp:base_site_url>https://www.naplesexperiences.com</wp:base_site_url>
+    <wp:base_blog_url>https://www.naplesexperiences.com</wp:base_blog_url>
+
+    <item>
+        <title>Accoglienza FMA</title>
+        <link>https://www.naplesexperiences.com/portfolio/accoglienza-fma/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>101</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>accoglienza-fma</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>1</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://www.accoglienzafma.com]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Hospitality & Booking]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>Villa Crawford</title>
+        <link>https://www.naplesexperiences.com/portfolio/villa-crawford/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>102</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>villa-crawford</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>2</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://www.villacrawford.it]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Luxury Villa Retreat]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>Villa Tiberiade</title>
+        <link>https://www.naplesexperiences.com/portfolio/villa-tiberiade/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>103</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>villa-tiberiade</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>3</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://www.villatiberiade.com]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Villa & Experience]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>CRT San Giorgio</title>
+        <link>https://www.naplesexperiences.com/portfolio/crt-san-giorgio/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>104</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>crt-san-giorgio</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>4</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://www.crtsangiorgio.it]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Medical Center]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>Vesuvio Express</title>
+        <link>https://www.naplesexperiences.com/portfolio/vesuvio-express/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>105</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>vesuvio-express</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>5</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://www.vesuvioexpress.it]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Transport & Tourism]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>GioForm</title>
+        <link>https://www.naplesexperiences.com/portfolio/gioform/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>106</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>gioform</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>6</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://www.gio-form.it]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Education & Training]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>Museo dei Pellegrini</title>
+        <link>https://www.naplesexperiences.com/portfolio/museo-dei-pellegrini/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>107</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>museo-dei-pellegrini</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>7</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://museodeipellegrini.it]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Cultural Heritage]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+    <item>
+        <title>Arci Confraternita dei Pellegrini</title>
+        <link>https://www.naplesexperiences.com/portfolio/arci-confraternita-dei-pellegrini/</link>
+        <pubDate>Thu, 21 May 2026 13:56:33 +0000</pubDate>
+        <dc:creator>admin</dc:creator>
+        <content:encoded><![CDATA[]]></content:encoded>
+        <wp:post_id>108</wp:post_id>
+        <wp:post_date>2026-05-21 13:56:33</wp:post_date>
+        <wp:post_date_gmt>2026-05-21 13:56:33</wp:post_date_gmt>
+        <wp:post_modified>2026-05-21 13:56:33</wp:post_modified>
+        <wp:post_modified_gmt>2026-05-21 13:56:33</wp:post_modified_gmt>
+        <wp:post_status>publish</wp:post_status>
+        <wp:post_name>arci-confraternita-dei-pellegrini</wp:post_name>
+        <wp:post_type>portfolio_site</wp:post_type>
+        <wp:menu_order>8</wp:menu_order>
+        <wp:postmeta>
+            <wp:meta_key>site_url</wp:meta_key>
+            <wp:meta_value><![CDATA[https://arciconfraternitapellegrini.net]]></wp:meta_value>
+        </wp:postmeta>
+        <wp:postmeta>
+            <wp:meta_key>site_category</wp:meta_key>
+            <wp:meta_value><![CDATA[Associazione Culturale]]></wp:meta_value>
+        </wp:postmeta>
+    </item>
+</channel>
+</rss>

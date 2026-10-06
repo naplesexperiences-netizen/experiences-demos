@@ -1,0 +1,99 @@
+/* Vesuvio Express 2027 — design token.
+ * Derivato da design/tokens.json: non modificare a mano i valori senza aggiornare il JSON.
+ * In fase 2 questo file viene importato in app/globals.css ed esposto a Tailwind v4 con @theme.
+ */
+:root {
+  /* Palette */
+  --color-basalto: #231f1c;
+  --color-basalto-2: #3a3430;
+  --color-pomice: #6b635c;
+  --color-cenere: #eeeae3;
+  --color-cenere-2: #ddd6cb;
+  --color-carta: #f7f5f1;
+  --color-scoria: #a93f24;
+  --color-scoria-scura: #8e331c;
+  --color-leccio: #3d5a3a;
+  --color-ginestra: #e6b422;
+  --color-golfo: #1d4f6e;
+  --color-bianco: #ffffff;
+
+  /* Ruoli */
+  --color-bg: var(--color-cenere);
+  --color-surface: var(--color-carta);
+  --color-surface-dark: var(--color-basalto);
+  --color-text: var(--color-basalto);
+  --color-text-muted: var(--color-pomice);
+  --color-text-on-dark: var(--color-cenere);
+  --color-border: var(--color-cenere-2);
+  --color-border-strong: var(--color-basalto);
+  --color-action: var(--color-scoria);
+  --color-action-hover: var(--color-scoria-scura);
+  --color-on-action: var(--color-bianco);
+  --color-link: var(--color-golfo);
+  --color-status-open: var(--color-leccio);
+  --color-status-warn: var(--color-ginestra);
+  --color-error: var(--color-scoria-scura);
+  --color-focus: var(--color-golfo);
+
+  /* Famiglie: ja/zh/ar sostituiscono display e body tramite :lang() */
+  --font-display: "Archivo", "Noto Sans", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible Next", "Noto Sans", system-ui, sans-serif;
+
+  /* Scala tipografica fluida 360 → 1200 px */
+  --text-display: clamp(2.5rem, 1.643rem + 3.81vw, 4.5rem);
+  --text-h1: clamp(2rem, 1.571rem + 1.9vw, 3rem);
+  --text-h2: clamp(1.625rem, 1.357rem + 1.19vw, 2.25rem);
+  --text-h3: clamp(1.25rem, 1.143rem + 0.48vw, 1.5rem);
+  --text-data: clamp(1.75rem, 1.643rem + 0.48vw, 2rem);
+  --text-body-l: clamp(1.125rem, 1.071rem + 0.24vw, 1.25rem);
+  --text-body: 1.0625rem;
+  --text-ui: 1rem;
+  --text-small: 0.875rem;
+
+  /* Spaziatura 4 pt */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-pill: 999px;
+
+  --size-touch: 48px;
+  --size-container: 1200px;
+  --size-measure: 68ch;
+  --gutter: clamp(16px, 4vw, 32px);
+
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --shadow-sticky: 0 -2px 12px rgb(35 31 28 / 0.16);
+}
+
+:lang(ja) {
+  --font-display: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+:lang(zh) {
+  --font-display: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+:lang(ar) {
+  --font-display: "Noto Sans Arabic", "Geeza Pro", Tahoma, sans-serif;
+  --font-body: "Noto Sans Arabic", "Geeza Pro", Tahoma, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+  }
+}

@@ -1,37 +1,64 @@
 # Project skills
 
-Claude Code project-level skills for this repo. Anything that works in `demos/`
-(plain HTML/CSS/JS landing pages) automatically gets these loaded when relevant.
+Skill Claude Code a livello di progetto: valgono solo in questo repo, non altrove.
+Tutto quello che lavora su `demos/` (landing page statiche HTML/CSS/JS) le vede.
 
-## GSAP (animation)
+**Non modificare a mano queste cartelle.** Sono copie vendored: il prossimo
+`./tooling/skills/install-skills.sh` le sovrascrive. Ogni skill ha il suo
+`PROVENANCE.md` con sorgente, commit e licenza. Per aggiungerne o toglierne una si
+edita `tooling/skills/skills.manifest`, non si copiano cartelle.
+
+Quale skill usare in quale situazione: `CLAUDE.md` (tabella dei profili) e
+`tooling/skills/PROFILES.md` (collisioni di trigger).
+
+## GSAP (animazione)
 
 `gsap-core`, `gsap-timeline`, `gsap-scrolltrigger`, `gsap-plugins`, `gsap-utils`,
-`gsap-performance` are vendored from the official GreenSock skills repo:
+`gsap-performance`, dal repo ufficiale GreenSock.
 
-- Source: https://github.com/greensock/gsap-skills
-- License: MIT, © GreenSock — see upstream `LICENSE` for full text.
+- Sorgente: https://github.com/greensock/gsap-skills
+- Licenza: MIT, © GreenSock
 
-These cover everything needed for entrance animations, scroll reveals, parallax,
-pinned sections, SVG draw/morph, and performance best practices on the static
-demo pages in `demos/`. `gsap-react` and `gsap-frameworks` were skipped since
-this repo doesn't use a JS framework.
+Coprono entrance animation, scroll reveal, parallasse, sezioni pinnate, SVG draw/morph
+e performance sulle pagine statiche in `demos/`. `gsap-react` e `gsap-frameworks` sono
+stati saltati: qui non si usa nessun framework JS.
 
-To pick up upstream updates, re-fetch the `SKILL.md` files from the source repo
-above and replace these copies.
+⚠️ Non mescolare con `scroll-craft`: ha un motore di scroll proprio e i due si
+contendono lo stesso evento. Vedi `tooling/skills/PROFILES.md`.
 
-## Not vendored: Anthropic's official `frontend-design` skill
+## Design e UX (vendored, licenza aperta)
 
-Anthropic ships a general visual-design skill (typography, layout, motion
-restraint) at `anthropics/claude-code` → `plugins/frontend-design`. It is
-**not copied here** because the claude-code repo's license is "All rights
-reserved" (proprietary), not an open license — vendoring its text into this
-repo would not be a permitted redistribution.
+| Skill | Sorgente | Licenza |
+|---|---|---|
+| `frontend-design`, `theme-factory` | anthropics/skills | Apache-2.0 |
+| `high-perf-browser`, `web-typography`, `refactoring-ui`, `top-design`, `microinteractions`, `ux-heuristics`, `design-everyday-things`, `cro-methodology` | wondelai/skills | MIT |
+| `ui-typography`, `design-audit`, `bencium-aeo` | bencium/bencium-marketplace | MIT |
+| `interface-design` | Dammyjay93/interface-design | MIT |
+| `hallmark` | — | vedi `PROVENANCE.md` |
 
-If you want it available, install it as a plugin instead (session/user-level,
-not committed to this repo):
+Esito dell'audit di sicurezza e licenze dei repo di provenienza: `tooling/skills/AUDIT.md`.
+
+## Non vendored, di proposito
+
+**Skill Vercel** (`react-best-practices`, `vercel-optimize`, `react-view-transitions`,
+`composition-patterns`): `vercel-labs/agent-skills` **non ha alcun LICENSE**, quindi
+copiarne il testo qui non sarebbe una redistribuzione permessa. Si installano a livello
+utente, fuori dal repo:
 
 ```
-/plugin marketplace add anthropics/claude-code
+./tooling/skills/install-skills.sh --vercel
 ```
 
-then enable the `frontend-design` plugin from the marketplace.
+**`scroll-craft`**: licenza MIT, quindi copiabile, ma pesante (213 KB di references) e
+con dipendenze esterne (ffmpeg completo, `playwright-core`, Chrome vero). Fuori dal set
+di default; si installa quando serve:
+
+```
+./tooling/skills/install-skills.sh scroll
+```
+
+## Correzione rispetto alla versione precedente di questo file
+
+La nota che diceva di non poter vendorizzare `frontend-design` per licenza proprietaria
+riguardava `anthropics/claude-code`. La stessa skill esiste in `anthropics/skills`, che
+è **Apache-2.0**: è quella copiata qui, legittimamente.

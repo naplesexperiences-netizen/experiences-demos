@@ -7,11 +7,16 @@ Sito web interattivo verticale (portrait) ottimizzato per schermi touch screen 4
 ### 🎯 Caratteristiche Principali
 
 - **Layout Verticale (Portrait)** - Ottimizzato per schermi 42" touch screen
-- **Galleria Animata** - Transizioni fluide tra i corsi con animazioni CSS3
-- **Popup Interattivo** - Click su ogni corso per visualizzare orari e dettagli
-- **Navigazione Touch** - Pulsanti grandi (60px) facilmente cliccabili
-- **Design Responsivo** - Adatto a diverse altezze di schermo
-- **Contatore Corsi** - Visualizzazione posizione nella galleria (es. 1/7)
+- **Galleria animata con GSAP** - Timeline interrompibili: il tap rapido su
+  avanti/indietro resta sempre coerente
+- **Due modalità di slide** - Le locandine ufficiali si vedono per intero
+  (`contain`, mai tagliate); le foto riempiono lo schermo con testo sovrapposto
+- **Popup orari** - Tocca una slide per il dettaglio degli orari
+- **Play/pausa** - Lo scorrimento automatico si può fermare
+- **Barra di avanzamento sincrona** - La barra *è* il timer, quindi pausa e
+  ripresa sono esatte
+- **Accessibile** - Focus visibile, `aria-live`, `prefers-reduced-motion`
+- **Funziona offline** - GSAP vendorizzato, font non bloccante (init ~110 ms)
 
 ## 📚 Corsi Disponibili (orari ufficiali stagione 25/26)
 
@@ -36,17 +41,22 @@ Sito web interattivo verticale (portrait) ottimizzato per schermi touch screen 4
 
 ## 🎨 Design
 
-- **Colori Primari**: Blu profondo (#1e3c72, #2a5298) + Arancio vibrante (#ff6b35)
-- **Font**: Jost (Google Fonts)
-- **Animazioni**: Transizioni smooth con effetti 3D
-- **Tema**: Moderno, energico, professionale
+- **Colori Primari**: Blu cobalto (#0d47a1, #1976d2) + Ciano Infitness (#00bcd4)
+  su navy profondo (#062c5c) — palette del marchio Sportlandia
+- **Font**: Barlow Condensed (titoli) + Barlow (testo), coppia tipografica
+  per brand sportivi; caricati in modo non bloccante
+- **Icone**: SVG inline (nessuna emoji)
+- **Animazioni**: Timeline GSAP 3.15. Navigazione manuale = scorrimento
+  direzionale; avanzamento automatico = dissolvenza
 
 ## 🖱️ Interazioni
 
 ### Navigazione Principale
-- **← Pulsante Sinistra**: Corso precedente
+- **‹ Pulsante Sinistra**: Corso precedente
 - **Contatore**: Posizione attuale / Totale corsi
-- **→ Pulsante Destra**: Corso successivo
+- **⏸ Play/Pausa**: Ferma o riprende lo scorrimento automatico
+- **› Pulsante Destra**: Corso successivo
+- **Pallini**: Salto diretto a un corso
 
 ### Dettagli Corsi
 - **Click sulla Card**: Apre popup con orari completi
@@ -55,21 +65,24 @@ Sito web interattivo verticale (portrait) ottimizzato per schermi touch screen 4
 
 ### Tasti Supportati
 - **Freccia Sinistra/Destra**: Navigazione galleria
+- **Spazio**: Play/pausa
 - **Escape**: Chiudi popup
+
+### Comportamento automatico
+Lo scorrimento si ferma da solo quando la pagina non è visibile, quando la
+galleria esce dallo schermo e quando il popup orari è aperto.
 
 ## 📱 Specifiche Tecniche
 
 - **HTML5** - Semantica moderna
-- **CSS3** - Animazioni e flexbox
-- **JavaScript Vanilla** - No dipendenze esterne
-- **Responsive** - Adatto a 42" e display correlati
+- **CSS3** - Custom properties per le fasce fisse (`--chrome-top/bottom`)
+- **GSAP 3.15** - Vendorizzato in `vendor/` (73 KB): il totem deve funzionare
+  anche senza rete
+- **Responsive** - 1080×1920 (42"), tablet e mobile
 
 ## 🌐 Branding
 
-Footer personalizzato con link a **experiences SRL**:
-- Portfolio dei progetti
-- Contatti diretti
-- Copyright e attributi
+Footer con contatti Sportlandia e link a **naplesexperiences.com**.
 
 ## 🚀 Utilizzo
 
@@ -95,9 +108,9 @@ sportlandia-kiosk/
 ## 📧 Contatti
 
 Per domande o modifiche contatta **experiences SRL**:
-- 🌐 [Sito Web](https://github.com/experiences-srl)
-- 📧 [Email](mailto:info@experiences-srl.it)
+- 🌐 [Sito Web](https://naplesexperiences.com)
+- 📧 [Email](mailto:info@naplesexperiences.com)
 
 ---
 
-**© 2026 Sportlandia - Powered by experiences SRL**
+**© 2026 Sportlandia - Powered by naplesexperiences.com**

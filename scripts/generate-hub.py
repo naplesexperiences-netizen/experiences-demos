@@ -123,6 +123,14 @@ def render(demos):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>experiences-demos · Hub</title>
 <meta name="description" content="Indice di tutti i demo realizzati da experiences SRL.">
+<meta name="theme-color" content="#0d1117">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Experiences Srl">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="experiences-demos · Hub">
+<meta property="og:description" content="Indice di tutti i demo realizzati da experiences SRL.">
+<meta property="og:url" content="https://naplesexperiences-netizen.github.io/experiences-demos/">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">

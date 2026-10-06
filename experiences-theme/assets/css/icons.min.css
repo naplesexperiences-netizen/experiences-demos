@@ -1,0 +1,60 @@
+/* Font Awesome 6.5.1 — subset Experiences Srl (50 icone usate dal tema)
+   Generato da fa-solid-900/fa-brands-400 via pyftsubset.
+   Licenza icone: CC BY 4.0 — Font Awesome Free (fontawesome.com/license/free) */
+@font-face{font-family:"FA Solid Subset";font-style:normal;font-weight:900;font-display:block;src:url("../fonts/fa-solid-subset.woff2") format("woff2")}
+@font-face{font-family:"FA Brands Subset";font-style:normal;font-weight:400;font-display:block;src:url("../fonts/fa-brands-subset.woff2") format("woff2")}
+.fa,.fas,.fa-solid,.fab,.fa-brands{display:inline-block;text-rendering:auto;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;line-height:1}
+.fa,.fas,.fa-solid{font-family:"FA Solid Subset";font-weight:900}
+.fab,.fa-brands{font-family:"FA Brands Subset";font-weight:400}
+.fa-spin{animation:fa-spin 2s linear infinite}
+@keyframes fa-spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.fa-arrow-left:before{content:"\f060"}
+.fa-arrow-right:before{content:"\f061"}
+.fa-bars:before{content:"\f0c9"}
+.fa-bolt:before{content:"\f0e7"}
+.fa-book-open:before{content:"\f518"}
+.fa-bullhorn:before{content:"\f0a1"}
+.fa-calculator:before{content:"\f1ec"}
+.fa-calendar:before{content:"\f133"}
+.fa-chart-line:before{content:"\f201"}
+.fa-check:before{content:"\f00c"}
+.fa-check-circle:before{content:"\f058"}
+.fa-chevron-down:before{content:"\f078"}
+.fa-chevron-left:before{content:"\f053"}
+.fa-chevron-right:before{content:"\f054"}
+.fa-clock:before{content:"\f017"}
+.fa-edit:before{content:"\f044"}
+.fa-envelope:before{content:"\f0e0"}
+.fa-exchange-alt:before{content:"\f362"}
+.fa-exclamation-triangle:before{content:"\f071"}
+.fa-external-link-alt:before{content:"\f35d"}
+.fa-eye:before{content:"\f06e"}
+.fa-facebook-f:before{content:"\f39e"}
+.fa-folder:before{content:"\f07b"}
+.fa-globe:before{content:"\f0ac"}
+.fa-home:before{content:"\f015"}
+.fa-hotel:before{content:"\f594"}
+.fa-inbox:before{content:"\f01c"}
+.fa-info-circle:before{content:"\f05a"}
+.fa-language:before{content:"\f1ab"}
+.fa-laptop-code:before{content:"\f5fc"}
+.fa-link:before{content:"\f0c1"}
+.fa-linkedin-in:before{content:"\f0e1"}
+.fa-lock:before{content:"\f023"}
+.fa-map-marked-alt:before{content:"\f5a0"}
+.fa-microphone:before{content:"\f130"}
+.fa-microphone-slash:before{content:"\f131"}
+.fa-mobile-alt:before{content:"\f3cd"}
+.fa-paper-plane:before{content:"\f1d8"}
+.fa-play:before{content:"\f04b"}
+.fa-robot:before{content:"\f544"}
+.fa-rocket:before{content:"\f135"}
+.fa-search-dollar:before{content:"\f688"}
+.fa-spinner:before{content:"\f110"}
+.fa-star:before{content:"\f005"}
+.fa-suitcase:before{content:"\f0f2"}
+.fa-tags:before{content:"\f02c"}
+.fa-times:before{content:"\f00d"}
+.fa-user:before{content:"\f007"}
+.fa-whatsapp:before{content:"\f232"}
+.fa-x-twitter:before{content:"\e61b"}

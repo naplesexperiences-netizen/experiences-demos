@@ -1,0 +1,667 @@
+{
+ "strutture": [
+  {
+   "slug": "villa-tiberiade",
+   "nome": "Villa Tiberiade",
+   "titolo_hero": "Immergiti nel relax sul Golfo di Napoli",
+   "localita": "Torre Annunziata",
+   "provincia": "NA",
+   "regione": "Campania",
+   "tipo": "Casa di accoglienza e spiritualità",
+   "indirizzo": "Via Prota 83, 80058 Torre Annunziata (NA)",
+   "lat": 40.752206807186,
+   "lng": 14.426561163327,
+   "intro": "“Villa Tiberiade” è stata ristrutturata e adeguata al servizio di accoglienza, per giornate di accoglienza ed esercizi spirituali. Dalla sua splendida posizione si può ammirare il panorama unico della penisola sorrentina, ed è circondata da una vasta estensione di verde.",
+   "sezioni": [
+    {
+     "titolo": "Se un luogo ha una storia, resta nella memoria per sempre",
+     "html": "<p>L’Opera è iniziata nell’anno 1973: originariamente la Villa era di proprietà della signora Teresa Rossi, contessa Filangieri.</p><p>Nella divisione dei beni la Villa toccò a uno dei figli, che aveva sposato la signorina Olimpia De Donat, rimasta poi vedova. Il marito aveva dato a mons. Muller una parte di terreno con un rustico molto malridotto che, opportunamente adattato, fu utilizzato per svolgere attività di apostolato.</p><p>Successivamente mons. Muller maturò l’idea di affidare all’Istituto delle Figlie di Maria Ausiliatrice tutto il complesso di sua proprietà, denominandolo, con chiaro richiamo evangelico, “Villa Tiberiade”.</p>"
+    }
+   ],
+   "servizi": [
+    "Acqua calda",
+    "Aria condizionata",
+    "Ascensore",
+    "Asciuga capelli",
+    "Cucina",
+    "Ferro da stiro",
+    "Forno a microonde",
+    "Frigorifero",
+    "Laptop Friendly",
+    "Macchinetta del Caffè",
+    "Parcheggio gratuito",
+    "Riscaldamento",
+    "TV",
+    "Wifi",
+    "Balcone",
+    "Lettini prendisole",
+    "Giardino",
+    "Vista panoramica",
+    "Sala convegni"
+   ],
+   "camere": [
+    {
+     "nome": "Camera singola",
+     "dettaglio": "Vista Golfo, bagno privato",
+     "letti": "1 letto singolo",
+     "ospiti": 1,
+     "quante": 30,
+     "img": "g1"
+    },
+    {
+     "nome": "Camera doppia",
+     "dettaglio": "Bagno privato",
+     "letti": "Matrimoniale o 2 singoli",
+     "ospiti": 2,
+     "quante": 3
+    },
+    {
+     "nome": "Camera tripla",
+     "dettaglio": "Bagno privato",
+     "letti": "Matrimoniale + 1 singolo",
+     "ospiti": 3,
+     "quante": 1
+    }
+   ],
+   "camere_totali": null,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "",
+   "dintorni": [
+    {
+     "luogo": "Golfo di Napoli",
+     "distanza": "di fronte alla struttura"
+    },
+    {
+     "luogo": "Scavi di Pompei",
+     "distanza": "10 minuti in auto"
+    },
+    {
+     "luogo": "Vesuvio",
+     "distanza": "30 minuti in auto"
+    },
+    {
+     "luogo": "Aeroporto di Capodichino",
+     "distanza": "30 minuti in auto"
+    },
+    {
+     "luogo": "Sorrento",
+     "distanza": "60 minuti in auto"
+    }
+   ],
+   "regole": [
+    "Check-in dalle 14:00 alle 21:00",
+    "Check-out entro le 11:00",
+    "Struttura non fumatori",
+    "Animali non ammessi",
+    "Niente feste o eventi privati",
+    "Età minima di chi prenota: 18 anni",
+    "Rimborso totale se si cancella almeno 30 giorni prima dell’arrivo, 50% se almeno 7 giorni prima"
+   ],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g7"
+   ],
+   "booking_url": "https://www.booking.com/hotel/it/villa-tiberiade-torre-annunziata.it.html",
+   "in_evidenza": true,
+   "contatti": {
+    "nome": "Reception Villa Tiberiade",
+    "logo": "loghi/ref-5707.png",
+    "email": "info@villatiberiade.it",
+    "telefono": "+39 081 883 6450",
+    "telefono_link": "+390818836450",
+    "cellulare": "",
+    "whatsapp": "+39 081 883 6450",
+    "whatsapp_link": "https://wa.me/390818836450",
+    "sito": "https://villatiberiade.com/"
+   },
+   "fonte": "https://accoglienzafma.com/immobile/villa-tiberiade/"
+  },
+  {
+   "slug": "villa-crawford",
+   "nome": "Villa Crawford",
+   "titolo_hero": "Dimora storica a picco sul mare",
+   "localita": "Sant’Agnello",
+   "provincia": "NA",
+   "regione": "Campania",
+   "tipo": "Dimora storica",
+   "indirizzo": "Via Nuovo Rione Cappuccini 2, 80065 Sant’Agnello (NA)",
+   "lat": 40.6363,
+   "lng": 14.3918082,
+   "intro": "Dimora storica originale dello scrittore Marion Crawford, a picco sul mare con vista sul Golfo di Napoli e sul Vesuvio. Aperta tutto l’anno, dispone di una grande sala riunioni elegante, panoramica e molto luminosa, e di altre sale di varia dimensione, ideali per piccole riunioni.",
+   "sezioni": [
+    {
+     "titolo": "La storia",
+     "html": "<p>Quando nel 1885 lo scrittore americano Francis Marion Crawford acquistò la villa, era una semplice casa colonica circondata da un vasto giardino: qui compose molte delle opere che lo resero celebre nel mondo. Con il tempo la costruzione fu modificata fino a somigliare agli antichi castelli medievali, e l’interno fu arricchito con pannelli di legno intagliati dall’artigiano sorrentino Giovanni Massa.</p><p>Alla morte dello scrittore, nel 1909, la villa passò alla figlia Eleonora e, nel 1954, fu donata all’Istituto di Maria Ausiliatrice, che ancora oggi accoglie i tanti giovani che qui si riuniscono per qualche ora di svago e di preghiera.</p>"
+    },
+    {
+     "titolo": "I contrafforti",
+     "html": "<p>I caratteristici contrafforti furono realizzati per prevenire smottamenti della costa e rendere la villa visibile dal mare. Sulle pietre dei bastioni Crawford fece scolpire le parole “In tempestate securitas”: un posto sicuro nella tempesta.</p>"
+    }
+   ],
+   "servizi": [
+    "Acqua calda",
+    "Aria condizionata",
+    "Laptop Friendly",
+    "Riscaldamento",
+    "TV",
+    "Wifi",
+    "Sala riunioni panoramica",
+    "Sale per piccoli meeting",
+    "Ascensore",
+    "Parco di 1.500 m²",
+    "Cappella",
+    "Aperta tutto l’anno"
+   ],
+   "camere": [
+    {
+     "nome": "Camere in villa",
+     "dettaglio": "Ampie e spaziose, in un elegante contesto d’epoca, su 3 piani con ascensore. Metà delle camere ha vista mare.",
+     "img": "g1"
+    },
+    {
+     "nome": "Camere in giardino",
+     "dettaglio": "Nel parco di 1.500 m², staccate dal corpo principale della villa: stile essenziale e un tavolino esterno per godersi i profumi della macchia mediterranea.",
+     "img": "g5"
+    }
+   ],
+   "camere_totali": null,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "",
+   "dintorni": [],
+   "regole": [],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5"
+   ],
+   "booking_url": "",
+   "in_evidenza": true,
+   "contatti": {
+    "nome": "Villa Crawford",
+    "logo": "loghi/ref-6234.png",
+    "email": "info@villacrawford.it",
+    "telefono": "+390818073084",
+    "telefono_link": "+390818073084",
+    "cellulare": "",
+    "whatsapp": "",
+    "whatsapp_link": "",
+    "sito": ""
+   },
+   "fonte": "https://accoglienzafma.com/immobile/villa-crawford/"
+  },
+  {
+   "slug": "fma-napoli",
+   "nome": "Casa FMA Napoli",
+   "titolo_hero": "Un luogo di pace a Napoli",
+   "localita": "Napoli",
+   "provincia": "NA",
+   "regione": "Campania",
+   "tipo": "Casa per ferie",
+   "indirizzo": "Via Giovanni Paladino, 80138 Napoli",
+   "lat": 40.847596765159,
+   "lng": 14.256937612501,
+   "intro": "Conosciute anche come salesiane di don Bosco, le Figlie di Maria Ausiliatrice accolgono nel cuore di Napoli, nella sede dell’Ispettoria Meridionale “Madonna del Buon Consiglio”.",
+   "sezioni": [
+    {
+     "titolo": "La nostra missione",
+     "html": "<p>L’impegno educativo e di evangelizzazione a favore dei giovani, in particolare di quelli più poveri ed emarginati, è il cuore della nostra missione. Ovunque sono i giovani, lì è la nostra casa.</p><p>L’espressione di don Bosco “Buoni cristiani, onesti cittadini” racchiude il senso e l’obiettivo della nostra missione: educazione, opportunità e futuro.</p>"
+    },
+    {
+     "titolo": "L’Ispettoria Meridionale",
+     "html": "<p>La congregazione è organizzata su base territoriale, in ispettorie. L’Ispettoria Meridionale “Madonna del Buon Consiglio” comprende Campania, Puglia, Basilicata e Calabria, oltre ad Albania e Malta. La sede ispettoriale è a Napoli.</p>"
+    }
+   ],
+   "servizi": [
+    "Acqua calda",
+    "Aria condizionata",
+    "Ascensore",
+    "Frigorifero",
+    "Laptop Friendly",
+    "Riscaldamento",
+    "Wifi"
+   ],
+   "camere": [
+    {
+     "nome": "Camera singola",
+     "dettaglio": "",
+     "letti": "1 letto singolo",
+     "ospiti": 1
+    },
+    {
+     "nome": "Camera doppia",
+     "dettaglio": "",
+     "letti": "Matrimoniale o 2 singoli",
+     "ospiti": 2
+    }
+   ],
+   "camere_totali": 12,
+   "prezzo_da": 60,
+   "tassa": "Tassa di soggiorno: 2 € a persona per notte",
+   "orari": "",
+   "dintorni": [],
+   "regole": [],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5"
+   ],
+   "booking_url": "https://www.booking.com/hotel/it/complesso-monteverginella.it.html",
+   "in_evidenza": true,
+   "contatti": {
+    "nome": "FMA Napoli",
+    "logo": "loghi/ref-6236.png",
+    "email": "amministrazione.napoli.sgb@fma-imr.it",
+    "telefono": "3759151774",
+    "telefono_link": "+393759151774",
+    "cellulare": "",
+    "whatsapp": "3759151774",
+    "whatsapp_link": "https://wa.me/393759151774",
+    "sito": ""
+   },
+   "fonte": "https://accoglienzafma.com/immobile/fma-napoli/"
+  },
+  {
+   "slug": "fma-roma",
+   "nome": "Casa per Ferie Maria Ausiliatrice",
+   "titolo_hero": "Accoglienza nel cuore di Roma",
+   "localita": "Roma",
+   "provincia": "RM",
+   "regione": "Lazio",
+   "tipo": "Casa per ferie",
+   "indirizzo": "Via Marghera 59, 00185 Roma",
+   "lat": 41.9039962,
+   "lng": 12.5059976,
+   "intro": "La Casa per Ferie “Maria Ausiliatrice” è gestita dall’Istituto Maria Ausiliatrice delle Salesiane di Don Bosco. L’accoglienza è orientata al soggiorno temporaneo di persone che condividono un percorso di fede e di spiritualità: religiosi e religiose, famiglie, gruppi parrocchiali, singoli e gruppi associati.",
+   "sezioni": [
+    {
+     "titolo": "Chi accogliamo",
+     "html": "<p>La Casa è gestita al di fuori dei normali canali commerciali, senza scopo di lucro. Gli ospiti condividono gli ideali e le regole di condotta dell’Istituto, mantengono un comportamento e un abbigliamento consoni alla funzione sociale e religiosa della struttura e rispettano gli orari della casa.</p><p>La Casa per Ferie è autorizzata dal Comune di Roma (Prot. n. QA/2018/41919 del 18/09/2018).</p>"
+    }
+   ],
+   "servizi": [
+    "Aria condizionata",
+    "Laptop Friendly",
+    "Riscaldamento",
+    "Wifi"
+   ],
+   "camere": [],
+   "camere_totali": 20,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "",
+   "dintorni": [],
+   "regole": [
+    "Portineria: 12:00–13:00 e 14:00–21:00",
+    "Rientro serale entro le 21:00 (ottobre–aprile) o le 22:00 (maggio–settembre)",
+    "Liberare la camera entro le 9:30 del giorno di partenza",
+    "Pulizia delle camere ogni giorno, cambio biancheria ogni tre giorni",
+    "Parcheggio gratuito nei limiti dei posti disponibili",
+    "Animali non ammessi, vietato fumare nella struttura",
+    "Prenotazioni: dal lunedì al sabato, 9:00–13:00 e 15:00–18:00"
+   ],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g7"
+   ],
+   "booking_url": "https://www.booking.com/Share-8CdajH",
+   "in_evidenza": true,
+   "contatti": {
+    "nome": "FMA Roma",
+    "logo": "loghi/ref-6224.png",
+    "email": "m.accoglienza@fmairo.net",
+    "telefono": "+393292352419",
+    "telefono_link": "+393292352419",
+    "cellulare": "",
+    "whatsapp": "+393292352419",
+    "whatsapp_link": "https://wa.me/393292352419",
+    "sito": ""
+   },
+   "fonte": "https://accoglienzafma.com/immobile/fma-roma/"
+  },
+  {
+   "slug": "san-giuseppe-caorle",
+   "nome": "Casa per Ferie San Giuseppe",
+   "titolo_hero": "Un’oasi di pace a un passo dal mare",
+   "localita": "Caorle",
+   "provincia": "VE",
+   "regione": "Veneto",
+   "tipo": "Casa per ferie",
+   "indirizzo": "30021 Caorle (VE)",
+   "lat": 45.5979147,
+   "lng": 12.8876282,
+   "intro": "La Casa per Ferie San Giuseppe è gestita dall’Istituto Maria Ausiliatrice delle Figlie di Maria Ausiliatrice. Aspira a essere molto più di una struttura ricettiva: un luogo dove ogni persona trovi serenità e autentico calore umano, dove il tempo rallenta e la bellezza della natura e del mare invita a ritrovare equilibrio.",
+   "sezioni": [
+    {
+     "titolo": "La carta dei valori",
+     "html": "<ul><li><strong>Una casa per tutti.</strong> Ogni angolo, ogni gesto, ogni sorriso è pensato per far sentire gli ospiti al sicuro e a proprio agio.</li><li><strong>Accoglienza.</strong> Ogni persona è accolta con calore e rispetto, indipendentemente dal suo percorso di vita, cultura o credo.</li><li><strong>Oasi di pace.</strong> Un ambiente sereno, immerso nella natura a un passo dal mare, per ritrovare un ritmo di vita più lento.</li><li><strong>Familiarità.</strong> Relazioni autentiche, fatte di dialogo, ascolto e rispetto reciproco, anche per brevi periodi.</li><li><strong>Benvenuti.</strong> Dall’ospitalità dello staff alla cura degli spazi, ogni dettaglio comunica attenzione e premura.</li></ul>"
+    }
+   ],
+   "servizi": [
+    "Riscaldamento",
+    "TV",
+    "Wifi"
+   ],
+   "camere": [
+    {
+     "nome": "Camera singola",
+     "dettaglio": "",
+     "img": "g2"
+    },
+    {
+     "nome": "Camera tripla",
+     "dettaglio": "",
+     "img": "g3"
+    },
+    {
+     "nome": "Camera quadrupla",
+     "dettaglio": "Ideale per famiglie",
+     "img": "g1"
+    }
+   ],
+   "camere_totali": null,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "Reception (email e telefono): 9:00–12:30 e 14:00–17:30",
+   "dintorni": [],
+   "regole": [],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g7"
+   ],
+   "booking_url": "",
+   "in_evidenza": false,
+   "contatti": {
+    "nome": "San Giuseppe Caorle",
+    "logo": "loghi/ref-6231.png",
+    "email": "info@sangiuseppecaorle.it",
+    "telefono": "042181051",
+    "telefono_link": "+39042181051",
+    "cellulare": "",
+    "whatsapp": "3342044670",
+    "whatsapp_link": "https://wa.me/393342044670",
+    "sito": ""
+   },
+   "fonte": "https://accoglienzafma.com/immobile/san-giuseppe-caorle/"
+  },
+  {
+   "slug": "villa-tabor",
+   "nome": "Villa Tabor",
+   "titolo_hero": "Un luogo senza tempo, che parla all’anima",
+   "localita": "Cesuna di Roana",
+   "provincia": "VI",
+   "regione": "Veneto",
+   "tipo": "Casa per ferie",
+   "indirizzo": "Via Magnaboschi 54, 36010 Cesuna di Roana (VI)",
+   "lat": 45.8341056,
+   "lng": 11.4594312,
+   "intro": "Villa Tabor è il luogo adatto in cui ritrovare le energie interiori. Gestita dalle Figlie di Maria Ausiliatrice, è uno spazio dedicato alla cura della spiritualità di giovani e adulti, che possono riscoprire, in un contesto naturale privilegiato, le ricchezze della vita semplice.",
+   "sezioni": [
+    {
+     "titolo": "Un luogo speciale",
+     "html": "<ul><li>Ti permette di vivere un tempo di riposo e vacanza.</li><li>Ti offre la possibilità di condividere alcuni momenti di preghiera e servizio con la comunità delle suore.</li><li>Accoglie e dà spazio alle proposte educative, formative, spirituali e culturali di gruppi formali e informali.</li></ul>"
+    },
+    {
+     "titolo": "Dal 1943, cura e attenzione al servizio di tutti",
+     "html": "<p>Affidata alle Figlie di Maria Ausiliatrice nel 1943 come casa di spiritualità per ragazze, Villa Tabor è centro di incontri per weekend formativi, settimane di spiritualità, esercizi spirituali, giornate di preghiera e di ritiro per gruppi, sacerdoti e religiose.</p><p>Dopo la ristrutturazione e l’ampliamento del 1999 diventa centro di riferimento nell’Altopiano per l’animazione formativa dei giovani. Dal 2017 la comunità si apre anche all’accoglienza delle famiglie, con weekend di distensione e di convivenza amicale per tutti.</p>"
+    },
+    {
+     "titolo": "Profumi e sapori dell’Altopiano di Asiago",
+     "html": "<p>Circondata da faggi e abeti, Villa Tabor sorge sull’Altopiano dei Sette Comuni, nella frazione di Cesuna del comune di Roana. I boschi attorno a Cesuna furono teatro di importanti avvenimenti della prima guerra mondiale, e sono ancora oggi tra i luoghi più suggestivi in cui visitare trincee, postazioni e il grande Ossario.</p><p>Sentieri nei boschi, mountain bike, tennis, golf, trekking, sci e pattinaggio; e poi malghe e piccoli produttori, che trasformano ogni passeggiata in una scoperta della gastronomia locale.</p>"
+    }
+   ],
+   "servizi": [
+    "Acqua calda",
+    "Aria condizionata",
+    "Ascensore",
+    "Laptop Friendly",
+    "Parcheggio gratuito",
+    "Riscaldamento",
+    "Wifi",
+    "Cappella votiva"
+   ],
+   "camere": [],
+   "camere_totali": 15,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "",
+   "dintorni": [],
+   "regole": [],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g7"
+   ],
+   "booking_url": "",
+   "in_evidenza": true,
+   "contatti": {
+    "nome": "Villa Tabor",
+    "logo": "loghi/ref-6228.png",
+    "email": "villatabor@fmaitv.eu",
+    "telefono": "042467002",
+    "telefono_link": "+39042467002",
+    "cellulare": "+393294870389",
+    "whatsapp": "+393294870389",
+    "whatsapp_link": "https://wa.me/393294870389",
+    "sito": ""
+   },
+   "fonte": "https://accoglienzafma.com/immobile/villa-tabor/"
+  },
+  {
+   "slug": "casa-per-feriemaria-mazzarello",
+   "nome": "Casa per Ferie Maria Mazzarello",
+   "titolo_hero": "Una casa religiosa nel cuore del Lago Maggiore",
+   "localita": "Verbania",
+   "provincia": "VB",
+   "regione": "Piemonte",
+   "tipo": "Casa per ferie",
+   "indirizzo": "Corso Italia, Zoverallo, 28921 Verbania (VB)",
+   "lat": 45.9473313,
+   "lng": 8.5780776,
+   "intro": "Un luogo semplice e silenzioso, immerso nella natura, dove trovare tempo per te, per il tuo gruppo e per la spiritualità. Un’accoglienza familiare fatta di gentilezza, ascolto e attenzione alla persona, con camere curate, parco panoramico, sale incontri, cappelle, parcheggio privato e una meravigliosa vista sul Lago Maggiore.",
+   "sezioni": [
+    {
+     "titolo": "Un luogo che invita al silenzio",
+     "html": "<p>Immersa nella natura di Zoverallo e affacciata sul Lago Maggiore, la Casa propone e ospita ritiri ed esercizi spirituali, in un contesto semplice e riservato. Durante l’anno organizza percorsi, incontri e corsi con momenti di preghiera, ascolto e approfondimento.</p>"
+    },
+    {
+     "titolo": "Il nostro parco panoramico",
+     "html": "<p>Sulla collina di Zoverallo, il parco regala una vista aperta sul lago, dalla luce del mattino alla calma del tramonto. Il belvedere è uno dei punti più suggestivi: una terrazza naturale affacciata sul paesaggio.</p><ul><li>Camminate lente e meditazione</li><li>Yoga all’aperto</li><li>Momenti di silenzio e preghiera</li><li>Lettura e studio</li><li>Incontri di gruppo nella natura</li></ul>"
+    }
+   ],
+   "servizi": [
+    "Parco panoramico",
+    "Sale incontri",
+    "Cappelle",
+    "Parcheggio privato",
+    "Vista lago"
+   ],
+   "camere": [],
+   "camere_totali": null,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "",
+   "dintorni": [],
+   "regole": [],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g7"
+   ],
+   "booking_url": "",
+   "in_evidenza": true,
+   "contatti": {
+    "nome": "Casa per ferie Maria Mazzarello",
+    "logo": "loghi/ref-6279.png",
+    "email": "info@casaferiemazzarello.it",
+    "telefono": "0323 402365",
+    "telefono_link": "+390323402365",
+    "cellulare": "344 187 5602",
+    "whatsapp": "344 187 5602",
+    "whatsapp_link": "https://wa.me/393441875602",
+    "sito": "https://www.casaferiemazzarello.it/"
+   },
+   "fonte": "https://accoglienzafma.com/immobile/casa-per-feriemaria-mazzarello/"
+  },
+  {
+   "slug": "fma-soverato",
+   "nome": "Casa FMA Soverato",
+   "titolo_hero": "",
+   "localita": "Soverato",
+   "provincia": "CZ",
+   "regione": "Calabria",
+   "tipo": "Casa per ferie",
+   "indirizzo": "Via San Giovanni Bosco, 88068 Soverato (CZ)",
+   "lat": 38.6866681,
+   "lng": 16.5529069,
+   "intro": "",
+   "sezioni": [],
+   "servizi": [
+    "Aria condizionata",
+    "Parcheggio gratuito",
+    "Riscaldamento",
+    "Wifi"
+   ],
+   "camere": [],
+   "camere_totali": 15,
+   "prezzo_da": null,
+   "tassa": "",
+   "orari": "",
+   "dintorni": [],
+   "regole": [],
+   "gallery": [
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5"
+   ],
+   "booking_url": "https://www.booking.com/hotel/it/fma-soverato.it.html",
+   "in_evidenza": false,
+   "contatti": {
+    "nome": "FMA Soverato",
+    "logo": "loghi/ref-6226.png",
+    "email": "fmasoverato07@gmail.com",
+    "telefono": "+393206908459",
+    "telefono_link": "+393206908459",
+    "cellulare": "",
+    "whatsapp": "+393206908459",
+    "whatsapp_link": "https://wa.me/393206908459",
+    "sito": ""
+   },
+   "fonte": "https://accoglienzafma.com/immobile/fma-soverato/"
+  }
+ ],
+ "articoli": [
+  {
+   "slug": "la-storia-dellaltopiano-di-asiago",
+   "titolo": "La storia dell’Altopiano di Asiago",
+   "data": "2024-10-29",
+   "categoria": "Consigli di viaggio",
+   "estratto": "l’Altopiano di Asiago affonda le radici nell’epoca romana e in particolare nella cultura celtica. Testimonianze di questa presenza sono ancora oggi presenti nella parlata colloquiale e nella toponomastica di tutta la zona. Dal 1310 al 1807 la Spettabile Reggenza dei Sette Comuni fu un governo autonomo e comunitario, alleato della Repubblica di Venezia. I monti e i boschi…",
+   "html": "<p>l’Altopiano di Asiago affonda le radici nell’epoca romana e in particolare nella cultura celtica. Testimonianze di questa presenza sono ancora oggi presenti nella parlata colloquiale e nella toponomastica di tutta la zona. Dal 1310 al 1807 la Spettabile Reggenza dei Sette Comuni fu un governo autonomo e comunitario, alleato della Repubblica di Venezia.</p>\n\n<p>I monti e i boschi attorno a Cesuna sono stati teatro di importanti avvenimenti nel corso della <a rel=\"noopener\" target=\"_blank\" href=\"https://it.wikipedia.org/wiki/Prima_guerra_mondiale\">prima guerra mondiale</a>: in particolare, a partire dall’aprile 1918, la zona fu presidiata dalle forze militari inglesi, fronteggiate nel giugno seguente dalle truppe austriache. E’ ancor oggi uno dei luoghi più suggestivi in cui visitare i resti del grande sistema di trincee, le postazioni blindate, i ricoveri e il grande “Ossario” che con i musei e i cimiteri mantiene viva la memoria dei caduti.</p>\n<p>La ricchezza storico culturale è valorizzata dal contesto naturalistico del territorio di Cesuna e di tutto l’Altopiano che con i suoi colori resi di volta in volta più vividi dal ciclo delle stagioni è apprezzato da tutti coloro che desiderano trascorrere un periodo di relax e rigenerazione attraverso percorsi e sentieri che si snodano nei boschi, o grazie all’esperienza degli sport praticabili sull’Altopiano: dalla mountain bike al  tennis, dal golf al trekking, dallo sci al pattinaggio.</p>\n<p>La fitta presenza di malghe e dei laboratori di piccoli produttori trasforma ogni semplice passeggiata sull’Altopiano in motivo di scoperta della gastronomia locale.  I Sapori della tradizione si fondono con le vetrine dell’artigianato del legno per offrire a ogni visitatore un contesto interessante e tutto da scoprire.</p>",
+   "minuti": 1,
+   "fonte": "https://accoglienzafma.com/la-storia-dellaltopiano-di-asiago/"
+  },
+  {
+   "slug": "soverato-la-perla-della-calabria",
+   "titolo": "Soverato la perla della Calabria",
+   "data": "2024-10-29",
+   "categoria": "Consigli di viaggio",
+   "estratto": "Soverato con un mix perfetto tra storia, natura e divertimento, è la perla della Calabria. Ecco alcuni consigli per rendere il tuo soggiorno indimenticabile. Cosa vedere e fare: Quando andare: Il periodo migliore per visitare Soverato è da giugno a settembre, quando il clima è caldo e soleggiato. Dove mangiare: La cucina calabrese è ricca…",
+   "html": "\n<p>Soverato con un mix perfetto tra storia, natura e divertimento, è la perla della Calabria. <br>Ecco alcuni consigli per rendere il tuo soggiorno indimenticabile.</p>\n<p><strong>Cosa vedere e fare:</strong></p>\n<ul>\n<li><strong>Spiagge:</strong> Soverato è famosa per le sue spiagge di sabbia finissima e mare cristallino. La spiaggia di Caminia è particolarmente apprezzata per la sua tranquillità.</li>\n<li><strong>Centro Storico:</strong> Passeggia per il centro storico e ammira i palazzi nobiliari, le chiese e le botteghe artigiane.</li>\n<li><strong>Giardino Botanico Santicelli:</strong> Un’oasi di pace con una vista spettacolare sul golfo.</li>\n<li><strong>Roccelletta di Borgia:</strong> Un sito archeologico di grande interesse, con i resti di una basilica bizantina.</li>\n<li><strong>Torre di Carlo V:</strong> Un’antica torre di avvistamento con una vista panoramica sul mare.</li>\n<li><strong>Sport acquatici:</strong> Se ami gli sport acquatici, a Soverato puoi praticare windsurf, kitesurf e immersioni subacquee.</li>\n<li><strong>Vita notturna:</strong> La sera, Soverato si anima con numerosi locali e discoteche.</li>\n</ul>\n<p><strong>Quando andare:</strong></p>\n<p>Il periodo migliore per visitare Soverato è da giugno a settembre, quando il clima è caldo e soleggiato.</p>\n<p><strong>Dove mangiare:</strong></p>\n<p>La cucina calabrese è ricca di sapori e tradizioni. A Soverato puoi gustare piatti a base di pesce fresco, come la ‘nduja, la soppressata e i peperoni cruschi.</p>\n\n<p><strong>Eventi:</strong></p>\n<ul>\n<li><strong>Soverato Summer Festival:</strong> Un festival estivo con musica, spettacoli e eventi culturali.</li>\n<li><strong>Sagra del Pesce Spada:</strong> Una sagra dedicata al pesce spada, uno dei prodotti tipici della zona.</li>\n</ul>\n<p><strong>Consigli extra:</strong></p>\n<ul>\n<li><strong>Noleggia un’auto:</strong> Per esplorare i dintorni e raggiungere le spiagge più nascoste.</li>\n<li><strong>Assaggia i prodotti locali:</strong> Non perdere l’occasione di assaggiare i prodotti tipici calabresi, come il vino, l’olio d’oliva e i formaggi.</li>\n<li><strong>Partecipa alle escursioni:</strong> Ci sono numerose agenzie che organizzano escursioni alle Isole Eolie, a Catanzaro o al Parco Nazionale dell’Aspromonte.</li>\n</ul>\n<p><strong>Cosa portare:</strong></p>\n<ul>\n<li><strong>Costumi da bagno:</strong> Indispensabili per godersi il mare.</li>\n<li><strong>Crema solare:</strong> Per proteggersi dai raggi del sole.</li>\n<li><strong>Cappello e occhiali da sole:</strong> Per ripararsi dal sole.</li>\n<li><strong>Scarpe comode:</strong> Per passeggiare e esplorare.</li>\n<li><strong>Macchina fotografica:</strong> Per immortalare i tuoi ricordi.</li>\n</ul>\n<p>Foto by https://a.travel-assets.com/ , https://cs-stage.altrama.com/ , https://www.lesuberante.it/,  https://booking.caorle.eu/</p>",
+   "minuti": 2,
+   "fonte": "https://accoglienzafma.com/soverato-la-perla-della-calabria/"
+  },
+  {
+   "slug": "il-giubileo-a-roma",
+   "titolo": "il Giubileo a Roma",
+   "data": "2024-10-29",
+   "categoria": "Consigli di viaggio",
+   "estratto": "Roma durante il Giubileo è un’esperienza indimenticabile. Per aiutarti a organizzare al meglio il tuo viaggio, ecco alcuni consigli. Quando andare: Cosa vedere e fare: Come muoversi: Dove alloggiare: Consigli utili: Foto di JEROME CLARYSSE ,  Nimrod Oren,  Maik,  Paula Flan ,  Rainhard Wiesinger   da Pixabay",
+   "html": "\n<p>Roma durante il Giubileo è un’esperienza indimenticabile. Per aiutarti a organizzare al meglio il tuo viaggio, ecco alcuni consigli.</p>\n<p><strong>Quando andare:</strong></p>\n<ul>\n<li><strong>Apertura della Porta Santa:</strong> Il Giubileo inizierà ufficialmente il 24 dicembre 2024 con l’apertura della Porta Santa nella Basilica di San Pietro. Questo è il momento clou per i pellegrini.</li>\n<li><strong>Altri eventi:</strong> Tutta l’anno saranno organizzati numerosi eventi legati al Giubileo, come Giubilei tematici (ad esempio, del mondo della comunicazione, delle forze armate, ecc.). Consulta il sito ufficiale del Giubileo per rimanere aggiornato.</li>\n</ul>\n<p><strong>Cosa vedere e fare:</strong></p>\n<ul>\n<li><strong>Le Basiliche:</strong> Oltre a San Pietro, visita le altre quattro basiliche papali: San Giovanni in Laterano, San Paolo fuori le mura, Santa Maria Maggiore e San Lorenzo fuori le mura.</li>\n<li><strong>Le Vie Crucis:</strong> Partecipa a una delle numerose Via Crucis organizzate in città, un’esperienza intensa e spirituale.</li>\n<li><strong>Le Chiese:</strong> Roma è una città ricca di chiese, ognuna con una storia e un’arte uniche. Visita quelle che ti interessano di più.</li>\n<li><strong>I Musei Vaticani e la Cappella Sistina:</strong> Un must per ogni visitatore di Roma. Prenota i biglietti in anticipo per evitare le lunghe file.</li>\n<li><strong>Le altre attrazioni:</strong> Non dimenticare di visitare il Colosseo, il Foro Romano, il Pantheon, Castel Sant’Angelo e le fontane di Roma.</li>\n</ul>\n<p><strong>Come muoversi:</strong></p>\n<ul>\n<li><strong>Metropolitana:</strong> La metropolitana è il modo più veloce per spostarsi all’interno della città.</li>\n<li><strong>Autobus:</strong> Numerosi autobus collegano tutte le zone di Roma.</li>\n<li><strong>A piedi:</strong> Roma è una città che si presta a essere esplorata a piedi, soprattutto nei centri storici.</li>\n</ul>\n\n<p><strong>Dove alloggiare:</strong></p>\n<ul>\n<li><strong>Vicino al Vaticano:</strong> Se vuoi essere vicino ai luoghi principali del Giubileo, cerca un alloggio vicino al Vaticano.</li>\n<li><strong>Centro Storico:</strong> Il centro storico offre una vasta scelta di hotel, B&amp;B e appartamenti.</li>\n<li><strong>Zone periferiche:</strong> Se hai un budget limitato, puoi cercare un alloggio nelle zone periferiche e utilizzare i mezzi pubblici per raggiungere il centro.</li>\n</ul>\n<p><strong>Consigli utili:</strong></p>\n<ul>\n<li><strong>Prenota in anticipo:</strong> Hotel, voli e biglietti per i musei vanno prenotati con largo anticipo, soprattutto se viaggi in alta stagione.</li>\n<li><strong>Abbigliamento comodo:</strong> Preparati a camminare molto, quindi indossa scarpe comode.</li>\n<li><strong>Porta con te una borraccia:</strong> Roma è una città calda, quindi porta sempre con te dell’acqua.</li>\n<li><strong>Rispetta le regole:</strong> All’interno dei luoghi di culto è necessario rispettare determinate regole di abbigliamento.</li>\n<li><strong>Assicurazione di viaggio:</strong> Stipula un’assicurazione di viaggio che copra eventuali spese mediche o il rimpatrio.</li>\n</ul>\n<p>Foto di <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/jerome82-11303951/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">JEROME CLARYSSE</a> ,  <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/nimrodins-12874542/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4529605\">Nimrod Oren</a>,   <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/mailanmaik-4340251/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4634107\">Maik</a>,  <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/paula11767-7946983/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3133764\">Paula Flan</a> ,  <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/rainhard2-19578714/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6207755\">Rainhard Wiesinger</a>    da <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">Pixabay</a></p>",
+   "minuti": 2,
+   "fonte": "https://accoglienzafma.com/il-giubileo-a-roma/"
+  },
+  {
+   "slug": "cosa-fare-a-napoli",
+   "titolo": "Cosa fare a Napoli",
+   "data": "2024-10-29",
+   "categoria": "Consigli di viaggio",
+   "estratto": "Quando andare: Il periodo migliore per visitare Napoli è la primavera (aprile-maggio) o l’autunno (settembre-ottobre), quando il clima è mite e le folle di turisti sono meno numerose. Come muoversi: Napoli è una città che si presta bene a essere esplorata a piedi. In alternativa, puoi utilizzare i mezzi pubblici (autobus, metropolitana) o un taxi….",
+   "html": "\n<ul>\n<li><strong>Spaccanapoli:</strong> Perdersi tra i vicoli di Spaccanapoli è un’esperienza unica. Ammira i palazzi nobiliari, le botteghe artigiane e le chiese barocche.</li>\n<li><strong>Castel Nuovo:</strong> Un’imponente fortezza che domina il porto. Visita le sale interne e goditi la vista panoramica sulla città.</li>\n<li><strong>Galleria Umberto I:</strong> Una galleria commerciale ottocentesca, un gioiello dell’architettura liberty. Ammira le vetrate colorate e fai una passeggiata tra i negozi.</li>\n<li><strong>Napoli Sotterranea:</strong> Scopri la Napoli nascosta sotto la città. Visita i tunnel, le cisterne e i teatri romani.</li>\n<li><strong>Museo Archeologico Nazionale:</strong> Ammira una delle collezioni archeologiche più importanti d’Italia. Non perdere i famosi mosaici e i reperti provenienti da Pompei.</li>\n<li><strong>Cappella Sansevero:</strong> Respira l’atmosfera mistica di questa cappella e ammira il Cristo Velato, una delle opere d’arte più affascinanti al mondo.</li>\n<li><strong>Pizza:</strong> Assaggia la vera pizza napoletana in una delle tante pizzerie storiche della città.</li>\n<li><strong>Passeggiata sul lungomare:</strong> Goditi una passeggiata sul lungomare di Napoli, ammirando il Vesuvio e il Golfo.</li>\n<li><strong>Quartieri Spagnoli:</strong> Immergiti nell’atmosfera autentica dei Quartieri Spagnoli, un quartiere vivace e colorato.</li>\n</ul>\n\n<p><strong>Quando andare:</strong></p>\n<p>Il periodo migliore per visitare Napoli è la primavera (aprile-maggio) o l’autunno (settembre-ottobre), quando il clima è mite e le folle di turisti sono meno numerose.</p>\n<p><strong>Come muoversi:</strong></p>\n<p>Napoli è una città che si presta bene a essere esplorata a piedi. In alternativa, puoi utilizzare i mezzi pubblici (autobus, metropolitana) o un taxi.</p>\n<p><strong>Dove mangiare:</strong></p>\n<p>La cucina napoletana è famosa in tutto il mondo. Assolutamente da provare:</p>\n<ul>\n<li><strong>Pizza:</strong> La vera pizza napoletana è un’esperienza unica.</li>\n<li><strong>Pasta:</strong> Spaghetti alle vongole, pasta e patate, genovese… ce n’è per tutti i gusti!</li>\n<li><strong>Friarielli:</strong> Un contorno tipico napoletano, un must per gli amanti dei sapori forti.</li>\n<li><strong>Babà:</strong> Un dolce soffice e bagnato nel rum, perfetto per concludere il pasto.</li>\n</ul>\n<p><strong>Consigli extra:</strong></p>\n<ul>\n<li><strong>Prenota in anticipo:</strong> Se vuoi visitare i musei più importanti, ti consiglio di prenotare i biglietti in anticipo, soprattutto in alta stagione.</li>\n<li><strong>Vestiti comodo:</strong> Perdersi tra i vicoli di Napoli richiede scarpe comode!</li>\n<li><strong>Assaggia la street food:</strong> Non perderti i tanti street food che puoi trovare per le strade di Napoli.</li>\n<li><strong>Impara qualche parola in napoletano:</strong> Sapere qualche parola in napoletano renderà la tua esperienza ancora più autentica.</li>\n</ul>",
+   "minuti": 2,
+   "fonte": "https://accoglienzafma.com/cosa-fare-a-napoli/"
+  },
+  {
+   "slug": "perche-visitare-torre-annunziata",
+   "titolo": "Perché visitare Torre Annunziata?",
+   "data": "2024-10-29",
+   "categoria": "Consigli di viaggio",
+   "estratto": "Ci sono molte ragioni per visitare Torre Annunziata. Ecco alcune delle più importanti: Cosa fare a Torre Annunziata? Ci sono molte cose da fare a Torre Annunziata. Ecco alcune delle attività più popolari: Come arrivare a Torre Annunziata? Torre Annunziata è facilmente raggiungibile in treno o in autobus da Napoli. È anche possibile raggiungere la…",
+   "html": "<p>Ci sono molte ragioni per visitare Torre Annunziata. Ecco alcune delle più importanti:</p>\n<ul>\n<li><strong>La posizione strategica:</strong> Torre Annunziata si trova in una posizione strategica sul Golfo di Napoli. La città offre viste panoramiche sul Vesuvio e sull’isola di Capri.</li>\n<li><strong>La storia antica:</strong> Torre Annunziata ha una storia antica che risale all’epoca romana. La città ospita numerosi siti archeologici, tra cui le rovine di Villa Poppea e il Museo Archeologico Nazionale di Torre Annunziata.</li>\n<li><strong>La produzione di pomodori:</strong> Torre Annunziata è famosa per la sua produzione di pomodori. La città è il centro della produzione di pomodori San Marzano, un tipo di pomodoro molto apprezzato per il suo sapore e la sua versatilità.</li>\n<li><strong>Le spiagge:</strong> Torre Annunziata ha diverse spiagge lungo la costa. Le spiagge sono ideali per il nuoto, il surf e il windsurf.</li>\n<li><strong>La vita notturna:</strong> Torre Annunziata ha una vivace vita notturna. Ci sono numerosi bar, ristoranti e discoteche in città.</li>\n</ul>\n<p><strong>Cosa fare a Torre Annunziata?</strong></p>\n<p>Ci sono molte cose da fare a Torre Annunziata. Ecco alcune delle attività più popolari:</p>\n<ul>\n<li><strong>Visitare i siti archeologici:</strong> I siti archeologici di Torre Annunziata sono un’attrazione imperdibile. I più importanti sono le rovine di Villa Poppea e il Museo Archeologico Nazionale di Torre Annunziata.</li>\n<li><strong>Fare il bagno:</strong> Le spiagge di Torre Annunziata sono ideali per il nuoto, il surf e il windsurf.</li>\n<li><strong>Assaggiare i pomodori San Marzano:</strong> I pomodori San Marzano di Torre Annunziata sono molto apprezzati per il loro sapore e la loro versatilità.</li>\n<li><strong>Provare la vita notturna:</strong> Torre Annunziata ha una vivace vita notturna. Ci sono numerosi bar, ristoranti e discoteche in città.</li>\n</ul>\n<p><strong>Come arrivare a Torre Annunziata?</strong></p>\n<p>Torre Annunziata è facilmente raggiungibile in treno o in autobus da Napoli. È anche possibile raggiungere la città in auto.</p>\n<p><strong>Quando visitare Torre Annunziata?</strong></p>\n<p>Il periodo migliore per visitare Torre Annunziata è la primavera o l’autunno, quando il clima è mite. Tuttavia, la città è visitabile anche in estate e in inverno.</p>\n<p><strong>Consigli per visitare Torre Annunziata</strong></p>\n<ul>\n<li><strong>Prenditi il tuo tempo:</strong> Torre Annunziata è una città ricca di storia e cultura. Prenditi il tuo tempo per esplorare la città e scoprire i suoi tesori nascosti.</li>\n<li><strong>Assaggia i pomodori San Marzano:</strong> I pomodori San Marzano di Torre Annunziata sono un’esperienza culinaria da non perdere.</li>\n<li><strong>Prova la vita notturna:</strong> Torre Annunziata ha una vivace vita notturna. Assicurati di provare alcuni dei bar, ristoranti e discoteche della città.</li>\n<li><strong>Rilassati sulle spiagge:</strong> Le spiagge di Torre Annunziata sono ideali per il relax e il divertimento.</li>\n</ul>\n<p><strong>Conclusioni</strong></p>\n<p>Torre Annunziata è una città ricca di storia, cultura e bellezze naturali. La città offre ai visitatori una vasta gamma di attività, tra cui la visita ai siti archeologici, il nuoto, il surf, il windsurf, l’assaggio dei pomodori San Marzano e la vita notturna. Se stai cercando una destinazione turistica interessante e accessibile, Torre Annunziata è un’ottima scelta.</p>",
+   "minuti": 2,
+   "fonte": "https://accoglienzafma.com/perche-visitare-torre-annunziata/"
+  }
+ ],
+ "partner": [
+  {
+   "nome": "Villa Crawford",
+   "logo": "loghi/partner-villa-crawford.png",
+   "url": "https://www.villacrawford.it/"
+  },
+  {
+   "nome": "Villa Tabor",
+   "logo": "loghi/partner-partner-one.png",
+   "url": ""
+  },
+  {
+   "nome": "Experiences srl",
+   "logo": "loghi/partner-partner-two.png",
+   "url": ""
+  },
+  {
+   "nome": "FMA",
+   "logo": "loghi/partner-partner-three.png",
+   "url": ""
+  },
+  {
+   "nome": "Casa per Ferie San Giuseppe",
+   "logo": "loghi/ref-6231.png",
+   "url": ""
+  },
+  {
+   "nome": "Casa per Ferie Maria Mazzarello",
+   "logo": "loghi/ref-6279.png",
+   "url": "https://www.casaferiemazzarello.it/"
+  }
+ ]
+}
