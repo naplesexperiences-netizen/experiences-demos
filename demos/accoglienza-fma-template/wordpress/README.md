@@ -47,6 +47,7 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Barra in basso su telefono (home) | Compare scorrendo oltre l'hero e porta all'elenco delle case. Non ci sono numeri di telefono centrali: ogni ospite scrive direttamente alla casa. |
 | Menu | **Aspetto → Menu**, posizioni «Menu principale» e «Menu a piè di pagina». |
 | Anteprima dei link condivisi (WhatsApp, Facebook, LinkedIn) | Strutture e articoli usano l'immagine in evidenza; home e altre pagine la foto di **Personalizza → Condivisione sui social** (se vuota, la prima casa dello slider). I tag si disattivano da soli con Yoast, Rank Math, AIOSEO, SEOPress o The SEO Framework. |
+| Informativa privacy (link nel modulo e nel piè di pagina) | **Impostazioni → Privacy**. Se manca, la bacheca mostra un avviso con il pulsante «Crea l’informativa»: crea la pagina in bozza con un testo già scritto per questo sito; vanno completati i punti tra parentesi quadre «[da completare…]» prima di pubblicarla. Finché manca, il modulo non mostra link vuoti. |
 | Icona nella scheda del browser | **Personalizza → Identità del sito → Icona del sito** (PNG quadrato di almeno 512 px). |
 
 ## Scelte tecniche
@@ -55,6 +56,8 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 - **Script con `defer`** e nessuna dipendenza da jQuery nel sito pubblico. Il tema regge l'ottimizzazione degli script di WP-Optimize, che oggi rompe hero e galleria del sito attuale.
 - **Home leggera**: lo slider carica subito solo la prima foto e prepara la successiva; le altre arrivano quando stanno per comparire. Le foto hanno più misure (16:10 da 800, 1200 e 1920 px; miniature da 400 px) e ogni immagine dichiara la sua larghezza a schermo, così il browser scarica la misura giusta. Su un sito già popolato, dopo l'aggiornamento del tema rigenera le miniature (`wp media regenerate --only-missing` oppure il plugin *Regenerate Thumbnails*).
 - **Aggiornamenti senza cache vecchia**: CSS e JS del tema hanno nell'indirizzo la data di modifica del file, quindi dopo un aggiornamento browser e cache prendono subito i file nuovi. Con WP-Optimize o un'altra cache di pagina, svuotala dopo aver aggiornato il tema.
+- **Cache svuotata dopo gli aggiornamenti**: quando cambia uno dei file di tema o plugin FMA (nuovo zip caricato), alla prima pagina non in cache — per esempio la bacheca — `fma-strutture` svuota la cache di WP-Optimize (e di WP Rocket, W3 Total Cache, WP Super Cache, LiteSpeed se presenti).
+- **Nome di accesso non visibile**: niente pagine autore (portano alla home), niente mappa del sito degli utenti, niente autore nei dati di incorporamento e nei feed, elenco utenti delle API solo per chi è collegato.
 - **Leaflet solo dove c'è una mappa**: home, archivio, regioni, singola struttura.
 - **Nessun nonce nel modulo di richiesta**, perché le pagine sono in cache. L'antispam usa honeypot, tempo minimo e limite per IP (dettagli in `../README.md`).
 - **Importazione dal browser senza rischi**: la pagina è riservata agli amministratori e ogni passo è protetto da nonce. Dallo zip si estraggono solo `data.json` e le immagini, in una cartella temporanea che a fine lavoro viene cancellata: niente PHP in uploads, e i percorsi con `../` vengono scartati sia nello zip sia nel file dati.
