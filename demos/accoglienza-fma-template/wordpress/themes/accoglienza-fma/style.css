@@ -1,0 +1,15 @@
+/*
+Theme Name:        Accoglienza FMA
+Theme URI:         https://naplesexperiences-netizen.github.io/experiences-demos/demos/accoglienza-fma-template/
+Author:            experiences srl
+Description:       Tema per la rete di case per ferie delle Figlie di Maria Ausiliatrice: slider delle strutture, ricerca, mappa interattiva, pagina struttura con richiesta di soggiorno, blog. Richiede i plugin FMA Strutture e FMA Richieste.
+Version:           1.1.0
+Requires at least: 6.4
+Tested up to:      7.1
+Requires PHP:      8.0
+License:           GPL-2.0-or-later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       accoglienza-fma
+
+Gli stili sono in assets/css (tokens.css, site.css, wp.css), identici alla demo statica.
+*/
