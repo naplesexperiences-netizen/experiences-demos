@@ -11,12 +11,15 @@ python3 demos/accoglienza-fma-template/_src/build.py
 
 ## Pagina demo → template WordPress
 
+Tema e plugin pronti da installare sono in [`wordpress/`](wordpress/README.md): istruzioni, importatore dei contenuti e sito locale di prova.
+
 | Demo | Template WP | Note |
 |---|---|---|
 | `index.html` | `front-page.php` | hero slider (strutture con "in slider"), ricerca, partner, chi siamo, mappa + elenco, ultimi 3 articoli |
 | `strutture/<slug>/` | `single-struttura.php` | CPT `struttura` gestito dal plugin |
 | `blog/` | `home.php` | pagina articoli |
 | `blog/<slug>/` | `single.php` | con box "Dormi vicino" → struttura collegata |
+| — | `archive-struttura.php` | `/strutture/` e `/regione/<slug>/`: mappa + elenco con titolo H1 |
 
 ## Campi della struttura (CPT del plugin)
 
@@ -34,7 +37,7 @@ I campi sono le chiavi di `_src/data.json` → `strutture[]`. Quelli marcati *op
 
 Nella demo statica l'invio è simulato: nessun messaggio parte.
 
-Nel sito WordPress lo gestisce il plugin `wordpress/fma-richieste/`. Nel template della struttura basta `<?php fma_richieste_form( get_the_ID() ); ?>`, che usa lo stesso markup della demo, con stessi CSS e JS.
+Nel sito WordPress lo gestisce il plugin `wordpress/plugins/fma-richieste/`. Nel template della struttura basta `<?php fma_richieste_form( get_the_ID() ); ?>`, che usa lo stesso markup della demo, con stessi CSS e JS.
 
 - **Destinatario**: sempre ricavato lato server dalla struttura. Prima il meta `fma_email` della struttura, poi l'email del referente RealHomes collegato (`REAL_HOMES_agents` → `REAL_HOMES_agent_email`), cioè i dati del sito di oggi. Il modulo non trasporta indirizzi, quindi non può scrivere a destinatari arbitrari.
 - **Email**: alla struttura con `Reply-To` dell'ospite (la casa risponde direttamente) e copia all'ospite con `Reply-To` della casa. Se l'invio fallisce, il visitatore vede l'email della casa a cui scrivere.
@@ -45,9 +48,9 @@ Nel sito WordPress lo gestisce il plugin `wordpress/fma-richieste/`. Nel templat
 Test su un WordPress vero, usa-e-getta, con SQLite:
 
 ```bash
-cd demos/accoglienza-fma-template/wordpress/fma-richieste
+cd demos/accoglienza-fma-template/wordpress/plugins/fma-richieste
 bash tests/setup.sh
-php -S 127.0.0.1:8899 tests/router.php &
+php -S 127.0.0.1:8899 -t tests/wp/wordpress tests/router.php &
 python3 tests/test_richieste.py      # 26 controlli
 ```
 

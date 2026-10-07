@@ -29,14 +29,6 @@ DEMO_URL = 'https://naplesexperiences-netizen.github.io/experiences-demos/demos/
 MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto',
         'settembre', 'ottobre', 'novembre', 'dicembre']
 
-# Articolo -> casa collegata (stesso territorio)
-ARTICOLO_CASA = {
-    'la-storia-dellaltopiano-di-asiago': 'villa-tabor',
-    'soverato-la-perla-della-calabria': 'fma-soverato',
-    'il-giubileo-a-roma': 'fma-roma',
-    'cosa-fare-a-napoli': 'fma-napoli',
-    'perche-visitare-torre-annunziata': 'villa-tiberiade',
-}
 
 e = html.escape
 
@@ -539,7 +531,6 @@ def struttura(s):
         room_opts += '<option>Più tipologie (gruppo)</option>'
     else:
         room_opts = '<option>Camera singola</option><option>Camera doppia</option><option>Camera per famiglia</option><option>Più camere (gruppo)</option>'
-    today = date.today().isoformat()
     aside = f'''<aside class="stay__aside" data-aside aria-label="Contatti e richiesta di soggiorno">
     <div class="contact">
       <div class="contact__head">
@@ -554,8 +545,8 @@ def struttura(s):
       <h2 id="req-title" class="request__title">Richiedi un soggiorno</h2>
       <p class="request__hint">Senza impegno: la casa ti risponde con disponibilità e prezzi.</p>
       <div class="request__dates">
-        <div class="field"><label for="r-arrivo">Arrivo</label><input id="r-arrivo" name="arrivo" type="date" min="{today}" required data-date-in aria-describedby="r-arrivo-err"><p class="field__err" id="r-arrivo-err"></p></div>
-        <div class="field"><label for="r-partenza">Partenza</label><input id="r-partenza" name="partenza" type="date" min="{today}" required data-date-out aria-describedby="r-partenza-err"><p class="field__err" id="r-partenza-err"></p></div>
+        <div class="field"><label for="r-arrivo">Arrivo</label><input id="r-arrivo" name="arrivo" type="date" required data-date-in aria-describedby="r-arrivo-err"><p class="field__err" id="r-arrivo-err"></p></div>
+        <div class="field"><label for="r-partenza">Partenza</label><input id="r-partenza" name="partenza" type="date" required data-date-out aria-describedby="r-partenza-err"><p class="field__err" id="r-partenza-err"></p></div>
       </div>
       <p class="request__nights" data-nights aria-live="polite"></p>
       <fieldset class="request__people">
@@ -635,7 +626,7 @@ def blog_index():
     out.append(masthead(root, 'Blog'))
     rows = []
     for i, a in enumerate(ARTICOLI):
-        casa = BY_SLUG.get(ARTICOLO_CASA.get(a['slug'], ''))
+        casa = BY_SLUG.get(a.get('casa', ''))
         rows.append(f'''<li class="entry{' entry--lead' if i == 0 else ''}">
       <a href="{a['slug']}/">
         <span class="entry__media"{' data-unveil' if i == 0 else ''}>{img(root, f"blog/{a['slug']}.webp", '', *dims(f"blog/{a['slug']}"), lazy=i > 0, priority=i == 0)}</span>
@@ -663,7 +654,7 @@ def articolo(a):
     root = '../../'
     out = [head(root, f"{a['titolo']} · {SITE}", a['estratto'][:155], 'articolo')]
     out.append(masthead(root, 'Blog'))
-    casa = BY_SLUG.get(ARTICOLO_CASA.get(a['slug'], ''))
+    casa = BY_SLUG.get(a.get('casa', ''))
     near = ''
     if casa:
         near = f'''<aside class="near" aria-label="Casa vicina">
