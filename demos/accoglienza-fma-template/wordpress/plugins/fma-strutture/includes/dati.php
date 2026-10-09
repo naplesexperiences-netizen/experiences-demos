@@ -63,6 +63,7 @@ function fma_struttura_dati( $post ): array {
 		'camere'        => (array) $m( 'fma_camere' ),
 		'camere_totali' => (int) $m( 'fma_camere_totali' ) ?: null,
 		'prezzo_da'     => '' === $m( 'fma_prezzo_da' ) ? null : (float) $m( 'fma_prezzo_da' ),
+		'prezzo_unita'  => (string) $m( 'fma_prezzo_unita' ),
 		'tassa'         => (string) $m( 'fma_tassa' ),
 		'orari'         => (string) $m( 'fma_orari' ),
 		'dintorni'      => (array) $m( 'fma_dintorni' ),

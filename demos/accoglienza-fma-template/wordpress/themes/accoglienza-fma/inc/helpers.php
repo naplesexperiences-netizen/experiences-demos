@@ -133,6 +133,16 @@ function fma_prezzo( float $valore ): string {
 	return floor( $valore ) === $valore ? number_format_i18n( $valore ) : number_format_i18n( $valore, 2 );
 }
 
+/** «a persona a notte», «a camera a notte» o solo «a notte», secondo il campo «Il prezzo è». */
+function fma_prezzo_unita( string $unita ): string {
+	return array( 'persona' => 'a persona a notte', 'camera' => 'a camera a notte' )[ $unita ] ?? 'a notte';
+}
+
+/** Tassa di soggiorno senza l'eventuale «Tassa di soggiorno:» iniziale, perché l'etichetta la mette il tema. */
+function fma_tassa_testo( string $tassa ): string {
+	return trim( (string) preg_replace( '/^\s*tassa\s+di\s+soggiorno\s*[:\-–]?\s*/iu', '', $tassa ) );
+}
+
 /**
  * Immagine da caricare più tardi via JS (slide dello slider non ancora visibili):
  * src, srcset e sizes passano in attributi data-, al loro posto un segnaposto trasparente.

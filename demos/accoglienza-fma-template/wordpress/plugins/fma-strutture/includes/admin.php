@@ -50,7 +50,15 @@ function fma_admin_campo( WP_Post $post, string $chiave ): void {
 	?>
 	<p class="fma-campo">
 		<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $campo['etichetta'] ); ?></label>
-		<input class="widefat" id="<?php echo esc_attr( $id ); ?>" name="fma[<?php echo esc_attr( $chiave ); ?>]" type="<?php echo esc_attr( $tipo ); ?>" value="<?php echo esc_attr( (string) $valore ); ?>"<?php echo $extra; // phpcs:ignore ?>>
+		<?php if ( isset( $campo['opzioni'] ) ) : ?>
+			<select class="widefat" id="<?php echo esc_attr( $id ); ?>" name="fma[<?php echo esc_attr( $chiave ); ?>]">
+				<?php foreach ( $campo['opzioni'] as $v => $testo ) : ?>
+					<option value="<?php echo esc_attr( (string) $v ); ?>"<?php selected( (string) $valore, (string) $v ); ?>><?php echo esc_html( $testo ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		<?php else : ?>
+			<input class="widefat" id="<?php echo esc_attr( $id ); ?>" name="fma[<?php echo esc_attr( $chiave ); ?>]" type="<?php echo esc_attr( $tipo ); ?>" value="<?php echo esc_attr( (string) $valore ); ?>"<?php echo $extra; // phpcs:ignore ?>>
+		<?php endif; ?>
 		<?php if ( ! empty( $campo['aiuto'] ) ) : ?>
 			<span class="description"><?php echo esc_html( $campo['aiuto'] ); ?></span>
 		<?php endif; ?>
@@ -62,7 +70,7 @@ function fma_admin_render_scheda( WP_Post $post ): void {
 	wp_nonce_field( 'fma_salva_struttura', 'fma_nonce' );
 	echo '<p class="description">L’introduzione della pagina è il <strong>Riassunto</strong> (pannello a destra); le sezioni descrittive (storia, spazi…) si scrivono nell’editor, ognuna con un titolo.</p>';
 	echo '<div class="fma-griglia">';
-	foreach ( array( 'fma_tipo', 'fma_titolo_hero', 'fma_localita', 'fma_provincia', 'fma_indirizzo', 'fma_camere_totali', 'fma_lat', 'fma_lng', 'fma_prezzo_da', 'fma_tassa', 'fma_orari', 'fma_booking_url' ) as $k ) {
+	foreach ( array( 'fma_tipo', 'fma_titolo_hero', 'fma_localita', 'fma_provincia', 'fma_indirizzo', 'fma_camere_totali', 'fma_lat', 'fma_lng', 'fma_prezzo_da', 'fma_prezzo_unita', 'fma_tassa', 'fma_orari', 'fma_booking_url' ) as $k ) {
 		fma_admin_campo( $post, $k );
 	}
 	echo '</div>';
@@ -211,7 +219,7 @@ function fma_admin_salva_struttura( int $post_id, WP_Post $post ): void {
 		if ( ! array_key_exists( $chiave, $dati ) ) {
 			continue;
 		}
-		$valore = fma_pulisci_valore( $dati[ $chiave ], $campo['tipo'] );
+		$valore = fma_pulisci_campo( $chiave, $dati[ $chiave ] );
 		if ( '' === $valore || ( 'boolean' === $campo['tipo'] && ! $valore ) ) {
 			delete_post_meta( $post_id, $chiave );
 		} else {

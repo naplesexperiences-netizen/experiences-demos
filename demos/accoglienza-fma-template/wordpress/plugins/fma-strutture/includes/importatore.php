@@ -164,6 +164,7 @@ class FMA_Importatore {
 			'fma_lng'           => $s['lng'] ?? '',
 			'fma_camere_totali' => $s['camere_totali'] ?? '',
 			'fma_prezzo_da'     => $s['prezzo_da'] ?? '',
+			'fma_prezzo_unita'  => $s['prezzo_unita'] ?? '',
 			'fma_tassa'         => $s['tassa'] ?? '',
 			'fma_orari'         => $s['orari'] ?? '',
 			'fma_booking_url'   => $s['booking_url'] ?? '',

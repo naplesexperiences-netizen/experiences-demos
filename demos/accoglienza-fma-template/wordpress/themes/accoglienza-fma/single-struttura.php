@@ -152,7 +152,7 @@ while ( have_posts() ) :
 				</section>
 			<?php endif; ?>
 
-			<?php $info = array_values( array_filter( array_merge( array( $s['orari'] ), $s['regole'], array( $s['tassa'] ) ) ) ); ?>
+			<?php $info = array_values( array_filter( array_merge( array( $s['orari'] ), $s['regole'] ) ) ); ?>
 			<?php if ( $info ) : ?>
 				<section class="block" aria-labelledby="h-sapere">
 					<h2 id="h-sapere" class="block__title">Da sapere</h2>
@@ -199,8 +199,16 @@ while ( have_posts() ) :
 					<?php echo fma_immagine( $c['logo'], 'medium', array( 'class' => 'contact__logo', 'alt' => '' ) ); // phpcs:ignore ?>
 					<div><p class="contact__kicker">Ti risponde</p><p class="contact__name"><?php echo esc_html( $c['nome'] ?: $s['nome'] ); ?></p></div>
 				</div>
-				<?php if ( null !== $s['prezzo_da'] ) : ?>
-					<p class="contact__price">Indicativo: da <strong><?php echo esc_html( fma_prezzo( $s['prezzo_da'] ) ); ?> €</strong> a notte</p>
+				<?php $tassa = fma_tassa_testo( $s['tassa'] ); ?>
+				<?php if ( null !== $s['prezzo_da'] || $tassa ) : ?>
+					<dl class="contact__prices">
+						<?php if ( null !== $s['prezzo_da'] ) : ?>
+							<div class="contact__price"><dt>Prezzo indicativo</dt><dd>da <strong><?php echo esc_html( fma_prezzo( $s['prezzo_da'] ) ); ?>&nbsp;€</strong> <?php echo esc_html( fma_prezzo_unita( $s['prezzo_unita'] ?? '' ) ); ?></dd></div>
+						<?php endif; ?>
+						<?php if ( $tassa ) : ?>
+							<div class="contact__tax"><dt>Tassa di soggiorno</dt><dd><?php echo esc_html( $tassa ); ?></dd></div>
+						<?php endif; ?>
+					</dl>
 				<?php endif; ?>
 				<div class="contact__rows">
 					<?php if ( $c['telefono'] ) : ?>
