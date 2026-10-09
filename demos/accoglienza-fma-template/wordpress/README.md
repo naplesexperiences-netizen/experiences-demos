@@ -41,6 +41,7 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Loghi che scorrono | **Partner**: titolo, logo (immagine in evidenza) e link. |
 | Chi siamo, testata, piè di pagina | **Personalizza → Home page**. Logo: **Personalizza → Identità del sito**. |
 | Pagina della struttura | Riassunto = introduzione; il testo dell'editor diventa una sezione per ogni titolo H2. Camere, galleria, dintorni, regole, contatti e prezzo sono nei box sotto l'editor. |
+| Prezzo e tassa di soggiorno (scheda contatti della casa) | Box *Scheda della struttura*: «Prezzo minimo a notte», «Il prezzo è» (a persona o a camera) e «Tassa di soggiorno» (testo libero, con importo ed esenzioni). Compaiono solo se compilati. |
 | Box «Dormi vicino» negli articoli | Box *Casa collegata* nella modifica dell'articolo. |
 | «Come si prenota» (3 passi) in home | **Personalizza → Home page**, campi «Passo 1/2/3» (titolo, testo e foto; senza foto scelta si usa una foto delle case). |
 | Recensioni («Dicono di noi» in home, «Cosa dicono gli ospiti» nella pagina della casa) | **Strutture → Tutte le recensioni**: nome dell'ospite, testo, casa, fonte, voto, periodo e link all'originale. Solo recensioni reali. Senza recensioni pubblicate le sezioni non compaiono. |

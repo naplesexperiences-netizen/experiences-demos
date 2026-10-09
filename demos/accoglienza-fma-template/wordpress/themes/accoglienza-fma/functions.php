@@ -5,7 +5,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_TEMA_VERSIONE', '1.1.0' );
+define( 'FMA_TEMA_VERSIONE', '1.2.0' );
 
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/customizer.php';
