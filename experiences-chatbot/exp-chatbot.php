@@ -3,7 +3,7 @@
  * Plugin Name:  Experiences Chatbot
  * Plugin URI:   https://www.naplesexperiences.com
  * Description:  Chatbot testuale configurabile per Experiences Srl, con risposte AI opzionali.
- * Version:      2.1.0
+ * Version:      2.1.1
  * Author:       Experiences Srl
  * License:      Proprietary
  * Text Domain:  exp-chatbot
@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EXP_CHATBOT_VERSION', '2.1.0' );
+define( 'EXP_CHATBOT_VERSION', '2.1.1' );
 
 /* =========================================================
    MODELLI
