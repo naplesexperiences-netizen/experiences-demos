@@ -324,7 +324,18 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 /* ---------- chapters: full-screen sections stacked with sticky; a section taller than the screen scrolls through,
    then holds while the next slides over it (--stick is set by script) ---------- */
 .chapters{position:relative}
-.chapter{position:sticky;top:var(--stick,0px);min-height:100vh;min-height:100svh;display:grid;align-content:center;isolation:isolate;overflow:hidden}
+/* every section is exactly one screen (the large viewport, so nothing shows below it when the browser bars hide);
+   the content is centred in the part that is always visible */
+.chapter{position:sticky;top:0;height:100vh;height:100lvh;display:grid;align-content:center;isolation:isolate;overflow:hidden;
+  padding:clamp(.75rem,3vh,2rem) 0 calc(clamp(.75rem,3vh,2rem) + 100lvh - 100svh)}
+.chapter.hero{padding-top:clamp(.5rem,2vh,1.5rem);padding-bottom:calc(100lvh - 100svh);align-content:end}
+.chapter > .wrap{max-height:calc(100svh - 2*clamp(.75rem,3vh,2rem));overflow-y:auto;scrollbar-width:thin}
+.panel.narrow{width:min(100% - 2.5rem,38rem)}
+/* snap points, one per screen: plain boxes beside the sticky sections */
+.snap{position:absolute;left:0;width:1px;height:100vh;height:100lvh;top:calc(var(--i) * 100vh);top:calc(var(--i) * 100lvh);scroll-snap-align:start;pointer-events:none}
+html{scroll-snap-type:y mandatory}
+#rsvp{scroll-snap-align:start}
+footer{scroll-snap-align:end}
 .chapter + .chapter{box-shadow:0 -28px 50px -28px rgb(20 6 12 / .5)}
 .chapter .dim{position:absolute;inset:0;z-index:20;background:#120609;opacity:0;pointer-events:none}
 .chapter.photo{background:var(--sea-deep)}
@@ -337,6 +348,70 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
   padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--surface) 74%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
 .panel .lead{color:var(--muted)}
 #foto .wall-bar,#foto .steps{position:relative}
+.chapter h2{font-size:clamp(2.2rem,6vw,3.2rem)}
+.chapter .lead{margin-bottom:1.25rem}
+.chapter .timeline li{padding-bottom:1.1rem}
+.chapter .timeline h3{font-size:1.3rem}
+.chapter .timeline p{line-height:1.45}
+.chapter .route{margin:1rem 0}
+.chapter .facts li{padding:.5rem 0}
+.chapter .ig-head{margin-bottom:1rem}
+.chapter .steps{margin-bottom:1rem;gap:.6rem}
+.chapter .wall{grid-template-columns:repeat(6,1fr)}
+.chapter .wall li:nth-child(n+7){display:none}
+.chapter .note{margin-top:.75rem;font-size:.9rem}
+.chapter .gift{gap:1.5rem}
+.chapter .house{max-width:11rem}
+@media (max-width:600px){
+  .panel{padding:1.25rem 1.1rem}
+  .chapter h2{font-size:2.3rem}
+  .chapter .lead{font-size:1.05rem;line-height:1.45;margin-bottom:1rem}
+  .chapter .timeline::before{left:4.1rem}
+  .chapter .timeline li{grid-template-columns:3.4rem 1fr;gap:1.2rem;padding-bottom:.8rem}
+  .chapter .timeline li::after{left:calc(4.1rem - 7px)}
+  .chapter .timeline time{font-size:1.1rem}
+  .chapter .timeline h3{font-size:1.15rem}
+  .chapter .timeline p{font-size:1rem;line-height:1.35}
+  .chapter .place-grid{gap:1.25rem}
+  .chapter .room{padding:1.1rem}
+  .chapter .bank{padding:1rem 1.1rem}
+  .chapter .house{max-width:6.5rem}
+  .chapter .wall{grid-template-columns:repeat(3,1fr)}
+  .chapter .wall li:nth-child(n+4){display:none}
+  .chapter .steps li{font-size:1rem;line-height:1.35}
+}
+/* short landscape screens: the whole temple still fits in one screen */
+@media (min-width:700px) and (max-height:800px){
+  .templum{width:min(100% - 1rem,56rem)}
+  .card{padding-top:2.3rem;padding-bottom:1rem}
+  .names{font-size:clamp(2.6rem,7.5vh,4rem);margin:0 0 .2rem}
+  .intro{font-size:1rem}
+  .rotator{margin:.3rem 0 .5rem}
+  .when{font-size:1.15rem}
+  .where{margin-bottom:.8rem}
+  .greca.bottom{margin-top:.7rem}
+}
+@media (min-width:700px) and (max-height:620px){
+  .templum{width:min(100% - 1rem,46rem)}
+  .intro,.greca.bottom{display:none}
+  .names .amp{margin:-.25em 0}
+}
+/* short screens: drop the decorations, keep the content */
+@media (max-height:780px){
+  .chapter .house{display:none}
+  .chapter .gift{display:block}
+  .chapter .note{display:none}
+  .panel{padding-block:1rem}
+  .chapter h2{font-size:2.1rem;margin-bottom:.25rem}
+  .chapter .lead{margin-bottom:.75rem}
+  .chapter .steps{grid-template-columns:1fr;gap:.35rem}
+  .chapter .bank .row{padding:.4rem 0}
+  .chapter .bank dd{font-size:1.05rem}
+  .chapter .wall-bar{margin-bottom:.5rem}
+  .chapter .ig-tag .actions{flex-wrap:nowrap;gap:.5rem}
+  .chapter .tag{margin:0 0 .4rem}
+  .chapter .steps li::before{width:1.6rem;height:1.6rem;font-size:.85rem}
+}
 #rsvp{position:relative;z-index:1;scroll-margin-top:0}
 /* section index */
 .dots{position:fixed;right:max(.5rem,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:60;display:grid;gap:.2rem;margin:0;padding:0;list-style:none;transition:opacity .3s}
@@ -347,7 +422,7 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 .dots.off{opacity:0;pointer-events:none}
 html.env-wait .dots{opacity:0}
 @media (max-width:600px){.dots{right:0}.dots a{width:34px;height:34px}.chapter .wrap{width:auto;margin-inline:1rem 2.4rem}}
-@media (prefers-reduced-motion: reduce){.chapter{position:relative;top:auto}}
+@media (prefers-reduced-motion: reduce){.chapter{position:relative}}
 </style>
 </head>
 <body>
@@ -386,7 +461,8 @@ html.env-wait .dots{opacity:0}
     <li><a href="#countdown" aria-label="Conto alla rovescia"></a></li>
     <li><a href="#programma" aria-label="Programma"></a></li>
     <li><a href="#luoghi" aria-label="I luoghi"></a></li>
-    <li><a href="#viaggio" aria-label="Autobus e hotel"></a></li>
+    <li><a href="#viaggio" aria-label="L'autobus"></a></li>
+    <li><a href="#hotel" aria-label="L'hotel"></a></li>
     <li><a href="#regalo" aria-label="Il regalo"></a></li>
     <li><a href="#foto" aria-label="Le vostre foto"></a></li>
     <li><a href="#rsvp" aria-label="Conferma la presenza"></a></li>
@@ -394,6 +470,8 @@ html.env-wait .dots{opacity:0}
 </nav>
 <main>
 <div class="chapters" id="chapters">
+<!-- one snap point per screen: the sections are sticky, so the points sit on plain boxes beside them -->
+<div aria-hidden="true"><span class="snap" style="--i:0"></span><span class="snap" style="--i:1"></span><span class="snap" style="--i:2"></span><span class="snap" style="--i:3"></span><span class="snap" style="--i:4"></span><span class="snap" style="--i:5"></span><span class="snap" style="--i:6"></span><span class="snap" style="--i:7"></span></div>
 <header class="hero chapter" id="inizio" aria-label="Invito">
  <div class="dim"></div>
  <div class="templum">
@@ -504,8 +582,7 @@ html.env-wait .dots{opacity:0}
 
   <section class="chapter photo" id="viaggio" aria-labelledby="viaggio-title">
     <div class="media" aria-hidden="true"><img src="img/bg-viaggio.webp" alt="" decoding="async" style="object-position:12% 60%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
-    <div class="wrap split panel">
-      <div>
+    <div class="wrap panel narrow">
         <h2 id="viaggio-title">L'autobus</h2>
         <p class="lead" style="margin-bottom:0">Lasciate la macchina a casa: vi portiamo noi a Paestum e vi riportiamo indietro.</p>
         <div class="route" aria-hidden="true">
@@ -520,7 +597,11 @@ html.env-wait .dots{opacity:0}
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Prenota i posti nel modulo di conferma.</span></li>
         </ul>
       </div>
-      <div>
+  </section>
+
+  <section class="chapter photo" id="hotel" aria-labelledby="hotel-title">
+    <div class="media" aria-hidden="true"><img src="img/bg-festa.webp" alt="" decoding="async" style="object-position:80% 35%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
+    <div class="wrap panel narrow">
         <h2 id="hotel-title">Restate a dormire</h2>
         <p class="lead" style="margin-bottom:1.5rem">Niente strada di notte: brindate fino all'ultimo e svegliatevi vicino al mare.</p>
         <div class="room" aria-labelledby="room-title">
@@ -534,7 +615,6 @@ html.env-wait .dots{opacity:0}
           <a class="btn btn-ghost" href="#rsvp" style="margin-top:1rem">Prenota nel modulo</a>
         </div>
       </div>
-    </div>
   </section>
 
   <section class="chapter photo" id="regalo" aria-labelledby="regalo-title">
@@ -905,47 +985,20 @@ html.env-wait .dots{opacity:0}
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var chapters=[].slice.call(document.querySelectorAll('.chapter')), rsvp=document.getElementById('rsvp');
   var dots=[].slice.call(document.querySelectorAll('#dots a')), dotsBox=document.getElementById('dots');
-  function setSticks(){ var vh=window.innerHeight; chapters.forEach(function(c){ c.style.setProperty('--stick',Math.min(0,vh-c.offsetHeight)+'px') }) }
-  setSticks(); addEventListener('resize',setSticks); if(document.fonts) document.fonts.ready.then(function(){ setSticks(); if(window.ScrollTrigger) ScrollTrigger.refresh() });
   function current(id){ dots.forEach(function(a){ if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current') }) }
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) current(e.target.id) }) },{rootMargin:'-45% 0px -54% 0px'});
     chapters.concat([rsvp]).forEach(function(c){ io.observe(c) });
     new IntersectionObserver(function(es){ dotsBox.classList.toggle('off',es[0].isIntersecting) },{rootMargin:'0px 0px -60% 0px'}).observe(rsvp);
   }
-  if('ResizeObserver' in window){ var rt; new ResizeObserver(function(){ clearTimeout(rt); rt=setTimeout(function(){ setSticks(); if(window.ScrollTrigger) ScrollTrigger.refresh() },150) })
-    .observe(document.getElementById('chapters')) }
   if(reduce||!window.gsap||!window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
-  /* start of each section in scroll space (sticky never moves the layout, so heights add up) */
-  function starts(){ var top=document.getElementById('chapters').getBoundingClientRect().top+window.scrollY, acc=top, out=[];
-    chapters.forEach(function(c){ out.push(acc); acc+=c.offsetHeight }); out.push(acc); return out }
   chapters.forEach(function(ch,i){
     var img=ch.querySelector('.media img');
     if(img) gsap.fromTo(img,{scale:1.16},{scale:1,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'top top',scrub:true}});
     var nxt=chapters[i+1]||rsvp, dim=ch.querySelector('.dim');
     if(dim) gsap.to(dim,{opacity:.6,ease:'none',scrollTrigger:{trigger:nxt,start:'top bottom',end:'top top',scrub:true}});
   });
-  /* every gesture settles on the next (or previous) stop: the start of each section and, for a section taller than the
-     screen, its end; only inside a really long section, and inside the form, the reader scrolls freely */
-  /* where the current gesture started: updated when a settle completes, never by the gesture itself */
-  var anchor=window.scrollY;
-  ScrollTrigger.create({start:0,end:'max',snap:{snapTo:function(v,self){
-      var s0=self.start, span=Math.max(1,self.end-self.start), y=s0+v*span, vh=window.innerHeight, dir=(self&&self.direction)||1, st=starts(), stops=[];
-      for(var i=0;i<chapters.length;i++){ var a=st[i], L=st[i+1]-a-vh; stops.push(a);
-        if(L>2){ if(L>vh*0.6&&y>a+vh*0.25&&y<a+L-vh*0.25){ anchor=y; return v } stops.push(a+L) } }
-      var last=st[chapters.length]; stops.push(last); if(y>last+vh*0.25){ anchor=y; return v }
-      /* already resting on a stop: stay (the library re-checks after each settle) */
-      for(var j=0;j<stops.length;j++) if(Math.abs(stops[j]-y)<6){ anchor=stops[j]; return v }
-      function at(t){ return Math.max(0,Math.min(1,(t-s0)/span)) }
-      /* the next stop beyond where this gesture started, without pulling back more than half a screen after a fling */
-      var t=null; stops.forEach(function(p){
-        if(dir>0){ if(p>anchor+4&&p>=y-vh*0.5&&(t===null||p<t)) t=p }
-        else { if(p<anchor-4&&p<=y+vh*0.5&&(t===null||p>t)) t=p } });
-      if(t===null){ anchor=y; return v } return at(t) },
-    duration:{min:.3,max:.8},delay:.12,ease:'power2.inOut',onComplete:function(){ anchor=window.scrollY }}});
-  /* a jump from the section index or a link resets the starting point */
-  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) setTimeout(function(){ anchor=window.scrollY },900) });
 })();
 </script>
 </body>
