@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -10,116 +10,180 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Figtree:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-/* Layout: six full-screen chapters stacked with position:sticky, each on its own photo or video; the next chapter slides over the
-   previous one and the page settles on it. Native scroll stays in charge; GSAP only adds zoom, dimming and text entrances. RSVP follows in normal flow. */
 :root{
-  --bg:#FBF7F5; --surface:#FFFFFF; --surface-2:#F5ECEB; --ink:#2B1B23; --muted:#5E4B55; --line:#EADCDD; --field:#8C7680;
-  --sea:#A3294F; --primary:var(--sea); --on-sea:#FFFFFF; --primary-soft:#F7E3E9; --sea-deep:#3A1426; --stone:#C8A464; --stone-dark:#9C7C3E; --rose:#7E5309;
-  --error:#B42318; --error-soft:#FDECEA; --success:#2F6B3A; --r-ctl:12px;
-  --cream:#FBF3EC; --scrim:rgb(26 9 17 / .58);
-  --script:"Great Vibes","Brush Script MT",cursive;
-  --serif:"Cormorant Infant","Cormorant Garamond",Garamond,"Times New Roman",serif;
+  /* --sea is the primary (antique rose), --rose the accent (gold), --sea-deep the dark bands */
+  --bg:#FBF7F5; --surface:#FFFFFF; --surface-2:#F5ECEB; --sea:#A3294F; --sea-deep:#3A1426; --rose:#7E5309; --stone:#C8A464; --stone-dark:#9C7C3E;
+  --olive:#5E6B2F; --ink:#2B1B23; --muted:#5E4B55; --line:#EADCDD; --field:#8C7680; --on-sea:#FFFFFF; --error:#B42318;
+  --primary:var(--sea); --primary-soft:#F7E3E9; --error-soft:#FDECEA; --success:#2F6B3A;
+  --sky-top:#F7E3E9; --sky-bottom:#FBF7F5; --r-ctl:12px;
   --ui:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --script:"Great Vibes","Brush Script MT","Segoe Script",cursive;
+  --serif:"Cormorant Infant","Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --figures:var(--ui); --on-rose:#FFFFFF;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590;
-  --sea:#F08FB0; --on-sea:#2B0F1A; --primary-soft:#3A1D29; --sea-deep:#0E080B; --rose:#E2B75A; --error:#FF8A80; --error-soft:#3B1E1C; --success:#8FD19E; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590;
-  --sea:#F08FB0; --on-sea:#2B0F1A; --primary-soft:#3A1D29; --sea-deep:#0E080B; --rose:#E2B75A; --error:#FF8A80; --error-soft:#3B1E1C; --success:#8FD19E; color-scheme:dark}
-
-*,*::before,*::after{box-sizing:border-box}
-[hidden]{display:none!important}
-html{accent-color:var(--sea)}
-body{margin:0;background:var(--sea-deep);color:var(--ink);font:1.1875rem/1.6 var(--serif);-webkit-font-smoothing:antialiased}
-a{color:var(--sea);text-underline-offset:.2em}
-:focus-visible{outline:3px solid var(--sea);outline-offset:3px;border-radius:6px}
-.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.lead{margin:.4rem 0 0;color:var(--muted)}
-h2{font:400 clamp(2.6rem,7vw,3.6rem)/1.1 var(--script);color:var(--sea);margin:0}
-svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.6rem 1.3rem;border-radius:999px;border:2px solid var(--sea);
-  font:600 1rem/1 var(--ui);text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s,transform .12s}
+  --bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590; --sea:#F08FB0; --sea-deep:#0E080B; --rose:#E2B75A;
+  --on-sea:#2B0F1A; --on-rose:#2B0F1A; --error:#FF8A80; --primary-soft:#3A1D29; --error-soft:#3B1E1C; --success:#8FD19E; --sky-top:#2A1820; --sky-bottom:#161013; color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590; --sea:#F08FB0; --sea-deep:#0E080B; --rose:#E2B75A;
+  --on-sea:#2B0F1A; --on-rose:#2B0F1A; --error:#FF8A80; --primary-soft:#3A1D29; --error-soft:#3B1E1C; --success:#8FD19E; --sky-top:#2A1820; --sky-bottom:#161013; color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.1875rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--sea);text-underline-offset:.2em;text-decoration-thickness:1px}
+::selection{background:var(--primary-soft);color:var(--ink)}
+html{accent-color:var(--sea);caret-color:var(--rose);scrollbar-color:color-mix(in srgb,var(--stone) 70%,transparent) var(--bg)}
+:focus-visible{outline:3px solid var(--sea);outline-offset:3px;border-radius:4px}
+.countdown :focus-visible,footer :focus-visible{outline-color:var(--stone)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.wrap{width:min(100% - 2.5rem, 68rem);margin-inline:auto}
+section{padding:clamp(4rem,10vw,7rem) 0}
+h2{font-family:var(--script);font-weight:400;color:var(--sea);font-size:clamp(2.6rem,8vw,3.6rem);line-height:1.1;margin:0 0 .5rem}
+.lead{margin:0 0 2.5rem;color:var(--muted);max-width:38rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.65rem 1.4rem;border-radius:999px;font:600 1rem/1 var(--ui);text-decoration:none;cursor:pointer;border:2px solid var(--sea);transition:background-color .2s,color .2s,transform .15s}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:var(--sea);color:var(--on-sea)}
-.btn-primary:hover{background:color-mix(in srgb,var(--sea) 85%,#000)}
+.btn-primary:hover{background:var(--ink);border-color:var(--ink)}
 .btn-ghost{background:transparent;color:var(--sea)}
 .btn-ghost:hover{background:color-mix(in srgb,var(--sea) 10%,transparent)}
 
-/* ---------- chapters ---------- */
-.chapters{position:relative}
-.chapter{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;color:var(--cream);isolation:isolate}
-.chapter:focus-visible{outline-offset:-6px}
-.media{position:absolute;inset:0;z-index:-2;overflow:hidden;background:var(--sea-deep)}
-.media > *{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.media .ph{transform-origin:50% 60%}
-.media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(26 9 17 / .55) 0%,rgb(26 9 17 / .2) 55%,transparent 75%),linear-gradient(180deg,rgb(26 9 17 / .25) 0%,var(--scrim) 55%,rgb(26 9 17 / .85) 100%)}
-.chapter.center .media::after{background:linear-gradient(180deg,rgb(26 9 17 / .25) 0%,var(--scrim) 55%,rgb(26 9 17 / .85) 100%)}
-.dim{position:absolute;inset:0;z-index:-1;background:#120609;opacity:0;pointer-events:none}
-.inner{align-self:end;width:min(100% - 2rem,64rem);margin-inline:auto;padding-block:5rem calc(4.5rem + env(safe-area-inset-bottom,0px));display:grid;gap:1rem}
-.chapter.center .inner{align-self:center;text-align:center;justify-items:center;padding-bottom:5rem}
-.kicker-line{display:flex;align-items:center;gap:.6rem;font:600 .85rem/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
-.chapter h2{color:var(--cream);font-size:clamp(3rem,10vw,5.5rem);line-height:1}
-.chapter p{margin:0;max-width:38rem;font-size:clamp(1.15rem,2.6vw,1.4rem);color:rgb(251 243 236 / .92)}
-.chapter .btn-primary{--sea:#F2C4D3;--on-sea:#2B0F1A}
-.chapter .btn-ghost{color:var(--cream);border-color:rgb(251 243 236 / .7)}
-.chapter .btn-ghost:hover{background:rgb(251 243 236 / .12)}
-.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
-.pill{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .85rem;border-radius:999px;background:rgb(251 243 236 / .14);border:1px solid rgb(251 243 236 / .25);
-  font:500 .95rem/1.2 var(--ui);color:var(--cream);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-
-/* hero chapter */
-.names{font:400 clamp(4rem,14vw,7.5rem)/.95 var(--script);margin:0;color:var(--cream);text-shadow:0 2px 30px rgb(0 0 0 / .35)}
-/* Great Vibes draws its glyphs right of their advance box: shift each line so the ink sits on the page axis */
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;justify-items:center;overflow:hidden;isolation:isolate;padding:clamp(1rem,3vh,2.5rem) 0 0;
+  background:linear-gradient(180deg,var(--sky-top),var(--sky-bottom) 70%)}
+.templum{position:relative;width:min(100% - 1rem,68rem);display:flex;flex-direction:column}
+.sun{position:absolute;z-index:-1;width:min(90vw,40rem);aspect-ratio:1;border-radius:50%;left:50%;top:0;
+  background:radial-gradient(circle,color-mix(in srgb,var(--stone) 55%,transparent),transparent 65%);
+  transform:translate(-50%,-10%);opacity:0;animation:sunUp 2.4s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes sunUp{to{transform:translate(-50%,-45%);opacity:1}}
+.pediment,.stylobate{display:block;width:100%;height:auto;color:var(--stone)}
+.pediment{opacity:0;transform:translateY(-30px);animation:settle .9s cubic-bezier(.22,1,.36,1) forwards;animation-delay:1.25s}
+@keyframes settle{to{opacity:1;transform:none}}
+.stylobate{height:clamp(1.5rem,3.2vw,2.5rem)}
+.colonnade{display:grid;grid-template-columns:1fr minmax(0,34rem) 1fr;padding-inline:1.5%}
+.side{display:flex;justify-content:space-around;gap:.5rem}
+.col{--cw:clamp(1.1rem,3.4vw,3rem);width:var(--cw);display:flex;flex-direction:column;align-items:center;
+  transform-origin:50% 100%;transform:scaleY(0);animation:rise .9s cubic-bezier(.34,1.3,.64,1) forwards;animation-delay:var(--d)}
+.col::before{content:"";width:calc(100% + .6rem);height:.6rem;flex:none;background:var(--stone)}
+.col::after{content:"";flex:1;width:100%;background:
+  repeating-linear-gradient(90deg,transparent 0 22%,color-mix(in srgb,var(--stone-dark) 45%,transparent) 22% 25%),
+  linear-gradient(90deg,var(--stone-dark) 0,var(--stone) 18%,var(--stone) 70%,var(--stone-dark));
+  clip-path:polygon(6% 0,94% 0,100% 100%,0 100%)}
+@keyframes rise{to{transform:scaleY(1)}}
+.col.far,.col.mid{display:none}
+@media (min-width:700px){.col.mid{display:flex}}
+@media (min-width:1100px){.col.far{display:flex}}
+.card{position:relative;margin:clamp(.9rem,1.6vw,1.25rem) clamp(.6rem,1.5vw,1.25rem);background:var(--surface);text-align:center;padding:2.5rem 2rem 2rem;border-radius:2px;
+  box-shadow:0 0 0 6px var(--surface),0 0 0 7px var(--stone),0 24px 40px -24px rgba(18,63,80,.5);
+  opacity:0;transform:translateY(24px) scale(.97);animation:cardIn 1s cubic-bezier(.22,1,.36,1) forwards;animation-delay:1.7s}
+@keyframes cardIn{to{opacity:1;transform:none}}
+.greca{display:block;width:12rem;height:14px;margin:0 auto 1rem;color:var(--stone)}
+.greca.bottom{margin:1.5rem auto 0}
+/* portrait slot: swap the placeholder for <img src="..." alt="Bartolo e Paola"> when the photos arrive */
+.portrait{position:relative;width:clamp(5.5rem,16vw,7rem);aspect-ratio:1;max-width:100%;margin:-.5rem auto 1rem;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--stone);background:linear-gradient(160deg,var(--primary-soft),var(--surface-2))}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.portrait .ph{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:.15rem;color:var(--muted);font:500 .7rem/1.2 var(--ui);text-align:center}
+.portrait .ph svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.intro{margin:0;font-style:italic;color:var(--muted);font-size:1.15rem}
+.names{font-family:var(--script);font-weight:400;font-size:clamp(3.4rem,13vw,5.6rem);line-height:1.05;color:var(--ink);margin:.35rem 0 .5rem;
+  clip-path:inset(0 100% 0 0);animation:write 1.8s cubic-bezier(.65,0,.35,1) forwards;animation-delay:2.1s}
+/* Great Vibes draws its glyphs right of their advance box: shift each line so the ink sits on the card's axis */
 .names span{display:block;transform:translateX(-.04em)}
-.names .amp{font-size:.45em;color:#F2C4D3;line-height:1;margin:.05em 0;transform:translateX(-.075em)}
-.intro{font-style:italic;font-size:1.25rem!important}
-.scrollhint{position:absolute;left:50%;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:.3rem;
-  font:500 .8rem/1 var(--ui);color:rgb(251 243 236 / .8);text-decoration:none}
-.scrollhint span{width:1.5rem;height:2.4rem;border:1.5px solid currentColor;border-radius:1rem;position:relative}
-.scrollhint span::after{content:"";position:absolute;left:50%;top:.45rem;width:3px;height:.5rem;border-radius:2px;background:currentColor;transform:translateX(-50%);animation:wheel 1.8s ease-in-out infinite}
-@keyframes wheel{0%{opacity:0;transform:translate(-50%,-2px)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+.names .amp{font-size:.55em;color:var(--sea);margin:-.15em 0;transform:translateX(-.075em)}
+@keyframes write{to{clip-path:inset(0 -10% 0 0)}}
+.rotator{font-size:clamp(1.25rem,4.5vw,1.55rem);margin:.75rem 0 1.25rem;line-height:1.3}
+.rotator .stage{display:inline-grid;vertical-align:bottom;height:1.3em;overflow:hidden;text-align:left;transition:width .55s cubic-bezier(.22,1,.36,1)}
+.rotator .word{grid-area:1/1;justify-self:start;white-space:nowrap;font-style:italic;font-weight:600;color:var(--rose);transform:translateY(110%);opacity:0;transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .4s}
+.rotator .word.on{transform:none;opacity:1}
+.rotator .word.out{transform:translateY(-110%);opacity:0}
+.when{margin:0;font-size:1.3rem;font-weight:600}
+.where{margin:.1rem 0 1.75rem;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
 
-/* compact timeline on photo */
-.tl{list-style:none;margin:.5rem 0 0;padding:0;display:grid;gap:.15rem;max-width:34rem}
-.tl li{display:grid;grid-template-columns:4rem minmax(0,1fr);gap:1rem;padding:.55rem 0;border-top:1px solid rgb(251 243 236 / .2)}
-.tl time{font:600 1rem/1.5 var(--ui);color:var(--stone);font-variant-numeric:tabular-nums}
-.tl b{font-weight:600}
-.tl span{display:block;color:rgb(251 243 236 / .9);font-size:1.05rem;line-height:1.35}
+/* countdown */
+.countdown{background:var(--sea-deep);color:#F5F4F0;text-align:center}
+.countdown h2{color:var(--stone)}
+.countdown .lead{color:inherit;opacity:.85;margin-inline:auto}
+.clock{display:flex;justify-content:center;gap:clamp(.75rem,4vw,3rem);margin:0;padding:0;list-style:none}
+.clock li{display:flex;flex-direction:column;align-items:center;min-width:4.2rem}
+.clock b{font-family:var(--figures);font-weight:600;font-size:clamp(2.8rem,10vw,5rem);line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.clock span{font-style:italic;font-size:1.05rem;opacity:.85}
+.cal{margin-top:2.5rem}
+.cal .btn{border-color:var(--stone);color:#F5F4F0;background:transparent}
+.cal .btn:hover{background:var(--stone);color:#1B2A33}
 
-.facts{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));max-width:48rem;margin-top:.5rem}
-.fact{padding:1rem 1.1rem;border-radius:16px;background:rgb(251 243 236 / .12);border:1px solid rgb(251 243 236 / .22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;gap:.2rem}
-.fact b{font:600 1rem/1.3 var(--ui)}
-.fact span{color:rgb(251 243 236 / .85);font-size:1.05rem;line-height:1.35}
-.fact .big{font:600 1.8rem/1.1 var(--ui);color:var(--cream)}
+/* programma */
+.timeline{list-style:none;margin:0;padding:0;position:relative;max-width:44rem}
+.timeline::before{content:"";position:absolute;left:5.6rem;top:.6rem;bottom:.6rem;width:2px;background:var(--line)}
+.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1.6rem;padding:0 0 2.2rem;position:relative}
+.timeline li::after{content:"";position:absolute;left:calc(5.6rem - 7px);top:.55rem;width:16px;height:16px;border-radius:50%;background:var(--stone);border:3px solid var(--sea)}
+.timeline time{font-family:var(--figures);font-size:1.35rem;font-weight:600;color:var(--sea);line-height:1.2;font-variant-numeric:lining-nums}
+.timeline h3{margin:0;font-size:1.45rem;font-weight:600;line-height:1.3}
+.timeline p{margin:.2rem 0 0;color:var(--muted)}
 
-.bank{display:grid;gap:.6rem;max-width:36rem;margin-top:.5rem}
-.bank .line{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;padding:.8rem 1rem;border-radius:14px;background:rgb(251 243 236 / .12);border:1px solid rgb(251 243 236 / .22)}
-.bank small{display:block;font:500 .8rem/1.3 var(--ui);color:rgb(251 243 236 / .75)}
-.bank strong{font:600 1.05rem/1.35 var(--ui);overflow-wrap:anywhere;letter-spacing:.02em}
-.copy{min-height:44px;padding:.4rem .9rem;border-radius:999px;border:1.5px solid rgb(251 243 236 / .6);background:transparent;color:var(--cream);font:600 .95rem/1 var(--ui);display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
-.copy:hover{background:rgb(251 243 236 / .12)}
-.copy[data-state="ok"]{border-color:#9FE0AE;color:#9FE0AE}
-.copy[data-state="err"]{border-color:#FFB4AB;color:#FFB4AB}
-.tag{font:700 clamp(1.6rem,6vw,2.6rem)/1.15 var(--ui)!important;color:#F2C4D3!important;overflow-wrap:anywhere}
+/* luoghi */
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.place-grid{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
+.place{padding-top:1.4rem;border-top:1px solid var(--stone)}
+.place h3{margin:0;font-size:1.6rem;font-weight:600;line-height:1.25}
+.kind{margin:.15rem 0 0;font-style:italic;color:var(--rose)}
+.place address{font-style:normal;color:var(--muted);margin:.6rem 0 1rem}
+.link{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;font-weight:600;text-underline-offset:4px}
 
-/* placeholder label: names the photo or video that goes here */
-.need.ai{background:rgb(0 0 0 / .35);color:rgb(255 255 255 / .85)}
-.need{position:absolute;top:calc(1rem + env(safe-area-inset-top,0px));left:1rem;z-index:2;display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .7rem;border-radius:999px;
-  background:rgb(0 0 0 / .45);color:#fff;font:500 .78rem/1.2 var(--ui)}
+/* bus + hotel */
+.split{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));align-items:start}
+.route{display:flex;align-items:center;gap:1rem;margin:1.5rem 0;font-size:1.3rem;font-weight:600}
+.route .line{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--sea) 0 10px,transparent 10px 18px);position:relative}
+.route .line svg{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);color:var(--sea);background:var(--bg);padding:2px;border-radius:50%;animation:drive 6s ease-in-out infinite alternate}
+@keyframes drive{to{left:100%}}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{display:flex;gap:.75rem;padding:.7rem 0;border-top:1px solid var(--line)}
+.facts li svg{flex:none;margin-top:.3rem;color:var(--sea)}
+.free{display:inline-block;font-family:var(--ui);background:var(--rose);color:var(--on-rose);font-weight:700;padding:.15rem .7rem;border-radius:999px;font-size:1rem}
+.room{background:var(--bg);border:1px solid var(--line);padding:1.75rem;border-radius:2px;position:relative}
+.room h3{margin:0;font-size:1.6rem;font-weight:600}
+.price{display:flex;align-items:baseline;gap:.4rem;margin:.75rem 0 1rem}
+.price b{font-family:var(--figures);font-size:2.8rem;font-weight:600;line-height:1;color:var(--sea);font-variant-numeric:lining-nums}
+.price span{color:var(--muted);font-style:italic}
 
-/* chapter index */
-.dots{position:fixed;right:max(.75rem,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:30;display:grid;gap:.35rem;margin:0;padding:0;list-style:none;transition:opacity .3s}
-.dots a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;text-decoration:none}
-.dots a::before{content:"";width:9px;height:9px;border-radius:50%;background:rgb(251 243 236 / .5);box-shadow:0 0 0 1px rgb(0 0 0 / .2);transition:transform .25s,background-color .25s}
-.dots a[aria-current="true"]::before{background:#fff;transform:scale(1.45)}
-.dots a:hover::before{background:#fff}
-.dots.off{opacity:0;pointer-events:none}
-@media (max-width:600px){.dots{right:.25rem}.dots a{width:36px;height:36px}.chapter .inner{width:auto;margin-inline:1rem 2.75rem}.chapter.center .inner{margin-inline:2.75rem}}
+/* regalo */
+.gift{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));align-items:center}
+.house{width:100%;max-width:20rem;margin-inline:auto;color:var(--sea)}
+.house .brick{opacity:0;transform:translateY(-14px);transition:opacity .4s,transform .5s cubic-bezier(.34,1.56,.64,1)}
+.house.built .brick{opacity:1;transform:none}
+.bank{background:var(--surface);border:1px solid var(--line);border-top:6px solid var(--stone);padding:1.75rem;border-radius:2px}
+.bank dl{margin:0}
+.bank .row{padding:.8rem 0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.bank .row:last-child{border-bottom:0}
+.bank dt{color:var(--muted);font-style:italic;font-size:1rem}
+.bank dd{margin:0;font-weight:600;font-size:1.15rem;word-break:break-word}
+.bank .iban{font-family:var(--figures);font-variant-numeric:lining-nums tabular-nums;letter-spacing:.03em}
+.copy{min-height:44px;min-width:44px;padding:.4rem .9rem;border-radius:999px;border:1.5px solid var(--field);background:transparent;color:var(--sea);font:600 .95rem var(--ui);cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
+.copy:hover{border-color:var(--sea)}
 
-/* ---------- RSVP (same form as the invitation) ---------- */
-.rsvp-wrap{position:relative;z-index:1;background:var(--bg);padding:clamp(3rem,8vw,6rem) 1rem calc(3rem + env(safe-area-inset-bottom,0px))}
+/* foto */
+.ig-head{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.ig-tag{text-align:right}
+.ig-tag .actions{justify-content:flex-end;margin-top:.5rem}
+.tag{font-family:var(--ui);font-size:clamp(1.4rem,4.5vw,2rem);font-weight:700;color:var(--sea);margin:0;word-break:break-all}
+.steps{list-style:none;counter-reset:s;margin:0 0 2rem;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr))}
+.steps li{counter-increment:s;display:flex;gap:.8rem;align-items:flex-start;color:var(--muted)}
+.steps li::before{content:counter(s);flex:none;width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:var(--sea);color:var(--on-sea);font:600 .95rem/1 var(--ui)}
+.wall-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.live{display:inline-flex;align-items:center;gap:.5rem;font:500 1rem/1.2 var(--ui)}
+.live i{width:10px;height:10px;border-radius:50%;background:var(--rose);animation:pulse 1.6s ease-in-out infinite}
+.live.paused i{animation:none;opacity:.4}
+@keyframes pulse{50%{opacity:.25}}
+.wall{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(46%,11rem),1fr));margin:0;padding:0;list-style:none}
+.shot{position:relative;aspect-ratio:1;border-radius:4px;overflow:hidden;margin:0}
+.shot svg{display:block;width:100%;height:100%}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .6rem .45rem;color:#fff;font:500 .85rem/1.2 var(--ui);background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.shot.new{animation:pop .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{opacity:0;transform:scale(.85)}}
+.note{color:var(--muted);font-style:italic;font-size:1rem;margin:1rem 0 0}
+
+/* rsvp */
 .rsvp-box{background:var(--surface);max-width:42rem;margin-inline:auto;border-radius:2px;box-shadow:0 0 0 1px var(--line),0 24px 48px -28px rgba(18,63,80,.35);overflow:hidden}
 .rsvp-box .bar{height:22px;color:var(--stone);background:var(--sea-deep);display:block;width:100%}
 .rsvp-inner{padding:clamp(1.75rem,5vw,3rem)}
@@ -183,21 +247,39 @@ legend{padding:0;margin-bottom:.6rem}
 .done ul{list-style:none;margin:0;padding:0;color:var(--muted);display:grid;gap:.2rem}
 .demo{text-align:center;margin:1.25rem 0 0;font:400 .9rem/1.4 var(--ui);color:var(--muted)}
 
+.toast{font-family:var(--ui);position:fixed;left:50%;bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 2rem));visibility:hidden;background:var(--ink);color:var(--bg);padding:.7rem 1.3rem;border-radius:999px;font-weight:600;transition:transform .35s cubic-bezier(.22,1,.36,1),visibility 0s .35s;z-index:10}
+.toast.show{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
 
-footer{position:relative;z-index:1;text-align:center;padding:3rem 1rem calc(3rem + env(safe-area-inset-bottom,0px));background:var(--sea-deep);color:var(--cream)}
-footer .sig{font:400 2.6rem/1.2 var(--script);color:var(--stone);margin:0}
-footer p{margin:.2rem 0 0;opacity:.85}
-.toast{position:fixed;left:50%;bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,1rem);opacity:0;visibility:hidden;z-index:40;
-  background:var(--ink);color:var(--bg);padding:.65rem 1.2rem;border-radius:999px;font:500 .95rem/1.2 var(--ui);transition:opacity .2s,transform .2s,visibility 0s .2s}
-.toast.show{opacity:1;transform:translate(-50%,0);visibility:visible;transition-delay:0s}
+footer{text-align:center;padding:3.5rem 1.25rem calc(3.5rem + env(safe-area-inset-bottom,0px));background:var(--sea-deep);color:#F5F4F0}
+footer .sig{font-family:var(--script);font-size:2.6rem;color:var(--stone);margin:0;line-height:1.2}
+footer p{margin:.25rem 0 0;opacity:.85}
 
-@media (prefers-reduced-motion: reduce){
-  .scrollhint span::after{animation:none}
-  *,*::before,*::after{transition-duration:.01ms!important}
+@media (max-width:540px){
+  .card{padding:2.25rem 1rem 1.75rem}
+  .timeline::before{left:4.4rem}
+  .timeline li{grid-template-columns:3.8rem 1fr;gap:1.4rem}
+  .timeline li::after{left:calc(4.4rem - 7px)}
+  .timeline time{font-size:1.35rem}
+  .choice{grid-template-columns:1fr}
+  .ig-tag{text-align:left}
+  .ig-tag .actions{justify-content:flex-start}
 }
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+/* hero card with portrait: keep the whole temple in the first screen */
+@media (min-width:700px){
+  .card{padding-top:2rem;padding-bottom:1.6rem}
+  .names{font-size:clamp(3.4rem,8vw,4.7rem);margin:.2rem 0 .3rem}
+  .rotator{margin:.5rem 0 .9rem}
+  .where{margin-bottom:1.3rem}
+  .greca.bottom{margin-top:1.1rem}
+}
+
 /* ---------- arrival: a red envelope opens before the invitation (built by script, so the page works without it) ---------- */
 html.env-wait body{overflow:hidden}
-html.env-wait #inizio .inner{visibility:hidden}
+html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 .envx{position:fixed;inset:0;z-index:200;display:grid;place-items:center;align-content:center;gap:2.5rem;cursor:pointer;perspective:1400px;
   background:radial-gradient(120% 90% at 50% 40%,var(--surface) 0%,var(--bg) 55%,var(--primary-soft) 100%);transition:opacity .6s ease,visibility 0s .6s}
 .envx.gone{opacity:0;visibility:hidden}
@@ -226,13 +308,37 @@ html.env-wait #inizio .inner{visibility:hidden}
 @keyframes flapOpen{0%{transform:rotateX(0);z-index:4;filter:none}49%{z-index:4}50%{z-index:0}100%{transform:rotateX(180deg);z-index:0;filter:brightness(.82)}}
 .envx.open .letter{animation:letterUp .8s cubic-bezier(.22,1,.36,1) .95s forwards}
 @keyframes letterUp{to{transform:translateY(-58%)}}
+
+/* ---------- chapters: full-screen sections stacked with sticky; a section taller than the screen scrolls through,
+   then holds while the next slides over it (--stick is set by script) ---------- */
+.chapters{position:relative}
+.chapter{position:sticky;top:var(--stick,0px);min-height:100vh;min-height:100svh;display:grid;align-content:center;isolation:isolate;overflow:hidden}
+.chapter + .chapter{box-shadow:0 -28px 50px -28px rgb(20 6 12 / .5)}
+.chapter .dim{position:absolute;inset:0;z-index:20;background:#120609;opacity:0;pointer-events:none}
+.chapter.photo{background:var(--sea-deep)}
+.media{position:absolute;inset:0;z-index:-1;overflow:hidden;background:var(--sea-deep)}
+.media img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(26 9 17 / .3),rgb(26 9 17 / .5))}
+.need{position:absolute;top:calc(.75rem + env(safe-area-inset-top,0px));left:.75rem;z-index:2;padding:.3rem .65rem;border-radius:999px;background:rgb(0 0 0 / .4);color:rgb(255 255 255 / .88);font:500 .75rem/1.2 var(--ui)}
+/* the content sits on an invitation card, like the one in the temple */
+.panel{background:color-mix(in srgb,var(--surface) 93%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:2px;
+  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--surface) 93%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
+.panel .lead{color:var(--muted)}
+#foto .wall-bar,#foto .steps{position:relative}
+#rsvp{position:relative;z-index:1;scroll-margin-top:0}
+/* section index */
+.dots{position:fixed;right:max(.5rem,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:60;display:grid;gap:.2rem;margin:0;padding:0;list-style:none;transition:opacity .3s}
+.dots a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;text-decoration:none}
+.dots a::before{content:"";width:9px;height:9px;border-radius:50%;background:rgb(255 255 255 / .55);box-shadow:0 0 0 1.5px rgb(43 27 35 / .45);transition:transform .25s,background-color .25s}
+.dots a[aria-current="true"]::before{background:var(--stone);transform:scale(1.45)}
+.dots a:hover::before{background:#fff}
+.dots.off{opacity:0;pointer-events:none}
+html.env-wait .dots{opacity:0}
+@media (max-width:600px){.dots{right:0}.dots a{width:34px;height:34px}.chapter .wrap{width:auto;margin-inline:1rem 2.4rem}}
+@media (prefers-reduced-motion: reduce){.chapter{position:relative;top:auto}}
 </style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute;color:var(--stone)" aria-hidden="true">
-  <defs><pattern id="meander" width="28" height="14" patternUnits="userSpaceOnUse"><path d="M0 13H14V1H26V9H18V5" fill="none" stroke="currentColor" stroke-width="2"/></pattern></defs>
-</svg>
 <script>
 /* Arrival: the invitation comes out of a red envelope. Once per visit, skippable, skipped when motion is reduced. */
 (function(){
@@ -247,151 +353,239 @@ html.env-wait #inizio .inner{visibility:hidden}
     '<p class="skip">Tocca per aprire subito</p>';
   document.body.appendChild(o);
   var timers=[], done=false;
-  function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait'); dispatchEvent(new Event('envelope:done'));
+  function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait');
     removeEventListener('keydown',finish); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },700) }
   timers.push(setTimeout(function(){o.classList.add('open')},750));
   timers.push(setTimeout(finish,2750));
   o.addEventListener('click',finish); addEventListener('keydown',finish);
 })();
 </script>
+<svg width="0" height="0" style="position:absolute;color:var(--stone)" aria-hidden="true">
+  <defs>
+    <pattern id="meander" width="28" height="14" patternUnits="userSpaceOnUse">
+      <path d="M0 13H14V1H26V9H18V5" fill="none" stroke="currentColor" stroke-width="2"/>
+    </pattern>
+  </defs>
+</svg>
 
-<nav aria-label="Capitoli">
+<nav aria-label="Sezioni">
   <ol class="dots" id="dots">
-    <li><a href="#inizio" aria-label="Inizio"></a></li>
-    <li><a href="#cerimonia" aria-label="La cerimonia"></a></li>
-    <li><a href="#festa" aria-label="La festa"></a></li>
-    <li><a href="#viaggio" aria-label="Viaggio e hotel"></a></li>
+    <li><a href="#inizio" aria-label="Invito"></a></li>
+    <li><a href="#countdown" aria-label="Conto alla rovescia"></a></li>
+    <li><a href="#programma" aria-label="Programma"></a></li>
+    <li><a href="#luoghi" aria-label="I luoghi"></a></li>
+    <li><a href="#viaggio" aria-label="Autobus e hotel"></a></li>
     <li><a href="#regalo" aria-label="Il regalo"></a></li>
     <li><a href="#foto" aria-label="Le vostre foto"></a></li>
     <li><a href="#rsvp" aria-label="Conferma la presenza"></a></li>
   </ol>
 </nav>
-
 <main>
 <div class="chapters" id="chapters">
-
-  <!-- To use a real photo:  <img src="foto.jpg" alt="">   To use a video:  <video src="clip.mp4" autoplay muted loop playsinline poster="poster.jpg"></video>
-       Put it inside .media in place of the placeholder svg, and delete the .need label. -->
-
-  <header class="chapter center" id="inizio" aria-labelledby="names">
-    <div class="media" style="background:radial-gradient(ellipse 35% 35% at 50% 62%,rgb(255 227 179 / .95),rgb(255 227 179 / 0)),linear-gradient(180deg,#E9B9A6,#B9706F 55%,#4A1E2E)">
-      <svg class="ph" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g fill="#2E1220" opacity=".55"><path d="M690 1000c0-170 20-300 60-360 30-45 70-45 90 10 30 80 30 220 30 350Z"/><path d="M820 1000c0-150 25-280 70-330 30-35 70-25 85 25 22 80 20 200 15 305Z"/>
-          <circle cx="790" cy="560" r="44"/><circle cx="915" cy="590" r="40"/></g>
-      </svg>
+<header class="hero chapter" id="inizio" aria-label="Invito">
+ <div class="dim"></div>
+ <div class="templum">
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="pediment" viewBox="0 0 800 116" aria-hidden="true">
+    <polygon points="24,70 400,6 776,70" fill="currentColor"/>
+    <polygon points="70,64 400,18 730,64" fill="var(--stone-dark)" opacity=".35"/>
+    <rect y="70" width="800" height="10" fill="currentColor"/>
+    <rect x="8" y="80" width="784" height="24" fill="var(--stone-dark)"/>
+    <rect x="8" y="85" width="784" height="14" fill="url(#meander)"/>
+    <rect y="104" width="800" height="12" fill="currentColor"/>
+  </svg>
+  <div class="colonnade">
+   <div class="side" aria-hidden="true"><span class="col far" style="--d:590ms"></span><span class="col mid" style="--d:370ms"></span><span class="col " style="--d:150ms"></span></div>
+  <div class="card">
+    <figure class="portrait" aria-label="Spazio per la foto degli sposi">
+      <span class="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3.5"/></svg>Foto degli sposi</span>
+    </figure>
+    <p class="intro">Insieme alle loro famiglie</p>
+    <h1 class="names"><span>Bartolo</span><span class="amp">&amp;</span><span>Paola</span></h1>
+    <p class="rotator">
+      <span class="sr-only">Vi aspettiamo per dire sì, brindare, ballare e festeggiare insieme.</span>
+      <span aria-hidden="true">Vi aspettiamo per
+        <span class="stage"><span class="word on">dire sì</span><span class="word">brindare</span><span class="word">ballare</span><span class="word">festeggiare</span></span>
+      </span>
+    </p>
+    <p class="when">Sabato 29 maggio 2027, ore 16</p>
+    <p class="where">Paestum, davanti ai templi</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#rsvp">Conferma la presenza</a>
+      <a class="btn btn-ghost" href="#programma">Vedi il programma</a>
     </div>
-    <span class="need">Foto o video: gli sposi insieme</span>
+    <svg class="greca bottom" viewBox="0 0 192 14" aria-hidden="true"><rect width="192" height="14" fill="url(#meander)"/></svg>
+  </div>
+   <div class="side" aria-hidden="true"><span class="col " style="--d:150ms"></span><span class="col mid" style="--d:370ms"></span><span class="col far" style="--d:590ms"></span></div>
+  </div>
+  <svg class="stylobate" viewBox="0 0 800 40" preserveAspectRatio="none" aria-hidden="true">
+    <rect x="16" width="768" height="12" fill="currentColor"/><rect x="8" y="12" width="784" height="12" fill="var(--stone-dark)" opacity=".55"/><rect y="24" width="800" height="16" fill="currentColor"/>
+  </svg>
+ </div>
+</header>
+
+  <section class="countdown chapter" id="countdown" aria-labelledby="cd-title">
     <div class="dim"></div>
-    <div class="inner">
-      <p class="intro">Insieme alle loro famiglie</p>
-      <h1 class="names" id="names"><span>Bartolo</span><span class="amp">&amp;</span><span>Paola</span></h1>
-      <div class="row" style="justify-content:center">
-        <span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Sabato 29 maggio 2027, ore 16</span>
-        <span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Paestum</span>
-      </div>
-      <div class="row" style="justify-content:center;margin-top:.5rem">
-        <a class="btn btn-primary" href="#rsvp">Conferma la presenza</a>
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Matrimonio%20Bartolo%20e%20Paola&amp;dates=20270529T140000Z/20270529T230000Z&amp;location=Basilica%20Paleocristiana%2C%20Paestum">Aggiungi al calendario</a>
-      </div>
-    </div>
-    <a class="scrollhint" href="#cerimonia"><span aria-hidden="true"></span>Scorri</a>
-  </header>
-
-  <section class="chapter" id="cerimonia" aria-labelledby="t-cer" tabindex="-1">
-    <div class="media">
-      <img class="ph" src="img/bg-cerimonia.webp" alt="" decoding="async" style="object-position:50% 40%">
-    </div>
-    <span class="need ai">Immagine d'atmosfera generata con IA</span>
-    <div class="dim"></div>
-    <div class="inner">
-      <h2 id="t-cer">La cerimonia</h2>
-      <span class="kicker-line">Ore 16:00</span>
-      <p>Nella Basilica Paleocristiana, di fronte agli scavi di Paestum: diremo sì a pochi passi dai templi della Magna Grecia.</p>
-      <div class="row" style="margin-top:.5rem">
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Basilica+Paleocristiana+Paestum">Google Maps</a>
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Basilica+Paleocristiana+Paestum">Mappe di Apple</a>
+    <div class="wrap">
+      <h2 id="cd-title">Il conto alla rovescia</h2>
+      <p class="lead">Ogni giorno che passa ci avvicina al sì.</p>
+      <ul class="clock" role="timer" aria-live="off">
+        <li><b data-u="d">000</b><span>giorni</span></li>
+        <li><b data-u="h">00</b><span>ore</span></li>
+        <li><b data-u="m">00</b><span>minuti</span></li>
+        <li><b data-u="s">00</b><span>secondi</span></li>
+      </ul>
+      <div class="cal">
+        <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Matrimonio%20Bartolo%20e%20Paola&dates=20270529T140000Z/20270529T230000Z&location=Basilica%20Paleocristiana%2C%20Paestum&details=Cerimonia%20alle%2016%2C%20poi%20ricevimento%20all%27Hotel%20Ariston%2C%20Paestum.">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
+          Aggiungi al calendario
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="chapter" id="festa" aria-labelledby="t-festa" tabindex="-1">
-    <div class="media">
-      <img class="ph" src="img/bg-festa.webp" alt="" decoding="async" style="object-position:50% 50%">
-    </div>
-    <span class="need ai">Immagine d'atmosfera generata con IA</span>
-    <div class="dim"></div>
-    <div class="inner">
-      <h2 id="t-festa">La festa</h2>
-      <span class="kicker-line">Hotel Ariston, dalle 17:30</span>
-      <ol class="tl">
-        <li><time datetime="17:30">17:30</time><div><b>Aperitivo</b><span>Nei giardini, con mozzarella di bufala appena fatta.</span></div></li>
-        <li><time datetime="20:00">20:00</time><div><b>La cena</b><span>Sapori del Cilento, dal mare all'orto.</span></div></li>
-        <li><time datetime="22:30">22:30</time><div><b>Torta e primo ballo</b><span>Poi la pista è vostra.</span></div></li>
-        <li><time datetime="00:30">00:30</time><div><b>Ultimo brindisi</b><span>E si riparte verso Castellammare.</span></div></li>
+  <section class="chapter photo" id="programma" aria-labelledby="prog-title">
+    <div class="media" aria-hidden="true"><img src="img/bg-festa.webp" alt="" decoding="async" style="object-position:50% 50%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
+    <div class="wrap panel">
+      <h2 id="prog-title">Il programma</h2>
+      <p class="lead">Una giornata tra i templi della Magna Grecia e il mare del Cilento.</p>
+      <ol class="timeline">
+        <li><time datetime="16:00">16:00</time><div><h3>La cerimonia</h3><p>Nella Basilica Paleocristiana, di fronte agli scavi di Paestum.</p></div></li>
+        <li><time datetime="17:30">17:30</time><div><h3>Aperitivo</h3><p>All'Hotel Ariston, nei giardini, con mozzarella di bufala appena fatta.</p></div></li>
+        <li><time datetime="20:00">20:00</time><div><h3>La cena</h3><p>Sapori del Cilento, dal mare all'orto.</p></div></li>
+        <li><time datetime="22:30">22:30</time><div><h3>Torta e primo ballo</h3><p>Poi la pista è vostra.</p></div></li>
+        <li><time datetime="00:30">00:30</time><div><h3>Ultimo brindisi</h3><p>E per chi viaggia in autobus, si riparte verso Castellammare.</p></div></li>
       </ol>
     </div>
   </section>
 
-  <section class="chapter" id="viaggio" aria-labelledby="t-via" tabindex="-1">
-    <div class="media">
-      <img class="ph" src="img/bg-viaggio.webp" alt="" decoding="async" style="object-position:12% 60%">
-    </div>
-    <span class="need ai">Immagine d'atmosfera generata con IA</span>
-    <div class="dim"></div>
-    <div class="inner">
-      <h2 id="t-via">Viaggio e hotel</h2>
-      <span class="kicker-line">Andata, ritorno e una notte al mare</span>
-      <div class="facts">
-        <div class="fact"><b>Autobus gratuito</b><span>Da Castellammare di Stabia alle 14:00, rientro a fine festa. Solo sabato 29 maggio.</span></div>
-        <div class="fact"><b>Hotel Ariston, Camera Superior</b><span class="big">150&nbsp;€</span><span>A notte, con colazione e spiaggia. Notti del 28 e del 29.</span></div>
-      </div>
-      <p style="font-size:1.1rem">Prenoti posti e camere nel modulo di conferma.</p>
-    </div>
-  </section>
-
-  <section class="chapter" id="regalo" aria-labelledby="t-reg" tabindex="-1">
-    <div class="media">
-      <img class="ph" src="img/bg-regalo.webp" alt="" decoding="async" style="object-position:50% 50%">
-    </div>
-    <span class="need ai">Immagine d'atmosfera generata con IA</span>
-    <div class="dim"></div>
-    <div class="inner">
-      <h2 id="t-reg">Il regalo</h2>
-      <span class="kicker-line">La nostra prima casa</span>
-      <p>Se volete farci un regalo, ogni contributo diventerà un pezzo del nostro nido.</p>
-      <div class="bank">
-        <div class="line"><div><small>IBAN, intestato a Bartolo e Paola</small><strong id="iban">IT00 X000 0000 0000 0000 0000 000</strong></div>
-          <button class="copy" type="button" data-copy="iban" aria-label="Copia l'IBAN"><span>Copia</span></button></div>
-        <div class="line"><div><small>Causale</small><strong id="causale">Regalo nozze Bartolo e Paola, la nostra casa</strong></div>
-          <button class="copy" type="button" data-copy="causale" aria-label="Copia la causale"><span>Copia</span></button></div>
+  <section class="chapter photo" id="luoghi" aria-labelledby="luoghi-title">
+    <div class="media" aria-hidden="true"><img src="img/bg-cerimonia.webp" alt="" decoding="async" style="object-position:50% 40%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
+    <div class="wrap panel">
+      <h2 id="luoghi-title">I luoghi</h2>
+      <p class="lead">La chiesa e l'hotel sono a pochi minuti d'auto.</p>
+      <div class="place-grid">
+        <article class="place">
+          <h3>Basilica Paleocristiana</h3>
+          <p class="kind">La cerimonia, ore 16</p>
+          <address>Di fronte agli scavi archeologici, Paestum (SA)</address>
+          <a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilica+Paleocristiana+Paestum">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Apri in Google Maps</a>
+        </article>
+        <article class="place">
+          <h3>Hotel Ariston</h3>
+          <p class="kind">Il ricevimento, dalle 17:30</p>
+          <address>Capaccio Paestum (SA)</address>
+          <a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Ariston+Paestum">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Apri in Google Maps</a>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="chapter" id="foto" aria-labelledby="t-foto" tabindex="-1">
-    <div class="media" style="background:linear-gradient(180deg,#4C2A3E,#160A11)">
-      <svg class="ph" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g opacity=".5"><rect x="180" y="180" width="300" height="300" rx="18" fill="#C98A9E" transform="rotate(-6 330 330)"/><rect x="560" y="140" width="300" height="300" rx="18" fill="#C8A464" transform="rotate(4 710 290)"/><rect x="940" y="200" width="300" height="300" rx="18" fill="#4E95AE" transform="rotate(-3 1090 350)"/>
-          <rect x="360" y="540" width="300" height="300" rx="18" fill="#A86A5A" transform="rotate(5 510 690)"/><rect x="760" y="560" width="300" height="300" rx="18" fill="#7A4E6B" transform="rotate(-5 910 710)"/><rect x="1150" y="580" width="300" height="300" rx="18" fill="#C98A55" transform="rotate(3 1300 730)"/></g>
+  <section class="chapter photo" id="viaggio" aria-labelledby="viaggio-title">
+    <div class="media" aria-hidden="true"><img src="img/bg-viaggio.webp" alt="" decoding="async" style="object-position:12% 60%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
+    <div class="wrap split panel">
+      <div>
+        <h2 id="viaggio-title">L'autobus</h2>
+        <p class="lead" style="margin-bottom:0">Lasciate la macchina a casa: vi portiamo noi a Paestum e vi riportiamo indietro.</p>
+        <div class="route" aria-hidden="true">
+          <span>Castellammare</span>
+          <span class="line"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6M16 6v6M2 12h20M7 18h.01M17 18h.01"/><rect x="2" y="3" width="20" height="15" rx="3"/></svg></span>
+          <span>Paestum</span>
+        </div>
+        <ul class="facts">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><span class="free">Gratuito</span> andata e ritorno</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Solo sabato 29 maggio</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Partenza da Castellammare di Stabia alle 14:00, rientro a fine festa. Punto di ritrovo comunicato via email.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Prenota i posti nel modulo di conferma.</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2 id="hotel-title">Restate a dormire</h2>
+        <p class="lead" style="margin-bottom:1.5rem">Niente strada di notte: brindate fino all'ultimo e svegliatevi vicino al mare.</p>
+        <div class="room" aria-labelledby="room-title">
+          <h3 id="room-title">Camera Superior</h3>
+          <p class="kind">Hotel Ariston, Paestum</p>
+          <p class="price"><b>150&nbsp;€</b><span>a notte, a camera</span></p>
+          <ul class="facts">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg><span>Colazione inclusa</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18c2 0 2-1.5 4-1.5S8 18 10 18s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M12 4v10M12 4a8 8 0 0 1 8 6H4a8 8 0 0 1 8-6"/></svg><span>Uso della spiaggia</span></li>
+          </ul>
+          <a class="btn btn-ghost" href="#rsvp" style="margin-top:1rem">Prenota nel modulo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter photo" id="regalo" aria-labelledby="regalo-title">
+    <div class="media" aria-hidden="true"><img src="img/bg-regalo.webp" alt="" decoding="async" style="object-position:50% 50%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
+    <div class="wrap gift panel">
+      <svg class="house" id="house" viewBox="0 0 200 170" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+          <path class="brick" style="transition-delay:.05s" d="M30 160h140"/>
+          <path class="brick" style="transition-delay:.2s" d="M45 160V85M155 160V85"/>
+          <path class="brick" style="transition-delay:.35s" d="M85 160v-40h30v40"/>
+          <path class="brick" style="transition-delay:.5s" d="M58 100h18v18H58zM124 100h18v18h-18z"/>
+          <path class="brick" style="transition-delay:.7s" d="M25 92 100 30l75 62"/>
+          <path class="brick" style="transition-delay:.85s" d="M135 58V38h14v32"/>
+        </g>
+        <path class="brick" style="transition-delay:1.05s" d="M100 82c-6-9-20-5-17 5 2 6 17 15 17 15s15-9 17-15c3-10-11-14-17-5Z" fill="var(--rose)"/>
       </svg>
-    </div>
-    <span class="need">Collage o video: momenti degli sposi</span>
-    <div class="dim"></div>
-    <div class="inner">
-      <h2 id="t-foto">Le vostre foto</h2>
-      <span class="kicker-line">Durante la festa</span>
-      <p>Scattate, pubblicate e taggate: raccoglieremo i ricordi di tutti.</p>
-      <p class="tag" id="hashtag">#BartoloEPaola2027</p>
-      <div class="row">
-        <button class="copy" type="button" data-copy="hashtag" aria-label="Copia l'hashtag"><span>Copia</span></button>
-        <a class="copy" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.instagram.com/explore/tags/bartoloepaola2027/">Apri su Instagram</a>
+      <div>
+        <h2 id="regalo-title">Il regalo</h2>
+        <p class="lead" style="margin-bottom:1.75rem">Stiamo costruendo la nostra prima casa. Se volete farci un regalo, ogni contributo diventerà un pezzo del nostro nido.</p>
+        <div class="bank">
+          <dl>
+            <div class="row"><div><dt>Intestatari</dt><dd>Bartolo e Paola</dd></div></div>
+            <div class="row"><div><dt>IBAN</dt><dd class="iban" id="iban">IT00 X000 0000 0000 0000 0000 000</dd></div>
+              <button class="copy" type="button" data-copy="iban" aria-label="Copia l'IBAN">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copia</button></div>
+            <div class="row"><div><dt>Causale</dt><dd id="causale">Regalo nozze Bartolo e Paola, la nostra casa</dd></div>
+              <button class="copy" type="button" data-copy="causale" aria-label="Copia la causale">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copia</button></div>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
+
+  <section class="chapter photo" id="foto" aria-labelledby="foto-title">
+    <div class="media" aria-hidden="true" style="background:linear-gradient(180deg,#4C2A3E,#160A11)"></div><span class="need">Foto o video degli sposi: in arrivo</span><div class="dim"></div>
+    <div class="wrap panel">
+      <div class="ig-head">
+        <div>
+          <h2 id="foto-title">Le vostre foto</h2>
+          <p class="lead" style="margin-bottom:0">Scattate, pubblicate, taggate: le foto compariranno qui sotto durante la festa.</p>
+        </div>
+        <div class="ig-tag">
+          <p class="tag" id="hashtag">#BartoloEPaola2027</p>
+          <div class="actions">
+            <button class="copy" type="button" data-copy="hashtag">Copia l'hashtag</button>
+            <a class="copy" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.instagram.com/explore/tags/bartoloepaola2027/">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Apri su Instagram</a>
+          </div>
+        </div>
+      </div>
+      <ol class="steps">
+        <li>Scatta una foto o un video durante la giornata.</li>
+        <li>Pubblicala su Instagram, nel feed o nelle storie.</li>
+        <li>Aggiungi l'hashtag #BartoloEPaola2027 e il tuo profilo deve essere pubblico.</li>
+      </ol>
+      <div class="wall-bar">
+        <span class="live" id="live"><i aria-hidden="true"></i><span id="live-text">In diretta, si aggiorna da solo</span></span>
+        <button class="copy" type="button" id="pause" aria-pressed="false">Metti in pausa</button>
+      </div>
+      <ul class="wall" id="wall" aria-label="Foto degli invitati"></ul>
+      <p class="note">Anteprima dimostrativa: qui al posto dei riquadri illustrati compariranno le foto reali pubblicate dagli invitati.</p>
+    </div>
+  </section>
+
 </div>
 
-<div class="rsvp-wrap">
-<section id="rsvp" tabindex="-1" aria-labelledby="rsvp-title">
+  <section class="alt" id="rsvp" aria-labelledby="rsvp-title" tabindex="-1">
     <div class="wrap">
       <div class="rsvp-box">
         <svg class="bar" viewBox="0 0 672 22" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><rect width="672" height="22" fill="var(--sea-deep)"/><rect y="4" width="672" height="14" fill="url(#meander)"/></svg>
@@ -512,7 +706,6 @@ html.env-wait #inizio .inner{visibility:hidden}
       </div>
     </div>
   </section>
-</div>
 </main>
 
 <footer>
@@ -521,67 +714,80 @@ html.env-wait #inizio .inner{visibility:hidden}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var chapters=[].slice.call(document.querySelectorAll('.chapter'));
-  var dots=[].slice.call(document.querySelectorAll('#dots a')), dotsBox=document.getElementById('dots');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* chapter index follows the page */
-  function current(id){dots.forEach(function(a){ if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current') })}
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting) current(e.target.id) })},{rootMargin:'-50% 0px -49% 0px'});
-    chapters.concat([document.getElementById('rsvp')]).forEach(function(c){io.observe(c)});
-  }
-  /* dots are white on photos: hide them over the light form */
-  if('IntersectionObserver' in window) new IntersectionObserver(function(es){dotsBox.classList.toggle('off',es[0].isIntersecting)},{rootMargin:'0px 0px -60% 0px'}).observe(document.querySelector('.rsvp-wrap'));
+  /* Rotating words */
+  var words=[].slice.call(document.querySelectorAll('.rotator .word')), k=0, stage=document.querySelector('.rotator .stage');
+  function fit(w){stage.style.width=w.scrollWidth+'px'}
+  fit(words[0]); if(document.fonts) document.fonts.ready.then(function(){fit(words[k])});
+  if(!reduce) setTimeout(function(){ setInterval(function(){
+    var cur=words[k]; k=(k+1)%words.length; var nxt=words[k];
+    cur.classList.remove('on'); cur.classList.add('out');
+    nxt.classList.remove('out'); void nxt.offsetWidth; nxt.classList.add('on'); fit(nxt);
+    setTimeout(function(){cur.classList.remove('out')},600);
+  },2200)},4200);
 
-  /* scroll choreography (GSAP), skipped when motion is reduced or the library did not load */
-  if(window.gsap&&window.ScrollTrigger&&!reduce){
-    gsap.registerPlugin(ScrollTrigger);
-    chapters.forEach(function(ch,i){
-      var media=ch.querySelector('.media > *'), inner=ch.querySelector('.inner'), dim=ch.querySelector('.dim');
-      /* the incoming background settles from a slight zoom while it slides in */
-      if(i>0) gsap.fromTo(media,{scale:1.18,yPercent:-6},{scale:1,yPercent:0,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'top top',scrub:true}});
-      /* the outgoing chapter recedes under the next one */
-      if(i<chapters.length-1){
-        var nxt=chapters[i+1];
-        gsap.to(dim,{opacity:.65,ease:'none',scrollTrigger:{trigger:nxt,start:'top bottom',end:'top top',scrub:true}});
-        gsap.to(inner,{yPercent:-12,opacity:0,ease:'none',scrollTrigger:{trigger:nxt,start:'top 85%',end:'top 25%',scrub:true}});
-      }
-      /* text arrives once the chapter is in place */
-      if(i>0) gsap.from(inner.children,{y:28,opacity:0,duration:.7,ease:'power2.out',stagger:.08,
-        scrollTrigger:{trigger:ch,start:'top 35%',toggleActions:'play none none reverse'}});
-    });
-    /* the page settles on the nearest chapter at the end of each gesture */
-    ScrollTrigger.create({trigger:'#chapters',start:'top top',end:'bottom bottom',
-      snap:{snapTo:1/(chapters.length-1),duration:{min:.35,max:.8},delay:.08,ease:'power2.inOut'}});
-    /* hero entrance */
-    function heroIn(){ gsap.from('#inizio .inner > *',{y:24,opacity:0,duration:.9,ease:'power3.out',stagger:.12,delay:.15}) }
-    if(document.documentElement.classList.contains('env-wait')) addEventListener('envelope:done',heroIn,{once:true}); else heroIn();
-    if(document.fonts) document.fonts.ready.then(function(){ScrollTrigger.refresh()});
-  }
+  /* Countdown */
+  var target=new Date('2027-05-29T16:00:00+02:00').getTime(), els={};
+  document.querySelectorAll('.clock b').forEach(function(b){els[b.dataset.u]=b});
+  function pad(v){return String(v).padStart(2,'0')}
+  function tick(){var d=Math.max(0,target-Date.now());
+    els.d.textContent=Math.floor(d/864e5); els.h.textContent=pad(Math.floor(d/36e5)%24);
+    els.m.textContent=pad(Math.floor(d/6e4)%60); els.s.textContent=pad(Math.floor(d/1e3)%60);}
+  tick(); setInterval(tick,1000);
 
-  /* copy buttons */
+  /* House builds itself when the gift section comes into view */
+  var house=document.getElementById('house');
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){house.classList.add('built');o.disconnect()}})},{threshold:.4}).observe(house) }
+  else house.classList.add('built');
+
+  /* Copy buttons */
   var toast=document.getElementById('toast'), tt;
-  function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2200)}
-  function selectText(el){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
-  [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(b){
-    var label=b.querySelector('span');
+  function showToast(t){toast.textContent=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2200)}
+  function fallbackCopy(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+    var ok=false;try{ok=document.execCommand('copy')}catch(e){} document.body.removeChild(ta);return ok}
+  document.querySelectorAll('[data-copy]').forEach(function(b){
     b.addEventListener('click',function(){
-      var src=document.getElementById(b.dataset.copy), text=src.textContent.trim();
-      var what={iban:'IBAN copiato',causale:'Causale copiata',hashtag:'Hashtag copiato'}[b.dataset.copy];
-      function state(s,t){b.dataset.state=s;label.textContent=t;clearTimeout(b._t);b._t=setTimeout(function(){delete b.dataset.state;label.textContent='Copia'},2000)}
-      function ok(){state('ok','Copiato');say(what)}
-      function fail(){state('err','Non copiato');selectText(src);say('Testo selezionato: copialo dal menu del telefono')}
-      try{ navigator.clipboard.writeText(text).then(ok,fail) }catch(e){ fail() }
+      var id=b.dataset.copy, text=document.getElementById(id).textContent.trim();
+      var label={iban:'IBAN copiato',causale:'Causale copiata',hashtag:'Hashtag copiato'}[id];
+      var done=function(){showToast(label)}, fail=function(){ fallbackCopy(text)?done():showToast('Seleziona il testo e copialo a mano') };
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,fail); else fail();
     });
   });
 
+  /* Photo wall demo: illustrated placeholders arrive like new posts */
+  var wall=document.getElementById('wall');
+  var users=['@zia_carmela','@luca.dm','@sofiaesposito','@peppe_cs','@marty.travels','@anna.f','@gianni_cast','@chiaraaa','@il_testimone','@vale_ph'];
+  var palettes=[['#F7E3E9','#A3294F','#1F5E73'],['#E1EEF2','#1F5E73','#FBF7F5'],['#F3E6CC','#7E5309','#A3294F'],['#EAF0E1','#4F6B2F','#C8A464'],['#F5ECEB','#A3294F','#7E5309']];
+  var scenes=[
+    function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><circle cx="72" cy="30" r="12" fill="'+p[1]+'" opacity=".6"/><path d="M15 60 50 42 85 60Z M20 60h60v4H20z" fill="'+p[1]+'"/><g fill="'+p[1]+'"><rect x="24" y="64" width="6" height="22"/><rect x="38" y="64" width="6" height="22"/><rect x="56" y="64" width="6" height="22"/><rect x="70" y="64" width="6" height="22"/></g><rect y="86" width="100" height="14" fill="'+p[2]+'" opacity=".5"/>'},
+    function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><rect y="62" width="100" height="38" fill="'+p[1]+'" opacity=".55"/><path d="M0 64c10-3 20 3 30 0s20-3 30 0 20 3 40 0" stroke="'+p[2]+'" stroke-width="2" fill="none"/><circle cx="30" cy="30" r="10" fill="'+p[2]+'" opacity=".7"/>'},
+    function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><path d="M28 40h16v8a8 8 0 0 1-16 0zM56 40h16v8a8 8 0 0 1-16 0z" fill="'+p[2]+'" stroke="'+p[1]+'" stroke-width="2"/><path d="M36 56v18M64 56v18M30 74h12M58 74h12" stroke="'+p[1]+'" stroke-width="2.5" stroke-linecap="round"/><path d="M46 30l4-6 4 6" stroke="'+p[1]+'" stroke-width="2" fill="none"/>'},
+    function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><path d="M50 74C30 60 22 50 26 40c4-9 16-9 24 2 8-11 20-11 24-2 4 10-4 20-24 34Z" fill="'+p[1]+'"/><circle cx="20" cy="22" r="3" fill="'+p[2]+'"/><circle cx="82" cy="78" r="4" fill="'+p[2]+'"/>'},
+    function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><rect x="34" y="42" width="32" height="34" rx="2" fill="'+p[2]+'" stroke="'+p[1]+'" stroke-width="2"/><path d="M38 42h24v-8H38z" fill="'+p[1]+'"/><path d="M42 34v-6M50 34v-8M58 34v-6" stroke="'+p[1]+'" stroke-width="2"/><path d="M34 58h32" stroke="'+p[1]+'" stroke-width="2"/>'}
+  ];
+  var count=0;
+  function makeShot(isNew){
+    var p=palettes[count%palettes.length], s=scenes[(count*3)%scenes.length], u=users[count%users.length]; count++;
+    var li=document.createElement('li'); li.className='shot'+(isNew?' new':'');
+    li.innerHTML='<figure class="shot" style="margin:0;height:100%"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Foto di '+u+'">'+s(p)+'</svg><figcaption>'+u+'</figcaption></figure>';
+    return li;
+  }
+  for(var j=0;j<12;j++) wall.appendChild(makeShot(false));
+  var paused=reduce, pauseBtn=document.getElementById('pause'), live=document.getElementById('live'), liveText=document.getElementById('live-text');
+  function setPaused(v){paused=v;pauseBtn.setAttribute('aria-pressed',v);pauseBtn.textContent=v?'Riprendi':'Metti in pausa';
+    live.classList.toggle('paused',v);liveText.textContent=v?'Aggiornamento in pausa':'In diretta, si aggiorna da solo';}
+  setPaused(paused);
+  pauseBtn.addEventListener('click',function(){setPaused(!paused)});
+  setInterval(function(){ if(paused||document.hidden) return;
+    wall.insertBefore(makeShot(true),wall.firstChild);
+    while(wall.children.length>12) wall.removeChild(wall.lastChild);
+  },5000);
+
   function $(q,r){return (r||document).querySelector(q)} function $$(q,r){return [].slice.call((r||document).querySelectorAll(q))}
-  /* RSVP: paste the Google Apps Script Web App URL here (see apps-script/LEGGIMI.md) */
+  /* RSVP: Google Apps Script Web App that writes the Foglio (see apps-script/LEGGIMI.md) */
   var RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzIRL0IWe4rU0UAxguo4OXeLpvCA6zKVLCQoDd7Vghlxa99rVia9ol3mek2d9qDTkE-GQ/exec';
   if(RSVP_ENDPOINT) $('#demo-note').hidden=true;
 
@@ -640,7 +846,8 @@ html.env-wait #inizio .inner{visibility:hidden}
   back.addEventListener('click',function(){var o=order(); go(o[o.indexOf(cur)-1])});
   f.addEventListener('submit',function(e){e.preventDefault(); if(!validate(cur)) return;
     var o=order(); if(cur!==4){go(o[o.indexOf(cur)+1]);return}
-    next.setAttribute('aria-busy','true'); next.textContent='Invio in corso…'; $('#send-err').hidden=true;
+    next.setAttribute('aria-busy','true'); next.textContent='Invio in corso…';
+    $('#send-err').hidden=true;
     var payload=new URLSearchParams({
       presenza:yes()?'si':'no', nome:f.nome.value.trim(), email:f.email.value.trim(),
       ospiti:String(yes()?vals.ospiti:0), dieta:yes()?f.dieta.value.trim():'',
@@ -670,6 +877,58 @@ html.env-wait #inizio .inner{visibility:hidden}
   }
   $('#again').addEventListener('click',function(){ $('#done').hidden=true; f.hidden=false; $('#stepper').hidden=false; go(4) });
   updTot(); go(1,false);
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* Chapters: sticky offsets, section index, and the scroll choreography (zoom in, dim out, settle on a section) */
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var chapters=[].slice.call(document.querySelectorAll('.chapter')), rsvp=document.getElementById('rsvp');
+  var dots=[].slice.call(document.querySelectorAll('#dots a')), dotsBox=document.getElementById('dots');
+  function setSticks(){ var vh=window.innerHeight; chapters.forEach(function(c){ c.style.setProperty('--stick',Math.min(0,vh-c.offsetHeight)+'px') }) }
+  setSticks(); addEventListener('resize',setSticks); if(document.fonts) document.fonts.ready.then(function(){ setSticks(); if(window.ScrollTrigger) ScrollTrigger.refresh() });
+  function current(id){ dots.forEach(function(a){ if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current') }) }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) current(e.target.id) }) },{rootMargin:'-45% 0px -54% 0px'});
+    chapters.concat([rsvp]).forEach(function(c){ io.observe(c) });
+    new IntersectionObserver(function(es){ dotsBox.classList.toggle('off',es[0].isIntersecting) },{rootMargin:'0px 0px -60% 0px'}).observe(rsvp);
+  }
+  if('ResizeObserver' in window){ var rt; new ResizeObserver(function(){ clearTimeout(rt); rt=setTimeout(function(){ setSticks(); if(window.ScrollTrigger) ScrollTrigger.refresh() },150) })
+    .observe(document.getElementById('chapters')) }
+  if(reduce||!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  /* start of each section in scroll space (sticky never moves the layout, so heights add up) */
+  function starts(){ var top=document.getElementById('chapters').getBoundingClientRect().top+window.scrollY, acc=top, out=[];
+    chapters.forEach(function(c){ out.push(acc); acc+=c.offsetHeight }); out.push(acc); return out }
+  chapters.forEach(function(ch,i){
+    var img=ch.querySelector('.media img');
+    if(img) gsap.fromTo(img,{scale:1.16},{scale:1,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'top top',scrub:true}});
+    var nxt=chapters[i+1]||rsvp, dim=ch.querySelector('.dim');
+    if(dim) gsap.to(dim,{opacity:.6,ease:'none',scrollTrigger:{trigger:nxt,start:'top bottom',end:'top top',scrub:true}});
+  });
+  /* every gesture settles on the next (or previous) stop: the start of each section and, for a section taller than the
+     screen, its end; only inside a really long section, and inside the form, the reader scrolls freely */
+  /* where the current gesture started: updated when a settle completes, never by the gesture itself */
+  var anchor=window.scrollY;
+  ScrollTrigger.create({start:0,end:'max',snap:{snapTo:function(v,self){
+      var s0=self.start, span=Math.max(1,self.end-self.start), y=s0+v*span, vh=window.innerHeight, dir=(self&&self.direction)||1, st=starts(), stops=[];
+      for(var i=0;i<chapters.length;i++){ var a=st[i], L=st[i+1]-a-vh; stops.push(a);
+        if(L>2){ if(L>vh*0.6&&y>a+vh*0.25&&y<a+L-vh*0.25){ anchor=y; return v } stops.push(a+L) } }
+      var last=st[chapters.length]; stops.push(last); if(y>last+vh*0.25){ anchor=y; return v }
+      /* already resting on a stop: stay (the library re-checks after each settle) */
+      for(var j=0;j<stops.length;j++) if(Math.abs(stops[j]-y)<6){ anchor=stops[j]; return v }
+      function at(t){ return Math.max(0,Math.min(1,(t-s0)/span)) }
+      /* the next stop beyond where this gesture started, without pulling back more than half a screen after a fling */
+      var t=null; stops.forEach(function(p){
+        if(dir>0){ if(p>anchor+4&&p>=y-vh*0.5&&(t===null||p<t)) t=p }
+        else { if(p<anchor-4&&p<=y+vh*0.5&&(t===null||p>t)) t=p } });
+      if(t===null){ anchor=y; return v } return at(t) },
+    duration:{min:.3,max:.8},delay:.12,ease:'power2.inOut',onComplete:function(){ anchor=window.scrollY }}});
+  /* a jump from the section index or a link resets the starting point */
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) setTimeout(function(){ anchor=window.scrollY },900) });
 })();
 </script>
 </body>
