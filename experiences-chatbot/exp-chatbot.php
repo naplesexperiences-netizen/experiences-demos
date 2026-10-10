@@ -3,7 +3,7 @@
  * Plugin Name:  Experiences Chatbot
  * Plugin URI:   https://www.naplesexperiences.com
  * Description:  Chatbot testuale configurabile per Experiences Srl, con risposte AI opzionali.
- * Version:      2.1.0
+ * Version:      2.1.1
  * Author:       Experiences Srl
  * License:      Proprietary
  * Text Domain:  exp-chatbot
@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EXP_CHATBOT_VERSION', '2.1.0' );
+define( 'EXP_CHATBOT_VERSION', '2.1.1' );
 
 /* =========================================================
    MODELLI
@@ -57,10 +57,13 @@ function exp_chatbot_fornitori() {
             'label'   => 'Google Gemini',
             'tipo'    => 'openai',
             'url'     => 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
-            'modello' => 'gemini-2.0-flash',
+            // Alias e non una versione fissa: gemini-2.0-flash, messo qui
+            // nella 2.1.0, era gia stato ritirato da Google e ogni
+            // chiamata tornava 404. L'alias segue il modello corrente.
+            'modello' => 'gemini-flash-lite-latest',
             'chiavi'  => 'https://aistudio.google.com/apikey',
             'listino' => 'https://ai.google.dev/pricing',
-            'nota'    => 'Ha un piano gratuito con un tetto giornaliero di richieste: per un chatbot a basso traffico puo bastare quello.',
+            'nota'    => 'Ha un piano gratuito con un tetto giornaliero di richieste: per un chatbot a basso traffico puo bastare quello. I nomi dei modelli Gemini cambiano spesso — gli alias che finiscono in "-latest" seguono il modello corrente e non vanno aggiornati a mano.',
         ],
         'groq' => [
             'label'   => 'Groq',
