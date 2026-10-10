@@ -115,6 +115,35 @@ function experiences_setup_configuratore_page() {
 }
 add_action( 'admin_init', 'experiences_setup_configuratore_page' );
 
+// ── Voci del menu, una volta sola ──────────────────────────────────────
+// Le usano l'intestazione (desktop e mobile) e il piede di pagina. Erano
+// scritte a mano in due file: il footer e rimasto indietro di una
+// revisione e mostrava ancora "Galleria Demo" e "Chatbot AI" quando in
+// alto non c'erano piu.
+//
+// Modificabile senza toccare i template:
+//   add_filter( 'experiences_nav_items', fn( $v ) => … );
+function experiences_nav_items() {
+    $base = is_front_page() ? '' : esc_url( home_url( '/' ) );
+
+    return apply_filters( 'experiences_nav_items', [
+        [ 'label' => 'Servizi',   'href' => $base . '#services' ],
+        [ 'label' => 'Lavori',    'href' => $base . '#portfolio' ],
+        [ 'label' => 'Anteprima', 'href' => experiences_configuratore_url(), 'icon' => 'fas fa-eye' ],
+        [ 'label' => 'AI',        'href' => $base . '#avatar', 'icon' => 'fas fa-robot' ],
+        [ 'label' => 'Prezzi',    'href' => $base . '#pricing' ],
+        [ 'label' => 'Blog',      'href' => experiences_blog_archive_url() ],
+    ] );
+}
+
+function experiences_nav_cta() {
+    $base = is_front_page() ? '' : esc_url( home_url( '/' ) );
+    return apply_filters( 'experiences_nav_cta', [
+        'label' => 'Contatti',
+        'href'  => $base . '#contact',
+    ] );
+}
+
 function experiences_configuratore_url() {
     $p = get_page_by_path( 'configuratore' );
     return ( $p && 'publish' === $p->post_status )
