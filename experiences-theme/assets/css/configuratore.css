@@ -1,0 +1,353 @@
+/* ==========================================================================
+   Configuratore anteprima — page-configuratore.php
+   --------------------------------------------------------------------------
+   CSS proprio e non utility Tailwind: il tema carica un build precompilato
+   e una classe non generata semplicemente non esiste, cosa che su questa
+   pagina avrebbe rotto l'impaginazione in silenzio. Tutto e sotto il
+   prefisso .expcfg- per non interferire col resto del tema.
+   ========================================================================== */
+
+/* Il foglio non da per scontato il reset del tema: senza box-sizing
+   ereditato, width:100% piu padding faceva sforare il contenitore di
+   32px e la pagina scorreva di lato. */
+.expcfg,
+.expcfg *,
+.expcfg *::before,
+.expcfg *::after { box-sizing: border-box; }
+
+.expcfg {
+    --cfg-notte: #0A1628;
+    --cfg-profondo: #0B3D61;
+    --cfg-acqua: #0D7C7C;
+    --cfg-chiaro: #14A3A3;
+    --cfg-brillante: #4ADEDE;
+    --cfg-carta: #F8FAFB;
+    --cfg-bordo: #E2E8F0;
+    --cfg-grigio: #64748B;
+    background: var(--cfg-carta);
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3.5rem, 8vw, 6rem);
+}
+
+.expcfg-wrap {
+    width: 100%;
+    max-width: 1060px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+/* ── Intestazione ──────────────────────────────────────────────────────── */
+.expcfg-intro { margin-bottom: clamp(2rem, 5vw, 3rem); }
+
+.expcfg-occhiello {
+    font-size: .74rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--cfg-acqua); margin-bottom: .75rem;
+}
+.expcfg-titolo {
+    font-family: Montserrat, Inter, sans-serif; font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.1;
+    letter-spacing: -.02em; color: var(--cfg-notte);
+    text-wrap: balance; hyphens: none; margin-bottom: 1rem;
+}
+.expcfg-titolo em {
+    font-style: normal;
+    background: linear-gradient(135deg, #14A3A3, #0D7C7C);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.expcfg-sommario {
+    font-size: clamp(1rem, 1.6vw, 1.125rem); line-height: 1.6;
+    color: var(--cfg-grigio); max-width: 56ch;
+}
+.expcfg-nota-privacy {
+    margin-top: 1rem; font-size: .875rem; line-height: 1.55;
+    color: var(--cfg-acqua); max-width: 62ch;
+    background: rgba(20, 163, 163, .07);
+    border: 1px solid rgba(20, 163, 163, .2);
+    border-radius: .6rem; padding: .7rem .95rem;
+}
+
+/* ── Passi ─────────────────────────────────────────────────────────────── */
+.expcfg-passo {
+    border: 1px solid var(--cfg-bordo); border-radius: 1rem;
+    background: #fff; padding: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 1.25rem;
+}
+.expcfg-passo legend {
+    font-family: Montserrat, Inter, sans-serif; font-weight: 600;
+    font-size: 1.05rem; color: var(--cfg-notte);
+    display: flex; align-items: center; gap: .65rem; padding-inline: .4rem;
+}
+.expcfg-num {
+    width: 1.75rem; height: 1.75rem; border-radius: 50%;
+    background: var(--cfg-acqua); color: #fff;
+    font-size: .85rem; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ── Scelta tipo attività ──────────────────────────────────────────────── */
+.expcfg-scelte {
+    display: grid; gap: .75rem; margin-top: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+.expcfg-scelta {
+    display: flex; flex-direction: column; align-items: flex-start; gap: .3rem;
+    padding: 1rem 1.1rem; text-align: left; cursor: pointer;
+    font: inherit; color: var(--cfg-notte);
+    background: #fff; border: 2px solid var(--cfg-bordo); border-radius: .8rem;
+    transition: border-color .18s, background .18s, transform .18s;
+}
+.expcfg-scelta:hover { border-color: var(--cfg-chiaro); transform: translateY(-2px); }
+.expcfg-scelta[aria-checked="true"] {
+    border-color: var(--cfg-acqua); background: rgba(20, 163, 163, .07);
+}
+.expcfg-scelta:focus-visible { outline: 2px solid var(--cfg-acqua); outline-offset: 2px; }
+.expcfg-icona { font-size: 1.3rem; color: var(--cfg-acqua); margin-bottom: .2rem; }
+.expcfg-scelta-tit { font-weight: 600; font-size: .98rem; }
+.expcfg-scelta-sub { font-size: .82rem; color: var(--cfg-grigio); line-height: 1.4; }
+
+/* ── Campi ─────────────────────────────────────────────────────────────── */
+.expcfg-campi {
+    display: grid; gap: 1rem; margin-top: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+.expcfg-campo { display: flex; flex-direction: column; gap: .35rem; }
+.expcfg-campo label { font-size: .85rem; font-weight: 600; color: var(--cfg-notte); }
+.expcfg-campo input {
+    font: inherit; font-size: .95rem; padding: .65rem .85rem;
+    border: 1.5px solid var(--cfg-bordo); border-radius: .55rem;
+    background: #fff; color: var(--cfg-notte); width: 100%;
+    transition: border-color .18s;
+}
+.expcfg-campo input:focus { border-color: var(--cfg-acqua); outline: none; }
+.expcfg-campo input:focus-visible { outline: 2px solid var(--cfg-acqua); outline-offset: 1px; }
+
+/* ── Caricamento fotografie ────────────────────────────────────────────── */
+.expcfg-aiuto {
+    margin-top: .85rem; font-size: .875rem; line-height: 1.55;
+    color: var(--cfg-grigio); max-width: 62ch;
+}
+.expcfg-dropzone {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: .4rem; margin-top: 1rem; padding: clamp(1.5rem, 5vw, 2.5rem) 1rem;
+    text-align: center; cursor: pointer;
+    border: 2px dashed var(--cfg-bordo); border-radius: .9rem;
+    background: var(--cfg-carta);
+    transition: border-color .18s, background .18s;
+}
+.expcfg-dropzone:hover,
+.expcfg-dropzone.is-sopra { border-color: var(--cfg-acqua); background: rgba(20, 163, 163, .06); }
+.expcfg-file-input {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); border: 0;
+}
+.expcfg-file-input:focus-visible + .expcfg-dz-icona { outline: 2px solid var(--cfg-acqua); outline-offset: 4px; }
+.expcfg-dz-icona { font-size: 1.6rem; color: var(--cfg-acqua); }
+.expcfg-dz-tit { font-weight: 600; color: var(--cfg-notte); }
+.expcfg-dz-sub { font-size: .82rem; color: var(--cfg-grigio); }
+
+.expcfg-errore {
+    margin-top: .75rem; font-size: .875rem; font-weight: 500; color: #B91C1C;
+    background: #FEF2F2; border: 1px solid #FECACA;
+    border-radius: .5rem; padding: .6rem .8rem;
+}
+
+.expcfg-miniature {
+    list-style: none; margin: 1rem 0 0; padding: 0;
+    display: grid; gap: .6rem;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+.expcfg-min {
+    position: relative; aspect-ratio: 4 / 3; border-radius: .5rem;
+    overflow: hidden; border: 1px solid var(--cfg-bordo); background: #fff;
+}
+.expcfg-min img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.expcfg-min-prima {
+    position: absolute; inset-inline-start: .3rem; inset-block-start: .3rem;
+    background: var(--cfg-acqua); color: #fff;
+    font-size: .6rem; font-weight: 700; letter-spacing: .04em;
+    padding: .15rem .4rem; border-radius: .25rem;
+}
+.expcfg-min-togli {
+    position: absolute; inset-inline-end: .3rem; inset-block-start: .3rem;
+    /* 32px: sopra il minimo di 24 richiesto, senza coprire mezza miniatura */
+    width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer;
+    border: 0; background: rgba(10, 22, 40, .72); color: #fff;
+    font-size: .75rem; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+}
+.expcfg-min-togli:hover { background: #B91C1C; }
+.expcfg-min-togli:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+
+/* ── Stato vuoto ───────────────────────────────────────────────────────── */
+.expcfg-vuoto {
+    margin-top: 1.75rem; padding: clamp(2rem, 6vw, 3.5rem) 1.25rem;
+    text-align: center; color: var(--cfg-grigio); font-size: .95rem;
+    border: 1px dashed var(--cfg-bordo); border-radius: 1rem; background: #fff;
+}
+
+/* ── Anteprima ─────────────────────────────────────────────────────────── */
+.expcfg-risultato { margin-top: 2rem; }
+
+.expcfg-barra {
+    display: flex; flex-wrap: wrap; gap: .75rem 1rem;
+    align-items: center; justify-content: space-between; margin-bottom: 1rem;
+}
+.expcfg-barra-tit {
+    font-family: Montserrat, Inter, sans-serif; font-weight: 600;
+    font-size: 1.15rem; color: var(--cfg-notte);
+}
+.expcfg-stili { display: flex; flex-wrap: wrap; gap: .4rem; }
+.expcfg-stile {
+    font: inherit; font-size: .82rem; font-weight: 500; cursor: pointer;
+    /* 44px di altezza: sotto, il dito manca il bersaglio */
+    min-height: 2.75rem; display: inline-flex; align-items: center;
+    padding: .45rem 1.1rem; border-radius: 999px;
+    border: 1px solid var(--cfg-bordo); background: #fff; color: var(--cfg-grigio);
+    transition: all .18s;
+}
+.expcfg-stile:hover { border-color: var(--cfg-chiaro); color: var(--cfg-notte); }
+.expcfg-stile[aria-checked="true"] {
+    background: var(--cfg-acqua); border-color: var(--cfg-acqua); color: #fff;
+}
+.expcfg-stile:focus-visible { outline: 2px solid var(--cfg-acqua); outline-offset: 2px; }
+
+.expcfg-finestra {
+    border: 1px solid var(--cfg-bordo); border-radius: 1rem; overflow: hidden;
+    box-shadow: 0 20px 50px rgba(11, 61, 97, .12); background: #fff;
+}
+.expcfg-barratitolo {
+    display: flex; align-items: center; gap: .4rem;
+    padding: .65rem .9rem; background: #EEF2F5; border-bottom: 1px solid var(--cfg-bordo);
+}
+.expcfg-pallino { width: .6rem; height: .6rem; border-radius: 50%; background: #CBD5E1; }
+.expcfg-url {
+    margin-inline-start: .6rem; font-size: .72rem; color: var(--cfg-grigio);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.expcfg-tela { min-height: 300px; }
+
+.expcfg-disclaimer {
+    margin-top: .9rem; font-size: .82rem; line-height: 1.55;
+    color: var(--cfg-grigio); max-width: 68ch;
+}
+
+/* ── Stili dell'anteprima ──────────────────────────────────────────────── */
+.cfg-hero { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.cfg-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cfg-hero-testo { position: absolute; inset-inline: 0; inset-block-end: 0; padding: clamp(1rem, 4vw, 2.25rem); }
+.cfg-occhiello { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.cfg-h1 { font-family: Montserrat, Inter, sans-serif; font-weight: 700; line-height: 1.08; letter-spacing: -.02em; font-size: clamp(1.4rem, 4.2vw, 2.6rem); margin: .3rem 0; }
+.cfg-sub { font-size: clamp(.8rem, 1.6vw, .98rem); opacity: .9; }
+.cfg-cta { display: inline-block; margin-top: .9rem; padding: .55rem 1.25rem; border-radius: .5rem; font-size: .85rem; font-weight: 600; }
+.cfg-sezione { padding: clamp(1.25rem, 4vw, 2.25rem); }
+.cfg-sez-tit { font-family: Montserrat, Inter, sans-serif; font-weight: 600; font-size: clamp(1rem, 2.4vw, 1.4rem); margin-bottom: 1rem; }
+.cfg-griglia { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); }
+.cfg-card { border-radius: .6rem; overflow: hidden; }
+.cfg-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.cfg-card-corpo { padding: .65rem .8rem; }
+.cfg-card-tit { font-weight: 600; font-size: .88rem; }
+.cfg-card-sub { font-size: .75rem; opacity: .7; margin-top: .15rem; }
+
+/* Classico — chiaro, fotografia piena, testo bianco in sovraimpressione.
+   La velatura e alta e densa perche il cliente carica la fotografia che
+   ha: con uno scatto chiaro o gia pieno di dettagli, un velo leggero
+   lascia il titolo illeggibile. */
+[data-stile="classico"] .cfg-hero-testo {
+    color: #fff;
+    padding-block-start: clamp(3rem, 12vw, 7rem);
+    background: linear-gradient(to top,
+        rgba(10, 22, 40, .92) 0%,
+        rgba(10, 22, 40, .78) 38%,
+        rgba(10, 22, 40, .34) 72%,
+        transparent 100%);
+}
+[data-stile="classico"] .cfg-h1,
+[data-stile="classico"] .cfg-sub { text-shadow: 0 1px 12px rgba(0, 0, 0, .45); }
+[data-stile="classico"] .cfg-occhiello { color: #4ADEDE; }
+[data-stile="classico"] .cfg-cta { background: #0D7C7C; color: #fff; }
+[data-stile="classico"] .cfg-sezione { background: #fff; color: #0A1628; }
+[data-stile="classico"] .cfg-card { background: #F8FAFB; border: 1px solid #E2E8F0; }
+
+/* Editoriale — carta, titolo serif sopra la fotografia */
+[data-stile="editoriale"] .cfg-hero { aspect-ratio: auto; display: grid; gap: 0; }
+[data-stile="editoriale"] .cfg-hero-testo {
+    position: static; background: #F3F1EC; color: #1A1A18;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+[data-stile="editoriale"] .cfg-hero img { aspect-ratio: 21 / 9; }
+[data-stile="editoriale"] .cfg-h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.01em; }
+[data-stile="editoriale"] .cfg-occhiello { color: #8A7F6B; }
+[data-stile="editoriale"] .cfg-cta { background: #1A1A18; color: #F3F1EC; border-radius: 0; }
+[data-stile="editoriale"] .cfg-sezione { background: #F3F1EC; color: #1A1A18; }
+[data-stile="editoriale"] .cfg-sez-tit { font-family: Georgia, serif; font-weight: 400; }
+[data-stile="editoriale"] .cfg-card { background: #fff; }
+[data-stile="editoriale"] .cfg-card-tit { font-family: Georgia, serif; font-weight: 400; }
+
+/* Scuro — notturno, accenti oro, tutto centrato */
+[data-stile="scuro"] .cfg-hero-testo {
+    color: #F5F0E6; text-align: center;
+    padding-block-start: clamp(3rem, 12vw, 7rem);
+    background: linear-gradient(to top,
+        rgba(5, 8, 16, .95) 0%,
+        rgba(5, 8, 16, .82) 40%,
+        rgba(5, 8, 16, .38) 74%,
+        transparent 100%);
+}
+[data-stile="scuro"] .cfg-h1,
+[data-stile="scuro"] .cfg-sub { text-shadow: 0 1px 12px rgba(0, 0, 0, .5); }
+[data-stile="scuro"] .cfg-occhiello { color: #C9A961; letter-spacing: .2em; }
+[data-stile="scuro"] .cfg-h1 { font-family: Georgia, serif; font-weight: 400; }
+[data-stile="scuro"] .cfg-cta { background: transparent; border: 1px solid #C9A961; color: #C9A961; border-radius: 0; letter-spacing: .08em; text-transform: uppercase; font-size: .72rem; }
+[data-stile="scuro"] .cfg-sezione { background: #0B0E16; color: #F5F0E6; text-align: center; }
+[data-stile="scuro"] .cfg-sez-tit { font-family: Georgia, serif; font-weight: 400; }
+[data-stile="scuro"] .cfg-card { background: #141824; border: 1px solid rgba(201,169,97,.18); }
+[data-stile="scuro"] .cfg-card-sub { color: #C9A961; opacity: 1; }
+
+/* ── Chiusura e modulo ─────────────────────────────────────────────────── */
+.expcfg-chiusura {
+    margin-top: 2.5rem; padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: linear-gradient(135deg, #0A1628, #0D7C7C);
+    border-radius: 1rem; color: #fff;
+}
+.expcfg-chiusura h2 {
+    font-family: Montserrat, Inter, sans-serif; font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.9rem); margin-bottom: .6rem;
+}
+.expcfg-chiusura-sub { color: rgba(255,255,255,.78); max-width: 54ch; margin-bottom: 1.5rem; font-size: .95rem; line-height: 1.6; }
+
+.expcfg-form { max-width: 560px; }
+.expcfg-form-griglia { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.expcfg-form .expcfg-campo { margin-bottom: 1rem; }
+.expcfg-form .expcfg-campo label { color: #fff; }
+.expcfg-form .expcfg-campo input {
+    background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.25); color: #fff;
+}
+.expcfg-form .expcfg-campo input::placeholder { color: rgba(255,255,255,.45); }
+.expcfg-form .expcfg-campo input:focus { border-color: #4ADEDE; }
+
+.expcfg-trappola { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.expcfg-consenso { display: flex; align-items: flex-start; gap: .55rem; margin-bottom: 1.25rem; }
+.expcfg-consenso label { font-size: .82rem; line-height: 1.5; color: rgba(255,255,255,.8); }
+.expcfg-consenso a { color: #4ADEDE; text-decoration: underline; }
+.expcfg-consenso input { margin-top: .22rem; width: 1rem; height: 1rem; flex-shrink: 0; }
+
+.expcfg-invia {
+    font: inherit; font-size: .95rem; font-weight: 600; cursor: pointer;
+    padding: .85rem 1.75rem; border: 0; border-radius: .6rem;
+    background: #fff; color: #0A1628;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: background .18s, transform .18s;
+}
+.expcfg-invia:hover:not(:disabled) { background: #4ADEDE; transform: translateY(-1px); }
+.expcfg-invia:disabled { opacity: .6; cursor: progress; }
+.expcfg-invia:focus-visible { outline: 2px solid #4ADEDE; outline-offset: 3px; }
+
+.expcfg-esito { margin-top: .9rem; font-size: .9rem; font-weight: 500; }
+.expcfg-esito.ok { color: #86EFAC; }
+.expcfg-esito.ko { color: #FCA5A5; }
+
+@media (prefers-reduced-motion: reduce) {
+    .expcfg-scelta, .expcfg-invia, .expcfg-stile, .expcfg-dropzone { transition: none; }
+    .expcfg-scelta:hover, .expcfg-invia:hover:not(:disabled) { transform: none; }
+}

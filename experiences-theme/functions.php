@@ -61,6 +61,67 @@ function experiences_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'experiences_enqueue_assets' );
 
+// ── Configuratore: CSS e JS solo dove serve ────────────────────────────
+// Sono una pagina sola: caricarli ovunque peserebbe su tutte le altre.
+function experiences_enqueue_configuratore() {
+    if ( ! is_page_template( 'page-configuratore.php' ) ) {
+        return;
+    }
+    $uri = get_template_directory_uri();
+    $ver = wp_get_theme()->get( 'Version' );
+
+    wp_enqueue_style( 'experiences-configuratore', $uri . '/assets/css/configuratore.css', [ 'experiences-style' ], $ver );
+    // Dipende da experiences-main perche riusa experiencesAjax (indirizzo,
+    // nonce e endpoint di rinnovo) per inviare la richiesta.
+    wp_enqueue_script( 'experiences-configuratore', $uri . '/assets/js/configuratore.js', [ 'experiences-main' ], $ver, true );
+}
+add_action( 'wp_enqueue_scripts', 'experiences_enqueue_configuratore', 20 );
+
+// ── Pagina del configuratore, creata una volta sola ────────────────────
+function experiences_setup_configuratore_page() {
+    if ( get_option( 'experiences_configuratore_setup_v1' ) ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $esistente = get_page_by_path( 'configuratore' );
+    if ( $esistente && 'trash' !== $esistente->post_status ) {
+        // Stessa trappola delle pagine legali: una bozza c'e ma non e
+        // pubblica, e senza questo controllo la pagina resterebbe in 404.
+        if ( 'publish' !== $esistente->post_status ) {
+            wp_update_post([ 'ID' => $esistente->ID, 'post_status' => 'publish' ]);
+        }
+        update_post_meta( $esistente->ID, '_wp_page_template', 'page-configuratore.php' );
+        update_option( 'experiences_configuratore_setup_v1', time() );
+        return;
+    }
+
+    $id = wp_insert_post([
+        'post_title'   => 'Configuratore anteprima',
+        'post_name'    => 'configuratore',
+        'post_status'  => 'publish',
+        'post_type'    => 'page',
+        'post_content' => '',
+        'post_author'  => get_current_user_id() ?: 1,
+    ]);
+
+    if ( $id && ! is_wp_error( $id ) ) {
+        update_post_meta( $id, '_wp_page_template', 'page-configuratore.php' );
+    }
+
+    update_option( 'experiences_configuratore_setup_v1', time() );
+}
+add_action( 'admin_init', 'experiences_setup_configuratore_page' );
+
+function experiences_configuratore_url() {
+    $p = get_page_by_path( 'configuratore' );
+    return ( $p && 'publish' === $p->post_status )
+        ? get_permalink( $p )
+        : home_url( '/configuratore/' );
+}
+
 // ── Nonce freschi per le pagine servite dalla cache ────────────────────
 // Il nonce del form finisce dentro l'HTML, e l'HTML è servito da
 // Cloudflare con s-maxage di un anno. I nonce di WordPress scadono dopo
