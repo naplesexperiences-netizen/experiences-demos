@@ -8,6 +8,11 @@
  * Istruzioni di installazione: LEGGIMI.md nella stessa cartella.
  */
 
+// Lascia vuoto se hai creato lo script da Estensioni → Apps Script dentro il
+// Foglio (consigliato). Se invece lo script è separato, incolla qui l'ID del
+// Foglio: è la parte dell'indirizzo tra /d/ e /edit.
+var SPREADSHEET_ID = '';
+
 var SHEET_NAME = 'Conferme';
 var HEADERS = [
   'Aggiornato il', 'Presenza', 'Nome', 'Email', 'Persone',
@@ -45,8 +50,8 @@ function doPost(e) {
   ];
 
   var lock = LockService.getScriptLock();
-  lock.waitLock(10000);
   try {
+    lock.waitLock(10000);
     var sheet = getSheet();
     var existing = findRowByEmail(sheet, email);
     if (existing) {
@@ -54,6 +59,9 @@ function doPost(e) {
     } else {
       sheet.appendRow(row);
     }
+  } catch (err) {
+    console.error(err);
+    return reply({ ok: false, error: String(err && err.message || err) });
   } finally {
     lock.releaseLock();
   }
@@ -65,8 +73,27 @@ function doGet() {
   return ContentService.createTextOutput('Conferme Bartolo e Paola: attivo.');
 }
 
-function getSheet() {
+// Da eseguire dall'editor (menu a tendina accanto a «Esegui»: scegli «prova»).
+// Scrive una riga di test nel foglio Conferme; poi puoi cancellarla.
+// Non eseguire doPost a mano: lo chiama il sito, con i dati del modulo.
+function prova() {
+  var risposta = doPost({ parameter: {
+    presenza: 'si', nome: 'Prova Prova', email: 'prova@esempio.it', ospiti: '2',
+    bus: 'no', hotel: 'no', messaggio: 'Riga di prova: puoi cancellarla'
+  } });
+  console.log(risposta.getContent());
+}
+
+function getSpreadsheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (ss) return ss;
+  if (SPREADSHEET_ID) return SpreadsheetApp.openById(SPREADSHEET_ID);
+  throw new Error('Lo script non è collegato a un Foglio. Crealo dal Foglio ' +
+    '(Estensioni → Apps Script) oppure inserisci SPREADSHEET_ID in cima al file.');
+}
+
+function getSheet() {
+  var ss = getSpreadsheet();
   var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS);
