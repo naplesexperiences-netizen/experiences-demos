@@ -15,9 +15,19 @@ deve ricevere le conferme.
 ## 2. Aggiungi lo script
 
 1. Nel Foglio: **Estensioni → Apps Script**.
+   Importante: lo script va creato **da dentro il Foglio**, così sa dove
+   scrivere. Se l'hai creato da script.google.com, incolla l'ID del Foglio
+   (la parte dell'indirizzo tra `/d/` e `/edit`) in `SPREADSHEET_ID`, in cima
+   al file.
 2. Cancella il contenuto di `Codice.gs` e incolla tutto il file `Codice.gs` di
    questa cartella.
 3. Salva (icona del dischetto).
+4. Prova: nel menu a tendina accanto a **Esegui** scegli **prova** (non
+   `doPost`) e premi **Esegui**. Alla prima volta Google chiede
+   l'autorizzazione. Nel Foglio compare il foglio **Conferme** con una riga
+   «Prova Prova»: lo script funziona, e puoi cancellare la riga.
+   `doPost` non va eseguito a mano: lo chiama il sito con i dati del modulo,
+   e dall'editor risponde «Nome o email mancanti».
 
 ## 3. Pubblica lo script come Web App
 
@@ -33,6 +43,12 @@ deve ricevere le conferme.
 
 Prova: aprendo quell'URL nel browser deve comparire
 «Conferme Bartolo e Paola: attivo.».
+
+Se invece compare la pagina di Google Drive «Impossibile aprire il file in
+questo momento», di solito nel browser sono aperti più account Google: apri
+l'URL in una finestra in incognito. Se anche lì non funziona, controlla di
+aver copiato l'URL che finisce con `/exec` e che «Chi può accedere» sia
+*Chiunque*.
 
 ## 4. Collega il sito
 
