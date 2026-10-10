@@ -45,7 +45,7 @@ function doPost(e) {
     bus ? count(p.posti) : '',
     hotel ? 'Sì' : 'No',
     hotel ? count(p.camere) : '',
-    hotel ? clean(p.notti, 20).split('+').join(' e ') + ' maggio' : '',
+    hotel ? clean(p.notti, 20).split('+').join(' e ') + ' giugno' : '',
     clean(p.messaggio, 1000)
   ];
 
