@@ -529,9 +529,11 @@ get_header();
                             Guarda la selezione
                             <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
                         </a>
-                        <a href="#booking" data-booking-trigger
+                        <!-- Il configuratore viene prima della call: ha
+                             molto meno attrito e qualifica il contatto. -->
+                        <a href="<?php echo esc_url( experiences_configuratore_url() ); ?>"
                            class="px-8 py-4 bg-white/10 backdrop-blur border border-white/25 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2">
-                            <i class="fas fa-rocket" aria-hidden="true"></i> Voglio la mia
+                            <i class="fas fa-eye" aria-hidden="true"></i> Provalo con le tue foto
                         </a>
                     </div>
 
