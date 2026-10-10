@@ -3,8 +3,8 @@ Theme Name: Experiences Srl
 Theme URI: https://www.naplesexperiences.com
 Author: Experiences Srl
 Author URI: https://www.naplesexperiences.com
-Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.6.0: dati legali (sede, P.IVA, hosting) compilabili dal Personalizzatore e sostituiti anche nelle pagine già pubblicate, cartella languages con il modello di traduzione, limite articoli del blog filtrabile, attributo "posts" dello shortcode portfolio ora rispettato, rimossi 648 KB di script una-tantum. v2.5.1: fix elenco articoli vuoto su /blog/ (get_template_part non passa le variabili locali). v2.5.0: home.php (la pagina articoli mostrava la homepage), modello pagina Blog con filtri e ricerca, sezione Galleria Demo verso l'hub GitHub Pages. v2.4.0: accessibilità — prefers-reduced-motion sulle 20 animazioni, focus visibile, skip link, label e autocomplete nel form, focus trap nei modali, landmark main. v2.3.8: il tema usa il seo_title e la meta description importati (prima i title arrivavano a 144 char). v2.3.7: fix pagine legali mancanti dopo aggiornamento tema (404 su privacy/cookie/termini). v2.3.6: sottotitolo hero "Tutto Sincronizzato, Zero Overbooking". v2.3.5: sottotitolo hero riscritto per non ripetere la headline. v2.3.4: nuova headline homepage "Aumenta le tue prenotazioni, lavorando di meno". v2.3.3: immagine Open Graph (anteprima condivisione) ispirata alla hero della homepage + tag OG anche su articoli e pagine. v2.3.2: fix "Tutti gli articoli" che reindirizzava alla home (helper experiences_blog_archive_url + auto-creazione pagina Blog come page_for_posts). v2.3.1: postille pricing.
-Version: 2.6.0
+Description: Tema WordPress professionale per Experiences Srl – Soluzioni Digitali per il Turismo. v2.7.0: fix Privacy Policy in 404 (la bozza di serie di WordPress bloccava la creazione), consenso cookie ora applicato davvero via Google Consent Mode v2, banner cookie non più tagliato su mobile (un data-aos laterale allargava il viewport), nonce rigenerato al volo quando la pagina arriva dalla cache, menu da 9 a 5 voci con una sola sorgente e menu mobile non più raggiungibile col Tab da chiuso. v2.6.0: dati legali (sede, P.IVA, hosting) compilabili dal Personalizzatore e sostituiti anche nelle pagine già pubblicate, cartella languages con il modello di traduzione, limite articoli del blog filtrabile, attributo "posts" dello shortcode portfolio ora rispettato, rimossi 648 KB di script una-tantum. v2.5.1: fix elenco articoli vuoto su /blog/ (get_template_part non passa le variabili locali). v2.5.0: home.php (la pagina articoli mostrava la homepage), modello pagina Blog con filtri e ricerca, sezione Galleria Demo verso l'hub GitHub Pages. v2.4.0: accessibilità — prefers-reduced-motion sulle 20 animazioni, focus visibile, skip link, label e autocomplete nel form, focus trap nei modali, landmark main. v2.3.8: il tema usa il seo_title e la meta description importati (prima i title arrivavano a 144 char). v2.3.7: fix pagine legali mancanti dopo aggiornamento tema (404 su privacy/cookie/termini). v2.3.6: sottotitolo hero "Tutto Sincronizzato, Zero Overbooking". v2.3.5: sottotitolo hero riscritto per non ripetere la headline. v2.3.4: nuova headline homepage "Aumenta le tue prenotazioni, lavorando di meno". v2.3.3: immagine Open Graph (anteprima condivisione) ispirata alla hero della homepage + tag OG anche su articoli e pagine. v2.3.2: fix "Tutti gli articoli" che reindirizzava alla home (helper experiences_blog_archive_url + auto-creazione pagina Blog come page_for_posts). v2.3.1: postille pricing.
+Version: 2.7.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -259,8 +259,21 @@ Tags: tourism, business, one-page, responsive, custom-menu, custom-logo
         .pricing-card.featured::before { transform: scaleX(1); }
 
         /* MOBILE MENU */
-        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
-        .mobile-menu.active { transform: translateX(0); }
+        /* Il pannello chiuso è solo spostato fuori schermo: senza
+           visibility:hidden i suoi link restano raggiungibili col Tab e
+           il focus sparisce dalla vista. La visibility cambia a fine
+           transizione in chiusura e subito in apertura, così lo scorrimento
+           resta visibile in entrambi i versi. */
+        .mobile-menu {
+            transform: translateX(100%);
+            visibility: hidden;
+            transition: transform 0.3s ease, visibility 0s linear 0.3s;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+            visibility: visible;
+            transition: transform 0.3s ease, visibility 0s linear 0s;
+        }
 
         /* WHATSAPP */
         .whatsapp-float {
@@ -790,6 +803,30 @@ a, button, input, select, textarea, [role="button"] {
 .exp-booking-modal,
 .mobile-menu {
     overscroll-behavior: contain;
+}
+
+/* --- Nessun allargamento orizzontale su mobile --------------------------- */
+/* Un elemento con data-aos="fade-left" resta a translate3d(100px,0,0)
+   finché l'animazione non parte. Nella sezione contatti quel +100px
+   portava il contenuto a 474px su uno schermo da 390 e il browser
+   allargava il viewport di layout: il banner cookie, che è fixed e si
+   dimensiona sul viewport, finiva tagliato con i bottoni fuori schermo.
+   `clip` invece di `hidden` perché non crea un contenitore di scorrimento
+   e non rompe position: sticky. */
+html { overflow-x: clip; }
+
+/* Sotto i 768px gli ingressi laterali diventano verticali: su un telefono
+   uno scorrimento orizzontale è comunque peggio, e così la causa sparisce
+   invece di essere solo mascherata. */
+@media (max-width: 767px) {
+    [data-aos="fade-left"]:not(.aos-animate),
+    [data-aos="fade-right"]:not(.aos-animate),
+    [data-aos="fade-up-left"]:not(.aos-animate),
+    [data-aos="fade-up-right"]:not(.aos-animate),
+    [data-aos="fade-down-left"]:not(.aos-animate),
+    [data-aos="fade-down-right"]:not(.aos-animate) {
+        transform: translate3d(0, 30px, 0);
+    }
 }
 
 /* --- Ancore dei titoli: non finiscono sotto l'header fisso --------------- */
