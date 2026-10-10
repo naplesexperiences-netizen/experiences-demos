@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vetrina — Experiences Srl</title>
+<meta name="description" content="Una selezione ragionata delle demo di Experiences Srl: un paio per ogni modo diverso di costruire un sito, dal racconto per immagini al totem touch.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://naplesexperiences-netizen.github.io/experiences-demos/vetrina/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vetrina — Experiences Srl">
+<meta property="og:description" content="Una selezione ragionata delle demo: un paio per ogni modo diverso di costruire un sito.">
+<meta property="og:url" content="https://naplesexperiences-netizen.github.io/experiences-demos/vetrina/">
+<meta property="og:locale" content="it_IT">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --notte:#0A1628; --profondo:#0B3D61; --acqua:#0D7C7C; --chiaro:#14A3A3;
+  --brillante:#4ADEDE; --carta:#F4F8F8; --fumo:rgba(244,248,248,.62);
+  --bordo:rgba(74,222,222,.16); --card:rgba(255,255,255,.035);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  background:var(--notte); color:var(--carta);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* 1.55 su fondo scuro: il testo chiaro su scuro ha bisogno di un filo
+     di aria in piu per non impastarsi */
+  font-size:clamp(16px,1.05vw,17px); line-height:1.55;
+  font-feature-settings:"kern" 1,"liga" 1;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+.contenitore{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(1rem,4vw,2.5rem)}
+
+/* ── Intestazione ─────────────────────────────────────────── */
+.testata{padding:clamp(3.5rem,9vw,7rem) 0 clamp(2rem,5vw,3.5rem);position:relative;overflow:hidden}
+.testata::before{
+  content:"";position:absolute;inset:-40% 50% auto -20%;height:70vh;
+  background:radial-gradient(circle,rgba(20,163,163,.20),transparent 68%);
+  pointer-events:none;
+}
+.testata>*{position:relative}
+.occhiello{
+  font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brillante);margin-bottom:1.25rem;
+}
+h1{
+  font-family:Montserrat,Inter,sans-serif;font-weight:700;
+  font-size:clamp(2.1rem,5.6vw,3.9rem);line-height:1.08;
+  letter-spacing:-.02em;text-wrap:balance;hyphens:none;margin-bottom:1.5rem;
+}
+h1 em{font-style:normal;color:var(--brillante)}
+.sommario{max-width:58ch;color:var(--fumo);font-size:clamp(1rem,1.5vw,1.125rem)}
+.sommario+.sommario{margin-top:.9rem}
+
+/* ── Filtri ───────────────────────────────────────────────── */
+.filtri{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  /* Meno aria sopra: la testata ne ha gia messa a sufficienza e il
+     doppio stacco spingeva i filtri troppo in basso nella pagina. */
+  padding:0 0 clamp(1.25rem,3vw,2rem);
+  border-bottom:1px solid var(--bordo);
+}
+.filtro{
+  font:inherit;font-size:.82rem;font-weight:500;
+  padding:.5rem 1.05rem;border-radius:999px;cursor:pointer;
+  background:transparent;border:1px solid var(--bordo);color:var(--fumo);
+  transition:color .18s,border-color .18s,background .18s;
+}
+.filtro:hover{color:var(--carta);border-color:rgba(74,222,222,.4)}
+.filtro[aria-pressed="true"]{background:var(--acqua);border-color:var(--acqua);color:#fff}
+.filtro:focus-visible{outline:2px solid var(--brillante);outline-offset:3px}
+
+/* ── Griglia ──────────────────────────────────────────────── */
+.griglia{
+  display:grid;gap:clamp(1.25rem,3vw,2rem);
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));
+  padding:clamp(2rem,5vw,3.5rem) 0;
+}
+.scheda{
+  display:flex;flex-direction:column;
+  background:var(--card);border:1px solid var(--bordo);border-radius:1rem;
+  overflow:hidden;text-decoration:none;
+  transition:transform .22s ease,border-color .22s ease,background .22s ease;
+}
+.scheda:hover,.scheda:focus-visible{
+  transform:translateY(-4px);border-color:rgba(74,222,222,.45);
+  background:rgba(255,255,255,.06);
+}
+.scheda:focus-visible{outline:2px solid var(--brillante);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.scheda{transition:none}.scheda:hover,.scheda:focus-visible{transform:none}}
+
+.telaio{aspect-ratio:16/10;background:var(--profondo);overflow:hidden;position:relative}
+.telaio img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.telaio[data-ritratto] img{object-fit:contain;background:var(--notte)}
+
+.corpo{padding:1.25rem 1.35rem 1.5rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.etichetta{
+  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--brillante);
+}
+h2{
+  font-family:Montserrat,Inter,sans-serif;font-weight:600;
+  font-size:1.14rem;line-height:1.3;letter-spacing:-.01em;hyphens:none;
+}
+.scheda p{color:var(--fumo);font-size:.93rem;line-height:1.55;max-width:46ch}
+.apri{
+  margin-top:auto;padding-top:.5rem;font-size:.85rem;font-weight:600;color:var(--brillante);
+}
+.apri::after{content:" →"}
+
+/* ── Chiusura ─────────────────────────────────────────────── */
+.chiusura{
+  border-top:1px solid var(--bordo);
+  padding:clamp(2.5rem,6vw,4rem) 0 clamp(3rem,7vw,5rem);
+}
+.chiusura h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.9rem}
+.chiusura p{color:var(--fumo);max-width:60ch;margin-bottom:1.6rem}
+.bottoni{display:flex;flex-wrap:wrap;gap:.75rem}
+.bottone{
+  display:inline-block;padding:.8rem 1.5rem;border-radius:.7rem;
+  font-size:.92rem;font-weight:600;text-decoration:none;
+  transition:background .18s,border-color .18s;
+}
+.bottone-pieno{background:var(--acqua);color:#fff}
+.bottone-pieno:hover{background:var(--chiaro)}
+.bottone-vuoto{border:1px solid var(--bordo);color:var(--carta)}
+.bottone-vuoto:hover{border-color:rgba(74,222,222,.5)}
+.bottone:focus-visible{outline:2px solid var(--brillante);outline-offset:3px}
+
+.piede{
+  border-top:1px solid var(--bordo);padding:1.75rem 0 2.5rem;
+  font-size:.82rem;color:var(--fumo);
+  display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between;
+}
+.piede a{color:var(--brillante);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+
+.salta{position:absolute;left:-9999px}
+.salta:focus{
+  left:1rem;top:1rem;z-index:10;position:fixed;
+  background:var(--acqua);color:#fff;padding:.7rem 1.1rem;border-radius:.5rem;
+}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+
+<a class="salta" href="#vetrina">Salta alla selezione</a>
+
+<header class="testata">
+  <div class="contenitore">
+    <p class="occhiello">Experiences Srl · Vetrina</p>
+    <h1>Undici modi diversi<br>di fare <em>un sito</em></h1>
+    <p class="sommario">Abbiamo costruito oltre duecento demo. Quasi tutte sono varianti dello stesso impianto, con fotografie e testi diversi: metterle tutte in fila non direbbe niente.</p>
+    <p class="sommario">Qui ce n&rsquo;è una per ogni modo <em>davvero</em> diverso di costruire una pagina. Dove due approcci meritavano un confronto &mdash; lo stesso albergo raccontato in due modi opposti &mdash; li trovi affiancati.</p>
+  </div>
+</header>
+
+<main id="vetrina">
+  <div class="contenitore">
+
+    <div class="filtri" role="group" aria-label="Filtra per tipo">
+      <button type="button" class="filtro" data-cat="tutte" aria-pressed="true">Tutte</button>
+      <button type="button" class="filtro" data-cat="ospitalita" aria-pressed="false">Ospitalità</button>
+      <button type="button" class="filtro" data-cat="tour" aria-pressed="false">Esperienze e tour</button>
+      <button type="button" class="filtro" data-cat="formazione" aria-pressed="false">Formazione</button>
+      <button type="button" class="filtro" data-cat="interattivo" aria-pressed="false">Interattivo</button>
+      <button type="button" class="filtro" data-cat="contenuti" aria-pressed="false">Contenuti</button>
+    </div>
+
+    <p id="conteggio" class="sommario" style="padding-top:1.25rem" aria-live="polite">11 demo</p>
+
+    <div class="griglia" id="griglia">
+
+      <a class="scheda" data-cat="ospitalita" href="../demos/marezzo-albergo-di-scogliera-cinematic-demo/">
+        <div class="telaio"><img src="anteprime/marezzo-albergo-di-scogliera-cinematic-demo.jpg" alt="Marèzzo, versione cinematica" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Ospitalità · Racconto per immagini</span>
+          <h2>Marèzzo &mdash; cinematica</h2>
+          <p>Scorrimento lento, fotografie a piena pagina, il testo che entra una riga alla volta. Per chi vende un&rsquo;atmosfera prima di una camera.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="ospitalita" href="../demos/marezzo-variante-b-immersiva/">
+        <div class="telaio"><img src="anteprime/marezzo-variante-b-immersiva.jpg" alt="Marèzzo, versione immersiva" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Ospitalità · Editoriale</span>
+          <h2>Marèzzo &mdash; immersiva</h2>
+          <p>Stesso albergo, impianto opposto: titoli enormi con la fotografia dentro le lettere. Le due varianti esistono per far scegliere il tono al cliente, non a noi.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="ospitalita" href="../demos/villa-crawford-sorrento-3d-experiences/">
+        <div class="telaio"><img src="anteprime/villa-crawford-sorrento-3d-experiences.jpg" alt="Villa Crawford, demo con scena 3D" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Ospitalità · Tecnica</span>
+          <h2>Villa Crawford &mdash; 3D</h2>
+          <p>Scena tridimensionale e scorrimento morbido: lo sfondo reagisce al movimento. Il massimo dell&rsquo;effetto, con la manutenzione che comporta.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="ospitalita" href="../demos/araba-fenice-hotel-resort-cilento-new-template-experiences/">
+        <div class="telaio"><img src="anteprime/araba-fenice-hotel-resort-cilento-new-template-experiences.jpg" alt="L&rsquo;Araba Fenice Hotel &amp; Resort" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Ospitalità · Il modello di serie</span>
+          <h2>L&rsquo;Araba Fenice</h2>
+          <p>L&rsquo;impianto che usiamo di base: hero, servizi, concierge AI, piani, prenotazione. Sotto a oltre centotrenta demo c&rsquo;è questo &mdash; cambiano fotografie e testi.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="tour" href="../demos/aroundvesuvio-com---le-migliori-soluzion/">
+        <div class="telaio"><img src="anteprime/aroundvesuvio.jpg" alt="AroundVesuvio, demo per tour operator" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Esperienze e tour</span>
+          <h2>AroundVesuvio</h2>
+          <p>Tour condivisi e tour privati separati fin dal menu, destinazioni, partenze da quattro città. L&rsquo;impianto cambia perché cambia la domanda: non &laquo;dove dormo&raquo; ma &laquo;cosa faccio&raquo;.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="formazione" href="../demos/elementi-di-informatica/">
+        <div class="telaio"><img src="anteprime/elementi-di-informatica.jpg" alt="Elementi di informatica, lezione interattiva" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Formazione · Lezione interattiva</span>
+          <h2>Elementi di informatica</h2>
+          <p>Non una brochure di un corso: il corso. Esercizi che rispondono, aree da disegnare, verifica a fine capitolo.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="formazione" href="../demos/fogli-di-calcolo-google/">
+        <div class="telaio"><img src="anteprime/fogli-di-calcolo-google.jpg" alt="Guida ai Fogli Google" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Formazione · Guida lunga</span>
+          <h2>Fogli Google, passo per passo</h2>
+          <p>Come si tiene leggibile un testo lungo: indice che segue lo scorrimento, passaggi numerati, niente che distragga.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="interattivo" href="../demos/sportlandia-kiosk/">
+        <div class="telaio" data-ritratto><img src="anteprime/sportlandia-kiosk.jpg" alt="Totem touch Sportlandia" loading="lazy" width="506" height="900"></div>
+        <div class="corpo">
+          <span class="etichetta">Totem touch · Schermo verticale</span>
+          <h2>Sportlandia &mdash; totem</h2>
+          <p>Un 42 pollici verticale all&rsquo;ingresso della palestra. Niente mouse, niente tastiera: si tocca, e dopo un minuto di inattività torna da solo all&rsquo;inizio.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="interattivo" href="../demos/insectron-arena/">
+        <div class="telaio"><img src="anteprime/insectron-arena.jpg" alt="Insectron Arena, gioco tattico" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Interattivo · Prototipo</span>
+          <h2>Insectron Arena</h2>
+          <p>Un gioco tattico a turni dentro una pagina. Serve a mostrare fin dove si può spingere il browser senza far installare niente a nessuno.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="contenuti" href="../demos/experiences-blog-channel-manager-2026/">
+        <div class="telaio"><img src="anteprime/experiences-blog-channel-manager-2026.jpg" alt="Articolo di blog sul channel manager" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Contenuti · Articolo</span>
+          <h2>Un articolo lungo</h2>
+          <p>Come impaginiamo tremila parole perché si leggano davvero: indice laterale, tabelle di confronto, riquadri di sintesi.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+      <a class="scheda" data-cat="contenuti" href="../demos/ischia4punto0-landing-affiliate/">
+        <div class="telaio"><img src="anteprime/ischia4punto0-landing-affiliate.jpg" alt="Landing Ischia 4.0" loading="lazy" width="900" height="562"></div>
+        <div class="corpo">
+          <span class="etichetta">Landing · Campagna</span>
+          <h2>Ischia 4.0</h2>
+          <p>Pagina sola, obiettivo solo. Nessuna navigazione in cima: tutto quello che c&rsquo;è porta nello stesso punto.</p>
+          <span class="apri">Apri la demo</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <section class="chiusura">
+    <div class="contenitore">
+      <h2>Nessuna di queste è il tuo sito</h2>
+      <p>Sono dimostrazioni: strutture inventate, testi scritti da noi, fotografie di repertorio. Servono a far vedere come lavoriamo prima che tu debba fidarti sulla parola. Se una ti somiglia, partiamo da lì.</p>
+      <div class="bottoni">
+        <a class="bottone bottone-pieno" href="https://naplesexperiences.com/#contact">Parliamone</a>
+        <a class="bottone bottone-vuoto" href="../">Vedi tutte e duecento</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="contenitore" style="display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;justify-content:space-between;width:100%">
+    <span>&copy;&nbsp;2026 Experiences Srl &mdash; Soluzioni digitali per il turismo</span>
+    <span><a href="https://naplesexperiences.com/">naplesexperiences.com</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var filtri  = document.querySelectorAll('.filtro');
+  var schede  = document.querySelectorAll('.scheda');
+  var conteggio = document.getElementById('conteggio');
+
+  function applica(cat){
+    var n = 0;
+    schede.forEach(function(s){
+      var mostra = (cat === 'tutte') || (s.dataset.cat === cat);
+      s.hidden = !mostra;
+      if (mostra) n++;
+    });
+    conteggio.textContent = n + ' demo';   /* invariabile al plurale */
+    filtri.forEach(function(f){
+      f.setAttribute('aria-pressed', String(f.dataset.cat === cat));
+    });
+  }
+
+  filtri.forEach(function(f){
+    f.addEventListener('click', function(){ applica(f.dataset.cat); });
+  });
+})();
+</script>
+
+</body>
+</html>
