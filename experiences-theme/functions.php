@@ -237,6 +237,24 @@ function experiences_customize_register( $wp_customize ) {
         'input_attrs' => [ 'min' => 1, 'step' => 10 ],
     ]);
 
+    // Assistente virtuale LiveAvatar
+    $wp_customize->add_section( 'experiences_avatar_section', [
+        'title'    => __( 'Assistente virtuale (avatar)', 'experiences-srl' ),
+        'priority' => 31,
+    ]);
+
+    $wp_customize->add_setting( 'exp_avatar_embed', [
+        'default'           => EXP_AVATAR_EMBED_DEFAULT,
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_avatar_embed', [
+        'label'       => __( 'Indirizzo embed dell\'avatar', 'experiences-srl' ),
+        'description' => __( 'Senza il parametro "orientation": lo aggiunge il sito da solo, verticale sui telefoni e orizzontale su schermi grandi. Svuota il campo per tornare a quello predefinito.', 'experiences-srl' ),
+        'section'     => 'experiences_avatar_section',
+        'type'        => 'url',
+    ]);
+
     $wp_customize->add_section( 'experiences_privacy_section', [
         'title'    => __( 'Privacy & Cookie', 'experiences-srl' ),
         'priority' => 31,
@@ -520,6 +538,18 @@ define( 'EXP_DEMO_HUB_DEFAULT', 'https://naplesexperiences-netizen.github.io/exp
 function experiences_demo_hub_url() {
     $url = get_theme_mod( 'exp_demo_url', EXP_DEMO_HUB_DEFAULT );
     return $url ? $url : EXP_DEMO_HUB_DEFAULT;
+}
+
+// ── Avatar LiveAvatar ──────────────────────────────────────────────────
+// L'indirizzo dell'embed era scritto dentro front-page.php: cambiare
+// avatar voleva dire modificare un template. Il parametro orientation
+// non fa parte di questo valore, lo aggiunge il JS in base alla
+// larghezza dello schermo.
+define( 'EXP_AVATAR_EMBED_DEFAULT', 'https://embed.liveavatar.com/v1/c9ba1ee0-5822-4be5-a239-ced83918726f' );
+
+function experiences_avatar_embed_url() {
+    $url = trim( (string) get_theme_mod( 'exp_avatar_embed', EXP_AVATAR_EMBED_DEFAULT ) );
+    return '' !== $url ? $url : EXP_AVATAR_EMBED_DEFAULT;
 }
 
 // ── Blog archive: helper URL + setup automatico pagina "Blog" ──────────

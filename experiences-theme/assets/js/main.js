@@ -173,6 +173,42 @@
             });
         })();
 
+        // ── Avatar LiveAvatar: caricamento al clic ───────────────────────
+        // L'orientamento si sceglie al momento del clic, non a priori:
+        // l'embed in orizzontale su un telefono rende un video 358×201.
+        (function bindAvatar() {
+            const box = document.getElementById('exp-avatar');
+            if (!box) return;
+
+            const base = box.dataset.avatarEmbed;
+            const btn  = box.querySelector('[data-avatar-start]');
+            if (!base || !btn) return;
+
+            btn.addEventListener('click', function () {
+                if (box.classList.contains('is-loading') || box.querySelector('iframe')) return;
+                box.classList.add('is-loading');
+
+                const verticale = window.matchMedia('(max-width: 767px)').matches;
+                const sep = base.indexOf('?') === -1 ? '?' : '&';
+
+                const frame = document.createElement('iframe');
+                frame.src = base + sep + 'orientation=' + (verticale ? 'vertical' : 'horizontal');
+                // Niente "camera": l'avatar parla, non guarda. Chiederla
+                // alzava un permesso più invasivo senza motivo.
+                frame.allow = 'microphone; autoplay';
+                frame.title = "LiveAvatar — Assistente Virtuale Experiences Srl";
+                frame.referrerPolicy = 'strict-origin-when-cross-origin';
+                frame.setAttribute('allowfullscreen', '');
+
+                frame.addEventListener('load', () => {
+                    box.classList.remove('is-loading');
+                    btn.remove();
+                });
+
+                box.appendChild(frame);
+            });
+        })();
+
         // ── Header scroll shadow ─────────────────────────────────────────
         (function bindHeaderScroll() {
             const header = document.getElementById('header');
