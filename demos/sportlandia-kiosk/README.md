@@ -1,5 +1,31 @@
 # SPORTLANDIA - Kiosk Digitale Touch Screen
 
+> ## ⚠️ Demo in produzione — leggere prima di modificare
+>
+> Questo totem è **installato e acceso** nella sede del cliente. Non è una demo
+> di prova.
+>
+> **Copia di sicurezza:** branch `backup/sportlandia-kiosk`.
+>
+> **Ripristino** (un comando, riporta il totem alla versione buona):
+> ```
+> git fetch origin backup/sportlandia-kiosk
+> git checkout origin/backup/sportlandia-kiosk -- demos/sportlandia-kiosk/
+> ```
+>
+> **Regole per chi lavora in batch su tutte le demo** (SEO, meta tag, hub,
+> rigenerazioni automatiche):
+> 1. Prima di toccare questa cartella, riallinea il branch a `origin/main`.
+>    A ottobre 2026 un branch SEO partito da una base vecchia ha vinto un
+>    conflitto di merge e ha riportato indietro il totem di sette commit:
+>    galleria GSAP, correzioni di accessibilità e scala tipografica, persi
+>    tutti insieme e andati in onda sullo schermo del cliente.
+> 2. In un conflitto su `index.html`, **il lato giusto è quello di `main`**.
+>    Riapplica sopra la tua modifica, non sostituire il file.
+> 3. Dopo la modifica, controlla che `index.html` sia ancora ~775 righe e che
+>    contenga `vendor/gsap.min.js`. Se è intorno alle 1400 righe, hai
+>    resuscitato la versione pre-v2: ripristina con il comando qui sopra.
+
 ## 📱 Descrizione
 
 Sito web interattivo verticale (portrait) ottimizzato per schermi touch screen 42" HD presso Sportlandia, centro fitness a Castellammare di Stabia.
@@ -95,8 +121,11 @@ Footer con contatti Sportlandia e link a **naplesexperiences.com**.
 
 ```
 sportlandia-kiosk/
-├── index.html      # Pagina principale con HTML, CSS e JS inline
-└── README.md       # Questo file
+├── index.html           # Pagina unica: HTML, CSS e JS inline (~775 righe)
+├── images/              # 13 WebP: locandine ufficiali, foto e logo
+├── vendor/
+│   └── gsap.min.js      # GSAP 3.15 vendorizzato (73 KB), per il funzionamento offline
+└── README.md            # Questo file
 ```
 
 ## 👥 Crediti
