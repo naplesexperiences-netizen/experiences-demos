@@ -295,15 +295,30 @@ get_header();
                 </span>
             </div>
 
-            <!-- LiveAvatar iframe — full width, 16:9 -->
-            <div data-aos="fade-up" data-aos-delay="200"
-                 style="width:100%; border-radius:1.5rem; overflow:hidden; box-shadow:0 25px 60px rgba(11,61,97,0.18); border:2px solid rgba(20,163,163,0.15);">
-                <iframe
-                    src="https://embed.liveavatar.com/v1/c9ba1ee0-5822-4be5-a239-ced83918726f?orientation=horizontal"
-                    allow="microphone; camera"
-                    title="LiveAvatar — Assistente Virtuale Experiences Srl"
-                    style="width:100%; aspect-ratio:16/9; display:block; border:none;">
-                </iframe>
+            <!-- LiveAvatar: si carica al clic.
+                 Prima l'iframe partiva allo scorrimento, sempre in
+                 orizzontale: su un telefono il video veniva 358×201, un
+                 volto dentro un francobollo. L'embed in verticale rende
+                 358×636 e qualunque altra proporzione taglia la testa,
+                 quindi il riquadro è 9:16 sotto i 768px e 16:9 sopra.
+                 Partendo al clic, il servizio di terze parti — con la
+                 sua richiesta di microfono — viene contattato solo
+                 quando il visitatore lo chiede davvero. -->
+            <div data-aos="fade-up" data-aos-delay="200" class="max-w-4xl mx-auto">
+                <div id="exp-avatar" class="exp-avatar"
+                     data-avatar-embed="<?php echo esc_url( experiences_avatar_embed_url() ); ?>">
+                    <button type="button" class="exp-avatar-start" data-avatar-start
+                            aria-describedby="exp-avatar-nota">
+                        <span class="exp-avatar-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="exp-avatar-label">Parla con l'Esperto Digitale</span>
+                        <span class="exp-avatar-hint">Si apre l'assistente video, in italiano</span>
+                    </button>
+                </div>
+                <p id="exp-avatar-nota" class="text-center text-xs text-gray-500 mt-3">
+                    Avviandolo ti colleghi a LiveAvatar, un servizio esterno, che potrà
+                    chiederti il microfono per parlare. Dettagli nella
+                    <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="underline hover:text-secondary">Privacy Policy</a>.
+                </p>
             </div>
 
             <!-- CTA below avatar -->
