@@ -79,12 +79,22 @@ h2{font-family:var(--script);font-weight:400;color:var(--sea);font-size:clamp(2.
 @keyframes cardIn{to{opacity:1;transform:none}}
 .greca{display:block;width:12rem;height:14px;margin:0 auto 1rem;color:var(--stone)}
 .greca.bottom{margin:1.5rem auto 0}
-/* portrait slot: when the photos arrive, replace the placeholder span with an img of the couple (alt "Bartolo e Paola") */
-.portrait{position:relative;width:clamp(5.5rem,16vw,7rem);aspect-ratio:1;max-width:100%;margin:-.5rem auto 1rem;border-radius:50%;overflow:hidden;
-  box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--stone);background:linear-gradient(160deg,var(--primary-soft),var(--surface-2))}
-.portrait img{width:100%;height:100%;object-fit:cover;display:block}
-.portrait .ph{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:.15rem;color:var(--muted);font:500 .7rem/1.2 var(--ui);text-align:center}
-.portrait .ph svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* couple's photo, framed between the columns behind the invitation text.
+   When the photos arrive, replace the placeholder span with an img of the couple (alt "Bartolo e Paola") */
+.card{isolation:isolate;overflow:hidden;color:#FBF5EC;background:var(--sea-deep)}
+.portrait{position:absolute;inset:0;z-index:-1;margin:0;background:radial-gradient(120% 80% at 50% 0%,#7A2A4A,#3A1426 60%,#220C17)}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(26 9 17 / .3),rgb(26 9 17 / .55) 45%,rgb(26 9 17 / .7))}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.portrait .ph{position:absolute;top:.6rem;left:50%;z-index:1;transform:translateX(-50%);display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap;
+  padding:.25rem .65rem;border-radius:999px;background:rgb(0 0 0 / .35);color:rgb(255 255 255 / .85);font:500 .72rem/1.2 var(--ui)}
+.portrait .ph svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card .intro,.card .where{color:rgb(251 245 236 / .85)}
+.card .names{color:#FFF8EE;text-shadow:0 2px 18px rgb(0 0 0 / .35)}
+.card .names .amp,.card .rotator .word{color:#E8C77E}
+.card .btn-primary:hover{background:#FFF8EE;border-color:#FFF8EE;color:#3A1426}
+.card .btn-ghost{color:#FBF5EC;border-color:rgb(251 245 236 / .75)}
+.card .btn-ghost:hover{background:rgb(255 255 255 / .12)}
+.card :focus-visible{outline-color:#E8C77E}
 .intro{margin:0;font-style:italic;color:var(--muted);font-size:1.15rem}
 .names{font-family:var(--script);font-weight:400;font-size:clamp(3.4rem,13vw,5.6rem);line-height:1.05;color:var(--ink);margin:.35rem 0 .5rem;
   clip-path:inset(0 100% 0 0);animation:write 1.8s cubic-bezier(.65,0,.35,1) forwards;animation-delay:2.1s}
@@ -103,14 +113,16 @@ h2{font-family:var(--script);font-weight:400;color:var(--sea);font-size:clamp(2.
 
 /* countdown */
 .countdown{background:var(--sea-deep);color:#F5F4F0;text-align:center}
+.countdown .media::after{background:linear-gradient(180deg,rgb(26 9 17 / .45),rgb(26 9 17 / .6))}
+.countdown .wrap{text-shadow:0 2px 14px rgb(0 0 0 / .45)}
 .countdown h2{color:var(--stone)}
 .countdown .lead{color:inherit;opacity:.85;margin-inline:auto}
 .clock{display:flex;justify-content:center;gap:clamp(.75rem,4vw,3rem);margin:0;padding:0;list-style:none}
 .clock li{display:flex;flex-direction:column;align-items:center;min-width:4.2rem}
 .clock b{font-family:var(--figures);font-weight:600;font-size:clamp(2.8rem,10vw,5rem);line-height:1;font-variant-numeric:lining-nums tabular-nums}
 .clock span{font-style:italic;font-size:1.05rem;opacity:.85}
-.cal{margin-top:2.5rem}
-.cal .btn{border-color:var(--stone);color:#F5F4F0;background:transparent}
+.cal{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.cal .btn{border-color:var(--stone);color:#F5F4F0;background:rgb(26 9 17 / .35);text-shadow:none}
 .cal .btn:hover{background:var(--stone);color:#1B2A33}
 
 /* programma */
@@ -255,7 +267,7 @@ footer .sig{font-family:var(--script);font-size:2.6rem;color:var(--stone);margin
 footer p{margin:.25rem 0 0;opacity:.85}
 
 @media (max-width:540px){
-  .card{padding:2.25rem 1rem 1.75rem}
+  .card{padding:2.9rem 1rem 1.75rem}
   .timeline::before{left:4.4rem}
   .timeline li{grid-template-columns:3.8rem 1fr;gap:1.4rem}
   .timeline li::after{left:calc(4.4rem - 7px)}
@@ -270,7 +282,7 @@ footer p{margin:.25rem 0 0;opacity:.85}
 }
 /* hero card with portrait: keep the whole temple in the first screen */
 @media (min-width:700px){
-  .card{padding-top:2rem;padding-bottom:1.6rem}
+  .card{padding-top:2.7rem;padding-bottom:1.6rem}
   .names{font-size:clamp(3.4rem,8vw,4.7rem);margin:.2rem 0 .3rem}
   .rotator{margin:.5rem 0 .9rem}
   .where{margin-bottom:1.3rem}
@@ -321,8 +333,8 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(26 9 17 / .3),rgb(26 9 17 / .5))}
 .need{position:absolute;top:calc(.75rem + env(safe-area-inset-top,0px));left:.75rem;z-index:2;padding:.3rem .65rem;border-radius:999px;background:rgb(0 0 0 / .4);color:rgb(255 255 255 / .88);font:500 .75rem/1.2 var(--ui)}
 /* the content sits on an invitation card, like the one in the temple */
-.panel{background:color-mix(in srgb,var(--surface) 93%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:2px;
-  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--surface) 93%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
+.panel{background:color-mix(in srgb,var(--surface) 74%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border-radius:2px;
+  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--surface) 74%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
 .panel .lead{color:var(--muted)}
 #foto .wall-bar,#foto .steps{position:relative}
 #rsvp{position:relative;z-index:1;scroll-margin-top:0}
@@ -398,7 +410,7 @@ html.env-wait .dots{opacity:0}
    <div class="side" aria-hidden="true"><span class="col far" style="--d:590ms"></span><span class="col mid" style="--d:370ms"></span><span class="col " style="--d:150ms"></span></div>
   <div class="card">
     <figure class="portrait" aria-label="Spazio per la foto degli sposi">
-      <span class="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3.5"/></svg>Foto degli sposi</span>
+      <span class="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3.5"/></svg>Qui la foto degli sposi</span>
     </figure>
     <p class="intro">Insieme alle loro famiglie</p>
     <h1 class="names"><span>Bartolo</span><span class="amp">&amp;</span><span>Paola</span></h1>
@@ -424,8 +436,8 @@ html.env-wait .dots{opacity:0}
  </div>
 </header>
 
-  <section class="countdown chapter" id="countdown" aria-labelledby="cd-title">
-    <div class="dim"></div>
+  <section class="countdown chapter photo" id="countdown" aria-labelledby="cd-title">
+    <div class="media" aria-hidden="true"><img src="img/bg-notte.webp" alt="" decoding="async" style="object-position:50% 50%"></div><span class="need">Immagine d'atmosfera generata con IA</span><div class="dim"></div>
     <div class="wrap">
       <h2 id="cd-title">Il conto alla rovescia</h2>
       <p class="lead">Ogni giorno che passa ci avvicina al sì.</p>
@@ -436,9 +448,13 @@ html.env-wait .dots{opacity:0}
         <li><b data-u="s">00</b><span>secondi</span></li>
       </ul>
       <div class="cal">
+        <a class="btn" href="matrimonio.ics" type="text/calendar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
+          Calendario iPhone
+        </a>
         <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Matrimonio%20Bartolo%20e%20Paola&dates=20270529T140000Z/20270529T230000Z&location=Basilica%20Paleocristiana%2C%20Paestum&details=Cerimonia%20alle%2016%2C%20poi%20ricevimento%20all%27Hotel%20Ariston%2C%20Paestum.">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
-          Aggiungi al calendario
+          Google Calendar
         </a>
       </div>
     </div>
