@@ -48,7 +48,7 @@ $exp_cta = apply_filters( 'experiences_nav_cta', [
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <!-- Mobile: segnaposto a sinistra per bilanciare il logo centrato -->
-                <div class="w-11 lg:hidden" aria-hidden="true"></div>
+                <div class="exp-tap-target lg:hidden" aria-hidden="true"></div>
                 <!-- Logo: centrato su mobile, allineato a sinistra su desktop -->
                 <div class="flex-1 flex justify-center lg:justify-start lg:flex-none">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 group">
@@ -75,9 +75,12 @@ $exp_cta = apply_filters( 'experiences_nav_cta', [
                     </a>
                 </nav>
 
-                <!-- 44×44 minimi: sotto quella soglia il dito manca il bersaglio -->
+                <!-- 44×44 minimi: sotto quella soglia il dito manca il bersaglio.
+                     La misura arriva da .exp-tap-target in style.css e non da
+                     w-11/h-11: il tema usa un Tailwind precompilato e quelle
+                     due classi non ci sono dentro. -->
                 <button id="mobile-menu-btn" type="button"
-                        class="lg:hidden w-11 h-11 flex items-center justify-center rounded-lg hover:bg-gray-100 transition"
+                        class="lg:hidden exp-tap-target flex items-center justify-center rounded-lg hover:bg-gray-100 transition"
                         aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl text-primary" aria-hidden="true"></i>
                 </button>
@@ -92,11 +95,11 @@ $exp_cta = apply_filters( 'experiences_nav_cta', [
     <nav id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 p-6"
          aria-label="Menu principale (mobile)">
         <button id="close-menu" type="button"
-                class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center rounded-lg hover:bg-gray-100"
+                class="absolute top-4 right-4 exp-tap-target flex items-center justify-center rounded-lg hover:bg-gray-100"
                 aria-label="Chiudi menu">
             <i class="fas fa-times text-xl text-gray-600" aria-hidden="true"></i>
         </button>
-        <div class="mt-14 flex flex-col gap-2">
+        <div class="mt-12 flex flex-col gap-2">
             <?php foreach ( $exp_nav as $exp_item ) : ?>
                 <a href="<?php echo esc_url( $exp_item['href'] ); ?>"
                    class="mobile-link px-4 py-3 text-gray-700 hover:text-secondary hover:bg-light rounded-lg font-medium transition<?php echo empty( $exp_item['icon'] ) ? '' : ' flex items-center gap-2'; ?>">
