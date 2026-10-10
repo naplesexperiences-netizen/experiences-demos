@@ -2,8 +2,8 @@
 /**
  * Plugin Name:  Experiences Chatbot
  * Plugin URI:   https://www.naplesexperiences.com
- * Description:  Chatbot testuale configurabile per Experiences Srl.
- * Version:      1.3.0
+ * Description:  Chatbot testuale configurabile per Experiences Srl, con risposte AI opzionali.
+ * Version:      2.0.0
  * Author:       Experiences Srl
  * License:      Proprietary
  * Text Domain:  exp-chatbot
@@ -11,7 +11,44 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EXP_CHATBOT_VERSION', '1.3.0' );
+define( 'EXP_CHATBOT_VERSION', '2.0.0' );
+
+/* =========================================================
+   MODELLI
+   ========================================================= */
+// I modelli attuali. Il default di prima, claude-sonnet-4-5, non esiste
+// piu: una chiamata con quel nome tornava errore e il chatbot cadeva
+// silenziosamente sui template.
+function exp_chatbot_modelli_claude() {
+    return [
+        'claude-opus-5-5'  => 'Claude Opus 5.5 — il piu capace ($4 / $20 per milione di token)',
+        'claude-sonnet-5-5'=> 'Claude Sonnet 5.5 — equilibrato ($2 / $10)',
+        'claude-haiku-5-5' => 'Claude Haiku 5.5 — il piu economico ($0,10 / $0,50)',
+    ];
+}
+
+// Solo i modelli recenti accettano output_config.effort e i fallback
+// lato server; mandarli a un modello piu vecchio restituisce 400.
+function exp_chatbot_supporta_effort( $model ) {
+    return in_array( $model, [ 'claude-opus-5-5', 'claude-opus-5', 'claude-sonnet-5-5', 'claude-haiku-5-5', 'claude-fable-5-1' ], true );
+}
+
+function exp_chatbot_supporta_fallback( $model ) {
+    return in_array( $model, [ 'claude-opus-5-5', 'claude-opus-5', 'claude-sonnet-5-5', 'claude-fable-5-1' ], true );
+}
+
+/* =========================================================
+   CHIAVE API
+   ========================================================= */
+// Una costante in wp-config.php ha la precedenza sul database: la chiave
+// non finisce in un backup del database ne in un export, e non e
+// leggibile da chi entra in bacheca.
+function exp_chatbot_api_key( $s ) {
+    if ( defined( 'EXP_CHATBOT_API_KEY' ) && EXP_CHATBOT_API_KEY ) {
+        return EXP_CHATBOT_API_KEY;
+    }
+    return $s['llm_api_key'] ?? '';
+}
 
 /* =========================================================
    DEFAULTS
@@ -20,7 +57,15 @@ function exp_chatbot_defaults() {
     return [
         'llm_provider'    => 'none',
         'llm_api_key'     => '',
-        'llm_model'       => 'claude-sonnet-4-5',
+        'llm_model'       => 'claude-opus-5-5',
+        // Con 'llm_first' l'AI risponde e i template restano come rete di
+        // sicurezza. Con 'template_first' vince il primo template la cui
+        // parola chiave compare nel messaggio — che e come si comportava
+        // la 1.3.0: "quanto costa il piano base?" contiene "quanto costa",
+        // quindi tornava il listino intero e l'AI non veniva mai chiamata.
+        'llm_order'       => 'llm_first',
+        'llm_max_turns'   => 6,
+        'rate_limit'      => 30,
         'llm_system'      => 'Sei l\'assistente virtuale di Experiences Srl, esperto di digitalizzazione turismo. Rispondi sempre in italiano in modo professionale, persuasivo e conciso (max 3 frasi). 
 
 Il tuo ruolo: identificare il tipo di business del visitatore (Hotel/B&B, Agenzia Viaggi, Tour Operator) e proporre la soluzione giusta.
@@ -115,7 +160,7 @@ add_action( 'admin_menu', function() {
    ========================================================= */
 add_action( 'admin_init', function() {
     if ( ! isset( $_POST['exp_chatbot_nonce'] ) ) return;
-    if ( ! wp_verify_nonce( $_POST['exp_chatbot_nonce'], 'exp_chatbot_save' ) ) return;
+    if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['exp_chatbot_nonce'] ) ), 'exp_chatbot_save' ) ) return;
     if ( ! current_user_can( 'manage_options' ) ) return;
 
     $s = get_option( 'exp_chatbot_settings', exp_chatbot_defaults() );
@@ -132,6 +177,9 @@ add_action( 'admin_init', function() {
         $s['llm_provider'] = sanitize_text_field( $_POST['llm_provider'] );
         $s['llm_model']    = sanitize_text_field( $_POST['llm_model'] );
         $s['llm_system']   = sanitize_textarea_field( $_POST['llm_system'] );
+        $s['llm_order']    = ( ( $_POST['llm_order'] ?? '' ) === 'template_first' ) ? 'template_first' : 'llm_first';
+        $s['llm_max_turns']= max( 0, min( 20, (int) ( $_POST['llm_max_turns'] ?? 6 ) ) );
+        $s['rate_limit']   = max( 0, min( 500, (int) ( $_POST['rate_limit'] ?? 30 ) ) );
         // Aggiorna la chiave solo se l'utente ne ha inserita una nuova
         $new_key = trim( sanitize_text_field( $_POST['llm_api_key'] ?? '' ) );
         if ( $new_key !== '' ) {
@@ -267,17 +315,50 @@ function exp_chatbot_page_llm() {
                 <p class="description">
                     Claude: <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> —
                     OpenAI: <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a>
-                    <?php if(!empty($s['llm_api_key'])): ?>
-                    <br><span style="color:#28a745;font-weight:600;">Chiave attualmente salvata.</span>
+                    <?php if ( defined('EXP_CHATBOT_API_KEY') && EXP_CHATBOT_API_KEY ): ?>
+                    <br><span style="color:#28a745;font-weight:600;">La chiave arriva da wp-config.php e ha la precedenza su questo campo.</span>
+                    <?php elseif(!empty($s['llm_api_key'])): ?>
+                    <br><span style="color:#28a745;font-weight:600;">Chiave attualmente salvata nel database.</span>
+                    <br>Piu sicuro: toglila da qui e mettila in <code>wp-config.php</code> come
+                    <code>define( 'EXP_CHATBOT_API_KEY', 'sk-ant-...' );</code> — cosi non finisce nei backup del database.
                     <?php endif; ?>
                 </p></td></tr>
         <tr id="row_model" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
             <th><label for="llm_model">Modello</label></th>
             <td><input type="text" id="llm_model" name="llm_model" value="<?php echo esc_attr($s['llm_model']); ?>" class="regular-text">
-                <p class="description">Claude: <code>claude-sonnet-4-5</code> / <code>claude-haiku-4-5</code> — OpenAI: <code>gpt-4o-mini</code></p></td></tr>
+                <p class="description">
+                    <strong>Claude:</strong><br>
+                    <?php foreach ( exp_chatbot_modelli_claude() as $id => $desc ): ?>
+                        <code><?php echo esc_html($id); ?></code> — <?php echo esc_html( substr($desc, strpos($desc,'—')+4) ); ?><br>
+                    <?php endforeach; ?>
+                    <strong>OpenAI:</strong> <code>gpt-4o-mini</code><br>
+                    <em>Per un chatbot di sito, Haiku 5.5 basta quasi sempre e costa 40 volte meno di Opus.
+                    I prezzi sono per milione di token: una conversazione tipica ne usa qualche migliaio.</em>
+                </p></td></tr>
+        <tr id="row_order" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
+            <th>Chi risponde</th>
+            <td>
+                <label><input type="radio" name="llm_order" value="llm_first" <?php checked($s['llm_order']??'llm_first','llm_first'); ?>>
+                    <strong>Prima l'AI</strong> — i template diventano la rete di sicurezza se l'AI non risponde</label><br>
+                <label><input type="radio" name="llm_order" value="template_first" <?php checked($s['llm_order']??'llm_first','template_first'); ?>>
+                    <strong>Prima i template</strong> — l'AI interviene solo se nessuna parola chiave corrisponde</label>
+                <p class="description">
+                    Con "prima i template" una domanda come <em>"quanto costa il piano base?"</em> contiene
+                    "quanto costa" e riceve il listino completo invece di una risposta: l'AI non viene mai chiamata.
+                    I template restano comunque utili — vengono passati all'AI come base di conoscenza.
+                </p></td></tr>
+        <tr id="row_turns" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
+            <th><label for="llm_max_turns">Memoria conversazione</label></th>
+            <td><input type="number" id="llm_max_turns" name="llm_max_turns" min="0" max="20" value="<?php echo (int) ($s['llm_max_turns']??6); ?>" class="small-text"> messaggi
+                <p class="description">Quanti messaggi precedenti l'AI rilegge. A 0 ogni domanda riparte da zero e il chatbot non ricorda cosa gli hai appena detto.</p></td></tr>
+        <tr id="row_rate" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
+            <th><label for="rate_limit">Limite per visitatore</label></th>
+            <td><input type="number" id="rate_limit" name="rate_limit" min="0" max="500" value="<?php echo (int) ($s['rate_limit']??30); ?>" class="small-text"> messaggi ogni 10 minuti
+                <p class="description"><strong>Protegge la tua carta.</strong> Il chatbot e aperto a chiunque passi dal sito: senza un tetto, qualcuno puo mandare migliaia di messaggi e spendere i tuoi crediti API. 0 disattiva il limite.</p></td></tr>
         <tr id="row_system" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
             <th><label for="llm_system">System Prompt</label></th>
-            <td><textarea id="llm_system" name="llm_system" rows="8" class="large-text"><?php echo esc_textarea($s['llm_system']); ?></textarea></td></tr>
+            <td><textarea id="llm_system" name="llm_system" rows="8" class="large-text"><?php echo esc_textarea($s['llm_system']); ?></textarea>
+                <p class="description">I messaggi dei template vengono aggiunti automaticamente qui sotto come base di conoscenza, cosi l'AI risponde con i tuoi prezzi e i tuoi case study invece di inventarli.</p></td></tr>
     </table>
     <?php if ( $s['llm_provider'] !== 'none' && $s['llm_api_key'] ): ?>
     <div style="margin:10px 0 20px;">
@@ -300,7 +381,7 @@ function exp_chatbot_page_llm() {
     <?php endif; ?>
     <?php submit_button('Salva Impostazioni API'); ?>
     </form></div>
-    <script>function expToggleLLM(v){var show=v!=='none';['row_apikey','row_model','row_system'].forEach(function(id){document.getElementById(id).style.display=show?'':'none';});}</script>
+    <script>function expToggleLLM(v){var show=v!=='none';['row_apikey','row_model','row_order','row_turns','row_rate','row_system'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display=show?'':'none';});}</script>
     <?php
 }
 
@@ -322,26 +403,76 @@ add_action( 'wp_ajax_exp_chatbot_test_llm', function() {
 add_action( 'wp_ajax_exp_chatbot_message',        'exp_chatbot_ajax_message' );
 add_action( 'wp_ajax_nopriv_exp_chatbot_message', 'exp_chatbot_ajax_message' );
 function exp_chatbot_ajax_message() {
-    check_ajax_referer( 'exp_chatbot_front', 'nonce' );
-    $msg = sanitize_text_field( $_POST['message'] ?? '' );
+    // Verifica non fatale: il nonce e dentro l'HTML, e l'HTML e servito
+    // dalla cache con s-maxage lunghissimo mentre i nonce scadono in 24
+    // ore. Quando la pagina in cache invecchia il token e morto. Invece
+    // di morire con -1 si risponde con un codice che il JS riconosce,
+    // cosi puo prendere un token fresco e ritentare una volta sola.
+    if ( ! check_ajax_referer( 'exp_chatbot_front', 'nonce', false ) ) {
+        wp_send_json_error( [ 'code' => 'nonce', 'reply' => 'Sessione scaduta.' ], 403 );
+    }
+
+    $msg = sanitize_text_field( wp_unslash( $_POST['message'] ?? '' ) );
     if ( ! $msg ) wp_send_json_error(['reply'=>'Messaggio vuoto.']);
 
     $s         = get_option( 'exp_chatbot_settings', exp_chatbot_defaults() );
     $templates = $s['templates'] ?? exp_chatbot_default_templates();
-    $low       = strtolower( $msg );
+    $key       = exp_chatbot_api_key( $s );
+    $has_llm   = ( ($s['llm_provider'] ?? 'none') !== 'none' ) && ! empty( $key );
+    $order     = $s['llm_order'] ?? 'llm_first';
 
-    foreach ( $templates as $tpl ) {
-        if ( empty( trim($tpl['triggers']) ) ) continue;
-        foreach ( array_map('trim', explode(',', strtolower($tpl['triggers']))) as $k ) {
-            if ( $k && strpos($low, $k) !== false ) {
-                wp_send_json_success(['reply'=> exp_chatbot_placeholders($tpl['message'],$s), 'source'=>'template']);
+    // Cronologia inviata dal browser: il server non tiene sessioni, e
+    // tenerle romperebbe la cache. Il tetto e lato server, cosi una
+    // pagina manomessa non puo gonfiare la richiesta all'API.
+    $storia = [];
+    if ( ! empty( $_POST['history'] ) ) {
+        $raw = json_decode( sanitize_textarea_field( wp_unslash( $_POST['history'] ) ), true );
+        if ( is_array( $raw ) ) {
+            $max = max( 0, (int) ( $s['llm_max_turns'] ?? 6 ) );
+            foreach ( array_slice( $raw, -$max ) as $riga ) {
+                $ruolo = ( ( $riga['role'] ?? '' ) === 'assistant' ) ? 'assistant' : 'user';
+                $testo = sanitize_textarea_field( (string) ( $riga['text'] ?? '' ) );
+                if ( '' !== trim( $testo ) ) {
+                    $storia[] = [ 'role' => $ruolo, 'content' => mb_substr( $testo, 0, 2000 ) ];
+                }
             }
         }
     }
 
-    if ( $s['llm_provider'] !== 'none' && ! empty($s['llm_api_key']) ) {
-        $r = exp_chatbot_call_llm( $msg, $s );
-        if ( $r['ok'] ) wp_send_json_success(['reply'=>$r['text'],'source'=>'llm']);
+    $trova_template = function() use ( $templates, $msg, $s ) {
+        $low = strtolower( $msg );
+        foreach ( $templates as $tpl ) {
+            if ( empty( trim( $tpl['triggers'] ) ) ) continue;
+            foreach ( array_map( 'trim', explode( ',', strtolower( $tpl['triggers'] ) ) ) as $k ) {
+                if ( $k && strpos( $low, $k ) !== false ) {
+                    return exp_chatbot_placeholders( $tpl['message'], $s );
+                }
+            }
+        }
+        return null;
+    };
+
+    if ( $has_llm && 'llm_first' === $order ) {
+        if ( ! exp_chatbot_entro_il_limite( $s ) ) {
+            wp_send_json_success([ 'reply' => "Hai scritto parecchi messaggi di fila — riprova fra qualche minuto.\n\nSe hai fretta: WhatsApp " . ( $s['whatsapp_nr'] ?? '' ), 'source' => 'rate_limit' ]);
+        }
+        $r = exp_chatbot_call_llm( $msg, $s, $storia, $templates );
+        if ( $r['ok'] ) wp_send_json_success([ 'reply' => $r['text'], 'source' => 'llm' ]);
+        // L'AI non ha risposto (chiave scaduta, rete, rifiuto): i
+        // template evitano che il visitatore resti senza niente.
+        $t = $trova_template();
+        if ( null !== $t ) wp_send_json_success([ 'reply' => $t, 'source' => 'template' ]);
+    } else {
+        $t = $trova_template();
+        if ( null !== $t ) wp_send_json_success([ 'reply' => $t, 'source' => 'template' ]);
+
+        if ( $has_llm ) {
+            if ( ! exp_chatbot_entro_il_limite( $s ) ) {
+                wp_send_json_success([ 'reply' => "Hai scritto parecchi messaggi di fila — riprova fra qualche minuto.", 'source' => 'rate_limit' ]);
+            }
+            $r = exp_chatbot_call_llm( $msg, $s, $storia, $templates );
+            if ( $r['ok'] ) wp_send_json_success([ 'reply' => $r['text'], 'source' => 'llm' ]);
+        }
     }
 
     $def = "Grazie per la domanda!\n\nPer info specifiche contatta Experiences Srl:\n- Form: sezione Contatti\n- WhatsApp: ".($s['whatsapp_nr']??'+39 392 691 7657')."\n\nRispondiamo entro poche ore!";
@@ -349,38 +480,131 @@ function exp_chatbot_ajax_message() {
 }
 
 /* =========================================================
+   NONCE FRESCO — endpoint mai messo in cache
+   ========================================================= */
+add_action( 'rest_api_init', function() {
+    register_rest_route( 'exp-chatbot/v1', '/nonce', [
+        'methods'             => 'GET',
+        'permission_callback' => '__return_true',
+        'callback'            => function() {
+            $r = new WP_REST_Response( [ 'chatbot' => wp_create_nonce( 'exp_chatbot_front' ) ] );
+            $r->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
+            return $r;
+        },
+    ]);
+});
+
+// Il tema Experiences espone lo stesso servizio per il form contatti:
+// se c'e, il token del chatbot viaggia insieme al suo.
+add_filter( 'experiences_rest_nonces', function( $nonces ) {
+    $nonces['chatbot'] = wp_create_nonce( 'exp_chatbot_front' );
+    return $nonces;
+});
+
+/* =========================================================
+   LIMITE PER VISITATORE
+   ========================================================= */
+// Il chatbot e aperto a chiunque e ogni messaggio costa. Senza un tetto
+// bastano un paio di righe di script per bruciare i crediti API.
+function exp_chatbot_entro_il_limite( $s ) {
+    $max = (int) ( $s['rate_limit'] ?? 30 );
+    if ( $max <= 0 ) return true;
+
+    $ip    = $_SERVER['REMOTE_ADDR'] ?? '';
+    $chiave = 'exp_cb_rl_' . md5( $ip . '|' . wp_salt() );
+    $n     = (int) get_transient( $chiave );
+    if ( $n >= $max ) return false;
+
+    set_transient( $chiave, $n + 1, 10 * MINUTE_IN_SECONDS );
+    return true;
+}
+
+/* =========================================================
    LLM CALL — server-side, chiave mai esposta al browser
    ========================================================= */
-function exp_chatbot_call_llm( $msg, $s ) {
+function exp_chatbot_call_llm( $msg, $s, $storia = [], $templates = [] ) {
     $provider = $s['llm_provider'] ?? 'none';
-    $key      = $s['llm_api_key']  ?? '';
-    $model    = $s['llm_model']    ?? 'claude-sonnet-4-5';
+    $key      = exp_chatbot_api_key( $s );
+    $model    = $s['llm_model']    ?? 'claude-opus-5-5';
     $system   = $s['llm_system']   ?? '';
     if ( empty($key) ) return ['ok'=>false,'error'=>'API key mancante'];
 
+    // I template curati in bacheca diventano la base di conoscenza: cosi
+    // l'AI cita i prezzi e i case study veri invece di inventarli.
+    $system = exp_chatbot_system_con_conoscenza( $system, $templates, $s );
+
+    // La cronologia va prima del messaggio nuovo e deve cominciare con
+    // un turno utente, altrimenti l'API la rifiuta.
+    $messaggi = $storia;
+    while ( ! empty( $messaggi ) && 'assistant' === $messaggi[0]['role'] ) {
+        array_shift( $messaggi );
+    }
+    $messaggi[] = [ 'role' => 'user', 'content' => $msg ];
+
     if ( $provider === 'claude' ) {
-        $body = ['model'=>$model,'max_tokens'=>500,'messages'=>[['role'=>'user','content'=>$msg]]];
+        // max_tokens generoso: sui modelli attuali il ragionamento e
+        // sempre attivo e consuma da questo tetto. Con 500, come nella
+        // 1.3.0, la risposta veniva troncata a meta.
+        $body = [ 'model' => $model, 'max_tokens' => 4000, 'messages' => $messaggi ];
         if ( $system ) $body['system'] = $system;
-        $res = wp_remote_post('https://api.anthropic.com/v1/messages',[
-            'timeout'=>20,
-            'headers'=>['x-api-key'=>$key,'anthropic-version'=>'2023-06-01','content-type'=>'application/json'],
-            'body'=>wp_json_encode($body),
+
+        // Un chatbot di sito deve rispondere corto e subito: effort
+        // basso riduce il ragionamento e quindi anche il conto.
+        if ( exp_chatbot_supporta_effort( $model ) ) {
+            $body['output_config'] = [ 'effort' => 'low' ];
+        }
+
+        $headers = [
+            'x-api-key'         => $key,
+            'anthropic-version' => '2023-06-01',
+            'content-type'      => 'application/json',
+        ];
+
+        // Se un classificatore di sicurezza declina la richiesta, il
+        // server la rigira su un altro modello invece di lasciare il
+        // visitatore senza risposta.
+        if ( exp_chatbot_supporta_fallback( $model ) ) {
+            $body['fallbacks']        = 'default';
+            $headers['anthropic-beta'] = 'server-side-fallback-2026-07-01';
+        }
+
+        $res = wp_remote_post( 'https://api.anthropic.com/v1/messages', [
+            'timeout' => 30,
+            'headers' => $headers,
+            'body'    => wp_json_encode( $body ),
         ]);
         if ( is_wp_error($res) ) return ['ok'=>false,'error'=>$res->get_error_message()];
+
         $code = wp_remote_retrieve_response_code($res);
         $data = json_decode(wp_remote_retrieve_body($res),true);
-        if ( isset($data['content'][0]['text']) ) return ['ok'=>true,'text'=>trim($data['content'][0]['text'])];
+
+        if ( ( $data['stop_reason'] ?? '' ) === 'refusal' ) {
+            return [ 'ok' => false, 'error' => 'Richiesta declinata dal modello' ];
+        }
+
+        // Il contenuto non e piu un solo blocco di testo: sui modelli
+        // attuali content[0] e un blocco "thinking" e leggere
+        // content[0]['text'] non trova niente. Nella 1.3.0 questo da
+        // solo bastava a far cadere ogni risposta sui template.
+        $testo = '';
+        foreach ( (array) ( $data['content'] ?? [] ) as $blocco ) {
+            if ( ( $blocco['type'] ?? '' ) === 'text' && isset( $blocco['text'] ) ) {
+                $testo .= $blocco['text'];
+            }
+        }
+        if ( '' !== trim( $testo ) ) return [ 'ok' => true, 'text' => trim( $testo ) ];
+
         return ['ok'=>false,'error'=>($data['error']['message']??'Errore HTTP '.$code)];
     }
 
     if ( $provider === 'openai' ) {
         $msgs = [];
         if ($system) $msgs[] = ['role'=>'system','content'=>$system];
-        $msgs[] = ['role'=>'user','content'=>$msg];
+        foreach ( $messaggi as $m ) $msgs[] = $m;
         $res = wp_remote_post('https://api.openai.com/v1/chat/completions',[
-            'timeout'=>20,
+            'timeout'=>30,
             'headers'=>['Authorization'=>'Bearer '.$key,'Content-Type'=>'application/json'],
-            'body'=>wp_json_encode(['model'=>$model,'max_tokens'=>500,'messages'=>$msgs]),
+            'body'=>wp_json_encode(['model'=>$model,'max_tokens'=>1000,'messages'=>$msgs]),
         ]);
         if ( is_wp_error($res) ) return ['ok'=>false,'error'=>$res->get_error_message()];
         $data = json_decode(wp_remote_retrieve_body($res),true);
@@ -389,6 +613,28 @@ function exp_chatbot_call_llm( $msg, $s ) {
     }
 
     return ['ok'=>false,'error'=>'Provider non configurato'];
+}
+
+/* =========================================================
+   BASE DI CONOSCENZA DAI TEMPLATE
+   ========================================================= */
+function exp_chatbot_system_con_conoscenza( $system, $templates, $s ) {
+    if ( empty( $templates ) ) return $system;
+
+    $pezzi = [];
+    foreach ( $templates as $tpl ) {
+        $testo = trim( (string) ( $tpl['message'] ?? '' ) );
+        if ( '' === $testo ) continue;
+        $titolo  = trim( (string) ( $tpl['label'] ?? '' ) );
+        $pezzi[] = ( $titolo ? "## {$titolo}\n" : '' ) . exp_chatbot_placeholders( $testo, $s );
+    }
+    if ( empty( $pezzi ) ) return $system;
+
+    return trim( $system )
+        . "\n\n---\nBASE DI CONOSCENZA — informazioni verificate su Experiences Srl.\n"
+        . "Usa questi dati per prezzi, numeri e case study: sono quelli veri. Non inventare\n"
+        . "cifre diverse. Riformula con le tue parole, non incollare il testo.\n\n"
+        . implode( "\n\n", $pezzi );
 }
 
 /* =========================================================
@@ -411,16 +657,25 @@ add_shortcode( 'exp_chatbot', function( $atts ) {
     $show_demo = ! empty( $s['show_demo_badge'] );
     $has_llm   = ! empty($s['llm_api_key']) && ($s['llm_provider']??'none') !== 'none';
 
+    // {SALUTO} resta da risolvere nel browser. Risolverlo qui lo
+    // congelava dentro l'HTML in cache: una pagina salvata di notte
+    // diceva "Buonanotte" a chi la apriva alle dieci del mattino. Nel
+    // browser si usa anche l'ora del visitatore, non quella del server.
     $auto_msgs = [];
     foreach ($templates as $tpl) {
         if ( empty(trim($tpl['triggers'])) && !empty(trim($tpl['message'])) ) {
-            $auto_msgs[] = exp_chatbot_placeholders($tpl['message'], $s);
+            $auto_msgs[] = str_replace(
+                ['{WHATSAPP}','{BOT_NAME}'],
+                [$s['whatsapp_nr']??'', $s['bot_name']??'Chatbot'],
+                $tpl['message']
+            );
         }
     }
 
     $quick_qs = array_values( array_filter( array_map('trim', explode("\n", $s['quick_questions']??'')) ) );
     $nonce    = wp_create_nonce('exp_chatbot_front');
     $ajax_url = admin_url('admin-ajax.php');
+    $nonce_url = esc_url_raw( rest_url('exp-chatbot/v1/nonce') );
 
     // ID univoco per supportare piu istanze nella stessa pagina
     static $instance = 0;
@@ -520,7 +775,25 @@ add_shortcode( 'exp_chatbot', function( $atts ) {
     var UID   = '<?php echo esc_js($uid); ?>';
     var AJAX  = '<?php echo esc_js($ajax_url); ?>';
     var NONCE = '<?php echo esc_js($nonce); ?>';
+    var NONCE_URL = '<?php echo esc_js($nonce_url); ?>';
     var AUTO  = <?php echo wp_json_encode( array_values($auto_msgs) ); ?>;
+    var MAX_TURNS = <?php echo (int) ( $s['llm_max_turns'] ?? 6 ); ?>;
+
+    /* Saluto calcolato sull'ora di chi legge. Prima arrivava gia
+       risolto dal server e restava congelato nella pagina in cache. */
+    function saluto() {
+        var h = new Date().getHours();
+        return h >= 6 && h < 14 ? 'Buongiorno' : (h >= 14 && h < 21 ? 'Buonasera' : 'Buonanotte');
+    }
+    function risolvi(t) { return String(t).replace(/\{SALUTO\}/g, saluto()); }
+
+    /* Cronologia tenuta nel browser: il server non ha sessioni, e
+       tenerle renderebbe la pagina non cacheabile. */
+    var storia = [];
+    function ricorda(role, text) {
+        storia.push({ role: role, text: text });
+        if (storia.length > MAX_TURNS) storia = storia.slice(-MAX_TURNS);
+    }
 
     /* ── Elementi DOM ── */
     var wrap  = document.getElementById(UID);
@@ -586,23 +859,57 @@ add_shortcode( 'exp_chatbot', function( $atts ) {
     }
 
     /* ── Funzione invio ── */
+    function invia(txt, nonce) {
+        var fd = new FormData();
+        fd.append('action',  'exp_chatbot_message');
+        fd.append('nonce',   nonce);
+        fd.append('message', txt);
+        if (storia.length) fd.append('history', JSON.stringify(storia));
+        return fetch(AJAX, { method:'POST', body:fd, credentials:'same-origin' })
+            .then(function(r) {
+                return r.json().catch(function(){ return null; })
+                    .then(function(body){ return { status: r.status, body: body }; });
+            });
+    }
+
+    /* Il nonce e dentro l'HTML, e l'HTML sta in cache molto piu a lungo
+       di quanto un nonce viva. Al primo rifiuto se ne prende uno fresco
+       e si ritenta: il visitatore non vede niente. */
+    function nonceFresco() {
+        if (!NONCE_URL) return Promise.resolve(null);
+        return fetch(NONCE_URL, { credentials:'same-origin', cache:'no-store' })
+            .then(function(r){ return r.ok ? r.json() : null; })
+            .then(function(d){ if (d && d.chatbot) { NONCE = d.chatbot; return d.chatbot; } return null; })
+            .catch(function(){ return null; });
+    }
+
+    function scaduto(res) {
+        return res.status === 403 || res.body === -1 || res.body === 0 || res.body === null ||
+               (res.body && res.body.data && res.body.data.code === 'nonce');
+    }
+
     function sendMsg(txt) {
         txt = (txt || '').trim();
         if (!txt) return;
         inp.value = '';
         addMsg(txt, 'usr');
+        ricorda('user', txt);
         showTyping();
 
-        var fd = new FormData();
-        fd.append('action',  'exp_chatbot_message');
-        fd.append('nonce',   NONCE);
-        fd.append('message', txt);
-
-        fetch(AJAX, { method:'POST', body:fd })
-            .then(function(r) { return r.json(); })
-            .then(function(d) {
+        invia(txt, NONCE)
+            .then(function(res) {
+                if (!scaduto(res)) return res;
+                return nonceFresco().then(function(n){ return n ? invia(txt, n) : res; });
+            })
+            .then(function(res) {
                 hideTyping();
-                addMsg(d.success ? d.data.reply : 'Errore. Riprova più tardi.', 'bot');
+                var d = res.body;
+                if (d && d.success && d.data && d.data.reply) {
+                    addMsg(d.data.reply, 'bot');
+                    ricorda('assistant', d.data.reply);
+                } else {
+                    addMsg('Non riesco a rispondere in questo momento. Scrivici su WhatsApp e ti rispondiamo noi.', 'bot');
+                }
             })
             .catch(function() {
                 hideTyping();
@@ -635,11 +942,12 @@ add_shortcode( 'exp_chatbot', function( $atts ) {
     function showAuto() {
         if (ai >= AUTO.length) return;
         showTyping();
-        var msg   = AUTO[ai];
+        var msg   = risolvi(AUTO[ai]);
         var delay = Math.min(700 + msg.length * 16, 2400);
         setTimeout(function() {
             hideTyping();
             addMsg(msg, 'bot');
+            ricorda('assistant', msg);
             ai++;
             if (ai < AUTO.length) setTimeout(showAuto, 800);
         }, delay);
