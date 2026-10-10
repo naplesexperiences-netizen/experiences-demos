@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Bartolo e Paola, 29 maggio 2027</title>
+<meta name="description" content="Invito al matrimonio di Bartolo e Paola, sabato 29 maggio 2027 a Paestum.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Figtree:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+/* Layout: six full-screen chapters stacked with position:sticky, each on its own photo or video; the next chapter slides over the
+   previous one and the page settles on it. Native scroll stays in charge; GSAP only adds zoom, dimming and text entrances. RSVP follows in normal flow. */
+:root{
+  --bg:#FBF7F5; --surface:#FFFFFF; --surface-2:#F5ECEB; --ink:#2B1B23; --muted:#5E4B55; --line:#EADCDD; --field:#8C7680;
+  --sea:#A3294F; --primary:var(--sea); --on-sea:#FFFFFF; --primary-soft:#F7E3E9; --sea-deep:#3A1426; --stone:#C8A464; --stone-dark:#9C7C3E; --rose:#7E5309;
+  --error:#B42318; --error-soft:#FDECEA; --success:#2F6B3A; --r-ctl:12px;
+  --cream:#FBF3EC; --scrim:rgb(26 9 17 / .58);
+  --script:"Great Vibes","Brush Script MT",cursive;
+  --serif:"Cormorant Infant","Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --ui:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590;
+  --sea:#F08FB0; --on-sea:#2B0F1A; --primary-soft:#3A1D29; --sea-deep:#0E080B; --rose:#E2B75A; --error:#FF8A80; --error-soft:#3B1E1C; --success:#8FD19E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590;
+  --sea:#F08FB0; --on-sea:#2B0F1A; --primary-soft:#3A1D29; --sea-deep:#0E080B; --rose:#E2B75A; --error:#FF8A80; --error-soft:#3B1E1C; --success:#8FD19E; color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{accent-color:var(--sea)}
+body{margin:0;background:var(--sea-deep);color:var(--ink);font:1.1875rem/1.6 var(--serif);-webkit-font-smoothing:antialiased}
+a{color:var(--sea);text-underline-offset:.2em}
+:focus-visible{outline:3px solid var(--sea);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.lead{margin:.4rem 0 0;color:var(--muted)}
+h2{font:400 clamp(2.6rem,7vw,3.6rem)/1.1 var(--script);color:var(--sea);margin:0}
+svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.6rem 1.3rem;border-radius:999px;border:2px solid var(--sea);
+  font:600 1rem/1 var(--ui);text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s,transform .12s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--sea);color:var(--on-sea)}
+.btn-primary:hover{background:color-mix(in srgb,var(--sea) 85%,#000)}
+.btn-ghost{background:transparent;color:var(--sea)}
+.btn-ghost:hover{background:color-mix(in srgb,var(--sea) 10%,transparent)}
+
+/* ---------- chapters ---------- */
+.chapters{position:relative}
+.chapter{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;color:var(--cream);isolation:isolate}
+.chapter:focus-visible{outline-offset:-6px}
+.media{position:absolute;inset:0;z-index:-2;overflow:hidden;background:var(--sea-deep)}
+.media > *{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media .ph{transform-origin:50% 60%}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(26 9 17 / .55) 0%,rgb(26 9 17 / .2) 55%,transparent 75%),linear-gradient(180deg,rgb(26 9 17 / .25) 0%,var(--scrim) 55%,rgb(26 9 17 / .85) 100%)}
+.chapter.center .media::after{background:linear-gradient(180deg,rgb(26 9 17 / .25) 0%,var(--scrim) 55%,rgb(26 9 17 / .85) 100%)}
+.dim{position:absolute;inset:0;z-index:-1;background:#120609;opacity:0;pointer-events:none}
+.inner{align-self:end;width:min(100% - 2rem,64rem);margin-inline:auto;padding-block:5rem calc(4.5rem + env(safe-area-inset-bottom,0px));display:grid;gap:1rem}
+.chapter.center .inner{align-self:center;text-align:center;justify-items:center;padding-bottom:5rem}
+.kicker-line{display:flex;align-items:center;gap:.6rem;font:600 .85rem/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
+.chapter h2{color:var(--cream);font-size:clamp(3rem,10vw,5.5rem);line-height:1}
+.chapter p{margin:0;max-width:38rem;font-size:clamp(1.15rem,2.6vw,1.4rem);color:rgb(251 243 236 / .92)}
+.chapter .btn-primary{--sea:#F2C4D3;--on-sea:#2B0F1A}
+.chapter .btn-ghost{color:var(--cream);border-color:rgb(251 243 236 / .7)}
+.chapter .btn-ghost:hover{background:rgb(251 243 236 / .12)}
+.row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .85rem;border-radius:999px;background:rgb(251 243 236 / .14);border:1px solid rgb(251 243 236 / .25);
+  font:500 .95rem/1.2 var(--ui);color:var(--cream);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+/* hero chapter */
+.names{font:400 clamp(4rem,14vw,7.5rem)/.95 var(--script);margin:0;color:var(--cream);text-shadow:0 2px 30px rgb(0 0 0 / .35)}
+/* Great Vibes draws its glyphs right of their advance box: shift each line so the ink sits on the page axis */
+.names span{display:block;transform:translateX(-.04em)}
+.names .amp{font-size:.45em;color:#F2C4D3;line-height:1;margin:.05em 0;transform:translateX(-.075em)}
+.intro{font-style:italic;font-size:1.25rem!important}
+.scrollhint{position:absolute;left:50%;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:.3rem;
+  font:500 .8rem/1 var(--ui);color:rgb(251 243 236 / .8);text-decoration:none}
+.scrollhint span{width:1.5rem;height:2.4rem;border:1.5px solid currentColor;border-radius:1rem;position:relative}
+.scrollhint span::after{content:"";position:absolute;left:50%;top:.45rem;width:3px;height:.5rem;border-radius:2px;background:currentColor;transform:translateX(-50%);animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,-2px)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+
+/* compact timeline on photo */
+.tl{list-style:none;margin:.5rem 0 0;padding:0;display:grid;gap:.15rem;max-width:34rem}
+.tl li{display:grid;grid-template-columns:4rem minmax(0,1fr);gap:1rem;padding:.55rem 0;border-top:1px solid rgb(251 243 236 / .2)}
+.tl time{font:600 1rem/1.5 var(--ui);color:var(--stone);font-variant-numeric:tabular-nums}
+.tl b{font-weight:600}
+.tl span{display:block;color:rgb(251 243 236 / .9);font-size:1.05rem;line-height:1.35}
+
+.facts{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));max-width:48rem;margin-top:.5rem}
+.fact{padding:1rem 1.1rem;border-radius:16px;background:rgb(251 243 236 / .12);border:1px solid rgb(251 243 236 / .22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;gap:.2rem}
+.fact b{font:600 1rem/1.3 var(--ui)}
+.fact span{color:rgb(251 243 236 / .85);font-size:1.05rem;line-height:1.35}
+.fact .big{font:600 1.8rem/1.1 var(--ui);color:var(--cream)}
+
+.bank{display:grid;gap:.6rem;max-width:36rem;margin-top:.5rem}
+.bank .line{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;padding:.8rem 1rem;border-radius:14px;background:rgb(251 243 236 / .12);border:1px solid rgb(251 243 236 / .22)}
+.bank small{display:block;font:500 .8rem/1.3 var(--ui);color:rgb(251 243 236 / .75)}
+.bank strong{font:600 1.05rem/1.35 var(--ui);overflow-wrap:anywhere;letter-spacing:.02em}
+.copy{min-height:44px;padding:.4rem .9rem;border-radius:999px;border:1.5px solid rgb(251 243 236 / .6);background:transparent;color:var(--cream);font:600 .95rem/1 var(--ui);display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
+.copy:hover{background:rgb(251 243 236 / .12)}
+.copy[data-state="ok"]{border-color:#9FE0AE;color:#9FE0AE}
+.copy[data-state="err"]{border-color:#FFB4AB;color:#FFB4AB}
+.tag{font:700 clamp(1.6rem,6vw,2.6rem)/1.15 var(--ui)!important;color:#F2C4D3!important;overflow-wrap:anywhere}
+
+/* placeholder label: names the photo or video that goes here */
+.need.ai{background:rgb(0 0 0 / .35);color:rgb(255 255 255 / .85)}
+.need{position:absolute;top:calc(1rem + env(safe-area-inset-top,0px));left:1rem;z-index:2;display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .7rem;border-radius:999px;
+  background:rgb(0 0 0 / .45);color:#fff;font:500 .78rem/1.2 var(--ui)}
+
+/* chapter index */
+.dots{position:fixed;right:max(.75rem,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:30;display:grid;gap:.35rem;margin:0;padding:0;list-style:none;transition:opacity .3s}
+.dots a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;text-decoration:none}
+.dots a::before{content:"";width:9px;height:9px;border-radius:50%;background:rgb(251 243 236 / .5);box-shadow:0 0 0 1px rgb(0 0 0 / .2);transition:transform .25s,background-color .25s}
+.dots a[aria-current="true"]::before{background:#fff;transform:scale(1.45)}
+.dots a:hover::before{background:#fff}
+.dots.off{opacity:0;pointer-events:none}
+@media (max-width:600px){.dots{right:.25rem}.dots a{width:36px;height:36px}.chapter .inner{width:auto;margin-inline:1rem 2.75rem}.chapter.center .inner{margin-inline:2.75rem}}
+
+/* ---------- RSVP (same form as the invitation) ---------- */
+.rsvp-wrap{position:relative;z-index:1;background:var(--bg);padding:clamp(3rem,8vw,6rem) 1rem calc(3rem + env(safe-area-inset-bottom,0px))}
+.rsvp-box{background:var(--surface);max-width:42rem;margin-inline:auto;border-radius:2px;box-shadow:0 0 0 1px var(--line),0 24px 48px -28px rgba(18,63,80,.35);overflow:hidden}
+.rsvp-box .bar{height:22px;color:var(--stone);background:var(--sea-deep);display:block;width:100%}
+.rsvp-inner{padding:clamp(1.75rem,5vw,3rem)}
+.rsvp-inner>.sec-head{display:grid;gap:.25rem;justify-items:center;text-align:center;margin-bottom:1.5rem}
+.rsvp-inner>.sec-head h2{margin:0}
+.rsvp-inner>.sec-head .lead{margin:0}
+.btn-sm{min-height:44px;padding:.45rem .95rem;font-size:.95rem}
+.btn[aria-busy="true"]{opacity:.75;pointer-events:none}
+[hidden]{display:none!important}
+.stepper{list-style:none;margin:0 0 1.75rem;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem}
+.stepper li{display:grid;gap:.4rem;font:500 .8rem/1.2 var(--ui);color:var(--muted);text-align:center}
+.stepper li::before{content:"";height:4px;border-radius:4px;background:var(--line)}
+.stepper li[data-s="done"]::before,.stepper li[data-s="now"]::before{background:var(--primary)}
+.stepper li[data-s="now"]{color:var(--ink);font-weight:600}
+.stepper li[data-s="skip"]{text-decoration:line-through;opacity:.6}
+.step{display:grid;gap:1.25rem}
+.step h3{margin:0;font:600 1.5rem/1.25 var(--serif)}
+.step h3:focus{outline:none}
+.summary{border:1.5px solid var(--error);background:var(--error-soft);border-radius:var(--r-ctl);padding:1rem 1.25rem}
+.summary:focus{outline:3px solid var(--error);outline-offset:2px}
+.summary h4{margin:0 0 .35rem;font:600 1rem/1.3 var(--ui);color:var(--error)}
+.summary ul{margin:0;padding-left:1.2rem;font:500 .95rem/1.5 var(--ui)}
+.summary a{color:var(--error)}
+.field{display:grid;gap:.35rem}
+label,.legend{font:600 1rem/1.3 var(--ui);color:var(--ink)}
+.hint{font:400 .9rem/1.4 var(--ui);color:var(--muted)}
+input[type=text],input[type=email],textarea{width:100%;min-height:48px;padding:.7rem .9rem;border:1.5px solid var(--field);border-radius:var(--r-ctl);
+  background:var(--surface);color:var(--ink);font:1.1rem/1.4 var(--serif);transition:border-color .15s,box-shadow .15s}
+textarea{min-height:6.5rem;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 30%,transparent)}
+[aria-invalid="true"]{border-color:var(--error)!important}
+.err{margin:0;display:flex;gap:.4rem;align-items:center;font:500 .9rem/1.3 var(--ui);color:var(--error)}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:.6rem}
+legend{padding:0;margin-bottom:.6rem}
+.options{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))}
+.opt{position:relative;display:flex;gap:.75rem;align-items:flex-start;padding:1rem;border:1.5px solid var(--field);border-radius:var(--r-ctl);background:var(--surface);cursor:pointer;transition:border-color .15s,background-color .15s}
+.opt:hover{background:var(--surface-2)}
+.opt input{margin:.2rem 0 0;width:1.15rem;height:1.15rem;flex:none}
+.opt b{display:block;font:600 1rem/1.3 var(--ui)}
+.opt small{display:block;font:400 .9rem/1.35 var(--ui);color:var(--muted)}
+.opt:has(input:checked){border-color:var(--primary);background:var(--primary-soft)}
+.opt:has(input:focus-visible){outline:3px solid var(--primary);outline-offset:2px}
+.qty{display:flex;align-items:center;gap:.5rem}
+.qty button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--field);background:var(--surface);color:var(--ink);font:600 1.3rem/1 var(--ui);cursor:pointer}
+.qty button:disabled{opacity:.4;cursor:not-allowed}
+.qty output{min-width:2.5ch;text-align:center;font:600 1.3rem/1 var(--ui);font-variant-numeric:tabular-nums}
+.sub{display:grid;gap:1rem;padding:1rem;border-radius:var(--r-ctl);background:var(--surface-2)}
+.total{margin:0;font:500 .95rem/1.4 var(--ui)}
+.nav-btns{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;padding-top:.5rem}
+.nav-btns .btn-primary{margin-left:auto}
+.review{margin:0;display:grid}
+.review > div{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr) auto;gap:.75rem;align-items:baseline;padding:.8rem 0;border-top:1px solid var(--line)}
+.review dt{font:500 .9rem/1.3 var(--ui);color:var(--muted)}
+.review dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.review button{font:600 .9rem/1 var(--ui);color:var(--primary);background:none;border:0;padding:.6rem .25rem;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:.2em}
+@media (max-width:520px){.review > div{grid-template-columns:minmax(0,1fr) auto}.review dd{grid-column:1/2}.review dt{grid-column:1/-1}}
+.done{text-align:center;display:grid;gap:.75rem;justify-items:center;padding-block:1rem}
+.done .badge{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary)}
+.done .badge svg{width:30px;height:30px}
+.done h3{margin:0;font:400 2.8rem/1.1 var(--script);color:var(--primary)}
+.done ul{list-style:none;margin:0;padding:0;color:var(--muted);display:grid;gap:.2rem}
+.demo{text-align:center;margin:1.25rem 0 0;font:400 .9rem/1.4 var(--ui);color:var(--muted)}
+
+
+footer{position:relative;z-index:1;text-align:center;padding:3rem 1rem calc(3rem + env(safe-area-inset-bottom,0px));background:var(--sea-deep);color:var(--cream)}
+footer .sig{font:400 2.6rem/1.2 var(--script);color:var(--stone);margin:0}
+footer p{margin:.2rem 0 0;opacity:.85}
+.toast{position:fixed;left:50%;bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,1rem);opacity:0;visibility:hidden;z-index:40;
+  background:var(--ink);color:var(--bg);padding:.65rem 1.2rem;border-radius:999px;font:500 .95rem/1.2 var(--ui);transition:opacity .2s,transform .2s,visibility 0s .2s}
+.toast.show{opacity:1;transform:translate(-50%,0);visibility:visible;transition-delay:0s}
+
+@media (prefers-reduced-motion: reduce){
+  .scrollhint span::after{animation:none}
+  *,*::before,*::after{transition-duration:.01ms!important}
+}
+/* ---------- arrival: a red envelope opens before the invitation (built by script, so the page works without it) ---------- */
+html.env-wait body{overflow:hidden}
+html.env-wait #inizio .inner{visibility:hidden}
+.envx{position:fixed;inset:0;z-index:200;display:grid;place-items:center;align-content:center;gap:2.5rem;cursor:pointer;perspective:1400px;
+  background:radial-gradient(120% 90% at 50% 40%,var(--surface) 0%,var(--bg) 55%,var(--primary-soft) 100%);transition:opacity .6s ease,visibility 0s .6s}
+.envx.gone{opacity:0;visibility:hidden}
+.env{position:relative;width:min(80vw,32rem);aspect-ratio:8/5;transform-style:preserve-3d;animation:envIn .7s cubic-bezier(.22,1,.36,1) both}
+@keyframes envIn{from{opacity:0;transform:translateY(-48px) rotate(-5deg)}}
+.env .back{position:absolute;inset:0;z-index:0;border-radius:6px;background:#86132A;box-shadow:0 34px 60px -26px rgb(60 8 20 / .65)}
+.env .letter{position:absolute;left:6%;right:6%;top:7%;height:86%;z-index:1;border-radius:3px;background:#FFFDF8;box-shadow:0 2px 10px rgb(0 0 0 / .18);
+  display:grid;place-content:center;justify-items:center;gap:.15rem;text-align:center;color:#2B1B23}
+.env .letter b{font:400 clamp(1.8rem,7.5vw,2.7rem)/1 var(--script)}
+.env .letter b i{font-style:normal;color:#A3294F;font-size:.7em}
+.env .letter small{font:500 clamp(.7rem,2.6vw,.85rem)/1.3 var(--ui);letter-spacing:.06em;color:#5E4B55}
+.env .pk{position:absolute;inset:0;z-index:2;border-radius:6px}
+.env .pk.l{background:#A11B33;clip-path:polygon(0 0,53% 56%,0 100%)}
+.env .pk.r{background:#A11B33;clip-path:polygon(100% 0,47% 56%,100% 100%)}
+.env .pk.b{background:linear-gradient(180deg,#B6223C,#9C1830);clip-path:polygon(0 100%,50% 44%,100% 100%)}
+.env .post{position:absolute;z-index:3;left:7%;bottom:9%;font:600 clamp(.55rem,2vw,.7rem)/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:#F3D9A4;opacity:.85}
+.env .flap{position:absolute;left:0;right:0;top:0;height:60%;z-index:4;transform-origin:50% 0;
+  background:linear-gradient(180deg,#C42A43,#A51D35);clip-path:polygon(0 0,100% 0,50% 100%)}
+.env .seal{position:absolute;left:50%;top:60%;z-index:5;width:clamp(3.2rem,15vw,4.4rem);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
+  display:grid;place-items:center;background:radial-gradient(circle at 34% 30%,#F0D58E,#C8A464 45%,#8F6A24 100%);
+  box-shadow:0 0 0 3px rgb(143 106 36 / .35),0 3px 8px rgb(0 0 0 / .35);font:400 clamp(1.1rem,4.6vw,1.5rem)/1 var(--script);color:#5A3E10}
+.envx .skip{font:500 .85rem/1.2 var(--ui);color:var(--muted)}
+.envx.open .seal{animation:sealOff .4s ease-in forwards}
+@keyframes sealOff{30%{transform:translate(-50%,-50%) scale(1.12)}100%{transform:translate(-50%,-50%) scale(.3);opacity:0}}
+.envx.open .flap{animation:flapOpen .7s cubic-bezier(.45,0,.2,1) .3s forwards}
+@keyframes flapOpen{0%{transform:rotateX(0);z-index:4;filter:none}49%{z-index:4}50%{z-index:0}100%{transform:rotateX(180deg);z-index:0;filter:brightness(.82)}}
+.envx.open .letter{animation:letterUp .8s cubic-bezier(.22,1,.36,1) .95s forwards}
+@keyframes letterUp{to{transform:translateY(-58%)}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;color:var(--stone)" aria-hidden="true">
+  <defs><pattern id="meander" width="28" height="14" patternUnits="userSpaceOnUse"><path d="M0 13H14V1H26V9H18V5" fill="none" stroke="currentColor" stroke-width="2"/></pattern></defs>
+</svg>
+<script>
+/* Arrival: the invitation comes out of a red envelope. Once per visit, skippable, skipped when motion is reduced. */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches, seen=false;
+  try{seen=sessionStorage.getItem('bp-envelope')==='1'}catch(e){}
+  if(reduce||seen) return;
+  try{sessionStorage.setItem('bp-envelope','1')}catch(e){}
+  var root=document.documentElement; root.classList.add('env-wait');
+  var o=document.createElement('div'); o.className='envx'; o.setAttribute('aria-hidden','true');
+  o.innerHTML='<div class="env"><div class="back"></div><div class="letter"><b>Bartolo <i>&amp;</i> Paola</b><small>29 MAGGIO 2027 · PAESTUM</small></div>'+
+    '<div class="pk l"></div><div class="pk r"></div><div class="pk b"></div><span class="post">Spedito da Paestum</span><div class="flap"></div><div class="seal">B&amp;P</div></div>'+
+    '<p class="skip">Tocca per aprire subito</p>';
+  document.body.appendChild(o);
+  var timers=[], done=false;
+  function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait'); dispatchEvent(new Event('envelope:done'));
+    removeEventListener('keydown',finish); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },700) }
+  timers.push(setTimeout(function(){o.classList.add('open')},750));
+  timers.push(setTimeout(finish,2750));
+  o.addEventListener('click',finish); addEventListener('keydown',finish);
+})();
+</script>
+
+<nav aria-label="Capitoli">
+  <ol class="dots" id="dots">
+    <li><a href="#inizio" aria-label="Inizio"></a></li>
+    <li><a href="#cerimonia" aria-label="La cerimonia"></a></li>
+    <li><a href="#festa" aria-label="La festa"></a></li>
+    <li><a href="#viaggio" aria-label="Viaggio e hotel"></a></li>
+    <li><a href="#regalo" aria-label="Il regalo"></a></li>
+    <li><a href="#foto" aria-label="Le vostre foto"></a></li>
+    <li><a href="#rsvp" aria-label="Conferma la presenza"></a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="chapters" id="chapters">
+
+  <!-- To use a real photo:  <img src="foto.jpg" alt="">   To use a video:  <video src="clip.mp4" autoplay muted loop playsinline poster="poster.jpg"></video>
+       Put it inside .media in place of the placeholder svg, and delete the .need label. -->
+
+  <header class="chapter center" id="inizio" aria-labelledby="names">
+    <div class="media" style="background:radial-gradient(ellipse 35% 35% at 50% 62%,rgb(255 227 179 / .95),rgb(255 227 179 / 0)),linear-gradient(180deg,#E9B9A6,#B9706F 55%,#4A1E2E)">
+      <svg class="ph" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="#2E1220" opacity=".55"><path d="M690 1000c0-170 20-300 60-360 30-45 70-45 90 10 30 80 30 220 30 350Z"/><path d="M820 1000c0-150 25-280 70-330 30-35 70-25 85 25 22 80 20 200 15 305Z"/>
+          <circle cx="790" cy="560" r="44"/><circle cx="915" cy="590" r="40"/></g>
+      </svg>
+    </div>
+    <span class="need">Foto o video: gli sposi insieme</span>
+    <div class="dim"></div>
+    <div class="inner">
+      <p class="intro">Insieme alle loro famiglie</p>
+      <h1 class="names" id="names"><span>Bartolo</span><span class="amp">&amp;</span><span>Paola</span></h1>
+      <div class="row" style="justify-content:center">
+        <span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Sabato 29 maggio 2027, ore 16</span>
+        <span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Paestum</span>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:.5rem">
+        <a class="btn btn-primary" href="#rsvp">Conferma la presenza</a>
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Matrimonio%20Bartolo%20e%20Paola&amp;dates=20270529T140000Z/20270529T230000Z&amp;location=Basilica%20Paleocristiana%2C%20Paestum">Aggiungi al calendario</a>
+      </div>
+    </div>
+    <a class="scrollhint" href="#cerimonia"><span aria-hidden="true"></span>Scorri</a>
+  </header>
+
+  <section class="chapter" id="cerimonia" aria-labelledby="t-cer" tabindex="-1">
+    <div class="media">
+      <img class="ph" src="img/bg-cerimonia.webp" alt="" decoding="async" style="object-position:50% 40%">
+    </div>
+    <span class="need ai">Immagine d'atmosfera generata con IA</span>
+    <div class="dim"></div>
+    <div class="inner">
+      <h2 id="t-cer">La cerimonia</h2>
+      <span class="kicker-line">Ore 16:00</span>
+      <p>Nella Basilica Paleocristiana, di fronte agli scavi di Paestum: diremo sì a pochi passi dai templi della Magna Grecia.</p>
+      <div class="row" style="margin-top:.5rem">
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Basilica+Paleocristiana+Paestum">Google Maps</a>
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Basilica+Paleocristiana+Paestum">Mappe di Apple</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="festa" aria-labelledby="t-festa" tabindex="-1">
+    <div class="media">
+      <img class="ph" src="img/bg-festa.webp" alt="" decoding="async" style="object-position:50% 50%">
+    </div>
+    <span class="need ai">Immagine d'atmosfera generata con IA</span>
+    <div class="dim"></div>
+    <div class="inner">
+      <h2 id="t-festa">La festa</h2>
+      <span class="kicker-line">Hotel Ariston, dalle 17:30</span>
+      <ol class="tl">
+        <li><time datetime="17:30">17:30</time><div><b>Aperitivo</b><span>Nei giardini, con mozzarella di bufala appena fatta.</span></div></li>
+        <li><time datetime="20:00">20:00</time><div><b>La cena</b><span>Sapori del Cilento, dal mare all'orto.</span></div></li>
+        <li><time datetime="22:30">22:30</time><div><b>Torta e primo ballo</b><span>Poi la pista è vostra.</span></div></li>
+        <li><time datetime="00:30">00:30</time><div><b>Ultimo brindisi</b><span>E si riparte verso Castellammare.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="chapter" id="viaggio" aria-labelledby="t-via" tabindex="-1">
+    <div class="media">
+      <img class="ph" src="img/bg-viaggio.webp" alt="" decoding="async" style="object-position:12% 60%">
+    </div>
+    <span class="need ai">Immagine d'atmosfera generata con IA</span>
+    <div class="dim"></div>
+    <div class="inner">
+      <h2 id="t-via">Viaggio e hotel</h2>
+      <span class="kicker-line">Andata, ritorno e una notte al mare</span>
+      <div class="facts">
+        <div class="fact"><b>Autobus gratuito</b><span>Da Castellammare di Stabia alle 14:00, rientro a fine festa. Solo sabato 29 maggio.</span></div>
+        <div class="fact"><b>Hotel Ariston, Camera Superior</b><span class="big">150&nbsp;€</span><span>A notte, con colazione e spiaggia. Notti del 28 e del 29.</span></div>
+      </div>
+      <p style="font-size:1.1rem">Prenoti posti e camere nel modulo di conferma.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="regalo" aria-labelledby="t-reg" tabindex="-1">
+    <div class="media">
+      <img class="ph" src="img/bg-regalo.webp" alt="" decoding="async" style="object-position:50% 50%">
+    </div>
+    <span class="need ai">Immagine d'atmosfera generata con IA</span>
+    <div class="dim"></div>
+    <div class="inner">
+      <h2 id="t-reg">Il regalo</h2>
+      <span class="kicker-line">La nostra prima casa</span>
+      <p>Se volete farci un regalo, ogni contributo diventerà un pezzo del nostro nido.</p>
+      <div class="bank">
+        <div class="line"><div><small>IBAN, intestato a Bartolo e Paola</small><strong id="iban">IT00 X000 0000 0000 0000 0000 000</strong></div>
+          <button class="copy" type="button" data-copy="iban" aria-label="Copia l'IBAN"><span>Copia</span></button></div>
+        <div class="line"><div><small>Causale</small><strong id="causale">Regalo nozze Bartolo e Paola, la nostra casa</strong></div>
+          <button class="copy" type="button" data-copy="causale" aria-label="Copia la causale"><span>Copia</span></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="foto" aria-labelledby="t-foto" tabindex="-1">
+    <div class="media" style="background:linear-gradient(180deg,#4C2A3E,#160A11)">
+      <svg class="ph" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g opacity=".5"><rect x="180" y="180" width="300" height="300" rx="18" fill="#C98A9E" transform="rotate(-6 330 330)"/><rect x="560" y="140" width="300" height="300" rx="18" fill="#C8A464" transform="rotate(4 710 290)"/><rect x="940" y="200" width="300" height="300" rx="18" fill="#4E95AE" transform="rotate(-3 1090 350)"/>
+          <rect x="360" y="540" width="300" height="300" rx="18" fill="#A86A5A" transform="rotate(5 510 690)"/><rect x="760" y="560" width="300" height="300" rx="18" fill="#7A4E6B" transform="rotate(-5 910 710)"/><rect x="1150" y="580" width="300" height="300" rx="18" fill="#C98A55" transform="rotate(3 1300 730)"/></g>
+      </svg>
+    </div>
+    <span class="need">Collage o video: momenti degli sposi</span>
+    <div class="dim"></div>
+    <div class="inner">
+      <h2 id="t-foto">Le vostre foto</h2>
+      <span class="kicker-line">Durante la festa</span>
+      <p>Scattate, pubblicate e taggate: raccoglieremo i ricordi di tutti.</p>
+      <p class="tag" id="hashtag">#BartoloEPaola2027</p>
+      <div class="row">
+        <button class="copy" type="button" data-copy="hashtag" aria-label="Copia l'hashtag"><span>Copia</span></button>
+        <a class="copy" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.instagram.com/explore/tags/bartoloepaola2027/">Apri su Instagram</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="rsvp-wrap">
+<section id="rsvp" tabindex="-1" aria-labelledby="rsvp-title">
+    <div class="wrap">
+      <div class="rsvp-box">
+        <svg class="bar" viewBox="0 0 672 22" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><rect width="672" height="22" fill="var(--sea-deep)"/><rect y="4" width="672" height="14" fill="url(#meander)"/></svg>
+        <div class="rsvp-inner">
+<div class="sec-head"><h2 id="rsvp-title">Ci sarai?</h2><p class="lead">Rispondi entro il 15 aprile 2027, così prepariamo il tuo posto a tavola, in autobus e in hotel.</p></div>
+      <ol class="stepper" id="stepper" aria-label="Passi della conferma">
+        <li data-s="now">Presenza</li><li>Contatti</li><li>Dettagli</li><li>Riepilogo</li>
+      </ol>
+      <p class="sr-only" id="step-live" aria-live="polite"></p>
+
+      <form id="f" novalidate>
+        <!-- 1 -->
+        <div class="step" data-step="1">
+          <h3 tabindex="-1">Parteciperai al matrimonio?</h3>
+          <div class="summary" hidden tabindex="-1" role="alert"><h4>Manca una risposta</h4><ul></ul></div>
+          <fieldset id="presenza-set">
+            <legend class="sr-only">Parteciperai?</legend>
+            <div class="options">
+              <label class="opt"><input type="radio" name="presenza" id="presenza-si" value="si"><span><b>Ci sarò</b><small>Ti chiediamo poi persone, autobus e hotel.</small></span></label>
+              <label class="opt"><input type="radio" name="presenza" id="presenza-no" value="no"><span><b>Non potrò esserci</b><small>Bastano nome ed email.</small></span></label>
+            </div>
+          </fieldset>
+        </div>
+        <!-- 2 -->
+        <div class="step" data-step="2" hidden>
+          <h3 tabindex="-1">Come ti contattiamo?</h3>
+          <div class="summary" hidden tabindex="-1" role="alert"><h4>Controlla questi campi</h4><ul></ul></div>
+          <div class="field">
+            <label for="nome">Nome e cognome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" aria-describedby="nome-err" required>
+            <p class="err" id="nome-err" hidden>Scrivi il tuo nome e cognome.</p>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <span class="hint" id="email-hint">Ti scriveremo solo per orari e punto di ritrovo.</span>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="email-hint email-err" required>
+            <p class="err" id="email-err" hidden>Scrivi un'email valida, ad esempio nome@email.it.</p>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="step" data-step="3" hidden>
+          <h3 tabindex="-1">Qualche dettaglio per organizzarci</h3>
+          <div class="summary" hidden tabindex="-1" role="alert"><h4>Controlla questi campi</h4><ul></ul></div>
+          <div class="field">
+            <span class="legend" id="ospiti-l">Quante persone, te compreso?</span>
+            <div class="qty" data-qty="ospiti" data-min="1" data-max="8" role="group" aria-labelledby="ospiti-l">
+              <button type="button" data-d="-1" aria-label="Una persona in meno">−</button><output id="ospiti" aria-live="polite">1</output><button type="button" data-d="1" aria-label="Una persona in più">+</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="dieta">Esigenze alimentari</label>
+            <span class="hint" id="dieta-hint">Facoltativo. Vegetariano, senza glutine, allergie…</span>
+            <input id="dieta" name="dieta" type="text" aria-describedby="dieta-hint">
+          </div>
+          <fieldset>
+            <legend class="legend">Prendi l'autobus da Castellammare?</legend>
+            <div class="options">
+              <label class="opt"><input type="radio" name="bus" id="bus-si" value="si"><span><b>Sì, prenoto</b><small>Gratuito, andata e ritorno.</small></span></label>
+              <label class="opt"><input type="radio" name="bus" id="bus-no" value="no" checked><span><b>No, arrivo per conto mio</b></span></label>
+            </div>
+            <div class="sub" id="bus-sub" hidden>
+              <span class="legend" id="posti-l">Quanti posti?</span>
+              <div class="qty" data-qty="posti" data-min="1" data-max="8" role="group" aria-labelledby="posti-l">
+                <button type="button" data-d="-1" aria-label="Un posto in meno">−</button><output id="posti" aria-live="polite">1</output><button type="button" data-d="1" aria-label="Un posto in più">+</button>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend class="legend">Dormi all'Hotel Ariston?</legend>
+            <div class="options">
+              <label class="opt"><input type="radio" name="hotel" id="hotel-si" value="si"><span><b>Sì, prenoto</b><small>150 € a notte, colazione e spiaggia.</small></span></label>
+              <label class="opt"><input type="radio" name="hotel" id="hotel-no" value="no" checked><span><b>No, grazie</b></span></label>
+            </div>
+            <div class="sub" id="hotel-sub" hidden>
+              <span class="legend" id="camere-l">Quante camere?</span>
+              <div class="qty" data-qty="camere" data-min="1" data-max="4" role="group" aria-labelledby="camere-l">
+                <button type="button" data-d="-1" aria-label="Una camera in meno">−</button><output id="camere" aria-live="polite">1</output><button type="button" data-d="1" aria-label="Una camera in più">+</button>
+              </div>
+              <fieldset id="notti-set">
+                <legend class="legend">Quali notti?</legend>
+                <div class="options">
+                  <label class="opt"><input type="checkbox" name="notti" id="notte-28" value="28"><span><b>Venerdì 28 maggio</b></span></label>
+                  <label class="opt"><input type="checkbox" name="notti" id="notte-29" value="29" checked><span><b>Sabato 29 maggio</b><small>La notte della festa.</small></span></label>
+                </div>
+                <p class="err" id="notti-err" hidden>Scegli almeno una notte.</p>
+              </fieldset>
+              <p class="total" id="tot" aria-live="polite"></p>
+            </div>
+          </fieldset>
+        </div>
+        <!-- 4 -->
+        <div class="step" data-step="4" hidden>
+          <h3 tabindex="-1">Controlla e invia</h3>
+          <dl class="review" id="review"></dl>
+          <div class="field">
+            <label for="msg">Un messaggio per gli sposi</label>
+            <span class="hint" id="msg-hint">Facoltativo.</span>
+            <textarea id="msg" name="msg" aria-describedby="msg-hint"></textarea>
+          </div>
+        </div>
+
+        <div hidden><label for="sito">Non compilare questo campo</label><input id="sito" name="sito" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="err" id="send-err" role="alert" hidden></p>
+        <div class="nav-btns">
+          <button class="btn btn-ghost" type="button" id="back" hidden>Indietro</button>
+          <button class="btn btn-primary" type="submit" id="next">Continua</button>
+        </div>
+      </form>
+
+      <div class="done" id="done" hidden tabindex="-1">
+        <span class="badge"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h3 id="done-title">Grazie!</h3>
+        <ul id="done-list"></ul>
+        <button class="btn btn-ghost btn-sm" type="button" id="again">Modifica la risposta</button>
+      </div>
+      <p class="demo" id="demo-note">Modulo non ancora collegato: le risposte non vengono salvate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <p class="sig">Bartolo &amp; Paola</p>
+  <p>29 maggio 2027, Paestum</p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var chapters=[].slice.call(document.querySelectorAll('.chapter'));
+  var dots=[].slice.call(document.querySelectorAll('#dots a')), dotsBox=document.getElementById('dots');
+
+  /* chapter index follows the page */
+  function current(id){dots.forEach(function(a){ if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current') })}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting) current(e.target.id) })},{rootMargin:'-50% 0px -49% 0px'});
+    chapters.concat([document.getElementById('rsvp')]).forEach(function(c){io.observe(c)});
+  }
+  /* dots are white on photos: hide them over the light form */
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){dotsBox.classList.toggle('off',es[0].isIntersecting)},{rootMargin:'0px 0px -60% 0px'}).observe(document.querySelector('.rsvp-wrap'));
+
+  /* scroll choreography (GSAP), skipped when motion is reduced or the library did not load */
+  if(window.gsap&&window.ScrollTrigger&&!reduce){
+    gsap.registerPlugin(ScrollTrigger);
+    chapters.forEach(function(ch,i){
+      var media=ch.querySelector('.media > *'), inner=ch.querySelector('.inner'), dim=ch.querySelector('.dim');
+      /* the incoming background settles from a slight zoom while it slides in */
+      if(i>0) gsap.fromTo(media,{scale:1.18,yPercent:-6},{scale:1,yPercent:0,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'top top',scrub:true}});
+      /* the outgoing chapter recedes under the next one */
+      if(i<chapters.length-1){
+        var nxt=chapters[i+1];
+        gsap.to(dim,{opacity:.65,ease:'none',scrollTrigger:{trigger:nxt,start:'top bottom',end:'top top',scrub:true}});
+        gsap.to(inner,{yPercent:-12,opacity:0,ease:'none',scrollTrigger:{trigger:nxt,start:'top 85%',end:'top 25%',scrub:true}});
+      }
+      /* text arrives once the chapter is in place */
+      if(i>0) gsap.from(inner.children,{y:28,opacity:0,duration:.7,ease:'power2.out',stagger:.08,
+        scrollTrigger:{trigger:ch,start:'top 35%',toggleActions:'play none none reverse'}});
+    });
+    /* the page settles on the nearest chapter at the end of each gesture */
+    ScrollTrigger.create({trigger:'#chapters',start:'top top',end:'bottom bottom',
+      snap:{snapTo:1/(chapters.length-1),duration:{min:.35,max:.8},delay:.08,ease:'power2.inOut'}});
+    /* hero entrance */
+    function heroIn(){ gsap.from('#inizio .inner > *',{y:24,opacity:0,duration:.9,ease:'power3.out',stagger:.12,delay:.15}) }
+    if(document.documentElement.classList.contains('env-wait')) addEventListener('envelope:done',heroIn,{once:true}); else heroIn();
+    if(document.fonts) document.fonts.ready.then(function(){ScrollTrigger.refresh()});
+  }
+
+  /* copy buttons */
+  var toast=document.getElementById('toast'), tt;
+  function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2200)}
+  function selectText(el){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+  [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(b){
+    var label=b.querySelector('span');
+    b.addEventListener('click',function(){
+      var src=document.getElementById(b.dataset.copy), text=src.textContent.trim();
+      var what={iban:'IBAN copiato',causale:'Causale copiata',hashtag:'Hashtag copiato'}[b.dataset.copy];
+      function state(s,t){b.dataset.state=s;label.textContent=t;clearTimeout(b._t);b._t=setTimeout(function(){delete b.dataset.state;label.textContent='Copia'},2000)}
+      function ok(){state('ok','Copiato');say(what)}
+      function fail(){state('err','Non copiato');selectText(src);say('Testo selezionato: copialo dal menu del telefono')}
+      try{ navigator.clipboard.writeText(text).then(ok,fail) }catch(e){ fail() }
+    });
+  });
+
+  function $(q,r){return (r||document).querySelector(q)} function $$(q,r){return [].slice.call((r||document).querySelectorAll(q))}
+  /* RSVP: paste the Google Apps Script Web App URL here (see apps-script/LEGGIMI.md) */
+  var RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzIRL0IWe4rU0UAxguo4OXeLpvCA6zKVLCQoDd7Vghlxa99rVia9ol3mek2d9qDTkE-GQ/exec';
+  if(RSVP_ENDPOINT) $('#demo-note').hidden=true;
+
+  /* RSVP wizard */
+  var f=$('#f'), steps=$$('.step',f), dots=$$('#stepper li'), back=$('#back'), next=$('#next'), liveStep=$('#step-live'), cur=1;
+  var vals={ospiti:1,posti:1,camere:1};
+  function yes(){return f.presenza.value==='si'}
+  function order(){return f.presenza.value==='no'?[1,2,4]:[1,2,3,4]}
+  function nights(){return $$('[name=notti]:checked',f).map(function(c){return c.value})}
+  function updTot(){var k=nights().length, c=vals.camere; $('#tot').textContent=k?'Totale indicativo: '+(k*c*150)+' € ('+c+(c>1?' camere':' camera')+' × '+k+(k>1?' notti':' notte')+'), da saldare in hotel.':''}
+  $$('.qty').forEach(function(q){ var key=q.dataset.qty, min=+q.dataset.min, max=+q.dataset.max, out=$('output',q), bs=$$('button',q);
+    function set(v){vals[key]=Math.max(min,Math.min(max,v)); out.textContent=vals[key]; bs[0].disabled=vals[key]<=min; bs[1].disabled=vals[key]>=max; updTot()}
+    bs.forEach(function(b){b.addEventListener('click',function(){set(vals[key]+(+b.dataset.d))})}); set(vals[key]) });
+  f.addEventListener('change',function(e){
+    if(e.target.name==='bus') $('#bus-sub').hidden=f.bus.value!=='si';
+    if(e.target.name==='hotel') $('#hotel-sub').hidden=f.hotel.value!=='si';
+    if(e.target.name==='presenza'){ clearSummary(steps[0]); paintDots() }
+    if(e.target.name==='notti'&&nights().length) $('#notti-err').hidden=true;
+    updTot();
+  });
+  var re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var checks={
+    nome:function(){return f.nome.value.trim().length>1},
+    email:function(){return re.test(f.email.value.trim())}
+  };
+  function mark(id,bad){var i=document.getElementById(id); i.setAttribute('aria-invalid',bad?'true':'false'); document.getElementById(id+'-err').hidden=!bad}
+  ['nome','email'].forEach(function(id){ var i=f[id], touched=false;
+    i.addEventListener('blur',function(){ if(i.value.trim()){touched=true; mark(id,!checks[id]())} });
+    i.addEventListener('input',function(){ if(touched||i.getAttribute('aria-invalid')==='true') mark(id,!checks[id]()) }); });
+  function clearSummary(step){var s=$('.summary',step); if(s){s.hidden=true;$('ul',s).innerHTML=''}}
+  function showSummary(step,items){var s=$('.summary',step), ul=$('ul',s); ul.innerHTML='';
+    items.forEach(function(it){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+it[0];a.textContent=it[1];
+      a.addEventListener('click',function(e){e.preventDefault();document.getElementById(it[0]).focus()});li.appendChild(a);ul.appendChild(li)});
+    s.hidden=false; s.focus()}
+  function validate(n){var step=steps[n-1], bad=[];
+    if(n===1&&!f.presenza.value) bad.push(['presenza-si','Scegli se ci sarai o no.']);
+    if(n===2){ if(!checks.nome()){mark('nome',true);bad.push(['nome','Scrivi il tuo nome e cognome.'])} else mark('nome',false);
+               if(!checks.email()){mark('email',true);bad.push(['email','Scrivi un\'email valida.'])} else mark('email',false); }
+    if(n===3&&f.hotel.value==='si'&&!nights().length){ $('#notti-err').hidden=false; bad.push(['notte-28','Scegli almeno una notte in hotel.']) }
+    if(bad.length){showSummary(step,bad);return false} clearSummary(step); return true}
+  function paintDots(){var o=order(); dots.forEach(function(d,i){var s=i+1;
+    d.dataset.s=o.indexOf(s)<0?'skip':s<cur?'done':s===cur?'now':''; if(s===cur) d.setAttribute('aria-current','step'); else d.removeAttribute('aria-current')})}
+  function go(n,focus){cur=n; steps.forEach(function(s){s.hidden=+s.dataset.step!==n});
+    back.hidden=n===1; next.textContent=n===4?'Invia la risposta':'Continua'; paintDots();
+    var o=order(); liveStep.textContent='Passo '+(o.indexOf(n)+1)+' di '+o.length+': '+$('h3',steps[n-1]).textContent;
+    if(n===4) review();
+    if(focus!==false) $('h3',steps[n-1]).focus()}
+  function review(){var r=$('#review'), rows=[['Presenza',yes()?'Ci sarò':'Non potrò esserci',1],['Nome',f.nome.value.trim(),2],['Email',f.email.value.trim(),2]];
+    if(yes()){ rows.push(['Persone',vals.ospiti+(vals.ospiti>1?' persone':' persona'),3]);
+      if(f.dieta.value.trim()) rows.push(['Esigenze',f.dieta.value.trim(),3]);
+      rows.push(['Autobus',f.bus.value==='si'?vals.posti+(vals.posti>1?' posti':' posto'):'No',3]);
+      rows.push(['Hotel',f.hotel.value==='si'?vals.camere+(vals.camere>1?' camere':' camera')+', notte del '+nights().join(' e ')+' maggio':'No',3]); }
+    r.innerHTML=''; rows.forEach(function(x){var d=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd'),b=document.createElement('button');
+      dt.textContent=x[0]; dd.textContent=x[1]; b.type='button'; b.textContent='Modifica'; b.setAttribute('aria-label','Modifica '+x[0].toLowerCase());
+      b.addEventListener('click',function(){go(x[2])}); d.appendChild(dt); d.appendChild(dd); d.appendChild(b); r.appendChild(d)})}
+  back.addEventListener('click',function(){var o=order(); go(o[o.indexOf(cur)-1])});
+  f.addEventListener('submit',function(e){e.preventDefault(); if(!validate(cur)) return;
+    var o=order(); if(cur!==4){go(o[o.indexOf(cur)+1]);return}
+    next.setAttribute('aria-busy','true'); next.textContent='Invio in corso…'; $('#send-err').hidden=true;
+    var payload=new URLSearchParams({
+      presenza:yes()?'si':'no', nome:f.nome.value.trim(), email:f.email.value.trim(),
+      ospiti:String(yes()?vals.ospiti:0), dieta:yes()?f.dieta.value.trim():'',
+      bus:yes()?f.bus.value:'no', posti:String(yes()&&f.bus.value==='si'?vals.posti:0),
+      hotel:yes()?f.hotel.value:'no', camere:String(yes()&&f.hotel.value==='si'?vals.camere:0),
+      notti:yes()&&f.hotel.value==='si'?nights().join('+'):'', messaggio:f.msg.value.trim(), sito:f.sito.value
+    });
+    if(!RSVP_ENDPOINT){ setTimeout(showDone,700); return }
+    var ctrl=('AbortController' in window)?new AbortController():null, timer=setTimeout(function(){ if(ctrl) ctrl.abort() },15000);
+    /* Apps Script does not send CORS headers: the response is opaque, so a completed request counts as saved */
+    fetch(RSVP_ENDPOINT,{method:'POST',mode:'no-cors',body:payload,signal:ctrl?ctrl.signal:undefined})
+      .then(function(){ clearTimeout(timer); showDone() },function(){ clearTimeout(timer);
+        var er=$('#send-err'); er.textContent='Non siamo riusciti a inviare la risposta. Controlla la connessione e riprova.'; er.hidden=false;
+        next.removeAttribute('aria-busy'); next.textContent='Riprova a inviare'; next.focus() });
+  });
+  function showDone(){
+      var first=f.nome.value.trim().split(' ')[0], list=$('#done-list'), items=[];
+      $('#done-title').textContent=yes()?'Grazie, '+first+'!':'Ci mancherai, '+first;
+      if(yes()){ items.push(vals.ospiti+(vals.ospiti>1?' persone':' persona')+' alla festa.');
+        if(f.bus.value==='si') items.push('Autobus da Castellammare: '+vals.posti+(vals.posti>1?' posti.':' posto.'));
+        if(f.hotel.value==='si') items.push('Hotel Ariston: '+vals.camere+(vals.camere>1?' camere':' camera')+', notte del '+nights().join(' e ')+' maggio.');
+        items.push('Ti scriveremo a '+f.email.value.trim()+' con orari e punto di ritrovo.');
+      } else items.push('Grazie di avercelo detto: brinderemo anche per te.');
+      list.innerHTML=''; items.forEach(function(t){var li=document.createElement('li');li.textContent=t;list.appendChild(li)});
+      f.hidden=true; $('#stepper').hidden=true; var d=$('#done'); d.hidden=false; d.focus();
+      next.removeAttribute('aria-busy'); next.textContent='Invia la risposta';
+  }
+  $('#again').addEventListener('click',function(){ $('#done').hidden=true; f.hidden=false; $('#stepper').hidden=false; go(4) });
+  updTot(); go(1,false);
+})();
+</script>
+</body>
+</html>
