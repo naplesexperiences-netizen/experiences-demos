@@ -1,6 +1,6 @@
 {
   "_readme": "QUESTO È L'UNICO FILE DI RESUME AUTORITATIVO. Gli altri file (RESUMEPOINT_BATCH_PROGRESS.json, RESUMEPOINT_SONNET_DEMO_CREATION.json, RESUME_POINT.md alla root) sono OBSOLETI e contengono stati non più affidabili (es. aziende segnate 'COMPLETED' senza Link_Demo aggiornato nel CSV). La fonte di verità per 'cosa è già fatto' sono le colonne Link_Demo / Contattato dei CSV in questa cartella, NON i tracker JSON.",
-  "last_update": "2026-06-20T05:15:00Z",
+  "last_update": "2026-10-10T00:00:00Z",
   "template_version": "GSAP v2 (Terme di Vivara per hotel, Sorrento Sea Experience per tour operator) — sostituiti i vecchi template '-new-template-experiences'",
   "pricing_policy": "SOLO questi prezzi reali, mai inventare altro: Base €500/anno + 5% commissione, Plus €1.000/anno + 8%, Premium €1.400/anno + 10% (IVA esclusa)",
   "known_issues": [
@@ -8,27 +8,30 @@
     "extract_weaknesses() in generate-from-standard-template.py usava il campo Sito_Pre2020 per la claim 'Design e tecnologie datate (pre-2020)'. In TUTTI i CSV questo campo vale solo 'No' o 'Sì (probabile)' — non esiste un valore verificato con certezza. Si è rivelato un falso positivo su Grand Hotel Santa Maria (sito in realtà moderno). FIX APPLICATO il 2026-06-20: la claim è stata rimossa dallo script. Le email ora usano solo segnali misurati oggettivamente (PageSpeed perf/seo score, assenza booking engine).",
     "Molte cartelle demo esistenti usano la vecchia convenzione di nome '<slug>-cilento-new-template-experiences' / '-new-template-experiences' col template VECCHIO (pre-redesign GSAP) e NON sono linkate nel campo Link_Demo del CSV. Quando si rigenera una di queste aziende si crea una nuova cartella '<slug>-experiences-standard' col template nuovo; le vecchie cartelle restano orfane sul disco (non cancellate, ma non più referenziate).",
     "JUNK_IMAGE_PATTERN in generate-from-standard-template.py non filtrava asset decorativi non-SVG come 'divider2.png', 'checkin.png', 'image-on-hover.png' (caso Hotel La Vela: il campo Immagini del CSV conteneva solo questi 3 PNG decorativi, nessuna foto reale). FIX APPLICATO il 2026-06-20: aggiunti i pattern divider|hover|check-?in al regex. Hotel La Vela e Savoy Hotel & Spa Pagano sono finiti con placeholder grigio perché il CSV non ha foto reali (non per il bug, già corretto), non c'è altro da fare se non chiedere all'utente foto reali.",
-    "CI workflow (ci.yml) ha 2 job che falliscono in modo cronico e PRE-ESISTENTE su molti file già presenti nel repo (non causati da questa sessione): 'Broken link check' (lychee) segnala falsi positivi sui data:image/svg+xml placeholder (li tratta come path di file locali) nei demo con immagini placeholder e nei file *template* con {{HERO_IMAGE_URL}} non sostituito (sono template, è normale); 'HTML lint' (HTMLHint) segnala 'tag-pair' (div non chiuso) su ~30 file demo esistenti (sia vecchia convenzione -new-template-experiences sia alcuni -experiences-standard di batch precedenti) per un probabile bug nel template demo-hotel-template-experiences/index.html attorno alla riga 1305/1364. Nessuno dei 5 file di questo batch (San Francesco Resort, Mec Paestum, Araba Fenice, Myrtus, Mare — commit 03b1d45) compare tra i file che falliscono il lint, quindi non è una regressione di questa sessione. Il deploy GitHub Pages (pages.yml) non dipende da questi controlli ed è andato a buon fine. Da pianificare: un giro di pulizia dedicato sul template e sui demo esistenti con tag-pair rotto, separato dal lavoro di generazione batch."
+    "CI workflow (ci.yml) ha 2 job che falliscono in modo cronico e PRE-ESISTENTE su molti file già presenti nel repo (non causati da questa sessione): 'Broken link check' (lychee) segnala falsi positivi sui data:image/svg+xml placeholder (li tratta come path di file locali) nei demo con immagini placeholder e nei file *template* con {{HERO_IMAGE_URL}} non sostituito (sono template, è normale); 'HTML lint' (HTMLHint) segnala 'tag-pair' (div non chiuso) su ~30 file demo esistenti (sia vecchia convenzione -new-template-experiences sia alcuni -experiences-standard di batch precedenti) per un probabile bug nel template demo-hotel-template-experiences/index.html attorno alla riga 1305/1364. Nessuno dei 5 file di questo batch (San Francesco Resort, Mec Paestum, Araba Fenice, Myrtus, Mare — commit 03b1d45) compare tra i file che falliscono il lint, quindi non è una regressione di questa sessione. Il deploy GitHub Pages (pages.yml) non dipende da questi controlli ed è andato a buon fine. Da pianificare: un giro di pulizia dedicato sul template e sui demo esistenti con tag-pair rotto, separato dal lavoro di generazione batch.",
+    "2026-10-10: le cartelle demo vecchie (-new-template, -demo, -cilento, compare-*) sono state rimosse. Il problema delle cartelle orfane non è più attuale. Le aziende con Contattato=Sì ma senza demo collegata restano tracciate come storico."
   ],
   "stato_per_csv": {
     "CSV_Cilento.csv": {
       "totale": 47,
-      "con_demo": 46,
+      "con_demo": 40,
       "contattati": 19,
-      "todo_priorita_1_3_senza_demo": 0,
-      "nota": "COMPLETATO P1-3, rimane 1 azienda senza priorita"
+      "todo_priorita_1_3_senza_demo": 6,
+      "nota": "Link_Demo svuotato per 6 aziende con cartella rimossa"
     },
     "CSV_Costiera_Amalfitana.csv": {
       "totale": 52,
-      "con_demo": 9,
+      "con_demo": 19,
       "contattati": 0,
-      "todo_priorita_1_3_senza_demo": 40
+      "todo_priorita_1_3_senza_demo": 30,
+      "nota": "Demo ancora presenti (cartelle standard)"
     },
     "CSV_Golfo_Napoli_Sorrento.csv": {
       "totale": 104,
-      "con_demo": 27,
+      "con_demo": 0,
       "contattati": 38,
-      "todo_priorita_1_3_senza_demo": 65
+      "todo_priorita_1_3_senza_demo": 92,
+      "nota": "Tutte le 27 demo rimosse. Contattato=38 mantenuto come storico, senza demo collegata"
     },
     "CSV_Golfo_Napoli_Sorrento_NEW.csv": {
       "totale": 104,
@@ -51,97 +54,19 @@
     }
   },
   "ultimo_batch_completato": {
-    "data": "2026-06-20",
-    "csv": "CSV_Cilento.csv + CSV_Costiera_Amalfitana.csv (batch misto)",
-    "aziende": [
-      {
-        "nome": "Cilentour ANBI Travel",
-        "priorita": 3,
-        "citta": "Agropoli",
-        "email": "info@cilentour.com",
-        "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/cilentour-anbi-travel-experiences-standard/",
-        "immagini": "reali (CSV)",
-        "gmail_draft_id": "r5552591594663159458",
-        "nota": "Tour operator"
-      },
-      {
-        "nome": "Cooperativa Cilento Blu",
-        "priorita": 3,
-        "citta": "Marina di Camerota",
-        "email": "ASSENTE nel CSV",
-        "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/cooperativa-cilento-blu-experiences-standard/",
-        "immagini": "reali (CSV)",
-        "nota": "Tour operator, nessuna email"
-      },
-      {
-        "nome": "Hotel Polo Nautico",
-        "priorita": 2,
-        "citta": "Salerno",
-        "email": "ASSENTE nel CSV",
-        "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-polo-nautico-experiences-standard/",
-        "immagini": "reali (CSV)"
-      },
-      {
-        "nome": "Lloyd's Baia Hotel",
-        "priorita": 3,
-        "citta": "Vietri sul Mare",
-        "email": "info@lloydsbaiahotel.it",
-        "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/lloyds-baia-hotel-experiences-standard/",
-        "immagini": "reali (CSV)",
-        "gmail_draft_id": "r4200901059177257572"
-      },
-      {
-        "nome": "Hotel Raito",
-        "priorita": 2,
-        "citta": "Vietri sul Mare",
-        "email": "reservations@hotelraito.it",
-        "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-raito-experiences-standard/",
-        "immagini": "reali (CSV)",
-        "gmail_draft_id": "r-6703031564295789109"
-      }
-    ],
+    "data": "2026-10-10",
+    "csv": "tutti",
     "azioni": [
-      "CSV_Cilento.csv completato P1-3 (46/47, rimane 1 senza priorita)",
-      "CSV_Costiera_Amalfitana.csv iniziato (4/52 con demo)",
-      "3 bozze Gmail create (2 aziende senza email saltate)"
+      "Rimosse 139 cartelle demo precedenti al modello a due template (commit e5264e0). Restano Sportlandia, ischia4punto0 e i due template",
+      "Svuotati Link_Demo e Data_Generazione delle 33 righe collegate a cartelle rimosse. Contattato e Data_Contatto mantenuti come storico",
+      "Ripartenza da zero: nuove demo con le nuove skill"
     ]
   },
   "prossimo_batch_da_fare": {
-    "csv": "CSV_Costiera_Amalfitana.csv",
+    "csv": "da definire",
     "criterio": "priorita 1-3 senza Link_Demo, prossimi 5",
-    "aziende": [
-      {
-        "nome": "Le Sirenuse",
-        "priorita": 1,
-        "citta": "Positano",
-        "email": "info@sirenuse.it"
-      },
-      {
-        "nome": "Il San Pietro di Positano",
-        "priorita": 1,
-        "citta": "Positano",
-        "email": "info@ilsanpietro.it"
-      },
-      {
-        "nome": "Villa Treville",
-        "priorita": 2,
-        "citta": "Positano",
-        "email": "contact@villatreville.com"
-      },
-      {
-        "nome": "Hotel Le Agavi",
-        "priorita": 2,
-        "citta": "Positano",
-        "email": "booking@leagavipositano.com"
-      },
-      {
-        "nome": "Hotel Villa Franca",
-        "priorita": 2,
-        "citta": "Positano",
-        "email": "info@villafrancahotel.it"
-      }
-    ],
-    "nota": "Batch di 5 stelle luxury della Costiera, concentrati a Positano. CSV_Costiera_Amalfitana.csv ha 45 aziende P1-3 rimaste da fare dopo questo batch. Proseguire fino a completamento, poi CSV_Salerno.csv (14 da fare)."
+    "aziende": [],
+    "nota": "Ripartenza da zero con le nuove skill. Il prossimo batch va concordato con l utente."
   },
   "schema_csv": "Nome_Azienda,URL_Sito,Google_Business_Link,Categoria,Priorita,Email,Immagini,Link_Demo,Data_Generazione,Data_Contatto,Contattato,Citta,Sito_Pre2020,Mobile_Friendly,Channel_Manager,Blog,Criteri_Soddisfatti,Note,Brief_Demo_OpenClaw",
   "comando_generazione": "cd demos && python3 scripts/generate-from-standard-template.py ricerca_clienti_csv/<CSV> \"<Nome_Azienda>\"",
