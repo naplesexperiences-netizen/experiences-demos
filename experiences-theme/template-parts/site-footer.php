@@ -7,33 +7,48 @@
 
 $exp_anchor = is_front_page() ? '' : esc_url( home_url( '/' ) );
 $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
+
+// Stesse voci dell'intestazione, piu i Contatti che in alto sono il
+// bottone della CTA. Prima erano un secondo elenco scritto a mano, che
+// infatti era rimasto indietro.
+$exp_nav  = experiences_nav_items();
+$exp_nav[] = experiences_nav_cta();
 ?>
 
     <!-- Footer -->
     <footer class="bg-dark text-white pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                <div class="sm:col-span-2 lg:col-span-1">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 mb-4">
-                        <img src="<?php echo esc_url( $exp_logo ); ?>" alt="Experiences Logo" width="282" height="300" class="logo-img">
-                        <div><span class="font-heading font-bold text-lg">EXPERIENCES</span><span class="block text-xs text-accent">SRL</span></div>
-                    </a>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Soluzioni digitali complete per il settore turistico. Digitalizzazione, marketing e AI per agenzie di viaggi e strutture alberghiere.</p>
-                    <div class="flex gap-3">
-                        <a href="https://wa.me/393926917657" target="_blank" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-lg flex items-center justify-center transition" title="WhatsApp"><i class="fab fa-whatsapp text-xl"></i></a>
-                    </div>
+            <!-- Il blocco del marchio sta fuori dalla griglia: dentro
+                 avrebbe avuto bisogno di col-span-2, che nel Tailwind
+                 compilato del tema non esiste. Fuori funziona senza
+                 classi nuove, ed e anche piu sensato — non e una delle
+                 colonne di link. -->
+            <div class="mb-12 max-w-md">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 mb-4">
+                    <img src="<?php echo esc_url( $exp_logo ); ?>" alt="Experiences Logo" width="282" height="300" class="logo-img">
+                    <div><span class="font-heading font-bold text-lg">EXPERIENCES</span><span class="block text-xs text-accent">SRL</span></div>
+                </a>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">Soluzioni digitali complete per il settore turistico. Digitalizzazione, marketing e AI per agenzie di viaggi e strutture alberghiere.</p>
+                <div class="flex gap-3">
+                    <a href="https://wa.me/393926917657" target="_blank" rel="noopener" class="w-10 h-10 bg-green-500 hover:bg-green-600 rounded-lg flex items-center justify-center transition" title="WhatsApp"><i class="fab fa-whatsapp text-xl" aria-hidden="true"></i></a>
                 </div>
+            </div>
+
+            <!-- Due colonne gia dal telefono: in colonna singola le tre
+                 liste diventavano uno scorrimento lunghissimo. -->
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
                 <div>
                     <h4 class="font-heading font-semibold text-lg mb-4">Menu</h4>
                     <ul class="space-y-3">
-                        <li><a href="<?php echo $exp_anchor; ?>#home" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Home</a></li>
-                        <li><a href="<?php echo $exp_anchor; ?>#services" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Servizi</a></li>
-                        <li><a href="<?php echo $exp_anchor; ?>#portfolio" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Portfolio</a></li>
-                        <li><a href="<?php echo $exp_anchor; ?>#demo" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Galleria Demo</a></li>
-                        <li><a href="<?php echo esc_url( experiences_blog_archive_url() ); ?>" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Blog</a></li>
-                        <li><a href="<?php echo $exp_anchor; ?>#pricing" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Prezzi</a></li>
-                        <li><a href="<?php echo $exp_anchor; ?>#chatbot" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Chatbot AI</a></li>
-                        <li><a href="<?php echo $exp_anchor; ?>#contact" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent/50"></i> Contatti</a></li>
+                        <?php foreach ( $exp_nav as $exp_voce ) : ?>
+                            <li>
+                                <a href="<?php echo esc_url( $exp_voce['href'] ); ?>"
+                                   class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-2">
+                                    <i class="fas fa-chevron-right text-xs text-accent/50" aria-hidden="true"></i>
+                                    <?php echo esc_html( $exp_voce['label'] ); ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <div>
