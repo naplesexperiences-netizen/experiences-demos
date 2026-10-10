@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bartolo e Paola//Matrimonio//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:matrimonio-bartolo-paola-20270529@naplesexperiences
+DTSTAMP:20261010T120000Z
+DTSTART:20270529T140000Z
+DTEND:20270529T230000Z
+SUMMARY:Matrimonio di Bartolo e Paola
+LOCATION:Basilica Paleocristiana\, Paestum
+DESCRIPTION:Cerimonia alle 16\, poi ricevimento all'Hotel Ariston\, Paestum.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Domani il matrimonio di Bartolo e Paola
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
