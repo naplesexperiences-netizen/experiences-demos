@@ -62,26 +62,49 @@
                     return;
                 }
 
-                const fd = new FormData(this);
-                fd.append('action', 'experiences_contact');
-                fd.append('nonce',  ajaxCfg.nonce);
-
                 if (btn) {
                     btn.disabled = true;
                     btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Invio in corso…';
                 }
 
-                fetch(ajaxCfg.url, {
-                    method: 'POST',
-                    body: fd,
-                    credentials: 'same-origin'
-                })
-                    .then(r => r.json().catch(() => ({ success: false, data: { message: 'Risposta non valida dal server.' } })))
-                    .then(data => {
-                        const msg = (data && data.data && data.data.message) ? data.data.message
-                                  : (data && data.success ? 'Messaggio inviato!' : "Errore nell'invio. Riprova.");
-                        setStatus(msg, !!(data && data.success));
-                        if (data && data.success) { cf.reset(); }
+                // La pagina arriva dalla cache Cloudflare e può restare al
+                // bordo molto più a lungo di quanto viva un nonce (24 ore).
+                // Al primo rifiuto si ripesca un token fresco e si ritenta
+                // una volta: l'utente non vede nulla e non perde il testo.
+                const invia = (nonce) => {
+                    const fd = new FormData(cf);
+                    fd.append('action', 'experiences_contact');
+                    fd.append('nonce', nonce);
+                    return fetch(ajaxCfg.url, { method: 'POST', body: fd, credentials: 'same-origin' })
+                        .then(r => r.json().catch(() => null).then(body => ({ status: r.status, body: body })));
+                };
+
+                const nonceScaduto = (res) =>
+                    res.status === 403 || res.body === -1 || res.body === 0 || res.body === null;
+
+                const nonceFresco = () => {
+                    if (!ajaxCfg.rest) return Promise.resolve(null);
+                    return fetch(ajaxCfg.rest, { credentials: 'same-origin', cache: 'no-store' })
+                        .then(r => (r.ok ? r.json() : null))
+                        .then(d => {
+                            if (d && d.contact) { ajaxCfg.nonce = d.contact; return d.contact; }
+                            return null;
+                        })
+                        .catch(() => null);
+                };
+
+                invia(ajaxCfg.nonce)
+                    .then(res => {
+                        if (!nonceScaduto(res)) return res;
+                        return nonceFresco().then(n => (n ? invia(n) : res));
+                    })
+                    .then(res => {
+                        const data = res.body;
+                        const ok   = !!(data && data.success);
+                        const msg  = (data && data.data && data.data.message) ? data.data.message
+                                   : (ok ? 'Messaggio inviato!' : "Errore nell'invio. Riprova o scrivici su WhatsApp.");
+                        setStatus(msg, ok);
+                        if (ok) { cf.reset(); }
                         resetBtn();
                     })
                     .catch(() => {
@@ -101,21 +124,53 @@
 
             if (!mobileMenuBtn || !mobileMenu) return;
 
+            // A menu chiuso il pannello deve uscire dall'ordine di
+            // tabulazione. Il CSS lo fa con visibility:hidden (funziona
+            // ovunque); inert aggiunge la stessa cosa all'albero di
+            // accessibilità dove il browser lo supporta.
+            const setInert = (on) => {
+                if ('inert' in HTMLElement.prototype) mobileMenu.inert = on;
+                mobileMenu.setAttribute('aria-hidden', on ? 'true' : 'false');
+            };
+            setInert(true);
+
             const openMenu = () => {
                 mobileMenu.classList.add('active');
                 if (menuOverlay) menuOverlay.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
+                setInert(false);
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                mobileMenuBtn.setAttribute('aria-label', 'Chiudi menu');
+                // Il focus entra nel pannello, altrimenti resta su un
+                // bottone che ora dice "Chiudi" mentre il menu è altrove.
+                if (closeMenu) closeMenu.focus();
+                expFocusTrap.attiva(mobileMenu);
             };
-            const closeMenuFn = () => {
+
+            const closeMenuFn = ({ restoreFocus = true } = {}) => {
+                const eraAperto = mobileMenu.classList.contains('active');
                 mobileMenu.classList.remove('active');
                 if (menuOverlay) menuOverlay.classList.add('hidden');
                 document.body.style.overflow = '';
+                setInert(true);
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'Apri menu');
+                if (eraAperto) expFocusTrap.disattiva();
+                // Niente focus di ritorno quando si è cliccato un link:
+                // la pagina sta già scorrendo verso la sezione.
+                if (eraAperto && restoreFocus) mobileMenuBtn.focus();
             };
 
-            mobileMenuBtn.addEventListener('click', openMenu);
-            if (closeMenu)   closeMenu.addEventListener('click', closeMenuFn);
-            if (menuOverlay) menuOverlay.addEventListener('click', closeMenuFn);
-            mobileLinks.forEach(l => l.addEventListener('click', closeMenuFn));
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.contains('active') ? closeMenuFn() : openMenu();
+            });
+            if (closeMenu)   closeMenu.addEventListener('click', () => closeMenuFn());
+            if (menuOverlay) menuOverlay.addEventListener('click', () => closeMenuFn());
+            mobileLinks.forEach(l => l.addEventListener('click', () => closeMenuFn({ restoreFocus: false })));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMenuFn();
+            });
         })();
 
         // ── Header scroll shadow ─────────────────────────────────────────
