@@ -224,6 +224,18 @@ function experiences_customize_register( $wp_customize ) {
         'type'        => 'url',
     ]);
 
+    $wp_customize->add_setting( 'exp_vetrina_url', [
+        'default'           => EXP_VETRINA_DEFAULT,
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_vetrina_url', [
+        'label'       => __( 'URL della vetrina (selezione)', 'experiences-srl' ),
+        'description' => __( 'La pagina con le demo scelte, una per ogni impianto diverso. È quella che il bottone principale della sezione apre; l\'elenco completo resta come seconda scelta.', 'experiences-srl' ),
+        'section'     => 'experiences_demo_section',
+        'type'        => 'url',
+    ]);
+
     $wp_customize->add_setting( 'exp_demo_count', [
         'default'           => 200,
         'sanitize_callback' => 'absint',
@@ -538,6 +550,17 @@ define( 'EXP_DEMO_HUB_DEFAULT', 'https://naplesexperiences-netizen.github.io/exp
 function experiences_demo_hub_url() {
     $url = get_theme_mod( 'exp_demo_url', EXP_DEMO_HUB_DEFAULT );
     return $url ? $url : EXP_DEMO_HUB_DEFAULT;
+}
+
+// La vetrina: una selezione ragionata invece dell'elenco completo.
+// Duecento demo sono per lo più varianti dello stesso impianto, e
+// metterle tutte davanti a un cliente non lo aiuta a scegliere. La
+// vetrina ne tiene una per ogni modo davvero diverso di fare un sito.
+define( 'EXP_VETRINA_DEFAULT', 'https://naplesexperiences-netizen.github.io/experiences-demos/vetrina/' );
+
+function experiences_vetrina_url() {
+    $url = trim( (string) get_theme_mod( 'exp_vetrina_url', EXP_VETRINA_DEFAULT ) );
+    return '' !== $url ? $url : EXP_VETRINA_DEFAULT;
 }
 
 // ── Avatar LiveAvatar ──────────────────────────────────────────────────

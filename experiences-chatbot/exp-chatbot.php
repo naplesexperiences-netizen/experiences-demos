@@ -3,7 +3,7 @@
  * Plugin Name:  Experiences Chatbot
  * Plugin URI:   https://www.naplesexperiences.com
  * Description:  Chatbot testuale configurabile per Experiences Srl, con risposte AI opzionali.
- * Version:      2.0.0
+ * Version:      2.1.0
  * Author:       Experiences Srl
  * License:      Proprietary
  * Text Domain:  exp-chatbot
@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EXP_CHATBOT_VERSION', '2.0.0' );
+define( 'EXP_CHATBOT_VERSION', '2.1.0' );
 
 /* =========================================================
    MODELLI
@@ -25,6 +25,94 @@ function exp_chatbot_modelli_claude() {
         'claude-sonnet-5-5'=> 'Claude Sonnet 5.5 — equilibrato ($2 / $10)',
         'claude-haiku-5-5' => 'Claude Haiku 5.5 — il piu economico ($0,10 / $0,50)',
     ];
+}
+
+/* =========================================================
+   FORNITORI
+   ========================================================= */
+// Groq, DeepSeek, Mistral, OpenRouter e Gemini espongono tutti lo stesso
+// protocollo di OpenAI (/chat/completions): cambia solo l'indirizzo. Un
+// solo percorso di codice li copre, e aggiungerne un altro domani vuol
+// dire aggiungere una riga a questa tabella.
+//
+// I modelli indicati sono un punto di partenza, non una garanzia: i
+// listini e i nomi cambiano spesso. Se un modello non esiste piu la
+// chiamata fallisce e il chatbot ricade sui template — il bottone
+// "Testa connessione API" mostra l'errore vero.
+function exp_chatbot_fornitori() {
+    return [
+        'none' => [
+            'label' => 'Nessuno — solo template',
+            'tipo'  => 'none',
+        ],
+        'claude' => [
+            'label'   => 'Anthropic Claude',
+            'tipo'    => 'anthropic',
+            'modello' => 'claude-haiku-5-5',
+            'chiavi'  => 'https://console.anthropic.com',
+            'listino' => 'https://www.anthropic.com/pricing#api',
+            'nota'    => 'Haiku 5.5 costa $0,10 per milione di token in ingresso e $0,50 in uscita: per un chatbot di sito e gia tra le opzioni piu economiche in assoluto.',
+        ],
+        'gemini' => [
+            'label'   => 'Google Gemini',
+            'tipo'    => 'openai',
+            'url'     => 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
+            'modello' => 'gemini-2.0-flash',
+            'chiavi'  => 'https://aistudio.google.com/apikey',
+            'listino' => 'https://ai.google.dev/pricing',
+            'nota'    => 'Ha un piano gratuito con un tetto giornaliero di richieste: per un chatbot a basso traffico puo bastare quello.',
+        ],
+        'groq' => [
+            'label'   => 'Groq',
+            'tipo'    => 'openai',
+            'url'     => 'https://api.groq.com/openai/v1/chat/completions',
+            'modello' => 'llama-3.3-70b-versatile',
+            'chiavi'  => 'https://console.groq.com/keys',
+            'listino' => 'https://groq.com/pricing/',
+            'nota'    => 'Modelli aperti (Llama e simili) eseguiti su hardware dedicato: risposte molto rapide e costo basso.',
+        ],
+        'deepseek' => [
+            'label'   => 'DeepSeek',
+            'tipo'    => 'openai',
+            'url'     => 'https://api.deepseek.com/chat/completions',
+            'modello' => 'deepseek-chat',
+            'chiavi'  => 'https://platform.deepseek.com/api_keys',
+            'listino' => 'https://api-docs.deepseek.com/quick_start/pricing',
+            'nota'    => 'Tra i piu economici in circolazione. I server sono in Cina: valutalo prima di farci passare dati dei clienti.',
+        ],
+        'mistral' => [
+            'label'   => 'Mistral',
+            'tipo'    => 'openai',
+            'url'     => 'https://api.mistral.ai/v1/chat/completions',
+            'modello' => 'mistral-small-latest',
+            'chiavi'  => 'https://console.mistral.ai/api-keys',
+            'listino' => 'https://mistral.ai/pricing',
+            'nota'    => 'Azienda francese, server nell\'Unione europea: la scelta piu semplice da giustificare lato GDPR.',
+        ],
+        'openrouter' => [
+            'label'   => 'OpenRouter',
+            'tipo'    => 'openai',
+            'url'     => 'https://openrouter.ai/api/v1/chat/completions',
+            'modello' => 'meta-llama/llama-3.3-70b-instruct',
+            'chiavi'  => 'https://openrouter.ai/keys',
+            'listino' => 'https://openrouter.ai/models',
+            'nota'    => 'Un solo account per centinaia di modelli di fornitori diversi, alcuni gratuiti. Comodo per provare senza aprire conti ovunque.',
+        ],
+        'openai' => [
+            'label'   => 'OpenAI',
+            'tipo'    => 'openai',
+            'url'     => 'https://api.openai.com/v1/chat/completions',
+            'modello' => 'gpt-4o-mini',
+            'chiavi'  => 'https://platform.openai.com/api-keys',
+            'listino' => 'https://openai.com/api/pricing/',
+            'nota'    => '',
+        ],
+    ];
+}
+
+function exp_chatbot_fornitore( $chiave ) {
+    $f = exp_chatbot_fornitori();
+    return $f[ $chiave ] ?? $f['none'];
 }
 
 // Solo i modelli recenti accettano output_config.effort e i fallback
@@ -57,7 +145,11 @@ function exp_chatbot_defaults() {
     return [
         'llm_provider'    => 'none',
         'llm_api_key'     => '',
-        'llm_model'       => 'claude-opus-5-5',
+        // Haiku 5.5 e il piu economico della famiglia Claude ($0,10 e
+        // $0,50 per milione di token): per rispondere a domande su
+        // servizi e prezzi basta, e il salto di spesa verso i modelli
+        // grandi non si ripaga su questo tipo di conversazione.
+        'llm_model'       => 'claude-haiku-5-5',
         // Con 'llm_first' l'AI risponde e i template restano come rete di
         // sicurezza. Con 'template_first' vince il primo template la cui
         // parola chiave compare nel messaggio — che e come si comportava
@@ -301,20 +393,42 @@ function exp_chatbot_page_llm() {
     <form method="post">
     <?php wp_nonce_field('exp_chatbot_save','exp_chatbot_nonce'); ?>
     <table class="form-table" style="max-width:700px;">
-        <tr><th><label for="llm_provider">Provider AI</label></th>
-            <td><select id="llm_provider" name="llm_provider" onchange="expToggleLLM(this.value)">
-                <option value="none"   <?php selected($s['llm_provider'],'none'); ?>>Nessuno — solo template</option>
-                <option value="claude" <?php selected($s['llm_provider'],'claude'); ?>>Anthropic Claude</option>
-                <option value="openai" <?php selected($s['llm_provider'],'openai'); ?>>OpenAI (GPT)</option>
-            </select></td></tr>
+        <tr><th><label for="llm_provider">Fornitore AI</label></th>
+            <td><select id="llm_provider" name="llm_provider" onchange="expCambiaFornitore(this.value)">
+                <?php foreach ( exp_chatbot_fornitori() as $id => $f ): ?>
+                    <option value="<?php echo esc_attr($id); ?>" <?php selected($s['llm_provider'],$id); ?>><?php echo esc_html($f['label']); ?></option>
+                <?php endforeach; ?>
+            </select>
+            <?php foreach ( exp_chatbot_fornitori() as $id => $f ):
+                if ( 'none' === $id || empty($f['nota']) ) continue; ?>
+                <p class="description exp-nota" data-forn="<?php echo esc_attr($id); ?>"
+                   style="<?php echo $s['llm_provider']===$id ? '' : 'display:none'; ?>">
+                    <?php echo esc_html($f['nota']); ?>
+                </p>
+            <?php endforeach; ?>
+            <p class="description" style="margin-top:8px;">
+                I fornitori dopo Claude parlano tutti lo stesso protocollo: cambiare richiede solo
+                una chiave nuova e il nome di un modello. Prova e cambia quando vuoi — le tue
+                impostazioni e i template restano.
+            </p>
+            </td></tr>
         <tr id="row_apikey" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
             <th><label for="llm_api_key">API Key</label></th>
             <td><input type="password" id="llm_api_key" name="llm_api_key" value=""
                        placeholder="<?php echo !empty($s['llm_api_key']) ? '●●●●●●●● (salvata — lascia vuoto per mantenerla)' : 'Inserisci API key'; ?>"
                        class="large-text" autocomplete="new-password">
                 <p class="description">
-                    Claude: <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> —
-                    OpenAI: <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a>
+                    <?php foreach ( exp_chatbot_fornitori() as $id => $f ):
+                        if ( 'none' === $id ) continue; ?>
+                        <span class="exp-chiavi" data-forn="<?php echo esc_attr($id); ?>"
+                              style="<?php echo $s['llm_provider']===$id ? '' : 'display:none'; ?>">
+                            Chiave per <strong><?php echo esc_html($f['label']); ?></strong>:
+                            <a href="<?php echo esc_url($f['chiavi']); ?>" target="_blank" rel="noopener"><?php echo esc_html( wp_parse_url($f['chiavi'], PHP_URL_HOST) ); ?></a>
+                            <?php if ( ! empty($f['listino']) ): ?>
+                                — <a href="<?php echo esc_url($f['listino']); ?>" target="_blank" rel="noopener">prezzi e modelli</a>
+                            <?php endif; ?>
+                        </span>
+                    <?php endforeach; ?>
                     <?php if ( defined('EXP_CHATBOT_API_KEY') && EXP_CHATBOT_API_KEY ): ?>
                     <br><span style="color:#28a745;font-weight:600;">La chiave arriva da wp-config.php e ha la precedenza su questo campo.</span>
                     <?php elseif(!empty($s['llm_api_key'])): ?>
@@ -327,13 +441,14 @@ function exp_chatbot_page_llm() {
             <th><label for="llm_model">Modello</label></th>
             <td><input type="text" id="llm_model" name="llm_model" value="<?php echo esc_attr($s['llm_model']); ?>" class="regular-text">
                 <p class="description">
-                    <strong>Claude:</strong><br>
-                    <?php foreach ( exp_chatbot_modelli_claude() as $id => $desc ): ?>
-                        <code><?php echo esc_html($id); ?></code> — <?php echo esc_html( substr($desc, strpos($desc,'—')+4) ); ?><br>
-                    <?php endforeach; ?>
-                    <strong>OpenAI:</strong> <code>gpt-4o-mini</code><br>
-                    <em>Per un chatbot di sito, Haiku 5.5 basta quasi sempre e costa 40 volte meno di Opus.
-                    I prezzi sono per milione di token: una conversazione tipica ne usa qualche migliaio.</em>
+                    <span class="exp-modelli" data-forn="claude" style="<?php echo $s['llm_provider']==='claude' ? '' : 'display:none'; ?>">
+                        <?php foreach ( exp_chatbot_modelli_claude() as $id => $desc ): ?>
+                            <code><?php echo esc_html($id); ?></code> — <?php echo esc_html( substr($desc, strpos($desc,'—')+4) ); ?><br>
+                        <?php endforeach; ?>
+                    </span>
+                    <em>Il nome del modello va copiato dal listino del fornitore (link qui sopra):
+                    cambiano spesso, e se ne scrivi uno che non esiste piu il chatbot smette di
+                    usare l&#39;AI e torna ai template senza dirtelo. Il bottone qui sotto mostra l&#39;errore vero.</em>
                 </p></td></tr>
         <tr id="row_order" style="<?php echo $s['llm_provider']==='none'?'display:none':''; ?>">
             <th>Chi risponde</th>
@@ -360,7 +475,7 @@ function exp_chatbot_page_llm() {
             <td><textarea id="llm_system" name="llm_system" rows="8" class="large-text"><?php echo esc_textarea($s['llm_system']); ?></textarea>
                 <p class="description">I messaggi dei template vengono aggiunti automaticamente qui sotto come base di conoscenza, cosi l'AI risponde con i tuoi prezzi e i tuoi case study invece di inventarli.</p></td></tr>
     </table>
-    <?php if ( $s['llm_provider'] !== 'none' && $s['llm_api_key'] ): ?>
+    <?php if ( $s['llm_provider'] !== 'none' && exp_chatbot_api_key( $s ) ): ?>
     <div style="margin:10px 0 20px;">
         <button type="button" id="exp-test-llm" style="background:#0D7C7C;color:#fff;border:none;border-radius:6px;padding:10px 20px;cursor:pointer;">Testa connessione API</button>
         <span id="exp-test-result" style="margin-left:12px;font-weight:500;"></span>
@@ -381,7 +496,34 @@ function exp_chatbot_page_llm() {
     <?php endif; ?>
     <?php submit_button('Salva Impostazioni API'); ?>
     </form></div>
-    <script>function expToggleLLM(v){var show=v!=='none';['row_apikey','row_model','row_order','row_turns','row_rate','row_system'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display=show?'':'none';});}</script>
+    <script>
+    var EXP_MODELLI_DEFAULT = <?php
+        $def = [];
+        foreach ( exp_chatbot_fornitori() as $id => $f ) {
+            if ( ! empty( $f['modello'] ) ) $def[ $id ] = $f['modello'];
+        }
+        echo wp_json_encode( $def );
+    ?>;
+    function expCambiaFornitore(v){
+        var mostra = v !== 'none';
+        ['row_apikey','row_model','row_order','row_turns','row_rate','row_system'].forEach(function(id){
+            var e = document.getElementById(id); if (e) e.style.display = mostra ? '' : 'none';
+        });
+        // Mostra solo le note, i link chiave e l'elenco modelli del fornitore scelto
+        ['exp-nota','exp-chiavi','exp-modelli'].forEach(function(cls){
+            document.querySelectorAll('.' + cls).forEach(function(el){
+                el.style.display = (el.dataset.forn === v) ? '' : 'none';
+            });
+        });
+        // Propone il modello predefinito del fornitore, senza cancellare
+        // quello che l'utente ha scritto a mano se gia appartiene a lui.
+        var campo = document.getElementById('llm_model');
+        if (campo && EXP_MODELLI_DEFAULT[v]) {
+            var valori = Object.keys(EXP_MODELLI_DEFAULT).map(function(k){ return EXP_MODELLI_DEFAULT[k]; });
+            if (!campo.value || valori.indexOf(campo.value) !== -1) campo.value = EXP_MODELLI_DEFAULT[v];
+        }
+    }
+    </script>
     <?php
 }
 
@@ -597,22 +739,44 @@ function exp_chatbot_call_llm( $msg, $s, $storia = [], $templates = [] ) {
         return ['ok'=>false,'error'=>($data['error']['message']??'Errore HTTP '.$code)];
     }
 
-    if ( $provider === 'openai' ) {
+    // Tutti gli altri fornitori parlano il protocollo di OpenAI: cambia
+    // solo l'indirizzo, preso dalla tabella dei fornitori.
+    $f = exp_chatbot_fornitore( $provider );
+    if ( ( $f['tipo'] ?? '' ) === 'openai' && ! empty( $f['url'] ) ) {
         $msgs = [];
         if ($system) $msgs[] = ['role'=>'system','content'=>$system];
         foreach ( $messaggi as $m ) $msgs[] = $m;
-        $res = wp_remote_post('https://api.openai.com/v1/chat/completions',[
-            'timeout'=>30,
-            'headers'=>['Authorization'=>'Bearer '.$key,'Content-Type'=>'application/json'],
-            'body'=>wp_json_encode(['model'=>$model,'max_tokens'=>1000,'messages'=>$msgs]),
+
+        $headers = [
+            'Authorization' => 'Bearer ' . $key,
+            'Content-Type'  => 'application/json',
+        ];
+        // OpenRouter attribuisce il traffico a questi due header e li
+        // mostra nella sua dashboard; gli altri fornitori li ignorano.
+        if ( 'openrouter' === $provider ) {
+            $headers['HTTP-Referer'] = home_url( '/' );
+            $headers['X-Title']      = get_bloginfo( 'name' );
+        }
+
+        $res = wp_remote_post( $f['url'], [
+            'timeout' => 30,
+            'headers' => $headers,
+            'body'    => wp_json_encode([ 'model' => $model, 'max_tokens' => 1000, 'messages' => $msgs ]),
         ]);
         if ( is_wp_error($res) ) return ['ok'=>false,'error'=>$res->get_error_message()];
-        $data = json_decode(wp_remote_retrieve_body($res),true);
-        if ( isset($data['choices'][0]['message']['content']) ) return ['ok'=>true,'text'=>trim($data['choices'][0]['message']['content'])];
-        return ['ok'=>false,'error'=>($data['error']['message']??'Risposta non valida')];
+
+        $code = wp_remote_retrieve_response_code( $res );
+        $data = json_decode( wp_remote_retrieve_body($res), true );
+        if ( isset($data['choices'][0]['message']['content']) ) {
+            $testo = trim( (string) $data['choices'][0]['message']['content'] );
+            if ( '' !== $testo ) return [ 'ok' => true, 'text' => $testo ];
+        }
+        // Gemini restituisce l'errore dentro un array; gli altri no.
+        $err = $data['error']['message'] ?? ( $data[0]['error']['message'] ?? null );
+        return [ 'ok' => false, 'error' => $err ?: ( 'Risposta non valida (HTTP ' . $code . ')' ) ];
     }
 
-    return ['ok'=>false,'error'=>'Provider non configurato'];
+    return ['ok'=>false,'error'=>'Fornitore non configurato'];
 }
 
 /* =========================================================
