@@ -14,30 +14,10 @@
 $exp_anchor = is_front_page() ? '' : esc_url( home_url( '/' ) );
 $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
 
-/**
- * Voci del menu principale.
- *
- * Erano nove. "AI Avatar" e "Chatbot" promettevano al lettore la stessa
- * cosa — un assistente AI — e lo costringevano a scegliere quale fosse
- * quella giusta; ora sono un'unica voce e la sezione le contiene
- * entrambe. "Home" è sparita perché la fa già il logo, e "Demo" si
- * raggiunge da "Lavori": la sezione demo segue subito il portfolio.
- *
- * Modificabile senza toccare il template:
- *   add_filter( 'experiences_nav_items', fn( $items ) => … );
- */
-$exp_nav = apply_filters( 'experiences_nav_items', [
-    [ 'label' => 'Servizi', 'href' => $exp_anchor . '#services' ],
-    [ 'label' => 'Lavori',  'href' => $exp_anchor . '#portfolio' ],
-    [ 'label' => 'AI',      'href' => $exp_anchor . '#avatar', 'icon' => 'fas fa-robot' ],
-    [ 'label' => 'Prezzi',  'href' => $exp_anchor . '#pricing' ],
-    [ 'label' => 'Blog',    'href' => experiences_blog_archive_url() ],
-] );
-
-$exp_cta = apply_filters( 'experiences_nav_cta', [
-    'label' => 'Contatti',
-    'href'  => $exp_anchor . '#contact',
-] );
+// Le voci vivono in functions.php perché le usa anche il piede di
+// pagina: tenerle qui significava riscriverle là e vederle divergere.
+$exp_nav = experiences_nav_items();
+$exp_cta = experiences_nav_cta();
 ?>
 
     <!-- Skip link: primo elemento della pagina, raggiungibile con un Tab -->
