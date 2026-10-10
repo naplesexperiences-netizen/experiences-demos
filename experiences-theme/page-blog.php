@@ -19,7 +19,7 @@ get_header();
 $exp_q = new WP_Query([
     'post_type'      => 'post',
     'post_status'    => 'publish',
-    'posts_per_page' => 200,
+    'posts_per_page' => experiences_blog_posts_limit(),
     'orderby'        => 'date',
     'order'          => 'DESC',
 ]);
@@ -60,7 +60,10 @@ $exp_cats = get_categories([ 'orderby' => 'count', 'order' => 'DESC', 'hide_empt
         </div>
     </section>
 
-    <?php get_template_part( 'template-parts/blog-listing' ); ?>
+    <?php get_template_part( 'template-parts/blog-listing', null, [
+        'query' => $exp_q,
+        'cats'  => $exp_cats,
+    ] ); ?>
 
 </main>
 

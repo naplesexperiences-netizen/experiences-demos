@@ -295,15 +295,30 @@ get_header();
                 </span>
             </div>
 
-            <!-- LiveAvatar iframe — full width, 16:9 -->
-            <div data-aos="fade-up" data-aos-delay="200"
-                 style="width:100%; border-radius:1.5rem; overflow:hidden; box-shadow:0 25px 60px rgba(11,61,97,0.18); border:2px solid rgba(20,163,163,0.15);">
-                <iframe
-                    src="https://embed.liveavatar.com/v1/c9ba1ee0-5822-4be5-a239-ced83918726f?orientation=horizontal"
-                    allow="microphone; camera"
-                    title="LiveAvatar — Assistente Virtuale Experiences Srl"
-                    style="width:100%; aspect-ratio:16/9; display:block; border:none;">
-                </iframe>
+            <!-- LiveAvatar: si carica al clic.
+                 Prima l'iframe partiva allo scorrimento, sempre in
+                 orizzontale: su un telefono il video veniva 358×201, un
+                 volto dentro un francobollo. L'embed in verticale rende
+                 358×636 e qualunque altra proporzione taglia la testa,
+                 quindi il riquadro è 9:16 sotto i 768px e 16:9 sopra.
+                 Partendo al clic, il servizio di terze parti — con la
+                 sua richiesta di microfono — viene contattato solo
+                 quando il visitatore lo chiede davvero. -->
+            <div data-aos="fade-up" data-aos-delay="200" class="max-w-4xl mx-auto">
+                <div id="exp-avatar" class="exp-avatar"
+                     data-avatar-embed="<?php echo esc_url( experiences_avatar_embed_url() ); ?>">
+                    <button type="button" class="exp-avatar-start" data-avatar-start
+                            aria-describedby="exp-avatar-nota">
+                        <span class="exp-avatar-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="exp-avatar-label">Parla con l'Esperto Digitale</span>
+                        <span class="exp-avatar-hint">Si apre l'assistente video, in italiano</span>
+                    </button>
+                </div>
+                <p id="exp-avatar-nota" class="text-center text-xs text-gray-500 mt-3">
+                    Avviandolo ti colleghi a LiveAvatar, un servizio esterno, che potrà
+                    chiederti il microfono per parlare. Dettagli nella
+                    <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="underline hover:text-secondary">Privacy Policy</a>.
+                </p>
             </div>
 
             <!-- CTA below avatar -->
@@ -463,8 +478,9 @@ get_header();
          URL modificabile da Personalizza tema → Galleria demo
          ================================================ -->
     <?php
-    $exp_demo_url   = experiences_demo_hub_url();
-    $exp_demo_count = (int) get_theme_mod( 'exp_demo_count', 200 );
+    $exp_demo_url    = experiences_demo_hub_url();
+    $exp_vetrina_url = experiences_vetrina_url();
+    $exp_demo_count  = (int) get_theme_mod( 'exp_demo_count', 200 );
     ?>
     <section id="demo" class="py-20 lg:py-28 bg-dark relative overflow-hidden">
 
@@ -482,34 +498,35 @@ get_header();
                         GALLERIA DEMO
                     </span>
                     <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                        Oltre <span class="text-gradient"><?php echo esc_html( number_format_i18n( $exp_demo_count ) ); ?> demo</span> già pronte da esplorare
+                        Undici modi diversi di fare <span class="text-gradient">un sito</span>
                     </h2>
                     <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                        Prima di commissionare un sito, guarda come lavoriamo. Abbiamo costruito
-                        demo navigabili per hotel, B&amp;B, tour operator e strutture termali di
-                        tutta la Campania — Costiera, Ischia, Sorrento, Napoli, Cilento.
-                        Sono siti veri, non mockup: si aprono e si usano.
+                        Prima di commissionare un sito, guarda come lavoriamo. Sono siti veri,
+                        non mockup: si aprono e si usano. Ma duecento demo sono per lo più
+                        varianti dello stesso impianto, e scorrerle tutte non aiuta a scegliere:
+                        per questo ne abbiamo messe da parte <strong class="text-white">undici</strong>,
+                        una per ogni modo davvero diverso di costruire una pagina.
                     </p>
 
                     <ul class="space-y-3 mb-9">
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Filtrabili per tipologia di struttura e località</span>
+                            <span>Dal racconto per immagini al totem touch, passando per il 3D</span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Ognuna apribile e navigabile dal vivo, anche da telefono</span>
+                            <span>Dove due approcci meritano un confronto, li trovi affiancati</span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Ogni demo è personalizzabile sul tuo brand</span>
+                            <span>Ognuna apribile dal vivo, anche da telefono, e personalizzabile sul tuo brand</span>
                         </li>
                     </ul>
 
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                        <a href="<?php echo esc_url( $exp_vetrina_url ); ?>" target="_blank" rel="noopener"
                            class="px-8 py-4 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-colors shadow-lg inline-flex items-center justify-center gap-2 group">
-                            Esplora tutte le demo
+                            Guarda la selezione
                             <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
                         </a>
                         <a href="#booking" data-booking-trigger
@@ -517,20 +534,29 @@ get_header();
                             <i class="fas fa-rocket" aria-hidden="true"></i> Voglio la mia
                         </a>
                     </div>
+
+                    <!-- L'elenco completo resta raggiungibile, ma sottovoce:
+                         è la seconda scelta, non la prima. -->
+                    <p class="mt-6 text-sm text-gray-400">
+                        Preferisci scorrerle tutte?
+                        <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                           class="text-accent hover:text-white underline transition-colors">
+                            Apri l'archivio completo, <?php echo esc_html( number_format_i18n( $exp_demo_count ) ); ?> demo</a>.
+                    </p>
                 </div>
 
                 <!-- Anteprima: finestra browser stilizzata -->
                 <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
-                    <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                    <a href="<?php echo esc_url( $exp_vetrina_url ); ?>" target="_blank" rel="noopener"
                        class="block rounded-2xl overflow-hidden border border-white/15 shadow-2xl group"
-                       aria-label="Apri la galleria completa delle demo in una nuova scheda">
+                       aria-label="Apri la vetrina delle demo selezionate in una nuova scheda">
 
                         <!-- Barra della finestra -->
                         <div class="flex items-center gap-2 px-4 py-3 bg-white/10 border-b border-white/10">
                             <span class="w-3 h-3 rounded-full bg-red-400/70" aria-hidden="true"></span>
                             <span class="w-3 h-3 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
                             <span class="w-3 h-3 rounded-full bg-green-400/70" aria-hidden="true"></span>
-                            <span class="ml-3 text-xs text-gray-400 truncate">galleria demo · Experiences Srl</span>
+                            <span class="ml-3 text-xs text-gray-400 truncate">vetrina · Experiences Srl</span>
                         </div>
 
                         <!-- Griglia di miniature -->
@@ -555,10 +581,10 @@ get_header();
 
                             <div class="mt-4 flex items-center justify-between px-1">
                                 <span class="text-xs text-gray-400">
-                                    …e altre <?php echo esc_html( number_format_i18n( max( 0, $exp_demo_count - 6 ) ) ); ?>
+                                    Una per impianto, non una per cliente
                                 </span>
                                 <span class="text-xs font-semibold text-accent inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                                    Apri la galleria <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                    Apri la vetrina <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </div>
