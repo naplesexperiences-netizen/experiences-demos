@@ -498,13 +498,13 @@ get_header();
                         GALLERIA DEMO
                     </span>
                     <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                        Undici modi diversi di fare <span class="text-gradient">un sito</span>
+                        Dieci modi diversi di fare <span class="text-gradient">un sito</span>
                     </h2>
                     <p class="text-gray-300 text-lg leading-relaxed mb-8">
                         Prima di commissionare un sito, guarda come lavoriamo. Sono siti veri,
                         non mockup: si aprono e si usano. Ma duecento demo sono per lo più
                         varianti dello stesso impianto, e scorrerle tutte non aiuta a scegliere:
-                        per questo ne abbiamo messe da parte <strong class="text-white">undici</strong>,
+                        per questo ne abbiamo messe da parte <strong class="text-white">dieci</strong>,
                         una per ogni modo davvero diverso di costruire una pagina.
                     </p>
 
