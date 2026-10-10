@@ -54,9 +54,43 @@ function experiences_enqueue_assets() {
     wp_localize_script( 'experiences-main', 'experiencesAjax', [
         'url'   => admin_url( 'admin-ajax.php' ),
         'nonce' => wp_create_nonce( 'experiences_contact' ),
+        // Da dove ripescare un nonce fresco quando quello qui sopra è
+        // scaduto insieme alla pagina in cache. Vedi experiences_rest_nonce().
+        'rest'  => esc_url_raw( rest_url( 'experiences/v1/nonce' ) ),
     ]);
 }
 add_action( 'wp_enqueue_scripts', 'experiences_enqueue_assets' );
+
+// ── Nonce freschi per le pagine servite dalla cache ────────────────────
+// Il nonce del form finisce dentro l'HTML, e l'HTML è servito da
+// Cloudflare con s-maxage di un anno. I nonce di WordPress scadono dopo
+// 24 ore al massimo: quando la pagina in cache invecchia oltre quella
+// soglia, il token servito è morto e admin-ajax risponde -1. Il form
+// smette di funzionare per tutti, in modo intermittente e invisibile —
+// è esattamente il guasto che aveva il form a giugno.
+//
+// Questo endpoint restituisce un token valido al momento della chiamata
+// e non viene mai messo in cache, così il JS può ritentare da solo.
+function experiences_register_nonce_route() {
+    register_rest_route( 'experiences/v1', '/nonce', [
+        'methods'             => WP_REST_Server::READABLE,
+        'permission_callback' => '__return_true',
+        'callback'            => 'experiences_rest_nonce',
+    ]);
+}
+add_action( 'rest_api_init', 'experiences_register_nonce_route' );
+
+function experiences_rest_nonce() {
+    // Il filtro permette a un plugin (per esempio il chatbot, che ha lo
+    // stesso problema) di aggiungere il proprio token alla risposta.
+    $nonces = apply_filters( 'experiences_rest_nonces', [
+        'contact' => wp_create_nonce( 'experiences_contact' ),
+    ]);
+
+    $response = new WP_REST_Response( $nonces );
+    $response->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
+    return $response;
+}
 
 // ── Defer per gli script del tema ───────────────────────────────────────
 // defer non blocca il parsing e preserva l'ordine: aos.js esegue prima di
@@ -84,6 +118,74 @@ function experiences_remove_jquery_migrate( $scripts ) {
     }
 }
 add_action( 'wp_default_scripts', 'experiences_remove_jquery_migrate' );
+
+// Definita qui e non solo in template-parts/cookie-banner.php: quel file
+// è incluso nel footer, mentre serve già a wp_head. Il template part la
+// ridichiara dentro un function_exists, quindi resta compatibile.
+if ( ! function_exists( 'experiences_should_render_cookie_banner' ) ) {
+    function experiences_should_render_cookie_banner() {
+        return apply_filters( 'experiences_cookie_banner_enabled', (bool) get_theme_mod( 'exp_cookie_banner_enabled', true ) );
+    }
+}
+
+// ── Consenso analytics: Google Consent Mode v2 ─────────────────────────
+// Il banner raccoglieva la scelta e nessuno la applicava: Google
+// Analytics (iniettato da un plugin, non dal tema) partiva comunque
+// prima del consenso e "Accetta tutti" non cambiava nulla.
+//
+// Qui si dichiara a Google, PRIMA che il suo script venga caricato, che
+// il consenso è negato: niente cookie di analytics o pubblicità, niente
+// dati pubblicitari. Alla scelta dell'utente arriva l'aggiornamento.
+// Funziona con qualunque plugin inietti gtag/GTM, perché passa dal
+// dataLayer e non dal tag.
+//
+// Priorità 0 su wp_head: deve stare prima di Site Kit e simili, che si
+// agganciano alla priorità di default.
+function experiences_consent_mode_defaults() {
+    if ( ! experiences_should_render_cookie_banner() ) {
+        return;
+    }
+    ?>
+<script id="exp-consent-mode">
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+(function () {
+    var NEGATO = {
+        ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+        analytics_storage: 'denied', functionality_storage: 'granted',
+        personalization_storage: 'denied', security_storage: 'granted'
+    };
+    gtag('consent', 'default', Object.assign({ wait_for_update: 500 }, NEGATO));
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+
+    function applica(stato) {
+        if (!stato) return;
+        gtag('consent', 'update', {
+            analytics_storage:       stato.analytics ? 'granted' : 'denied',
+            ad_storage:              stato.marketing ? 'granted' : 'denied',
+            ad_user_data:            stato.marketing ? 'granted' : 'denied',
+            ad_personalization:      stato.marketing ? 'granted' : 'denied',
+            personalization_storage: stato.marketing ? 'granted' : 'denied'
+        });
+        gtag('set', 'ads_data_redaction', !stato.marketing);
+    }
+
+    // Visita successiva: la scelta è già nel cookie, si applica subito.
+    // Il cookie, e non localStorage, perché questo script gira prima che
+    // il resto del tema sia caricato e il cookie è già disponibile.
+    try {
+        var m = document.cookie.match(/(?:^|;\s*)exp_consent_v1=([^;]*)/);
+        if (m) applica(JSON.parse(decodeURIComponent(m[1])));
+    } catch (e) {}
+
+    // Prima visita: l'evento arriva dal banner al clic.
+    window.addEventListener('experiences:consent-updated', function (e) { applica(e.detail); });
+})();
+</script>
+    <?php
+}
+add_action( 'wp_head', 'experiences_consent_mode_defaults', 0 );
 
 // ── Customizer: Cal.com link + Cookie banner toggle ─────────────────────
 function experiences_customize_register( $wp_customize ) {
@@ -230,7 +332,25 @@ function experiences_create_legal_pages() {
 
     foreach ( $pages as $slug => $config ) {
         $existing = get_page_by_path( $slug );
+
+        // WordPress crea di serie una pagina "Privacy Policy" in BOZZA con
+        // questo stesso slug. Il controllo di prima si fermava appena
+        // trovava una pagina qualsiasi, quindi incontrava la bozza, pensava
+        // di aver già fatto e non pubblicava nulla: /privacy-policy/
+        // rispondeva 404 mentre cookie-policy e termini funzionavano,
+        // perché per quegli slug WordPress non ha bozze.
         if ( $existing && 'trash' !== $existing->post_status ) {
+            if ( 'publish' !== $existing->post_status ) {
+                // Pagina esistente ma non pubblica: le si dà il contenuto
+                // del tema solo se è ancora vuota, per non sovrascrivere
+                // una bozza scritta a mano.
+                $update = [ 'ID' => $existing->ID, 'post_status' => 'publish' ];
+                if ( '' === trim( (string) $existing->post_content ) ) {
+                    $update['post_content'] = $config['content'];
+                }
+                wp_update_post( $update );
+            }
+
             // Se è la privacy policy ufficiale di WP, allinea l'opzione
             if ( ! empty( $config['is_wp_privacy'] ) && ! get_option( 'wp_page_for_privacy_policy' ) ) {
                 update_option( 'wp_page_for_privacy_policy', $existing->ID );
@@ -256,15 +376,18 @@ function experiences_create_legal_pages() {
 // bacheca dopo un aggiornamento del tema.
 add_action( 'after_switch_theme', 'experiences_create_legal_pages' );
 
+// Il flag è passato a _v2 con la correzione della bozza Privacy Policy:
+// sui siti dove _v1 era già impostato la creazione non sarebbe più
+// girata e la pagina sarebbe rimasta in 404.
 function experiences_ensure_legal_pages() {
-    if ( get_option( 'experiences_legal_pages_setup_v1' ) ) {
+    if ( get_option( 'experiences_legal_pages_setup_v2' ) ) {
         return;
     }
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
     experiences_create_legal_pages();
-    update_option( 'experiences_legal_pages_setup_v1', time() );
+    update_option( 'experiences_legal_pages_setup_v2', time() );
 }
 add_action( 'admin_init', 'experiences_ensure_legal_pages' );
 
