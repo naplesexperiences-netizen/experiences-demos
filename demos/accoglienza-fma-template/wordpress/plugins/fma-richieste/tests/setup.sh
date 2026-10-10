@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Installa un WordPress usa-e-getta (SQLite) in tests/wp, attiva il plugin e crea le strutture di prova.
-# Poi:  php -S 127.0.0.1:8899 tests/router.php &  python3 tests/test_richieste.py
+# Poi:  php -S 127.0.0.1:8899 -t tests/wp/wordpress tests/router.php &  python3 tests/test_richieste.py
 set -euo pipefail
 cd "$(dirname "$0")"; mkdir -p wp; cd wp
 [ -f wp.zip ] || curl -sSL https://wordpress.org/latest.zip -o wp.zip
@@ -15,7 +15,7 @@ $WP core install --url=http://127.0.0.1:8899 --title="Accoglienza delle Salesian
 $WP option update siteurl http://127.0.0.1:8899 --quiet; $WP option update home http://127.0.0.1:8899 --quiet
 ln -sfn "$(cd ../../.. && pwd)" wp-content/plugins/fma-richieste
 mkdir -p wp-content/mu-plugins; cp ../../fma-test-harness.php wp-content/mu-plugins/
-ln -sfn "$(cd ../../../../../assets && pwd)" wp-content/fma-assets
+ln -sfn "$(cd ../../../../../../assets && pwd)" wp-content/fma-assets
 $WP plugin activate fma-richieste --quiet; $WP rewrite structure '/%postname%/' --quiet
 $WP eval '
 $a = wp_insert_post(["post_type"=>"struttura","post_status"=>"publish","post_title"=>"Villa Tiberiade","post_name"=>"villa-tiberiade"]); update_post_meta($a,"fma_email","tiberiade@case.test"); update_post_meta($a,"fma_camere",[["nome"=>"Camera singola"],["nome"=>"Camera doppia"],["nome"=>"Camera tripla"]]);

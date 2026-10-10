@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       FMA Richieste di soggiorno
  * Description:       Invia ogni richiesta di soggiorno all'email della struttura scelta, con copia all'ospite.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            experiences srl
@@ -19,6 +19,10 @@ const FMA_RICHIESTE_TIPI       = array( 'Vacanza', 'Famiglia', 'Gruppo o parrocc
 const FMA_RICHIESTE_LIMITE     = 5;            // richieste per IP…
 const FMA_RICHIESTE_FINESTRA   = 15 * 60;      // …ogni 15 minuti
 const FMA_RICHIESTE_MIN_SECONDI = 3;           // tempo minimo di compilazione (antispam)
+
+if ( is_admin() ) {
+	require __DIR__ . '/includes/informativa.php';
+}
 
 add_action( 'admin_post_nopriv_' . FMA_RICHIESTE_ACTION, 'fma_richieste_gestisci' );
 add_action( 'admin_post_' . FMA_RICHIESTE_ACTION, 'fma_richieste_gestisci' );
@@ -341,7 +345,13 @@ function fma_richieste_form( int $struttura_id ): void {
 		<div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required aria-describedby="r-email-err"><p class="field__err" id="r-email-err"></p></div>
 		<div class="field"><label for="r-tel">Telefono <span class="opt">(facoltativo)</span></label><input id="r-tel" name="telefono" type="tel" autocomplete="tel"></div>
 		<div class="field"><label for="r-msg">Messaggio <span class="opt">(facoltativo)</span></label><textarea id="r-msg" name="messaggio" rows="3" placeholder="Esigenze particolari, orario di arrivo, pasti…"></textarea></div>
-		<label class="consent"><input type="checkbox" name="privacy" value="1" required><span>Ho letto l’<a href="<?php echo esc_url( get_privacy_policy_url() ); ?>" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati per rispondere alla richiesta.</span></label>
+		<label class="consent"><input type="checkbox" name="privacy" value="1" required><span>
+			<?php if ( get_privacy_policy_url() ) : ?>
+				Ho letto l’<a href="<?php echo esc_url( get_privacy_policy_url() ); ?>" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati per rispondere alla richiesta.
+			<?php else : // Senza informativa pubblicata niente link vuoto; l'amministratore vede un avviso (includes/informativa.php). ?>
+				Acconsento al trattamento dei dati per rispondere alla richiesta: li riceve solo la casa scelta.
+			<?php endif; ?>
+		</span></label>
 		<p class="request__error" role="alert" data-request-error<?php echo 'errore' === $stato ? '' : ' hidden'; ?>><?php echo 'errore' === $stato ? esc_html__( 'La richiesta non è partita: controlla i campi e riprova.', 'fma-richieste' ) : ''; ?></p>
 		<button class="btn btn--primary request__send" type="submit"><span class="btn__label">Invia la richiesta</span><span class="btn__spinner" aria-hidden="true"></span></button>
 		<?php if ( $email ) : ?>
