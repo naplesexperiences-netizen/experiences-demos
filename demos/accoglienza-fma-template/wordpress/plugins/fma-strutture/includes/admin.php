@@ -38,6 +38,7 @@ function fma_admin_box_struttura(): void {
 	add_meta_box( 'fma-galleria', 'Galleria foto', 'fma_admin_render_galleria', 'struttura', 'normal', 'default' );
 	add_meta_box( 'fma-dintorni', 'Nei dintorni e “Da sapere”', 'fma_admin_render_dintorni', 'struttura', 'normal', 'default' );
 	add_meta_box( 'fma-home', 'Home page', 'fma_admin_render_home', 'struttura', 'side', 'default' );
+	add_meta_box( 'fma-seo', 'Su Google e nelle condivisioni', 'fma_admin_render_seo', 'struttura', 'normal', 'default' );
 }
 
 function fma_admin_campo( WP_Post $post, string $chiave ): void {
@@ -56,6 +57,8 @@ function fma_admin_campo( WP_Post $post, string $chiave ): void {
 					<option value="<?php echo esc_attr( (string) $v ); ?>"<?php selected( (string) $valore, (string) $v ); ?>><?php echo esc_html( $testo ); ?></option>
 				<?php endforeach; ?>
 			</select>
+		<?php elseif ( isset( $campo['righe'] ) ) : ?>
+			<textarea class="widefat" id="<?php echo esc_attr( $id ); ?>" name="fma[<?php echo esc_attr( $chiave ); ?>]" rows="<?php echo (int) $campo['righe']; ?>"><?php echo esc_textarea( (string) $valore ); ?></textarea>
 		<?php else : ?>
 			<input class="widefat" id="<?php echo esc_attr( $id ); ?>" name="fma[<?php echo esc_attr( $chiave ); ?>]" type="<?php echo esc_attr( $tipo ); ?>" value="<?php echo esc_attr( (string) $valore ); ?>"<?php echo $extra; // phpcs:ignore ?>>
 		<?php endif; ?>
@@ -73,6 +76,13 @@ function fma_admin_render_scheda( WP_Post $post ): void {
 	foreach ( array( 'fma_tipo', 'fma_titolo_hero', 'fma_localita', 'fma_provincia', 'fma_indirizzo', 'fma_camere_totali', 'fma_lat', 'fma_lng', 'fma_prezzo_da', 'fma_prezzo_unita', 'fma_tassa', 'fma_orari', 'fma_booking_url' ) as $k ) {
 		fma_admin_campo( $post, $k );
 	}
+	echo '</div>';
+}
+
+function fma_admin_render_seo( WP_Post $post ): void {
+	echo '<div class="fma-griglia fma-griglia--uno">';
+	fma_admin_campo( $post, 'fma_seo_titolo' );
+	fma_admin_campo( $post, 'fma_seo_descrizione' );
 	echo '</div>';
 }
 

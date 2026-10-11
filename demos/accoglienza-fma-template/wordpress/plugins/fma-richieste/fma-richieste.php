@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       FMA Richieste di soggiorno
  * Description:       Invia ogni richiesta di soggiorno all'email della struttura scelta, con copia all'ospite.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            experiences srl

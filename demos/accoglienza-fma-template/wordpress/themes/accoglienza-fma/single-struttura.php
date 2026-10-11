@@ -55,14 +55,18 @@ while ( have_posts() ) :
 		<section class="gallery" aria-label="Foto della struttura">
 			<div class="gallery__grid gallery__grid--<?php echo (int) min( $n, 5 ); ?>" data-unveil-group>
 				<?php foreach ( array_slice( $foto, 0, 5 ) as $i => $id ) : ?>
-					<button type="button" class="gallery__tile<?php echo 0 === $i ? ' gallery__tile--lead' : ''; ?>" data-lightbox-open="<?php echo (int) $i; ?>" aria-label="<?php echo esc_attr( sprintf( 'Apri la foto %d di %d', $i + 1, $n ) ); ?>">
+					<?php
+					// Il testo alternativo scritto nella Libreria media; se manca, nome della casa e numero.
+					$alt = trim( (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) ) ?: sprintf( '%s, foto %d', $s['nome'], $i + 1 );
+					?>
+					<button type="button" class="gallery__tile<?php echo 0 === $i ? ' gallery__tile--lead' : ''; ?>" data-lightbox-open="<?php echo (int) $i; ?>" aria-label="<?php echo esc_attr( sprintf( 'Apri la foto %d di %d: %s', $i + 1, $n, $alt ) ); ?>">
 						<?php
 						echo fma_immagine( // phpcs:ignore WordPress.Security.EscapeOutput
 							$id,
 							0 === $i ? 'fma-hero' : 'fma-card',
 							0 === $i
-								? array( 'alt' => sprintf( '%s, foto 1', $s['nome'] ), 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '(min-width: 64em) 60vw, 100vw' )
-								: array( 'alt' => sprintf( '%s, foto %d', $s['nome'], $i + 1 ), 'sizes' => '(min-width: 64em) 20vw, 50vw' )
+								? array( 'alt' => $alt, 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '(min-width: 64em) 60vw, 100vw' )
+								: array( 'alt' => $alt, 'sizes' => '(min-width: 64em) 20vw, 50vw' )
 						);
 						?>
 					</button>
