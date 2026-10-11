@@ -211,7 +211,11 @@ get_header();
                     <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
                     <ul class="space-y-2 text-sm text-gray-600 mb-4">
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Sync real-time con tutte le OTA</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Zero overbooking garantito</li>
+                        <!-- "Garantito" e una parola che impegna: se un
+                             overbooking succede lo stesso, la promessa
+                             diventa contestabile. Il meccanismo reale e
+                             che la sincronizzazione lo previene. -->
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Disponibilità allineata su ogni canale, niente doppie prenotazioni</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico + analytics</li>
                     </ul>
                     <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: -30h/sett, +45% diretti</p>
@@ -393,23 +397,30 @@ get_header();
                             <p class="text-gray-400 text-xs">Napoli • Tour Vesuvio/Pompei</p>
                         </div>
                     </div>
-                    <h3 class="text-white text-lg font-bold mb-3">Da 5 a 20 prenotazioni/mese in 90 giorni</h3>
+                    <!-- Le cifre sono quelle del case study pubblicato sul
+                         blog, che documenta dodici mesi con la tabella KPI.
+                         Qui c'era scritto "in 90 giorni" e "+€20k": due dati
+                         che l'articolo non sostiene — il passaggio da 5 a 20
+                         prenotazioni e da €21K a €92K di fatturato e avvenuto
+                         sull'anno. Un numero che il lettore puo verificare
+                         cliccando non deve contraddire la pagina che apre. -->
+                    <h3 class="text-white text-lg font-bold mb-3">Da 5 a 20 prenotazioni/mese in 12 mesi</h3>
                     <div class="grid grid-cols-2 gap-3 mb-4">
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">+300%</p>
-                            <p class="text-gray-400 text-xs">Prenotazioni mensili</p>
+                            <p class="text-secondary text-2xl font-bold">4&times;</p>
+                            <p class="text-gray-400 text-xs">Prenotazioni/mese</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">80%</p>
-                            <p class="text-gray-400 text-xs">Clienti online</p>
+                            <p class="text-secondary text-2xl font-bold">38%</p>
+                            <p class="text-gray-400 text-xs">Vendite dirette</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">30%</p>
-                            <p class="text-gray-400 text-xs">Clienti stranieri</p>
+                            <p class="text-secondary text-2xl font-bold">+14%</p>
+                            <p class="text-gray-400 text-xs">Ticket medio</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">+€20k</p>
-                            <p class="text-gray-400 text-xs">Revenue/anno</p>
+                            <p class="text-secondary text-2xl font-bold">€21K&rarr;€92K</p>
+                            <p class="text-gray-400 text-xs">Fatturato annuo</p>
                         </div>
                     </div>
                     <p class="text-gray-300 text-sm italic">"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7."</p>
@@ -466,7 +477,11 @@ get_header();
                     I Siti <span class="text-gradient">Live</span> che abbiamo realizzato
                 </h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Click su ogni progetto per vederlo dal vivo. Tutti i siti sono in produzione e generano prenotazioni reali.
+                    <!-- Nel portfolio ci sono anche un centro medico, un
+                         museo e un ente di formazione: "generano
+                         prenotazioni" non li riguarda, e un visitatore che
+                         clicca se ne accorge in due secondi. -->
+                    Click su ogni progetto per vederlo dal vivo. Sono tutti siti in produzione, usati ogni giorno dai loro clienti &mdash; strutture ricettive, tour operator, enti culturali e di formazione.
                 </p>
             </div>
             <?php echo do_shortcode('[experiences_portfolio posts="8"]'); ?>
@@ -858,7 +873,11 @@ get_header();
                     <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-gray-200">
                         <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">8+</div><div class="text-sm text-gray-500 mt-1">Siti Realizzati</div></div>
                         <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">24/7</div><div class="text-sm text-gray-500 mt-1">Supporto AI</div></div>
-                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">100%</div><div class="text-sm text-gray-500 mt-1">Soddisfazione</div></div>
+                        <!-- "100% soddisfazione" non poggia su niente di
+                             misurabile e nessuno se lo beve. Il tempo di
+                             risposta e una promessa che possiamo mantenere
+                             e che al cliente interessa davvero. -->
+                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">&lt;24h</div><div class="text-sm text-gray-500 mt-1">Tempo di risposta</div></div>
                     </div>
                 </div>
                 <div data-aos="fade-left">
