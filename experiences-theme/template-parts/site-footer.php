@@ -71,8 +71,19 @@ $exp_nav[] = experiences_nav_cta();
                     </ul>
                 </div>
             </div>
+            <?php
+            // Dati societari: obbligatori sul sito di un'impresa italiana
+            // e finora assenti dal footer. Si compilano dal
+            // Personalizzatore → Dati legali.
+            $exp_societari = experiences_dati_societari();
+            if ( $exp_societari ) : ?>
+                <div class="border-t border-white/10 pt-8 pb-6">
+                    <p class="text-gray-500 text-xs leading-relaxed"><?php echo esc_html( $exp_societari ); ?></p>
+                </div>
+            <?php endif; ?>
+
             <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-gray-500 text-sm">© <?php echo esc_html( date( 'Y' ) ); ?> Experiences Srl. Tutti i diritti riservati.</p>
+                <p class="text-gray-500 text-sm">© <?php echo esc_html( date( 'Y' ) ); ?> <?php echo esc_html( experiences_legal_values()['company'] ); ?>. Tutti i diritti riservati.</p>
                 <div class="flex flex-wrap gap-6 text-sm text-gray-500">
                     <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="hover:text-accent transition">Privacy Policy</a>
                     <a href="<?php echo esc_url( home_url( '/cookie-policy/' ) ); ?>" class="hover:text-accent transition">Cookie Policy</a>
