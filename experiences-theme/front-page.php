@@ -185,7 +185,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Booking integrato che converte</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Gestione contenuti autonoma</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: +60% conversione mobile</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: un sito che si apre in fretta e si usa col pollice</p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-search-dollar"></i></div>
@@ -198,7 +198,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Google Ads con ROI tracking</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Social Media targeting clienti ideali</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: +200% traffico organico in 90gg</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: ti trovano cercando la zona, non solo il tuo nome</p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border-2 border-accent shadow-lg group ring-2 ring-accent/20" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-start justify-between mb-3">
@@ -218,7 +218,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Disponibilità allineata su ogni canale, niente doppie prenotazioni</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico + analytics</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: -30h/sett, +45% diretti</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: un calendario solo, e le dirette non passano più dalle OTA</p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-bullhorn"></i></div>
@@ -231,7 +231,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Foto professionali + ottimizzazione SEO</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico per stagione</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: +35% conversione annunci</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: annunci completi, fotografati e scritti per convertire</p>
                 </div>
                 <div class="card-hover bg-gradient-to-br from-primary to-secondary rounded-2xl p-6 lg:p-8 shadow-lg group sm:col-span-2 lg:col-span-2" data-aos="fade-up" data-aos-delay="500">
                     <div class="flex flex-col">
@@ -252,7 +252,7 @@ get_header();
                                 <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium">🎯 Lead capture</span>
                             </div>
                         </div>
-                        <p class="text-accent text-xs font-bold border-t border-white/10 pt-3 mt-4">📈 Risultato: +40% prenotazioni notturne, 0 clienti persi</p>
+                        <p class="text-accent text-xs font-bold border-t border-white/10 pt-3 mt-4">📈 Risultato: nessuna richiesta resta senza risposta fino al mattino</p>
                     </div>
                 </div>
             </div>
@@ -347,12 +347,18 @@ get_header();
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4">RISULTATI REALI</span>
+                <!-- "Numeri veri, risultati misurabili" impegna a poterli
+                     mostrare. Dei tre casi solo quello dell'agenzia ha un
+                     articolo con la tabella KPI; gli altri due raccontano
+                     cosa e cambiato, che e vero e dimostrabile, senza
+                     percentuali che nessuno puo verificare. -->
+                <span class="inline-block px-4 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4">CASI REALI</span>
                 <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                     Cosa abbiamo fatto per <span class="text-gradient">altri come te</span>
                 </h2>
                 <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-                    Numeri veri, clienti veri, risultati misurabili. Ecco l'impatto del nostro lavoro.
+                    Tre situazioni in cui siamo entrati e cosa è cambiato. Dove abbiamo i numeri
+                    li pubblichiamo per intero, con il case study completo da leggere.
                 </p>
             </div>
 
@@ -366,25 +372,24 @@ get_header();
                             <p class="text-gray-400 text-xs">Ischia • 80 camere</p>
                         </div>
                     </div>
-                    <h3 class="text-white text-lg font-bold mb-3">Da overbooking a +45% prenotazioni dirette</h3>
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">+45%</p>
-                            <p class="text-gray-400 text-xs">Prenotazioni dirette</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">-25h</p>
-                            <p class="text-gray-400 text-xs">Settimana risparmiate</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">0</p>
-                            <p class="text-gray-400 text-xs">Overbooking</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">+€50k</p>
-                            <p class="text-gray-400 text-xs">Revenue/anno</p>
-                        </div>
-                    </div>
+                    <!-- Le percentuali qui erano inventate: nessuno ha
+                         misurato +45% o +€50k. Cosa e cambiato lo sappiamo
+                         e lo possiamo dimostrare; di quanto, no. -->
+                    <h3 class="text-white text-lg font-bold mb-3">Dall&rsquo;overbooking al controllo del calendario</h3>
+                    <ul class="space-y-2.5 mb-4">
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Disponibilità sincronizzata fra Booking, Expedia e sito: le doppie prenotazioni non capitano più</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Niente più aggiornamento manuale dei prezzi su quattro portali, ogni mattina</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Motore di prenotazione sul sito: chi arriva dal nome dell&rsquo;hotel prenota lì, senza commissione</span>
+                        </li>
+                    </ul>
                     <p class="text-gray-300 text-sm italic">"In 6 mesi abbiamo recuperato il controllo totale. Il direttore ora si concentra sull'esperienza ospiti, non sul gestionale."</p>
                 </div>
 
@@ -419,8 +424,11 @@ get_header();
                             <p class="text-gray-400 text-xs">Ticket medio</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">€21K&rarr;€92K</p>
-                            <p class="text-gray-400 text-xs">Fatturato annuo</p>
+                            <!-- "€21K→€92K" a text-2xl sfora il riquadro
+                                 sotto i 1280px: il confronto sta meglio
+                                 nell'etichetta, dove c'e spazio. -->
+                            <p class="text-secondary text-2xl font-bold">€92K</p>
+                            <p class="text-gray-400 text-xs">Fatturato annuo, da €21K</p>
                         </div>
                     </div>
                     <p class="text-gray-300 text-sm italic">"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7."</p>
@@ -435,25 +443,26 @@ get_header();
                             <p class="text-gray-400 text-xs">Campania • 300+ tour</p>
                         </div>
                     </div>
-                    <h3 class="text-white text-lg font-bold mb-3">Scalare da 15 a 8 dipendenti, +40% revenue</h3>
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">+40%</p>
-                            <p class="text-gray-400 text-xs">Revenue annuale</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">-60%</p>
-                            <p class="text-gray-400 text-xs">Costi admin</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">300+</p>
-                            <p class="text-gray-400 text-xs">Tour da 1 dashboard</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">+€300k</p>
-                            <p class="text-gray-400 text-xs">Revenue/anno</p>
-                        </div>
-                    </div>
+                    <!-- "Da 15 a 8 dipendenti" raccontato come un risultato
+                         da vendere e anche sgradevole: significa sette
+                         persone a casa. Il punto vero e che il team non e
+                         dovuto crescere col catalogo. Le percentuali, come
+                         sopra, non le ha misurate nessuno. -->
+                    <h3 class="text-white text-lg font-bold mb-3">Trecento tour, una sola dashboard</h3>
+                    <ul class="space-y-2.5 mb-4">
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Oltre 300 tour e tutti i canali di vendita gestiti da un punto solo</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Il catalogo è cresciuto senza che dovesse crescere il team amministrativo</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Prezzi e disponibilità aggiornati una volta, validi ovunque</span>
+                        </li>
+                    </ul>
                     <p class="text-gray-300 text-sm italic">"La gestione centralizzata ci ha permesso di scalare senza assumere. Ora il team è focalizzato sulla crescita."</p>
                 </div>
             </div>
