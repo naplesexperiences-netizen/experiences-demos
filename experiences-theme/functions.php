@@ -400,6 +400,16 @@ function experiences_customize_register( $wp_customize ) {
             'description' => __( 'Es: IT01234567890', 'experiences-srl' ),
             'default'     => '',
         ],
+        'exp_legal_rea' => [
+            'label'       => __( 'Numero REA', 'experiences-srl' ),
+            'description' => __( 'Il numero di iscrizione al Registro Imprese, es: NA-123456. Insieme a ragione sociale, sede e P.IVA è obbligatorio sul sito di un\'impresa italiana (art. 2250 c.c.); compare nel piede di pagina appena lo compili.', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_capitale' => [
+            'label'       => __( 'Capitale sociale', 'experiences-srl' ),
+            'description' => __( 'Solo per le società di capitali, es: 10.000 € i.v. Lascia vuoto se non serve.', 'experiences-srl' ),
+            'default'     => '',
+        ],
         'exp_legal_hosting' => [
             'label'       => __( 'Provider di hosting', 'experiences-srl' ),
             'description' => __( 'Va indicato tra i destinatari dei dati nella Privacy Policy. Es: Aruba S.p.A., SiteGround, IONOS…', 'experiences-srl' ),
@@ -529,11 +539,33 @@ function experiences_legal_values() {
     };
 
     return [
-        'company' => $read( 'exp_legal_company', 'Experiences Srl' ),
-        'address' => $read( 'exp_legal_address', '' ),
-        'vat'     => $read( 'exp_legal_vat', '' ),
-        'hosting' => $read( 'exp_legal_hosting', '' ),
+        'company'  => $read( 'exp_legal_company', 'Experiences Srl' ),
+        'address'  => $read( 'exp_legal_address', '' ),
+        'vat'      => $read( 'exp_legal_vat', '' ),
+        'rea'      => $read( 'exp_legal_rea', '' ),
+        'capitale' => $read( 'exp_legal_capitale', '' ),
+        'hosting'  => $read( 'exp_legal_hosting', '' ),
     ];
+}
+
+// ── Riga dei dati societari nel piede di pagina ────────────────────────
+// L'art. 2250 c.c. chiede che ragione sociale, sede, P.IVA e numero REA
+// siano indicati negli spazi elettronici dell'impresa. Mancavano del
+// tutto dal footer. Si mostra solo quello che e stato compilato: una
+// riga con dei buchi sarebbe peggio di nessuna riga.
+function experiences_dati_societari() {
+    $v = experiences_legal_values();
+
+    $pezzi = [];
+    if ( '' !== $v['company'] )  { $pezzi[] = $v['company']; }
+    if ( '' !== $v['address'] )  { $pezzi[] = $v['address']; }
+    if ( '' !== $v['vat'] )      { $pezzi[] = 'P.IVA ' . $v['vat']; }
+    if ( '' !== $v['rea'] )      { $pezzi[] = 'REA ' . $v['rea']; }
+    if ( '' !== $v['capitale'] ) { $pezzi[] = 'Cap. soc. ' . $v['capitale']; }
+
+    // Con la sola ragione sociale non si e adempiuto a niente: meglio
+    // non stampare una riga che sembra completa e non lo e.
+    return count( $pezzi ) > 1 ? implode( ' · ', $pezzi ) : '';
 }
 
 function experiences_legal_resolve( $content, $post = null ) {
@@ -912,6 +944,14 @@ function experiences_has_consent( $category ) {
 // evidenza quando c'è, con fallback sull'og-image del brand.
 // Un plugin SEO attivo emette già i propri tag OG: duplicarli confonde
 // i crawler, quindi in quel caso ci facciamo da parte.
+// ── Sitemap: via l'elenco degli autori ─────────────────────────────────
+// wp-sitemap-users-1.xml pubblica il nome utente di chi scrive, che e
+// meta del lavoro di chi prova a entrare in bacheca. Non serve a niente
+// lato ricerca: gli articoli stanno gia nella loro sitemap.
+add_filter( 'wp_sitemaps_add_provider', function ( $provider, $name ) {
+    return ( 'users' === $name ) ? false : $provider;
+}, 10, 2 );
+
 function experiences_seo_plugin_active() {
     return defined( 'WPSEO_VERSION' )            // Yoast
         || defined( 'RANK_MATH_VERSION' )        // Rank Math
@@ -945,14 +985,99 @@ function experiences_stored_seo_meta( $post_id, $kind ) {
     return '';
 }
 
+// ── Titoli e descrizioni delle pagine senza contenuto ──────────────────
+// Il configuratore e l'elenco del blog sono costruiti dal template e
+// hanno il contenuto vuoto: la description finiva per essere una
+// stringa vuota e il titolo restava il nome grezzo della pagina. Qui
+// stanno i testi scritti apposta, indicizzabili e sensati.
+//
+// Modificabile senza toccare il codice:
+//   add_filter( 'experiences_meta_pagine', fn( $m ) => … );
+function experiences_meta_pagine() {
+    return apply_filters( 'experiences_meta_pagine', [
+        'configuratore' => [
+            'title' => 'Anteprima gratuita del tuo sito — Experiences Srl',
+            // Sotto i 155 caratteri, oltre i quali Google tronca.
+            'desc'  => 'Carica le foto della tua struttura e guarda come verrebbe il tuo sito, in tre stili. Gratis, senza registrazione: le foto restano sul tuo dispositivo.',
+        ],
+        'blog' => [
+            'title' => 'Guide e case study per il turismo — Experiences Srl',
+            'desc'  => 'Channel manager, prenotazioni dirette, SEO locale, AI: guide pratiche e case study con numeri veri per hotel, B&B, agenzie di viaggi e tour operator.',
+        ],
+    ] );
+}
+
+function experiences_meta_pagina_corrente() {
+    $mappa = experiences_meta_pagine();
+
+    // L'elenco degli articoli: puo essere la pagina "blog" oppure la
+    // pagina indicata in Impostazioni → Lettura, che e un'altra cosa.
+    if ( is_home() && ! is_front_page() ) {
+        return $mappa['blog'] ?? null;
+    }
+    if ( is_page() ) {
+        $slug = get_post_field( 'post_name', get_queried_object_id() );
+        if ( isset( $mappa[ $slug ] ) ) {
+            return $mappa[ $slug ];
+        }
+    }
+    return null;
+}
+
 function experiences_document_title( $title ) {
-    if ( experiences_seo_plugin_active() || ! is_singular() ) {
+    if ( experiences_seo_plugin_active() ) {
+        return $title;
+    }
+
+    // La home usava il titolo grezzo di WordPress, "nome del sito –
+    // motto": generico e diverso dall'og:title, che e scritto meglio e
+    // dice cosa facciamo. Ora coincidono.
+    if ( is_front_page() ) {
+        return 'Experiences Srl | Soluzioni Digitali per il Turismo';
+    }
+
+    $pagina = experiences_meta_pagina_corrente();
+    if ( $pagina && ! empty( $pagina['title'] ) ) {
+        return $pagina['title'];
+    }
+
+    if ( ! is_singular() ) {
         return $title;
     }
     $stored = experiences_stored_seo_meta( get_queried_object_id(), 'title' );
     return $stored ?: $title;
 }
 add_filter( 'pre_get_document_title', 'experiences_document_title', 20 );
+
+// ── Meta description per l'elenco degli articoli ───────────────────────
+// is_singular() e falso su un archivio, quindi finora /blog/ non aveva
+// nessuna description.
+function experiences_meta_tags_blog() {
+    if ( experiences_seo_plugin_active() ) return;
+    if ( ! is_home() || is_front_page() ) return;
+
+    $pagina = experiences_meta_pagine()['blog'];
+    $url    = experiences_blog_archive_url();
+    ?>
+    <meta name="description" content="<?php echo esc_attr( $pagina['desc'] ); ?>">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="<?php echo esc_url( $url ); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Experiences Srl">
+    <meta property="og:title" content="<?php echo esc_attr( $pagina['title'] ); ?>">
+    <meta property="og:description" content="<?php echo esc_attr( $pagina['desc'] ); ?>">
+    <meta property="og:url" content="<?php echo esc_url( $url ); ?>">
+    <meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="it_IT">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr( $pagina['title'] ); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr( $pagina['desc'] ); ?>">
+    <meta name="twitter:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-image.jpg">
+    <?php
+}
+add_action( 'wp_head', 'experiences_meta_tags_blog', 1 );
 
 function experiences_meta_tags_singular() {
     if ( is_front_page() || ! is_singular() ) return;
@@ -978,22 +1103,40 @@ function experiences_meta_tags_singular() {
     // 155 caratteri che Google mostra. L'excerpt è più lungo e verrebbe
     // troncato a metà frase.
     $desc = experiences_stored_seo_meta( get_the_ID(), 'description' );
+
+    // Pagine costruite dal template, con il contenuto vuoto: l'excerpt
+    // qui sotto non ha niente da cui pescare e la description usciva
+    // vuota. Il testo e scritto a mano in experiences_meta_pagine().
+    if ( ! $desc ) {
+        $pagina = experiences_meta_pagina_corrente();
+        if ( $pagina && ! empty( $pagina['desc'] ) ) {
+            $desc = $pagina['desc'];
+        }
+    }
+
     if ( ! $desc ) {
         $excerpt = has_excerpt()
             ? get_the_excerpt()
             : wp_trim_words( wp_strip_all_tags( strip_shortcodes( get_the_content() ) ), 30, '…' );
         $desc = trim( wp_strip_all_tags( $excerpt ) );
     }
+
+    $pagina        = experiences_meta_pagina_corrente();
+    $titolo_social = ( $pagina && ! empty( $pagina['title'] ) ) ? $pagina['title'] : get_the_title();
     ?>
+    <?php if ( '' !== $desc ) : ?>
     <meta name="description" content="<?php echo esc_attr( $desc ); ?>">
+    <?php endif; ?>
     <meta name="author" content="Experiences Srl">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="theme-color" content="#0B3D61">
     <link rel="canonical" href="<?php echo esc_url( get_permalink() ); ?>">
     <meta property="og:type" content="<?php echo is_singular( 'post' ) ? 'article' : 'website'; ?>">
     <meta property="og:site_name" content="Experiences Srl">
-    <meta property="og:title" content="<?php echo esc_attr( get_the_title() ); ?>">
+    <meta property="og:title" content="<?php echo esc_attr( $titolo_social ); ?>">
+    <?php if ( '' !== $desc ) : ?>
     <meta property="og:description" content="<?php echo esc_attr( $desc ); ?>">
+    <?php endif; ?>
     <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>">
     <meta property="og:image" content="<?php echo esc_url( $img ); ?>">
     <meta property="og:image:width" content="<?php echo (int) $img_w; ?>">
@@ -1004,8 +1147,10 @@ function experiences_meta_tags_singular() {
     <meta property="article:modified_time" content="<?php echo esc_attr( get_the_modified_date( 'c' ) ); ?>">
     <?php endif; ?>
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo esc_attr( get_the_title() ); ?>">
+    <meta name="twitter:title" content="<?php echo esc_attr( $titolo_social ); ?>">
+    <?php if ( '' !== $desc ) : ?>
     <meta name="twitter:description" content="<?php echo esc_attr( $desc ); ?>">
+    <?php endif; ?>
     <meta name="twitter:image" content="<?php echo esc_url( $img ); ?>">
     <?php
 }
