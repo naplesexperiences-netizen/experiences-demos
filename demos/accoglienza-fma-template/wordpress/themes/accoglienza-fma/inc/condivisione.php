@@ -9,6 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'wp_head', 'fma_condivisione_meta', 5 );
+add_filter( 'document_title_parts', 'fma_titolo_documento' );
 
 function fma_condivisione_plugin_seo(): bool {
 	return defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' )
@@ -31,10 +32,55 @@ function fma_condivisione_immagine_predefinita(): int {
 	return (int) get_theme_mod( 'custom_logo', 0 );
 }
 
-/** Testo semplice, su una riga, al massimo $max caratteri. */
-function fma_condivisione_testo( string $testo, int $max = 160 ): string {
-	$testo = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( $testo ) ) );
-	return mb_strlen( $testo ) > $max ? rtrim( mb_substr( $testo, 0, $max - 1 ), " ,.;:" ) . '…' : $testo;
+/**
+ * Testo semplice, su una riga, al massimo $max caratteri. Se va accorciato si chiude
+ * all'ultima frase intera che ci sta, altrimenti all'ultima parola intera: mai a metà parola.
+ */
+function fma_condivisione_testo( string $testo, int $max = 155 ): string {
+	$testo = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( wp_strip_all_tags( $testo ), ENT_QUOTES, 'UTF-8' ) ) );
+	if ( mb_strlen( $testo ) <= $max ) {
+		return $testo;
+	}
+	$pezzo = mb_substr( $testo, 0, $max );
+	if ( preg_match( '/^(.{80,}[.!?])\s/su', $pezzo . ' ', $frase ) ) {
+		return $frase[1];
+	}
+	return rtrim( preg_replace( '/\s+\S*$/u', '', mb_substr( $pezzo, 0, $max - 1 ) ), " ,.;:–-" ) . '…';
+}
+
+/** Titolo per Google di una struttura: campo «Titolo per Google», altrimenti «Nome, tipo a Località». */
+function fma_titolo_struttura( WP_Post $post ): string {
+	$s = fma_struttura_dati( $post );
+	if ( '' !== ( $s['seo_titolo'] ?? '' ) ) {
+		return $s['seo_titolo'];
+	}
+	$luogo = $s['localita'];
+	if ( ! $luogo ) {
+		return $s['nome'];
+	}
+	$tipo = mb_strtolower( mb_substr( $s['tipo'], 0, 1 ) ) . mb_substr( $s['tipo'], 1 );
+	return ! $tipo || false !== mb_stripos( $s['nome'], $tipo ) ? "{$s['nome']} a {$luogo}" : "{$s['nome']}, {$tipo} a {$luogo}";
+}
+
+/** Titoli con quello che si cerca (tipo di casa e luogo) invece dello slogan. */
+function fma_titolo_documento( array $parti ): array {
+	if ( fma_condivisione_plugin_seo() ) {
+		return $parti;
+	}
+	if ( is_front_page() && fma_testo( 'seo_titolo_home' ) ) {
+		$parti = array( 'title' => fma_testo( 'seo_titolo_home' ), 'site' => get_bloginfo( 'name' ) );
+	} elseif ( is_singular( 'struttura' ) && fma_plugin_attivo() ) {
+		$parti['title'] = fma_titolo_struttura( get_queried_object() );
+	} elseif ( is_post_type_archive( 'struttura' ) ) {
+		$parti['title'] = 'Case per ferie in Italia';
+	} elseif ( is_tax( 'regione' ) ) {
+		$parti['title'] = 'Case per ferie in ' . single_term_title( '', false );
+	}
+	// Oltre i 60-65 caratteri Google taglia: meglio perdere il nome del sito che la località.
+	if ( isset( $parti['site'], $parti['title'] ) && mb_strlen( $parti['title'] . ' – ' . $parti['site'] ) > 65 ) {
+		unset( $parti['site'] );
+	}
+	return $parti;
 }
 
 /**
@@ -77,7 +123,7 @@ function fma_condivisione_dati(): array {
 	$url      = home_url( add_query_arg( array() ) );
 
 	if ( is_front_page() ) {
-		$testo = fma_testo( 'hero_testo' );
+		$testo = fma_testo( 'seo_descrizione_home' ) ?: fma_testo( 'hero_testo' );
 		$url   = home_url( '/' );
 	} elseif ( is_singular() ) {
 		$post     = get_queried_object();
@@ -85,16 +131,24 @@ function fma_condivisione_dati(): array {
 		$testo    = has_excerpt( $post ) ? $post->post_excerpt : $post->post_content;
 		$url      = (string) get_permalink( $post );
 		$tipo     = is_singular( 'post' ) ? 'article' : 'website';
-		if ( ! $testo && is_singular( 'struttura' ) && fma_plugin_attivo() ) {
+		if ( is_singular( 'struttura' ) && fma_plugin_attivo() ) {
 			$s     = fma_struttura_dati( $post );
-			$testo = trim( $s['tipo'] . ' a ' . fma_luogo( $s ) . ( $s['regione'] ? ', ' . $s['regione'] : '' ) );
+			$testo = $s['seo_descrizione'] ?: $testo;
+			if ( ! $testo ) {
+				$testo = trim( $s['tipo'] . ' a ' . fma_luogo( $s ) . ( $s['regione'] ? ', ' . $s['regione'] : '' ) );
+			}
 		}
 	} elseif ( is_post_type_archive( 'struttura' ) ) {
 		$testo = fma_testo( 'strutture_testo' );
 		$url   = (string) get_post_type_archive_link( 'struttura' );
 	} elseif ( is_tax() || is_category() || is_tag() ) {
-		$testo = term_description();
-		$url   = (string) get_term_link( get_queried_object() );
+		$termine = get_queried_object();
+		$testo   = term_description();
+		$url     = (string) get_term_link( $termine );
+		if ( ! wp_strip_all_tags( $testo ) && is_tax( 'regione' ) ) {
+			$n     = (int) $termine->count;
+			$testo = sprintf( '%s delle Salesiane in %s: foto, camere e servizi. Scegli la casa e scrivi direttamente alla struttura, senza intermediari.', 1 === $n ? 'Una casa per ferie' : "{$n} case per ferie", $termine->name );
+		}
 	} elseif ( is_home() ) {
 		$pagina = (int) get_option( 'page_for_posts' );
 		$testo  = $pagina && has_excerpt( $pagina ) ? get_the_excerpt( $pagina ) : 'Consigli di viaggio e storie dai luoghi delle nostre case: cosa vedere, quando andare, come arrivare.';

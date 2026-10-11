@@ -21,6 +21,8 @@ function fma_campi_struttura(): array {
 		'fma_tassa'         => array( 'tipo' => 'string', 'etichetta' => 'Tassa di soggiorno', 'aiuto' => 'Importo e regole, es. 2 € a persona per notte, esenti i minori di 14 anni. Compare accanto al prezzo.' ),
 		'fma_orari'         => array( 'tipo' => 'string', 'etichetta' => 'Orari della reception' ),
 		'fma_booking_url'   => array( 'tipo' => 'url', 'etichetta' => 'Pagina su Booking.com (facoltativa)' ),
+		'fma_seo_titolo'      => array( 'tipo' => 'string', 'etichetta' => 'Titolo per Google', 'aiuto' => 'Nome, tipo di casa e località, entro 60 caratteri. Es. «Villa Tiberiade, casa per ferie a Torre Annunziata». Vuoto: si compone da solo.' ),
+		'fma_seo_descrizione' => array( 'tipo' => 'string', 'etichetta' => 'Descrizione per Google', 'righe' => 3, 'aiuto' => 'Una o due frasi intere, fra 120 e 155 caratteri: dove si trova, per chi è, cosa offre. Compare sotto il titolo nei risultati di Google e nelle anteprime di WhatsApp. Vuoto: l’inizio del riassunto.' ),
 		'fma_in_slider'     => array( 'tipo' => 'boolean', 'etichetta' => 'Mostra nello slider della home' ),
 		'fma_referente'     => array( 'tipo' => 'string', 'etichetta' => 'Nome del referente o della reception' ),
 		'fma_logo'          => array( 'tipo' => 'integer', 'etichetta' => 'Logo della struttura' ),

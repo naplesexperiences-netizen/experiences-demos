@@ -33,3 +33,4 @@
 .fma-importa__log { max-height: 16rem; overflow: auto; margin-left: 1.5rem; color: #50575e; }
 .fma-importa__log .is-avviso { color: #996800; }
 .fma-importa__errore { padding: .5rem .75rem; }
+.fma-griglia--uno { grid-template-columns: 1fr; max-width: 48rem; }

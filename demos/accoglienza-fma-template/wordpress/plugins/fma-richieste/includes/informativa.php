@@ -106,9 +106,13 @@ function fma_richieste_testo_informativa(): string {
 
 		array( 'h2', 'Navigazione del sito' ),
 		array( 'p', '<strong>Registri del server:</strong> come ogni sito, il server registra indirizzo IP, pagina richiesta, data e browser, per sicurezza e per risolvere guasti. [da completare: per quanto tempo il fornitore di hosting conserva i log]' ),
-		array( 'p', '<strong>Statistiche:</strong> contiamo le visite con Burst Statistics, installato sul nostro server: i dati non vengono condivisi con terzi e servono solo a capire quali pagine vengono lette. [da completare: verificare in Burst → Impostazioni se è attiva la modalità senza cookie e l’anonimizzazione dell’IP]' ),
+		array( 'p', '<strong>Statistiche:</strong> contiamo le visite con Burst Statistics, installato sul nostro server: i dati non vengono condivisi con terzi e servono solo a capire quali pagine vengono lette. [da completare: verificare che in Burst → Impostazioni sia attivo il tracciamento senza cookie, altrimenti la sezione «Cookie» va cambiata]' ),
 		array( 'p', '<strong>Mappe:</strong> le mappe usano le tessere di OpenStreetMap. Per mostrarle il tuo browser si collega ai server della OpenStreetMap Foundation (Regno Unito, Paese con decisione di adeguatezza della Commissione europea), che riceve il tuo indirizzo IP. Informativa di OpenStreetMap: <a href="https://osmfoundation.org/wiki/Privacy_Policy">osmfoundation.org/wiki/Privacy_Policy</a>.' ),
 		array( 'p', '<strong>Nessun servizio esterno di pubblicità o profilazione:</strong> caratteri e script sono caricati dal nostro server, senza Google Fonts, Google Analytics o pixel dei social.' ),
+
+		array( 'h2', 'Cookie' ),
+		array( 'p', 'Il sito usa solo cookie tecnici, necessari al suo funzionamento: per esempio quelli che WordPress imposta a chi accede all’area riservata. Non usiamo cookie di profilazione né di statistica, e le visite sono contate senza cookie: per questo non ti chiediamo il consenso con un banner.' ),
+		array( 'p', 'Se in futuro aggiungeremo servizi che usano cookie non tecnici, per esempio Google Analytics, lo scriveremo qui e ti chiederemo prima il consenso.' ),
 
 		array( 'h2', 'Chi altro vede i dati' ),
 		array( 'p', 'I fornitori che ospitano il sito e la posta, come responsabili del trattamento: [da completare: nome del fornitore di hosting e del servizio email]. Non vendiamo né cediamo i dati ad altri.' ),
