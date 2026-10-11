@@ -119,9 +119,10 @@ if ( $partner ) :
 	foreach ( $partner as $p ) {
 		$url  = (string) get_post_meta( $p->ID, 'fma_url', true );
 		$nome = get_the_title( $p );
-		$logo = get_the_post_thumbnail( $p, 'medium', array( 'class' => 'partner__logo', 'alt' => $url ? '' : $nome, 'loading' => 'lazy' ) );
+		// L'alt è il nome del partner anche quando il logo è un link: è il testo del link per Google e per i lettori di schermo.
+		$logo = get_the_post_thumbnail( $p, 'medium', array( 'class' => 'partner__logo', 'alt' => $nome, 'loading' => 'lazy' ) );
 		if ( $url ) {
-			echo '<li><a href="' . esc_url( $url ) . '" rel="noopener" target="_blank" aria-label="' . esc_attr( $nome . ' (si apre in una nuova scheda)' ) . '">' . $logo . '</a></li>'; // phpcs:ignore
+			echo '<li><a href="' . esc_url( $url ) . '" rel="noopener" target="_blank">' . $logo . '<span class="visually-hidden"> (si apre in una nuova scheda)</span></a></li>'; // phpcs:ignore
 		} else {
 			echo '<li><span>' . $logo . '</span></li>'; // phpcs:ignore
 		}
