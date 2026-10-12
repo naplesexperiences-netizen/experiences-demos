@@ -52,6 +52,7 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Titolo e descrizione su Google (case) | Box *Su Google e nelle condivisioni*: «Titolo per Google» (nome, tipo di casa e località) e «Descrizione per Google» (120–155 caratteri, frasi intere). Le otto case FMA li hanno già compilati; se vuoti, il titolo si compone da solo e la descrizione è l’inizio del riassunto, tagliata a fine frase. |
 | Titolo e descrizione su Google (home) | **Personalizza → Google e condivisione**. Il titolo è quello che si cerca («Case per ferie religiose in Italia»), non lo slogan. Archivio e regioni hanno titoli automatici («Case per ferie in Campania»). |
 | Testo alternativo delle foto | **Media → Libreria**, campo «Testo alternativo» di ogni foto. Le foto delle otto case ne hanno già uno che descrive cosa mostrano. |
+| Eventi di Google Analytics | Nessuna impostazione nel sito: nella pagina di una casa il tema invia `richiesta_iniziata` (inizio compilazione) e `generate_lead` (richiesta partita davvero), e aggiunge il parametro `casa` a tutti gli eventi della pagina. I clic su email, telefono e WhatsApp li registra Site Kit (`contact_link_click`, parametro `link_type`). Partono solo se il tag di Google è presente, cioè con Site Kit attivo e il consenso dato. In Analytics: dimensioni personalizzate `casa` e `tipo_soggiorno`, evento chiave `generate_lead`. |
 | Icona nella scheda del browser | **Personalizza → Identità del sito → Icona del sito** (PNG quadrato di almeno 512 px). |
 
 ## Scelte tecniche
