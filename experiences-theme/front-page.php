@@ -980,7 +980,14 @@ get_header();
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 bg-light rounded-xl flex items-center justify-center flex-shrink-0 text-secondary"><i class="fab fa-whatsapp text-xl"></i></div>
-                            <div><h4 class="font-semibold text-primary mb-1">WhatsApp</h4><a href="https://wa.me/393926917657" target="_blank" class="text-gray-600 hover:text-secondary transition">Scrivici su WhatsApp</a></div>
+                            <!-- H3 e non H4: sopra c'e un H2 e sotto, nella
+                                 stessa sezione, "Richiedi una Consulenza
+                                 Gratuita" e gia un H3. Saltare un livello
+                                 rompe l'indice che usano i lettori di
+                                 schermo per navigare la pagina. Lo stile e
+                                 tutto nelle classi, quindi non cambia nulla
+                                 a vedersi. -->
+                            <div><h3 class="font-semibold text-primary mb-1">WhatsApp</h3><a href="https://wa.me/393926917657" target="_blank" class="text-gray-600 hover:text-secondary transition">Scrivici su WhatsApp</a></div>
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-gray-200">
