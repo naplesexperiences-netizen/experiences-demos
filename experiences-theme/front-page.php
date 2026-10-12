@@ -399,7 +399,7 @@ get_header();
                         <div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center"><i class="fas fa-suitcase text-secondary text-xl"></i></div>
                         <div>
                             <p class="text-white font-bold">Agenzia Tour</p>
-                            <p class="text-gray-400 text-xs">Napoli • Tour Vesuvio/Pompei</p>
+                            <p class="text-gray-400 text-xs">Napoli • Tour Vesuvio/Pompei • dal 2022</p>
                         </div>
                     </div>
                     <!-- Le cifre sono quelle del case study pubblicato sul
@@ -431,6 +431,16 @@ get_header();
                             <p class="text-gray-400 text-xs">Fatturato annuo, da €21K</p>
                         </div>
                     </div>
+                    <!-- I quattro riquadri sopra sono il primo anno,
+                         documentati dal case study. Questa riga sono i
+                         quattro anni successivi, letti dall'analytics del
+                         cliente: arrotondati perche a lui basta l'ordine
+                         di grandezza e non vuole essere riconoscibile. -->
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4 pt-3 border-t border-white/10">
+                        Da allora a oggi: <strong class="text-white">oltre 200.000 visite</strong>,
+                        più di <strong class="text-white">4.400 contatti diretti</strong> fra telefonate,
+                        moduli ed email, e 7 visitatori su 10 dall&rsquo;estero.
+                    </p>
                     <p class="text-gray-300 text-sm italic">"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7."</p>
                 </div>
 
