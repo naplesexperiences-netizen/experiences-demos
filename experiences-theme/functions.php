@@ -61,6 +61,43 @@ function experiences_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'experiences_enqueue_assets' );
 
+// ── Elementor: via il suo CSS dalla homepage ───────────────────────────
+// La front page e resa da front-page.php, che non chiama mai
+// the_content(): quello che Elementor ha salvato per quella pagina non
+// finisce nel DOM — verificato, zero elementi .elementor-element, di
+// Elementor resta solo la classe sul body. I suoi due fogli di stile
+// non hanno quindi niente da impaginare, e pesano 55 KB in due
+// richieste su ogni visita alla pagina piu vista del sito.
+//
+// Si disattiva con:
+//   add_filter( 'experiences_togli_elementor_home', '__return_false' );
+function experiences_togli_elementor_home() {
+    if ( ! is_front_page() ) {
+        return;
+    }
+    // Nell'anteprima dell'editor la pagina deve restare come la vede
+    // chi la sta costruendo.
+    if ( isset( $_GET['elementor-preview'] ) || isset( $_GET['preview'] ) ) {
+        return;
+    }
+    if ( ! apply_filters( 'experiences_togli_elementor_home', true ) ) {
+        return;
+    }
+
+    global $wp_styles;
+    if ( ! ( $wp_styles instanceof WP_Styles ) ) {
+        return;
+    }
+
+    // Copia della coda: wp_dequeue_style la modifica mentre la si scorre.
+    foreach ( (array) $wp_styles->queue as $handle ) {
+        if ( 0 === strpos( $handle, 'elementor' ) ) {
+            wp_dequeue_style( $handle );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'experiences_togli_elementor_home', 999 );
+
 // ── Configuratore: CSS e JS solo dove serve ────────────────────────────
 // Sono una pagina sola: caricarli ovunque peserebbe su tutte le altre.
 function experiences_enqueue_configuratore() {
