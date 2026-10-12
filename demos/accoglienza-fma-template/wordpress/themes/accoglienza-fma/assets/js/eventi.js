@@ -3,12 +3,13 @@
  *
  * I clic su email, telefono e WhatsApp li registra già Site Kit (evento contact_link_click,
  * parametro link_type). Qui si aggiunge quello che manca:
- *   - casa              nome della casa, aggiunto a tutti gli eventi della pagina (anche quelli di Site Kit)
  *   - richiesta_iniziata  il visitatore comincia a compilare il modulo
  *   - generate_lead       la richiesta è partita davvero (nome standard di Google per i contatti)
  *
+ * Il parametro «casa» sugli eventi di Site Kit lo aggiunge functions.php (filtro googlesitekit_gtag_opt).
  * Nessun dato personale: solo il nome della casa e il tipo di soggiorno.
- * Se il tag di Google non c'è (nessun consenso, o Analytics spento) non fa nulla.
+ * Se il tag di Google non c'è non fa nulla; con la Modalità di consenso, finché il visitatore non
+ * accetta, Google riceve gli eventi senza cookie né identificativi.
  */
 (function () {
   'use strict';
@@ -18,7 +19,6 @@
 
   var titolo = document.querySelector('h1');
   var casa = titolo ? titolo.textContent.replace(/\s+/g, ' ').trim() : '';
-  if (casa && gtagPronto()) window.gtag('set', { casa: casa });
 
   var modulo = document.querySelector('[data-request]');
   var conferma = document.querySelector('[data-request-done]');
