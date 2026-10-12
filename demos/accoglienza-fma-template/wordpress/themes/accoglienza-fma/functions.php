@@ -5,7 +5,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_TEMA_VERSIONE', '1.3.1' );
+define( 'FMA_TEMA_VERSIONE', '1.3.2' );
 
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/customizer.php';
@@ -72,6 +72,22 @@ function fma_tema_asset(): void {
 		wp_enqueue_script( 'fma-eventi', "$uri/js/eventi.js", array( 'fma-sito' ), $v( 'js/eventi.js' ), $def );
 	}
 }
+
+/**
+ * Google Analytics (Site Kit): nella pagina di una casa il parametro «casa» entra nella
+ * configurazione del tag, così accompagna tutti gli eventi della pagina, compresi i clic su
+ * email, telefono e WhatsApp che Site Kit registra da solo. Un gtag('set') a pagina caricata
+ * non basta: Google applica i parametri condivisi solo se arrivano con la configurazione.
+ */
+add_filter(
+	'googlesitekit_gtag_opt',
+	function ( $opzioni ) {
+		if ( is_array( $opzioni ) && is_singular( 'struttura' ) ) {
+			$opzioni['casa'] = wp_strip_all_tags( get_the_title( get_queried_object_id() ) );
+		}
+		return $opzioni;
+	}
+);
 
 /** Classi "js" e "motion" prima del primo disegno, come nella demo (evita il lampo delle animazioni). */
 add_action(
