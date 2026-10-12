@@ -1,0 +1,104 @@
+{
+  "slug": "cin-regolamento-ue-affitti-brevi-annunci",
+  "post_title": "CIN e Regolamento UE sugli Affitti Brevi: Cosa Viene Controllato Davvero dal 2026",
+  "seo_title": "CIN e Regolamento UE affitti brevi 2026 | Experiences",
+  "meta_description": "CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.",
+  "focus_keyword": "cin affitti brevi",
+  "secondary_keywords": [
+    "regolamento ue 2024/1028",
+    "codice identificativo nazionale",
+    "BDSR ministero del turismo",
+    "obblighi annunci affitti brevi",
+    "normativa affitti brevi 2026",
+    "property manager adempimenti"
+  ],
+  "og_title": "CIN e Regolamento UE: cosa viene controllato davvero dal 2026",
+  "og_description": "Il Regolamento UE 2024/1028 non vi chiede un adempimento in più: rende verificabile in automatico quello che avete già. Come funziona il confronto fra annunci, BDSR e dati di attività, i cinque punti in cui si rompe sempre, e perché in questo articolo non troverete importi di sanzioni.",
+  "category": "Normativa & Compliance",
+  "tags": [
+    "CIN",
+    "normativa",
+    "affitti brevi",
+    "regolamento UE",
+    "BDSR",
+    "property manager",
+    "compliance",
+    "hotel"
+  ],
+  "estimated_reading_time": 9,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "CIN e Regolamento UE sugli Affitti Brevi: Cosa Viene Controllato Davvero dal 2026",
+    "description": "CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/cin-regolamento-ue-affitti-brevi-annunci.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-10-21",
+    "dateModified": "2026-10-21",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/blog/cin-regolamento-ue-affitti-brevi-annunci/"
+    },
+    "keywords": "regolamento ue 2024/1028, codice identificativo nazionale, BDSR ministero del turismo, obblighi annunci affitti brevi, normativa affitti brevi 2026, property manager adempimenti",
+    "articleSection": "Normativa & Compliance",
+    "wordCount": 1964
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Ho un hotel, non un affitto breve: il CIN mi riguarda?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il CIN riguarda anche le strutture ricettive alberghiere, quindi sì per quella parte. Il Regolamento (UE) 2024/1028 è pensato per gli affitti a breve termine intermediati da piattaforme: vi riguarda nella misura in cui vendete tramite quei canali."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Se affitto tramite una sola piattaforma devo fare meno?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gli adempimenti sono gli stessi, ma avete un punto di esposizione in meno e un rischio di concentrazione in più: se quell'annuncio viene sospeso per un dato incoerente, l'attività si ferma del tutto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La piattaforma trasmette i dati: devo ancora comunicare gli alloggiati?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì. Sono due flussi distinti, con basi giuridiche e destinatari diversi. La comunicazione alla Questura tramite Alloggiati Web resta un obbligo a vostro carico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Devo togliere il CIN dagli annunci per motivi di privacy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, è l'opposto: la pubblicazione negli annunci è parte dell'obbligo. È un codice identificativo dell'immobile, non un dato personale da proteggere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cambia qualcosa se gestisco immobili per conto di altri?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cambia la quantità di lavoro, non la sostanza: ogni unità ha il suo codice e i suoi dati, e la coerenza va verificata per ciascuna. È il caso in cui l'automazione dei canali passa dall'essere comoda all'essere necessaria."
+        }
+      }
+    ]
+  }
+}

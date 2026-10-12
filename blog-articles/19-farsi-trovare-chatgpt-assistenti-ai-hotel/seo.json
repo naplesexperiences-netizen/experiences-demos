@@ -1,0 +1,105 @@
+{
+  "slug": "farsi-trovare-chatgpt-assistenti-ai-hotel",
+  "post_title": "Farsi Trovare da ChatGPT: Come Entrare nelle Risposte degli Assistenti AI (Hotel e Tour Operator)",
+  "seo_title": "Farsi trovare da ChatGPT: guida per hotel | Experiences",
+  "meta_description": "Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.",
+  "focus_keyword": "farsi trovare da chatgpt",
+  "secondary_keywords": [
+    "AEO hotel",
+    "answer engine optimization",
+    "GPTBot robots.txt",
+    "dati strutturati hotel",
+    "ricerche AI turismo",
+    "perplexity hotel",
+    "google ai overviews"
+  ],
+  "og_title": "Farsi trovare da ChatGPT: come entrare nelle risposte degli assistenti AI",
+  "og_description": "In due mesi, su un sito di tour in Campania: 65.000 letture dai crawler AI, il 78% da ChatGPT — e solo lo 0,7% delle visite reali. Cosa significa davvero, cosa si può misurare e le sei condizioni per essere citati, senza le promesse di chi vende fuffa.",
+  "category": "AI & Innovazione",
+  "tags": [
+    "chatgpt",
+    "AEO",
+    "intelligenza artificiale",
+    "SEO",
+    "dati strutturati",
+    "perplexity",
+    "hotel",
+    "tour operator"
+  ],
+  "estimated_reading_time": 9,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Farsi Trovare da ChatGPT: Come Entrare nelle Risposte degli Assistenti AI (Hotel e Tour Operator)",
+    "description": "Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/farsi-trovare-chatgpt-assistenti-ai-hotel.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-10-14",
+    "dateModified": "2026-10-14",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/blog/farsi-trovare-chatgpt-assistenti-ai-hotel/"
+    },
+    "keywords": "AEO hotel, answer engine optimization, GPTBot robots.txt, dati strutturati hotel, ricerche AI turismo, perplexity hotel, google ai overviews",
+    "articleSection": "AI & Innovazione",
+    "wordCount": 2096
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Devo bloccare i crawler AI per proteggere i miei contenuti?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dipende da cosa vendete. Se vivete di contenuti originali — guide, itinerari, fotografia — bloccarli è una posizione difendibile. Se vendete camere o tour, i contenuti del sito servono a farvi scegliere: bloccare chi li legge significa rinunciare a comparire. Per una struttura ricettiva, nella grande maggioranza dei casi conviene lasciarli entrare."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto tempo serve per vedere un effetto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I crawler ripassano in giorni o settimane, a seconda di quanto il sito viene aggiornato. La citazione nelle risposte è più lenta, perché dipende anche dalle fonti esterne e dalla concorrenza sulla domanda specifica. Ragionevolmente: qualche settimana per essere riletti, qualche mese per misurare una differenza."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Serve un plugin o uno strumento a pagamento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Dati strutturati, robots.txt corretto e pagine scritte bene si fanno con quello che già avete. Esistono strumenti di monitoraggio delle citazioni AI, utili se gestite molti siti; per una struttura singola, la prova manuale mensile e i log del server bastano."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Se sono su Booking non mi trovano già?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi trovano, ma come riga di un elenco altrui. Gli assistenti citano volentieri i grandi portali, e in quella risposta il nome che resta è il portale: la prenotazione passa da lì, con la commissione relativa. Comparire anche in prima persona è esattamente il lavoro che serve ad aumentare le prenotazioni dirette."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I contenuti scritti dall'AI aiutano a farsi trovare dall'AI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, e di solito danneggiano. Un assistente cerca informazioni che non trova altrove: orari, prezzi, distanze reali, consigli di chi abita il posto. Un testo generico generato in serie non contiene niente di tutto questo, e intanto abbassa la qualità media del sito."
+        }
+      }
+    ]
+  }
+}

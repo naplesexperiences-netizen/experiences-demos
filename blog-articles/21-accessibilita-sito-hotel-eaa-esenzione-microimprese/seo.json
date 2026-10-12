@@ -1,0 +1,104 @@
+{
+  "slug": "accessibilita-sito-hotel-eaa-esenzione-microimprese",
+  "post_title": "Accessibilità del Sito: la Vostra Struttura è Esente? (Sì, Probabilmente — Ma Non per il 2030)",
+  "seo_title": "Accessibilità sito hotel: esenzione microimprese | Experiences",
+  "meta_description": "European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.",
+  "focus_keyword": "accessibilità sito hotel",
+  "secondary_keywords": [
+    "european accessibility act",
+    "d.lgs 82/2022",
+    "esenzione microimprese accessibilità",
+    "linee guida AgID accessibilità",
+    "accessibilità motore di prenotazione",
+    "WCAG strutture ricettive"
+  ],
+  "og_title": "Accessibilità del sito: la vostra struttura è esente? (Sì, probabilmente)",
+  "og_description": "Le Linee guida AgID lo dicono in sette parole: «Le microimprese sono esentate dall'osservanza degli obblighi di accessibilità». Il test si fa con due numeri. Ma il «fino al 2030» che vi hanno raccontato riguarda prodotti già in uso e contratti firmati prima, non il vostro sito di prenotazione.",
+  "category": "Normativa & Compliance",
+  "tags": [
+    "accessibilità",
+    "normativa",
+    "european accessibility act",
+    "AgID",
+    "WCAG",
+    "sito web",
+    "compliance",
+    "hotel"
+  ],
+  "estimated_reading_time": 10,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Accessibilità del Sito: la Vostra Struttura è Esente? (Sì, Probabilmente — Ma Non per il 2030)",
+    "description": "European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-10-28",
+    "dateModified": "2026-10-28",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese/"
+    },
+    "keywords": "european accessibility act, d.lgs 82/2022, esenzione microimprese accessibilità, linee guida AgID accessibilità, accessibilità motore di prenotazione, WCAG strutture ricettive",
+    "articleSection": "Normativa & Compliance",
+    "wordCount": 2295
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Siamo una microimpresa: possiamo ignorare l'accessibilità?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dal punto di vista dell'obbligo, le Linee guida AgID prevedono un'esenzione esplicita per le microimprese. Dal punto di vista commerciale no: i clienti che non riescono a prenotare li perdete ugualmente, e metà degli interventi utili costa qualche ora di lavoro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Il mio sito è su un CMS standard, è già accessibile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Un buon CMS fornisce le basi — struttura corretta, campi per i testi alternativi — ma le barriere nascono quasi sempre nel tema, nel motore di prenotazione e nei contenuti caricati. Nessuna piattaforma rende accessibile un sito da sola."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Il motore di prenotazione è di un fornitore esterno: di chi è la responsabilità?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verso l'ospite è vostra: è il vostro sito che non funziona. Verso il fornitore è questione di contratto, ed è una domanda legittima da porgli chiedendo risposta scritta. Se il loro modulo non è navigabile da tastiera, è un problema che hanno anche tutti i loro altri clienti."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gli overlay di accessibilità rendono conforme un sito?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. I widget che aggiungono una barra di comandi al sito agiscono sopra il problema senza toccarlo, confliggono spesso con i lettori di schermo che gli utenti già usano e sono oggetto di critiche documentate da parte delle associazioni di persone con disabilità. Anche i bollini rilasciati da chi vende il servizio non hanno valore legale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa mettere a posto il sito di una struttura ricettiva?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dipende da com'è fatto. Su contrasto dei colori, etichette dei moduli, navigazione da tastiera, gerarchia dei titoli e caroselli si parla di ore, non di mesi, se il sito è costruito in modo sano. Se il tema genera markup disordinato o il motore di prenotazione è una scatola chiusa, il costo reale è rifare quei pezzi."
+        }
+      }
+    ]
+  }
+}

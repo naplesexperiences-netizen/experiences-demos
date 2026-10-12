@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:wp="http://wordpress.org/export/1.2/" version="2.0" xmlns:wfw="http://wellformedweb.org/CommentAPI/"><channel><title>Experiences Srl Blog</title><link>https://naplesexperiences.com</link><description>Articoli B2B per hotel e tour operator</description><pubDate>Mon, 12 Oct 2026 09:00:00 +0000</pubDate><language>it-IT</language><wp:wxr_version>1.2</wp:wxr_version><wp:base_site_url>https://naplesexperiences.com</wp:base_site_url><wp:base_blog_url>https://naplesexperiences.com</wp:base_blog_url><wp:author><wp:author_id>1</wp:author_id><wp:author_login><![CDATA[admin]]></wp:author_login><wp:author_display_name><![CDATA[Experiences Srl]]></wp:author_display_name></wp:author><wp:category><wp:term_id>9500</wp:term_id><wp:category_nicename><![CDATA[ai-e-innovazione]]></wp:category_nicename><wp:category_parent /><wp:cat_name><![CDATA[AI & Innovazione]]></wp:cat_name></wp:category><wp:category><wp:term_id>9509</wp:term_id><wp:category_nicename><![CDATA[normativa-e-compliance]]></wp:category_nicename><wp:category_parent /><wp:cat_name><![CDATA[Normativa & Compliance]]></wp:cat_name></wp:category><wp:tag><wp:term_id>9501</wp:term_id><wp:tag_slug><![CDATA[chatgpt]]></wp:tag_slug><wp:tag_name><![CDATA[chatgpt]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9502</wp:term_id><wp:tag_slug><![CDATA[aeo]]></wp:tag_slug><wp:tag_name><![CDATA[AEO]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9503</wp:term_id><wp:tag_slug><![CDATA[intelligenza-artificiale]]></wp:tag_slug><wp:tag_name><![CDATA[intelligenza artificiale]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9504</wp:term_id><wp:tag_slug><![CDATA[seo]]></wp:tag_slug><wp:tag_name><![CDATA[SEO]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9505</wp:term_id><wp:tag_slug><![CDATA[dati-strutturati]]></wp:tag_slug><wp:tag_name><![CDATA[dati strutturati]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9506</wp:term_id><wp:tag_slug><![CDATA[perplexity]]></wp:tag_slug><wp:tag_name><![CDATA[perplexity]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9507</wp:term_id><wp:tag_slug><![CDATA[hotel]]></wp:tag_slug><wp:tag_name><![CDATA[hotel]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9508</wp:term_id><wp:tag_slug><![CDATA[tour-operator]]></wp:tag_slug><wp:tag_name><![CDATA[tour operator]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9510</wp:term_id><wp:tag_slug><![CDATA[cin]]></wp:tag_slug><wp:tag_name><![CDATA[CIN]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9511</wp:term_id><wp:tag_slug><![CDATA[normativa]]></wp:tag_slug><wp:tag_name><![CDATA[normativa]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9512</wp:term_id><wp:tag_slug><![CDATA[affitti-brevi]]></wp:tag_slug><wp:tag_name><![CDATA[affitti brevi]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9513</wp:term_id><wp:tag_slug><![CDATA[regolamento-ue]]></wp:tag_slug><wp:tag_name><![CDATA[regolamento UE]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9514</wp:term_id><wp:tag_slug><![CDATA[bdsr]]></wp:tag_slug><wp:tag_name><![CDATA[BDSR]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9515</wp:term_id><wp:tag_slug><![CDATA[property-manager]]></wp:tag_slug><wp:tag_name><![CDATA[property manager]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9516</wp:term_id><wp:tag_slug><![CDATA[compliance]]></wp:tag_slug><wp:tag_name><![CDATA[compliance]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9517</wp:term_id><wp:tag_slug><![CDATA[accessibilita]]></wp:tag_slug><wp:tag_name><![CDATA[accessibilità]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9518</wp:term_id><wp:tag_slug><![CDATA[european-accessibility-act]]></wp:tag_slug><wp:tag_name><![CDATA[european accessibility act]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9519</wp:term_id><wp:tag_slug><![CDATA[agid]]></wp:tag_slug><wp:tag_name><![CDATA[AgID]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9520</wp:term_id><wp:tag_slug><![CDATA[wcag]]></wp:tag_slug><wp:tag_name><![CDATA[WCAG]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9521</wp:term_id><wp:tag_slug><![CDATA[sito-web]]></wp:tag_slug><wp:tag_name><![CDATA[sito web]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9522</wp:term_id><wp:tag_slug><![CDATA[cookie]]></wp:tag_slug><wp:tag_name><![CDATA[cookie]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9523</wp:term_id><wp:tag_slug><![CDATA[privacy]]></wp:tag_slug><wp:tag_name><![CDATA[privacy]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9524</wp:term_id><wp:tag_slug><![CDATA[gdpr]]></wp:tag_slug><wp:tag_name><![CDATA[GDPR]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9525</wp:term_id><wp:tag_slug><![CDATA[consent-mode]]></wp:tag_slug><wp:tag_name><![CDATA[consent mode]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9526</wp:term_id><wp:tag_slug><![CDATA[analytics]]></wp:tag_slug><wp:tag_name><![CDATA[analytics]]></wp:tag_name></wp:tag><wp:tag><wp:term_id>9527</wp:term_id><wp:tag_slug><![CDATA[tracciamento]]></wp:tag_slug><wp:tag_name><![CDATA[tracciamento]]></wp:tag_name></wp:tag><item><title>Farsi Trovare da ChatGPT: Come Entrare nelle Risposte degli Assistenti AI (Hotel e Tour Operator)</title><link>https://naplesexperiences.com/blog/farsi-trovare-chatgpt-assistenti-ai-hotel/</link><pubDate>Wed, 14 Oct 2026 09:00:00 +0000</pubDate><dc:creator><![CDATA[admin]]></dc:creator><guid isPermaLink="false">https://naplesexperiences.com/blog/farsi-trovare-chatgpt-assistenti-ai-hotel/</guid><description /><content:encoded><![CDATA[<div class="prose-blog">
+
+<p class="lead"><strong>Un vostro potenziale cliente ha appena chiesto a ChatGPT «dove dormo a Sorrento con i bambini, vicino al mare, sotto i 150 euro».</strong> Ha ricevuto quattro nomi. Non ha aperto Google, non ha guardato Booking, non ha visto un annuncio. Ha letto quattro nomi e ne ha scelto uno. Se il vostro non c'era, per quel cliente non esistete — e non ve ne siete accorti, perché nelle vostre statistiche non compare nessuna visita persa.</p>
+
+<p>È il cambiamento più silenzioso degli ultimi due anni nel turismo. Non c'è un calo di traffico che suoni l'allarme: semplicemente, una parte delle decisioni si prende altrove, prima che qualcuno arrivi sul vostro sito. Questa guida spiega come funziona davvero, cosa si può misurare e cosa si può fare — senza promettere scorciatoie che non esistono.</p>
+
+<h2>Cosa è cambiato: da «cercare» a «chiedere»</h2>
+
+<p>Per vent'anni il percorso è stato sempre lo stesso: l'utente digita qualcosa, Google mostra dieci link, l'utente clicca. Tutta la SEO che conosciamo serve a entrare in quei dieci link.</p>
+
+<p>Con un assistente conversazionale il percorso cambia forma. L'utente descrive una situazione — non una parola chiave — e riceve <em>una risposta</em>, non un elenco. Dentro quella risposta ci sono due o tre nomi, al massimo cinque. Non c'è una seconda pagina.</p>
+
+<div class="callout-info">
+<strong>La differenza che conta:</strong> nei risultati di Google essere decimi significa ricevere pochi clic. In una risposta conversazionale essere «undicesimi» significa non essere nominati affatto. Non c'è una coda lunga: o si è nella risposta, o non si esiste.
+</div>
+
+<h3>Da dove prende le informazioni un assistente</h3>
+
+<p>Semplificando, da tre posti:</p>
+
+<ol>
+<li><strong>Quello che ha imparato in addestramento.</strong> Informazioni generali, spesso non recentissime, su luoghi e strutture molto conosciute.</li>
+<li><strong>Quello che legge sul momento.</strong> Quasi tutti gli assistenti, quando la domanda richiede dati aggiornati, vanno a leggere pagine web in tempo reale. È qui che si gioca la partita.</li>
+<li><strong>Quello che trova nelle fonti aggregate.</strong> Portali, elenchi, recensioni, schede di terze parti.</li>
+</ol>
+
+<p>Il punto due è l'unico su cui potete incidere direttamente, ed è anche quello che pesa di più sulle domande concrete — prezzi, disponibilità, servizi, posizione.</p>
+
+<p>Non è una novità assoluta: è la stessa direzione presa dalla <a href="/blog/voice-search-hotel-ottimizzazione-alexa-google-assistant/">ricerca vocale</a>, dove già oggi l'utente fa una domanda e riceve una risposta sola. Gli assistenti conversazionali hanno portato quel modello dalla cucina al momento della decisione d'acquisto.</p>
+
+<h3>Non sono tutti uguali</h3>
+
+<p>«Farsi trovare dall'AI» è una semplificazione: gli assistenti si comportano in modo diverso, e conviene sapere quale state cercando di raggiungere.</p>
+
+<ul>
+<li><strong>ChatGPT</strong> è quello che genera più volume, e quando la domanda riguarda disponibilità o prezzi va a leggere il web nel momento. È anche quello che, nei log dei siti che seguiamo, passa più spesso.</li>
+<li><strong>Perplexity</strong> cita le fonti in modo esplicito, con i link in vista: è l'assistente da cui è più probabile che arrivi una visita vera, perché il collegamento è cliccabile.</li>
+<li><strong>Google AI Overviews</strong> è il riassunto che compare sopra i risultati di ricerca. Non è un assistente separato: pesca dalle stesse pagine che Google ha già indicizzato. Qui la SEO che avete già fatto continua a valere.</li>
+<li><strong>Gemini e Copilot</strong> seguono logiche vicine a quelle di Google e Bing: contano l'indicizzazione e i dati strutturati.</li>
+</ul>
+
+<p>La buona notizia è che il lavoro da fare è in gran parte lo stesso per tutti. La cattiva è che non c'è una leva per «ottimizzare per ChatGPT» separata dal resto.</p>
+
+<h2>Quanto sta succedendo davvero: i numeri di un sito reale</h2>
+
+<p>Su uno dei siti che seguiamo — un'agenzia di tour in Campania — abbiamo misurato le letture dei crawler degli assistenti AI. In circa due mesi: <strong>poco meno di 65.000 letture</strong>, il <strong>78% delle quali da ChatGPT</strong>, distribuite su una trentina di agenti diversi. Prima di quel periodo, la stessa misurazione dava zero.</p>
+
+<div class="callout-warning">
+<strong>Attenzione a leggere bene questo dato.</strong> Quelle 65.000 <em>non</em> sono visite di persone: sono letture automatiche. Misurano quanto gli assistenti stanno consultando il sito, non quanti clienti porta. È una distinzione che molti fornitori confondono, a volte apposta, perché il numero è grosso e fa impressione.
+</div>
+
+<p>Il numero che riguarda le persone, sullo stesso sito, è un altro: <strong>lo 0,7% delle visite reali</strong> arriva da un assistente AI. È poco. Ma due anni fa era zero, e la curva sale.</p>
+
+<p>Questo è il quadro onesto: oggi gli assistenti leggono moltissimo e mandano ancora poco. Chi si organizza adesso lo fa quando il costo è basso e la concorrenza è distratta.</p>
+
+<div style="background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Gli assistenti AI leggono il vostro sito? Lo verifichiamo noi</h3>
+  <p style="color:#e0f2fe;margin-bottom:24px;">Analizziamo i log del vostro sito e vi diciamo quali crawler passano, quali pagine leggono, cosa li sta bloccando e cosa manca per essere citati. Report concreto in 48 ore, nessun impegno.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#0369a1;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Richiedi l'analisi gratuita</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<h2>Cosa rende un sito leggibile da un assistente</h2>
+
+<p>Non esiste un trucco. Esistono condizioni che rendono una pagina utilizzabile da una macchina che deve riassumerla in due righe.</p>
+
+<h3>1. Rispondere alla domanda, non girarci intorno</h3>
+
+<p>Un assistente cerca frasi che rispondano in modo autonomo. «Il check-in è dalle 14:00 alle 20:00; dopo le 20:00 su richiesta, con supplemento di 20 euro» è citabile. «Il nostro staff sarà lieto di accogliervi negli orari più comodi per voi» non lo è: non contiene nessuna informazione.</p>
+
+<p>Vale per tutto: prezzi, distanze, politiche di cancellazione, animali ammessi, parcheggio, orari. Ogni informazione che un cliente chiederebbe al telefono dovrebbe esistere sul sito in forma di frase chiara e autosufficiente.</p>
+
+<h3>2. Dati strutturati, fatti bene</h3>
+
+<p>I dati strutturati (schema.org) sono il modo standard per dire a una macchina «questo è un hotel, questo è il prezzo, questa è la posizione, queste sono le stelle». Per una struttura ricettiva servono almeno:</p>
+
+<ul>
+<li><code>Hotel</code> o <code>LodgingBusiness</code> con indirizzo, coordinate, telefono, fascia di prezzo</li>
+<li><code>FAQPage</code> sulle domande che ricevete davvero</li>
+<li><code>Product</code> o <code>Offer</code> per camere e pacchetti, se vendete direttamente</li>
+<li><code>Review</code> e <code>AggregateRating</code>, se avete recensioni vostre</li>
+</ul>
+
+<div class="callout-tip">
+<strong>Da fare oggi, gratis:</strong> aprite il <a href="https://validator.schema.org/" rel="noopener" target="_blank">validatore di schema.org</a> e incollate l'indirizzo della vostra homepage. Se non esce niente, o escono errori, avete trovato il primo lavoro da fare.
+</div>
+
+<h3>3. Non bloccare i crawler senza saperlo</h3>
+
+<p>Molti siti bloccano i bot degli assistenti nel file <code>robots.txt</code>, a volte perché qualcuno ha copiato una configurazione trovata online, a volte perché un plugin di sicurezza lo fa in automatico. Gli user agent da controllare oggi sono almeno <code>GPTBot</code>, <code>OAI-SearchBot</code>, <code>ClaudeBot</code>, <code>PerplexityBot</code>, <code>Google-Extended</code> e <code>Applebot-Extended</code>.</p>
+
+<p>È una scelta legittima bloccarli — ma deve essere una scelta, non un incidente. Se li bloccate, accettate di non comparire nelle risposte.</p>
+
+<h3>4. Contenuti che qualcuno citerebbe</h3>
+
+<p>Gli assistenti privilegiano fonti che rispondono con precisione a domande specifiche. Per una struttura in Campania, pagine come «Come arrivare a Sorrento dall'aeroporto di Napoli» o «Dove parcheggiare a Positano» valgono più di una pagina «Chi siamo»: sono esattamente ciò che qualcuno chiede a un assistente, e voi potete rispondere meglio di un portale generalista perché ci vivete.</p>
+
+<p>È lo stesso materiale che serve alla <a href="/blog/seo-locale-hotel-top-google/">SEO locale</a>, e lo stesso che alimenta un <a href="/blog/ai-chatbot-hotel-bnb-segretario-digitale-24-7/">assistente sul vostro sito</a>: scritto una volta, lavora su tre fronti.</p>
+
+<h3>5. Essere coerenti ovunque</h3>
+
+<p>Se il sito dice che il check-in è alle 14, Google Business Profile dice 15 e Booking dice 16, un assistente non sa a chi credere — e tende a non citare chi si contraddice. Indirizzo, telefono, orari e servizi devono coincidere su tutte le schede.</p>
+
+<h3>6. Avere recensioni, e averle in vista</h3>
+
+<p>Quando un assistente deve scegliere fra due strutture equivalenti, guarda il giudizio pubblico: punteggio medio, numero di recensioni, cosa dicono. Non è un fattore che si tocca scrivendo codice — si costruisce <a href="/blog/gestire-recensioni-online-hotel-booking-tripadvisor/">gestendo le recensioni</a> nel tempo. Ma vale la pena sapere che pesa anche qui, non solo su Booking.</p>
+
+<h2>Come verificare se vi nominano</h2>
+
+<p>Non esiste ancora uno strumento maturo come Search Console. Nel frattempo, due metodi che funzionano:</p>
+
+<p><strong>La prova manuale.</strong> Fate a tre o quattro assistenti diversi le domande che farebbe un vostro cliente. Non «hotel a Sorrento», ma «vado a Sorrento a giugno con due bambini piccoli, cerco qualcosa vicino al mare senza spendere troppo». Annotate chi viene nominato. Rifatelo ogni mese: è una misura rozza, ma è una misura.</p>
+
+<p><strong>I log del server.</strong> Le letture dei crawler lasciano traccia. Filtrando gli user agent si vede quali assistenti passano, quanto spesso e quali pagine leggono. È il dato più solido che si può avere oggi, ed è quello da cui vengono i numeri citati sopra.</p>
+
+<div class="callout-info">
+<strong>Un indicatore anticipato:</strong> se i crawler leggono molto ma le visite da assistenti restano a zero, di solito il problema è nei contenuti — vi leggono e non trovano niente da citare. Se non vi leggono affatto, il problema è tecnico: robots.txt, blocchi del firewall, pagine che si costruiscono solo con JavaScript.
+</div>
+
+<h2>Quello che non funziona</h2>
+
+<p>Gira già una certa quantità di fuffa. Per chiarezza:</p>
+
+<ul>
+<li><strong>Non si compra una posizione</strong> dentro le risposte di ChatGPT come si compra un annuncio su Google. Chi ve lo propone sta vendendo altro.</li>
+<li><strong>Riempire le pagine di «AI», «intelligenza artificiale» e simili non serve.</strong> È la versione 2026 del keyword stuffing, e funziona altrettanto bene.</li>
+<li><strong>I testi generati in serie e pubblicati senza controllo peggiorano le cose.</strong> Gli assistenti sono addestrati a riconoscere il contenuto generico; una pagina che non aggiunge niente non viene citata, e intanto diluisce il vostro sito.</li>
+<li><strong>Non è un sostituto della SEO.</strong> Google resta di gran lunga il primo canale. Questo è un canale in più, da coltivare mentre l'altro continua a lavorare.</li>
+</ul>
+
+<h2>Da dove cominciare, in ordine</h2>
+
+<p>Se dovete scegliere cosa fare per primo:</p>
+
+<ol>
+<li><strong>Controllate il robots.txt.</strong> Dieci minuti. Se state bloccando i crawler degli assistenti senza volerlo, nient'altro di quello che fate avrà effetto.</li>
+<li><strong>Mettete i dati strutturati</strong> su homepage e pagine delle camere o dei tour. È la base.</li>
+<li><strong>Riscrivete le pagine «di servizio»</strong> perché contengano risposte vere: orari, prezzi, distanze, regole. Niente frasi di cortesia al posto delle informazioni.</li>
+<li><strong>Allineate le schede esterne</strong> — Google Business Profile, Booking, TripAdvisor — con quello che dice il sito.</li>
+<li><strong>Scrivete tre pagine</strong> che rispondano a domande locali concrete che ricevete al telefono.</li>
+<li><strong>Misurate</strong>, e rimisurate fra tre mesi.</li>
+</ol>
+
+<h2>Domande che ci fanno più spesso</h2>
+
+<h3>Devo bloccare i crawler AI per proteggere i miei contenuti?</h3>
+
+<p>Dipende da cosa vendete. Se vivete di contenuti originali — guide, itinerari, fotografia — bloccarli è una posizione difendibile. Se vendete camere o tour, i contenuti del sito servono a farvi scegliere: bloccare chi li legge significa rinunciare a comparire. Per una struttura ricettiva, nella grande maggioranza dei casi conviene lasciarli entrare.</p>
+
+<h3>Quanto tempo serve per vedere un effetto?</h3>
+
+<p>I crawler ripassano in giorni o settimane, a seconda di quanto il sito viene aggiornato. La citazione nelle risposte è più lenta, perché dipende anche dalle fonti esterne e dalla concorrenza sulla domanda specifica. Ragionevolmente: qualche settimana per essere riletti, qualche mese per misurare una differenza.</p>
+
+<h3>Serve un plugin o uno strumento a pagamento?</h3>
+
+<p>No. Dati strutturati, <code>robots.txt</code> corretto e pagine scritte bene si fanno con quello che già avete. Esistono strumenti di monitoraggio delle citazioni AI, utili se gestite molti siti; per una struttura singola, la prova manuale mensile e i log del server bastano.</p>
+
+<h3>Se sono su Booking non mi trovano già?</h3>
+
+<p>Vi trovano, ma come riga di un elenco altrui. Gli assistenti citano volentieri i grandi portali, e in quella risposta il nome che resta è il portale: la prenotazione passa da lì, con la commissione relativa. Comparire anche in prima persona è esattamente il lavoro che serve ad aumentare le <a href="/blog/aumentare-prenotazioni-dirette-hotel-disintermediazione/">prenotazioni dirette</a>.</p>
+
+<h3>I contenuti scritti dall'AI aiutano a farsi trovare dall'AI?</h3>
+
+<p>No, e di solito danneggiano. Un assistente cerca informazioni che non trova altrove: orari, prezzi, distanze reali, consigli di chi abita il posto. Un testo generico generato in serie non contiene niente di tutto questo, e intanto abbassa la qualità media del sito.</p>
+
+<h2>In sintesi</h2>
+
+<p>Gli assistenti AI stanno già leggendo il vostro sito — o lo stanno saltando. Oggi portano una quota piccola di visite, e chiunque vi dica il contrario sta esagerando. Ma è una quota che due anni fa non esisteva, e le condizioni per farsi citare si costruiscono adesso, con lavoro che serve comunque: informazioni chiare, dati ordinati, coerenza fra i canali.</p>
+
+<p>È lo stesso lavoro che rende un sito utile a una persona. La differenza è che adesso qualcun altro lo sta leggendo prima di lei.</p>
+
+<div style="background:linear-gradient(135deg,#f59e0b,#dc2626);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Partiamo dal vostro sito, non da una teoria</h3>
+  <p style="color:#fef3c7;margin-bottom:24px;">Controlliamo <code style="background:rgba(255,255,255,0.18);padding:2px 6px;border-radius:4px;color:#ffffff;">robots.txt</code>, dati strutturati, coerenza delle schede esterne e letture dei crawler. Poi vi diciamo, in ordine, le tre cose da sistemare per prime.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#dc2626;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Parliamo del vostro progetto</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+</div>]]></content:encoded><excerpt:encoded><![CDATA[Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.]]></excerpt:encoded><wp:post_id>9000</wp:post_id><wp:post_date><![CDATA[2026-10-14 09:00:00]]></wp:post_date><wp:post_date_gmt><![CDATA[2026-10-14 09:00:00]]></wp:post_date_gmt><wp:post_modified><![CDATA[2026-10-14 09:00:00]]></wp:post_modified><wp:post_modified_gmt><![CDATA[2026-10-14 09:00:00]]></wp:post_modified_gmt><wp:comment_status><![CDATA[closed]]></wp:comment_status><wp:ping_status><![CDATA[closed]]></wp:ping_status><wp:post_name><![CDATA[farsi-trovare-chatgpt-assistenti-ai-hotel]]></wp:post_name><wp:status><![CDATA[draft]]></wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>0</wp:menu_order><wp:post_type><![CDATA[post]]></wp:post_type><wp:post_password /><wp:is_sticky>0</wp:is_sticky><category domain="category" nicename="ai-e-innovazione"><![CDATA[AI & Innovazione]]></category><category domain="post_tag" nicename="chatgpt"><![CDATA[chatgpt]]></category><category domain="post_tag" nicename="aeo"><![CDATA[AEO]]></category><category domain="post_tag" nicename="intelligenza-artificiale"><![CDATA[intelligenza artificiale]]></category><category domain="post_tag" nicename="seo"><![CDATA[SEO]]></category><category domain="post_tag" nicename="dati-strutturati"><![CDATA[dati strutturati]]></category><category domain="post_tag" nicename="perplexity"><![CDATA[perplexity]]></category><category domain="post_tag" nicename="hotel"><![CDATA[hotel]]></category><category domain="post_tag" nicename="tour-operator"><![CDATA[tour operator]]></category><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key><wp:meta_value><![CDATA[Farsi trovare da ChatGPT: guida per hotel | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key><wp:meta_value><![CDATA[Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_focuskw]]></wp:meta_key><wp:meta_value><![CDATA[farsi trovare da chatgpt]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-title]]></wp:meta_key><wp:meta_value><![CDATA[Farsi trovare da ChatGPT: come entrare nelle risposte degli assistenti AI]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-description]]></wp:meta_key><wp:meta_value><![CDATA[In due mesi, su un sito di tour in Campania: 65.000 letture dai crawler AI, il 78% da ChatGPT — e solo lo 0,7% delle visite reali. Cosa significa davvero, cosa si può misurare e le sei condizioni per essere citati, senza le promesse di chi vende fuffa.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_title]]></wp:meta_key><wp:meta_value><![CDATA[Farsi trovare da ChatGPT: guida per hotel | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_description]]></wp:meta_key><wp:meta_value><![CDATA[Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_focus_keyword]]></wp:meta_key><wp:meta_value><![CDATA[farsi trovare da chatgpt]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_title]]></wp:meta_key><wp:meta_value><![CDATA[Farsi trovare da ChatGPT: guida per hotel | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_desc]]></wp:meta_key><wp:meta_value><![CDATA[Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_analysis_target_kw]]></wp:meta_key><wp:meta_value><![CDATA[farsi trovare da chatgpt]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_reading_time]]></wp:meta_key><wp:meta_value><![CDATA[9]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_secondary_keywords]]></wp:meta_key><wp:meta_value><![CDATA[AEO hotel, answer engine optimization, GPTBot robots.txt, dati strutturati hotel, ricerche AI turismo, perplexity hotel, google ai overviews]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_article]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "Article", "headline": "Farsi Trovare da ChatGPT: Come Entrare nelle Risposte degli Assistenti AI (Hotel e Tour Operator)", "description": "Come farsi citare da ChatGPT, Perplexity e Google AI Overviews: dati strutturati, robots.txt, contenuti citabili. Con i numeri reali di un sito in Campania.", "image": "https://naplesexperiences.com/wp-content/uploads/blog/farsi-trovare-chatgpt-assistenti-ai-hotel.jpg", "author": {"@type": "Organization", "name": "Experiences Srl", "url": "https://naplesexperiences.com"}, "publisher": {"@type": "Organization", "name": "Experiences Srl", "logo": {"@type": "ImageObject", "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"}}, "datePublished": "2026-10-14", "dateModified": "2026-10-14", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://naplesexperiences.com/blog/farsi-trovare-chatgpt-assistenti-ai-hotel/"}, "keywords": "AEO hotel, answer engine optimization, GPTBot robots.txt, dati strutturati hotel, ricerche AI turismo, perplexity hotel, google ai overviews", "articleSection": "AI & Innovazione", "wordCount": 2096}]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_faq]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Devo bloccare i crawler AI per proteggere i miei contenuti?", "acceptedAnswer": {"@type": "Answer", "text": "Dipende da cosa vendete. Se vivete di contenuti originali — guide, itinerari, fotografia — bloccarli è una posizione difendibile. Se vendete camere o tour, i contenuti del sito servono a farvi scegliere: bloccare chi li legge significa rinunciare a comparire. Per una struttura ricettiva, nella grande maggioranza dei casi conviene lasciarli entrare."}}, {"@type": "Question", "name": "Quanto tempo serve per vedere un effetto?", "acceptedAnswer": {"@type": "Answer", "text": "I crawler ripassano in giorni o settimane, a seconda di quanto il sito viene aggiornato. La citazione nelle risposte è più lenta, perché dipende anche dalle fonti esterne e dalla concorrenza sulla domanda specifica. Ragionevolmente: qualche settimana per essere riletti, qualche mese per misurare una differenza."}}, {"@type": "Question", "name": "Serve un plugin o uno strumento a pagamento?", "acceptedAnswer": {"@type": "Answer", "text": "No. Dati strutturati, robots.txt corretto e pagine scritte bene si fanno con quello che già avete. Esistono strumenti di monitoraggio delle citazioni AI, utili se gestite molti siti; per una struttura singola, la prova manuale mensile e i log del server bastano."}}, {"@type": "Question", "name": "Se sono su Booking non mi trovano già?", "acceptedAnswer": {"@type": "Answer", "text": "Vi trovano, ma come riga di un elenco altrui. Gli assistenti citano volentieri i grandi portali, e in quella risposta il nome che resta è il portale: la prenotazione passa da lì, con la commissione relativa. Comparire anche in prima persona è esattamente il lavoro che serve ad aumentare le prenotazioni dirette."}}, {"@type": "Question", "name": "I contenuti scritti dall'AI aiutano a farsi trovare dall'AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, e di solito danneggiano. Un assistente cerca informazioni che non trova altrove: orari, prezzi, distanze reali, consigli di chi abita il posto. Un testo generico generato in serie non contiene niente di tutto questo, e intanto abbassa la qualità media del sito."}}]}]]></wp:meta_value></wp:postmeta></item><item><title>CIN e Regolamento UE sugli Affitti Brevi: Cosa Viene Controllato Davvero dal 2026</title><link>https://naplesexperiences.com/blog/cin-regolamento-ue-affitti-brevi-annunci/</link><pubDate>Wed, 21 Oct 2026 09:00:00 +0000</pubDate><dc:creator><![CDATA[admin]]></dc:creator><guid isPermaLink="false">https://naplesexperiences.com/blog/cin-regolamento-ue-affitti-brevi-annunci/</guid><description /><content:encoded><![CDATA[<div class="prose-blog">
+
+<p class="lead"><strong>Il CIN ce l'avete. È nel cassetto, con la stampa della ricevuta della BDSR.</strong> Poi però su Booking l'annuncio è intestato alla società, su Airbnb al vostro nome, il numero civico è scritto in due modi diversi e in uno dei due portali il codice non è stato mai inserito perché «lo chiedevano in un campo che non si capiva». Finché nessuno controllava, era un disordine innocuo. Dal 2026 non lo è più, perché chi controlla non è un ispettore che suona al campanello: è un confronto automatico fra due banche dati.</p>
+
+<p>Questa guida spiega come funziona oggi il doppio livello di regole — il CIN italiano e il Regolamento europeo sugli affitti brevi — cosa cambia davvero per chi affitta, e quali sono i punti in cui le cose si rompono più spesso. Non contiene importi di sanzioni: alla fine spieghiamo perché, e dove li trovate aggiornati.</p>
+
+<h2>Il quadro in due righe</h2>
+
+<p>Ci sono due norme sovrapposte, e vengono spesso confuse.</p>
+
+<ul>
+<li><strong>Il CIN</strong> è italiano. Nasce dall'articolo 13-<em>ter</em> del decreto-legge 145/2023 (convertito dalla legge 191/2023): un codice identificativo nazionale assegnato dal Ministero del Turismo a ogni unità destinata alla locazione breve o turistica e a ogni struttura ricettiva. Va richiesto, esposto e pubblicato negli annunci.</li>
+<li><strong>Il Regolamento (UE) 2024/1028</strong> è europeo e si applica dal <strong>20 maggio 2026</strong>. Non crea un nuovo codice: stabilisce regole comuni su come devono funzionare i sistemi di registrazione degli Stati membri e su quali dati le piattaforme devono trasmettere alle autorità.</li>
+</ul>
+
+<div class="callout-info">
+<strong>La distinzione che conta:</strong> il regolamento europeo non vi impone nessun nuovo adempimento diretto. Non obbliga gli Stati a istituire un registro: dice che <em>se</em> lo istituiscono, deve seguire regole armonizzate. L'Italia il registro ce l'ha già. L'effetto pratico, quindi, non è «un obbligo in più»: è che l'obbligo che avete già diventa verificabile in automatico.
+</div>
+
+<h2>Il CIN: chi lo deve avere e dove va scritto</h2>
+
+<p>Serve a chi esercita un'attività di ospitalità: locazioni brevi, case vacanza, affittacamere, B&amp;B, agriturismi, strutture alberghiere. Si richiede dal portale <strong>BDSR</strong> (Banca Dati delle Strutture Ricettive) del Ministero del Turismo, con SPID o CIE del titolare o del legale rappresentante.</p>
+
+<p>Il passaggio che blocca più richieste è a monte: <strong>in molte regioni il CIN non si genera se prima non esiste il codice regionale</strong> della struttura. Se la BDSR non trova l'immobile, non è un malfunzionamento del portale — manca il censimento regionale. Si parte da lì.</p>
+
+<h3>I tre posti in cui il codice deve comparire</h3>
+
+<ol>
+<li><strong>In ogni annuncio online</strong>, su qualunque canale: portali OTA, sito proprio, bacheche, social se usati per vendere.</li>
+<li><strong>All'esterno dell'immobile</strong>, dove la normativa lo richiede.</li>
+<li><strong>Nella BDSR</strong>, con i dati dell'unità corretti e aggiornati — ed è questo il riferimento con cui tutto il resto viene confrontato.</li>
+</ol>
+
+<p>Se gestite più canali, inserire il codice a mano in ciascuno è il modo più rapido per dimenticarne uno. Chi passa da un <a href="/blog/channel-manager-hotel-guida-completa-2026/">channel manager</a> lo imposta una volta sulla scheda della struttura e lo propaga su tutti gli annunci collegati: è esattamente il tipo di adempimento ripetitivo per cui quello strumento esiste.</p>
+
+<h2>Cosa è cambiato il 20 maggio 2026</h2>
+
+<p>Dalla primavera 2026 il Regolamento europeo è pienamente applicabile. Tre meccanismi, in sintesi.</p>
+
+<h3>1. Le piattaforme verificano il codice, non lo raccolgono soltanto</h3>
+
+<p>Prima il numero di registrazione era un campo di testo: scrivevate qualcosa e l'annuncio andava online. Ora le piattaforme devono controllare che il codice esista e sia valido confrontandolo con i registri pubblici, intercettare gli annunci irregolari e rimuoverli su richiesta delle autorità.</p>
+
+<p>Tradotto: un codice sbagliato, scaduto o riferito a un'altra unità non è più un dato inerte in un modulo. È una discrepanza che emerge da sola.</p>
+
+<h3>2. I dati di attività arrivano alle autorità periodicamente</h3>
+
+<p>Le piattaforme trasmettono alle autorità pubbliche informazioni sull'attività degli alloggi: numero di notti prenotate, dati relativi agli ospiti, indirizzo e identificativo dell'alloggio. Non su richiesta caso per caso — in modo periodico e strutturato.</p>
+
+<h3>3. Un unico punto di ingresso digitale</h3>
+
+<p>Il flusso non passa da accordi bilaterali fra ogni portale e ogni comune: passa da un punto di accesso digitale unico nazionale. È la parte meno visibile e la più rilevante, perché è ciò che rende i confronti possibili su larga scala invece che a campione.</p>
+
+<div class="callout-warning">
+<strong>Quello che il regolamento NON fa.</strong> Non introduce divieti di affittare, non fissa un numero massimo di notti, non armonizza le tasse e non sostituisce le regole italiane, regionali o comunali: si aggiunge. Imposta locale, comunicazione degli alloggiati alla Questura, limiti comunali e requisiti regionali continuano a valere esattamente come prima. Chi vi racconta che «l'Europa ha liberalizzato» o «l'Europa ha vietato» sta semplificando in entrambe le direzioni.
+</div>
+
+<h2>La conseguenza pratica: la coerenza non è più un dettaglio</h2>
+
+<p>È questo il punto che vale la lettura. Fino a ieri le vostre informazioni vivevano in compartimenti separati: la BDSR, gli annunci sui portali, il portale Alloggiati Web, la dichiarazione dell'imposta di soggiorno, la contabilità. Nessuno li metteva a confronto, se non in caso di verifica specifica.</p>
+
+<p>Ora esistono i tubi che li collegano. Il che significa che una differenza fra due sistemi non resta nascosta: salta all'occhio come anomalia, senza che nessuno l'abbia cercata.</p>
+
+<p>Gli allineamenti da controllare sono quattro:</p>
+
+<ul>
+<li><strong>Codice → unità.</strong> Il CIN pubblicato in un annuncio deve corrispondere all'unità che quell'annuncio vende davvero. Con due appartamenti nello stesso stabile, scambiarli è un errore di copia-incolla di tre secondi.</li>
+<li><strong>Indirizzo → BDSR.</strong> Via, numero civico, interno e CAP scritti come li ha registrati la BDSR, non come li scrivete di solito.</li>
+<li><strong>Notti vendute → notti dichiarate.</strong> Le notti che il portale comunica e quelle che risultano nella vostra imposta di soggiorno dovrebbero essere lo stesso numero.</li>
+<li><strong>Ospiti → Alloggiati Web.</strong> Le comunicazioni alla Questura restano un obbligo distinto, con le sue scadenze. Il flusso europeo non le sostituisce.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Controlliamo noi se i vostri annunci sono allineati</h3>
+  <p style="color:#e0f2fe;margin-bottom:24px;">Verifichiamo canale per canale che il CIN sia presente e corretto, che indirizzo e dati dell'unità coincidano con la BDSR e che non ci siano annunci vecchi rimasti online a vostro nome. Report puntuale, nessun impegno.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#0369a1;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Richiedi la verifica</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<h2>Dove si rompono le cose, in ordine di frequenza</h2>
+
+<p>Da quello che vediamo sui siti e sugli account dei clienti, gli errori sono quasi sempre gli stessi cinque — e nessuno è un errore di interpretazione della norma. Sono problemi di gestione.</p>
+
+<p><strong>1. Il codice c'è su due canali su quattro.</strong> Inserito su Booking e Airbnb il giorno della richiesta, mai aggiunto sul sito proprio e sul portale secondario aperto l'anno prima. Il sito proprio è quello che si dimentica più spesso, perché «è nostro».</p>
+
+<p><strong>2. Un annuncio vecchio è rimasto online.</strong> Una scheda su un portale minore, aperta da un ex collaboratore e mai chiusa, senza codice e con un prezzo di tre stagioni fa. Continua a essere vostra agli occhi di chi confronta i dati.</p>
+
+<p><strong>3. L'indirizzo è scritto in tre modi.</strong> «Via Roma 12», «Via Roma, 12/A», «V. Roma 12 int. 3». Per una persona sono lo stesso posto. Per un confronto automatico sono tre indirizzi.</p>
+
+<p><strong>4. Il titolare in BDSR non è chi incassa.</strong> Immobile registrato a nome della persona fisica, annunci intestati alla società (o viceversa). È la discrepanza più noiosa da sistemare perché richiede di toccare la registrazione, non l'annuncio.</p>
+
+<p><strong>5. Il codice regionale manca e nessuno lo sa.</strong> La richiesta del CIN non è andata a buon fine mesi prima, il messaggio d'errore è stato interpretato come un disservizio del portale, e da allora si lavora senza codice convinti di averlo richiesto.</p>
+
+<h2>Cosa controllare oggi, in mezz'ora</h2>
+
+<ol>
+<li><strong>Elencate tutti i canali attivi.</strong> Tutti: OTA, sito proprio, portali locali, schede su siti di consorzi, bacheche. Cercate il nome della struttura su Google per trovare quelli che avete dimenticato.</li>
+<li><strong>Verificate il codice su ciascuno</strong>, carattere per carattere, confrontandolo con la ricevuta BDSR e non con la memoria.</li>
+<li><strong>Confrontate l'indirizzo</strong> di ogni annuncio con quello registrato in BDSR, nella stessa forma.</li>
+<li><strong>Chiudete gli annunci che non usate più.</strong> Non «mettete in pausa»: chiudete.</li>
+<li><strong>Controllate l'intestazione:</strong> chi risulta titolare in BDSR e chi risulta host sui portali devono essere lo stesso soggetto.</li>
+<li><strong>Riconciliate un mese a campione:</strong> notti vendute sui portali contro notti dichiarate per l'imposta di soggiorno. Se non tornano, il problema è anteriore al 2026 e va chiarito adesso.</li>
+</ol>
+
+<p>Chi vende anche <a href="/blog/aumentare-prenotazioni-dirette-hotel-disintermediazione/">direttamente dal proprio sito</a> ha un vantaggio qui: più il canale diretto pesa, meno dipendete dalla correttezza di schede che non controllate.</p>
+
+<h2>Perché in questo articolo non ci sono importi</h2>
+
+<p>Avrete letto cifre precise, in giro. Le abbiamo cercate anche noi: le fonti di settore non concordano né sugli importi né su alcune date di decorrenza, e in più <strong>una parte delle sanzioni e dei requisiti è regionale</strong>, quindi una cifra valida in Campania può non valerlo in Lombardia. Pubblicare un numero sbagliato, in un articolo che qualcuno userà per decidere, è peggio che non pubblicarlo.</p>
+
+<div class="callout-tip">
+<strong>Dove verificare, con le fonti di prima mano:</strong>
+<ul>
+<li><strong>Ministero del Turismo — BDSR:</strong> richiesta del CIN, stato della pratica, dati registrati dell'unità.</li>
+<li><strong>Normattiva</strong> per il testo vigente dell'art. 13-<em>ter</em> del DL 145/2023 e della legge di conversione 191/2023.</li>
+<li><strong>EUR-Lex</strong> per il testo del Regolamento (UE) 2024/1028.</li>
+<li><strong>Il portale turistico della vostra Regione</strong> per il codice regionale, i requisiti e le sanzioni locali.</li>
+<li><strong>Il vostro commercialista</strong> per la parte fiscale, che qui non è trattata.</li>
+</ul>
+Se una cifra non viene da una di queste fonti, trattatela come un'indicazione, non come un dato.
+</div>
+
+<h2>Domande che ci fanno più spesso</h2>
+
+<h3>Ho un hotel, non un affitto breve: mi riguarda?</h3>
+
+<p>Il CIN riguarda anche le strutture ricettive alberghiere, quindi sì per quella parte. Il Regolamento europeo è pensato per gli affitti a breve termine intermediati da piattaforme: vi riguarda nella misura in cui vendete tramite quei canali.</p>
+
+<h3>Se affitto solo tramite una sola piattaforma devo fare meno?</h3>
+
+<p>Gli adempimenti sono gli stessi, ma avete un punto di esposizione in meno — e un rischio di concentrazione in più: se quell'annuncio viene sospeso per un dato incoerente, l'attività si ferma del tutto.</p>
+
+<h3>La piattaforma trasmette i dati: devo ancora comunicare gli alloggiati?</h3>
+
+<p>Sì. Sono due flussi distinti, con basi giuridiche e destinatari diversi. La comunicazione alla Questura tramite Alloggiati Web resta un obbligo a vostro carico.</p>
+
+<h3>Devo togliere il CIN dagli annunci per privacy?</h3>
+
+<p>No, è l'opposto: la pubblicazione negli annunci è parte dell'obbligo. È un codice identificativo dell'immobile, non un dato personale da proteggere.</p>
+
+<h3>Cambia qualcosa se gestisco gli immobili per conto di altri?</h3>
+
+<p>Cambia la quantità di lavoro, non la sostanza: ogni unità ha il suo codice e i suoi dati, e la coerenza va verificata per ciascuna. È il caso in cui l'automazione dei canali passa dall'essere comoda all'essere necessaria.</p>
+
+<h2>In sintesi</h2>
+
+<p>Dal 20 maggio 2026 il CIN non è più un adempimento da archiviare: è la chiave con cui annunci, registri e dati di attività vengono messi a confronto. Il lavoro da fare non è capire una norma complicata — è mettere in ordine informazioni che probabilmente avete già, sparse su canali diversi, scritte in modi diversi.</p>
+
+<p>Mezz'ora di controllo oggi vale più di qualsiasi lettura sulle sanzioni. E, come quasi sempre in questi casi, la pulizia serve comunque: un cliente che trova lo stesso indirizzo e gli stessi dati su tutti i canali si fida di più, indipendentemente da chi altro li sta confrontando.</p>
+
+<div style="background:linear-gradient(135deg,#f59e0b,#dc2626);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Mettiamo in ordine i vostri canali, una volta sola</h3>
+  <p style="color:#fef3c7;margin-bottom:24px;">Censimento di tutti gli annunci attivi, allineamento dei dati con la BDSR, chiusura delle schede fantasma e codice propagato da un punto unico. Lo facciamo per strutture e property manager in Campania.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#dc2626;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Parliamo del vostro caso</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<p><em>Questo articolo ha finalità informative e non costituisce consulenza legale o fiscale. Per la vostra situazione specifica, verificate sulle fonti ufficiali indicate sopra e sentite un professionista abilitato.</em></p>
+
+</div>]]></content:encoded><excerpt:encoded><![CDATA[CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.]]></excerpt:encoded><wp:post_id>9001</wp:post_id><wp:post_date><![CDATA[2026-10-21 09:00:00]]></wp:post_date><wp:post_date_gmt><![CDATA[2026-10-21 09:00:00]]></wp:post_date_gmt><wp:post_modified><![CDATA[2026-10-21 09:00:00]]></wp:post_modified><wp:post_modified_gmt><![CDATA[2026-10-21 09:00:00]]></wp:post_modified_gmt><wp:comment_status><![CDATA[closed]]></wp:comment_status><wp:ping_status><![CDATA[closed]]></wp:ping_status><wp:post_name><![CDATA[cin-regolamento-ue-affitti-brevi-annunci]]></wp:post_name><wp:status><![CDATA[draft]]></wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>0</wp:menu_order><wp:post_type><![CDATA[post]]></wp:post_type><wp:post_password /><wp:is_sticky>0</wp:is_sticky><category domain="category" nicename="normativa-e-compliance"><![CDATA[Normativa & Compliance]]></category><category domain="post_tag" nicename="cin"><![CDATA[CIN]]></category><category domain="post_tag" nicename="normativa"><![CDATA[normativa]]></category><category domain="post_tag" nicename="affitti-brevi"><![CDATA[affitti brevi]]></category><category domain="post_tag" nicename="regolamento-ue"><![CDATA[regolamento UE]]></category><category domain="post_tag" nicename="bdsr"><![CDATA[BDSR]]></category><category domain="post_tag" nicename="property-manager"><![CDATA[property manager]]></category><category domain="post_tag" nicename="compliance"><![CDATA[compliance]]></category><category domain="post_tag" nicename="hotel"><![CDATA[hotel]]></category><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE affitti brevi 2026 | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_focuskw]]></wp:meta_key><wp:meta_value><![CDATA[cin affitti brevi]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-title]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE: cosa viene controllato davvero dal 2026]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-description]]></wp:meta_key><wp:meta_value><![CDATA[Il Regolamento UE 2024/1028 non vi chiede un adempimento in più: rende verificabile in automatico quello che avete già. Come funziona il confronto fra annunci, BDSR e dati di attività, i cinque punti in cui si rompe sempre, e perché in questo articolo non troverete importi di sanzioni.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_title]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE affitti brevi 2026 | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_description]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_focus_keyword]]></wp:meta_key><wp:meta_value><![CDATA[cin affitti brevi]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_title]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE affitti brevi 2026 | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_desc]]></wp:meta_key><wp:meta_value><![CDATA[CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_analysis_target_kw]]></wp:meta_key><wp:meta_value><![CDATA[cin affitti brevi]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_reading_time]]></wp:meta_key><wp:meta_value><![CDATA[9]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_secondary_keywords]]></wp:meta_key><wp:meta_value><![CDATA[regolamento ue 2024/1028, codice identificativo nazionale, BDSR ministero del turismo, obblighi annunci affitti brevi, normativa affitti brevi 2026, property manager adempimenti]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_article]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "Article", "headline": "CIN e Regolamento UE sugli Affitti Brevi: Cosa Viene Controllato Davvero dal 2026", "description": "CIN e Regolamento UE 2024/1028: come funziona il controllo dei dati dal 20 maggio 2026, i cinque errori più frequenti e la checklist da fare in mezz'ora.", "image": "https://naplesexperiences.com/wp-content/uploads/blog/cin-regolamento-ue-affitti-brevi-annunci.jpg", "author": {"@type": "Organization", "name": "Experiences Srl", "url": "https://naplesexperiences.com"}, "publisher": {"@type": "Organization", "name": "Experiences Srl", "logo": {"@type": "ImageObject", "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"}}, "datePublished": "2026-10-21", "dateModified": "2026-10-21", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://naplesexperiences.com/blog/cin-regolamento-ue-affitti-brevi-annunci/"}, "keywords": "regolamento ue 2024/1028, codice identificativo nazionale, BDSR ministero del turismo, obblighi annunci affitti brevi, normativa affitti brevi 2026, property manager adempimenti", "articleSection": "Normativa & Compliance", "wordCount": 1964}]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_faq]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ho un hotel, non un affitto breve: il CIN mi riguarda?", "acceptedAnswer": {"@type": "Answer", "text": "Il CIN riguarda anche le strutture ricettive alberghiere, quindi sì per quella parte. Il Regolamento (UE) 2024/1028 è pensato per gli affitti a breve termine intermediati da piattaforme: vi riguarda nella misura in cui vendete tramite quei canali."}}, {"@type": "Question", "name": "Se affitto tramite una sola piattaforma devo fare meno?", "acceptedAnswer": {"@type": "Answer", "text": "Gli adempimenti sono gli stessi, ma avete un punto di esposizione in meno e un rischio di concentrazione in più: se quell'annuncio viene sospeso per un dato incoerente, l'attività si ferma del tutto."}}, {"@type": "Question", "name": "La piattaforma trasmette i dati: devo ancora comunicare gli alloggiati?", "acceptedAnswer": {"@type": "Answer", "text": "Sì. Sono due flussi distinti, con basi giuridiche e destinatari diversi. La comunicazione alla Questura tramite Alloggiati Web resta un obbligo a vostro carico."}}, {"@type": "Question", "name": "Devo togliere il CIN dagli annunci per motivi di privacy?", "acceptedAnswer": {"@type": "Answer", "text": "No, è l'opposto: la pubblicazione negli annunci è parte dell'obbligo. È un codice identificativo dell'immobile, non un dato personale da proteggere."}}, {"@type": "Question", "name": "Cambia qualcosa se gestisco immobili per conto di altri?", "acceptedAnswer": {"@type": "Answer", "text": "Cambia la quantità di lavoro, non la sostanza: ogni unità ha il suo codice e i suoi dati, e la coerenza va verificata per ciascuna. È il caso in cui l'automazione dei canali passa dall'essere comoda all'essere necessaria."}}]}]]></wp:meta_value></wp:postmeta></item><item><title>Accessibilità del Sito: la Vostra Struttura è Esente? (Sì, Probabilmente — Ma Non per il 2030)</title><link>https://naplesexperiences.com/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese/</link><pubDate>Wed, 28 Oct 2026 09:00:00 +0000</pubDate><dc:creator><![CDATA[admin]]></dc:creator><guid isPermaLink="false">https://naplesexperiences.com/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese/</guid><description /><content:encoded><![CDATA[<div class="prose-blog">
+
+<p class="lead"><strong>Due cose che vi hanno detto sull'accessibilità del sito sono probabilmente sbagliate.</strong> La prima è che riguarda tutti e che vi serve un intervento urgente, di solito proposta da chi vende l'intervento. La seconda è che avete tempo fino al 2030, e vi ha fatto chiudere il discorso. La realtà è più semplice della prima e meno rassicurante della seconda: molte strutture ricettive <em>sono</em> esentate, per un motivo preciso che si verifica in cinque minuti — e quel «fino al 2030» non vuol dire quello che sembra.</p>
+
+<p>Qui spieghiamo come si capisce da quale parte state, cosa dicono esattamente le Linee guida dell'Agenzia per l'Italia Digitale, e perché una parte del lavoro conviene farla comunque.</p>
+
+<h2>Di cosa stiamo parlando</h2>
+
+<p>L'European Accessibility Act è la direttiva europea 2019/882, recepita in Italia con il <strong>decreto legislativo 82/2022</strong>. Non riguarda solo i siti web: copre prodotti e servizi, dagli sportelli bancomat agli e-book. Gli obblighi sui servizi digitali si applicano <strong>dal 28 giugno 2025</strong>.</p>
+
+<p>L'autorità di vigilanza per i servizi è <strong>AgID</strong>, che nel marzo 2026 ha pubblicato le Linee guida attuative dell'articolo 21 del decreto: il documento che chiarisce chi è obbligato, a cosa e con quali eccezioni. È da lì che vengono le due citazioni che contano in questo articolo.</p>
+
+<h2>Prima domanda: siete una microimpresa?</h2>
+
+<p>È la domanda che decide tutto, e si risponde con due numeri. Le Linee guida riprendono la definizione del decreto:</p>
+
+<blockquote>
+<p>«microimpresa»: un'impresa che occupa meno di 10 persone e realizza un fatturato annuo oppure un totale di bilancio annuo non superiore a 2 milioni di euro</p>
+</blockquote>
+
+<p>E, sull'ambito soggettivo, una frase di sette parole:</p>
+
+<blockquote>
+<p>Le microimprese sono esentate dall'osservanza degli obblighi di accessibilità.</p>
+</blockquote>
+
+<div class="callout-info">
+<strong>Come si legge il test.</strong> Servono entrambe le condizioni: meno di dieci persone occupate <em>e</em> non più di due milioni di fatturato annuo oppure di totale di bilancio. Un B&amp;B con tre dipendenti e 400.000 euro di ricavi è una microimpresa. Un hotel con 24 dipendenti non lo è, anche se fattura un milione. Sul conteggio delle persone, attenzione alla stagionalità: il riferimento è alle persone occupate dall'impresa, non ai dipendenti presenti ad agosto — se siete vicini alla soglia, è un calcolo da far fare al commercialista, non a occhio.
+</div>
+
+<p>Per la maggior parte delle strutture ricettive campane che seguiamo — B&amp;B, affittacamere, case vacanza, piccoli hotel a gestione familiare, agenzie di tour con due o tre persone — la risposta è sì, e l'esenzione si applica. Chi vi ha detto il contrario, o non ha letto le Linee guida, o aveva qualcosa da vendervi.</p>
+
+<h3>Le tre situazioni in cui l'esenzione non vi copre</h3>
+
+<p>Non è un assegno in bianco. Tre casi da verificare:</p>
+
+<ol>
+<li><strong>Siete cresciuti.</strong> Il test si fa sui dati attuali, non su quelli del giorno in cui avete aperto. Una struttura che ha superato i dieci addetti due stagioni fa non è più esentata, e nessuno gliel'ha notificato.</li>
+<li><strong>L'esenzione vale per i servizi.</strong> Il regime dei <em>prodotti</em> è diverso: se oltre a vendere soggiorni fabbricate o distribuite dispositivi, quella parte va guardata a sé. Caso raro nel turismo, ma esiste.</li>
+<li><strong>Il gruppo conta, non l'insegna.</strong> Se la struttura fa parte di una realtà più grande, il test si fa sull'impresa, non sul singolo immobile.</li>
+</ol>
+
+<h2>Seconda domanda: e se non siamo una microimpresa?</h2>
+
+<p>Allora il punto è capire se il servizio che offrite online rientra nell'ambito del decreto. I servizi coperti sono un elenco chiuso: comunicazioni elettroniche, accesso a servizi di media audiovisivi, trasporto passeggeri, servizi bancari per consumatori, e-book e <strong>servizi di commercio elettronico</strong>.</p>
+
+<p>È l'ultima voce quella che riguarda il turismo, e le Linee guida la definiscono come servizi</p>
+
+<blockquote>
+<p>forniti a distanza, tramite siti web e servizi per dispositivi mobili, per via elettronica e su richiesta individuale di un consumatore al fine di concludere un contratto di consumo</p>
+</blockquote>
+
+<p>Un <strong>motore di prenotazione</strong> sul vostro sito è esattamente questo: l'ospite, da remoto, conclude un contratto di consumo. Lo stesso vale per il carrello con cui vendete i tour. Un sito puramente vetrina, che non vende niente online e rimanda al telefono o alla mail, sta in una posizione diversa — ma è anche un sito che sta lasciando a Booking tutto il <a href="/blog/aumentare-prenotazioni-dirette-hotel-disintermediazione/">canale diretto</a>, che è un problema più grosso dell'accessibilità.</p>
+
+<h2>Il «fino al 2030»: cosa dice davvero</h2>
+
+<p>Qui sta l'equivoco più diffuso. La frase circola come «i siti già esistenti hanno tempo fino al 2030». Le Linee guida dicono un'altra cosa, in tre pezzi:</p>
+
+<blockquote>
+<p>fino al 28 giugno 2030 i fornitori di servizi possono continuare a prestare i loro servizi utilizzando prodotti (di cui all'articolo 1 comma 2 del decreto) che utilizzavano in modo legittimo prima di tale data per fornire servizi analoghi.</p>
+<p>Inoltre, i contratti di servizi conclusi prima del 28 giugno 2025 possono essere mantenuti invariati fino alla loro scadenza, ma per non più di cinque anni da tale data.</p>
+</blockquote>
+
+<p>Più i terminali self-service già in uso, utilizzabili fino alla fine della loro vita economica utile e comunque non oltre vent'anni dalla messa in funzione.</p>
+
+<div class="callout-warning">
+<strong>Nessuno di questi tre casi è «il mio sito web».</strong> Il primo riguarda i <em>prodotti</em> — apparecchiature hardware — già legittimamente in uso. Il secondo riguarda i <em>contratti di servizio</em> firmati prima del 28 giugno 2025, che restano in piedi fino a scadenza e per massimo cinque anni. Il terzo i chioschi self-service. Un sito di prenotazione non è un prodotto in uso né un contratto: è il servizio stesso, e per il servizio la data è il 28 giugno 2025. Il 2030 non è una proroga generale: è il tetto massimo di tre deroghe specifiche.
+</div>
+
+<div style="background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Vi diciamo in mezz'ora da che parte state</h3>
+  <p style="color:#e0f2fe;margin-bottom:24px;">Verifichiamo se l'esenzione per microimprese vi copre, se il vostro motore di prenotazione rientra nell'ambito del decreto e quali barriere reali ha il sito oggi. Risposta chiara, senza allarmismi e senza vendervi un bollino.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#0369a1;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Richiedi la verifica</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<h2>L'«onere sproporzionato» e la trappola dei finanziamenti</h2>
+
+<p>Chi è obbligato ha una via d'uscita parziale: dimostrare che l'adeguamento comporta un onere sproporzionato, secondo i criteri dell'allegato V del decreto. Non è un'autocertificazione verbale — va valutata, <strong>documentata</strong> e comunicata ad AgID, che va informata «immediatamente».</p>
+
+<p>E c'è una clausola che taglia fuori molti:</p>
+
+<blockquote>
+<p>I fornitori di servizi che ricevono finanziamenti pubblici o privati, al fine di migliorare l'accessibilità, non possono invocare l'onere sproporzionato.</p>
+</blockquote>
+
+<p>Se avete preso contributi destinati alla digitalizzazione accessibile — bandi regionali, fondi PNRR, misure sul turismo — quella strada è chiusa. Vale la pena rileggere cosa c'era scritto nei bandi che avete vinto prima di contare su questa eccezione.</p>
+
+<h2>Chi controlla, e cosa rischia chi</h2>
+
+<p>AgID valuta la conformità dei servizi ed esamina i reclami: un consumatore che ritiene un servizio non fruibile per una disabilità può presentare reclamo all'Agenzia. Le modalità di verifica, accertamento e sanzione sono rimesse a un regolamento di AgID, con una piattaforma dedicata a gestire i flussi.</p>
+
+<p>Sull'entità, le Linee guida indicano una fascia molto alta: la sanzione fino al 5 per cento del fatturato riguarda i soggetti erogatori con fatturato medio, negli ultimi tre anni, <strong>superiore a cinquecento milioni di euro</strong>. Non è il vostro caso, e dirvi il contrario sarebbe disonesto.</p>
+
+<p>Il che porta al punto vero di questo articolo: se non siete obbligati e non rischiate una sanzione, perché dovreste fare qualcosa?</p>
+
+<h2>Perché conviene comunque, con numeri diversi</h2>
+
+<p>Non per paura. Per tre ragioni commerciali.</p>
+
+<p><strong>Il mercato.</strong> Una quota significativa dei viaggiatori europei ha una disabilità o una limitazione funzionale, e la percentuale sale con l'età — e l'età media del turista europeo con capacità di spesa sale anche lei. Un ospite che non riesce a completare la prenotazione sul vostro sito non vi scrive per segnalarlo: va su Booking, dove il modulo funziona.</p>
+
+<p><strong>La sovrapposizione.</strong> Quasi tutti gli interventi di accessibilità sono interventi di usabilità. Contrasto sufficiente, testi ingrandibili, pulsanti raggiungibili col pollice, moduli con etichette chiare, errori spiegati a parole: sono le stesse cose che alzano la conversione per chiunque, con o senza disabilità. Un modulo di prenotazione accessibile è un modulo di prenotazione che funziona.</p>
+
+<p><strong>La leggibilità per le macchine.</strong> Markup semantico, testi alternativi, struttura dei titoli coerente: è il materiale su cui lavorano i lettori di schermo, ed è lo stesso su cui lavorano Google e gli <a href="/blog/farsi-trovare-chatgpt-assistenti-ai-hotel/">assistenti AI</a>. Un sito scritto bene sotto il cofano è più accessibile <em>e</em> più citabile. Lo stesso lavoro, due risultati.</p>
+
+<h2>Le otto cose che risolvono la maggior parte dei problemi</h2>
+
+<p>Sui siti di strutture ricettive le barriere ricorrenti sono sempre le stesse. In ordine di rapporto fra fatica e risultato:</p>
+
+<ol>
+<li><strong>Contrasto dei testi.</strong> Il grigio chiaro su bianco è l'errore estetico più frequente e il più facile da correggere: si cambia un colore nel foglio di stile.</li>
+<li><strong>Testi alternativi sulle immagini</strong> che portano informazione. Non su quelle decorative, dove un alt vuoto è la scelta giusta.</li>
+<li><strong>Il modulo di prenotazione navigabile da tastiera</strong>, con l'ordine di tabulazione sensato e il focus visibile. È il punto dove si perdono le prenotazioni.</li>
+<li><strong>Etichette vere sui campi</strong>, non solo testo segnaposto che scompare quando si inizia a scrivere.</li>
+<li><strong>Messaggi di errore che dicono cosa fare</strong>, accanto al campo sbagliato, non un bordo rosso senza spiegazione.</li>
+<li><strong>Titoli in ordine</strong> — un <code>h1</code>, poi <code>h2</code>, poi <code>h3</code> — senza salti e senza usare i titoli per fare grafica.</li>
+<li><strong>Niente che si muova da solo</strong> senza un modo per fermarlo: caroselli automatici e video in autoplay sono un ostacolo per molti e un fastidio per tutti.</li>
+<li><strong>Tocchi grandi abbastanza</strong> sui telefoni, con spazio fra un pulsante e l'altro.</li>
+</ol>
+
+<div class="callout-tip">
+<strong>Due controlli gratuiti, dieci minuti in tutto:</strong> provate a completare una prenotazione sul vostro sito <strong>usando solo la tastiera</strong> — Tab per spostarsi, Invio per confermare. Se vi bloccate, lo stesso blocco ferma chi non può usare il mouse. Poi aprite il sito su un telefono e ingrandite i caratteri al massimo nelle impostazioni di sistema: se il testo si sovrappone o i pulsanti escono dallo schermo, avete trovato il secondo lavoro.
+</div>
+
+<h2>Cosa non comprare</h2>
+
+<p>Il mercato dell'accessibilità ha il suo repertorio di scorciatoie. Due avvertenze.</p>
+
+<p>Gli <strong>«overlay» di accessibilità</strong> — quei widget con l'icona dell'omino che aggiungono una barra di comandi al sito — non rendono conforme un sito che non lo è. Agiscono sopra il problema senza toccarlo, confliggono spesso con i lettori di schermo che gli utenti già usano, e sono oggetto di critiche documentate da parte delle associazioni di persone con disabilità. Non sono una soluzione: sono un cerotto a pagamento, con un abbonamento annuale.</p>
+
+<p>I <strong>bollini e le certificazioni</strong> rilasciati da chi vende il servizio non hanno valore legale. La conformità è uno stato del sito, verificabile da chiunque sul sito stesso; un logo nel footer non la crea.</p>
+
+<h2>Domande che ci fanno più spesso</h2>
+
+<h3>Siamo una microimpresa: possiamo ignorare tutto?</h3>
+
+<p>Dal punto di vista dell'obbligo, l'esenzione è esplicita. Dal punto di vista commerciale no: i clienti che non riescono a prenotare li perdete ugualmente, e la metà degli interventi della lista sopra costa qualche ora di lavoro.</p>
+
+<h3>Il mio sito è su un CMS standard, è già accessibile?</h3>
+
+<p>No. Un buon CMS vi dà le basi — struttura corretta, campi per i testi alternativi — ma le barriere nascono quasi sempre nel tema, nel motore di prenotazione e nei contenuti caricati. Nessuna piattaforma rende accessibile un sito da sola.</p>
+
+<h3>Il motore di prenotazione è di un fornitore esterno: di chi è la responsabilità?</h3>
+
+<p>Verso l'ospite, vostra: è il vostro sito che non funziona. Verso il fornitore, è questione di contratto — ed è una domanda legittima da fargli, con richiesta di risposta scritta. Se il loro modulo non è navigabile da tastiera, è un problema che hanno anche tutti i loro altri clienti.</p>
+
+<h3>Devo pubblicare una dichiarazione di accessibilità?</h3>
+
+<p>La dichiarazione di accessibilità è un adempimento legato alla normativa precedente (legge 4/2004), che per i fornitori dei servizi digitali del decreto è stata disapplicata su alcuni elementi a partire dal 28 giugno 2025, inclusa la dichiarazione. Se la vostra situazione specifica lo richiede, verificatelo caso per caso: è uno dei punti su cui conviene una risposta puntuale e non una regola generale.</p>
+
+<h3>Quanto costa mettere a posto un sito di una struttura?</h3>
+
+<p>Dipende da com'è fatto. Sui punti della lista — colori, etichette, tastiera, titoli, caroselli — si parla di ore, non di mesi, se il sito è costruito in modo sano. Se invece il tema genera markup disordinato o il motore di prenotazione è una scatola chiusa, il costo reale è rifare quei pezzi, e tanto vale metterlo in conto al prossimo rifacimento.</p>
+
+<h2>In sintesi</h2>
+
+<p>Se occupate meno di dieci persone e non superate i due milioni, le Linee guida AgID vi esentano, in una frase sola, e potete smettere di preoccuparvi delle scadenze. Se siete più grandi e vendete online, la data da ricordare è il 28 giugno 2025 — passata — e il «fino al 2030» che avete sentito riguarda prodotti già in uso e contratti firmati prima, non il vostro sito.</p>
+
+<p>In entrambi i casi, il lavoro concreto è lo stesso ed è piccolo: contrasto, tastiera, moduli, titoli. Si fa per gli ospiti che altrimenti prenotano da un'altra parte, non per un ispettore.</p>
+
+<div style="background:linear-gradient(135deg,#f59e0b,#dc2626);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Facciamo i due controlli insieme</h3>
+  <p style="color:#fef3c7;margin-bottom:24px;">Proviamo a prenotare sul vostro sito solo da tastiera e con i caratteri ingranditi, vi mandiamo le barriere trovate in ordine di impatto sulle conversioni e vi diciamo quali si risolvono in un'ora. Niente overlay, niente bollini.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#dc2626;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Parliamo del vostro sito</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<p><em>Le citazioni in questo articolo provengono dalle Linee guida sull'accessibilità dei servizi in attuazione dell'articolo 21 del d.lgs. 82/2022, pubblicate da AgID. L'articolo ha finalità informative e non costituisce consulenza legale: per la vostra situazione specifica verificate il testo del decreto su Normattiva, le Linee guida sul sito AgID e sentite un professionista abilitato.</em></p>
+
+</div>]]></content:encoded><excerpt:encoded><![CDATA[European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.]]></excerpt:encoded><wp:post_id>9002</wp:post_id><wp:post_date><![CDATA[2026-10-28 09:00:00]]></wp:post_date><wp:post_date_gmt><![CDATA[2026-10-28 09:00:00]]></wp:post_date_gmt><wp:post_modified><![CDATA[2026-10-28 09:00:00]]></wp:post_modified><wp:post_modified_gmt><![CDATA[2026-10-28 09:00:00]]></wp:post_modified_gmt><wp:comment_status><![CDATA[closed]]></wp:comment_status><wp:ping_status><![CDATA[closed]]></wp:ping_status><wp:post_name><![CDATA[accessibilita-sito-hotel-eaa-esenzione-microimprese]]></wp:post_name><wp:status><![CDATA[draft]]></wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>0</wp:menu_order><wp:post_type><![CDATA[post]]></wp:post_type><wp:post_password /><wp:is_sticky>0</wp:is_sticky><category domain="category" nicename="normativa-e-compliance"><![CDATA[Normativa & Compliance]]></category><category domain="post_tag" nicename="accessibilita"><![CDATA[accessibilità]]></category><category domain="post_tag" nicename="normativa"><![CDATA[normativa]]></category><category domain="post_tag" nicename="european-accessibility-act"><![CDATA[european accessibility act]]></category><category domain="post_tag" nicename="agid"><![CDATA[AgID]]></category><category domain="post_tag" nicename="wcag"><![CDATA[WCAG]]></category><category domain="post_tag" nicename="sito-web"><![CDATA[sito web]]></category><category domain="post_tag" nicename="compliance"><![CDATA[compliance]]></category><category domain="post_tag" nicename="hotel"><![CDATA[hotel]]></category><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key><wp:meta_value><![CDATA[Accessibilità sito hotel: esenzione microimprese | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key><wp:meta_value><![CDATA[European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_focuskw]]></wp:meta_key><wp:meta_value><![CDATA[accessibilità sito hotel]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-title]]></wp:meta_key><wp:meta_value><![CDATA[Accessibilità del sito: la vostra struttura è esente? (Sì, probabilmente)]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-description]]></wp:meta_key><wp:meta_value><![CDATA[Le Linee guida AgID lo dicono in sette parole: «Le microimprese sono esentate dall'osservanza degli obblighi di accessibilità». Il test si fa con due numeri. Ma il «fino al 2030» che vi hanno raccontato riguarda prodotti già in uso e contratti firmati prima, non il vostro sito di prenotazione.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_title]]></wp:meta_key><wp:meta_value><![CDATA[Accessibilità sito hotel: esenzione microimprese | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_description]]></wp:meta_key><wp:meta_value><![CDATA[European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_focus_keyword]]></wp:meta_key><wp:meta_value><![CDATA[accessibilità sito hotel]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_title]]></wp:meta_key><wp:meta_value><![CDATA[Accessibilità sito hotel: esenzione microimprese | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_desc]]></wp:meta_key><wp:meta_value><![CDATA[European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_analysis_target_kw]]></wp:meta_key><wp:meta_value><![CDATA[accessibilità sito hotel]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_reading_time]]></wp:meta_key><wp:meta_value><![CDATA[10]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_secondary_keywords]]></wp:meta_key><wp:meta_value><![CDATA[european accessibility act, d.lgs 82/2022, esenzione microimprese accessibilità, linee guida AgID accessibilità, accessibilità motore di prenotazione, WCAG strutture ricettive]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_article]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "Article", "headline": "Accessibilità del Sito: la Vostra Struttura è Esente? (Sì, Probabilmente — Ma Non per il 2030)", "description": "European Accessibility Act: il test delle microimprese, cosa dicono le Linee guida AgID e perché il «fino al 2030» non riguarda il vostro sito.", "image": "https://naplesexperiences.com/wp-content/uploads/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese.jpg", "author": {"@type": "Organization", "name": "Experiences Srl", "url": "https://naplesexperiences.com"}, "publisher": {"@type": "Organization", "name": "Experiences Srl", "logo": {"@type": "ImageObject", "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"}}, "datePublished": "2026-10-28", "dateModified": "2026-10-28", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://naplesexperiences.com/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese/"}, "keywords": "european accessibility act, d.lgs 82/2022, esenzione microimprese accessibilità, linee guida AgID accessibilità, accessibilità motore di prenotazione, WCAG strutture ricettive", "articleSection": "Normativa & Compliance", "wordCount": 2295}]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_faq]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Siamo una microimpresa: possiamo ignorare l'accessibilità?", "acceptedAnswer": {"@type": "Answer", "text": "Dal punto di vista dell'obbligo, le Linee guida AgID prevedono un'esenzione esplicita per le microimprese. Dal punto di vista commerciale no: i clienti che non riescono a prenotare li perdete ugualmente, e metà degli interventi utili costa qualche ora di lavoro."}}, {"@type": "Question", "name": "Il mio sito è su un CMS standard, è già accessibile?", "acceptedAnswer": {"@type": "Answer", "text": "No. Un buon CMS fornisce le basi — struttura corretta, campi per i testi alternativi — ma le barriere nascono quasi sempre nel tema, nel motore di prenotazione e nei contenuti caricati. Nessuna piattaforma rende accessibile un sito da sola."}}, {"@type": "Question", "name": "Il motore di prenotazione è di un fornitore esterno: di chi è la responsabilità?", "acceptedAnswer": {"@type": "Answer", "text": "Verso l'ospite è vostra: è il vostro sito che non funziona. Verso il fornitore è questione di contratto, ed è una domanda legittima da porgli chiedendo risposta scritta. Se il loro modulo non è navigabile da tastiera, è un problema che hanno anche tutti i loro altri clienti."}}, {"@type": "Question", "name": "Gli overlay di accessibilità rendono conforme un sito?", "acceptedAnswer": {"@type": "Answer", "text": "No. I widget che aggiungono una barra di comandi al sito agiscono sopra il problema senza toccarlo, confliggono spesso con i lettori di schermo che gli utenti già usano e sono oggetto di critiche documentate da parte delle associazioni di persone con disabilità. Anche i bollini rilasciati da chi vende il servizio non hanno valore legale."}}, {"@type": "Question", "name": "Quanto costa mettere a posto il sito di una struttura ricettiva?", "acceptedAnswer": {"@type": "Answer", "text": "Dipende da com'è fatto. Su contrasto dei colori, etichette dei moduli, navigazione da tastiera, gerarchia dei titoli e caroselli si parla di ore, non di mesi, se il sito è costruito in modo sano. Se il tema genera markup disordinato o il motore di prenotazione è una scatola chiusa, il costo reale è rifare quei pezzi."}}]}]]></wp:meta_value></wp:postmeta></item><item><title>Il Banner dei Cookie che Non Serve a Niente: Consenso, Dati Sbagliati e Budget Buttato</title><link>https://naplesexperiences.com/blog/banner-cookie-hotel-consenso-dati-analytics/</link><pubDate>Wed, 04 Nov 2026 09:00:00 +0000</pubDate><dc:creator><![CDATA[admin]]></dc:creator><guid isPermaLink="false">https://naplesexperiences.com/blog/banner-cookie-hotel-consenso-dati-analytics/</guid><description /><content:encoded><![CDATA[<div class="prose-blog">
+
+<p class="lead"><strong>Il banner dei cookie sul vostro sito ha buone probabilità di essere la cosa peggiore di entrambi i mondi:</strong> non vi mette al riparo da niente, perché i cookie partono prima che l'ospite clicchi, e intanto rovina i dati su cui decidete dove spendere il budget. È il risultato tipico di un plugin installato in cinque minuti nel 2022 e mai più guardato — e lo vediamo, in una forma o nell'altra, sulla maggior parte dei siti di strutture ricettive che ci passano sotto gli occhi.</p>
+
+<p>Questo articolo spiega cosa chiede davvero il Garante, quali sono i tre errori che si ripetono sempre, e perché la questione è meno un problema legale e più un problema di qualità dei dati. Con un controllo da fare da soli in dieci minuti.</p>
+
+<h2>Le regole, in breve</h2>
+
+<p>Il riferimento italiano sono le <strong>Linee guida sui cookie e altri strumenti di tracciamento</strong> del Garante per la protezione dei dati personali, adottate con provvedimento del <strong>10 giugno 2021</strong> e pienamente applicabili dal <strong>10 gennaio 2022</strong>. Non è una novità del 2026: è una scadenza di quattro anni fa, che molti siti non hanno mai raggiunto.</p>
+
+<p>I punti che riguardano un sito turistico sono cinque.</p>
+
+<ol>
+<li><strong>Prima del consenso non si traccia.</strong> I cookie e gli strumenti di tracciamento non tecnici — analytics di terze parti, pixel pubblicitari, mappe, video incorporati, chat — non possono essere attivati finché l'utente non ha espresso una scelta.</li>
+<li><strong>Lo scorrimento non è consenso.</strong> Lo scroll da solo non è una manifestazione idonea di volontà. Può rientrare in un percorso più articolato che costituisca un'azione positiva, ma «ha continuato a leggere, quindi ha accettato» non è una base valida.</li>
+<li><strong>Rifiutare deve essere facile come accettare.</strong> L'utente deve poter rifiutare tutti i cookie non necessari con un clic, già dal primo livello del banner — anche chiudendo la finestra con la X, che equivale a un rifiuto.</li>
+<li><strong>Niente cookie wall.</strong> Vincolare l'accesso al sito all'accettazione è di norma illegittimo, salvo che siano garantiti contenuti o servizi equivalenti anche senza consenso.</li>
+<li><strong>Un no vale sei mesi.</strong> Chi ha rifiutato non deve rivedere la richiesta a ogni visita: la riproposizione può avvenire, salvo casi specifici, dopo almeno sei mesi.</li>
+</ol>
+
+<div class="callout-info">
+<strong>Cosa non richiede consenso.</strong> I cookie tecnici — quelli necessari a far funzionare il sito: sessione, carrello, preferenze di lingua, sicurezza — non hanno bisogno di consenso. Serve l'informativa, non il consenso. È un punto importante per i siti con motore di prenotazione: bloccare anche quelli, per eccesso di zelo, rompe il sito senza alcun beneficio.
+</div>
+
+<h2>I tre errori che si ripetono sempre</h2>
+
+<h3>1. I cookie partono prima del clic</h3>
+
+<p>È il più frequente e il più grave, ed è invisibile dall'esterno: il banner compare correttamente, ma Google Analytics, il pixel di Meta e la mappa incorporata si sono già caricati mentre l'utente leggeva. Il banner, in quel caso, non ha nessun effetto — è un elemento grafico.</p>
+
+<p>Perché succede? Quasi sempre perché gli script di tracciamento sono stati messi nel tema, o aggiunti da un plugin di marketing, o inseriti da un servizio esterno (un connettore di statistiche, un sistema di prenotazione, un widget di recensioni) che il plugin dei cookie non conosce e quindi non blocca. Il banner gestisce solo quello che è stato collegato al banner.</p>
+
+<h3>2. «Accetta» è un pulsante, «Rifiuta» è un link grigio in fondo</h3>
+
+<p>Il secondo errore è di progettazione. Un pulsante verde grande «Accetta tutti» e, sotto, in corpo 11 grigio chiaro, «gestisci le preferenze» che apre un pannello con sei interruttori da configurare uno per uno. Formalmente il rifiuto esiste; sostanzialmente non è una scelta equivalente.</p>
+
+<p>La forma corretta è più semplice da realizzare di quella sbagliata: due pulsanti dello stesso peso visivo, «Accetta» e «Rifiuta», più un terzo collegamento per personalizzare. Tre elementi, prima riga, fine.</p>
+
+<h3>3. Il banner ricompare a ogni visita</h3>
+
+<p>Succede quando la scelta dell'utente non viene memorizzata, o viene memorizzata con una scadenza di poche ore. Oltre a essere sbagliato rispetto ai sei mesi, è il modo più efficace di insegnare agli ospiti a cliccare «Accetta» senza leggere — e di irritare chi torna sul sito per completare una prenotazione interrotta.</p>
+
+<h2>Il costo vero: i vostri dati vi stanno mentendo</h2>
+
+<p>Qui sta la parte che interessa più di tutte, e che nessuno collega al banner.</p>
+
+<p>Se il consenso è gestito male, i numeri su cui decidete sono rotti in uno dei due sensi, ed entrambi costano soldi.</p>
+
+<p><strong>Se tracciate prima del consenso</strong>, i dati sono completi ma raccolti in modo non conforme. Il rischio non è solo sanzionatorio: è che state costruendo il vostro marketing su una base che, il giorno in cui va messa a posto, cambia da sola — e vi ritrovate a confrontare stagioni non confrontabili.</p>
+
+<p><strong>Se bloccate tutto senza una gestione del consenso corretta</strong>, succede il contrario: perdete la metà dei dati e non sapete quale metà. Le campagne risultano meno efficaci di quanto sono, le conversioni da <a href="/blog/metasearch-google-hotel-ads-trivago-tripadvisor/">metasearch e Google Hotel Ads</a> non vengono attribuite, e finite per tagliare il canale che funzionava meglio perché «non porta prenotazioni».</p>
+
+<div class="callout-warning">
+<strong>Chi fa pubblicità con Google ha un vincolo in più.</strong> Per le campagne rivolte allo Spazio economico europeo, Google richiede l'uso del <strong>Consent Mode</strong> nella versione 2: lo stato del consenso deve essere comunicato ai tag di Google, in modo esplicito e prima che si attivino. Senza, la misurazione delle conversioni e il remarketing si degradano. Non è una questione di conformità normativa: è una condizione della piattaforma, e si tocca con mano sui dati delle campagne.
+</div>
+
+<p>La buona notizia è che un consenso gestito bene recupera una parte di quello che si perde: con il Consent Mode configurato correttamente, dagli utenti che hanno rifiutato arrivano comunque segnali aggregati e senza identificatori, abbastanza per stimare l'andamento. Il lavoro è lo stesso che serve per essere in regola. Si fa una volta.</p>
+
+<div style="background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Controlliamo cosa parte davvero sul vostro sito</h3>
+  <p style="color:#e0f2fe;margin-bottom:24px;">Apriamo il sito con gli strumenti di analisi di rete e vi diciamo esattamente quali tracciamenti si attivano prima del consenso, quali restano bloccati dopo l'accettazione e cosa manca al Consent Mode. Report con le evidenze, non un parere.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#0369a1;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Richiedi il controllo</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<h2>Il controllo da fare da soli, dieci minuti</h2>
+
+<p>Non serve un consulente per sapere com'è la situazione. Serve il browser.</p>
+
+<ol>
+<li><strong>Aprite il sito in una finestra anonima</strong>, così da partire senza cookie già salvati.</li>
+<li><strong>Aprite gli strumenti per sviluppatori</strong> (F12, o tasto destro → Ispeziona) e andate sulla scheda <strong>Rete</strong>.</li>
+<li><strong>Ricaricate la pagina e non toccate il banner.</strong> Nel filtro scrivete <code>google-analytics</code>, poi <code>googletagmanager</code>, poi <code>facebook</code>, poi <code>doubleclick</code>. Se compare qualcosa, quel tracciamento è partito senza consenso.</li>
+<li><strong>Guardate la scheda Applicazione → Cookie.</strong> Quanti ce ne sono prima di aver cliccato? Dovrebbero essere solo quelli tecnici del sito.</li>
+<li><strong>Poi guardate il banner come lo vede un ospite.</strong> Riuscite a rifiutare con un clic, senza aprire pannelli? La X chiude senza accettare?</li>
+<li><strong>Infine chiudete tutto, riaprite il sito</strong> (non in anonimo): il banner ricompare? Se sì, la scelta non viene memorizzata.</li>
+</ol>
+
+<p>Sei controlli. Se passano tutti, il vostro banner funziona e potete chiudere qui. Nella nostra esperienza, passano tutti in meno di un sito su cinque.</p>
+
+<h2>Cosa fare, in ordine</h2>
+
+<ol>
+<li><strong>Censite cosa carica il sito.</strong> La lista della scheda Rete è il vostro inventario reale, che quasi mai coincide con quello che pensavate di avere installato. Spesso si trovano pixel di campagne chiuse da due anni, ancora attivi.</li>
+<li><strong>Togliete quello che non usate.</strong> È il passaggio che nessuno fa e che risolve metà del problema: un tracciamento rimosso non va né bloccato né dichiarato, e il sito diventa più veloce.</li>
+<li><strong>Collegate tutto il resto al consenso</strong>, compresi i servizi incorporati — mappe, video, widget di recensioni, chat — che vanno caricati solo dopo la scelta. Fino a quel momento, al loro posto si mostra un segnaposto cliccabile.</li>
+<li><strong>Configurate il Consent Mode v2</strong> se fate pubblicità o misurate con strumenti Google, con i valori predefiniti su «negato» prima della scelta.</li>
+<li><strong>Sistemate il banner:</strong> due pulsanti equivalenti, X che rifiuta, memoria della scelta, e un modo per cambiare idea sempre raggiungibile — un collegamento nel footer basta.</li>
+<li><strong>Aggiornate la cookie policy</strong> con l'elenco effettivo, non con quello generico del plugin.</li>
+<li><strong>Rifate il controllo dei sei punti</strong> a cose fatte, e poi una volta a stagione: ogni plugin nuovo può reintrodurre il problema senza avvisare.</li>
+</ol>
+
+<p>Un effetto collaterale che vale la pena nominare: meno tracciamenti di terze parti significa pagine più leggere e più veloci, e un sito veloce converte meglio. Il punto 2 di questa lista si ripaga da solo.</p>
+
+<h2>«Ma non stanno per cambiare le regole europee?»</h2>
+
+<p>Sì, se ne discute — e no, non è un motivo per aspettare.</p>
+
+<p>Il pacchetto di semplificazione presentato dalla Commissione europea a fine 2025 prevede, fra le altre cose, di spostare la disciplina dei cookie dentro il GDPR, di rendere vincolanti i segnali di consenso impostati a livello di browser e di consolidare la regola dei sei mesi. Alla data di questo articolo è ancora una <strong>proposta in negoziato</strong>: deve passare da Parlamento e Consiglio, e la piena attuazione è attesa comunque anni dopo l'eventuale adozione.</p>
+
+<p>Due cose sono abbastanza chiare già ora. La prima è che <strong>i banner non spariranno del tutto</strong>: resteranno per l'informativa, per la richiesta periodica e per la revoca. La seconda è che il lavoro utile — sapere cosa carica il sito, non tracciare prima della scelta, memorizzare il consenso — è esattamente quello che serve in entrambi gli scenari. Non c'è niente da buttare.</p>
+
+<h2>Domande che ci fanno più spesso</h2>
+
+<h3>Ho un plugin a pagamento: non sono già a posto?</h3>
+
+<p>Un buon plugin è necessario e non sufficiente. Blocca quello che gli è stato detto di bloccare: gli script inseriti a mano nel tema, quelli caricati da un servizio esterno o quelli aggiunti da un altro plugin gli restano invisibili. Il controllo della scheda Rete serve proprio a vedere la differenza fra quello che il plugin crede di gestire e quello che il sito fa davvero.</p>
+
+<h3>Google Analytics si può usare senza consenso se anonimizzo?</h3>
+
+<p>È una valutazione che va fatta caso per caso e con cautela: le condizioni per trattare un sistema di statistiche come strumento tecnico sono strette e riguardano minimizzazione, assenza di incroci con altri dati e limiti alla condivisione con terzi. Nel dubbio, la strada solida è chiedere il consenso e configurare il Consent Mode, che è anche quella che vi lascia dati utilizzabili.</p>
+
+<h3>Se tolgo i pixel pubblicitari perdo il remarketing?</h3>
+
+<p>Perdete il remarketing basato su quei pixel per chi rifiuta, sì. Ma la base di pubblico più redditizia per una struttura non è un pixel: è la lista dei vostri ex ospiti, che è un dato di prima parte. È uno dei motivi per cui <a href="/blog/email-marketing-hotel-pre-stay-post-stay/">l'email marketing</a> ha ripreso valore proprio mentre il tracciamento di terze parti si restringeva.</p>
+
+<h3>Il banner mi fa perdere prenotazioni?</h3>
+
+<p>Un banner fatto bene no: due pulsanti chiari, scelta memorizzata, nessun riquadro che copre il modulo di prenotazione sul telefono. Un banner fatto male sì, e non per il consenso — perché copre metà schermo, ricompare a ogni pagina e si chiude male col pollice. È un problema di interfaccia prima che di privacy.</p>
+
+<h3>Siamo una struttura piccola, ci controlleranno mai?</h3>
+
+<p>Statisticamente, l'ispezione non è lo scenario probabile. Lo scenario probabile è un altro: decidere il budget della prossima stagione su numeri sbagliati. È da lì che arriva il costo reale, ogni anno, senza che nessuno vi contesti niente.</p>
+
+<h2>In sintesi</h2>
+
+<p>Il banner dei cookie è un adempimento noioso che quasi tutti hanno risolto nel modo che dà il massimo dei fastidi e il minimo dei benefici. Le regole italiane sono ferme da gennaio 2022 e non sono complicate: non tracciare prima della scelta, rendere il rifiuto facile come l'accettazione, ricordare la risposta.</p>
+
+<p>Il motivo per sistemarlo, però, non è la norma. È che senza un consenso gestito bene non sapete da dove arrivano le vostre prenotazioni — e quello è un problema che pagate ogni stagione.</p>
+
+<div style="background:linear-gradient(135deg,#f59e0b,#dc2626);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Consenso a posto e dati che tornano a funzionare</h3>
+  <p style="color:#fef3c7;margin-bottom:24px;">Inventario dei tracciamenti attivi, rimozione di quelli morti, blocco corretto degli altri, Consent Mode v2 configurato e banner che non copre il modulo di prenotazione. Una volta, fatto bene.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#dc2626;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Parliamo del vostro sito</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Scrivici su WhatsApp</a>
+  </p>
+</div>
+
+<p><em>Articolo a fini informativi, non consulenza legale. Il riferimento vincolante sono le Linee guida cookie del Garante per la protezione dei dati personali (provvedimento 10 giugno 2021, n. 231) e il testo del GDPR; per la vostra situazione specifica sentite un professionista abilitato.</em></p>
+
+</div>]]></content:encoded><excerpt:encoded><![CDATA[Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.]]></excerpt:encoded><wp:post_id>9003</wp:post_id><wp:post_date><![CDATA[2026-11-04 09:00:00]]></wp:post_date><wp:post_date_gmt><![CDATA[2026-11-04 09:00:00]]></wp:post_date_gmt><wp:post_modified><![CDATA[2026-11-04 09:00:00]]></wp:post_modified><wp:post_modified_gmt><![CDATA[2026-11-04 09:00:00]]></wp:post_modified_gmt><wp:comment_status><![CDATA[closed]]></wp:comment_status><wp:ping_status><![CDATA[closed]]></wp:ping_status><wp:post_name><![CDATA[banner-cookie-hotel-consenso-dati-analytics]]></wp:post_name><wp:status><![CDATA[draft]]></wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>0</wp:menu_order><wp:post_type><![CDATA[post]]></wp:post_type><wp:post_password /><wp:is_sticky>0</wp:is_sticky><category domain="category" nicename="normativa-e-compliance"><![CDATA[Normativa & Compliance]]></category><category domain="post_tag" nicename="cookie"><![CDATA[cookie]]></category><category domain="post_tag" nicename="privacy"><![CDATA[privacy]]></category><category domain="post_tag" nicename="gdpr"><![CDATA[GDPR]]></category><category domain="post_tag" nicename="consent-mode"><![CDATA[consent mode]]></category><category domain="post_tag" nicename="analytics"><![CDATA[analytics]]></category><category domain="post_tag" nicename="normativa"><![CDATA[normativa]]></category><category domain="post_tag" nicename="tracciamento"><![CDATA[tracciamento]]></category><category domain="post_tag" nicename="hotel"><![CDATA[hotel]]></category><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key><wp:meta_value><![CDATA[Banner cookie hotel: consenso e dati corretti | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key><wp:meta_value><![CDATA[Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_focuskw]]></wp:meta_key><wp:meta_value><![CDATA[banner cookie hotel]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-title]]></wp:meta_key><wp:meta_value><![CDATA[Il banner dei cookie che non serve a niente]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_yoast_wpseo_opengraph-description]]></wp:meta_key><wp:meta_value><![CDATA[Non vi protegge, perché i cookie partono prima del clic, e intanto rovina i dati su cui decidete il budget. Le regole del Garante sono ferme dal gennaio 2022: non tracciare prima della scelta, rendere il rifiuto facile come l'accettazione, ricordare la risposta. Più il controllo da fare da soli in dieci minuti.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_title]]></wp:meta_key><wp:meta_value><![CDATA[Banner cookie hotel: consenso e dati corretti | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_description]]></wp:meta_key><wp:meta_value><![CDATA[Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[rank_math_focus_keyword]]></wp:meta_key><wp:meta_value><![CDATA[banner cookie hotel]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_title]]></wp:meta_key><wp:meta_value><![CDATA[Banner cookie hotel: consenso e dati corretti | Experiences]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_titles_desc]]></wp:meta_key><wp:meta_value><![CDATA[Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_seopress_analysis_target_kw]]></wp:meta_key><wp:meta_value><![CDATA[banner cookie hotel]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_reading_time]]></wp:meta_key><wp:meta_value><![CDATA[9]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_secondary_keywords]]></wp:meta_key><wp:meta_value><![CDATA[linee guida cookie garante, consent mode v2, consenso cookie sito turistico, cookie analytics prenotazioni, digital omnibus cookie, gestione consenso wordpress]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_article]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "Article", "headline": "Il Banner dei Cookie che Non Serve a Niente: Consenso, Dati Sbagliati e Budget Buttato", "description": "Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.", "image": "https://naplesexperiences.com/wp-content/uploads/blog/banner-cookie-hotel-consenso-dati-analytics.jpg", "author": {"@type": "Organization", "name": "Experiences Srl", "url": "https://naplesexperiences.com"}, "publisher": {"@type": "Organization", "name": "Experiences Srl", "logo": {"@type": "ImageObject", "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"}}, "datePublished": "2026-11-04", "dateModified": "2026-11-04", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://naplesexperiences.com/blog/banner-cookie-hotel-consenso-dati-analytics/"}, "keywords": "linee guida cookie garante, consent mode v2, consenso cookie sito turistico, cookie analytics prenotazioni, digital omnibus cookie, gestione consenso wordpress", "articleSection": "Normativa & Compliance", "wordCount": 2093}]]></wp:meta_value></wp:postmeta><wp:postmeta><wp:meta_key><![CDATA[_exp_schema_faq]]></wp:meta_key><wp:meta_value><![CDATA[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ho un plugin cookie a pagamento: non sono già a posto?", "acceptedAnswer": {"@type": "Answer", "text": "Un buon plugin è necessario e non sufficiente. Blocca quello che gli è stato detto di bloccare: gli script inseriti a mano nel tema, quelli caricati da un servizio esterno o aggiunti da un altro plugin gli restano invisibili. Il controllo della scheda Rete del browser serve a vedere la differenza fra quello che il plugin crede di gestire e quello che il sito fa davvero."}}, {"@type": "Question", "name": "Google Analytics si può usare senza consenso se anonimizzo i dati?", "acceptedAnswer": {"@type": "Answer", "text": "È una valutazione da fare caso per caso e con cautela: le condizioni per trattare un sistema di statistiche come strumento tecnico sono strette e riguardano minimizzazione, assenza di incroci con altri dati e limiti alla condivisione con terzi. Nel dubbio, la strada solida è chiedere il consenso e configurare il Consent Mode."}}, {"@type": "Question", "name": "Se toglio i pixel pubblicitari perdo il remarketing?", "acceptedAnswer": {"@type": "Answer", "text": "Perdete il remarketing basato su quei pixel per chi rifiuta. Ma la base di pubblico più redditizia per una struttura non è un pixel: è la lista degli ex ospiti, che è un dato di prima parte. È uno dei motivi per cui l'email marketing ha ripreso valore proprio mentre il tracciamento di terze parti si restringeva."}}, {"@type": "Question", "name": "Il banner dei cookie mi fa perdere prenotazioni?", "acceptedAnswer": {"@type": "Answer", "text": "Un banner fatto bene no: due pulsanti chiari, scelta memorizzata, nessun riquadro che copre il modulo di prenotazione sul telefono. Un banner fatto male sì, e non per il consenso: perché copre metà schermo, ricompare a ogni pagina e si chiude male col pollice. È un problema di interfaccia prima che di privacy."}}, {"@type": "Question", "name": "Le regole europee sui cookie stanno cambiando: conviene aspettare?", "acceptedAnswer": {"@type": "Answer", "text": "No. Il pacchetto di semplificazione presentato dalla Commissione europea a fine 2025 è ancora una proposta in negoziato, che deve passare da Parlamento e Consiglio. I banner non spariranno del tutto e il lavoro utile — sapere cosa carica il sito, non tracciare prima della scelta, memorizzare il consenso — serve in entrambi gli scenari."}}]}]]></wp:meta_value></wp:postmeta></item></channel></rss>
