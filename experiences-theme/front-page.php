@@ -487,6 +487,100 @@ get_header();
         </div>
     </section>
 
+    <!-- ================================================
+         Section: visibilità sugli assistenti AI
+         Numeri letti dal cruscotto analytics di un cliente.
+         Attenzione a come sono presentati: le 65.000 sono letture
+         di crawler, NON visitatori. Spacciarle per traffico
+         sarebbe lo stesso errore dei claim che abbiamo tolto.
+         Il dato onesto e che i bot leggono molto e che una quota
+         piccola ma reale di visite vere arriva gia da li.
+         ================================================ -->
+    <section id="ai-search" class="py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-14 lg:items-center">
+
+                <div class="lg:col-span-6" data-aos="fade-right">
+                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-5">
+                        VISIBILITÀ SUGLI ASSISTENTI AI
+                    </span>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">
+                        Quando un cliente chiede a ChatGPT, <span class="text-gradient">chi risponde?</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-5">
+                        Sempre più persone cercano dove dormire e cosa fare chiedendolo a un assistente,
+                        non digitandolo su Google. L&rsquo;assistente risponde con quello che ha letto —
+                        e per leggerti deve trovarti, e capirti.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Sul sito di un nostro cliente i crawler delle AI hanno fatto
+                        <strong class="text-primary">circa 65.000 letture</strong>, tre quarti delle quali ChatGPT,
+                        partendo da zero poche settimane prima. Non sono visitatori: sono i motori che decidono
+                        cosa rispondere. I visitatori veri arrivano dopo, e per ora sono lo 0,7% del totale —
+                        una quota piccola, su una strada che fino a ieri non esisteva.
+                    </p>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3 text-gray-600">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Contenuti strutturati perché un assistente possa citarli, non solo indicizzarli</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-600">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Dati della struttura leggibili da una macchina: prezzi, servizi, posizione, disponibilità</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-600">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Monitoraggio di quali assistenti ti leggono e quanto</span>
+                        </li>
+                    </ul>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-colors shadow-md">
+                        <i class="fas fa-robot" aria-hidden="true"></i> Fatti trovare dalle AI
+                    </a>
+                </div>
+
+                <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-6 lg:p-8 shadow-xl">
+                        <p class="text-xs font-semibold tracking-wider text-accent mb-6">
+                            LETTURE DEI CRAWLER AI · UN CLIENTE, DUE MESI
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">65.000</p>
+                                <p class="text-gray-400 text-xs mt-1">Letture dai crawler AI</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">78%</p>
+                                <p class="text-gray-400 text-xs mt-1">Sono ChatGPT</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">30</p>
+                                <p class="text-gray-400 text-xs mt-1">Assistenti diversi</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">0,7%</p>
+                                <p class="text-gray-400 text-xs mt-1">Visite reali da assistenti</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-xs leading-relaxed border-t border-white/10 pt-4">
+                            Dati dal cruscotto analytics di un cliente, arrotondati.
+                            Le letture dei crawler non sono visite di persone: misurano quanto le AI
+                            leggono il sito, non quanti clienti porta. Lo 0,7% sono visite vere.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Section 3: Portfolio -->
     <section id="portfolio" class="py-20 lg:py-28 bg-gray-50 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
