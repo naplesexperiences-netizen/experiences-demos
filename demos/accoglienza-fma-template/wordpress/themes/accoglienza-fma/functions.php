@@ -5,7 +5,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_TEMA_VERSIONE', '1.3.0' );
+define( 'FMA_TEMA_VERSIONE', '1.3.1' );
 
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/customizer.php';
@@ -67,6 +67,10 @@ function fma_tema_asset(): void {
 		$dip[] = 'fma-leaflet';
 	}
 	wp_enqueue_script( 'fma-sito', "$uri/js/site.js", $dip, $v( 'js/site.js' ), $def );
+	if ( is_singular( 'struttura' ) ) {
+		// Dopo site.js: legge la conferma del modulo che site.js mostra. Vedi assets/js/eventi.js.
+		wp_enqueue_script( 'fma-eventi', "$uri/js/eventi.js", array( 'fma-sito' ), $v( 'js/eventi.js' ), $def );
+	}
 }
 
 /** Classi "js" e "motion" prima del primo disegno, come nella demo (evita il lampo delle animazioni). */
