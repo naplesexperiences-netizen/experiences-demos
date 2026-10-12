@@ -3,7 +3,7 @@
  * Plugin Name:  Experiences Chatbot
  * Plugin URI:   https://www.naplesexperiences.com
  * Description:  Chatbot testuale configurabile per Experiences Srl, con risposte AI opzionali.
- * Version:      2.1.1
+ * Version:      2.2.0
  * Author:       Experiences Srl
  * License:      Proprietary
  * Text Domain:  exp-chatbot
@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EXP_CHATBOT_VERSION', '2.1.1' );
+define( 'EXP_CHATBOT_VERSION', '2.2.0' );
 
 /* =========================================================
    MODELLI
@@ -241,6 +241,45 @@ register_activation_hook( __FILE__, function() {
 });
 
 /* =========================================================
+   BONIFICA DELLE BARRE ROVESCIATE ACCUMULATE
+   ========================================================= */
+// I salvataggi fatti prima della correzione hanno lasciato strati di
+// barre rovesciate dentro System Prompt e template. Si tolgono una
+// volta sola, al primo ingresso in bacheca: stripslashes ripetuto
+// finche il testo smette di cambiare.
+function exp_chatbot_sbarre( $testo ) {
+    $giri = 0;
+    while ( strpos( $testo, '\\' ) !== false && $giri < 20 ) {
+        $nuovo = stripslashes( $testo );
+        if ( $nuovo === $testo ) break;
+        $testo = $nuovo;
+        $giri++;
+    }
+    return $testo;
+}
+
+add_action( 'admin_init', function () {
+    if ( get_option( 'exp_chatbot_sbarre_v1' ) ) return;
+    if ( ! current_user_can( 'manage_options' ) ) return;
+
+    $s = get_option( 'exp_chatbot_settings' );
+    if ( is_array( $s ) ) {
+        foreach ( [ 'llm_system', 'bot_name', 'bot_subtitle', 'quick_questions' ] as $k ) {
+            if ( ! empty( $s[ $k ] ) ) $s[ $k ] = exp_chatbot_sbarre( $s[ $k ] );
+        }
+        if ( ! empty( $s['templates'] ) && is_array( $s['templates'] ) ) {
+            foreach ( $s['templates'] as $i => $t ) {
+                foreach ( [ 'label', 'triggers', 'message' ] as $k ) {
+                    if ( ! empty( $t[ $k ] ) ) $s['templates'][ $i ][ $k ] = exp_chatbot_sbarre( $t[ $k ] );
+                }
+            }
+        }
+        update_option( 'exp_chatbot_settings', $s );
+    }
+    update_option( 'exp_chatbot_sbarre_v1', time() );
+});
+
+/* =========================================================
    ADMIN MENU
    ========================================================= */
 add_action( 'admin_menu', function() {
@@ -260,23 +299,32 @@ add_action( 'admin_init', function() {
 
     $s = get_option( 'exp_chatbot_settings', exp_chatbot_defaults() );
 
+    // WordPress aggiunge le barre rovesciate a tutto $_POST. Senza
+    // wp_unslash() ogni salvataggio ne aggiunge un altro strato: un
+    // apostrofo diventa \' poi \\' poi \\\\' e cosi via. Dopo qualche
+    // salvataggio il System Prompt era un muro di barre rovesciate.
+    $pulisci = static function ( $campo, $multilinea = false ) {
+        $v = wp_unslash( $_POST[ $campo ] ?? '' );
+        return $multilinea ? sanitize_textarea_field( $v ) : sanitize_text_field( $v );
+    };
+
     if ( isset( $_POST['bot_name'] ) ) {
-        $s['bot_name']        = sanitize_text_field( $_POST['bot_name'] );
-        $s['bot_subtitle']    = sanitize_text_field( $_POST['bot_subtitle'] );
-        $s['whatsapp_nr']     = sanitize_text_field( $_POST['whatsapp_nr'] );
+        $s['bot_name']        = $pulisci( 'bot_name' );
+        $s['bot_subtitle']    = $pulisci( 'bot_subtitle' );
+        $s['whatsapp_nr']     = $pulisci( 'whatsapp_nr' );
         $s['show_demo_badge'] = isset( $_POST['show_demo_badge'] ) ? '1' : '0';
-        $s['quick_questions'] = sanitize_textarea_field( $_POST['quick_questions'] );
+        $s['quick_questions'] = $pulisci( 'quick_questions', true );
     }
 
     if ( isset( $_POST['llm_provider'] ) ) {
-        $s['llm_provider'] = sanitize_text_field( $_POST['llm_provider'] );
-        $s['llm_model']    = sanitize_text_field( $_POST['llm_model'] );
-        $s['llm_system']   = sanitize_textarea_field( $_POST['llm_system'] );
+        $s['llm_provider'] = $pulisci( 'llm_provider' );
+        $s['llm_model']    = $pulisci( 'llm_model' );
+        $s['llm_system']   = $pulisci( 'llm_system', true );
         $s['llm_order']    = ( ( $_POST['llm_order'] ?? '' ) === 'template_first' ) ? 'template_first' : 'llm_first';
         $s['llm_max_turns']= max( 0, min( 20, (int) ( $_POST['llm_max_turns'] ?? 6 ) ) );
         $s['rate_limit']   = max( 0, min( 500, (int) ( $_POST['rate_limit'] ?? 30 ) ) );
         // Aggiorna la chiave solo se l'utente ne ha inserita una nuova
-        $new_key = trim( sanitize_text_field( $_POST['llm_api_key'] ?? '' ) );
+        $new_key = trim( $pulisci( 'llm_api_key' ) );
         if ( $new_key !== '' ) {
             $s['llm_api_key'] = $new_key;
         }
@@ -288,9 +336,9 @@ add_action( 'admin_init', function() {
             if ( empty( trim( $tid ) ) ) continue;
             $templates[] = [
                 'id'       => sanitize_key( $tid ),
-                'label'    => sanitize_text_field( $_POST['tpl_label'][$i] ?? '' ),
-                'triggers' => sanitize_text_field( $_POST['tpl_triggers'][$i] ?? '' ),
-                'message'  => sanitize_textarea_field( $_POST['tpl_message'][$i] ?? '' ),
+                'label'    => sanitize_text_field( wp_unslash( $_POST['tpl_label'][$i] ?? '' ) ),
+                'triggers' => sanitize_text_field( wp_unslash( $_POST['tpl_triggers'][$i] ?? '' ) ),
+                'message'  => sanitize_textarea_field( wp_unslash( $_POST['tpl_message'][$i] ?? '' ) ),
             ];
         }
         $s['templates'] = $templates;
@@ -604,7 +652,10 @@ function exp_chatbot_ajax_message() {
         $r = exp_chatbot_call_llm( $msg, $s, $storia, $templates );
         if ( $r['ok'] ) wp_send_json_success([ 'reply' => $r['text'], 'source' => 'llm' ]);
         // L'AI non ha risposto (chiave scaduta, rete, rifiuto): i
-        // template evitano che il visitatore resti senza niente.
+        // template evitano che il visitatore resti senza niente. Il
+        // motivo resta registrato, altrimenti dal davanti si vede solo
+        // una risposta da template e non si capisce che l'AI e muta.
+        exp_chatbot_registra_errore( $r['error'] ?? 'errore sconosciuto' );
         $t = $trova_template();
         if ( null !== $t ) wp_send_json_success([ 'reply' => $t, 'source' => 'template' ]);
     } else {
@@ -644,6 +695,37 @@ add_action( 'rest_api_init', function() {
 add_filter( 'experiences_rest_nonces', function( $nonces ) {
     $nonces['chatbot'] = wp_create_nonce( 'exp_chatbot_front' );
     return $nonces;
+});
+
+/* =========================================================
+   ULTIMO ERRORE DELL'AI
+   ========================================================= */
+// Quando l'AI fallisce il visitatore riceve comunque un template,
+// quindi dal davanti non si vede niente di rotto. Senza registrare il
+// motivo, capire perche il chatbot "a volte non usa l'AI" richiede di
+// indovinare.
+function exp_chatbot_registra_errore( $motivo ) {
+    set_transient( 'exp_chatbot_ultimo_errore', [
+        'motivo' => mb_substr( (string) $motivo, 0, 300 ),
+        'quando' => time(),
+    ], WEEK_IN_SECONDS );
+}
+
+add_action( 'admin_notices', function () {
+    if ( ! current_user_can( 'manage_options' ) ) return;
+    $scr = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+    if ( ! $scr || strpos( (string) $scr->id, 'exp-chatbot' ) === false ) return;
+
+    $e = get_transient( 'exp_chatbot_ultimo_errore' );
+    if ( ! $e ) return;
+
+    printf(
+        '<div class="notice notice-warning"><p><strong>%s</strong> %s<br><em>%s</em><br>%s</p></div>',
+        esc_html__( 'L\'AI ha rifiutato una richiesta.', 'exp-chatbot' ),
+        esc_html( sprintf( __( 'Ultima volta: %s fa.', 'exp-chatbot' ), human_time_diff( $e['quando'] ) ) ),
+        esc_html( $e['motivo'] ),
+        esc_html__( 'In quel momento il visitatore ha ricevuto un template. Se si ripete, controlla il nome del modello e il credito residuo sul fornitore.', 'exp-chatbot' )
+    );
 });
 
 /* =========================================================
