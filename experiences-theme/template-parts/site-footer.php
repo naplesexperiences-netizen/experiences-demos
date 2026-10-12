@@ -38,7 +38,7 @@ $exp_nav[] = experiences_nav_cta();
                  liste diventavano uno scorrimento lunghissimo. -->
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
                 <div>
-                    <h4 class="font-heading font-semibold text-lg mb-4">Menu</h4>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Menu</h3>
                     <ul class="space-y-3">
                         <?php foreach ( $exp_nav as $exp_voce ) : ?>
                             <li>
@@ -52,7 +52,7 @@ $exp_nav[] = experiences_nav_cta();
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-heading font-semibold text-lg mb-4">Servizi</h4>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Servizi</h3>
                     <ul class="space-y-3">
                         <li><a href="<?php echo $exp_anchor; ?>#services" class="text-gray-400 hover:text-accent transition text-sm">Sviluppo Sito Web</a></li>
                         <li><a href="<?php echo $exp_anchor; ?>#services" class="text-gray-400 hover:text-accent transition text-sm">SEO/SEM Marketing</a></li>
@@ -62,7 +62,7 @@ $exp_nav[] = experiences_nav_cta();
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-heading font-semibold text-lg mb-4">Contatti</h4>
+                    <h3 class="font-heading font-semibold text-lg mb-4">Contatti</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <i class="fab fa-whatsapp text-accent mt-1"></i>
