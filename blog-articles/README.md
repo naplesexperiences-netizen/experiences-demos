@@ -1,7 +1,7 @@
 # Blog Articles — Naples Experiences
 
 Articoli blog B2B **WordPress-ready** per **naplesexperiences.com** (Experiences Srl).
-Gli articoli 13-18 includono anche i prompt per generare le immagini con Google Gemini.
+Gli articoli dal 13 in poi includono anche i prompt per generare le immagini con Google Gemini.
 
 ## Contenuto del pacchetto
 
@@ -40,7 +40,37 @@ Include i prompt Gemini per le immagini.
 | 17 | `whatsapp-business-hotel-tour-operator` | WhatsApp Business per Hotel e Tour Operator: Il Canale che Converte il 45% | whatsapp business hotel | AI & Innovazione | 2.770 |
 | 18 | `instagram-tiktok-hotel-strutture-ricettive-ugc` | Instagram e TikTok per Hotel: La Strategia Contenuti (e l'UGC) che Riempie le Camere | instagram hotel marketing | Social Media & Contenuti | 2.511 |
 
-**Totale: 18 articoli, ~38.900 parole** di contenuto B2B.
+### Batch 4 — Normativa & Visibilità (ottobre-novembre 2026)
+
+Include i prompt Gemini e, per la prima volta, il **file WXR** per l'import in blocco.
+
+| # | Slug | Titolo | Focus Keyword | Categoria | Parole |
+|---|------|--------|---------------|-----------|--------|
+| 19 | `farsi-trovare-chatgpt-assistenti-ai-hotel` | Farsi Trovare da ChatGPT: Come Entrare nelle Risposte degli Assistenti AI | farsi trovare da chatgpt | AI & Innovazione | 2.096 |
+| 20 | `cin-regolamento-ue-affitti-brevi-annunci` | CIN e Regolamento UE sugli Affitti Brevi: Cosa Viene Controllato Davvero dal 2026 | cin affitti brevi | Normativa & Compliance | 1.964 |
+| 21 | `accessibilita-sito-hotel-eaa-esenzione-microimprese` | Accessibilità del Sito: la Vostra Struttura è Esente? (Sì, Probabilmente — Ma Non per il 2030) | accessibilità sito hotel | Normativa & Compliance | 2.295 |
+| 22 | `banner-cookie-hotel-consenso-dati-analytics` | Il Banner dei Cookie che Non Serve a Niente: Consenso, Dati Sbagliati e Budget Buttato | banner cookie hotel | Normativa & Compliance | 2.093 |
+
+**Totale: 22 articoli, ~47.200 parole** di contenuto B2B.
+
+### Nota sul batch 4: come sono trattate le norme
+
+Tre articoli su quattro parlano di adempimenti, e sono scritti con due regole
+che conviene mantenere negli aggiornamenti futuri.
+
+1. **Si descrivono i meccanismi, non gli importi.** Sulle sanzioni del CIN le
+   fonti di settore non concordano, e una parte dei requisiti è regionale: una
+   cifra sbagliata in un articolo che qualcuno usa per decidere è peggio di
+   nessuna cifra. Al suo posto, l'articolo 20 rimanda a BDSR, Normattiva,
+   EUR-Lex e portale regionale.
+2. **Dove si citano fonti primarie, si citano alla lettera.** Le due citazioni
+   dell'articolo 21 (definizione di microimpresa, esenzione, deroghe al 2030)
+   vengono dalle *Linee guida sull'accessibilità dei servizi in attuazione
+   dell'articolo 21 d.lgs. 82/2022* di AgID, non da sintesi di terzi. Se si
+   aggiornano, va ricontrollato il testo, non l'articolo.
+
+Tutti e tre chiudono con un disclaimer: finalità informative, non consulenza
+legale. Non rimuoverlo.
 
 ---
 
@@ -50,11 +80,11 @@ Include i prompt Gemini per le immagini.
 13-aumentare-prenotazioni-dirette-hotel-disintermediazione/
 ├── article.html        ← contenuto HTML pronto per WordPress
 ├── seo.json            ← pacchetto SEO completo + schema JSON-LD
-└── image-prompts.md    ← 4 prompt Gemini + alt text (solo batch 3)
+└── image-prompts.md    ← 4 prompt Gemini + alt text (dal batch 3)
 ```
 
 Gli articoli **01-12** hanno `article.html` e `seo.json`. Il file `image-prompts.md`
-è presente solo per il **batch 3** (13-18); per i primi dodici le immagini vanno
+è presente dal **batch 3** (13-22); per i primi dodici le immagini vanno
 scelte da stock o generate adattando i prompt esistenti.
 
 ### `article.html`
@@ -84,9 +114,17 @@ o in modalità Testo dell'editor classico.
   "category": "categoria WordPress",
   "tags": ["tag1", "tag2", "..."],
   "estimated_reading_time": 11,
-  "schema_article": { "...JSON-LD Article completo..." }
+  "schema_article": { "...JSON-LD Article completo..." },
+  "schema_faq": { "...JSON-LD FAQPage, solo dal batch 4..." }
 }
 ```
+
+Dal batch 4 gli articoli hanno una sezione «Domande che ci fanno più spesso» e il
+corrispondente `schema_faq` (JSON-LD `FAQPage`). Serve a due cose: le domande
+secche con risposta autosufficiente sono il formato che gli assistenti AI citano
+più volentieri, ed è lo stesso principio spiegato nell'articolo 19. Va incollato
+in un secondo blocco `<script type="application/ld+json">`, separato da quello
+dell'`Article`.
 
 ### `image-prompts.md` (batch 3)
 
@@ -139,15 +177,50 @@ wp post create \
   --post_content="$(cat 13-*/article.html)"
 ```
 
-### Metodo 3 — File WXR
+### Metodo 3 — File WXR (consigliato per più articoli)
 
 Un file WXR (WordPress eXtended RSS) permette di importare tutti gli articoli
 in un colpo solo da **Strumenti → Importa → WordPress**, con categorie, tag e
 meta SEO già assegnati.
 
-Se l'importer restituisce *"numero di versione WXR mancante o errato"*, il file
-è quasi sempre valido ma l'upload lo tronca: usa la variante `.xml.gz`, che
-l'importer scompatta in memoria bypassando i limiti di `upload_max_filesize`.
+Il file del batch 4 è già pronto nel repo:
+
+```
+blog-articles/import-wordpress-batch4.xml       (4 articoli, ~100 KB)
+blog-articles/import-wordpress-batch4.xml.gz    (stesso file, compresso)
+```
+
+Gli articoli entrano come **bozze**: vanno riletti e pubblicati a mano, così la
+pianificazione resta in controllo. Dopo l'import restano due cose da fare per
+ogni articolo: assegnare l'**immagine in evidenza** (generata con
+`image-prompts.md`) e incollare i blocchi **JSON-LD** di `schema_article` e
+`schema_faq`, se il plugin SEO non li genera.
+
+#### Rigenerare il file
+
+```bash
+python3 blog-articles/build-wxr.py 19 20 21 22      # solo il batch 4
+python3 blog-articles/build-wxr.py                  # tutti e 22
+python3 blog-articles/build-wxr.py --status publish # pubblicati invece che bozze
+python3 blog-articles/build-wxr.py --out /tmp/x.xml # altro percorso
+```
+
+Lo script legge `article.html` e `seo.json` di ogni cartella, dichiara categorie
+e tag (senza la dichiarazione l'importer a volte salta i tag e perde gli
+accenti), imposta la data da `schema_article.datePublished` e scrive i meta SEO
+nelle chiavi di **Yoast, Rank Math e SEOPress** insieme: il plugin installato
+legge le sue, le altre restano postmeta inerte. Produce sempre anche la variante
+`.xml.gz`.
+
+#### Se l'importer dà errore
+
+*"Numero di versione WXR mancante o errato"*: il file è quasi sempre valido ma
+l'upload lo tronca. Usa la variante `.xml.gz`, che l'importer scompatta in
+memoria bypassando i limiti di `upload_max_filesize`.
+
+*L'autore non viene riconosciuto*: il WXR dichiara l'utente `admin`. Se sul
+sito l'amministratore ha un altro login, nella schermata di import scegli
+«assegna gli articoli a un utente esistente».
 
 ---
 
@@ -194,9 +267,27 @@ picco di engagement B2B.
 | 16 | #14 — Recensioni online | Cambio topic: reputazione |
 | 17 | #17 — WhatsApp Business | Canale conversazionale |
 | 18 | #18 — Instagram e TikTok | Chiude sul funnel di scoperta |
+| 19 | #19 — Farsi trovare da ChatGPT | **Pillar** del batch 4: visibilità |
+| 20 | #20 — CIN e Regolamento UE | Cambio topic: adempimenti |
+| 21 | #21 — Accessibilità del sito | Supporta #19 (markup leggibile) e #20 |
+| 22 | #22 — Banner cookie e dati | Chiude: misurare quello che si fa |
 
 Il batch 3 costruisce un topic cluster attorno alla **disintermediazione**:
 il #13 è il pillar, gli altri cinque sono supporting content che vi rimandano.
+
+Il batch 4 ha un impianto diverso, a **due blocchi**. Il #19 è il pillar sulla
+visibilità presso gli assistenti AI e rimanda a #03, #07, #13 e #14. I #20, #21
+e #22 sono il blocco normativo, pensato per intercettare ricerche informative ad
+alta intenzione («cin affitti brevi», «accessibilità sito obbligo»,
+«banner cookie a norma») e riportarle su servizi che vendiamo davvero. Il #21
+collega i due blocchi: lo stesso markup che serve ai lettori di schermo serve
+agli assistenti.
+
+**Da fare dopo la pubblicazione del batch 4:** i link interni vanno in una sola
+direzione — i nuovi articoli rimandano ai vecchi, non viceversa, perché i batch
+1-3 sono già online e andrebbero ritoccati a mano. Quando vale la pena farlo, i
+rimandi utili sono: da #03 e #12 verso #19, da #01 verso #20, da #13 verso #21,
+da #15 e #16 verso #22. Una modifica di una riga per articolo.
 
 ---
 
@@ -211,6 +302,7 @@ Per ogni articolo:
 - [ ] Meta SEO compilati (focus keyword, title, description)
 - [ ] Open Graph compilato
 - [ ] Schema markup Article presente nel sorgente
+- [ ] Schema markup FAQPage presente, dove `seo.json` lo prevede (dal batch 4)
 - [ ] Link interni cross-articolo funzionanti (testali cliccando)
 - [ ] Link a `/#contact` e WhatsApp funzionanti
 - [ ] Articolo presente nella Sitemap XML
@@ -224,7 +316,17 @@ Per ogni articolo:
 - **Brand voice:** professionale, B2B, pain-point first, dati concreti. Mantenere consistente.
 - **CTA:** ogni articolo ne ha 2. Non modificare i link (`/#contact` e WhatsApp).
 - **Cross-linking:** la struttura a topic cluster è già impostata, non rimuovere i link interni.
-- **Case study:** i numeri sono illustrativi e coerenti con i benchmark di settore.
-  Le strutture citate non sono clienti reali identificabili.
+- **Case study:** nei batch 1-3 i numeri sono illustrativi e coerenti con i
+  benchmark di settore; le strutture citate non sono clienti reali identificabili.
+- **Numeri reali (solo #19):** le cifre sui crawler AI — circa 65.000 letture in
+  due mesi, 78% da ChatGPT, 0,7% delle visite reali — vengono dai log di un
+  cliente vero, citato senza nome. Sono le uniche misurazioni reali del pacchetto,
+  ed è il motivo per cui l'articolo insiste sulla differenza fra letture
+  automatiche e visite: non va «arrotondato» verso l'alto in sede di revisione.
+- **Categoria nuova:** il batch 4 introduce *Normativa & Compliance*. Il file
+  WXR la crea in automatico; con l'inserimento manuale va creata prima.
 - **Aggiornamenti:** per gli articoli con l'anno nel titolo, aggiornare titolo e
-  contenuti a inizio anno successivo per mantenere freschezza SEO.
+  contenuti a inizio anno successivo per mantenere freschezza SEO. Per gli
+  articoli normativi (#20, #21, #22) il controllo va fatto almeno una volta
+  l'anno sulle fonti primarie, non sulle sintesi: il Digital Omnibus citato in
+  #22 era ancora una proposta in negoziato alla stesura.

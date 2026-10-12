@@ -1,0 +1,104 @@
+{
+  "slug": "banner-cookie-hotel-consenso-dati-analytics",
+  "post_title": "Il Banner dei Cookie che Non Serve a Niente: Consenso, Dati Sbagliati e Budget Buttato",
+  "seo_title": "Banner cookie hotel: consenso e dati corretti | Experiences",
+  "meta_description": "Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.",
+  "focus_keyword": "banner cookie hotel",
+  "secondary_keywords": [
+    "linee guida cookie garante",
+    "consent mode v2",
+    "consenso cookie sito turistico",
+    "cookie analytics prenotazioni",
+    "digital omnibus cookie",
+    "gestione consenso wordpress"
+  ],
+  "og_title": "Il banner dei cookie che non serve a niente",
+  "og_description": "Non vi protegge, perché i cookie partono prima del clic, e intanto rovina i dati su cui decidete il budget. Le regole del Garante sono ferme dal gennaio 2022: non tracciare prima della scelta, rendere il rifiuto facile come l'accettazione, ricordare la risposta. Più il controllo da fare da soli in dieci minuti.",
+  "category": "Normativa & Compliance",
+  "tags": [
+    "cookie",
+    "privacy",
+    "GDPR",
+    "consent mode",
+    "analytics",
+    "normativa",
+    "tracciamento",
+    "hotel"
+  ],
+  "estimated_reading_time": 9,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Il Banner dei Cookie che Non Serve a Niente: Consenso, Dati Sbagliati e Budget Buttato",
+    "description": "Cookie banner per hotel: le regole del Garante dal 2022, i tre errori più frequenti, il Consent Mode v2 e il controllo da fare da soli in dieci minuti.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/banner-cookie-hotel-consenso-dati-analytics.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-11-04",
+    "dateModified": "2026-11-04",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/blog/banner-cookie-hotel-consenso-dati-analytics/"
+    },
+    "keywords": "linee guida cookie garante, consent mode v2, consenso cookie sito turistico, cookie analytics prenotazioni, digital omnibus cookie, gestione consenso wordpress",
+    "articleSection": "Normativa & Compliance",
+    "wordCount": 2093
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Ho un plugin cookie a pagamento: non sono già a posto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un buon plugin è necessario e non sufficiente. Blocca quello che gli è stato detto di bloccare: gli script inseriti a mano nel tema, quelli caricati da un servizio esterno o aggiunti da un altro plugin gli restano invisibili. Il controllo della scheda Rete del browser serve a vedere la differenza fra quello che il plugin crede di gestire e quello che il sito fa davvero."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Google Analytics si può usare senza consenso se anonimizzo i dati?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "È una valutazione da fare caso per caso e con cautela: le condizioni per trattare un sistema di statistiche come strumento tecnico sono strette e riguardano minimizzazione, assenza di incroci con altri dati e limiti alla condivisione con terzi. Nel dubbio, la strada solida è chiedere il consenso e configurare il Consent Mode."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Se toglio i pixel pubblicitari perdo il remarketing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Perdete il remarketing basato su quei pixel per chi rifiuta. Ma la base di pubblico più redditizia per una struttura non è un pixel: è la lista degli ex ospiti, che è un dato di prima parte. È uno dei motivi per cui l'email marketing ha ripreso valore proprio mentre il tracciamento di terze parti si restringeva."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Il banner dei cookie mi fa perdere prenotazioni?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un banner fatto bene no: due pulsanti chiari, scelta memorizzata, nessun riquadro che copre il modulo di prenotazione sul telefono. Un banner fatto male sì, e non per il consenso: perché copre metà schermo, ricompare a ogni pagina e si chiude male col pollice. È un problema di interfaccia prima che di privacy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Le regole europee sui cookie stanno cambiando: conviene aspettare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Il pacchetto di semplificazione presentato dalla Commissione europea a fine 2025 è ancora una proposta in negoziato, che deve passare da Parlamento e Consiglio. I banner non spariranno del tutto e il lavoro utile — sapere cosa carica il sito, non tracciare prima della scelta, memorizzare il consenso — serve in entrambi gli scenari."
+        }
+      }
+    ]
+  }
+}
