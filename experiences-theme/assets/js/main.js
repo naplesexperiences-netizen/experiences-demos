@@ -407,6 +407,31 @@
             });
         })();
 
+        // ── "Preferenze Cookie" quando comanda un plugin ─────────────────
+        // Col banner del tema spento bindCookieConsent esce subito e il
+        // link nel footer non aveva più nessuno in ascolto. Qui lo
+        // reindirizziamo al pannello del plugin.
+        //
+        // CookieAdmin apre la sua modale da un handler agganciato a
+        // .cookieadmin_customize_btn e .cookieadmin_re_consent: un click
+        // sintetico lo fa scattare anche quando il bottone è nascosto,
+        // perché l'handler non guarda la visibilità. Altri plugin si
+        // aggiungono qui, con il loro selettore.
+        (function bindCookiePrefsEsterne() {
+            if (document.getElementById('exp-cookie-modal')) return;
+
+            const APRI = '.cookieadmin_re_consent, .cookieadmin_customize_btn';
+
+            document.addEventListener('click', (e) => {
+                const trigger = e.target.closest('[data-cookie-settings]');
+                if (!trigger) return;
+                const apri = document.querySelector(APRI);
+                if (!apri) return;
+                e.preventDefault();
+                apri.click();
+            });
+        })();
+
         // ── Focus trap per i modali ──────────────────────────────────────
         // Senza questo, con un modal aperto il Tab porta sugli elementi della
         // pagina retrostante: chi naviga da tastiera "esce" dal dialogo senza
