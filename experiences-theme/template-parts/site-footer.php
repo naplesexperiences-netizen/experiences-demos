@@ -87,7 +87,7 @@ $exp_nav[] = experiences_nav_cta();
                 <div class="flex flex-wrap gap-6 text-sm text-gray-500">
                     <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="hover:text-accent transition">Privacy Policy</a>
                     <a href="<?php echo esc_url( home_url( '/cookie-policy/' ) ); ?>" class="hover:text-accent transition">Cookie Policy</a>
-                    <a href="#" class="hover:text-accent transition" data-cookie-settings>Preferenze Cookie</a>
+                    <a href="<?php echo esc_url( experiences_cookie_settings_url() ); ?>" class="hover:text-accent transition"<?php echo experiences_cookie_settings_apre_pannello() ? ' data-cookie-settings' : ''; ?>>Preferenze Cookie</a>
                     <a href="<?php echo esc_url( home_url( '/termini-e-condizioni/' ) ); ?>" class="hover:text-accent transition">Termini e Condizioni</a>
                 </div>
             </div>

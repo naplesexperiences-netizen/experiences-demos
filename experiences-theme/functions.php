@@ -246,12 +246,70 @@ function experiences_remove_jquery_migrate( $scripts ) {
 }
 add_action( 'wp_default_scripts', 'experiences_remove_jquery_migrate' );
 
+// ── Plugin di cookie consent: il tema si fa da parte ──────────────────
+// Installare un plugin di consenso senza spegnere il banner del tema
+// produce due riquadri sovrapposti, due scelte diverse e un utente che
+// non sa quale comanda. Qui il tema rileva i plugin più diffusi e si
+// ritira da solo: niente da ricordare nel Personalizzatore, e se il
+// plugin viene disinstallato il banner del tema torna da sé.
+//
+// Il confronto è sulla cartella del plugin, non sul nome della classe:
+// funziona anche con i plugin disattivati a metà o rinominati, e non
+// carica codice del plugin per interrogarlo.
+function experiences_cmp_noti() {
+    return [
+        // cartella del plugin => nome leggibile
+        'cookieadmin'                 => 'CookieAdmin',
+        'complianz-gdpr'              => 'Complianz',
+        'cookie-law-info'             => 'CookieYes',
+        'cookie-notice'               => 'Cookie Notice',
+        'iubenda-cookie-law-solution' => 'Iubenda',
+        'gdpr-cookie-compliance'      => 'Moove GDPR Cookie Compliance',
+        'real-cookie-banner'          => 'Real Cookie Banner',
+        'borlabs-cookie'              => 'Borlabs Cookie',
+        'cookiebot'                   => 'Cookiebot',
+        'termly'                      => 'Termly',
+    ];
+}
+
+/**
+ * Cartella del plugin di consenso attivo, stringa vuota se non ce n'è.
+ */
+function experiences_cmp_attivo() {
+    static $trovato = null;
+
+    if ( null === $trovato ) {
+        $noti   = experiences_cmp_noti();
+        $attivi = (array) get_option( 'active_plugins', [] );
+        if ( is_multisite() ) {
+            $attivi = array_merge( $attivi, array_keys( (array) get_site_option( 'active_sitewide_plugins', [] ) ) );
+        }
+
+        $trovato = '';
+        foreach ( $attivi as $file ) {
+            $cartella = strtok( (string) $file, '/' );
+            if ( isset( $noti[ $cartella ] ) ) {
+                $trovato = $cartella;
+                break;
+            }
+        }
+    }
+
+    // Per un plugin non in elenco: add_filter( 'experiences_cmp_attivo',
+    // fn() => 'nome-cartella' ). Stringa vuota per forzare il banner del tema.
+    return (string) apply_filters( 'experiences_cmp_attivo', $trovato );
+}
+
 // Definita qui e non solo in template-parts/cookie-banner.php: quel file
 // è incluso nel footer, mentre serve già a wp_head. Il template part la
 // ridichiara dentro un function_exists, quindi resta compatibile.
 if ( ! function_exists( 'experiences_should_render_cookie_banner' ) ) {
     function experiences_should_render_cookie_banner() {
-        return apply_filters( 'experiences_cookie_banner_enabled', (bool) get_theme_mod( 'exp_cookie_banner_enabled', true ) );
+        $attivo = (bool) get_theme_mod( 'exp_cookie_banner_enabled', true );
+        if ( $attivo && experiences_cmp_attivo() ) {
+            $attivo = false;
+        }
+        return apply_filters( 'experiences_cookie_banner_enabled', $attivo );
     }
 }
 
@@ -268,8 +326,27 @@ if ( ! function_exists( 'experiences_should_render_cookie_banner' ) ) {
 //
 // Priorità 0 su wp_head: deve stare prima di Site Kit e simili, che si
 // agganciano alla priorità di default.
+//
+// Chi fornisce la scelta può essere il banner del tema o un plugin, ma
+// serve che qualcuno possa concederla: dichiarare "negato" senza una
+// sorgente che aggiorni spegnerebbe l'analytics per sempre. Per questo
+// la funzione esce quando non c'è né il banner del tema né un ponte
+// verso il plugin — in quel caso il plugin blocca già gli script da sé,
+// e molti dichiarano il Consent Mode per conto loro.
+function experiences_consent_mode_sorgente() {
+    if ( experiences_should_render_cookie_banner() ) {
+        return 'tema';
+    }
+    // CookieAdmin blocca gli script (li riscrive in type="text/plain")
+    // ma non dice niente a Google: il ponte lo aggiungiamo noi.
+    if ( 'cookieadmin' === experiences_cmp_attivo() ) {
+        return 'cookieadmin';
+    }
+    return '';
+}
+
 function experiences_consent_mode_defaults() {
-    if ( ! experiences_should_render_cookie_banner() ) {
+    if ( ! experiences_consent_mode_sorgente() ) {
         return;
     }
     ?>
@@ -298,6 +375,22 @@ function gtag(){dataLayer.push(arguments);}
         gtag('set', 'ads_data_redaction', !stato.marketing);
     }
 
+    // Concessione per singola categoria, additiva: un 'update' tocca
+    // solo le chiavi che nomina, quindi concedere analytics non revoca
+    // marketing e l'ordine in cui arrivano non conta. Serve ai plugin
+    // esterni, che sbloccano una categoria alla volta.
+    window.expConsentGrant = function (categoria) {
+        if (categoria === 'analytics') {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+        } else if (categoria === 'marketing') {
+            gtag('consent', 'update', {
+                ad_storage: 'granted', ad_user_data: 'granted',
+                ad_personalization: 'granted', personalization_storage: 'granted'
+            });
+            gtag('set', 'ads_data_redaction', false);
+        }
+    };
+
     // Visita successiva: la scelta è già nel cookie, si applica subito.
     // Il cookie, e non localStorage, perché questo script gira prima che
     // il resto del tema sia caricato e il cookie è già disponibile.
@@ -313,6 +406,49 @@ function gtag(){dataLayer.push(arguments);}
     <?php
 }
 add_action( 'wp_head', 'experiences_consent_mode_defaults', 0 );
+
+// ── Ponte Consent Mode ⇄ CookieAdmin ──────────────────────────────────
+// CookieAdmin sblocca una categoria riconvertendo in <script> i tag
+// marcati type="text/plain" data-cookieadmin-category="…", e per quelli
+// senza src ricopia il contenuto inline. Quindi basta mettergli in mano
+// due script bloccati: quando sblocca la categoria, esegue la nostra
+// concessione. Vale anche alle visite successive, perché il plugin
+// rifà lo stesso passaggio leggendo il consenso già memorizzato.
+//
+// In footer e non in head: i tag devono essere nel DOM quando il plugin
+// li cerca, e a quel punto expConsentGrant è già definita.
+function experiences_consent_mode_ponte_cookieadmin() {
+    if ( 'cookieadmin' !== experiences_consent_mode_sorgente() ) {
+        return;
+    }
+    foreach ( [ 'analytics', 'marketing' ] as $categoria ) {
+        printf(
+            '<script type="text/plain" data-cookieadmin-category="%1$s">' .
+            'window.expConsentGrant && window.expConsentGrant(%2$s);' .
+            '</script>' . "\n",
+            esc_attr( $categoria ),
+            wp_json_encode( $categoria )
+        );
+    }
+}
+add_action( 'wp_footer', 'experiences_consent_mode_ponte_cookieadmin', 5 );
+
+// ── "Preferenze Cookie": un modo per cambiare idea c'è sempre ──────────
+// Col banner del tema spento quel link non aveva più nessuno in ascolto
+// e restava un href="#" morto. E va tenuto raggiungibile: CookieAdmin
+// nella versione gratuita non mette alcun pulsante per riaprire le
+// preferenze, quindi il link nel footer è l'unica via.
+//
+// Resta un trigger JS solo per i pannelli che sappiamo riaprire. Con un
+// plugin che non conosciamo si punta alla Cookie Policy, che spiega come
+// cambiare le scelte: non è un pannello, ma non è un link rotto.
+function experiences_cookie_settings_apre_pannello() {
+    return in_array( experiences_consent_mode_sorgente(), [ 'tema', 'cookieadmin' ], true );
+}
+
+function experiences_cookie_settings_url() {
+    return experiences_cookie_settings_apre_pannello() ? '#' : home_url( '/cookie-policy/' );
+}
 
 // ── Customizer: Cal.com link + Cookie banner toggle ─────────────────────
 function experiences_customize_register( $wp_customize ) {
@@ -404,9 +540,20 @@ function experiences_customize_register( $wp_customize ) {
         'sanitize_callback' => 'rest_sanitize_boolean',
         'transport'         => 'refresh',
     ]);
+    // Il rilevamento automatico spegne il banner del tema quando trova un
+    // plugin di consenso, quindi qui si descrive lo stato reale invece di
+    // chiedere all'utente di ricordarsene.
+    $exp_cmp      = experiences_cmp_attivo();
+    $exp_cmp_nome = $exp_cmp ? ( experiences_cmp_noti()[ $exp_cmp ] ?? $exp_cmp ) : '';
     $wp_customize->add_control( 'exp_cookie_banner_enabled', [
         'label'       => __( 'Mostra cookie banner GDPR', 'experiences-srl' ),
-        'description' => __( 'Disattivare solo se usi un plugin di cookie consent (Iubenda, Complianz, CookieYes…).', 'experiences-srl' ),
+        'description' => $exp_cmp_nome
+            ? sprintf(
+                /* translators: %s: nome del plugin di cookie consent rilevato. */
+                __( 'Non serve toccarlo: il tema ha rilevato %s e il suo banner resta spento da solo, per non mostrarne due. Torna attivo se disinstalli il plugin.', 'experiences-srl' ),
+                $exp_cmp_nome
+            )
+            : __( 'Il tema si spegne da sé se rileva un plugin di cookie consent (Iubenda, Complianz, CookieYes, CookieAdmin…). Togli la spunta solo per disattivarlo comunque.', 'experiences-srl' ),
         'section'     => 'experiences_privacy_section',
         'type'        => 'checkbox',
     ]);
@@ -866,6 +1013,21 @@ HTML;
 }
 
 function experiences_legal_template_cookie() {
+    // Il cookie che memorizza la scelta lo scrive chi raccoglie il
+    // consenso: il banner del tema o il plugin. Scriverne uno sbagliato
+    // su una pagina legale è un'inesattezza gratuita, quindi la riga si
+    // adatta a chi comanda davvero.
+    $cmp = experiences_cmp_attivo();
+    if ( 'cookieadmin' === $cmp ) {
+        $riga_consenso = '<tr><td>cookieadmin_consent</td><td>' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</td><td>Memorizza le tue preferenze di consenso ai cookie</td><td>12 mesi</td></tr>';
+    } elseif ( $cmp ) {
+        // Plugin noto ma di cui non conosciamo il nome del cookie: meglio
+        // una riga generica che un nome inventato. Da precisare a mano.
+        $riga_consenso = '<tr><td>Cookie di consenso del plugin in uso</td><td>' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</td><td>Memorizza le tue preferenze di consenso ai cookie</td><td>Vedi il pannello delle preferenze</td></tr>';
+    } else {
+        $riga_consenso = '<tr><td>exp_consent_v1</td><td>' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</td><td>Memorizza le tue preferenze di consenso ai cookie</td><td>12 mesi</td></tr>';
+    }
+
     return <<<HTML
 <p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
@@ -881,7 +1043,7 @@ function experiences_legal_template_cookie() {
 <table>
 <thead><tr><th>Nome</th><th>Fornitore</th><th>Scopo</th><th>Durata</th></tr></thead>
 <tbody>
-<tr><td>exp_consent_v1</td><td>naplesexperiences.com</td><td>Memorizza le tue preferenze di consenso ai cookie</td><td>12 mesi</td></tr>
+{$riga_consenso}
 <tr><td>wordpress_*</td><td>WordPress</td><td>Gestione sessione utente loggato (admin)</td><td>Sessione</td></tr>
 </tbody>
 </table>
