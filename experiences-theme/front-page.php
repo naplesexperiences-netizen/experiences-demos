@@ -863,8 +863,8 @@ get_header();
                 </div>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-center mb-6">
+                <div class="pricing-card flex flex-col bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center mb-6 mt-2">
                         <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">BASE</span>
                         <!-- Il volume annuo sta sopra al prezzo perche e la
                              condizione che lo sblocca, non una nota a margine:
@@ -882,7 +882,7 @@ get_header();
                         <p class="text-gray-500 text-sm mt-1">+ IVA</p>
                     </div>
                     <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+10%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 flex-1">
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
@@ -891,8 +891,8 @@ get_header();
                     </ul>
                     <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all">Scegli Base</a>
                 </div>
-                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-center mb-6">
+                <div class="pricing-card flex flex-col bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center mb-6 mt-2">
                         <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">ADVANCED</span>
                         <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
                             <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
@@ -903,7 +903,7 @@ get_header();
                         <p class="text-gray-500 text-sm mt-1">+ IVA</p>
                     </div>
                     <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+8%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 flex-1">
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
@@ -912,8 +912,8 @@ get_header();
                     </ul>
                     <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all">Scegli Advanced</a>
                 </div>
-                <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-center mb-6">
+                <div class="pricing-card flex flex-col bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center mb-6 mt-2">
                         <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">PRO</span>
                         <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
                             <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
@@ -924,7 +924,7 @@ get_header();
                         <p class="text-gray-500 text-sm mt-1">+ IVA</p>
                     </div>
                     <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+5%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 flex-1">
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
                         <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
@@ -933,7 +933,7 @@ get_header();
                     </ul>
                     <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all">Scegli Pro</a>
                 </div>
-                <div class="pricing-card featured rounded-2xl p-6 lg:p-8 shadow-xl relative" data-aos="fade-up" data-aos-delay="400">
+                <div class="pricing-card featured flex flex-col rounded-2xl p-6 lg:p-8 shadow-xl relative" data-aos="fade-up" data-aos-delay="400">
                     <div class="absolute top-4 right-4"><span class="inline-block px-3 py-1 bg-accent text-white text-xs font-bold rounded-full">POPOLARE</span></div>
                     <div class="text-center mb-6 mt-2">
                         <span class="inline-block px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full mb-3">ENTERPRISE</span>
@@ -947,14 +947,14 @@ get_header();
                         <p class="text-white/60 text-sm mt-1">nessuna fee fissa</p>
                     </div>
                     <div class="border-t border-white/20 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-white">+3%</span><span class="text-white/60 text-sm block">commissione sulle vendite</span></div></div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 flex-1">
                         <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
                         <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
                         <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
                         <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Creazione e gestione annunci OTA</span></li>
                         <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><strong>Assistenti virtuali IA e chatbot</strong></span></li>
                     </ul>
-                    <a href="#contact" class="block text-center py-3 px-6 bg-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-all shadow-lg">Scegli Enterprise</a>
+                    <a href="#contact" class="block text-center py-3 px-6 bg-white border-2 border-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-all shadow-lg">Scegli Enterprise</a>
                 </div>
             </div>
             <div class="mt-12 max-w-4xl mx-auto space-y-4" data-aos="fade-up">
