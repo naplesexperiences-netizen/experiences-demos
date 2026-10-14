@@ -849,7 +849,7 @@ get_header();
             <div class="text-center mb-12" data-aos="fade-up">
                 <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">PREZZI</span>
                 <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Paghi solo quando <span class="text-gradient">guadagni</span></h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-6">Modello unico nel mercato: <strong>commissione sulle vendite + fee annuale</strong>. Più cresci, meno paghi in fisso.</p>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-6">Modello unico nel mercato: <strong>commissione sulle vendite + fee annuale</strong>. Il piano si determina sui <strong>clienti che gestisci in un anno</strong>: più volume, meno fisso.</p>
                 
                 <!-- Pricing Explainer -->
                 <div class="max-w-3xl mx-auto bg-light rounded-2xl p-6 border border-secondary/20" data-aos="fade-up" data-aos-delay="100">
@@ -857,7 +857,7 @@ get_header();
                         <div class="flex-shrink-0 w-10 h-10 bg-secondary text-white rounded-lg flex items-center justify-center"><i class="fas fa-info-circle"></i></div>
                         <div class="text-left">
                             <p class="text-primary font-bold mb-2">Come funziona il nostro modello pricing</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">Ti aiutiamo a crescere e cresciamo con te. Più vendi, meno paghi in fisso. <strong>Il piano Enterprise è gratis</strong> perché con te abbiamo dimostrato il valore. Tutti i piani includono i 4 servizi core.</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">Il <strong>requisito indicato su ogni piano è il volume di clienti annui</strong>: è quello a stabilire quale tariffa ti spetta. Ti aiutiamo a crescere e cresciamo con te, quindi più vendi e meno paghi in fisso — fino al piano Enterprise, <strong>senza fee fissa</strong>, perché a quel punto il valore lo abbiamo dimostrato. Tutti i piani includono i 4 servizi core.</p>
                         </div>
                     </div>
                 </div>
@@ -866,8 +866,20 @@ get_header();
                 <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-center mb-6">
                         <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">BASE</span>
+                        <!-- Il volume annuo sta sopra al prezzo perche e la
+                             condizione che lo sblocca, non una nota a margine:
+                             come testo grigio sotto la cifra non lo leggeva
+                             nessuno. Le fasce sono intervalli e non piu
+                             quattro "fino a": con quattro soglie aperte una
+                             struttura piccola rientrava in tutte e avrebbe
+                             preso la tariffa piu bassa. -->
+                        <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
+                            <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
+                            <span class="block text-primary text-lg font-bold leading-tight">fino a 1.000</span>
+                            <span class="block text-gray-600 text-xs">clienti all'anno</span>
+                        </div>
                         <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€1.400</span><span class="text-gray-500 text-sm">/anno</span></div>
-                        <p class="text-gray-500 text-sm mt-1">+ IVA · fino a 1.000 clienti</p>
+                        <p class="text-gray-500 text-sm mt-1">+ IVA</p>
                     </div>
                     <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+10%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
                     <ul class="space-y-3 mb-8">
@@ -882,8 +894,13 @@ get_header();
                 <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-center mb-6">
                         <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">ADVANCED</span>
+                        <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
+                            <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
+                            <span class="block text-primary text-lg font-bold leading-tight">1.000–5.000</span>
+                            <span class="block text-gray-600 text-xs">clienti all'anno</span>
+                        </div>
                         <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€1.000</span><span class="text-gray-500 text-sm">/anno</span></div>
-                        <p class="text-gray-500 text-sm mt-1">+ IVA · fino a 5.000 clienti</p>
+                        <p class="text-gray-500 text-sm mt-1">+ IVA</p>
                     </div>
                     <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+8%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
                     <ul class="space-y-3 mb-8">
@@ -898,8 +915,13 @@ get_header();
                 <div class="pricing-card bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-center mb-6">
                         <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">PRO</span>
+                        <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
+                            <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
+                            <span class="block text-primary text-lg font-bold leading-tight">5.000–10.000</span>
+                            <span class="block text-gray-600 text-xs">clienti all'anno</span>
+                        </div>
                         <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€500</span><span class="text-gray-500 text-sm">/anno</span></div>
-                        <p class="text-gray-500 text-sm mt-1">+ IVA · fino a 10.000 clienti</p>
+                        <p class="text-gray-500 text-sm mt-1">+ IVA</p>
                     </div>
                     <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+5%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
                     <ul class="space-y-3 mb-8">
@@ -915,8 +937,14 @@ get_header();
                     <div class="absolute top-4 right-4"><span class="inline-block px-3 py-1 bg-accent text-white text-xs font-bold rounded-full">POPOLARE</span></div>
                     <div class="text-center mb-6 mt-2">
                         <span class="inline-block px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full mb-3">ENTERPRISE</span>
+                        <div class="bg-black/20 border border-white/20 rounded-xl px-3 py-2 mb-4">
+                            <span class="block text-white text-xs font-bold uppercase tracking-wide">Requisito</span>
+                            <span class="block text-white text-lg font-bold leading-tight">oltre 10.000</span>
+                            <span class="block text-white/80 text-xs">clienti all'anno</span>
+                        </div>
                         <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-white">€0</span><span class="text-white/60 text-sm">/anno</span></div>
-                        <p class="text-white/60 text-sm mt-1">oltre 10.000 clienti/anno</p>
+                        <!-- "+ IVA" su zero non vuol dire niente. -->
+                        <p class="text-white/60 text-sm mt-1">nessuna fee fissa</p>
                     </div>
                     <div class="border-t border-white/20 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-white">+3%</span><span class="text-white/60 text-sm block">commissione sulle vendite</span></div></div>
                     <ul class="space-y-3 mb-8">
@@ -939,7 +967,7 @@ get_header();
                     <div>
                         <p class="font-semibold text-primary mb-1">Il piano e la commissione dipendono dal volume di clienti annuali</p>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                            La scelta del piano (Base / Advanced / Pro / Enterprise) e la relativa percentuale di commissione vengono <strong>concordate sul numero stimato di clienti/prenotazioni annui</strong> della tua struttura. In fase di consulenza definiamo insieme il piano più adatto al tuo volume di business, e lo rivediamo se le condizioni cambiano.
+                            Le fasce indicate su ogni piano sono il <strong>requisito di accesso</strong>: il piano (Base / Advanced / Pro / Enterprise) e la relativa percentuale di commissione si determinano sul <strong>numero stimato di clienti/prenotazioni annui</strong> della tua struttura. Se sei a cavallo fra due fasce lo valutiamo insieme in fase di consulenza, e rivediamo il piano quando il volume cambia.
                         </p>
                     </div>
                 </div>
@@ -1025,11 +1053,14 @@ get_header();
                             </div>
                             <div><label for="exp-piano" class="block text-sm font-medium text-gray-700 mb-2">Piano di Interesse</label>
                                 <select id="exp-piano" name="piano" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
+                                    <!-- La fascia di clienti nell'etichetta: e il
+                                         requisito, e qui serve a scegliere il
+                                         piano giusto senza tornare su. -->
                                     <option value="">Seleziona un piano…</option>
-                                    <option value="enterprise">Enterprise - €0/anno + 3%</option>
-                                    <option value="pro">Pro - €500/anno + 5%</option>
-                                    <option value="advanced">Advanced - €1.000/anno + 8%</option>
-                                    <option value="base">Base - €1.400/anno + 10%</option>
+                                    <option value="enterprise">Enterprise — oltre 10.000 clienti/anno · €0 + 3%</option>
+                                    <option value="pro">Pro — 5.000–10.000 clienti/anno · €500 + 5%</option>
+                                    <option value="advanced">Advanced — 1.000–5.000 clienti/anno · €1.000 + 8%</option>
+                                    <option value="base">Base — fino a 1.000 clienti/anno · €1.400 + 10%</option>
                                     <option value="info">Vorrei maggiori informazioni</option>
                                 </select>
                             </div>
