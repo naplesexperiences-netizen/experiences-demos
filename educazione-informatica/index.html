@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Educazione informatica</title>
+<meta name="description" content="Tre guide interattive: sicurezza e privacy, fogli di calcolo, hardware del PC.">
+<style>
+:root{color-scheme:light;--bg:#f6f4ee;--card:#fffefa;--line:#d5d0c2;--ink:#1b1f1d;--mute:#5b635f;--a:#2f6fdb;--b:#1d9a6c;--c:#b9612a;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1311;--card:#1b221f;--line:#2c3531;--ink:#e9ece8;--mute:#9aa49f;--a:#6ea4ff;--b:#4fd6a0;--c:#f0a06a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f1311;--card:#1b221f;--line:#2c3531;--ink:#e9ece8;--mute:#9aa49f;--a:#6ea4ff;--b:#4fd6a0;--c:#f0a06a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto;padding-block:clamp(48px,8vw,96px)}
+.kicker{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 12px}
+h1{font-size:clamp(36px,6vw,60px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance}
+.lead{color:var(--mute);max-width:60ch;margin:0 0 40px;font-size:clamp(17px,2vw,19px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;text-decoration:none;border-top:4px solid var(--c);transition:transform .2s,border-color .2s;min-width:0}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--c)}
+.card:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.card h2{font-size:24px;line-height:1.2;margin:0}
+.card p{margin:0;color:var(--mute);font-size:15.5px;flex:1}
+.card span{font-size:14px;font-weight:600;color:var(--c)}
+footer{padding:0 0 56px;color:var(--mute);font-size:14px}
+footer p{margin:0 auto;width:min(1080px,100% - 32px)}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="kicker">Educazione informatica</p>
+  <h1>Impara l’informatica, passo per passo</h1>
+  <p class="lead">Tre guide interattive, ognuna con esempi, simulazioni e un piccolo quiz. Si possono leggere in ordine o a caso.</p>
+
+  <div class="grid">
+    <a class="card" href="./sicurezza/" style="--c:var(--c)">
+      <h2>Sicurezza e privacy</h2>
+      <p>Attacchi tradizionali, truffe con l’IA, gadget come il Flipper Zero, e chi ascolta davvero i nostri assistenti vocali e occhiali. Con una sezione finale su come difendersi.</p>
+      <span>Apri la guida →</span>
+    </a>
+    <a class="card" href="./fogli-di-calcolo/" style="--c:var(--a)">
+      <h2>Fogli di calcolo</h2>
+      <p>Dalle celle ai riferimenti relativi e assoluti, fino alle formule che fanno la differenza. Un foglio funzionante da provare direttamente nella pagina.</p>
+      <span>Apri la guida →</span>
+    </a>
+    <a class="card" href="./hardware-pc/" style="--c:var(--b)">
+      <h2>Hardware del PC</h2>
+      <p>Processore, memoria, archiviazione, scheda madre, grafica, alimentatore: a cosa serve ogni pezzo, con uno schema interattivo e un quiz.</p>
+      <span>Apri la guida →</span>
+    </a>
+  </div>
+</main>
+<footer><p>Contenuto divulgativo e didattico.</p></footer>
+</body>
+</html>
