@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linea Rossa — attacchi informatici e difesa</title>
+<meta name="description" content="Guida divulgativa agli attacchi informatici: tradizionali, con intelligenza artificiale e tramite gadget come il Flipper Zero. Con una sezione finale su come difendersi.">
+<style>
+:root{
+  --bg:#0c0e0d; --bg2:#141816; --line:#262c29; --ink:#ece9e1; --mute:#9aa39e;
+  --alert:#ff5a36; --warn:#ffb020; --safe:#5be3a1; --ai:#8fb4ff;
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--bg:#f5f2ea;--bg2:#ebe7dc;--line:#d6d1c2;--ink:#16191a;--mute:#5a625e;--alert:#c4361a;--warn:#9a6200;--safe:#0b7a4b;--ai:#2c53b8}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--warn);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--warn);color:#000;padding:8px 12px;z-index:99}
+
+/* nav */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.logo{font:700 15px var(--mono);letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
+.logo i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--alert);margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+nav a{display:block;padding:8px 12px;font:13px var(--mono);text-decoration:none;color:var(--mute);border-radius:6px}
+nav a:hover,nav a[aria-current]{color:var(--ink);background:var(--bg2)}
+@media(max-width:760px){nav ul{overflow-x:auto;max-width:62vw}nav a{white-space:nowrap}}
+
+/* hero */
+.hero{padding:clamp(72px,12vw,150px) 0 72px;border-bottom:1px solid var(--line)}
+.eyebrow{font:13px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--alert)}
+h1{font:400 clamp(44px,8.5vw,112px)/.98 var(--serif);letter-spacing:-.025em;margin:20px 0 28px;max-width:14ch;text-wrap:balance}
+h1 em{color:var(--alert);font-style:italic}
+.lead{font-size:clamp(18px,2vw,22px);max-width:60ch;color:var(--mute)}
+.lead strong{color:var(--ink);font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.stats div{background:var(--bg);padding:22px}
+.stats b{display:block;font:400 40px/1 var(--serif);margin-bottom:8px}
+.stats span{font-size:14px;color:var(--mute)}
+.note{font:12px var(--mono);color:var(--mute);margin-top:12px}
+
+/* sections */
+section.s{padding:clamp(64px,9vw,120px) 0;border-bottom:1px solid var(--line)}
+.sh{display:grid;grid-template-columns:140px 1fr;gap:24px;margin-bottom:48px}
+.sh .n{font:13px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding-top:14px;color:var(--c,var(--alert))}
+h2{font:400 clamp(32px,5vw,60px)/1.05 var(--serif);letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.sh p{margin:0;max-width:62ch;color:var(--mute)}
+@media(max-width:700px){.sh{grid-template-columns:1fr;gap:4px}.sh .n{padding:0}}
+#ia{--c:var(--ai)} #gadget{--c:var(--warn)} #difesa{--c:var(--safe)}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--c,var(--alert));transform:translateY(-2px)}
+.card h3{font:400 24px/1.2 var(--serif);margin:0}
+.card p{margin:0;font-size:15.5px;color:var(--mute)}
+.tag{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--alert))}
+.card dl{margin:auto 0 0;padding-top:12px;border-top:1px dashed var(--line);font-size:14px}
+.card dt{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-top:8px}
+.card dd{margin:2px 0 0}
+.sev{display:flex;gap:4px;align-items:center;font:11px var(--mono);color:var(--mute)}
+.sev i{width:18px;height:4px;border-radius:2px;background:var(--line)}
+.sev i.on{background:var(--c,var(--alert))}
+#ia .card,#ia{--c:var(--ai)} #gadget .card{--c:var(--warn)}
+
+/* filter */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:13px var(--mono);background:none;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* anatomy */
+.chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;counter-reset:st;margin:0 0 48px;padding:0;list-style:none;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.chain li{counter-increment:st;padding:20px;border-right:1px solid var(--line);font-size:14px;color:var(--mute);background:var(--bg2)}
+.chain li:last-child{border:0}
+.chain li::before{content:"0" counter(st);display:block;font:12px var(--mono);color:var(--alert);margin-bottom:8px}
+.chain b{display:block;color:var(--ink);font:400 19px var(--serif);margin-bottom:4px}
+
+/* flipper */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px}
+@media(max-width:800px){.split{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:10px;padding:28px;background:var(--bg2)}
+.panel h3{font:400 26px var(--serif);margin:0 0 12px}
+.panel ul{margin:0;padding-left:1.1em;color:var(--mute)}
+.panel li{margin:6px 0}
+.panel.yes{border-top:3px solid var(--warn)} .panel.no{border-top:3px solid var(--safe)}
+.callout{border-left:3px solid var(--warn);padding:4px 0 4px 20px;color:var(--mute);max-width:70ch;margin:40px 0 0}
+.callout b{color:var(--ink)}
+
+/* defense */
+.layers{display:grid;gap:12px;margin-bottom:56px}
+.layer{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:24px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.layer h3{font:400 24px var(--serif);margin:0;color:var(--safe)}
+.layer small{display:block;font:12px var(--mono);color:var(--mute);margin-top:4px}
+.layer ul{margin:0;padding-left:1.1em;color:var(--mute)}
+.layer li{margin:4px 0}.layer li b{color:var(--ink);font-weight:500}
+@media(max-width:700px){.layer{grid-template-columns:1fr;gap:10px}}
+.check{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:28px}
+.check header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:16px}
+.check h3{font:400 28px var(--serif);margin:0}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.bar div{height:100%;width:0;background:var(--safe);transition:width .35s}
+.check label{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer;align-items:flex-start}
+.check input{accent-color:var(--safe);width:20px;height:20px;margin-top:3px;flex:none}
+.check label span b{display:block;font-weight:500}
+.check label span{color:var(--mute);font-size:15px}
+.check input:checked+span{opacity:.55}
+.check input:checked+span b{text-decoration:line-through}
+#score{font:14px var(--mono);color:var(--safe)}
+.reset{font:12px var(--mono);background:none;border:1px solid var(--line);color:var(--mute);padding:6px 12px;border-radius:6px;cursor:pointer}
+.emerg{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.emerg .panel{border-top:3px solid var(--alert)}
+.emerg ol{margin:0;padding-left:1.2em;color:var(--mute)}
+
+footer{padding:56px 0 80px;color:var(--mute);font-size:14px}
+footer .wrap{display:grid;gap:12px;max-width:760px;margin-left:max(16px,calc((100% - 1120px)/2))}
+footer a{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#"><i></i>Linea Rossa</a>
+    <nav aria-label="Sezioni">
+      <ul>
+        <li><a href="#tradizionali">Tradizionali</a></li>
+        <li><a href="#ia">Con IA</a></li>
+        <li><a href="#gadget">Gadget</a></li>
+        <li><a href="#difesa">Difesa</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Guida divulgativa · sicurezza informatica</p>
+    <h1>Come ci <em>attaccano</em>. E come ci difendiamo.</h1>
+    <p class="lead">Dal phishing di vent’anni fa ai <strong>deepfake vocali</strong>, fino ai piccoli gadget da tasca come il <strong>Flipper Zero</strong>: gli attacchi cambiano strumenti, ma quasi sempre puntano allo stesso anello debole. Capire il meccanismo è il primo passo per spezzarlo.</p>
+    <div class="stats" role="list">
+      <div role="listitem"><b>3</b><span>famiglie di attacco, dalle più antiche alle più recenti</span></div>
+      <div role="listitem"><b>≈ 1 su 3</b><span>violazioni coinvolge un errore o un’azione umana<sup>*</sup></span></div>
+      <div role="listitem"><b>2 min</b><span>bastano per attivare il 2FA e chiudere la porta più usata</span></div>
+    </div>
+    <p class="note">* Ordine di grandezza indicativo; i report di settore (es. Verizon DBIR, Clusit) lo collocano in genere fra un terzo e oltre metà dei casi, a seconda della definizione.</p>
+  </div>
+</section>
+
+<section class="s" id="tradizionali" aria-labelledby="h-trad">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">01 / Classici</span>
+      <div><h2 id="h-trad">Gli attacchi tradizionali</h2><p>Non sono «vecchi»: sono ancora la maggior parte di ciò che succede ogni giorno. Funzionano perché sfruttano abitudini, configurazioni trascurate e software non aggiornato.</p></div>
+    </div>
+
+    <ol class="chain" aria-label="Fasi tipiche di un attacco">
+      <li><b>Ricognizione</b>Raccolta di informazioni pubbliche su persone e sistemi.</li>
+      <li><b>Accesso iniziale</b>Email truffa, password rubata, falla non corretta.</li>
+      <li><b>Consolidamento</b>Permessi più alti, spostamento fra i sistemi.</li>
+      <li><b>Azione</b>Furto dati, cifratura, frode, interruzione.</li>
+      <li><b>Monetizzazione</b>Riscatto, rivendita, estorsione.</li>
+    </ol>
+
+    <div class="filters" role="group" aria-label="Filtra per bersaglio">
+      <button aria-pressed="true" data-f="all">Tutti</button>
+      <button aria-pressed="false" data-f="persone">Colpiscono le persone</button>
+      <button aria-pressed="false" data-f="sistemi">Colpiscono i sistemi</button>
+    </div>
+
+    <div class="grid" id="trad-grid">
+      <article class="card" data-t="persone"><span class="tag">Social engineering</span><h3>Phishing e smishing</h3><p>Messaggi che imitano banca, corriere o ente pubblico per far cliccare un link o inserire credenziali in un sito clone.</p><div class="sev" data-l="5" aria-label="Diffusione: molto alta"></div><dl><dt>Segnale</dt><dd>Urgenza, mittente appena diverso, link che non porta al dominio ufficiale.</dd></dl></article>
+      <article class="card" data-t="persone"><span class="tag">Social engineering</span><h3>Vishing e pretexting</h3><p>Telefonate di finti tecnici o «operatori antifrode» che costruiscono un pretesto credibile per ottenere codici o bonifici.</p><div class="sev" data-l="4" aria-label="Diffusione: alta"></div><dl><dt>Segnale</dt><dd>Ti chiedono un codice OTP o di «mettere al sicuro» i soldi spostandoli.</dd></dl></article>
+      <article class="card" data-t="sistemi"><span class="tag">Malware</span><h3>Ransomware</h3><p>Software che cifra file e backup e chiede un riscatto; spesso i dati vengono anche copiati per minacciarne la pubblicazione.</p><div class="sev" data-l="5" aria-label="Impatto: molto alto"></div><dl><dt>Segnale</dt><dd>File rinominati, estensioni insolite, messaggio di richiesta sullo schermo.</dd></dl></article>
+      <article class="card" data-t="persone"><span class="tag">Credenziali</span><h3>Credential stuffing e brute force</h3><p>Si provano in massa password rubate da altri siti o combinazioni comuni. Chi riusa la stessa password ovunque è il bersaglio ideale.</p><div class="sev" data-l="4" aria-label="Diffusione: alta"></div><dl><dt>Segnale</dt><dd>Notifiche di accessi da luoghi o dispositivi sconosciuti.</dd></dl></article>
+      <article class="card" data-t="sistemi"><span class="tag">Web</span><h3>Injection e falle applicative</h3><p>Dati non validati che il sito interpreta come comandi (es. SQL injection, XSS). Colpisce chi sviluppa e gestisce siti, non chi li visita.</p><div class="sev" data-l="3" aria-label="Impatto: medio-alto"></div><dl><dt>Difesa tipica</dt><dd>Query parametrizzate, validazione, revisione del codice, WAF.</dd></dl></article>
+      <article class="card" data-t="sistemi"><span class="tag">Rete</span><h3>DDoS</h3><p>Una marea di richieste da migliaia di dispositivi compromessi satura un servizio fino a renderlo inutilizzabile.</p><div class="sev" data-l="3" aria-label="Impatto: medio"></div><dl><dt>Difesa tipica</dt><dd>Servizi di mitigazione, rate limiting, capacità elastica.</dd></dl></article>
+      <article class="card" data-t="persone"><span class="tag">Rete</span><h3>Man-in-the-middle e Wi-Fi falsi</h3><p>Chi si interpone fra te e il servizio può leggere o alterare il traffico, tipicamente su reti pubbliche aperte o con nomi ingannevoli.</p><div class="sev" data-l="2" aria-label="Diffusione: media"></div><dl><dt>Difesa tipica</dt><dd>HTTPS ovunque, VPN affidabile, niente operazioni sensibili su Wi-Fi aperti.</dd></dl></article>
+      <article class="card" data-t="sistemi"><span class="tag">Supply chain</span><h3>Software e fornitori compromessi</h3><p>L’attacco entra tramite un aggiornamento, una libreria o un fornitore di fiducia, aggirando le difese del bersaglio finale.</p><div class="sev" data-l="3" aria-label="Impatto: alto"></div><dl><dt>Difesa tipica</dt><dd>Inventario delle dipendenze, firme, principio del minimo privilegio.</dd></dl></article>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="ia" aria-labelledby="h-ia">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">02 / Intelligenza artificiale</span>
+      <div><h2 id="h-ia">Quando l’attaccante ha un assistente</h2><p>L’IA non inventa nuove categorie di crimine: <strong>abbassa il costo</strong> di quelle esistenti, le rende più credibili e le moltiplica. E, allo stesso tempo, diventa essa stessa un bersaglio.</p></div>
+    </div>
+    <div class="grid">
+      <article class="card"><span class="tag">Inganno</span><h3>Phishing senza errori</h3><p>I modelli linguistici scrivono email impeccabili, in qualsiasi lingua e con il tono giusto. Sparisce il vecchio indizio degli strafalcioni.</p><dl><dt>Cambia</dt><dd>Non fidarti della forma: verifica sempre il canale e la richiesta.</dd></dl></article>
+      <article class="card"><span class="tag">Inganno</span><h3>Voice cloning</h3><p>Pochi secondi di audio pubblico bastano a imitare una voce: il «figlio in difficoltà» o il «capo che urge» al telefono.</p><dl><dt>Contromisura</dt><dd>Parola d’ordine di famiglia o azienda; richiamare sul numero noto.</dd></dl></article>
+      <article class="card"><span class="tag">Inganno</span><h3>Deepfake video</h3><p>Videochiamate o filmati manipolati. Sono già stati usati in frodi aziendali con falsi dirigenti in riunione.</p><dl><dt>Contromisura</dt><dd>Doppia approvazione per i pagamenti, indipendentemente da chi lo chiede.</dd></dl></article>
+      <article class="card"><span class="tag">Automazione</span><h3>Ricognizione su scala</h3><p>L’IA incrocia profili social, siti e dati trapelati per costruire messaggi personalizzati per migliaia di persone insieme.</p><dl><dt>Contromisura</dt><dd>Ridurre l’esposizione: profili privati, meno dettagli pubblici.</dd></dl></article>
+      <article class="card"><span class="tag">Codice</span><h3>Malware assistito</h3><p>Gli assistenti di programmazione possono accelerare chi sa già scrivere codice ostile. I fornitori inseriscono filtri, ma non sono infallibili.</p><dl><dt>Contromisura</dt><dd>Rilevamento comportamentale (EDR), non solo firme di virus.</dd></dl></article>
+      <article class="card"><span class="tag">Bersaglio</span><h3>Prompt injection</h3><p>Testo nascosto in una pagina, un PDF o un’email convince un assistente IA a ignorare le istruzioni e a rivelare dati o agire al posto tuo.</p><dl><dt>Contromisura</dt><dd>Permessi minimi agli agenti, conferma umana per azioni sensibili.</dd></dl></article>
+      <article class="card"><span class="tag">Bersaglio</span><h3>Avvelenamento e fuga di dati</h3><p>Dati di addestramento manipolati, modelli che «ricordano» informazioni riservate, dipendenti che incollano segreti in chatbot non autorizzati.</p><dl><dt>Contromisura</dt><dd>Policy d’uso dell’IA, strumenti aziendali approvati, classificazione dei dati.</dd></dl></article>
+    </div>
+    <p class="callout"><b>Lato difesa conta altrettanto.</b> L’IA aiuta a individuare anomalie, filtrare spam e smistare gli allarmi più in fretta. La corsa è simmetrica: vince chi ha le basi in ordine.</p>
+  </div>
+</section>
+
+<section class="s" id="gadget" aria-labelledby="h-g">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">03 / Gadget</span>
+      <div><h2 id="h-g">Flipper Zero e i «giocattoli» da pentester</h2><p>Dispositivi tascabili nati per studio e test autorizzati. Fanno parlare con oggetti di uso comune e mostrano quanto certi sistemi siano <strong>fragili per progetto</strong>, non per magia.</p></div>
+    </div>
+
+    <div class="split">
+      <div class="panel yes">
+        <h3>Cosa mostra il Flipper Zero</h3>
+        <ul>
+          <li><b>Radio sub-GHz</b>: telecomandi di cancelli e barriere più vecchi, con codice fisso, possono essere registrati e ripetuti.</li>
+          <li><b>RFID/NFC</b>: certi badge a bassa frequenza (125 kHz) non hanno alcuna autenticazione e si copiano.</li>
+          <li><b>Infrarossi</b>: legge e riproduce telecomandi di TV e condizionatori.</li>
+          <li><b>USB e GPIO</b>: può emulare una tastiera o dialogare con schede esterne.</li>
+        </ul>
+      </div>
+      <div class="panel no">
+        <h3>Cosa non fa</h3>
+        <ul>
+          <li>Non «hackera» automaticamente auto, bancomat o smartphone moderni.</li>
+          <li>Non aggira i <b>rolling code</b> e le chiavi cifrate dei sistemi recenti.</li>
+          <li>Non rompe carte di pagamento o badge con crittografia robusta.</li>
+          <li>Non è magico: spesso serve prossimità, contesto e un bersaglio già debole.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid">
+      <article class="card"><span class="tag">Accesso fisico</span><h3>Cloni di badge</h3><p>Il rischio riguarda i sistemi di accesso obsoleti. La soluzione è sostituire i lettori con tecnologie autenticate, non vietare i gadget.</p></article>
+      <article class="card"><span class="tag">USB</span><h3>Rubber Ducky, O.MG, BadUSB</h3><p>Chiavette o cavi che si presentano come tastiera e digitano comandi in pochi secondi. Il computer si fida di tutto ciò che si dichiara «tastiera».</p></article>
+      <article class="card"><span class="tag">Wi-Fi</span><h3>Access point civetta</h3><p>Dispositivi che imitano una rete nota per attirare i telefoni. Per questo i dispositivi che si riconnettono da soli sono un rischio.</p></article>
+      <article class="card"><span class="tag">Radio</span><h3>Relay e SDR</h3><p>Radio programmabili e ripetitori possono estendere il raggio di certe chiavi keyless. Riguarda soprattutto alcuni modelli di auto.</p></article>
+      <article class="card"><span class="tag">Analisi</span><h3>Proxmark e lettori avanzati</h3><p>Strumenti da laboratorio per studiare e testare RFID/NFC: usati da chi progetta e verifica sistemi di accesso.</p></article>
+    </div>
+
+    <p class="callout"><b>Legalità.</b> Possedere un Flipper Zero è legale; usarlo su sistemi o cose altrui senza autorizzazione no, e in Italia può configurare reati come l’accesso abusivo a sistema informatico (art. 615-ter c.p.). Provalo solo sui tuoi dispositivi o in un ambiente di test autorizzato.</p>
+  </div>
+</section>
+
+<section class="s" id="difesa" aria-labelledby="h-d">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">04 / Difesa</span>
+      <div><h2 id="h-d">Come difendersi</h2><p>Nessuna misura è perfetta, ma poche abitudini ben scelte fermano la grande maggioranza degli attacchi: tutti quelli sopra, vecchi e nuovi.</p></div>
+    </div>
+
+    <div class="layers">
+      <div class="layer"><div><h3>Persone</h3><small>l’anello più preso di mira</small></div><ul>
+        <li><b>Fermati e verifica</b>: urgenza e segretezza sono le leve preferite di chi inganna.</li>
+        <li><b>Canale alternativo</b>: richiama sul numero ufficiale, mai su quello fornito nel messaggio.</li>
+        <li><b>Parola d’ordine</b> concordata in famiglia o in azienda contro voci e video clonati.</li>
+        <li><b>Mai codici OTP</b> a nessuno: nessuna banca li chiede.</li></ul></div>
+      <div class="layer"><div><h3>Account</h3><small>la porta più usata</small></div><ul>
+        <li><b>Password manager</b> e password uniche e lunghe per ogni servizio.</li>
+        <li><b>Autenticazione a due fattori</b>, meglio con app o chiave fisica (passkey/FIDO2) che con SMS.</li>
+        <li>Controlla se le tue email compaiono in violazioni note (es. Have I Been Pwned).</li></ul></div>
+      <div class="layer"><div><h3>Dispositivi</h3><small>pulizia e aggiornamenti</small></div><ul>
+        <li><b>Aggiornamenti automatici</b> di sistema, app e router.</li>
+        <li>Antivirus/EDR attivo, disco cifrato, blocco schermo.</li>
+        <li><b>Backup 3-2-1</b>: tre copie, due supporti, una offline o immutabile.</li>
+        <li>Non collegare chiavette o cavi USB di origine ignota.</li></ul></div>
+      <div class="layer"><div><h3>Rete e fisico</h3><small>dove entrano i gadget</small></div><ul>
+        <li>Wi-Fi con WPA3/WPA2 robusto; rete ospiti separata; evita reti aperte.</li>
+        <li>Sostituisci <b>cancelli e badge a codice fisso</b> con sistemi a rolling code o autenticati.</li>
+        <li>Disattiva la connessione automatica alle reti note e il Bluetooth quando non serve.</li>
+        <li>Chiudi la chiave keyless in una custodia schermante la notte.</li></ul></div>
+      <div class="layer"><div><h3>IA</h3><small>usarla senza cadere</small></div><ul>
+        <li>Non incollare dati personali o riservati in strumenti non approvati.</li>
+        <li>Agli agenti IA dai solo i permessi indispensabili e richiedi conferma per le azioni importanti.</li>
+        <li>Tratta contenuti, audio e video «troppo perfetti» con lo stesso scetticismo di un’email.</li></ul></div>
+    </div>
+
+    <div class="check" id="check">
+      <header><h3>La tua checklist in 10 punti</h3><span id="score" aria-live="polite">0 / 10</span></header>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-label="Avanzamento"><div id="fill"></div></div>
+      <div id="items"></div>
+      <p style="margin:16px 0 0"><button class="reset" id="reset" type="button">Azzera</button> <span class="note" style="margin-left:8px">Le spunte restano salvate solo nel tuo browser.</span></p>
+    </div>
+
+    <div class="emerg">
+      <div class="panel"><h3>Se sei stato colpito</h3><ol>
+        <li>Scollega il dispositivo dalla rete; non spegnerlo se è un’azienda.</li>
+        <li>Cambia le password da un dispositivo pulito e attiva il 2FA.</li>
+        <li>Avvisa banca o carta se sono coinvolti pagamenti.</li>
+        <li>Non pagare un riscatto senza consulto: non garantisce nulla.</li></ol></div>
+      <div class="panel"><h3>A chi segnalare</h3><ol>
+        <li>Polizia Postale (commissariatodips.it) per truffe e furti d’identità.</li>
+        <li>CSIRT Italia / ACN per incidenti rilevanti.</li>
+        <li>Garante Privacy entro 72 ore se ci sono dati personali violati (GDPR, art. 33).</li></ol></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Scopo del sito.</b> Contenuto esclusivamente divulgativo e difensivo: nessuna istruzione operativa. Le statistiche citate sono indicative; verificale sui report originali prima di riutilizzarle.</p>
+    <p>Fonti per approfondire: <a href="https://www.acn.gov.it" rel="noopener">ACN</a> · <a href="https://clusit.it" rel="noopener">Clusit</a> · <a href="https://owasp.org" rel="noopener">OWASP</a> · <a href="https://haveibeenpwned.com" rel="noopener">Have I Been Pwned</a></p>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  // severity bars
+  document.querySelectorAll('.sev').forEach(s=>{
+    const n=+s.dataset.l;
+    s.insertAdjacentHTML('afterbegin',Array.from({length:5},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join(''));
+  });
+
+  // filters
+  const btns=document.querySelectorAll('.filters button'),cards=document.querySelectorAll('#trad-grid .card');
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    btns.forEach(x=>x.setAttribute('aria-pressed',x===b));
+    cards.forEach(c=>c.hidden=b.dataset.f!=='all'&&c.dataset.t!==b.dataset.f);
+  }));
+
+  // active nav
+  const links=[...document.querySelectorAll('nav a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)links.forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id));
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section.s').forEach(s=>io.observe(s));
+
+  // reveal
+  const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.card,.panel,.layer,.check').forEach(el=>{el.classList.add('rv');rv.observe(el)});
+
+  // checklist
+  const items=[
+    ['Password manager attivo','Una password unica e lunga per ogni servizio.'],
+    ['2FA su email, banca e social','Preferibilmente con app o chiave fisica.'],
+    ['Aggiornamenti automatici','Telefono, computer, router e app.'],
+    ['Backup 3-2-1','Almeno una copia offline o immutabile.'],
+    ['Disco e telefono cifrati','Con blocco schermo e PIN robusto.'],
+    ['Parola d’ordine di famiglia','Contro voci e video clonati.'],
+    ['Profili social ripuliti','Meno dati pubblici su lavoro, famiglia, abitudini.'],
+    ['Wi-Fi di casa messo in sicurezza','WPA2/WPA3, password del router cambiata, rete ospiti.'],
+    ['Controllo violazioni dei tuoi account','Con Have I Been Pwned o simili.'],
+    ['Regole per l’uso dell’IA','Nessun dato riservato in strumenti non approvati.']
+  ];
+  const KEY='linea-rossa-check';
+  let state=[];
+  try{state=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+  const box=document.getElementById('items');
+  box.innerHTML=items.map((it,i)=>`<label><input type="checkbox" data-i="${i}"${state.includes(i)?' checked':''}><span><b>${it[0]}</b>${it[1]}</span></label>`).join('');
+  const upd=()=>{
+    const n=box.querySelectorAll('input:checked').length;
+    document.getElementById('score').textContent=n+' / 10';
+    document.getElementById('fill').style.width=n*10+'%';
+    document.querySelector('.bar').setAttribute('aria-valuenow',n);
+    try{localStorage.setItem(KEY,JSON.stringify([...box.querySelectorAll('input:checked')].map(x=>+x.dataset.i)))}catch(e){}
+  };
+  box.addEventListener('change',upd);
+  document.getElementById('reset').onclick=()=>{box.querySelectorAll('input').forEach(x=>x.checked=false);upd()};
+  upd();
+})();
+</script>
+</body>
+</html>
