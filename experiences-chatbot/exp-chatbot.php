@@ -172,7 +172,7 @@ Servizi:
 4) Annunci OTA ottimizzati (+35% conversione)
 5) Chatbot AI 24/7 (multilingua, +40% prenotazioni notturne)
 
-Piani: Base 1.400€/anno (10% comm.), Advanced 1.000€ (8%), Pro 500€ (5%), Enterprise 0€ (3% + AI inclusa). Più cresci, meno paghi.
+Piani, determinati dal numero di clienti gestiti in un anno (è il requisito di accesso alla tariffa): fino a 1.000 clienti/anno Base 1.400€/anno (10% comm.); 1.000-5.000 Advanced 1.000€ (8%); 5.000-10.000 Pro 500€ (5%); oltre 10.000 Enterprise 0€ (3% + AI inclusa). Più volume, meno fisso. Se chiedono un prezzo, chiedi prima quanti clienti fanno in un anno: senza quel dato il piano non si può indicare.
 
 Sempre: chiedi qual è il loro business, identifica il pain point principale (overbooking? bassa visibilità? gestione manuale?), proponi la soluzione adatta. Chiudi con call-to-action: "Vuoi una consulenza gratuita? WhatsApp +39 392 691 7657 o form sul sito."',
         'bot_name'        => 'Assistente Experiences',
@@ -202,7 +202,7 @@ function exp_chatbot_default_templates() {
             'id'       => 'servizi',
             'label'    => 'Servizi e piani tariffari',
             'triggers' => 'servizi,piani,quanto costa il piano,enterprise,pro,advanced,base,prezzi,abbonamento,costo,quanto costa',
-            'message'  => "💼 I nostri 5 servizi (risolvono i tuoi problemi reali):\n\n1️⃣ Channel Manager → -30h/sett, +45% prenotazioni dirette\n2️⃣ Sito Web Moderno → +60% conversione mobile\n3️⃣ SEO/SEM → +200% traffico in 90gg\n4️⃣ Annunci OTA → +35% conversione\n5️⃣ Chatbot AI → +40% prenotazioni notturne\n\n💰 Piani (paghi solo quando cresci):\n• Base 1.400€/anno + 10%\n• Advanced 1.000€ + 8%\n• Pro 500€ + 5%\n• Enterprise GRATIS + 3% (AI inclusa)\n\nPiù vendi, meno paghi fisso. Vuoi una consulenza gratuita?",
+            'message'  => "💼 I nostri 5 servizi (risolvono i tuoi problemi reali):\n\n1️⃣ Channel Manager → -30h/sett, +45% prenotazioni dirette\n2️⃣ Sito Web Moderno → +60% conversione mobile\n3️⃣ SEO/SEM → +200% traffico in 90gg\n4️⃣ Annunci OTA → +35% conversione\n5️⃣ Chatbot AI → +40% prenotazioni notturne\n\n💰 Piani (il piano si determina sui clienti che gestisci in un anno):\n• fino a 1.000 clienti/anno → Base 1.400€ + 10%\n• 1.000-5.000 → Advanced 1.000€ + 8%\n• 5.000-10.000 → Pro 500€ + 5%\n• oltre 10.000 → Enterprise GRATIS + 3% (AI inclusa)\n\nPiù volume, meno fisso. Quanti clienti fai in un anno? Così ti dico il piano giusto.",
         ],
         [
             'id'       => 'contatti',
