@@ -37,6 +37,25 @@ const FIRMA = {
   Tonantidi:  { idea:'crowned and imposing: this one is the boss', gradi:['—'] }
 };
 
+/* Il mestiere della famiglia, in inglese: la descrizione che il gioco da'
+   e' in italiano, e una riga italiana in mezzo a un prompt inglese e' rumore.
+   Serve al modello per l'atteggiamento, non solo per la forma. */
+const RUOLO = {
+  Lamidi:'A front-line attacker: one sharp blow on a single target.',
+  Bastidi:'A wall that shoves: plenty of hit points, and a horn that moves whoever stands in front.',
+  Bombardidi:'Artillery: hits from far off, but must be kept under cover — its defence is low.',
+  Voltidi:'A disruptor: puts an opponent out of play for two turns and leaves it on its back.',
+  Falcidi:'Area damage: alone among three enemies it is worth more than any other unit.',
+  Tenaglidi:'A thrower: the grip does no damage — the wall it slams you into does.',
+  Silfidi:'A saboteur: steals an opponent away from the enemy team.',
+  Trivellidi:'A battering ram: charges straight and bowls things over, then stands exposed.',
+  Sferidi:'A defender: curls up behind its ball and stops two hits.',
+  Ventalidi:'A raider: flies three squares and sweeps away whatever stands around it.',
+  Coccinidi:'Support: it does not attack well, but it keeps its neighbours standing.',
+  Corsidi:'Mobility: two squares in a straight line in any direction, and it kicks.',
+  Tonantidi:'The champion: knocks down with its plain attack and strikes at range.'
+};
+
 const fam = {};
 UNITS.forEach(u => (fam[u.fam] = fam[u.fam] || []).push(u));
 Object.keys(fam).forEach(k => fam[k].sort((a,b) => a.rank - b.rank));
@@ -45,9 +64,7 @@ fs.mkdirSync(OUT, { recursive: true });
 let righe = 0;
 for (const nome of Object.keys(fam)){
   const m = fam[nome], f = FIRMA[nome];
-  /* Se la descrizione di gioco e' la stessa per tutti, dirla una volta:
-     ripeterla quattro volte e' rumore dentro al prompt. */
-  const unaDesc = m.length > 1 && m.every(u => u.desc === m[0].desc);
+
   const testo =
 `PROMPT — famiglia ${nome} (${m.length} Insector)
 colore della famiglia: ${COL[nome] || '?'}
@@ -66,9 +83,9 @@ FAMILY SIGNATURE — all of them must read as relatives:
 ${f.idea}.
 
 THE ${m.length} MEMBER${m.length>1?'S':''}, weakest to strongest. ${m.length>1 ? 'Each one must be clearly different\nfrom the one before — same body plan, more weapon:' : ''}
-${m.map((u,i) => `  ${i+1}. ${u.name} (rank ${u.rank})${f.gradi[i] && f.gradi[i] !== '—' ? ' — ' + f.gradi[i] : ''}` +
-    (unaDesc ? '' : `\n     in gioco: ${u.desc}`)).join('\n')}
-${unaDesc ? 'Tutti e ' + m.length + ' fanno lo stesso mestiere: ' + m[0].desc + '\n' : ''}
+${m.map((u,i) => `  ${i+1}. ${u.name} (rank ${u.rank})${f.gradi[i] && f.gradi[i] !== '—' ? ' — ' + f.gradi[i] : ''}`).join('\n')}
+
+WHAT THEY DO, for the attitude: ${RUOLO[nome]}
 
 The progression is carried by real shape — longer weapon, heavier body, extra
 parts — not by size alone. Whoever is stronger must look it at a glance.
