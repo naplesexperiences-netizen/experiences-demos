@@ -11,6 +11,7 @@ risultato si ritaglia e si rimette dentro al gioco.
 | `prova-una-famiglia.png` | I quattro Falcidi soli. Per provare la strada su quattro invece che su 34 prima di spendere. |
 | `prompt.txt` | Il testo da incollare insieme all'immagine. |
 | [`prompt-famiglie/`](prompt-famiglie/) | Un prompt per ciascuna delle 13 famiglie, **generato da `art()`** invece che scritto a mano, con i numeri della prova fatta sui Falcidi. |
+| [`gemini/`](gemini/) | Le richieste pronte per **Nano Banana 2.1** via API: i quattro prompt di animazione, l'impaginatore che li mette nel formato giusto e lo script che le manda. |
 
 Le tre immagini mostrano gli sprite **di oggi**, cioè dopo il rifacimento di
 `art()` descritto qui sotto: a un generatore si chiede di migliorarli, non di
