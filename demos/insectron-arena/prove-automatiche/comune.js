@@ -41,8 +41,14 @@ const SERVITO = "http://127.0.0.1:" + PORTA + "/";
    che quei file li cercano davvero. */
 function radiceSito(){
   if (process.env.INSECTRON_SITO) return process.env.INSECTRON_SITO;
-  const vicino = path.resolve(DEMO, "../../../insectorarena");
-  return fs.existsSync(path.join(vicino, "sw.js")) ? vicino : DEMO;
+  const candidati = [
+    path.resolve(DEMO, "../../../insectorarena"),  /* i due repository affiancati */
+    path.resolve(DEMO, "../insectorarena"),
+    path.resolve(DEMO, "../sito")                  /* il pacchetto zip */
+  ];
+  for (const c of candidati)
+    if (fs.existsSync(path.join(c, "sw.js"))) return c;
+  return DEMO;
 }
 
 module.exports = {
