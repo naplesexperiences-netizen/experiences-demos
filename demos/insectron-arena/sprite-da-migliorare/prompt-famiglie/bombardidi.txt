@@ -20,8 +20,8 @@ from the one before — same body plan, more weapon:
   2. Colubrina (rank 4) — a breech block at the base of the barrel
   3. Bombarda (rank 5) — side vents on the barrel
   4. Basilisco (rank 6) — carriage wheels on the flanks
-Tutti e 4 fanno lo stesso mestiere: Artiglieria. Colpisce da lontano ma va tenuta al riparo: la difesa è bassa.
 
+WHAT THEY DO, for the attitude: Artillery: hits from far off, but must be kept under cover — its defence is low.
 
 The progression is carried by real shape — longer weapon, heavier body, extra
 parts — not by size alone. Whoever is stronger must look it at a glance.
