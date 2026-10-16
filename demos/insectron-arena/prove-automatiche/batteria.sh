@@ -19,11 +19,7 @@ python3 "$QUI/strumenti/rigenera-mech.py" >/dev/null
 # Alcune prove vogliono un'origine vera (localStorage, service worker). Si
 # serve la radice del sito pubblicato se c'e' -- ha manifest, sw.js e icone --
 # altrimenti la cartella della demo: gira tutto tranne pwa.js.
-RADICE="$DEMO"
-if [ -n "$INSECTRON_SITO" ]; then RADICE="$INSECTRON_SITO"
-elif [ -f "$DEMO/../../../insectorarena/sw.js" ]; then
-  RADICE=$(cd "$DEMO/../../../insectorarena" && pwd)
-fi
+RADICE=$(cd "$QUI" && node -e "console.log(require('./comune').RADICE_SITO)")
 echo "gioco:  $DEMO/gioca.html"
 echo "radice servita su :$PORTA:  $RADICE"
 echo
