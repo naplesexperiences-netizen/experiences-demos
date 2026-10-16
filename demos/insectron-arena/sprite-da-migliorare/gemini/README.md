@@ -67,10 +67,15 @@ ritorni si conservano sei settimane. Scaricali.
 
 ## Il riferimento di stile, che è la cosa che tiene tutto
 
-**Gemini non ha un parametro `seed`.** L'avevo scritto, è sbagliato: quel
-`seed` appartiene al wrapper di Higgsfield, non all'API di Google. Il modo
-documentato per tenere coerente una serie è un altro, e sta già dentro queste
-richieste:
+**Sul `seed`, per ordine.** Nella **chat** di Gemini non esiste: è un riquadro
+di testo. Sull'**API** delle immagini Google non lo documenta, compare in
+`generationConfig` in SDK di terze parti, e c'è chi riporta che non viene
+comunque rispettato alla lettera. **Higgsfield** invece lo dichiara per
+`nano_banana_2_1`. Qui si può mettere con `SEED=12345 node genera-richieste.js`
+— tentativo in più, non garanzia.
+
+Il modo documentato per tenere coerente una serie è un altro, e sta già dentro
+queste richieste:
 
 1. **La stessa immagine di riferimento in ogni richiesta.** Metti il ritratto
    di Falcetta a 512 px come `riferimento.png` in questa cartella: ogni
