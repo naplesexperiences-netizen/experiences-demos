@@ -19,8 +19,8 @@ from the one before — same body plan, more weapon:
   1. Tenaglia (rank 1) — plain jaws
   2. Morsa (rank 2) — teeth inside the jaws
   3. Ganascia (rank 3) — dark spots on the shell
-Tutti e 3 fanno lo stesso mestiere: Lanciatore. Non fa danno con la presa: lo fa il muro contro cui scaglia il bersaglio.
 
+WHAT THEY DO, for the attitude: A thrower: the grip does no damage — the wall it slams you into does.
 
 The progression is carried by real shape — longer weapon, heavier body, extra
 parts — not by size alone. Whoever is stronger must look it at a glance.

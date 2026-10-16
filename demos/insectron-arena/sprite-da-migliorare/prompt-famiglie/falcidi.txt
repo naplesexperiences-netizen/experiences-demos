@@ -20,8 +20,8 @@ from the one before — same body plan, more weapon:
   2. Falcione (rank 2) — serrations on the sickle edge
   3. Roncola (rank 3) — spines on the thorax
   4. Turbine (rank 4) — an inner hook closing the sickle
-Tutti e 4 fanno lo stesso mestiere: Danno ad area. Da sola in mezzo a tre nemici vale più di qualsiasi altra unità.
 
+WHAT THEY DO, for the attitude: Area damage: alone among three enemies it is worth more than any other unit.
 
 The progression is carried by real shape — longer weapon, heavier body, extra
 parts — not by size alone. Whoever is stronger must look it at a glance.
