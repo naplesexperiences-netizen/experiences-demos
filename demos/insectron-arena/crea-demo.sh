@@ -7,8 +7,9 @@
 # accanto. La demo e' il torneo senza Gabbie e Mondo: le due schermate restano
 # nel file ma non sono raggiungibili, e le funzioni che le aprono si rifiutano.
 set -e
-SORGENTE="${1:-/home/user/insectorarena/gioca.html}"
-DESTINAZIONE="${2:-/home/user/insectorarena/gioca-demo.html}"
+QUI=$(cd "$(dirname "$0")" && pwd)
+SORGENTE="${1:-$QUI/gioca.html}"
+DESTINAZIONE="${2:-$QUI/gioca-demo.html}"
 
 if ! grep -q 'let EDIZIONE = "completa";' "$SORGENTE"; then
   echo "errore: in $SORGENTE non trovo la riga dell'edizione" >&2

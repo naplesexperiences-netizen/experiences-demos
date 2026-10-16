@@ -1224,6 +1224,9 @@ sui titoli.
   stessa famiglia produce lo stesso disegno; fra un grado e il successivo cambia almeno
   il 5% della sagoma (in media l'8%), contro l'11% che separa le due famiglie più
   somiglianti; nessuno sprite tocca il bordo della sua casella
+- Le suite stanno in **[`prove-automatiche/`](prove-automatiche/)**, col loro README:
+  `sh prove-automatiche/batteria.sh` le lancia tutte. Girano in Chromium vero sul
+  `gioca.html` che viene pubblicato, non su una copia di prova
 - Totale dei controlli automatici sul gioco: **816** (meccaniche 30, schieramento 20,
   schede 30, accessibilità 14, difficoltà 10, regola del movimento 13, passaggio del mouse 14,
   Human vs Human 32, modalità e PC vs PC 44, rotazione 18, animazione 13, salvataggi 25,
