@@ -10,6 +10,7 @@ risultato si ritaglia e si rimette dentro al gioco.
 | `insetti-legenda.png` | **Questa è per noi.** Stessa identica griglia, con nome, famiglia, rank e colore: serve a ritagliare il ritorno e a sapere chi è chi. |
 | `prova-una-famiglia.png` | I quattro Falcidi soli. Per provare la strada su quattro invece che su 34 prima di spendere. |
 | `prompt.txt` | Il testo da incollare insieme all'immagine. |
+| [`prompt-famiglie/`](prompt-famiglie/) | Un prompt per ciascuna delle 13 famiglie, **generato da `art()`** invece che scritto a mano, con i numeri della prova fatta sui Falcidi. |
 
 Le tre immagini mostrano gli sprite **di oggi**, cioè dopo il rifacimento di
 `art()` descritto qui sotto: a un generatore si chiede di migliorarli, non di
