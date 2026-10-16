@@ -4,7 +4,15 @@
      famiglie.json      13 richieste, formato Interactions (sincrono)
      animazioni.jsonl   136 richieste, formato Batch (meta' prezzo, fino a 24h)
 
-   Uso:  node genera-richieste.js [gioca.html] [cartella-uscita]            */
+   Uso:  node genera-richieste.js [gioca.html] [cartella-uscita]
+         SEED=12345 node genera-richieste.js      (vedi sotto)
+
+   SUL SEED. Nella chat di Gemini non esiste. Sull'API delle immagini Google
+   non lo documenta, compare in generationConfig in SDK di terze parti, e c'e'
+   chi riporta che non viene comunque rispettato alla lettera. Higgsfield
+   invece lo dichiara per nano_banana_2_1. Qui lo si mette solo se SEED e'
+   valorizzato: tentativo in piu', non garanzia. Quello che tiene davvero lo
+   stile e' l'immagine di riferimento allegata a ogni richiesta.            */
 const fs = require('fs'), path = require('path');
 
 const QUI    = __dirname;
@@ -14,6 +22,7 @@ const SRC    = process.argv[2] || path.join(DEMO, 'gioca.html');
 const OUT    = process.argv[3] || path.join(QUI, 'richieste');
 
 const MODELLO    = 'gemini-nano-banana-2.1';
+const SEED       = process.env.SEED ? Number(process.env.SEED) : null;
 const RIFERIMENTO = path.join(QUI, 'riferimento.png');  /* il ritratto di stile */
 
 const h = fs.readFileSync(SRC, 'utf8');
@@ -114,10 +123,12 @@ const famiglie = Object.keys(fam).map(k => {
     .split('\n').slice(3).join('\n').trim();     /* via l'intestazione italiana */
   const input = [{ type:'text', text: testo }];
   if (rif) input.push({ type:'image', mime_type:'image/png', data: rif });
-  return { chiave:'famiglia-' + k.toLowerCase(), model: MODELLO, input,
+  const r = { chiave:'famiglia-' + k.toLowerCase(), model: MODELLO, input,
            response_format:{ type:'image', mime_type:'image/png',
              aspect_ratio: fam[k].length >= 4 ? '4:1' : (fam[k].length === 3 ? '3:1' : '1:1'),
              image_size:'2K' } };
+  if (SEED !== null) r.generation_config = { seed: SEED };
+  return r;
 });
 fs.writeFileSync(path.join(OUT, 'famiglie.json'), JSON.stringify(famiglie, null, 1));
 
@@ -131,13 +142,15 @@ for (const u of UNITS)
     righe.push(JSON.stringify({
       key: u.id + '-' + nome,
       request: { contents:[{ parts }],
-        generation_config:{ response_modalities:['TEXT','IMAGE'],
-          image_config:{ aspect_ratio: s.n === 4 ? '4:1' : '3:1', image_size:'2K' } } }
+        generation_config: Object.assign({ response_modalities:['TEXT','IMAGE'],
+          image_config:{ aspect_ratio: s.n === 4 ? '4:1' : '3:1', image_size:'2K' } },
+          SEED !== null ? { seed: SEED } : {}) }
     }));
   }
 fs.writeFileSync(path.join(OUT, 'animazioni.jsonl'), righe.join('\n') + '\n');
 
 const peso = f => (fs.statSync(path.join(OUT, f)).size / 1048576).toFixed(1) + ' MB';
+if (SEED !== null) console.log('seed ' + SEED + ' messo in tutte le richieste (tentativo, non garanzia)');
 console.log('famiglie.json     ' + famiglie.length + ' richieste  ' + peso('famiglie.json'));
 console.log('animazioni.jsonl  ' + righe.length + ' richieste  ' + peso('animazioni.jsonl') +
             '  (' + UNITS.length + ' Insector x 4 stati = ' +
