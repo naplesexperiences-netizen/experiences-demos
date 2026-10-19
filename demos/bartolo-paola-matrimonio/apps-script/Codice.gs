@@ -4,6 +4,8 @@
  * Riceve le risposte del modulo del sito e le scrive nel foglio "Conferme"
  * del Foglio Google a cui lo script è collegato. Una riga per email:
  * se un invitato modifica la risposta, la sua riga viene aggiornata.
+ * Dediche e canzoni proposte dagli invitati finiscono nel foglio "Dediche",
+ * una riga per invio.
  *
  * Istruzioni di installazione: LEGGIMI.md nella stessa cartella.
  */
@@ -21,11 +23,15 @@ var HEADERS = [
 ];
 var EMAIL_COLUMN = 4; // colonna "Email", 1 = prima colonna
 
+var GUESTBOOK_SHEET = 'Dediche';
+var GUESTBOOK_HEADERS = ['Inviato il', 'Tipo', 'Nome', 'Dedica', 'Canzone', 'Artista', 'Link'];
+
 function doPost(e) {
   var p = (e && e.parameter) || {};
 
   // Campo trappola: le persone non lo vedono, i programmi di spam lo compilano.
   if (p.sito) return reply({ ok: true });
+  if (p.tipo === 'messaggio' || p.tipo === 'canzone') return saveGuestbook(p);
 
   var email = clean(p.email, 200).toLowerCase();
   var nome = clean(p.nome, 120);
@@ -68,6 +74,30 @@ function doPost(e) {
   return reply({ ok: true });
 }
 
+// Dedica o canzone dal sito: una nuova riga nel foglio "Dediche".
+function saveGuestbook(p) {
+  var song = p.tipo === 'canzone';
+  var nome = clean(p.nome, 120);
+  var testo = clean(p.testo, 600);
+  var titolo = clean(p.titolo, 150);
+  if (!nome || (song ? !titolo : !testo)) return reply({ ok: false, error: 'Campi mancanti' });
+  var row = [
+    new Date(), song ? 'Canzone' : 'Dedica', nome,
+    song ? '' : testo, song ? titolo : '', song ? clean(p.artista, 150) : '', song ? clean(p.link, 300) : ''
+  ];
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+    getSheetNamed(GUESTBOOK_SHEET, GUESTBOOK_HEADERS).appendRow(row);
+  } catch (err) {
+    console.error(err);
+    return reply({ ok: false, error: String(err && err.message || err) });
+  } finally {
+    lock.releaseLock();
+  }
+  return reply({ ok: true });
+}
+
 // Aprendo l'indirizzo della Web App nel browser si vede se è attiva.
 function doGet() {
   return ContentService.createTextOutput('Conferme Bartolo e Paola: attivo.');
@@ -84,6 +114,14 @@ function prova() {
   console.log(risposta.getContent());
 }
 
+// Come prova(), per il foglio "Dediche".
+function provaDedica() {
+  var risposta = doPost({ parameter: {
+    tipo: 'messaggio', nome: 'Prova Prova', testo: 'Dedica di prova: puoi cancellarla'
+  } });
+  console.log(risposta.getContent());
+}
+
 function getSpreadsheet() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   if (ss) return ss;
@@ -93,12 +131,16 @@ function getSpreadsheet() {
 }
 
 function getSheet() {
+  return getSheetNamed(SHEET_NAME, HEADERS);
+}
+
+function getSheetNamed(name, headers) {
   var ss = getSpreadsheet();
-  var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+  var sheet = ss.getSheetByName(name) || ss.insertSheet(name);
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(HEADERS);
+    sheet.appendRow(headers);
     sheet.setFrozenRows(1);
-    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
   }
   return sheet;
 }
