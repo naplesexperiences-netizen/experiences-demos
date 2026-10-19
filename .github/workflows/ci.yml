@@ -31,6 +31,15 @@ jobs:
         # .claude/ e escluso perche contiene skill di terze parti copiate
         # (vendored): i loro template HTML non sono nostri deliverable e non
         # devono rispettare le nostre regole di lint.
+        #
+        # In .htmlhintrc la regola tagname-lowercase e spenta: htmlhint non
+        # sa niente di SVG e boccia <animateMotion>, <clipPath>,
+        # <linearGradient>, <feGaussianBlur>, <textPath>, che per specifica
+        # SVG DEVONO essere in camelCase. Le nostre demo usano SVG inline
+        # dappertutto, quindi la regola produce solo falsi positivi.
+        # Non riaccenderla: la CI diventa rossa alla prima animazione SVG.
+        # (attr-lowercase invece resta accesa: quella una lista di eccezioni
+        # per l'SVG ce l'ha, e accetta viewBox, repeatCount e simili.)
         run: |
           find . -name "*.html" \
             ! -path "./.claude/*" \
