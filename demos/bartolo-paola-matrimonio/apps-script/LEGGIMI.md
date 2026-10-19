@@ -85,3 +85,18 @@ deployment**. L'URL resta lo stesso.
 | Autobus, Posti autobus | Sì / No e quanti posti |
 | Hotel, Camere, Notti | Sì / No, quante camere, quali notti |
 | Messaggio | messaggio per gli sposi |
+
+## Dediche e canzoni
+
+Le dediche e le canzoni proposte dagli invitati finiscono in un secondo foglio,
+**Dediche**, creato dallo script al primo invio: una riga per invio.
+
+| Colonna | Contenuto |
+|---|---|
+| Inviato il | data e ora |
+| Tipo | Dedica / Canzone |
+| Nome | come scritto dall'invitato |
+| Dedica | il messaggio (solo per le dediche) |
+| Canzone, Artista, Link | solo per le canzoni; il link è facoltativo |
+
+Per provarlo dall'editor scegli **provaDedica** accanto a **Esegui**.
