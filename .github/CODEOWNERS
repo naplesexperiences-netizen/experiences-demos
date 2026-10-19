@@ -1,0 +1,69 @@
+# CODEOWNERS — chi deve approvare cosa
+#
+# Questo file serve a una cosa sola: impedire che una demo gia' installata
+# da un cliente venga modificata senza che nessuno se ne accorga.
+#
+# A ottobre 2026 e' successo. Un branch che aggiungeva meta tag SEO a tutte
+# le 208 demo era partito da una base vecchia; nel merge ha vinto il suo lato
+# del conflitto e il totem di Sportlandia e' tornato indietro di sette commit.
+# Il cliente se l'e' ritrovato sullo schermo, in sede, rotto.
+#
+# ATTENZIONE: da solo questo file non blocca niente. Diventa una regola
+# quando su GitHub e' attiva la protezione del branch (vedi in fondo).
+#
+# Sintassi: l'ULTIMA riga che corrisponde a un percorso vince, non la prima.
+# Quindi le regole generiche stanno in alto e le eccezioni in basso.
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Infrastruttura: CI, deploy su Pages, generatore dell'hub
+# Un errore qui non rompe una demo, le rompe tutte insieme.
+# ─────────────────────────────────────────────────────────────────────
+/.github/                       @naplesexperiences-netizen
+/scripts/                       @naplesexperiences-netizen
+/.htmlhintrc                    @naplesexperiences-netizen
+
+
+# ─────────────────────────────────────────────────────────────────────
+# DEMO IN PRODUZIONE
+# Girano su hardware del cliente o sono state consegnate. Ogni modifica
+# passa da una revisione, comprese le passate automatiche su tutte le demo
+# (SEO, meta tag, rigenerazioni).
+#
+# Per aggiungerne una: copia la riga, cambia il percorso, e scrivi nel
+# commento dov'e' installata. Il commento serve a chi arriva dopo.
+# ─────────────────────────────────────────────────────────────────────
+
+# Totem touch 42" installato in sede a Castellammare di Stabia.
+# Copia di sicurezza: branch backup/sportlandia-kiosk
+/demos/sportlandia-kiosk/       @naplesexperiences-netizen
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Tutto il resto delle demo non ha proprietario, di proposito: sono
+# prototipi, e chiedere una revisione per ognuno bloccherebbe il lavoro
+# in blocco senza proteggere niente di vivo.
+# ─────────────────────────────────────────────────────────────────────
+
+
+# ─────────────────────────────────────────────────────────────────────
+# COME ATTIVARLO (una volta sola, da fare a mano su GitHub)
+#
+# Settings -> Rules -> Rulesets -> New branch ruleset
+#   Nome               : main protetto
+#   Enforcement status : Active
+#   Target branches    : Include default branch
+#   Spunta             : Require a pull request before merging
+#                        Require review from Code Owners
+#
+# Conseguenza da sapere prima di attivarlo: da quel momento nessuno puo'
+# piu' spingere direttamente su main, nemmeno tu e nemmeno le sessioni di
+# Claude. Tutto passa da una pull request. E' il prezzo della protezione:
+# e' esattamente il passaggio che e' mancato quando il totem si e' rotto.
+#
+# Secondo ruleset consigliato, per i backup:
+#   Nome               : backup intoccabili
+#   Target branches    : pattern  backup/*
+#   Spunta             : Restrict updates
+#                        Restrict deletions
+# ─────────────────────────────────────────────────────────────────────
