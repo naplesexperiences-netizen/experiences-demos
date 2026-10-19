@@ -289,71 +289,77 @@ footer p{margin:.25rem 0 0;opacity:.85}
   .greca.bottom{margin-top:1.1rem}
 }
 
-/* ---------- arrival: a full-screen envelope of embroidered paper; the guest taps the wax seal, butterflies fly out and
-   the invitation comes out (built by script, so the page works without it) ---------- */
+/* ---------- arrival: a full-screen gatefold envelope of embossed paper sealed with ivory wax. The guest taps the seal,
+   the two doors open from the middle, paper butterflies rise from inside and one flies towards the guest
+   (built by script, so the page works without it) ---------- */
 html.env-wait body{overflow:hidden}
 html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
-.envx{position:fixed;inset:0;z-index:200;overflow:hidden;perspective:1600px;background:#2A0F1C;transition:opacity .7s ease,visibility 0s .7s;--ap:52%}
-@media (min-aspect-ratio:1/1){.envx{--ap:58%;--k:1.6}}
+.envx{position:fixed;inset:0;z-index:200;overflow:hidden;perspective:2200px;background:#2A1A12;transition:opacity .8s ease,visibility 0s .8s}
 .envx.gone{opacity:0;visibility:hidden}
-.env{position:absolute;inset:0;transform-style:preserve-3d;animation:envIn .6s ease both}
-@keyframes envIn{from{opacity:0}}
-.env .paper,.env .back{background:url(img/carta-ricamata.webp) center/cover,#FBF8F2}
-.env .back{position:absolute;inset:0;z-index:0;box-shadow:inset 0 0 120px rgb(58 20 38 / .28)}
-.env .back::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(58 20 38 / .16),rgb(58 20 38 / .04) 60%)}
-/* the pockets: left, right and bottom flaps of the envelope, each with a soft shadow on its edge */
-.env .pkw{position:absolute;inset:0;z-index:2;filter:drop-shadow(0 0 7px rgb(58 20 38 / .16));pointer-events:none}
-.env .pk{position:absolute;inset:0}
-.env .pk.l{clip-path:polygon(0 0,50% var(--ap),0 100%)}
-.env .pk.r{clip-path:polygon(100% 0,50% var(--ap),100% 100%)}
-.env .pk.b{clip-path:polygon(0 100%,50% calc(var(--ap) - 4%),100% 100%)}
-.env .pk.l::after,.env .pk.r::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(58 20 38 / .05),transparent 40%,transparent 60%,rgb(58 20 38 / .05))}
-.env .pk.b::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,transparent 60%,rgb(58 20 38 / .06))}
-/* golden stitches along the edges, like an embroidered seam */
-.env .stitch{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;overflow:visible}
-.env .stitch *{fill:none;stroke:#C8A464;stroke-width:1.3;stroke-dasharray:7 5;stroke-linecap:round;vector-effect:non-scaling-stroke}
-.env .flap{position:absolute;inset:0;z-index:4;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% var(--ap));backface-visibility:visible}
-.env .flap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(255 255 255 / .2),rgb(58 20 38 / .07))}
-.env .flapshade{position:absolute;inset:0;z-index:3;pointer-events:none;clip-path:polygon(0 0,100% 0,50% calc(var(--ap) + 1.2%));background:rgb(58 20 38 / .12);filter:blur(4px)}
-.env .post{position:absolute;z-index:6;left:6vw;bottom:5svh;font:600 .7rem/1.3 var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#9C7C3E}
-/* the wax seal sits on the tip of the flap and is the button */
-.env .seal{position:absolute;left:50%;top:var(--ap);z-index:5;width:clamp(4.2rem,19vw,5.6rem);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:0;padding:0;cursor:pointer;
-  display:grid;place-items:center;background:radial-gradient(circle at 34% 30%,#C24668,#8E1B3A 50%,#5E0F24 100%);
-  box-shadow:0 0 0 3px rgb(142 27 58 / .25),0 4px 10px rgb(0 0 0 / .3);font:400 clamp(1.4rem,6vw,1.9rem)/1 var(--script);color:#F6D9C9;animation:sealPulse 1.8s ease-in-out 1s infinite}
-.env .seal:focus-visible{outline:3px solid #C8A464;outline-offset:4px}
-@keyframes sealPulse{50%{box-shadow:0 0 0 12px rgb(142 27 58 / 0),0 4px 10px rgb(0 0 0 / .3);transform:translate(-50%,-50%) scale(1.06)}}
-.envx .hint-open{position:absolute;z-index:8;left:0;right:0;top:calc(var(--ap) + clamp(3.4rem,13vw,4.6rem));margin:0;text-align:center;font:italic 500 1.15rem/1.3 "Cormorant Infant",var(--serif);color:#5E4B55}
-.envx .skip{position:absolute;z-index:8;left:50%;bottom:calc(2svh + env(safe-area-inset-bottom,0px));transform:translateX(-50%);border:0;background:none;padding:.5rem .9rem;min-height:44px;font:500 .85rem/1.2 var(--ui);color:#7E5309;text-decoration:underline;cursor:pointer}
+/* inside: warm dark light with bokeh, and the inner envelope opened in a diamond */
+.envx .inside{position:absolute;inset:0;transform:scale(1.12);transition:transform 2.4s cubic-bezier(.2,.7,.2,1);
+  background:radial-gradient(circle at 22% 30%,rgb(255 214 150 / .55) 0 2.2vmin,transparent 2.6vmin),radial-gradient(circle at 78% 26%,rgb(255 214 150 / .4) 0 3vmin,transparent 3.5vmin),
+  radial-gradient(circle at 65% 44%,rgb(255 220 170 / .3) 0 1.6vmin,transparent 2vmin),radial-gradient(circle at 34% 52%,rgb(255 214 150 / .28) 0 2.6vmin,transparent 3.1vmin),
+  radial-gradient(60% 45% at 50% 42%,#7A5638,#3B271B 70%,#1E140E)}
+.envx.open .inside{transform:scale(1)}
+.envx .ipw{position:absolute;inset:0;filter:drop-shadow(0 6px 10px rgb(20 10 4 / .45))}
+.envx .ip{position:absolute;inset:0;background:url(img/carta-ricamata.webp) center/cover,#F4EEE4}
+.envx .ip.top{clip-path:polygon(0 0,100% 0,100% 50%,90% 50%,50% 16%,10% 50%,0 50%);filter:brightness(.8) sepia(.15)}
+.envx .ip.bot{clip-path:polygon(0 50%,10% 50%,50% 76%,90% 50%,100% 50%,100% 100%,0 100%)}
+@media (min-aspect-ratio:1/1){
+  .envx .ip.top{clip-path:polygon(0 0,100% 0,100% 50%,68% 50%,50% 14%,32% 50%,0 50%)}
+  .envx .ip.bot{clip-path:polygon(0 50%,32% 50%,50% 84%,68% 50%,100% 50%,100% 100%,0 100%)}
+}
+/* the two doors */
+.envx .door{position:absolute;top:0;bottom:0;width:50%;transition:transform 1.8s cubic-bezier(.55,.05,.25,1)}
+.envx .door.l{left:0;transform-origin:0 50%}
+.envx .door.r{right:0;transform-origin:100% 50%}
+.envx .tex{position:absolute;inset:0;overflow:hidden;box-shadow:0 0 30px rgb(0 0 0 / .25)}
+.envx .tex::before{content:"";position:absolute;top:0;bottom:0;width:200%;background:url(img/carta-goffrata.webp) center/cover,#F6F1E8}
+.envx .door.l .tex::before{left:0}
+.envx .door.r .tex::before{right:0}
+.envx .tex::after{content:"";position:absolute;inset:0}
+.envx .door.l .tex::after{background:linear-gradient(90deg,transparent 70%,rgb(90 60 30 / .14))}
+.envx .door.r .tex::after{background:linear-gradient(270deg,transparent 70%,rgb(90 60 30 / .14))}
+/* scalloped lace along the edge where the doors meet */
+.envx .lace{position:absolute;top:0;bottom:0;width:14px;pointer-events:none;
+  background:radial-gradient(circle at 35% 50%,transparent 0 1.4px,#FFFDF8 1.8px 3.6px,transparent 4px) 0 0/14px 12px repeat-y,
+  radial-gradient(circle at 0 50%,#FFFDF8 0 6.8px,transparent 7.2px) 0 0/14px 12px repeat-y;filter:drop-shadow(0 1px 1px rgb(90 60 30 / .25))}
+.envx .door.l .lace{right:-7px;transform:scaleX(-1)}
+.envx .door.r .lace{left:-7px}
+.envx.open .door.l{transform:rotateY(-100deg)}
+.envx.open .door.r{transform:rotateY(100deg)}
+/* the ivory wax seal holds the doors together and leaves with the right door */
+.envx .seal{position:absolute;left:0;top:50%;z-index:2;width:clamp(4.6rem,22vw,6.4rem);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:0;padding:0;cursor:pointer;
+  display:grid;place-items:center;background:radial-gradient(circle at 36% 30%,#FFF8EA,#EADBC0 45%,#CDB58E 100%);
+  box-shadow:inset 0 0 0 .45rem rgb(205 181 142 / .35),inset 0 -3px 6px rgb(120 90 50 / .25),0 6px 14px rgb(60 40 20 / .3);
+  font:400 clamp(1.5rem,7vw,2.1rem)/1 var(--script);color:#B49870;text-shadow:0 1px 0 rgb(255 255 255 / .8),0 -1px 0 rgb(120 90 50 / .35);animation:sealPulse 2s ease-in-out 1s infinite}
+.envx .seal:focus-visible{outline:3px solid #C8A464;outline-offset:4px}
+@keyframes sealPulse{50%{transform:translate(-50%,-50%) scale(1.05)}}
+.envx.open .seal{animation:none}
+.envx .hint-open{position:absolute;z-index:3;left:0;right:0;bottom:calc(9svh + env(safe-area-inset-bottom,0px));margin:0;text-align:center;
+  font:500 .72rem/1.3 var(--ui);letter-spacing:.28em;text-transform:uppercase;color:#8C7A62}
+.envx .skip{position:absolute;z-index:3;left:50%;bottom:calc(2svh + env(safe-area-inset-bottom,0px));transform:translateX(-50%);border:0;background:none;padding:.5rem .9rem;min-height:44px;font:500 .8rem/1.2 var(--ui);color:#8C7A62;text-decoration:underline;cursor:pointer}
 .envx.open .hint-open{opacity:0;transition:opacity .3s}
-.envx.open .seal{animation:sealOff .45s ease-in forwards}
-@keyframes sealOff{30%{transform:translate(-50%,-50%) scale(1.15)}100%{transform:translate(-50%,-50%) scale(.2);opacity:0}}
-.envx.open .flap{animation:flapOpen .9s cubic-bezier(.45,0,.2,1) .3s forwards}
-.envx.open .flapshade{opacity:0;transition:opacity .4s .3s}
-@keyframes flapOpen{0%{transform:rotateX(0);z-index:4}49%{z-index:4}50%{z-index:0}100%{transform:rotateX(180deg);z-index:0;filter:brightness(.88)}}
-/* the invitation: hidden behind the pockets, it rises half out, then comes forward */
-.env .letter{position:absolute;left:50%;top:50%;z-index:1;width:min(80vw,26rem);aspect-ratio:3/4.1;--y:60svh;transform:translate(-50%,-50%) translateY(var(--y));
-  border-radius:3px;background:#FFFDF8;box-shadow:0 4px 18px rgb(43 27 35 / .22);transition:transform 1s cubic-bezier(.22,1,.36,1);
-  container-type:size;display:grid;place-content:center;justify-items:center;gap:1.8cqh;text-align:center;color:#2B1B23}
-@media (min-aspect-ratio:1/1){.env .letter{width:min(58vw,46rem);aspect-ratio:1.62}}
-.envx.rise .letter{--y:-10svh}
-.envx.out .letter{z-index:7;--y:0px;transform:translate(-50%,-50%) scale(1.03);transition-duration:.8s}
-.env .letter::before,.env .letter::after{content:"";position:absolute;pointer-events:none;border:1px solid #C8A464;border-radius:2px}
-.env .letter::before{inset:3.4cqh 3.4cqw}
-.env .letter::after{inset:4.8cqh 4.8cqw;border-width:.5px;opacity:.8}
-.env .letter .sprig{width:min(30cqw,18cqh);height:auto;display:block}
-.env .letter i{font:italic 400 min(5.4cqh,7.4cqw)/1.15 "Cormorant Infant",var(--serif);color:#5E4B55}
-.env .letter b{font:400 min(13cqh,14.5cqw)/1.05 var(--script);color:#2B1B23;white-space:nowrap}
-.env .letter b span{color:#A3294F;font-size:.74em}
-.env .letter small{font:500 min(3.2cqh,3.6cqw)/1.2 var(--ui);letter-spacing:.14em;color:#7E5309}
-.env .letter .gk{width:min(44cqw,26cqh);height:auto;display:block}
-/* butterflies: each one flutters (its wings fold on the body axis) while it flies out of the envelope */
-.bf{--w:calc(var(--s,3rem) * var(--k,1));position:absolute;left:50%;top:var(--ap);z-index:6;width:var(--w);height:auto;margin:calc(var(--w) * -.42) 0 0 calc(var(--w) * -.5);opacity:0;pointer-events:none;overflow:visible;
-  filter:drop-shadow(0 3px 4px rgb(43 27 35 / .25))}
-.bf .w{animation:flutter var(--f,.16s) ease-in-out infinite alternate}
-@keyframes flutter{to{transform:scaleX(.18)}}
-.envx.open .bf{animation:bfOut var(--t,2.6s) cubic-bezier(.4,.1,.6,1) var(--d,.4s) forwards}
-.envx.gs .bf{animation:none!important}
-@keyframes bfOut{0%{opacity:0;transform:translate(0,0) scale(.3)}10%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(var(--x,0),-75svh) scale(1.1) rotate(var(--r,0deg))}}
+.envx.open .skip{color:rgb(255 240 220 / .7)}
+/* paper butterflies: two wings that fold in 3D on the body, like paper cut-outs */
+.pb{position:absolute;left:50%;top:46%;z-index:1;width:var(--s,4rem);aspect-ratio:1;margin:calc(var(--s,4rem) * -.5) 0 0 calc(var(--s,4rem) * -.5);opacity:0;pointer-events:none;
+  transform-style:preserve-3d;filter:drop-shadow(0 6px 6px rgb(30 15 5 / .35))}
+.pb .pr{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(38deg)}
+.pb .pw{position:absolute;top:0;width:50%;height:100%}
+.pb .pw svg{display:block;width:100%;height:100%;overflow:visible}
+.pb .pw.l{left:0;transform-origin:100% 50%;animation:pwl var(--f,.22s) ease-in-out infinite alternate}
+.pb .pw.r{right:0;transform-origin:0 50%;animation:pwr var(--f,.22s) ease-in-out infinite alternate}
+.pb .pw.l svg{transform:scaleX(-1)}
+@keyframes pwl{from{transform:rotateY(8deg)}to{transform:rotateY(72deg)}}
+@keyframes pwr{from{transform:rotateY(-8deg)}to{transform:rotateY(-72deg)}}
+.pb i{position:absolute;left:50%;top:30%;width:5%;height:42%;margin-left:-2.5%;border-radius:40%;background:linear-gradient(#EFE6D8,#CDBFA8);box-shadow:0 0 0 .5px rgb(150 120 80 / .4)}
+.pb.big{z-index:4;--s:min(46vmin,22rem);top:56%}
+.envx.open .pb{animation:pbOut var(--t,2.6s) cubic-bezier(.4,.1,.6,1) var(--d,.5s) forwards}
+.envx.open .pb.big{animation:pbBig 1.9s cubic-bezier(.55,0,.85,.5) 1.3s forwards}
+.envx.gs .pb{animation:none!important}
+@keyframes pbOut{0%{opacity:0;transform:translate(0,0) scale(.3)}12%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(var(--x,0),-70svh) scale(1)}}
+@keyframes pbBig{0%{opacity:0;transform:translateY(6svh) scale(.25)}15%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translateY(-4svh) scale(6)}}
 
 /* ---------- chapters: full-screen sections stacked with sticky; a section taller than the screen scrolls through,
    then holds while the next slides over it (--stick is set by script) ---------- */
@@ -472,72 +478,61 @@ html.env-wait .dots{opacity:0}
 </head>
 <body>
 <script>
-/* Arrival: a full-screen envelope of embroidered paper sealed with wax. The guest taps the seal, a flight of butterflies
-   comes out and the invitation rises out of the envelope. Once per visit, skippable, skipped when motion is reduced. */
+/* Arrival: a full-screen gatefold envelope sealed with ivory wax. The guest taps the seal, the doors open from the
+   middle, paper butterflies rise from inside and one flies towards the guest. Once per visit, skippable,
+   skipped when motion is reduced. */
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches, seen=false;
   try{seen=sessionStorage.getItem('bp-envelope')==='1'}catch(e){}
   if(reduce||seen) return;
   var root=document.documentElement; root.classList.add('env-wait');
   var o=document.createElement('div'); o.className='envx'; o.setAttribute('role','dialog'); o.setAttribute('aria-label','Invito di Bartolo e Paola');
-  var greca=''; for(var k=0;k<12;k++){ var gx=k*14; greca+='M'+gx+' 11V1H'+(gx+10)+'V8H'+(gx+4)+'V4H'+(gx+7) }
-  /* butterfly colours: ivory and gold, blush, raspberry */
-  var tints=[['#FFFBF2','#E8C47E'],['#FDEFF2','#E7A2B6'],['#F7C9D6','#A3294F'],['#FFF8EA','#D9B06A'],['#FCE6EC','#C9617F']];
-  var defs='<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'+tints.map(function(t,n){
-    return '<radialGradient id="bfg'+n+'" cx="20%" cy="40%" r="90%"><stop offset="0" stop-color="'+t[0]+'"/><stop offset="1" stop-color="'+t[1]+'"/></radialGradient>' }).join('')+'</defs></svg>';
-  var wing='<path d="M2-3C10-31 38-39 46-25 52-12 34 2 4 3Z"/><path d="M3 3C24 6 38 17 32 31 26 41 8 31 2 8Z"/><path d="M8-6C18-20 32-26 40-22M8 6C18 12 26 20 26 28" fill="none" stroke="rgb(185 150 90 / .55)" stroke-width="1"/><circle cx="36" cy="-20" r="2.2" fill="rgb(255 255 255 / .7)"/>';
-  function butterfly(n){ var g='url(#bfg'+(n%tints.length)+')';
-    return '<svg class="bf" viewBox="-50 -42 100 84" aria-hidden="true"><g fill="'+g+'" stroke="#B9965A" stroke-width=".9">'+
-      '<g class="w">'+wing+'</g><g transform="scale(-1,1)"><g class="w">'+wing+'</g></g></g>'+
-      '<ellipse rx="2.4" ry="15" fill="#4A2A1E"/><path d="M-1-14C-4-22-8-28-12-30M1-14C4-22 8-28 12-30" fill="none" stroke="#4A2A1E" stroke-width="1"/></svg>' }
-  var flock=''; for(var b=0;b<11;b++) flock+=butterfly(b);
-  var stitches='<svg class="stitch" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+
-    '<rect x="2.2" y="1.6" width="95.6" height="96.8" rx=".6"/><path class="pkst" d=""/></svg>';
-  o.innerHTML=defs+'<div class="env"><div class="back"></div>'+'<div class="letter" aria-hidden="true">'+
-    '<svg class="sprig" viewBox="0 0 120 28"><path d="M8 14H112" stroke="#C8A464"/><path d="M60 14c-8-9-20-10-28-6 8 8 20 9 28 6zM60 14c8-9 20-10 28-6-8 8-20 9-28 6z" fill="#8A9850"/><path d="M46 14c-6 6-15 7-21 4 6-6 15-7 21-4zM74 14c6 6 15 7 21 4-6-6-15-7-21-4z" fill="#7E8C45"/><circle cx="60" cy="14" r="3" fill="#A3294F"/></svg>'+
-    '<i>Insieme alle loro famiglie</i><b>Bartolo <span>&amp;</span> Paola</b><i>annunciano il loro matrimonio</i><small>SABATO 19 GIUGNO 2027 · PAESTUM</small>'+
-    '<svg class="gk" viewBox="0 0 168 12"><path d="'+greca+'" stroke="#C8A464" stroke-width="1.2" fill="none"/></svg></div>'+
-    '<div class="pkw"><div class="pk l paper"></div><div class="pk r paper"></div><div class="pk b paper"></div></div>'+stitches+
-    '<div class="flapshade"></div><div class="flap paper"><svg class="stitch" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="flst" d=""/></svg></div>'+
-    '<span class="post" aria-hidden="true">Spedito da Paestum</span>'+
-    '<button class="seal" type="button" aria-label="Apri l\'invito">B&amp;P</button>'+flock+
-    '</div><p class="hint-open" aria-hidden="true">Tocca il sigillo per aprire</p><button class="skip" type="button">Salta</button>';
+  /* one wing (the right one): forewing and hindwing in white paper, with fine veins */
+  var defs='<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E9E0D2"/></linearGradient></defs></svg>';
+  var wing='<svg viewBox="0 0 50 100" aria-hidden="true">'+
+    '<g fill="url(#pbg)" stroke="#CDBFA8" stroke-width=".7" stroke-linejoin="round">'+
+    '<path d="M1 46C4 22 22 4 42 8c9 2 9 12 4 20-6 10-20 17-45 21Z"/><path d="M2 52c18 0 34 8 36 22 2 12-6 22-14 20C12 92 4 76 1 56Z"/></g>'+
+    '<path d="M2 44C12 34 24 22 38 14M2 46C14 40 28 32 42 26M3 54c10 6 18 14 24 26M3 56c6 8 10 18 12 30" fill="none" stroke="#D8CCB8" stroke-width=".6"/></svg>';
+  function pb(cls){ return '<div class="pb'+(cls?' '+cls:'')+'" aria-hidden="true"><div class="pr"><div class="pw l">'+wing+'</div><div class="pw r">'+wing+'</div><i></i></div></div>' }
+  var flock=''; for(var b=0;b<9;b++) flock+=pb('');
+  o.innerHTML=defs+'<div class="inside"><div class="ipw"><div class="ip top"></div><div class="ip bot"></div></div>'+flock+'</div>'+
+    '<div class="door l"><div class="tex"></div><span class="lace"></span></div>'+
+    '<div class="door r"><div class="tex"></div><span class="lace"></span><button class="seal" type="button" aria-label="Apri l\'invito">B&amp;P</button></div>'+
+    pb('big')+'<p class="hint-open" aria-hidden="true">Tocca il sigillo per aprire</p><button class="skip" type="button">Salta</button>';
   document.body.appendChild(o);
-  /* stitches follow the flap tip, which sits higher on a phone held upright */
-  function seams(){ var ap=parseFloat(getComputedStyle(o).getPropertyValue('--ap'))||52;
-    o.querySelector('.pkst').setAttribute('d','M2.2 '+(1.6+3)+'L50 '+(ap+2.5)+'L97.8 '+(1.6+3)+'M2.2 98.4L50 '+(ap-1.5)+'L97.8 98.4');
-    o.querySelector('.flst').setAttribute('d','M4 1.6L50 '+(ap-3)+'L96 1.6') }
-  seams(); addEventListener('resize',seams);
-  var seal=o.querySelector('.seal'), bfs=[].slice.call(o.querySelectorAll('.bf')), timers=[], done=false, opened=false;
+  var seal=o.querySelector('.seal'), small=[].slice.call(o.querySelectorAll('.inside .pb')), big=o.querySelector('.pb.big'), timers=[], done=false, opened=false;
   /* each butterfly gets its own size, wingbeat, delay and direction (used by the CSS flight when GSAP is missing) */
-  bfs.forEach(function(el,n){ var side=n%2?1:-1, s=2.8+Math.random()*2;
-    el.style.setProperty('--s',s.toFixed(2)+'rem'); el.style.setProperty('--f',(.11+Math.random()*.08).toFixed(3)+'s');
-    el.style.setProperty('--d',(.35+n*.09).toFixed(2)+'s'); el.style.setProperty('--t',(2.2+Math.random()*1).toFixed(2)+'s');
-    el.style.setProperty('--x',(side*(10+Math.random()*40)).toFixed(1)+'vw'); el.style.setProperty('--r',(side*(10+Math.random()*25)).toFixed(0)+'deg') });
+  small.forEach(function(el,n){ var side=n%2?1:-1;
+    el.style.setProperty('--s',(2.6+Math.random()*2.2).toFixed(2)+'rem'); el.style.setProperty('--f',(.16+Math.random()*.1).toFixed(3)+'s');
+    el.style.setProperty('--d',(.45+n*.1).toFixed(2)+'s'); el.style.setProperty('--t',(2.2+Math.random()*.9).toFixed(2)+'s');
+    el.style.setProperty('--x',(side*(8+Math.random()*38)).toFixed(1)+'vw') });
+  big.style.setProperty('--f','.2s');
   function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait');
     try{sessionStorage.setItem('bp-envelope','1')}catch(e){}
-    removeEventListener('keydown',onKey); removeEventListener('resize',seams); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },800) }
-  function open(){ if(opened) return; opened=true; fly(); o.classList.add('open');
-    timers.push(setTimeout(function(){o.classList.add('rise')},950));
-    timers.push(setTimeout(function(){o.classList.add('out')},2300));
-    timers.push(setTimeout(finish,3700)) }
-  /* with GSAP each butterfly follows its own curved path out of the envelope (MotionPath); without it, the CSS flight */
+    removeEventListener('keydown',onKey); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },900) }
+  function open(){ if(opened) return; opened=true; fly(); o.classList.add('open'); timers.push(setTimeout(finish,3050)) }
+  /* with GSAP the butterflies wander out on curved paths (MotionPath) and the big one flies at the guest;
+     without it, the CSS flight */
   function fly(){
     var g=window.gsap; if(!g||!window.MotionPathPlugin) return;
     g.registerPlugin(MotionPathPlugin); o.classList.add('gs');
     var vw=innerWidth, vh=innerHeight, R=g.utils.random;
-    bfs.forEach(function(el,n){
-      var side=n%2?1:-1, ex=side*R(.15,.6)*vw, ey=-R(.7,1)*vh, d=.35+n*.09, t=R(2.1,3);
-      var path=[{x:0,y:0},{x:side*R(.02,.12)*vw,y:-R(.06,.14)*vh},{x:ex*.35+R(-.1,.1)*vw,y:ey*.4},{x:ex*.7,y:ey*.72},{x:ex,y:ey}];
+    small.forEach(function(el,n){
+      var side=n%2?1:-1, ex=side*R(.12,.55)*vw, ey=-R(.55,.85)*vh, d=.45+n*.1, t=R(2,2.8);
+      var path=[{x:R(-.05,.05)*vw,y:R(0,.06)*vh},{x:side*R(.04,.14)*vw,y:-R(.04,.12)*vh},{x:ex*.45+R(-.08,.08)*vw,y:ey*.45},{x:ex*.8,y:ey*.8},{x:ex,y:ey}];
       g.timeline({delay:d})
-        .fromTo(el,{opacity:0,scale:.25},{opacity:1,scale:R(.85,1.15),duration:.4,ease:'power2.out'},0)
-        .to(el,{duration:t,ease:'sine.inOut',motionPath:{path:path,curviness:1.6,autoRotate:90}},0)
+        .fromTo(el,{opacity:0,scale:.25},{opacity:1,scale:R(.8,1.15),duration:.45,ease:'power2.out'},0)
+        .to(el,{duration:t,ease:'sine.inOut',motionPath:{path:path,curviness:1.5,autoRotate:90}},0)
         .to(el,{opacity:0,duration:.5},t-.5);
     });
+    g.timeline({delay:1.3})
+      .fromTo(big,{opacity:0,scale:.22,y:vh*.06,rotation:-6},{opacity:1,scale:.6,y:0,rotation:3,duration:.6,ease:'sine.out'})
+      .to(big,{scale:6.5,y:-vh*.05,rotation:-2,duration:1.25,ease:'power3.in'})
+      .to(big,{opacity:0,duration:.35,ease:'power1.in'},'-=.35');
   }
   function onKey(e){ if(e.key==='Escape') finish() }
   seal.addEventListener('click',open);
-  o.querySelector('.env').addEventListener('click',function(e){ if(e.target!==seal) open() });
+  o.querySelectorAll('.door').forEach(function(d){ d.addEventListener('click',function(e){ if(e.target!==seal) open() }) });
   o.querySelector('.skip').addEventListener('click',finish);
   addEventListener('keydown',onKey);
   setTimeout(function(){ try{seal.focus({preventScroll:true})}catch(e){} },700);
