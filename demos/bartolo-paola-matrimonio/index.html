@@ -299,10 +299,16 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 @keyframes envIn{from{opacity:0;transform:translateY(-48px) rotate(-5deg)}}
 .env .back{position:absolute;inset:0;z-index:0;border-radius:6px;background:#EFE9E1;box-shadow:0 34px 60px -26px rgb(43 27 35 / .45),0 0 0 1px rgb(43 27 35 / .06)}
 .env .letter{position:absolute;left:6%;right:6%;top:7%;height:86%;z-index:1;border-radius:3px;background:#FFFDF8;box-shadow:0 2px 10px rgb(0 0 0 / .14);
-  display:grid;place-content:center;justify-items:center;gap:.15rem;text-align:center;color:#2B1B23}
-.env .letter b{font:400 clamp(1.8rem,7.5vw,2.7rem)/1 var(--script)}
-.env .letter b i{font-style:normal;color:#A3294F;font-size:.7em}
-.env .letter small{font:500 clamp(.7rem,2.6vw,.85rem)/1.3 var(--ui);letter-spacing:.06em;color:#5E4B55}
+  container-type:size;display:grid;place-content:center;justify-items:center;gap:1.6cqh;text-align:center;color:#2B1B23}
+.env .letter::before,.env .letter::after{content:"";position:absolute;pointer-events:none;border:1px solid #C8A464;border-radius:2px}
+.env .letter::before{inset:4cqh 2.4cqw}
+.env .letter::after{inset:5.6cqh 3.3cqw;border-width:.5px;opacity:.8}
+.env .letter .sprig{width:18cqw;height:auto;display:block}
+.env .letter i{font:italic 400 6.4cqh/1.1 "Cormorant Infant",var(--serif);color:#5E4B55}
+.env .letter b{font:400 17cqh/1.05 var(--script);color:#2B1B23;white-space:nowrap}
+.env .letter b span{color:#A3294F;font-size:.74em}
+.env .letter small{font:500 3.9cqh/1.2 var(--ui);letter-spacing:.14em;color:#7E5309}
+.env .letter .gk{width:26cqw;height:auto;display:block}
 .env .pk{position:absolute;inset:0;z-index:2;border-radius:6px}
 .env .pk.l{background:linear-gradient(90deg,#FFFFFF,#F6F2EC);clip-path:polygon(0 0,53% 56%,0 100%)}
 .env .pk.r{background:linear-gradient(270deg,#FFFFFF,#F6F2EC);clip-path:polygon(100% 0,47% 56%,100% 100%)}
@@ -328,6 +334,7 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 /* the dove takes off from the seal */
 .dove{position:absolute;left:50%;top:60%;z-index:6;width:clamp(7rem,32vw,10rem);margin:calc(clamp(7rem,32vw,10rem) * -.33) 0 0 calc(clamp(7rem,32vw,10rem) * -.5);opacity:0;pointer-events:none;overflow:visible;filter:drop-shadow(0 6px 10px rgb(0 0 0 / .35))}
 .dove .wing{transform-box:fill-box;transform-origin:85% 95%}
+.envx.gs .dove,.envx.gs .dove .wing{animation:none!important}
 .envx.open .dove{animation:doveFly 2.1s cubic-bezier(.45,.05,.55,.95) .15s forwards}
 .envx.open .dove .wing{animation:flap .26s ease-in-out .15s 8 alternate}
 @keyframes doveFly{0%{opacity:0;transform:translate(0,0) scale(.35) rotate(0)}12%{opacity:1;transform:translate(0,-10px) scale(.8) rotate(-6deg)}
@@ -459,21 +466,52 @@ html.env-wait .dots{opacity:0}
   if(reduce||seen) return;
   var root=document.documentElement; root.classList.add('env-wait');
   var o=document.createElement('div'); o.className='envx'; o.setAttribute('role','dialog'); o.setAttribute('aria-label','Invito di Bartolo e Paola');
-  o.innerHTML='<div class="env"><div class="back"></div><div class="letter" aria-hidden="true"><b>Bartolo <i>&amp;</i> Paola</b><small>19 GIUGNO 2027 · PAESTUM</small></div>'+
+  var greca=''; for(var k=0;k<12;k++){ var gx=k*14; greca+='M'+gx+' 11V1H'+(gx+10)+'V8H'+(gx+4)+'V4H'+(gx+7) }
+  /* the dove drawn in Figma: two wing poses, morphed into each other while it flies */
+  var W={farUp:'M136 84C128 56 108 32 78 14C84 26 82 33 76 35C86 43 84 50 78 52C88 60 90 70 98 86C110 86 124 86 136 84Z',
+    farDown:'M136 96C132 116 118 136 94 150C96 140 94 136 88 134C94 126 92 120 86 118C92 110 94 104 100 98C112 96 124 94 136 96Z',
+    nearUp:'M152 86C148 58 132 30 104 6C108 18 106 25 100 28C110 37 108 44 100 47C110 55 108 62 101 65C110 73 112 82 116 92C128 95 142 93 152 86Z',
+    nearDown:'M152 92C152 116 142 140 120 158C120 146 116 142 110 140C116 132 114 126 108 124C114 116 112 110 106 106C110 100 114 96 118 93C128 89 142 88 152 92Z',
+    linesUp:'M138 82C130 62 120 44 108 28M130 86C122 70 114 58 106 47M122 89C116 80 110 72 104 66',
+    linesDown:'M142 98C140 116 134 130 124 142M134 100C132 112 126 122 118 130M126 100C124 108 120 114 114 120'};
+  o.innerHTML='<div class="env"><div class="back"></div>'+'<div class="letter" aria-hidden="true">'+
+    '<svg class="sprig" viewBox="0 0 120 28"><path d="M8 14H112" stroke="#C8A464"/><path d="M60 14c-8-9-20-10-28-6 8 8 20 9 28 6zM60 14c8-9 20-10 28-6-8 8-20 9-28 6z" fill="#8A9850"/><path d="M46 14c-6 6-15 7-21 4 6-6 15-7 21-4zM74 14c6 6 15 7 21 4-6-6-15-7-21-4z" fill="#7E8C45"/><circle cx="60" cy="14" r="3" fill="#A3294F"/></svg>'+
+    '<i>Insieme alle loro famiglie</i><b>Bartolo <span>&amp;</span> Paola</b><i>annunciano il loro matrimonio</i><small>SABATO 19 GIUGNO 2027 · PAESTUM</small>'+
+    '<svg class="gk" viewBox="0 0 168 12"><path d="'+greca+'" stroke="#C8A464" stroke-width="1.2" fill="none"/></svg></div>'+
     '<div class="pk l"></div><div class="pk r"></div><div class="pk b"></div><span class="post" aria-hidden="true">Spedito da Paestum</span><div class="flap"></div>'+
     '<button class="seal" type="button" aria-label="Apri l\'invito">B&amp;P</button>'+
-    '<svg class="dove" viewBox="0 0 160 110" aria-hidden="true">'
-    +'<path class="wing" d="M92 60C88 38 76 18 58 4c4 10 4 16 2 22-6-6-14-9-22-10 10 10 16 22 30 44Z" fill="#E7E1D8" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'
-    +'<path d="M22 72c16-12 42-16 66-13 8-9 20-13 30-9l14 1-11 6c-2 12-14 22-32 22-22 6-48 6-67-7Z" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'
-    +'<path d="M26 72 4 62l6 12-6 12Z" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/><circle cx="112" cy="53" r="2" fill="#2B1B23"/>'
-    +'<path class="wing" d="M86 64C80 40 66 18 42 2c6 10 8 18 8 26-8-6-18-10-30-10 14 12 26 26 40 48Z" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/></svg>'+
+    '<svg class="dove" viewBox="0 0 240 160" aria-hidden="true">'+
+    '<path class="wing wf" d="'+W.farUp+'" fill="#EFE9E0" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<path d="M74 104C58 112 42 122 30 130C23 135 28 142 35 138C50 130 64 120 76 110Z" fill="#F4F0EA" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<path d="M74 99C54 97 34 99 18 103C9 105 10 115 18 115C36 115 54 111 76 107Z" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<path d="M74 95C58 84 38 76 24 75C15 75 13 85 21 89C37 95 55 99 76 103Z" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<path d="M58 101C78 85 112 79 142 81C156 70 170 60 184 60C194 60 200 66 201 72L212 75L201 79C199 88 190 96 176 100C160 112 132 120 104 118C86 117 70 111 58 101Z" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<path d="M152 104C140 110 122 113 104 112" fill="none" stroke="#D8C6A2" stroke-width="1.2" stroke-linecap="round"/><circle cx="190" cy="68" r="2.4" fill="#2B1B23"/>'+
+    '<path d="M204 78C214 86 220 98 221 112" fill="none" stroke="#6B7A3A" stroke-width="1.6" stroke-linecap="round"/><path d="M211 85c4-7 11-9 16-7-3 6-10 9-16 7zM218 98c5-6 12-7 16-4-4 5-11 7-16 4z" fill="#7E8C45"/><path d="M213 89c-7-2-11-8-10-14 6 2 10 8 10 14zM219 103c-7 0-12-5-12-11 6 1 11 6 12 11z" fill="#8A9850"/><ellipse cx="224" cy="113" rx="3.6" ry="4.6" fill="#55602B"/>'+
+    '<path class="wing wn" d="'+W.nearUp+'" fill="#fff" stroke="#B9965A" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<path class="wing wl" d="'+W.linesUp+'" fill="none" stroke="#D8C6A2" stroke-width="1.1" stroke-linecap="round"/></svg>'+
     '</div><p class="hint-open" aria-hidden="true">Tocca il sigillo per aprire</p><button class="skip" type="button">Salta</button>';
   document.body.appendChild(o);
   var seal=o.querySelector('.seal'), timers=[], done=false, opened=false;
   function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait');
     try{sessionStorage.setItem('bp-envelope','1')}catch(e){}
     removeEventListener('keydown',onKey); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },700) }
-  function open(){ if(opened) return; opened=true; o.classList.add('open'); timers.push(setTimeout(finish,3000)) }
+  function open(){ if(opened) return; opened=true; fly(); o.classList.add('open'); timers.push(setTimeout(finish,3000)) }
+  /* with GSAP: the dove takes off along a curve (MotionPath) beating its wings (MorphSVG); without it, the CSS flight */
+  function fly(){
+    var g=window.gsap; if(!g||!window.MotionPathPlugin||!window.MorphSVGPlugin) return;
+    g.registerPlugin(MotionPathPlugin,MorphSVGPlugin); o.classList.add('gs');
+    var d=o.querySelector('.dove'), wn=d.querySelector('.wn'), wf=d.querySelector('.wf'), wl=d.querySelector('.wl'),
+        vw=innerWidth, vh=innerHeight, beats=8, beat=.16;
+    var tl=g.timeline({delay:.12});
+    tl.fromTo(d,{opacity:0,scale:.3,rotation:4},{opacity:1,scale:.85,duration:.35,ease:'back.out(2)'},0)
+      .to(d,{duration:2.5,ease:'power1.in',motionPath:{path:[{x:0,y:0},{x:-vw*.05,y:-vh*.05},{x:vw*.05,y:-vh*.17},{x:vw*.2,y:-vh*.34},{x:vw*.42,y:-vh*.72}],curviness:1.4}},.15)
+      .to(d,{rotation:-14,scale:1.2,duration:2.5,ease:'sine.inOut'},.15)
+      .to(d,{opacity:0,duration:.4,ease:'power1.in'},2.25);
+    var flap=g.timeline({repeat:beats*2-1,yoyo:true,defaults:{duration:beat,ease:'sine.inOut'}});
+    flap.to(wn,{morphSVG:W.nearDown},0).to(wf,{morphSVG:W.farDown},.03).to(wl,{morphSVG:W.linesDown},0);
+    tl.add(flap,.2);
+  }
   function onKey(e){ if(e.key==='Escape') finish() }
   seal.addEventListener('click',open);
   o.querySelector('.env').addEventListener('click',function(e){ if(e.target!==seal) open() });
@@ -1082,8 +1120,10 @@ html.env-wait .dots{opacity:0}
 })();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/MotionPathPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/MorphSVGPlugin.min.js"></script>
 <script>
 /* Chapters: sticky offsets, section index, and the scroll choreography (zoom in, dim out, settle on a section) */
 (function(){
