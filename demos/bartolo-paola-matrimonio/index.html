@@ -289,62 +289,71 @@ footer p{margin:.25rem 0 0;opacity:.85}
   .greca.bottom{margin-top:1.1rem}
 }
 
-/* ---------- arrival: a red envelope opens before the invitation (built by script, so the page works without it) ---------- */
+/* ---------- arrival: a full-screen envelope of embroidered paper; the guest taps the wax seal, butterflies fly out and
+   the invitation comes out (built by script, so the page works without it) ---------- */
 html.env-wait body{overflow:hidden}
 html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
-.envx{position:fixed;inset:0;z-index:200;display:grid;place-items:center;align-content:center;gap:1.75rem;perspective:1400px;overflow:hidden;
-  background:radial-gradient(120% 90% at 50% 40%,#5A2338 0%,#3A1426 55%,#1C0B13 100%);transition:opacity .6s ease,visibility 0s .6s}
+.envx{position:fixed;inset:0;z-index:200;overflow:hidden;perspective:1600px;background:#2A0F1C;transition:opacity .7s ease,visibility 0s .7s;--ap:52%}
+@media (min-aspect-ratio:1/1){.envx{--ap:58%;--k:1.6}}
 .envx.gone{opacity:0;visibility:hidden}
-.env{position:relative;width:min(80vw,32rem);aspect-ratio:8/5;transform-style:preserve-3d;animation:envIn .7s cubic-bezier(.22,1,.36,1) both}
-@keyframes envIn{from{opacity:0;transform:translateY(-48px) rotate(-5deg)}}
-.env .back{position:absolute;inset:0;z-index:0;border-radius:6px;background:#EFE9E1;box-shadow:0 34px 60px -26px rgb(43 27 35 / .45),0 0 0 1px rgb(43 27 35 / .06)}
-.env .letter{position:absolute;left:6%;right:6%;top:7%;height:86%;z-index:1;border-radius:3px;background:#FFFDF8;box-shadow:0 2px 10px rgb(0 0 0 / .14);
-  container-type:size;display:grid;place-content:center;justify-items:center;gap:1.6cqh;text-align:center;color:#2B1B23}
-.env .letter::before,.env .letter::after{content:"";position:absolute;pointer-events:none;border:1px solid #C8A464;border-radius:2px}
-.env .letter::before{inset:4cqh 2.4cqw}
-.env .letter::after{inset:5.6cqh 3.3cqw;border-width:.5px;opacity:.8}
-.env .letter .sprig{width:18cqw;height:auto;display:block}
-.env .letter i{font:italic 400 6.4cqh/1.1 "Cormorant Infant",var(--serif);color:#5E4B55}
-.env .letter b{font:400 17cqh/1.05 var(--script);color:#2B1B23;white-space:nowrap}
-.env .letter b span{color:#A3294F;font-size:.74em}
-.env .letter small{font:500 3.9cqh/1.2 var(--ui);letter-spacing:.14em;color:#7E5309}
-.env .letter .gk{width:26cqw;height:auto;display:block}
-.env .pk{position:absolute;inset:0;z-index:2;border-radius:6px}
-.env .pk.l{background:linear-gradient(90deg,#FFFFFF,#F6F2EC);clip-path:polygon(0 0,53% 56%,0 100%)}
-.env .pk.r{background:linear-gradient(270deg,#FFFFFF,#F6F2EC);clip-path:polygon(100% 0,47% 56%,100% 100%)}
-.env .pk.b{background:linear-gradient(180deg,#F3EEE7,#FFFFFF);clip-path:polygon(0 100%,50% 44%,100% 100%)}
-.env .post{position:absolute;z-index:3;left:7%;bottom:9%;font:600 clamp(.55rem,2vw,.7rem)/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:#9C7C3E}
-.env .flap{position:absolute;left:0;right:0;top:0;height:60%;z-index:4;transform-origin:50% 0;
-  background:linear-gradient(180deg,#FFFFFF,#F1ECE5);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 2px 2px rgb(43 27 35 / .12))}
-/* the seal is the button: the invitation waits for the guest's touch */
-.env .seal{position:absolute;left:50%;top:60%;z-index:5;width:clamp(3.6rem,16vw,4.8rem);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:0;padding:0;cursor:pointer;
+.env{position:absolute;inset:0;transform-style:preserve-3d;animation:envIn .6s ease both}
+@keyframes envIn{from{opacity:0}}
+.env .paper,.env .back{background:url(img/carta-ricamata.webp) center/cover,#FBF8F2}
+.env .back{position:absolute;inset:0;z-index:0;box-shadow:inset 0 0 120px rgb(58 20 38 / .28)}
+.env .back::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(58 20 38 / .16),rgb(58 20 38 / .04) 60%)}
+/* the pockets: left, right and bottom flaps of the envelope, each with a soft shadow on its edge */
+.env .pkw{position:absolute;inset:0;z-index:2;filter:drop-shadow(0 0 7px rgb(58 20 38 / .16));pointer-events:none}
+.env .pk{position:absolute;inset:0}
+.env .pk.l{clip-path:polygon(0 0,50% var(--ap),0 100%)}
+.env .pk.r{clip-path:polygon(100% 0,50% var(--ap),100% 100%)}
+.env .pk.b{clip-path:polygon(0 100%,50% calc(var(--ap) - 4%),100% 100%)}
+.env .pk.l::after,.env .pk.r::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(58 20 38 / .05),transparent 40%,transparent 60%,rgb(58 20 38 / .05))}
+.env .pk.b::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,transparent 60%,rgb(58 20 38 / .06))}
+/* golden stitches along the edges, like an embroidered seam */
+.env .stitch{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;overflow:visible}
+.env .stitch *{fill:none;stroke:#C8A464;stroke-width:1.3;stroke-dasharray:7 5;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.env .flap{position:absolute;inset:0;z-index:4;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,50% var(--ap));backface-visibility:visible}
+.env .flap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(255 255 255 / .2),rgb(58 20 38 / .07))}
+.env .flapshade{position:absolute;inset:0;z-index:3;pointer-events:none;clip-path:polygon(0 0,100% 0,50% calc(var(--ap) + 1.2%));background:rgb(58 20 38 / .12);filter:blur(4px)}
+.env .post{position:absolute;z-index:6;left:6vw;bottom:5svh;font:600 .7rem/1.3 var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#9C7C3E}
+/* the wax seal sits on the tip of the flap and is the button */
+.env .seal{position:absolute;left:50%;top:var(--ap);z-index:5;width:clamp(4.2rem,19vw,5.6rem);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:0;padding:0;cursor:pointer;
   display:grid;place-items:center;background:radial-gradient(circle at 34% 30%,#C24668,#8E1B3A 50%,#5E0F24 100%);
-  box-shadow:0 0 0 3px rgb(142 27 58 / .25),0 3px 8px rgb(0 0 0 / .3);font:400 clamp(1.2rem,5vw,1.6rem)/1 var(--script);color:#F6D9C9;animation:sealPulse 1.8s ease-in-out 1s infinite}
+  box-shadow:0 0 0 3px rgb(142 27 58 / .25),0 4px 10px rgb(0 0 0 / .3);font:400 clamp(1.4rem,6vw,1.9rem)/1 var(--script);color:#F6D9C9;animation:sealPulse 1.8s ease-in-out 1s infinite}
 .env .seal:focus-visible{outline:3px solid #C8A464;outline-offset:4px}
-@keyframes sealPulse{50%{box-shadow:0 0 0 10px rgb(142 27 58 / 0),0 3px 8px rgb(0 0 0 / .3);transform:translate(-50%,-50%) scale(1.06)}}
-.envx .hint-open{margin:0;font:500 .95rem/1.3 var(--ui);color:#F5E9DF;letter-spacing:.02em}
-.envx .skip{border:0;background:none;padding:.5rem .75rem;min-height:44px;font:500 .85rem/1.2 var(--ui);color:rgb(245 233 223 / .75);text-decoration:underline;cursor:pointer}
+@keyframes sealPulse{50%{box-shadow:0 0 0 12px rgb(142 27 58 / 0),0 4px 10px rgb(0 0 0 / .3);transform:translate(-50%,-50%) scale(1.06)}}
+.envx .hint-open{position:absolute;z-index:8;left:0;right:0;top:calc(var(--ap) + clamp(3.4rem,13vw,4.6rem));margin:0;text-align:center;font:italic 500 1.15rem/1.3 "Cormorant Infant",var(--serif);color:#5E4B55}
+.envx .skip{position:absolute;z-index:8;left:50%;bottom:calc(2svh + env(safe-area-inset-bottom,0px));transform:translateX(-50%);border:0;background:none;padding:.5rem .9rem;min-height:44px;font:500 .85rem/1.2 var(--ui);color:#7E5309;text-decoration:underline;cursor:pointer}
 .envx.open .hint-open{opacity:0;transition:opacity .3s}
 .envx.open .seal{animation:sealOff .45s ease-in forwards}
 @keyframes sealOff{30%{transform:translate(-50%,-50%) scale(1.15)}100%{transform:translate(-50%,-50%) scale(.2);opacity:0}}
-.envx.open .flap{animation:flapOpen .7s cubic-bezier(.45,0,.2,1) .5s forwards}
-@keyframes flapOpen{0%{transform:rotateX(0);z-index:4}49%{z-index:4}50%{z-index:0}100%{transform:rotateX(180deg);z-index:0;filter:brightness(.92)}}
-.envx.open .letter{animation:letterUp .8s cubic-bezier(.22,1,.36,1) 1.15s forwards}
-@keyframes letterUp{to{transform:translateY(-58%)}}
-/* the dove takes off from the seal: a painted dove (Higgsfield) cut into three layers, far wing / body / near wing */
-.dove{position:absolute;left:50%;top:60%;z-index:6;width:clamp(7.5rem,34vw,11rem);aspect-ratio:600/560;margin:calc(clamp(7.5rem,34vw,11rem) * -.467) 0 0 calc(clamp(7.5rem,34vw,11rem) * -.5);
-  opacity:0;pointer-events:none;filter:drop-shadow(0 8px 12px rgb(0 0 0 / .3))}
-.dove img{position:absolute;inset:0;width:100%;height:100%;display:block}
-.dove .wn{transform-origin:53.3% 60.6%}
-.dove .wf{transform-origin:57% 47.4%}
-.envx.open .dove{animation:doveFly 2.4s cubic-bezier(.45,.05,.55,.95) .15s forwards}
-.envx.open .dove .wn{animation:flapNear .34s ease-in-out .15s 7}
-.envx.open .dove .wf{animation:flapFar .34s ease-in-out .17s 7}
-.envx.gs .dove,.envx.gs .dove img{animation:none!important}
-@keyframes doveFly{0%{opacity:0;transform:translate(0,0) scale(.35)}12%{opacity:1;transform:translate(0,-10px) scale(.8) rotate(-4deg)}
-  45%{transform:translate(12vw,-28vh) scale(1) rotate(-10deg)}100%{opacity:0;transform:translate(42vw,-80vh) scale(1.2) rotate(-14deg)}}
-@keyframes flapNear{0%,100%{transform:scaleY(1)}45%{transform:scaleY(.35)}70%{transform:scaleY(-.3)}}
-@keyframes flapFar{0%,100%{transform:scaleY(1)}45%{transform:scaleY(.6)}70%{transform:scaleY(.3)}}
+.envx.open .flap{animation:flapOpen .9s cubic-bezier(.45,0,.2,1) .3s forwards}
+.envx.open .flapshade{opacity:0;transition:opacity .4s .3s}
+@keyframes flapOpen{0%{transform:rotateX(0);z-index:4}49%{z-index:4}50%{z-index:0}100%{transform:rotateX(180deg);z-index:0;filter:brightness(.88)}}
+/* the invitation: hidden behind the pockets, it rises half out, then comes forward */
+.env .letter{position:absolute;left:50%;top:50%;z-index:1;width:min(80vw,26rem);aspect-ratio:3/4.1;--y:60svh;transform:translate(-50%,-50%) translateY(var(--y));
+  border-radius:3px;background:#FFFDF8;box-shadow:0 4px 18px rgb(43 27 35 / .22);transition:transform 1s cubic-bezier(.22,1,.36,1);
+  container-type:size;display:grid;place-content:center;justify-items:center;gap:1.8cqh;text-align:center;color:#2B1B23}
+@media (min-aspect-ratio:1/1){.env .letter{width:min(58vw,46rem);aspect-ratio:1.62}}
+.envx.rise .letter{--y:-10svh}
+.envx.out .letter{z-index:7;--y:0px;transform:translate(-50%,-50%) scale(1.03);transition-duration:.8s}
+.env .letter::before,.env .letter::after{content:"";position:absolute;pointer-events:none;border:1px solid #C8A464;border-radius:2px}
+.env .letter::before{inset:3.4cqh 3.4cqw}
+.env .letter::after{inset:4.8cqh 4.8cqw;border-width:.5px;opacity:.8}
+.env .letter .sprig{width:min(30cqw,18cqh);height:auto;display:block}
+.env .letter i{font:italic 400 min(5.4cqh,7.4cqw)/1.15 "Cormorant Infant",var(--serif);color:#5E4B55}
+.env .letter b{font:400 min(13cqh,14.5cqw)/1.05 var(--script);color:#2B1B23;white-space:nowrap}
+.env .letter b span{color:#A3294F;font-size:.74em}
+.env .letter small{font:500 min(3.2cqh,3.6cqw)/1.2 var(--ui);letter-spacing:.14em;color:#7E5309}
+.env .letter .gk{width:min(44cqw,26cqh);height:auto;display:block}
+/* butterflies: each one flutters (its wings fold on the body axis) while it flies out of the envelope */
+.bf{--w:calc(var(--s,3rem) * var(--k,1));position:absolute;left:50%;top:var(--ap);z-index:6;width:var(--w);height:auto;margin:calc(var(--w) * -.42) 0 0 calc(var(--w) * -.5);opacity:0;pointer-events:none;overflow:visible;
+  filter:drop-shadow(0 3px 4px rgb(43 27 35 / .25))}
+.bf .w{animation:flutter var(--f,.16s) ease-in-out infinite alternate}
+@keyframes flutter{to{transform:scaleX(.18)}}
+.envx.open .bf{animation:bfOut var(--t,2.6s) cubic-bezier(.4,.1,.6,1) var(--d,.4s) forwards}
+.envx.gs .bf{animation:none!important}
+@keyframes bfOut{0%{opacity:0;transform:translate(0,0) scale(.3)}10%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(var(--x,0),-75svh) scale(1.1) rotate(var(--r,0deg))}}
 
 /* ---------- chapters: full-screen sections stacked with sticky; a section taller than the screen scrolls through,
    then holds while the next slides over it (--stick is set by script) ---------- */
@@ -463,8 +472,8 @@ html.env-wait .dots{opacity:0}
 </head>
 <body>
 <script>
-/* Arrival: a white envelope sealed with wax. The guest taps the seal, a dove takes off and the invitation comes out.
-   Once per visit, skippable, skipped when motion is reduced. */
+/* Arrival: a full-screen envelope of embroidered paper sealed with wax. The guest taps the seal, a flight of butterflies
+   comes out and the invitation rises out of the envelope. Once per visit, skippable, skipped when motion is reduced. */
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches, seen=false;
   try{seen=sessionStorage.getItem('bp-envelope')==='1'}catch(e){}
@@ -472,36 +481,59 @@ html.env-wait .dots{opacity:0}
   var root=document.documentElement; root.classList.add('env-wait');
   var o=document.createElement('div'); o.className='envx'; o.setAttribute('role','dialog'); o.setAttribute('aria-label','Invito di Bartolo e Paola');
   var greca=''; for(var k=0;k<12;k++){ var gx=k*14; greca+='M'+gx+' 11V1H'+(gx+10)+'V8H'+(gx+4)+'V4H'+(gx+7) }
-  o.innerHTML='<div class="env"><div class="back"></div>'+'<div class="letter" aria-hidden="true">'+
+  /* butterfly colours: ivory and gold, blush, raspberry */
+  var tints=[['#FFFBF2','#E8C47E'],['#FDEFF2','#E7A2B6'],['#F7C9D6','#A3294F'],['#FFF8EA','#D9B06A'],['#FCE6EC','#C9617F']];
+  var defs='<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'+tints.map(function(t,n){
+    return '<radialGradient id="bfg'+n+'" cx="20%" cy="40%" r="90%"><stop offset="0" stop-color="'+t[0]+'"/><stop offset="1" stop-color="'+t[1]+'"/></radialGradient>' }).join('')+'</defs></svg>';
+  var wing='<path d="M2-3C10-31 38-39 46-25 52-12 34 2 4 3Z"/><path d="M3 3C24 6 38 17 32 31 26 41 8 31 2 8Z"/><path d="M8-6C18-20 32-26 40-22M8 6C18 12 26 20 26 28" fill="none" stroke="rgb(185 150 90 / .55)" stroke-width="1"/><circle cx="36" cy="-20" r="2.2" fill="rgb(255 255 255 / .7)"/>';
+  function butterfly(n){ var g='url(#bfg'+(n%tints.length)+')';
+    return '<svg class="bf" viewBox="-50 -42 100 84" aria-hidden="true"><g fill="'+g+'" stroke="#B9965A" stroke-width=".9">'+
+      '<g class="w">'+wing+'</g><g transform="scale(-1,1)"><g class="w">'+wing+'</g></g></g>'+
+      '<ellipse rx="2.4" ry="15" fill="#4A2A1E"/><path d="M-1-14C-4-22-8-28-12-30M1-14C4-22 8-28 12-30" fill="none" stroke="#4A2A1E" stroke-width="1"/></svg>' }
+  var flock=''; for(var b=0;b<11;b++) flock+=butterfly(b);
+  var stitches='<svg class="stitch" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+
+    '<rect x="2.2" y="1.6" width="95.6" height="96.8" rx=".6"/><path class="pkst" d=""/></svg>';
+  o.innerHTML=defs+'<div class="env"><div class="back"></div>'+'<div class="letter" aria-hidden="true">'+
     '<svg class="sprig" viewBox="0 0 120 28"><path d="M8 14H112" stroke="#C8A464"/><path d="M60 14c-8-9-20-10-28-6 8 8 20 9 28 6zM60 14c8-9 20-10 28-6-8 8-20 9-28 6z" fill="#8A9850"/><path d="M46 14c-6 6-15 7-21 4 6-6 15-7 21-4zM74 14c6 6 15 7 21 4-6-6-15-7-21-4z" fill="#7E8C45"/><circle cx="60" cy="14" r="3" fill="#A3294F"/></svg>'+
     '<i>Insieme alle loro famiglie</i><b>Bartolo <span>&amp;</span> Paola</b><i>annunciano il loro matrimonio</i><small>SABATO 19 GIUGNO 2027 · PAESTUM</small>'+
     '<svg class="gk" viewBox="0 0 168 12"><path d="'+greca+'" stroke="#C8A464" stroke-width="1.2" fill="none"/></svg></div>'+
-    '<div class="pk l"></div><div class="pk r"></div><div class="pk b"></div><span class="post" aria-hidden="true">Spedito da Paestum</span><div class="flap"></div>'+
-    '<button class="seal" type="button" aria-label="Apri l\'invito">B&amp;P</button>'+
-    '<div class="dove" aria-hidden="true"><img class="wf" src="img/colomba-far.webp" alt=""><img src="img/colomba-body.webp" alt=""><img class="wn" src="img/colomba-near.webp" alt=""></div>'+
+    '<div class="pkw"><div class="pk l paper"></div><div class="pk r paper"></div><div class="pk b paper"></div></div>'+stitches+
+    '<div class="flapshade"></div><div class="flap paper"><svg class="stitch" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="flst" d=""/></svg></div>'+
+    '<span class="post" aria-hidden="true">Spedito da Paestum</span>'+
+    '<button class="seal" type="button" aria-label="Apri l\'invito">B&amp;P</button>'+flock+
     '</div><p class="hint-open" aria-hidden="true">Tocca il sigillo per aprire</p><button class="skip" type="button">Salta</button>';
   document.body.appendChild(o);
-  var seal=o.querySelector('.seal'), timers=[], done=false, opened=false;
+  /* stitches follow the flap tip, which sits higher on a phone held upright */
+  function seams(){ var ap=parseFloat(getComputedStyle(o).getPropertyValue('--ap'))||52;
+    o.querySelector('.pkst').setAttribute('d','M2.2 '+(1.6+3)+'L50 '+(ap+2.5)+'L97.8 '+(1.6+3)+'M2.2 98.4L50 '+(ap-1.5)+'L97.8 98.4');
+    o.querySelector('.flst').setAttribute('d','M4 1.6L50 '+(ap-3)+'L96 1.6') }
+  seams(); addEventListener('resize',seams);
+  var seal=o.querySelector('.seal'), bfs=[].slice.call(o.querySelectorAll('.bf')), timers=[], done=false, opened=false;
+  /* each butterfly gets its own size, wingbeat, delay and direction (used by the CSS flight when GSAP is missing) */
+  bfs.forEach(function(el,n){ var side=n%2?1:-1, s=2.8+Math.random()*2;
+    el.style.setProperty('--s',s.toFixed(2)+'rem'); el.style.setProperty('--f',(.11+Math.random()*.08).toFixed(3)+'s');
+    el.style.setProperty('--d',(.35+n*.09).toFixed(2)+'s'); el.style.setProperty('--t',(2.2+Math.random()*1).toFixed(2)+'s');
+    el.style.setProperty('--x',(side*(10+Math.random()*40)).toFixed(1)+'vw'); el.style.setProperty('--r',(side*(10+Math.random()*25)).toFixed(0)+'deg') });
   function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait');
     try{sessionStorage.setItem('bp-envelope','1')}catch(e){}
-    removeEventListener('keydown',onKey); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },700) }
-  function open(){ if(opened) return; opened=true; fly(); o.classList.add('open'); timers.push(setTimeout(finish,3000)) }
-  /* with GSAP: the dove takes off along a curve (MotionPath) beating its wings (the wing layers fold around the shoulder);
-     without it, the CSS flight */
+    removeEventListener('keydown',onKey); removeEventListener('resize',seams); setTimeout(function(){ if(o.parentNode) o.parentNode.removeChild(o) },800) }
+  function open(){ if(opened) return; opened=true; fly(); o.classList.add('open');
+    timers.push(setTimeout(function(){o.classList.add('rise')},950));
+    timers.push(setTimeout(function(){o.classList.add('out')},2300));
+    timers.push(setTimeout(finish,3700)) }
+  /* with GSAP each butterfly follows its own curved path out of the envelope (MotionPath); without it, the CSS flight */
   function fly(){
     var g=window.gsap; if(!g||!window.MotionPathPlugin) return;
     g.registerPlugin(MotionPathPlugin); o.classList.add('gs');
-    var d=o.querySelector('.dove'), wn=d.querySelector('.wn'), wf=d.querySelector('.wf'), vw=innerWidth, vh=innerHeight;
-    var tl=g.timeline({delay:.12});
-    tl.fromTo(d,{opacity:0,scale:.3},{opacity:1,scale:.85,duration:.35,ease:'back.out(2)'},0)
-      .to(d,{duration:2.5,ease:'power1.in',motionPath:{path:[{x:0,y:0},{x:-vw*.05,y:-vh*.05},{x:vw*.05,y:-vh*.17},{x:vw*.2,y:-vh*.34},{x:vw*.42,y:-vh*.72}],curviness:1.4}},.15)
-      .to(d,{rotation:-12,scale:1.15,duration:2.5,ease:'sine.inOut'},.15)
-      .to(d,{opacity:0,duration:.4,ease:'power1.in'},2.25);
-    /* one wingbeat: down fast (the wing folds past the body), up slower */
-    var beat=g.timeline({repeat:7});
-    beat.to(wn,{scaleY:-.3,duration:.15,ease:'power2.in'},0).to(wf,{scaleY:.3,duration:.15,ease:'power2.in'},.01)
-        .to(wn,{scaleY:1,duration:.21,ease:'power1.out'},.15).to(wf,{scaleY:1,duration:.21,ease:'power1.out'},.16);
-    tl.add(beat,.2);
+    var vw=innerWidth, vh=innerHeight, R=g.utils.random;
+    bfs.forEach(function(el,n){
+      var side=n%2?1:-1, ex=side*R(.15,.6)*vw, ey=-R(.7,1)*vh, d=.35+n*.09, t=R(2.1,3);
+      var path=[{x:0,y:0},{x:side*R(.02,.12)*vw,y:-R(.06,.14)*vh},{x:ex*.35+R(-.1,.1)*vw,y:ey*.4},{x:ex*.7,y:ey*.72},{x:ex,y:ey}];
+      g.timeline({delay:d})
+        .fromTo(el,{opacity:0,scale:.25},{opacity:1,scale:R(.85,1.15),duration:.4,ease:'power2.out'},0)
+        .to(el,{duration:t,ease:'sine.inOut',motionPath:{path:path,curviness:1.6,autoRotate:90}},0)
+        .to(el,{opacity:0,duration:.5},t-.5);
+    });
   }
   function onKey(e){ if(e.key==='Escape') finish() }
   seal.addEventListener('click',open);
