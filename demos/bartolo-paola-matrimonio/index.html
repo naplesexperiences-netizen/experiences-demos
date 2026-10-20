@@ -399,7 +399,14 @@ footer{scroll-snap-align:end}
 .chapter .dim{position:absolute;inset:0;z-index:20;background:#120B07;opacity:0;pointer-events:none}
 .chapter.photo{background:var(--sea-deep)}
 .media{position:absolute;inset:0;z-index:-1;overflow:hidden;background:var(--sea-deep)}
-.media img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%;will-change:transform}
+.media img{display:block;width:100%;height:100%;object-fit:cover}
+/* sections fully covered by the ones above them are not painted: fewer layers, no torn frames in Safari */
+.chapter.covered{visibility:hidden}
+/* once the opening has played, the temple holds its final state without relying on animation fill */
+html.intro-done .hero .sun{animation:none;opacity:1;transform:translate(-50%,-45%)}
+html.intro-done .hero .pediment,html.intro-done .hero .card{animation:none;opacity:1;transform:none}
+html.intro-done .hero .col{animation:none;transform:none}
+html.intro-done .hero .names{animation:none;clip-path:none}
 .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(30 18 10 / .3),rgb(30 18 10 / .5))}
 .need{position:absolute;top:calc(.6rem + env(safe-area-inset-top,0px));left:.6rem;z-index:2;padding:.15rem .45rem;border-radius:999px;background:rgb(0 0 0 / .28);color:rgb(255 255 255 / .75);font:600 .62rem/1.3 var(--ui);letter-spacing:.06em}
 /* the content sits on an invitation card, like the one in the temple */
@@ -648,7 +655,7 @@ html.env-wait .dots{opacity:0}
   </section>
 
   <section class="chapter photo" id="programma" aria-labelledby="prog-title">
-    <div class="media" aria-hidden="true"><img src="img/bg-festa.webp" alt="" decoding="async" style="object-position:50% 50%"></div><span class="need" title="Immagine d'atmosfera generata con IA"><span aria-hidden="true">IA</span><span class="sr-only">Immagine d'atmosfera generata con IA</span></span><div class="dim"></div>
+    <div class="media" aria-hidden="true"><img src="img/ariston-sala.webp" alt="" decoding="async" style="object-position:50% 50%"></div><span class="need">Foto Hotel Ariston Paestum</span><div class="dim"></div>
     <div class="wrap panel">
       <h2 id="prog-title">Il programma</h2>
       <p class="lead">Una giornata tra i templi della Magna Grecia e il mare del Cilento.</p>
@@ -664,7 +671,7 @@ html.env-wait .dots{opacity:0}
   </section>
 
   <section class="chapter photo" id="luoghi" aria-labelledby="luoghi-title">
-    <div class="media" aria-hidden="true"><img src="img/bg-cerimonia.webp" alt="" decoding="async" style="object-position:50% 40%"></div><span class="need" title="Immagine d'atmosfera generata con IA"><span aria-hidden="true">IA</span><span class="sr-only">Immagine d'atmosfera generata con IA</span></span><div class="dim"></div>
+    <div class="media" aria-hidden="true"><img src="img/ariston-hotel.webp" alt="" decoding="async" style="object-position:50% 70%"></div><span class="need">Foto Hotel Ariston Paestum</span><div class="dim"></div>
     <div class="wrap panel">
       <h2 id="luoghi-title">I luoghi</h2>
       <p class="lead">La chiesa e l'hotel sono a pochi minuti d'auto.</p>
@@ -709,7 +716,7 @@ html.env-wait .dots{opacity:0}
   </section>
 
   <section class="chapter photo" id="hotel" aria-labelledby="hotel-title">
-    <div class="media" aria-hidden="true"><img src="img/bg-festa.webp" alt="" decoding="async" style="object-position:80% 35%"></div><span class="need" title="Immagine d'atmosfera generata con IA"><span aria-hidden="true">IA</span><span class="sr-only">Immagine d'atmosfera generata con IA</span></span><div class="dim"></div>
+    <div class="media" aria-hidden="true"><img src="img/ariston-spiaggia.webp" alt="" decoding="async" style="object-position:35% 50%"></div><span class="need">Foto Hotel Ariston Paestum</span><div class="dim"></div>
     <div class="wrap panel narrow">
         <h2 id="hotel-title">Restate a dormire</h2>
         <p class="lead" style="margin-bottom:1.5rem">Niente strada di notte: brindate fino all'ultimo e svegliatevi vicino al mare.</p>
@@ -962,7 +969,7 @@ html.env-wait .dots{opacity:0}
 <footer>
   <p class="sig">Bartolo &amp; Paola</p>
   <p>19 giugno 2027, Paestum</p>
-  <p class="ai-note">Le immagini di sfondo segnate «IA» sono generate con l'intelligenza artificiale e saranno sostituite dalle foto degli sposi e dei luoghi.</p>
+  <p class="ai-note">Le immagini di sfondo segnate «IA» sono generate con l'intelligenza artificiale e saranno sostituite dalle foto degli sposi. Le foto dell'hotel e della spiaggia sono di Hotel Ariston Paestum.</p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1172,12 +1179,18 @@ html.env-wait .dots{opacity:0}
     new IntersectionObserver(function(es){ dotsBox.classList.toggle('off',es[0].isIntersecting) },{rootMargin:'0px 0px -60% 0px'}).observe(rsvp);
     new IntersectionObserver(function(es){ dotsBox.classList.toggle('on-hero',!es[0].isIntersecting) },{rootMargin:'0px 0px -50% 0px'}).observe(chapters[1]);
   }
+  var hero=chapters[0], names=hero.querySelector('.names');
+  hero.addEventListener('animationend',function(e){ if(e.target===names) document.documentElement.classList.add('intro-done') });
+  /* hide the sections that are completely under the current one */
+  var ticking=false;
+  function cover(){ ticking=false; var h=hero.offsetHeight||innerHeight, idx=Math.floor((scrollY-hero.parentNode.offsetTop+2)/h);
+    chapters.forEach(function(c,i){ c.classList.toggle('covered',i<idx) }) }
+  addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(cover) } },{passive:true});
+  addEventListener('resize',cover); cover();
   if(reduce||!window.gsap||!window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ignoreMobileResize:true});
   chapters.forEach(function(ch,i){
-    var img=ch.querySelector('.media img');
-    if(img) gsap.fromTo(img,{scale:1.16},{scale:1,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'top top',scrub:true}});
     var nxt=chapters[i+1]||rsvp, dim=ch.querySelector('.dim');
     if(dim) gsap.to(dim,{opacity:.6,ease:'none',scrollTrigger:{trigger:nxt,start:'top bottom',end:'top top',scrub:true}});
   });
