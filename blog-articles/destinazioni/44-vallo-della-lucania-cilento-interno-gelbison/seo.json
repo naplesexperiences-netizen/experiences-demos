@@ -1,0 +1,51 @@
+{
+  "slug": "vallo-della-lucania-cilento-interno-gelbison",
+  "post_title": "Vallo della Lucania e il Cilento interno: il Gelbison, i borghi e il Parco a portata di mano",
+  "seo_title": "Vallo della Lucania e il Cilento interno",
+  "meta_description": "Vallo della Lucania, cuore del Parco del Cilento: il Monte Gelbison, Novi Velia, i borghi dell'interno e il mare a 20 minuti.",
+  "focus_keyword": "vallo della lucania",
+  "secondary_keywords": [
+    "cilento",
+    "gelbison",
+    "novi velia",
+    "parco nazionale del cilento"
+  ],
+  "og_title": "Vallo della Lucania e il Cilento interno: il Gelbison, i borghi e il Parco a portata di mano",
+  "og_description": "Vallo della Lucania, cuore del Parco del Cilento: il Monte Gelbison, Novi Velia, i borghi dell'interno e il mare a 20 minuti.",
+  "category": "Destinazioni",
+  "tags": [
+    "vallo della lucania",
+    "cilento",
+    "gelbison",
+    "novi velia",
+    "parco nazionale del cilento"
+  ],
+  "struttura": "Ruggiero Park Hotel",
+  "citta": "Vallo della Lucania",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/ruggiero-park-hotel-experiences-standard/",
+  "word_count": 641,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Vallo della Lucania e il Cilento interno: il Gelbison, i borghi e il Parco a portata di mano",
+    "description": "Vallo della Lucania, cuore del Parco del Cilento: il Monte Gelbison, Novi Velia, i borghi dell'interno e il mare a 20 minuti.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/vallo-della-lucania-cilento-interno-gelbison.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Vallo della Lucania"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/vallo-della-lucania-cilento-interno-gelbison/"
+  }
+}

@@ -42,6 +42,14 @@ Include i prompt Gemini per le immagini.
 
 **Totale: 18 articoli, ~38.900 parole** di contenuto B2B.
 
+### Destinazioni — un articolo per struttura
+
+In [`destinazioni/`](destinazioni/README.md): 56 articoli B2C, uno per ogni
+struttura ricettiva dell'hub, su perché visitare la sua città e i dintorni
+(Napoli, Penisola Sorrentina, Ischia, Costiera Amalfitana, Salerno, Cilento,
+Golfo di Policastro). Stesso formato `article.html` + `seo.json`, footer e SEO
+rigenerabili con `python3 scripts/build-destinazioni.py`.
+
 ---
 
 ## Struttura di ogni cartella

@@ -1,0 +1,52 @@
+{
+  "slug": "raito-vietri-sul-mare-ceramica-villa-guariglia",
+  "post_title": "Raito e Vietri sul Mare: la ceramica, Villa Guariglia e la Costiera che comincia",
+  "seo_title": "Raito e Vietri sul Mare",
+  "meta_description": "Raito, frazione di Vietri sul Mare: il Museo della Ceramica a Villa Guariglia, le botteghe di Vietri, Cetara e Salerno a pochi minuti.",
+  "focus_keyword": "raito vietri sul mare",
+  "secondary_keywords": [
+    "vietri sul mare",
+    "raito",
+    "ceramica",
+    "villa guariglia",
+    "costiera amalfitana"
+  ],
+  "og_title": "Raito e Vietri sul Mare: la ceramica, Villa Guariglia e la Costiera che comincia",
+  "og_description": "Raito, frazione di Vietri sul Mare: il Museo della Ceramica a Villa Guariglia, le botteghe di Vietri, Cetara e Salerno a pochi minuti.",
+  "category": "Destinazioni",
+  "tags": [
+    "vietri sul mare",
+    "raito",
+    "ceramica",
+    "villa guariglia",
+    "costiera amalfitana"
+  ],
+  "struttura": "Hotel Raito",
+  "citta": "Vietri sul Mare",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-raito-experiences-standard/",
+  "word_count": 617,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Raito e Vietri sul Mare: la ceramica, Villa Guariglia e la Costiera che comincia",
+    "description": "Raito, frazione di Vietri sul Mare: il Museo della Ceramica a Villa Guariglia, le botteghe di Vietri, Cetara e Salerno a pochi minuti.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/raito-vietri-sul-mare-ceramica-villa-guariglia.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Vietri sul Mare"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/raito-vietri-sul-mare-ceramica-villa-guariglia/"
+  }
+}

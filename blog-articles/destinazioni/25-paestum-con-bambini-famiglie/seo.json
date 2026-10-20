@@ -1,0 +1,52 @@
+{
+  "slug": "paestum-con-bambini-famiglie",
+  "post_title": "Paestum con i bambini: templi, spiaggia e fattorie per una vacanza in famiglia",
+  "seo_title": "Paestum con i bambini",
+  "meta_description": "Paestum con i bambini: mare basso e sabbioso, templi da esplorare, caseifici e grotte. Idee e consigli per una vacanza in famiglia.",
+  "focus_keyword": "paestum con bambini",
+  "secondary_keywords": [
+    "paestum",
+    "bambini",
+    "famiglie",
+    "spiaggia",
+    "vacanze"
+  ],
+  "og_title": "Paestum con i bambini: templi, spiaggia e fattorie per una vacanza in famiglia",
+  "og_description": "Paestum con i bambini: mare basso e sabbioso, templi da esplorare, caseifici e grotte. Idee e consigli per una vacanza in famiglia.",
+  "category": "Destinazioni",
+  "tags": [
+    "paestum",
+    "bambini",
+    "famiglie",
+    "spiaggia",
+    "vacanze"
+  ],
+  "struttura": "Paestum Inn Beach Resort",
+  "citta": "Paestum",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/paestum-inn-beach-resort-experiences-standard/",
+  "word_count": 591,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Paestum con i bambini: templi, spiaggia e fattorie per una vacanza in famiglia",
+    "description": "Paestum con i bambini: mare basso e sabbioso, templi da esplorare, caseifici e grotte. Idee e consigli per una vacanza in famiglia.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/paestum-con-bambini-famiglie.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Paestum"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/paestum-con-bambini-famiglie/"
+  }
+}

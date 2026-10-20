@@ -1,0 +1,49 @@
+{
+  "slug": "conca-dei-marini-grotta-dello-smeraldo",
+  "post_title": "Conca dei Marini e la Grotta dello Smeraldo: il borgo marinaro più discreto della Costiera",
+  "seo_title": "Conca dei Marini e la Grotta dello Smeraldo",
+  "meta_description": "Conca dei Marini: la Grotta dello Smeraldo, la Torre di Capo di Conca, il borgo marinaro e i dintorni fra Amalfi e Furore.",
+  "focus_keyword": "grotta dello smeraldo",
+  "secondary_keywords": [
+    "conca dei marini",
+    "capo di conca",
+    "costiera amalfitana"
+  ],
+  "og_title": "Conca dei Marini e la Grotta dello Smeraldo: il borgo marinaro più discreto della Costiera",
+  "og_description": "Conca dei Marini: la Grotta dello Smeraldo, la Torre di Capo di Conca, il borgo marinaro e i dintorni fra Amalfi e Furore.",
+  "category": "Destinazioni",
+  "tags": [
+    "conca dei marini",
+    "grotta dello smeraldo",
+    "capo di conca",
+    "costiera amalfitana"
+  ],
+  "struttura": "Hotel Belvedere",
+  "citta": "Conca dei Marini",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-belvedere-experiences-standard/",
+  "word_count": 650,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Conca dei Marini e la Grotta dello Smeraldo: il borgo marinaro più discreto della Costiera",
+    "description": "Conca dei Marini: la Grotta dello Smeraldo, la Torre di Capo di Conca, il borgo marinaro e i dintorni fra Amalfi e Furore.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/conca-dei-marini-grotta-dello-smeraldo.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Conca dei Marini"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/conca-dei-marini-grotta-dello-smeraldo/"
+  }
+}

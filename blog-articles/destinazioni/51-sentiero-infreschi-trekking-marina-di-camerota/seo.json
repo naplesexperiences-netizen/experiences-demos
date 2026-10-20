@@ -1,0 +1,51 @@
+{
+  "slug": "sentiero-infreschi-trekking-marina-di-camerota",
+  "post_title": "Il sentiero degli Infreschi: trekking e natura da Marina di Camerota",
+  "seo_title": "Il sentiero degli Infreschi",
+  "meta_description": "Il sentiero costiero da Marina di Camerota a Cala Bianca e Porto Infreschi: tempi, consigli e altre escursioni nel Parco.",
+  "focus_keyword": "sentiero degli infreschi",
+  "secondary_keywords": [
+    "marina di camerota",
+    "trekking",
+    "cala bianca",
+    "natura"
+  ],
+  "og_title": "Il sentiero degli Infreschi: trekking e natura da Marina di Camerota",
+  "og_description": "Il sentiero costiero da Marina di Camerota a Cala Bianca e Porto Infreschi: tempi, consigli e altre escursioni nel Parco.",
+  "category": "Destinazioni",
+  "tags": [
+    "marina di camerota",
+    "sentiero degli infreschi",
+    "trekking",
+    "cala bianca",
+    "natura"
+  ],
+  "struttura": "Odissea Camping Village",
+  "citta": "Marina di Camerota",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/odissea-camping-village-experiences-standard/",
+  "word_count": 636,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Il sentiero degli Infreschi: trekking e natura da Marina di Camerota",
+    "description": "Il sentiero costiero da Marina di Camerota a Cala Bianca e Porto Infreschi: tempi, consigli e altre escursioni nel Parco.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/sentiero-infreschi-trekking-marina-di-camerota.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Marina di Camerota"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/sentiero-infreschi-trekking-marina-di-camerota/"
+  }
+}
