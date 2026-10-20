@@ -102,8 +102,9 @@ h2{font-family:var(--script);font-weight:400;color:var(--title);font-size:clamp(
    When the photos arrive, replace the placeholder span with an img of the couple (alt "Bartolo e Paola") */
 .card{isolation:isolate;overflow:hidden;color:#FBF5EC;background:#3B271B;box-shadow:0 0 0 6px #FBF6EC,0 0 0 7px var(--stone),0 24px 40px -24px rgb(42 26 18 / .55)!important}
 .portrait{position:absolute;inset:0;z-index:-1;margin:0;background:radial-gradient(circle at 24% 22%,rgb(255 214 150 / .28) 0 1.4rem,transparent 1.7rem),radial-gradient(circle at 80% 34%,rgb(255 214 150 / .2) 0 2rem,transparent 2.4rem),radial-gradient(120% 80% at 50% 0%,#7A5638,#3B271B 60%,#241710)}
-.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(30 18 10 / .25),rgb(30 18 10 / .5) 45%,rgb(30 18 10 / .68))}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(30 18 10 / .45),rgb(30 18 10 / .62) 45%,rgb(30 18 10 / .78))}
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+@media (min-aspect-ratio:1/1){.portrait img{object-position:50% 80%}}
 .portrait .ph{position:absolute;top:.6rem;left:50%;z-index:1;transform:translateX(-50%);display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap;
   padding:.25rem .65rem;border-radius:999px;background:rgb(0 0 0 / .35);color:rgb(255 255 255 / .85);font:500 .72rem/1.2 var(--ui)}
 .portrait .ph svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -286,6 +287,7 @@ footer{text-align:center;padding:3.5rem 1.25rem calc(3.5rem + env(safe-area-inse
 footer .sig{font-family:var(--script);font-size:2.6rem;color:var(--stone);margin:0;line-height:1.2}
 footer p{margin:.25rem 0 0;opacity:.85}
 footer .ai-note{max-width:30rem;margin:1.5rem auto 0;font:400 .8rem/1.5 var(--ui);opacity:.6}
+footer .ai-note a{color:inherit}
 
 @media (max-width:540px){
   .card{padding:2.9rem 1rem 1.75rem}
@@ -603,8 +605,8 @@ html.env-wait .dots{opacity:0}
   <div class="colonnade">
    <div class="side" aria-hidden="true"><span class="col far" style="--d:590ms"></span><span class="col mid" style="--d:370ms"></span><span class="col " style="--d:150ms"></span></div>
   <div class="card">
-    <figure class="portrait" aria-label="Spazio per la foto degli sposi">
-      <span class="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3.5"/></svg>Qui la foto degli sposi</span>
+    <figure class="portrait">
+      <img src="img/sposi.webp" alt="Bartolo e Paola si baciano davanti a un castello" width="1199" height="1599" fetchpriority="high">
     </figure>
     <p class="intro">Insieme alle loro famiglie</p>
     <h1 class="names"><span>Bartolo</span><span class="amp">&amp;</span><span>Paola</span></h1>
@@ -631,7 +633,7 @@ html.env-wait .dots{opacity:0}
 </header>
 
   <section class="countdown chapter photo" id="countdown" aria-labelledby="cd-title">
-    <div class="media" aria-hidden="true"><img src="img/bg-notte.webp" alt="" decoding="async" style="object-position:50% 50%"></div><span class="need" title="Immagine d'atmosfera generata con IA"><span aria-hidden="true">IA</span><span class="sr-only">Immagine d'atmosfera generata con IA</span></span><div class="dim"></div>
+    <div class="media" aria-hidden="true"><img src="img/paestum-tramonto.webp" alt="" decoding="async" style="object-position:76% 50%"></div><span class="need">Foto Diego Delso, CC BY-SA 4.0</span><div class="dim"></div>
     <div class="wrap">
       <h2 id="cd-title">Il conto alla rovescia</h2>
       <p class="lead">Ogni giorno che passa ci avvicina al sì.</p>
@@ -969,7 +971,7 @@ html.env-wait .dots{opacity:0}
 <footer>
   <p class="sig">Bartolo &amp; Paola</p>
   <p>19 giugno 2027, Paestum</p>
-  <p class="ai-note">Le immagini di sfondo segnate «IA» sono generate con l'intelligenza artificiale e saranno sostituite dalle foto degli sposi. Le foto dell'hotel e della spiaggia sono di Hotel Ariston Paestum.</p>
+  <p class="ai-note">Le immagini di sfondo segnate «IA» sono generate con l'intelligenza artificiale e saranno sostituite dalle foto degli sposi. Le foto dell'hotel e della spiaggia sono di Hotel Ariston Paestum. Tempio al tramonto: <a href="https://commons.wikimedia.org/wiki/File:Paestum,_Italia,_2023-03-26,_DD_66-68_HDR.jpg">Diego Delso</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
