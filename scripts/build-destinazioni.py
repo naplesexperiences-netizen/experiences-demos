@@ -5,7 +5,13 @@ For every entry in ARTICLES this script:
   * writes blog-articles/destinazioni/<NN>-<slug>/seo.json
   * (re)writes the footer block of article.html between the markers
     <!-- destinazioni:footer --> and <!-- /destinazioni:footer -->
-    with the "Leggi anche" links (same area) and the CTA to the demo.
+    with the photo credit, the "Leggi anche" links (same area) and the
+    CTA to the demo.
+
+Then it writes blog-articles/destinazioni/destinazioni-import.xml, a WXR
+file for Strumenti → Importa → WordPress: one draft post per article,
+its featured image (featured.jpg, credits in images.json) and the
+Yoast / Rank Math SEO fields.
 
 The article body is hand-written and never touched. Idempotent: run it
 again after editing the table below.
@@ -14,12 +20,19 @@ import html
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+from xml.sax.saxutils import escape as xml_escape
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "blog-articles" / "destinazioni"
 DEMO_BASE = "https://naplesexperiences-netizen.github.io/experiences-demos/demos"
 SITE = "https://naplesexperiences.com"
+# Where WordPress downloads featured.jpg from during the import: the
+# GitHub Pages copy of this folder, live once the branch is on main.
+PAGES_BASE = "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni"
+IMAGES = OUT / "images.json"
+LICENSES = {"by": "CC BY", "by-sa": "CC BY-SA", "cc0": "CC0", "pdm": "Pubblico dominio"}
 
 # (slug, struttura, demo, città, area, post_title, focus_keyword, meta_description, tags)
 ARTICLES = [
@@ -314,11 +327,24 @@ def dir_name(i, slug):
     return f"{i:02d}-{slug}"
 
 
-def footer(entry, related):
+def credit_html(img):
+    t = lambda v: html.escape(v, quote=False)
+    lic = LICENSES[img["license"]] + (f' {img["license_version"]}' if img["license"] in ("by", "by-sa") else "")
+    by = f' di {t(img["creator"])}' if img.get("creator") else ""
+    return (
+        f'<a href="{img["source_url"]}">{t(img["title"])}</a>{by}, '
+        f'<a href="{img["license_url"]}">{lic}</a>'
+    )
+
+
+def footer(entry, related, img):
     slug, struttura, demo, citta = entry[:4]
     s = html.escape(struttura, quote=False)
     c = html.escape(citta, quote=False)
     lines = ["<!-- destinazioni:footer -->"]
+    if img:
+        lines.append(f'  <p class="photo-credit"><small>Foto in evidenza: {credit_html(img)}.</small></p>')
+        lines.append("")
     if related:
         lines.append('  <h2>Leggi anche</h2>')
         lines.append("  <ul>")
@@ -337,16 +363,26 @@ def footer(entry, related):
     return "\n".join(lines)
 
 
-def seo(i, entry, words):
+def seo_title(title):
+    t = title.split(":")[0].strip()
+    return t if len(t) <= 60 else t[:57].rstrip() + "…"
+
+
+def seo(i, entry, words, img):
     slug, struttura, demo, citta, area, title, kw, desc, tags = entry
-    seo_title = title.split(":")[0].strip()
-    if len(seo_title) > 60:
-        seo_title = seo_title[:57].rstrip() + "…"
     image = f"{SITE}/wp-content/uploads/blog/{slug}.jpg"
+    featured = None
+    if img:
+        featured = {
+            "file": "featured.jpg",
+            "alt": img["alt"],
+            "credit": re.sub(r"<[^>]+>", "", credit_html(img)),
+            "source_url": img["source_url"],
+        }
     return {
         "slug": slug,
         "post_title": title,
-        "seo_title": seo_title,
+        "seo_title": seo_title(title),
         "meta_description": desc,
         "focus_keyword": kw,
         "secondary_keywords": [t for t in tags if t != kw][:6],
@@ -357,6 +393,7 @@ def seo(i, entry, words):
         "struttura": struttura,
         "citta": citta,
         "demo_url": f"{DEMO_BASE}/{demo}/",
+        "featured_image": featured,
         "word_count": words,
         "estimated_reading_time": max(3, round(words / 200)),
         "schema_article": {
@@ -364,7 +401,7 @@ def seo(i, entry, words):
             "@type": "Article",
             "headline": title,
             "description": desc,
-            "image": image,
+            "image": f"{PAGES_BASE}/{dir_name(i, slug)}/featured.jpg" if img else image,
             "about": {"@type": "Place", "name": citta},
             "author": {"@type": "Organization", "name": "Experiences Srl", "url": SITE},
             "publisher": {"@type": "Organization", "name": "Experiences Srl", "url": SITE},
@@ -374,7 +411,106 @@ def seo(i, entry, words):
     }
 
 
+def cdata(text):
+    return "<![CDATA[" + text.replace("]]>", "]]]]><![CDATA[>") + "]]>"
+
+
+def wxr(posts):
+    now = datetime.now(timezone.utc)
+    stamp = now.strftime("%Y-%m-%d %H:%M:%S")
+    rfc = now.strftime("%a, %d %b %Y %H:%M:%S +0000")
+    tags = sorted({t for e, *_ in posts for t in e[8]})
+    out = [
+        '<?xml version="1.0" encoding="UTF-8" ?>',
+        '<rss version="2.0"',
+        '    xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"',
+        '    xmlns:content="http://purl.org/rss/1.0/modules/content/"',
+        '    xmlns:wfw="http://wellformedweb.org/CommentAPI/"',
+        '    xmlns:dc="http://purl.org/dc/elements/1.1/"',
+        '    xmlns:wp="http://wordpress.org/export/1.2/"',
+        ">",
+        "<channel>",
+        "    <title>Experiences Srl — Destinazioni</title>",
+        f"    <link>{SITE}</link>",
+        "    <description>Articoli destinazioni, uno per struttura</description>",
+        f"    <pubDate>{rfc}</pubDate>",
+        "    <language>it-IT</language>",
+        "    <wp:wxr_version>1.2</wp:wxr_version>",
+        f"    <wp:base_site_url>{SITE}</wp:base_site_url>",
+        f"    <wp:base_blog_url>{SITE}</wp:base_blog_url>",
+        "    <wp:author><wp:author_id>1</wp:author_id><wp:author_login><![CDATA[admin]]></wp:author_login>"
+        "<wp:author_display_name><![CDATA[Experiences Srl]]></wp:author_display_name></wp:author>",
+        "    <wp:category><wp:term_id>900</wp:term_id><wp:category_nicename>destinazioni</wp:category_nicename>"
+        "<wp:category_parent></wp:category_parent><wp:cat_name><![CDATA[Destinazioni]]></wp:cat_name></wp:category>",
+    ]
+    for n, t in enumerate(tags, 901):
+        out.append(f"    <wp:tag><wp:term_id>{n}</wp:term_id><wp:tag_slug>{slugify(t)}</wp:tag_slug><wp:tag_name>{cdata(t)}</wp:tag_name></wp:tag>")
+
+    def item(post_id, title, slug, ptype, content="", excerpt="", parent=0, extra=(), meta=()):
+        lines = [
+            "    <item>",
+            f"        <title>{xml_escape(title)}</title>",
+            f"        <link>{SITE}/blog/{slug}/</link>",
+            f"        <pubDate>{rfc}</pubDate>",
+            "        <dc:creator><![CDATA[admin]]></dc:creator>",
+            f"        <content:encoded>{cdata(content)}</content:encoded>",
+            f"        <excerpt:encoded>{cdata(excerpt)}</excerpt:encoded>",
+            f"        <wp:post_id>{post_id}</wp:post_id>",
+            f"        <wp:post_date>{stamp}</wp:post_date>",
+            f"        <wp:post_date_gmt>{stamp}</wp:post_date_gmt>",
+            "        <wp:comment_status>closed</wp:comment_status>",
+            "        <wp:ping_status>closed</wp:ping_status>",
+            f"        <wp:post_name>{slug}</wp:post_name>",
+            f"        <wp:status>{'inherit' if ptype == 'attachment' else 'draft'}</wp:status>",
+            f"        <wp:post_parent>{parent}</wp:post_parent>",
+            "        <wp:menu_order>0</wp:menu_order>",
+            f"        <wp:post_type>{ptype}</wp:post_type>",
+            "        <wp:post_password></wp:post_password>",
+            "        <wp:is_sticky>0</wp:is_sticky>",
+            *extra,
+        ]
+        for k, v in meta:
+            lines.append(f"        <wp:postmeta><wp:meta_key>{k}</wp:meta_key><wp:meta_value>{cdata(str(v))}</wp:meta_value></wp:postmeta>")
+        lines.append("    </item>")
+        return lines
+
+    for entry, i, body, img in posts:
+        slug, struttura, demo, citta, area, title, kw, desc, tags_ = entry
+        post_id, att_id = 2000 + i, 3000 + i
+        if img:
+            url = f"{PAGES_BASE}/{dir_name(i, slug)}/featured.jpg"
+            out += item(
+                att_id, img["alt"], f"{slug}-foto", "attachment",
+                excerpt=re.sub(r"<[^>]+>", "", credit_html(img)), parent=post_id,
+                extra=[f"        <wp:attachment_url>{url}</wp:attachment_url>"],
+                meta=[("_wp_attachment_image_alt", img["alt"])],
+            )
+        terms = ['        <category domain="category" nicename="destinazioni"><![CDATA[Destinazioni]]></category>']
+        terms += [f'        <category domain="post_tag" nicename="{slugify(t)}">{cdata(t)}</category>' for t in tags_]
+        meta = [
+            ("_yoast_wpseo_title", seo_title(title)),
+            ("_yoast_wpseo_metadesc", desc),
+            ("_yoast_wpseo_focuskw", kw),
+            ("rank_math_title", seo_title(title)),
+            ("rank_math_description", desc),
+            ("rank_math_focus_keyword", kw),
+        ]
+        if img:
+            meta.append(("_thumbnail_id", att_id))
+        out += item(post_id, title, slug, "post", content=body, excerpt=desc, extra=terms, meta=meta)
+    out += ["</channel>", "</rss>", ""]
+    return "\n".join(out)
+
+
+def slugify(text):
+    import unicodedata
+    t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
+
+
 def main():
+    images = json.loads(IMAGES.read_text(encoding="utf-8")) if IMAGES.exists() else {}
+    posts = []
     missing = []
     for i, entry in enumerate(ARTICLES, 1):
         d = OUT / dir_name(i, entry[0])
@@ -383,17 +519,22 @@ def main():
             missing.append(art.relative_to(ROOT))
             continue
         related = [e for e in ARTICLES if e[4] == entry[4] and e is not entry]
+        img = images.get(dir_name(i, entry[0]))
+        if img and not (d / "featured.jpg").exists():
+            sys.exit(f"{d}: featured.jpg mancante")
         text = art.read_text(encoding="utf-8")
         if not FOOTER_RE.search(text):
             sys.exit(f"{art}: marcatori destinazioni:footer mancanti")
-        text = FOOTER_RE.sub(lambda _: footer(entry, related), text)
+        text = FOOTER_RE.sub(lambda _: footer(entry, related, img), text)
         art.write_text(text, encoding="utf-8")
         body = FOOTER_RE.sub("", text)
         words = len(re.sub(r"<[^>]+>", " ", body).split())
         (d / "seo.json").write_text(
-            json.dumps(seo(i, entry, words), ensure_ascii=False, indent=2) + "\n",
+            json.dumps(seo(i, entry, words, img), ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
+        posts.append((entry, i, text, img))
+    (OUT / "destinazioni-import.xml").write_text(wxr(posts), encoding="utf-8")
     if missing:
         print("article.html mancanti:", *missing, sep="\n  ")
     print(f"{len(ARTICLES) - len(missing)}/{len(ARTICLES)} articoli aggiornati")
