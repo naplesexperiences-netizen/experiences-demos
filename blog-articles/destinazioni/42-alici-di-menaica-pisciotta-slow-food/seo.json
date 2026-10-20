@@ -23,7 +23,12 @@
   "struttura": "Hotel Riviera",
   "citta": "Pisciotta",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-riviera-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Spaghetti conditi con la colatura di alici",
+    "credit": "Spaghetti di Gragnano e colatura di alici di Elga Cappellari, CC BY-SA 2.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=17062513"
+  },
   "word_count": 586,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -31,7 +36,7 @@
     "@type": "Article",
     "headline": "Le alici di menaica di Pisciotta: la pesca antica che è diventata Presidio Slow Food",
     "description": "Le alici di menaica di Pisciotta: come si pescano, perché sono Presidio Slow Food, dove assaggiarle e cosa vedere nei dintorni.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/alici-di-menaica-pisciotta-slow-food.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/42-alici-di-menaica-pisciotta-slow-food/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Pisciotta"

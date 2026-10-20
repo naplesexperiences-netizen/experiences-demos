@@ -24,7 +24,12 @@
   "struttura": "Hotel Rufolo",
   "citta": "Ravello",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-rufolo-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "I giardini di Villa Rufolo a Ravello affacciati sulla Costiera",
+    "credit": "Villa Rufolo Ravello 20 di Mentnafunangann, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=19453819"
+  },
   "word_count": 594,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Ravello e Villa Rufolo: la città della musica sopra la Costiera",
     "description": "Perché visitare Ravello: Villa Rufolo e il giardino di Wagner, il Ravello Festival, il Duomo e i borghi vicini di Scala e Atrani.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/ravello-villa-rufolo-festival.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/14-ravello-villa-rufolo-festival/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Ravello"
