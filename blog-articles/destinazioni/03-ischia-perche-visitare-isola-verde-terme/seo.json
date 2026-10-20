@@ -1,0 +1,53 @@
+{
+  "slug": "ischia-perche-visitare-isola-verde-terme",
+  "post_title": "Ischia, l'isola verde: terme, Sant'Angelo e giardini — perché visitarla",
+  "seo_title": "Ischia, l'isola verde",
+  "meta_description": "Perché visitare Ischia: sorgenti termali, Castello Aragonese, il borgo di Sant'Angelo, i giardini La Mortella e la vicina Procida.",
+  "focus_keyword": "cosa vedere a ischia",
+  "secondary_keywords": [
+    "ischia",
+    "terme",
+    "sant'angelo",
+    "castello aragonese",
+    "procida"
+  ],
+  "og_title": "Ischia, l'isola verde: terme, Sant'Angelo e giardini — perché visitarla",
+  "og_description": "Perché visitare Ischia: sorgenti termali, Castello Aragonese, il borgo di Sant'Angelo, i giardini La Mortella e la vicina Procida.",
+  "category": "Destinazioni",
+  "tags": [
+    "ischia",
+    "terme",
+    "sant'angelo",
+    "castello aragonese",
+    "procida"
+  ],
+  "struttura": "Terme di Vivara",
+  "citta": "Ischia",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/terme-di-vivara-ischia-demo-experiences/",
+  "featured_image": null,
+  "word_count": 587,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ischia, l'isola verde: terme, Sant'Angelo e giardini — perché visitarla",
+    "description": "Perché visitare Ischia: sorgenti termali, Castello Aragonese, il borgo di Sant'Angelo, i giardini La Mortella e la vicina Procida.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/ischia-perche-visitare-isola-verde-terme.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Ischia"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/ischia-perche-visitare-isola-verde-terme/"
+  }
+}

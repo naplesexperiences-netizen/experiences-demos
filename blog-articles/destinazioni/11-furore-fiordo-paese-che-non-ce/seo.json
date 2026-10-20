@@ -1,0 +1,52 @@
+{
+  "slug": "furore-fiordo-paese-che-non-ce",
+  "post_title": "Furore, il paese che non c'è: il Fiordo, i muri dipinti e le vigne sospese",
+  "seo_title": "Furore, il paese che non c'è",
+  "meta_description": "Perché visitare Furore: il Fiordo, i muri dipinti, le vigne a picco sul mare e i sentieri verso Agerola e il Sentiero degli Dei.",
+  "focus_keyword": "fiordo di furore",
+  "secondary_keywords": [
+    "furore",
+    "costiera amalfitana",
+    "vino",
+    "sentieri"
+  ],
+  "og_title": "Furore, il paese che non c'è: il Fiordo, i muri dipinti e le vigne sospese",
+  "og_description": "Perché visitare Furore: il Fiordo, i muri dipinti, le vigne a picco sul mare e i sentieri verso Agerola e il Sentiero degli Dei.",
+  "category": "Destinazioni",
+  "tags": [
+    "furore",
+    "fiordo di furore",
+    "costiera amalfitana",
+    "vino",
+    "sentieri"
+  ],
+  "struttura": "Furore Grand Hotel",
+  "citta": "Furore",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/furore-grand-hotel-experiences-standard/",
+  "featured_image": null,
+  "word_count": 605,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Furore, il paese che non c'è: il Fiordo, i muri dipinti e le vigne sospese",
+    "description": "Perché visitare Furore: il Fiordo, i muri dipinti, le vigne a picco sul mare e i sentieri verso Agerola e il Sentiero degli Dei.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/furore-fiordo-paese-che-non-ce.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Furore"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/furore-fiordo-paese-che-non-ce/"
+  }
+}

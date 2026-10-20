@@ -1,0 +1,51 @@
+{
+  "slug": "positano-cosa-vedere-borgo-verticale",
+  "post_title": "Positano, il borgo verticale: perché visitarlo e cosa vedere fra scalinate e cupole",
+  "seo_title": "Positano, il borgo verticale",
+  "meta_description": "Cosa vedere a Positano: Santa Maria Assunta, la villa romana, la Spiaggia Grande e i dintorni della Costiera Amalfitana da non perdere.",
+  "focus_keyword": "cosa vedere a positano",
+  "secondary_keywords": [
+    "positano",
+    "costiera amalfitana",
+    "santa maria assunta",
+    "spiaggia grande"
+  ],
+  "og_title": "Positano, il borgo verticale: perché visitarlo e cosa vedere fra scalinate e cupole",
+  "og_description": "Cosa vedere a Positano: Santa Maria Assunta, la villa romana, la Spiaggia Grande e i dintorni della Costiera Amalfitana da non perdere.",
+  "category": "Destinazioni",
+  "tags": [
+    "positano",
+    "costiera amalfitana",
+    "santa maria assunta",
+    "spiaggia grande"
+  ],
+  "struttura": "Le Sirenuse",
+  "citta": "Positano",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/le-sirenuse-experiences-standard/",
+  "featured_image": null,
+  "word_count": 625,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Positano, il borgo verticale: perché visitarlo e cosa vedere fra scalinate e cupole",
+    "description": "Cosa vedere a Positano: Santa Maria Assunta, la villa romana, la Spiaggia Grande e i dintorni della Costiera Amalfitana da non perdere.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/positano-cosa-vedere-borgo-verticale.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Positano"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/positano-cosa-vedere-borgo-verticale/"
+  }
+}
