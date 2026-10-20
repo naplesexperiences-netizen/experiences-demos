@@ -1,0 +1,52 @@
+{
+  "slug": "praiano-mare-marina-di-praia-fiordo-furore",
+  "post_title": "Praiano e il mare: Marina di Praia, la Gavitella e il Fiordo di Furore",
+  "seo_title": "Praiano e il mare",
+  "meta_description": "Il mare di Praiano: Marina di Praia, la spiaggia della Gavitella, il Fiordo di Furore e la Grotta dello Smeraldo a pochi minuti.",
+  "focus_keyword": "praiano spiagge",
+  "secondary_keywords": [
+    "praiano",
+    "marina di praia",
+    "gavitella",
+    "fiordo di furore",
+    "spiagge"
+  ],
+  "og_title": "Praiano e il mare: Marina di Praia, la Gavitella e il Fiordo di Furore",
+  "og_description": "Il mare di Praiano: Marina di Praia, la spiaggia della Gavitella, il Fiordo di Furore e la Grotta dello Smeraldo a pochi minuti.",
+  "category": "Destinazioni",
+  "tags": [
+    "praiano",
+    "marina di praia",
+    "gavitella",
+    "fiordo di furore",
+    "spiagge"
+  ],
+  "struttura": "Hotel Onda Verde",
+  "citta": "Praiano",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-onda-verde-experiences-standard/",
+  "word_count": 668,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Praiano e il mare: Marina di Praia, la Gavitella e il Fiordo di Furore",
+    "description": "Il mare di Praiano: Marina di Praia, la spiaggia della Gavitella, il Fiordo di Furore e la Grotta dello Smeraldo a pochi minuti.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/praiano-mare-marina-di-praia-fiordo-furore.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Praiano"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/praiano-mare-marina-di-praia-fiordo-furore/"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "santa-maria-di-castellabate-mare-pozzillo-licosa",
+  "post_title": "Il mare di Santa Maria di Castellabate: Pozzillo, l'Area Marina Protetta e Punta Licosa",
+  "seo_title": "Il mare di Santa Maria di Castellabate",
+  "meta_description": "Il mare di Santa Maria di Castellabate: spiaggia del Pozzillo, Area Marina Protetta, Punta Licosa e il borgo di Castellabate.",
+  "focus_keyword": "santa maria di castellabate mare",
+  "secondary_keywords": [
+    "castellabate",
+    "santa maria di castellabate",
+    "pozzillo",
+    "punta licosa",
+    "area marina protetta"
+  ],
+  "og_title": "Il mare di Santa Maria di Castellabate: Pozzillo, l'Area Marina Protetta e Punta Licosa",
+  "og_description": "Il mare di Santa Maria di Castellabate: spiaggia del Pozzillo, Area Marina Protetta, Punta Licosa e il borgo di Castellabate.",
+  "category": "Destinazioni",
+  "tags": [
+    "castellabate",
+    "santa maria di castellabate",
+    "pozzillo",
+    "punta licosa",
+    "area marina protetta"
+  ],
+  "struttura": "Grand Hotel Santa Maria",
+  "citta": "Santa Maria di Castellabate",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-santa-maria-experiences-standard/",
+  "word_count": 567,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Il mare di Santa Maria di Castellabate: Pozzillo, l'Area Marina Protetta e Punta Licosa",
+    "description": "Il mare di Santa Maria di Castellabate: spiaggia del Pozzillo, Area Marina Protetta, Punta Licosa e il borgo di Castellabate.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/santa-maria-di-castellabate-mare-pozzillo-licosa.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Santa Maria di Castellabate"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/santa-maria-di-castellabate-mare-pozzillo-licosa/"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "paestum-templi-e-mare-cosa-vedere",
+  "post_title": "Paestum, templi e mare: perché visitare l'unica città greca con la spiaggia a un chilometro",
+  "seo_title": "Paestum, templi e mare",
+  "meta_description": "Cosa vedere a Paestum: i tre templi dorici, le mura, il museo e le spiagge a pochi passi dall'area archeologica UNESCO.",
+  "focus_keyword": "cosa vedere a paestum",
+  "secondary_keywords": [
+    "paestum",
+    "templi",
+    "unesco",
+    "spiaggia",
+    "magna grecia"
+  ],
+  "og_title": "Paestum, templi e mare: perché visitare l'unica città greca con la spiaggia a un chilometro",
+  "og_description": "Cosa vedere a Paestum: i tre templi dorici, le mura, il museo e le spiagge a pochi passi dall'area archeologica UNESCO.",
+  "category": "Destinazioni",
+  "tags": [
+    "paestum",
+    "templi",
+    "unesco",
+    "spiaggia",
+    "magna grecia"
+  ],
+  "struttura": "Hotel Schuhmann",
+  "citta": "Paestum",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-schuhmann-experiences-standard/",
+  "word_count": 585,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Paestum, templi e mare: perché visitare l'unica città greca con la spiaggia a un chilometro",
+    "description": "Cosa vedere a Paestum: i tre templi dorici, le mura, il museo e le spiagge a pochi passi dall'area archeologica UNESCO.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/paestum-templi-e-mare-cosa-vedere.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Paestum"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/paestum-templi-e-mare-cosa-vedere/"
+  }
+}
