@@ -24,7 +24,12 @@
   "struttura": "Grand Hotel Santa Maria",
   "citta": "Santa Maria di Castellabate",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/grand-hotel-santa-maria-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Santa Maria di Castellabate e il suo mare visti dall'alto",
+    "credit": "Santa Maria di Castellabate in May 2024 di Ihateeverythingaboutphysics, CC0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=148687254"
+  },
   "word_count": 567,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Il mare di Santa Maria di Castellabate: Pozzillo, l'Area Marina Protetta e Punta Licosa",
     "description": "Il mare di Santa Maria di Castellabate: spiaggia del Pozzillo, Area Marina Protetta, Punta Licosa e il borgo di Castellabate.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/santa-maria-di-castellabate-mare-pozzillo-licosa.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/30-santa-maria-di-castellabate-mare-pozzillo-licosa/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Santa Maria di Castellabate"

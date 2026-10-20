@@ -22,7 +22,12 @@
   "struttura": "Hotel Villa Sirio",
   "citta": "Santa Maria di Castellabate",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-villa-sirio-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Uno scorcio del borgo medievale di Castellabate",
+    "credit": "Castellabate porta la chiazza - panoramio di templare3000, CC BY 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=54259004"
+  },
   "word_count": 610,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -30,7 +35,7 @@
     "@type": "Article",
     "headline": "Castellabate, il borgo di Benvenuti al Sud: castello, belvedere e vicoli",
     "description": "Castellabate fra Borghi più belli d'Italia e Benvenuti al Sud: il Castello dell'Abate, il belvedere, Santa Maria e i dintorni.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/castellabate-borgo-castello-benvenuti-al-sud.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/31-castellabate-borgo-castello-benvenuti-al-sud/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Santa Maria di Castellabate"

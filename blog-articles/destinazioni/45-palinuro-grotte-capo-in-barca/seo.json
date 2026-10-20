@@ -24,7 +24,12 @@
   "struttura": "Albergo Santa Caterina",
   "citta": "Palinuro",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/albergo-santa-caterina-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "L'acqua azzurra illuminata all'interno della Grotta Azzurra di Palinuro",
+    "credit": "Palinuro-grotta-azzurra-03-inside di Mboesch, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=31326378"
+  },
   "word_count": 636,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Le grotte di Capo Palinuro: il giro in barca che vale da solo il viaggio",
     "description": "Il giro in barca di Capo Palinuro: Grotta Azzurra, Grotta d'Argento, Arco Naturale e la spiaggia del Buon Dormire. Consigli pratici.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/palinuro-grotte-capo-in-barca.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/45-palinuro-grotte-capo-in-barca/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Palinuro"
