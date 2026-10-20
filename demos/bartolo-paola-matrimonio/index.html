@@ -6,16 +6,31 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Bartolo e Paola, 19 giugno 2027</title>
 <meta name="description" content="Invito al matrimonio di Bartolo e Paola, sabato 19 giugno 2027 a Paestum.">
+<!-- link preview (WhatsApp, Telegram, iMessage): image and absolute URLs -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Bartolo e Paola si sposano">
+<meta property="og:description" content="Sabato 19 giugno 2027, Paestum. Apri l'invito e conferma la tua presenza.">
+<meta property="og:url" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/bartolo-paola-matrimonio/">
+<meta property="og:image" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/bartolo-paola-matrimonio/img/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Busta avorio con sigillo di ceralacca e i nomi Bartolo e Paola">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/sigillo.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F6F0E6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#241710" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Figtree:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* --sea is the primary (antique rose), --rose the accent (gold), --sea-deep the dark bands */
-  --bg:#FBF7F5; --surface:#FFFFFF; --surface-2:#F5ECEB; --sea:#A3294F; --sea-deep:#3A1426; --rose:#7E5309; --stone:#C8A464; --stone-dark:#9C7C3E;
-  --olive:#5E6B2F; --ink:#2B1B23; --muted:#5E4B55; --line:#EADCDD; --field:#8C7680; --on-sea:#FFFFFF; --error:#B42318;
-  --primary:var(--sea); --primary-soft:#F7E3E9; --error-soft:#FDECEA; --success:#2F6B3A;
-  --sky-top:#F7E3E9; --sky-bottom:#FBF7F5; --r-ctl:12px;
+  /* one palette with the envelope: ivory paper, warm brown (--sea, the primary), gold (--rose text accent, --stone ornaments) */
+  --bg:#FBF7F0; --surface:#FFFDF8; --surface-2:#F3EBDD; --sea:#6B4A2E; --sea-deep:#2A1A12; --rose:#7E5309; --stone:#C8A464; --stone-dark:#9C7C3E;
+  --title:#8A6A3E; --panel:#FBF6EC;
+  --olive:#5E6B2F; --ink:#2B1F18; --muted:#62533F; --line:#E6DBCB; --field:#8C7A68; --on-sea:#FBF6EC; --error:#B42318;
+  --primary:var(--sea); --primary-soft:#F1E6D3; --error-soft:#FDECEA; --success:#2F6B3A;
+  --sky-top:#F6F0E6; --sky-bottom:#FBF7F0; --r-ctl:12px;
   --ui:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --script:"Great Vibes","Brush Script MT","Segoe Script",cursive;
   --serif:"Cormorant Infant","Cormorant Garamond",Garamond,"Times New Roman",serif;
@@ -23,10 +38,12 @@
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590; --sea:#F08FB0; --sea-deep:#0E080B; --rose:#E2B75A;
-  --on-sea:#2B0F1A; --on-rose:#2B0F1A; --error:#FF8A80; --primary-soft:#3A1D29; --error-soft:#3B1E1C; --success:#8FD19E; --sky-top:#2A1820; --sky-bottom:#161013; color-scheme:dark;}}
-:root[data-theme="dark"]{--bg:#161013; --surface:#211A1E; --surface-2:#2B2227; --ink:#F5ECEF; --muted:#C9B7BF; --line:#3A2E34; --field:#9A8590; --sea:#F08FB0; --sea-deep:#0E080B; --rose:#E2B75A;
-  --on-sea:#2B0F1A; --on-rose:#2B0F1A; --error:#FF8A80; --primary-soft:#3A1D29; --error-soft:#3B1E1C; --success:#8FD19E; --sky-top:#2A1820; --sky-bottom:#161013; color-scheme:dark;}
+  --bg:#17110D; --surface:#221912; --surface-2:#2C2118; --ink:#F4EBDD; --muted:#CDBDA8; --line:#3A2D22; --field:#9A8774; --sea:#E3C98F; --sea-deep:#120B07; --rose:#E3C98F;
+  --title:#E3C98F; --panel:#221912;
+  --on-sea:#2A1A12; --on-rose:#2A1A12; --error:#FF8A80; --primary-soft:#3A2A1C; --error-soft:#3B1E1C; --success:#8FD19E; --sky-top:#241710; --sky-bottom:#17110D; color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#17110D; --surface:#221912; --surface-2:#2C2118; --ink:#F4EBDD; --muted:#CDBDA8; --line:#3A2D22; --field:#9A8774; --sea:#E3C98F; --sea-deep:#120B07; --rose:#E3C98F;
+  --title:#E3C98F; --panel:#221912;
+  --on-sea:#2A1A12; --on-rose:#2A1A12; --error:#FF8A80; --primary-soft:#3A2A1C; --error-soft:#3B1E1C; --success:#8FD19E; --sky-top:#241710; --sky-bottom:#17110D; color-scheme:dark;}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.1875rem;line-height:1.65;-webkit-font-smoothing:antialiased}
@@ -39,7 +56,7 @@ html{accent-color:var(--sea);caret-color:var(--rose);scrollbar-color:color-mix(i
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .wrap{width:min(100% - 2.5rem, 68rem);margin-inline:auto}
 section{padding:clamp(4rem,10vw,7rem) 0}
-h2{font-family:var(--script);font-weight:400;color:var(--sea);font-size:clamp(2.6rem,8vw,3.6rem);line-height:1.1;margin:0 0 .5rem}
+h2{font-family:var(--script);font-weight:400;color:var(--title);font-size:clamp(2.6rem,8vw,3.6rem);line-height:1.1;margin:0 0 .5rem}
 .lead{margin:0 0 2.5rem;color:var(--muted);max-width:38rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.65rem 1.4rem;border-radius:999px;font:600 1rem/1 var(--ui);text-decoration:none;cursor:pointer;border:2px solid var(--sea);transition:background-color .2s,color .2s,transform .15s}
 .btn:active{transform:scale(.97)}
@@ -132,7 +149,7 @@ h2{font-family:var(--script);font-weight:400;color:var(--sea);font-size:clamp(2.
 .timeline{list-style:none;margin:0;padding:0;position:relative;max-width:44rem}
 .timeline::before{content:"";position:absolute;left:5.6rem;top:.6rem;bottom:.6rem;width:2px;background:var(--line)}
 .timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1.6rem;padding:0 0 2.2rem;position:relative}
-.timeline li::after{content:"";position:absolute;left:calc(5.6rem - 7px);top:.55rem;width:16px;height:16px;border-radius:50%;background:var(--stone);border:3px solid var(--sea)}
+.timeline li::after{content:"";position:absolute;left:calc(5.6rem - 6px);top:.55rem;width:14px;height:14px;border-radius:50%;background:var(--stone);border:3px solid var(--panel)}
 .timeline time{font-family:var(--figures);font-size:1.35rem;font-weight:600;color:var(--sea);line-height:1.2;font-variant-numeric:lining-nums}
 .timeline h3{margin:0;font-size:1.45rem;font-weight:600;line-height:1.3}
 .timeline p{margin:.2rem 0 0;color:var(--muted)}
@@ -273,7 +290,7 @@ footer p{margin:.25rem 0 0;opacity:.85}
   .card{padding:2.9rem 1rem 1.75rem}
   .timeline::before{left:4.4rem}
   .timeline li{grid-template-columns:3.8rem 1fr;gap:1.4rem}
-  .timeline li::after{left:calc(4.4rem - 7px)}
+  .timeline li::after{left:calc(4.4rem - 6px)}
   .timeline time{font-size:1.35rem}
   .choice{grid-template-columns:1fr}
   .ig-tag{text-align:left}
@@ -377,16 +394,16 @@ html.env-wait .hero,html.env-wait .hero *{animation-play-state:paused!important}
 html{scroll-snap-type:y mandatory}
 #rsvp{scroll-snap-align:start}
 footer{scroll-snap-align:end}
-.chapter + .chapter{box-shadow:0 -28px 50px -28px rgb(20 6 12 / .5)}
-.chapter .dim{position:absolute;inset:0;z-index:20;background:#120609;opacity:0;pointer-events:none}
+.chapter + .chapter{box-shadow:0 -28px 50px -28px rgb(20 12 6 / .5)}
+.chapter .dim{position:absolute;inset:0;z-index:20;background:#120B07;opacity:0;pointer-events:none}
 .chapter.photo{background:var(--sea-deep)}
 .media{position:absolute;inset:0;z-index:-1;overflow:hidden;background:var(--sea-deep)}
 .media img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
-.media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(26 9 17 / .3),rgb(26 9 17 / .5))}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(30 18 10 / .3),rgb(30 18 10 / .5))}
 .need{position:absolute;top:calc(.75rem + env(safe-area-inset-top,0px));left:.75rem;z-index:2;padding:.3rem .65rem;border-radius:999px;background:rgb(0 0 0 / .4);color:rgb(255 255 255 / .88);font:500 .75rem/1.2 var(--ui)}
 /* the content sits on an invitation card, like the one in the temple */
-.panel{background:color-mix(in srgb,var(--surface) 74%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border-radius:2px;
-  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--surface) 74%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
+.panel{background:color-mix(in srgb,var(--panel) 88%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:2px;
+  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--panel) 88%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
 .panel .lead{color:var(--muted)}
 #foto .wall-bar,#foto .steps{position:relative}
 .gb{display:grid;gap:.9rem}
@@ -418,9 +435,9 @@ footer{scroll-snap-align:end}
   .panel{padding:1.25rem 1.1rem}
   .chapter h2{font-size:2.3rem}
   .chapter .lead{font-size:1.05rem;line-height:1.45;margin-bottom:1rem}
-  .chapter .timeline::before{left:4.1rem}
-  .chapter .timeline li{grid-template-columns:3.4rem 1fr;gap:1.2rem;padding-bottom:.8rem}
-  .chapter .timeline li::after{left:calc(4.1rem - 7px)}
+  .chapter .timeline::before{left:4.05rem}
+  .chapter .timeline li{grid-template-columns:3.2rem 1fr;gap:1.75rem;padding-bottom:.8rem}
+  .chapter .timeline li::after{left:calc(4.05rem - 6px)}
   .chapter .timeline time{font-size:1.1rem}
   .chapter .timeline h3{font-size:1.15rem}
   .chapter .timeline p{font-size:1rem;line-height:1.35}
@@ -468,7 +485,7 @@ footer{scroll-snap-align:end}
 /* section index */
 .dots{position:fixed;right:max(.5rem,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:60;display:grid;gap:.2rem;margin:0;padding:0;list-style:none;transition:opacity .3s}
 .dots a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;text-decoration:none}
-.dots a::before{content:"";width:9px;height:9px;border-radius:50%;background:rgb(255 255 255 / .55);box-shadow:0 0 0 1.5px rgb(43 27 35 / .45);transition:transform .25s,background-color .25s}
+.dots a::before{content:"";width:9px;height:9px;border-radius:50%;background:rgb(255 255 255 / .55);box-shadow:0 0 0 1.5px rgb(42 26 18 / .45);transition:transform .25s,background-color .25s}
 .dots a[aria-current="true"]::before{background:var(--stone);transform:scale(1.45)}
 .dots a:hover::before{background:#fff}
 .dots.off{opacity:0;pointer-events:none}
@@ -739,7 +756,7 @@ html.env-wait .dots{opacity:0}
   </section>
 
   <section class="chapter photo" id="foto" aria-labelledby="foto-title">
-    <div class="media" aria-hidden="true" style="background:linear-gradient(180deg,#4C2A3E,#160A11)"></div><span class="need">Foto o video degli sposi: in arrivo</span><div class="dim"></div>
+    <div class="media" aria-hidden="true" style="background:radial-gradient(120% 90% at 50% 0%,#5A3F2C,#241710 70%)"></div><span class="need">Foto o video degli sposi: in arrivo</span><div class="dim"></div>
     <div class="wrap panel">
       <div class="ig-head">
         <div>
@@ -770,7 +787,7 @@ html.env-wait .dots{opacity:0}
   </section>
 
   <section class="chapter photo" id="dediche" aria-labelledby="ded-title">
-    <div class="media" aria-hidden="true" style="background:radial-gradient(120% 90% at 50% 0%,#6B2843,#2A0F1C 70%)"></div><div class="dim"></div>
+    <div class="media" aria-hidden="true" style="background:radial-gradient(120% 90% at 50% 0%,#7A5638,#2A1A12 70%)"></div><div class="dim"></div>
     <div class="wrap panel narrow">
       <h2 id="ded-title">Dediche e canzoni</h2>
       <p class="lead">Lasciate un pensiero per gli sposi o proponete la canzone che non può mancare alla festa.</p>
@@ -991,7 +1008,7 @@ html.env-wait .dots{opacity:0}
   /* Photo wall demo: illustrated placeholders arrive like new posts */
   var wall=document.getElementById('wall');
   var users=['@zia_carmela','@luca.dm','@sofiaesposito','@peppe_cs','@marty.travels','@anna.f','@gianni_cast','@chiaraaa','@il_testimone','@vale_ph'];
-  var palettes=[['#F7E3E9','#A3294F','#1F5E73'],['#E1EEF2','#1F5E73','#FBF7F5'],['#F3E6CC','#7E5309','#A3294F'],['#EAF0E1','#4F6B2F','#C8A464'],['#F5ECEB','#A3294F','#7E5309']];
+  var palettes=[['#F3EBDD','#6B4A2E','#C8A464'],['#EFE6D6','#8A6A3E','#FBF6EC'],['#F6EEDF','#7E5309','#6B4A2E'],['#ECE7DA','#5E6B2F','#C8A464'],['#F4ECE2','#9C7C3E','#6B4A2E']];
   var scenes=[
     function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><circle cx="72" cy="30" r="12" fill="'+p[1]+'" opacity=".6"/><path d="M15 60 50 42 85 60Z M20 60h60v4H20z" fill="'+p[1]+'"/><g fill="'+p[1]+'"><rect x="24" y="64" width="6" height="22"/><rect x="38" y="64" width="6" height="22"/><rect x="56" y="64" width="6" height="22"/><rect x="70" y="64" width="6" height="22"/></g><rect y="86" width="100" height="14" fill="'+p[2]+'" opacity=".5"/>'},
     function(p){return '<rect width="100" height="100" fill="'+p[0]+'"/><rect y="62" width="100" height="38" fill="'+p[1]+'" opacity=".55"/><path d="M0 64c10-3 20 3 30 0s20-3 30 0 20 3 40 0" stroke="'+p[2]+'" stroke-width="2" fill="none"/><circle cx="30" cy="30" r="10" fill="'+p[2]+'" opacity=".7"/>'},
