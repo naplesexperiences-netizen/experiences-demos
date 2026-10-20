@@ -1,0 +1,52 @@
+{
+  "slug": "pisciotta-borgo-medievale-cilento",
+  "post_title": "Pisciotta, il borgo medievale fra gli ulivi: perché fermarsi qui",
+  "seo_title": "Pisciotta, il borgo medievale fra gli ulivi",
+  "meta_description": "Perché visitare Pisciotta: il borgo medievale, gli ulivi secolari della pisciottana, Marina di Pisciotta e Palinuro a un passo.",
+  "focus_keyword": "pisciotta cosa vedere",
+  "secondary_keywords": [
+    "pisciotta",
+    "borgo medievale",
+    "cilento",
+    "ulivi",
+    "palinuro"
+  ],
+  "og_title": "Pisciotta, il borgo medievale fra gli ulivi: perché fermarsi qui",
+  "og_description": "Perché visitare Pisciotta: il borgo medievale, gli ulivi secolari della pisciottana, Marina di Pisciotta e Palinuro a un passo.",
+  "category": "Destinazioni",
+  "tags": [
+    "pisciotta",
+    "borgo medievale",
+    "cilento",
+    "ulivi",
+    "palinuro"
+  ],
+  "struttura": "Marulivo Hotel",
+  "citta": "Pisciotta",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/marulivo-hotel-experiences-standard/",
+  "word_count": 571,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pisciotta, il borgo medievale fra gli ulivi: perché fermarsi qui",
+    "description": "Perché visitare Pisciotta: il borgo medievale, gli ulivi secolari della pisciottana, Marina di Pisciotta e Palinuro a un passo.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/pisciotta-borgo-medievale-cilento.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Pisciotta"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/pisciotta-borgo-medievale-cilento/"
+  }
+}

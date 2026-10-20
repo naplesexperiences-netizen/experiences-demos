@@ -1,0 +1,51 @@
+{
+  "slug": "ravello-villa-cimbrone-terrazza-infinito",
+  "post_title": "Villa Cimbrone e la Terrazza dell'Infinito: perché Ravello vale il viaggio",
+  "seo_title": "Villa Cimbrone e la Terrazza dell'Infinito",
+  "meta_description": "Villa Cimbrone e la Terrazza dell'Infinito: storia, giardini e cosa vedere a Ravello e dintorni, dal Duomo all'Auditorium Niemeyer.",
+  "focus_keyword": "terrazza dell'infinito",
+  "secondary_keywords": [
+    "ravello",
+    "villa cimbrone",
+    "giardini",
+    "costiera amalfitana"
+  ],
+  "og_title": "Villa Cimbrone e la Terrazza dell'Infinito: perché Ravello vale il viaggio",
+  "og_description": "Villa Cimbrone e la Terrazza dell'Infinito: storia, giardini e cosa vedere a Ravello e dintorni, dal Duomo all'Auditorium Niemeyer.",
+  "category": "Destinazioni",
+  "tags": [
+    "ravello",
+    "villa cimbrone",
+    "terrazza dell'infinito",
+    "giardini",
+    "costiera amalfitana"
+  ],
+  "struttura": "Hotel Villa Cimbrone",
+  "citta": "Ravello",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-villa-cimbrone-experiences-standard/",
+  "word_count": 637,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Villa Cimbrone e la Terrazza dell'Infinito: perché Ravello vale il viaggio",
+    "description": "Villa Cimbrone e la Terrazza dell'Infinito: storia, giardini e cosa vedere a Ravello e dintorni, dal Duomo all'Auditorium Niemeyer.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/ravello-villa-cimbrone-terrazza-infinito.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Ravello"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/ravello-villa-cimbrone-terrazza-infinito/"
+  }
+}

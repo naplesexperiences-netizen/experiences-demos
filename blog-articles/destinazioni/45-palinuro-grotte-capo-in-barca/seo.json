@@ -1,0 +1,52 @@
+{
+  "slug": "palinuro-grotte-capo-in-barca",
+  "post_title": "Le grotte di Capo Palinuro: il giro in barca che vale da solo il viaggio",
+  "seo_title": "Le grotte di Capo Palinuro",
+  "meta_description": "Il giro in barca di Capo Palinuro: Grotta Azzurra, Grotta d'Argento, Arco Naturale e la spiaggia del Buon Dormire. Consigli pratici.",
+  "focus_keyword": "grotte di palinuro",
+  "secondary_keywords": [
+    "palinuro",
+    "grotta azzurra",
+    "gita in barca",
+    "buon dormire",
+    "cilento"
+  ],
+  "og_title": "Le grotte di Capo Palinuro: il giro in barca che vale da solo il viaggio",
+  "og_description": "Il giro in barca di Capo Palinuro: Grotta Azzurra, Grotta d'Argento, Arco Naturale e la spiaggia del Buon Dormire. Consigli pratici.",
+  "category": "Destinazioni",
+  "tags": [
+    "palinuro",
+    "grotta azzurra",
+    "gita in barca",
+    "buon dormire",
+    "cilento"
+  ],
+  "struttura": "Albergo Santa Caterina",
+  "citta": "Palinuro",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/albergo-santa-caterina-experiences-standard/",
+  "word_count": 636,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Le grotte di Capo Palinuro: il giro in barca che vale da solo il viaggio",
+    "description": "Il giro in barca di Capo Palinuro: Grotta Azzurra, Grotta d'Argento, Arco Naturale e la spiaggia del Buon Dormire. Consigli pratici.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/palinuro-grotte-capo-in-barca.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Palinuro"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/palinuro-grotte-capo-in-barca/"
+  }
+}
