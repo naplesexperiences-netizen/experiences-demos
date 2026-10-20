@@ -24,7 +24,12 @@
   "struttura": "Hotel Margherita",
   "citta": "Praiano",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-margherita-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Le case di Praiano sulla costa, con vista verso Positano",
+    "credit": "Praiano Above Town Looking West - panoramio di trukdotcom, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=53624279"
+  },
   "word_count": 641,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Praiano, il borgo dei tramonti: perché visitarlo e cosa vedere",
     "description": "Perché visitare Praiano: tramonti su Positano, la cupola di San Gennaro, il Convento di San Domenico e i dintorni della Costiera.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/praiano-cosa-vedere-borgo-dei-tramonti.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/09-praiano-cosa-vedere-borgo-dei-tramonti/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Praiano"
