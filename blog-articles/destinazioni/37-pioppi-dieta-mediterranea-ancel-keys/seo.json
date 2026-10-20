@@ -1,0 +1,53 @@
+{
+  "slug": "pioppi-dieta-mediterranea-ancel-keys",
+  "post_title": "Pioppi, la culla della dieta mediterranea: Ancel Keys, il museo vivente e il mare",
+  "seo_title": "Pioppi, la culla della dieta mediterranea",
+  "meta_description": "Pioppi e la dieta mediterranea: la storia di Ancel Keys, il Museo Vivente, il mare cristallino e i dintorni fra Acciaroli e Velia.",
+  "focus_keyword": "pioppi dieta mediterranea",
+  "secondary_keywords": [
+    "pioppi",
+    "dieta mediterranea",
+    "ancel keys",
+    "pollica",
+    "cilento"
+  ],
+  "og_title": "Pioppi, la culla della dieta mediterranea: Ancel Keys, il museo vivente e il mare",
+  "og_description": "Pioppi e la dieta mediterranea: la storia di Ancel Keys, il Museo Vivente, il mare cristallino e i dintorni fra Acciaroli e Velia.",
+  "category": "Destinazioni",
+  "tags": [
+    "pioppi",
+    "dieta mediterranea",
+    "ancel keys",
+    "pollica",
+    "cilento"
+  ],
+  "struttura": "Hotel La Vela",
+  "citta": "Pioppi",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-vela-experiences-standard/",
+  "featured_image": null,
+  "word_count": 607,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pioppi, la culla della dieta mediterranea: Ancel Keys, il museo vivente e il mare",
+    "description": "Pioppi e la dieta mediterranea: la storia di Ancel Keys, il Museo Vivente, il mare cristallino e i dintorni fra Acciaroli e Velia.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/pioppi-dieta-mediterranea-ancel-keys.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Pioppi"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/pioppi-dieta-mediterranea-ancel-keys/"
+  }
+}

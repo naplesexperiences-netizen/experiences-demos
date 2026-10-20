@@ -1,0 +1,53 @@
+{
+  "slug": "vietri-sul-mare-cosa-vedere-due-fratelli-cetara",
+  "post_title": "Vietri sul Mare: ceramiche, i Due Fratelli e Cetara a un passo",
+  "seo_title": "Vietri sul Mare",
+  "meta_description": "Cosa vedere a Vietri sul Mare: il Duomo maiolicato, le botteghe di ceramica, i faraglioni Due Fratelli e la vicina Cetara.",
+  "focus_keyword": "cosa vedere a vietri sul mare",
+  "secondary_keywords": [
+    "vietri sul mare",
+    "ceramica",
+    "due fratelli",
+    "cetara",
+    "colatura di alici"
+  ],
+  "og_title": "Vietri sul Mare: ceramiche, i Due Fratelli e Cetara a un passo",
+  "og_description": "Cosa vedere a Vietri sul Mare: il Duomo maiolicato, le botteghe di ceramica, i faraglioni Due Fratelli e la vicina Cetara.",
+  "category": "Destinazioni",
+  "tags": [
+    "vietri sul mare",
+    "ceramica",
+    "due fratelli",
+    "cetara",
+    "colatura di alici"
+  ],
+  "struttura": "Lloyd's Baia Hotel",
+  "citta": "Vietri sul Mare",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/lloyds-baia-hotel-experiences-standard/",
+  "featured_image": null,
+  "word_count": 650,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Vietri sul Mare: ceramiche, i Due Fratelli e Cetara a un passo",
+    "description": "Cosa vedere a Vietri sul Mare: il Duomo maiolicato, le botteghe di ceramica, i faraglioni Due Fratelli e la vicina Cetara.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/vietri-sul-mare-cosa-vedere-due-fratelli-cetara.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Vietri sul Mare"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/vietri-sul-mare-cosa-vedere-due-fratelli-cetara/"
+  }
+}

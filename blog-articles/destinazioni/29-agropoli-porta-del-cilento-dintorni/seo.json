@@ -1,0 +1,53 @@
+{
+  "slug": "agropoli-porta-del-cilento-dintorni",
+  "post_title": "Agropoli, porta del Cilento: perché sceglierla come base e cosa vedere nei dintorni",
+  "seo_title": "Agropoli, porta del Cilento",
+  "meta_description": "Agropoli come base per il Cilento: Paestum, Castellabate, Punta Tresino e i borghi dell'interno, tutti entro 40 minuti.",
+  "focus_keyword": "agropoli dintorni",
+  "secondary_keywords": [
+    "agropoli",
+    "cilento",
+    "paestum",
+    "castellabate",
+    "dintorni"
+  ],
+  "og_title": "Agropoli, porta del Cilento: perché sceglierla come base e cosa vedere nei dintorni",
+  "og_description": "Agropoli come base per il Cilento: Paestum, Castellabate, Punta Tresino e i borghi dell'interno, tutti entro 40 minuti.",
+  "category": "Destinazioni",
+  "tags": [
+    "agropoli",
+    "cilento",
+    "paestum",
+    "castellabate",
+    "dintorni"
+  ],
+  "struttura": "San Francesco Resort",
+  "citta": "Agropoli",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/san-francesco-resort-experiences-standard/",
+  "featured_image": null,
+  "word_count": 602,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Agropoli, porta del Cilento: perché sceglierla come base e cosa vedere nei dintorni",
+    "description": "Agropoli come base per il Cilento: Paestum, Castellabate, Punta Tresino e i borghi dell'interno, tutti entro 40 minuti.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/agropoli-porta-del-cilento-dintorni.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Agropoli"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/agropoli-porta-del-cilento-dintorni/"
+  }
+}
