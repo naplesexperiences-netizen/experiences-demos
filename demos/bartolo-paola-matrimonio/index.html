@@ -245,7 +245,7 @@ label,.legend{font:600 1rem/1.3 var(--ui);color:var(--ink)}
 input[type=text],input[type=email],textarea{width:100%;min-height:48px;padding:.7rem .9rem;border:1.5px solid var(--field);border-radius:var(--r-ctl);
   background:var(--surface);color:var(--ink);font:1.1rem/1.4 var(--serif);transition:border-color .15s,box-shadow .15s}
 textarea{min-height:6.5rem;resize:vertical}
-input:focus,textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 30%,transparent)}
+input:not([type=radio],[type=checkbox]):focus,textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 30%,transparent)}
 [aria-invalid="true"]{border-color:var(--error)!important}
 .err{margin:0;display:flex;gap:.4rem;align-items:center;font:500 .9rem/1.3 var(--ui);color:var(--error)}
 fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:.6rem}
@@ -399,17 +399,18 @@ footer{scroll-snap-align:end}
 .chapter .dim{position:absolute;inset:0;z-index:20;background:#120B07;opacity:0;pointer-events:none}
 .chapter.photo{background:var(--sea-deep)}
 .media{position:absolute;inset:0;z-index:-1;overflow:hidden;background:var(--sea-deep)}
-.media img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.media img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%;will-change:transform}
 .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(30 18 10 / .3),rgb(30 18 10 / .5))}
 .need{position:absolute;top:calc(.6rem + env(safe-area-inset-top,0px));left:.6rem;z-index:2;padding:.15rem .45rem;border-radius:999px;background:rgb(0 0 0 / .28);color:rgb(255 255 255 / .75);font:600 .62rem/1.3 var(--ui);letter-spacing:.06em}
 /* the content sits on an invitation card, like the one in the temple */
-.panel{background:color-mix(in srgb,var(--panel) 88%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:2px;
-  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px color-mix(in srgb,var(--panel) 88%,transparent),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
+.panel{background:var(--panel);border-radius:2px;
+  padding:clamp(1.5rem,4vw,3rem);box-shadow:0 0 0 6px var(--panel),0 0 0 7px var(--stone),0 30px 60px -30px rgb(0 0 0 / .55)}
 .panel .lead{color:var(--muted)}
 #foto .wall-bar,#foto .steps{position:relative}
 .gb{display:grid;gap:.9rem}
 .gb-type{grid-template-columns:1fr 1fr}
-.gb-type .opt{padding:.7rem .9rem;align-items:center}
+.gb-type .opt{padding:.7rem .8rem;gap:.55rem;align-items:center;white-space:nowrap}
+.opt input:focus{outline:none;box-shadow:none}
 .gb textarea{min-height:5.5rem}
 .gb-song{display:grid;gap:.9rem;grid-template-columns:1fr 1fr}
 .gb-song[hidden]{display:none}
@@ -490,6 +491,7 @@ footer{scroll-snap-align:end}
 .dots a[aria-current="true"]::before{background:var(--stone);transform:scale(1.45)}
 .dots a:hover::before{background:#fff}
 .dots.off{opacity:0;pointer-events:none}
+@media (max-width:600px){.dots.on-hero{opacity:0;pointer-events:none}}
 html.env-wait .dots{opacity:0}
 @media (max-width:600px){.dots{right:0;gap:0}.dots a{width:44px;height:40px}.dots a::before{width:8px;height:8px}.chapter .wrap{width:auto;margin-inline:.9rem 2.9rem}}
 @media (prefers-reduced-motion: reduce){.chapter{position:relative}}
@@ -1168,9 +1170,11 @@ html.env-wait .dots{opacity:0}
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) current(e.target.id) }) },{rootMargin:'-45% 0px -54% 0px'});
     chapters.concat([rsvp]).forEach(function(c){ io.observe(c) });
     new IntersectionObserver(function(es){ dotsBox.classList.toggle('off',es[0].isIntersecting) },{rootMargin:'0px 0px -60% 0px'}).observe(rsvp);
+    new IntersectionObserver(function(es){ dotsBox.classList.toggle('on-hero',!es[0].isIntersecting) },{rootMargin:'0px 0px -50% 0px'}).observe(chapters[1]);
   }
   if(reduce||!window.gsap||!window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ignoreMobileResize:true});
   chapters.forEach(function(ch,i){
     var img=ch.querySelector('.media img');
     if(img) gsap.fromTo(img,{scale:1.16},{scale:1,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'top top',scrub:true}});
