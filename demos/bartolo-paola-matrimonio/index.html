@@ -269,6 +269,18 @@ footer .ai-note a{color:inherit}
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
 }
+/* ---------- background music: starts with the seal (a tap is the gesture browsers need), one button to pause it ---------- */
+.music{position:fixed;top:calc(.6rem + env(safe-area-inset-top,0px));right:calc(.6rem + env(safe-area-inset-right,0px));z-index:70;display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;
+  border:1px solid rgb(255 248 238 / .45);background:rgb(24 14 8 / .45);color:#FFF8EE;cursor:pointer;transition:opacity .4s}
+html.env-wait .music{opacity:0;pointer-events:none}
+.music .bars{display:flex;align-items:flex-end;gap:2px;height:14px}
+.music .bars i{width:3px;height:30%;border-radius:1px;background:currentColor}
+.music[aria-pressed="true"] .bars i{animation:eq 1s ease-in-out infinite alternate}
+.music[aria-pressed="true"] .bars i:nth-child(2){animation-delay:-.4s}
+.music[aria-pressed="true"] .bars i:nth-child(3){animation-delay:-.7s}
+.music[aria-pressed="true"] .bars i:nth-child(4){animation-delay:-.2s}
+@keyframes eq{from{height:20%}to{height:100%}}
+.music:focus-visible{outline:3px solid var(--stone);outline-offset:3px}
 /* ---------- arrival: a full-screen envelope of handmade paper with a gold wax seal in a laurel wreath. The guest taps
    the seal, the paper splits down the middle (the seal breaks with it), warm light and golden petals pour out and
    dissolve into the first section (built by script, so the page works without it) ---------- */
@@ -427,6 +439,30 @@ html.env-wait .dots{opacity:0}
 </head>
 <body>
 <script>
+/* Background music: the envelope starts it when the guest taps the seal; the button pauses and resumes it,
+   and the choice is remembered. Built by script, so the page has no button without JavaScript. */
+(function(){
+  var SRC='audio/musica.mp3', VOL=.55, a=null, want=true, fadeT=0;
+  try{ want=localStorage.getItem('bp-music')!=='off' }catch(e){}
+  var b=document.createElement('button'); b.className='music'; b.type='button'; b.setAttribute('aria-pressed','false');
+  b.setAttribute('aria-label','Ascolta la musica'); b.innerHTML='<span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+  function ui(on){ b.setAttribute('aria-pressed',on?'true':'false'); b.setAttribute('aria-label',on?'Metti in pausa la musica':'Ascolta la musica') }
+  function fade(to,ms,done){ clearInterval(fadeT); var from=a.volume, t0=Date.now();
+    fadeT=setInterval(function(){ var k=Math.min(1,(Date.now()-t0)/ms); a.volume=from+(to-from)*k; if(k===1){ clearInterval(fadeT); if(done) done() } },50) }
+  function play(){ if(!a){ a=new Audio(SRC); a.loop=true; a.preload='auto'; a.volume=0 }
+    var p=a.play(); if(p&&p.catch) p.catch(function(){ ui(false) }); ui(true); fade(VOL,2500) }
+  function pause(){ if(!a) return; ui(false); fade(0,500,function(){ a.pause() }) }
+  b.addEventListener('click',function(){ var on=b.getAttribute('aria-pressed')==='true';
+    if(on) pause(); else play(); try{ localStorage.setItem('bp-music',on?'off':'on') }catch(e){} });
+  /* stop while the page is hidden, pick up again when it comes back */
+  var wasOn=false;
+  document.addEventListener('visibilitychange',function(){ if(!a) return;
+    if(document.hidden){ wasOn=!a.paused; a.pause() } else if(wasOn&&b.getAttribute('aria-pressed')==='true') a.play().catch(function(){ ui(false) }) });
+  document.addEventListener('DOMContentLoaded',function(){ document.body.appendChild(b) });
+  window.bpMusic={ start:function(){ if(want) play() } };
+})();
+</script>
+<script>
 /* Arrival: a full-screen envelope sealed with gold wax. The guest taps the seal, the sheet splits down the middle
    with the seal, golden petals pour out of the warm light and dissolve into the first section.
    Once per visit, skippable, skipped when motion is reduced. */
@@ -483,7 +519,7 @@ html.env-wait .dots{opacity:0}
   function finish(){ if(done) return; done=true; timers.forEach(clearTimeout); o.classList.add('gone'); root.classList.remove('env-wait');
     try{sessionStorage.setItem('bp-envelope','1')}catch(e){}
     removeEventListener('keydown',onKey); setTimeout(function(){ cancelAnimationFrame(raf); if(o.parentNode) o.parentNode.removeChild(o) },950) }
-  function open(){ if(opened) return; opened=true; o.classList.add('open'); petals();
+  function open(){ if(opened) return; opened=true; o.classList.add('open'); petals(); if(window.bpMusic) bpMusic.start();
     timers.push(setTimeout(function(){ o.classList.add('dissolve') },1500));
     timers.push(setTimeout(finish,2500)) }
   function onKey(e){ if(e.key==='Escape') finish() }
