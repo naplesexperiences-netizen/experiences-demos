@@ -38,9 +38,11 @@ class FMA_Importatore {
 			throw new RuntimeException( "File non leggibile: $file" );
 		}
 		$dati = json_decode( (string) file_get_contents( $file ), true );
-		if ( ! is_array( $dati ) || empty( $dati['strutture'] ) || ! is_array( $dati['strutture'] ) ) {
-			throw new RuntimeException( 'Il file non contiene strutture.' );
+		// Un file con i soli articoli è valido: li collega alle strutture già presenti nel sito.
+		if ( ! is_array( $dati ) || ( empty( $dati['strutture'] ) && empty( $dati['articoli'] ) ) ) {
+			throw new RuntimeException( 'Il file non contiene strutture né articoli.' );
 		}
+		$dati['strutture'] = is_array( $dati['strutture'] ?? null ) ? $dati['strutture'] : array();
 		return $dati;
 	}
 
