@@ -55,6 +55,23 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Eventi di Google Analytics | Nessuna impostazione nel sito: nella pagina di una casa il tema invia `richiesta_iniziata` (inizio compilazione) e `generate_lead` (richiesta partita davvero), e aggiunge il parametro `casa` a tutti gli eventi della pagina (nella configurazione del tag di Site Kit, filtro `googlesitekit_gtag_opt`). I clic su email, telefono e WhatsApp li registra Site Kit (`contact_link_click`, parametro `link_type`). Partono solo se il tag di Google è presente, cioè con Site Kit attivo e il consenso dato. In Analytics: dimensioni personalizzate `casa` e `tipo_soggiorno`, evento chiave `generate_lead`. |
 | Icona nella scheda del browser | **Personalizza → Identità del sito → Icona del sito** (PNG quadrato di almeno 512 px). |
 
+## Lingue (Polylang)
+
+Il sito è in italiano; inglese, francese, spagnolo, portoghese e cinese si aggiungono con **Polylang** (versione gratuita).
+
+1. **Lingue → Lingue**: aggiungi English (en_GB), Français (fr_FR), Español (es_ES), Português (pt_PT) e 中文 (zh_CN). L'italiano resta la lingua predefinita.
+2. **Lingue → Impostazioni → Modifiche URL**: spunta «L’URL della pagina iniziale contiene il codice della lingua…», così la home inglese è `/en/` e non `/en/home-en/`.
+3. **Strumenti → Traduzioni FMA**: scegli le lingue e premi *Importa le traduzioni*. Crea, collegate a quelle italiane, le 8 case (testi, camere, regole, dintorni, titolo e descrizione per Google), i 13 articoli, le pagine Home e Blog, la categoria, le regioni, i servizi e il motto del sito. Foto, coordinate, contatti, email per le richieste e prezzi si copiano dalla versione italiana. Con WP-CLI: `wp fma traduzioni [--lingua=en]`.
+
+| Cosa | Dove |
+|---|---|
+| Testi delle traduzioni importate | `fma-strutture/traduzioni/<lingua>.json`. L'importazione si può rilanciare: aggiorna le traduzioni con questi file, quindi **le correzioni fatte a mano in amministrazione vengono sovrascritte**. Dopo la prima importazione conviene correggere direttamente in WordPress e non rilanciarla. |
+| Testi del tema e del modulo (pulsanti, etichette, messaggi, email all'ospite) | `accoglienza-fma/languages/<locale>.po` e `fma-richieste/languages/fma-richieste-<locale>.po` (con `.mo` e `.l10n.php`). I testi predefiniti della home in **Personalizza** sono già tradotti; se li cambi, la versione nelle altre lingue si scrive in **Lingue → Traduzioni stringhe**, gruppo «Accoglienza FMA». |
+| Selettore della lingua | In testata accanto al pulsante «Richiedi un soggiorno» e nel menu su telefono. Compare solo con Polylang attivo. |
+| Email alla casa | Restano in italiano, con la riga «Lingua dell’ospite: …». La copia all'ospite è nella sua lingua. |
+| Informativa privacy e cookie | Non tradotte: finché manca la traduzione, link e consenso del modulo rimandano alla pagina italiana. |
+| Nuova casa o nuovo articolo | Si scrive in italiano; la traduzione si crea dal «+» di Polylang nella colonna della lingua. |
+
 ## Scelte tecniche
 
 - **Niente risorse esterne**: font (Fraunces, Geist), GSAP e Leaflet sono nel tema, quindi niente Google Fonts né CDN (GDPR). Le tessere della mappa arrivano da OpenStreetMap.

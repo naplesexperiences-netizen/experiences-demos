@@ -1,0 +1,444 @@
+{
+ "nome": "Español",
+ "termini": {
+  "category": {
+   "consigli-di-viaggio": {
+    "nome": "Consejos de viaje",
+    "slug": "consejos-de-viaje-es"
+   }
+  },
+  "regione": {
+   "calabria": {
+    "nome": "Calabria",
+    "slug": "calabria-es"
+   },
+   "campania": {
+    "nome": "Campania",
+    "slug": "campania-es"
+   },
+   "lazio": {
+    "nome": "Lacio",
+    "slug": "lacio-es"
+   },
+   "piemonte": {
+    "nome": "Piamonte",
+    "slug": "piamonte-es"
+   },
+   "veneto": {
+    "nome": "Véneto",
+    "slug": "veneto-es"
+   }
+  },
+  "servizio": {
+   "acqua-calda": {
+    "nome": "Agua caliente",
+    "slug": "agua-caliente-es"
+   },
+   "aperta-tutto-lanno": {
+    "nome": "Abierto todo el año",
+    "slug": "abierto-todo-el-ano-es"
+   },
+   "aria-condizionata": {
+    "nome": "Aire acondicionado",
+    "slug": "aire-acondicionado-es"
+   },
+   "ascensore": {
+    "nome": "Ascensor",
+    "slug": "ascensor-es"
+   },
+   "asciuga-capelli": {
+    "nome": "Secador de pelo",
+    "slug": "secador-de-pelo-es"
+   },
+   "balcone": {
+    "nome": "Balcón",
+    "slug": "balcon-es"
+   },
+   "cappella": {
+    "nome": "Capilla",
+    "slug": "capilla-es"
+   },
+   "cappella-votiva": {
+    "nome": "Capilla votiva",
+    "slug": "capilla-votiva-es"
+   },
+   "cappelle": {
+    "nome": "Capillas",
+    "slug": "capillas-es"
+   },
+   "cucina": {
+    "nome": "Cocina",
+    "slug": "cocina-es"
+   },
+   "ferro-da-stiro": {
+    "nome": "Plancha",
+    "slug": "plancha-es"
+   },
+   "forno-a-microonde": {
+    "nome": "Microondas",
+    "slug": "microondas-es"
+   },
+   "frigorifero": {
+    "nome": "Frigorífico",
+    "slug": "frigorifico-es"
+   },
+   "giardino": {
+    "nome": "Jardín",
+    "slug": "jardin-es"
+   },
+   "laptop-friendly": {
+    "nome": "Espacio para trabajar con portátil",
+    "slug": "espacio-para-trabajar-con-portatil-es"
+   },
+   "lettini-prendisole": {
+    "nome": "Tumbonas",
+    "slug": "tumbonas-es"
+   },
+   "macchinetta-del-caffe": {
+    "nome": "Cafetera",
+    "slug": "cafetera-es"
+   },
+   "parcheggio-gratuito": {
+    "nome": "Aparcamiento gratuito",
+    "slug": "aparcamiento-gratuito-es"
+   },
+   "parcheggio-privato": {
+    "nome": "Aparcamiento privado",
+    "slug": "aparcamiento-privado-es"
+   },
+   "parco-di-1-500-m%c2%b2": {
+    "nome": "Parque de 1500 m²",
+    "slug": "parque-de-1500-m2-es"
+   },
+   "parco-panoramico": {
+    "nome": "Parque panorámico",
+    "slug": "parque-panoramico-es"
+   },
+   "riscaldamento": {
+    "nome": "Calefacción",
+    "slug": "calefaccion-es"
+   },
+   "sala-convegni": {
+    "nome": "Sala de conferencias",
+    "slug": "sala-de-conferencias-es"
+   },
+   "sala-riunioni-panoramica": {
+    "nome": "Sala de reuniones panorámica",
+    "slug": "sala-de-reuniones-panoramica-es"
+   },
+   "sale-incontri": {
+    "nome": "Salas de reuniones",
+    "slug": "salas-de-reuniones-es"
+   },
+   "sale-per-piccoli-meeting": {
+    "nome": "Salas para reuniones pequeñas",
+    "slug": "salas-para-reuniones-pequenas-es"
+   },
+   "tv": {
+    "nome": "Televisión",
+    "slug": "television-es"
+   },
+   "vista-lago": {
+    "nome": "Vistas al lago",
+    "slug": "vistas-al-lago-es"
+   },
+   "vista-panoramica": {
+    "nome": "Vistas panorámicas",
+    "slug": "vistas-panoramicas-es"
+   },
+   "wifi": {
+    "nome": "Wifi",
+    "slug": "wifi-es"
+   }
+  }
+ },
+ "pagine": {
+  "home": {
+   "titolo": "Inicio",
+   "slug": "home-es"
+  },
+  "blog": {
+   "titolo": "Blog",
+   "slug": "blog-es"
+  }
+ },
+ "stringhe": {
+  "Ti sentirai come a casa": "Te sentirás como en casa"
+ },
+ "strutture": {
+  "fma-soverato": {
+   "titolo": "Casa FMA Soverato",
+   "slug": "casa-fma-soverato-es",
+   "riassunto": "",
+   "contenuto": "",
+   "campi": {
+    "fma_tipo": "Casa de huéspedes",
+    "fma_localita": "Soverato",
+    "fma_seo_titolo": "Casa FMA Soverato, casa de huéspedes en Calabria",
+    "fma_seo_descrizione": "Casa de huéspedes de las Salesianas en Soverato, en la costa jónica de Calabria: 15 habitaciones con aire acondicionado, wifi y aparcamiento gratuito para familias y grupos."
+   }
+  },
+  "casa-per-feriemaria-mazzarello": {
+   "titolo": "Casa per Ferie Maria Mazzarello",
+   "slug": "casa-huespedes-maria-mazzarello-verbania",
+   "riassunto": "En la colina de Zoverallo, sobre Verbania, la casa se asoma al lago Maggiore desde un gran parque. Es un lugar tranquilo para quien viaja solo, para grupos y para quien busca unos días de silencio: habitaciones cuidadas, salas de reuniones, capillas y aparcamiento privado.",
+   "contenuto": "<h2>Retiros y encuentros durante todo el año</h2><p>La casa acoge retiros y ejercicios espirituales, tanto de grupos que llegan con su propio programa como los organizados por la comunidad, con tiempo para la oración, la escucha y la reflexión. Quien viene simplemente a descansar encuentra el mismo ambiente sereno.</p><h2>El parque y el mirador</h2><p>Desde el parque el lago está siempre a la vista, desde las primeras horas del día hasta el atardecer. El mirador, una terraza natural abierta al paisaje, es el lugar perfecto para detenerse un momento.</p><ul><li>Paseos y meditación</li><li>Yoga al aire libre</li><li>Oración y silencio</li><li>Lectura y estudio</li><li>Encuentros de grupo al aire libre</li></ul>",
+   "campi": {
+    "fma_tipo": "Casa de huéspedes",
+    "fma_localita": "Verbania",
+    "fma_titolo_hero": "Una casa religiosa en el corazón del lago Maggiore",
+    "fma_seo_titolo": "Casa de huéspedes Maria Mazzarello en Verbania, lago Maggiore",
+    "fma_seo_descrizione": "Casa de huéspedes en Verbania frente al lago Maggiore: parque panorámico, salas de reuniones, capillas y aparcamiento privado. Silencio y acogida familiar."
+   }
+  },
+  "villa-tabor": {
+   "titolo": "Villa Tabor",
+   "slug": "villa-tabor-es",
+   "riassunto": "Villa Tabor es el lugar adecuado para recuperar la energía interior. Gestionada por las Hijas de María Auxiliadora, es un espacio dedicado a la vida espiritual de jóvenes y adultos, que pueden redescubrir la riqueza de una vida sencilla en un entorno natural excepcional.",
+   "contenuto": "<h2>Un lugar especial</h2><ul><li>Permite disfrutar de un tiempo de descanso y vacaciones.</li><li>Ofrece la posibilidad de compartir momentos de oración y de servicio con la comunidad de hermanas.</li><li>Acoge y da espacio a las actividades educativas, formativas, espirituales y culturales de grupos formales e informales.</li></ul><h2>Desde 1943, cuidado y atención al servicio de todos</h2><p>Confiada a las Hijas de María Auxiliadora en 1943 como casa de espiritualidad para chicas, Villa Tabor es un centro de encuentro para fines de semana de formación, semanas de espiritualidad, ejercicios espirituales, jornadas de oración y retiros para grupos, sacerdotes y religiosas.</p><p>Tras su renovación y ampliación en 1999, se convirtió en un punto de referencia en el altiplano para la formación juvenil. Desde 2017 la comunidad abre sus puertas también a las familias, con fines de semana de descanso y momentos de convivencia para todos.</p><h2>Aromas y sabores del altiplano de Asiago</h2><p>Rodeada de hayas y abetos, Villa Tabor se encuentra en el altiplano de los Siete Municipios, en la aldea de Cesuna, municipio de Roana. Los bosques que rodean Cesuna fueron escenario de grandes acontecimientos de la Primera Guerra Mundial y siguen estando entre los lugares más evocadores para visitar trincheras, emplazamientos de artillería y el gran Osario.</p><p>Senderos por el bosque, bicicleta de montaña, tenis, golf, trekking, esquí y patinaje; y además queserías de montaña y pequeños productores, que convierten cada paseo en un descubrimiento gastronómico.</p>",
+   "campi": {
+    "fma_tipo": "Casa de huéspedes",
+    "fma_localita": "Cesuna di Roana",
+    "fma_titolo_hero": "Un lugar fuera del tiempo que habla al alma",
+    "fma_seo_titolo": "Villa Tabor, casa de huéspedes en el altiplano de Asiago",
+    "fma_seo_descrizione": "Casa de huéspedes en Cesuna di Roana, en el altiplano de Asiago, entre hayas y abetos: 15 habitaciones, capilla y aparcamiento gratuito para grupos, familias y retiros."
+   }
+  },
+  "san-giuseppe-caorle": {
+   "titolo": "Casa per Ferie San Giuseppe",
+   "slug": "casa-huespedes-san-giuseppe-caorle",
+   "riassunto": "En Caorle, a pocos pasos del mar, las Hijas de María Auxiliadora acogen a familias, grupos y viajeros individuales en una casa sencilla y familiar. Aquí la vida va más despacio: el verde, el mar y un ambiente tranquilo ayudan a recuperar el equilibrio.",
+   "contenuto": "<h2>Cómo te acogemos</h2><ul><li><strong>Abierta a todos.</strong> Quien llega es acogido con respeto, sea cual sea su historia, su cultura o su fe.</li><li><strong>Un ambiente familiar.</strong> Se conversa, se escucha y nos conocemos, incluso en una estancia de pocos días.</li><li><strong>Paz y tranquilidad.</strong> El verde y el mar cercano invitan a vivir con más calma.</li><li><strong>Atención al detalle.</strong> Los espacios están cuidados con esmero y quienes trabajan en la casa están siempre disponibles.</li></ul>",
+   "campi": {
+    "fma_tipo": "Casa de huéspedes",
+    "fma_localita": "Caorle",
+    "fma_titolo_hero": "Un oasis de paz a un paso del mar",
+    "fma_orari": "Recepción (correo electrónico y teléfono): 9:00–12:30 y 14:00–17:30",
+    "fma_camere": [
+     {
+      "nome": "Habitación individual"
+     },
+     {
+      "nome": "Habitación triple"
+     },
+     {
+      "nome": "Habitación cuádruple",
+      "dettaglio": "Ideal para familias"
+     }
+    ],
+    "fma_seo_titolo": "Casa de huéspedes San Giuseppe en Caorle, junto al mar",
+    "fma_seo_descrizione": "Casa de huéspedes de las Salesianas en Caorle, a un paso del mar: habitaciones individuales, triples y cuádruples para familias, grupos y quien necesite descansar."
+   }
+  },
+  "fma-roma": {
+   "titolo": "Casa per Ferie Maria Ausiliatrice",
+   "slug": "casa-huespedes-maria-ausiliatrice-roma",
+   "riassunto": "La casa de huéspedes «Maria Ausiliatrice» está gestionada por el Instituto María Auxiliadora de las Salesianas de Don Bosco. Ofrece estancias temporales a personas que comparten un camino de fe y espiritualidad: sacerdotes y religiosas, familias, grupos parroquiales, particulares y asociaciones.",
+   "contenuto": "<h2>A quién acogemos</h2><p>La casa se gestiona fuera de los circuitos comerciales habituales, sin ánimo de lucro. Los huéspedes comparten los ideales y las normas de conducta del Instituto, se comportan y visten de manera acorde con la finalidad social y religiosa de la casa y respetan sus horarios.</p><p>La casa de huéspedes está autorizada por el Ayuntamiento de Roma (ref. QA/2018/41919 del 18/09/2018).</p>",
+   "campi": {
+    "fma_tipo": "Casa de huéspedes",
+    "fma_localita": "Roma",
+    "fma_titolo_hero": "Una cálida acogida en el corazón de Roma",
+    "fma_regole": [
+     "Recepción: 12:00–13:00 y 14:00–21:00",
+     "Regreso por la noche antes de las 21:00 (octubre–abril) o las 22:00 (mayo–septiembre)",
+     "Dejar la habitación antes de las 9:30 el día de salida",
+     "Limpieza diaria de las habitaciones, ropa de cama cambiada cada tres días",
+     "Aparcamiento gratuito, según disponibilidad",
+     "No se admiten mascotas; prohibido fumar en el edificio",
+     "Reservas: de lunes a sábado, 9:00–13:00 y 15:00–18:00"
+    ],
+    "fma_seo_titolo": "Casa de huéspedes Maria Ausiliatrice cerca de Roma Termini",
+    "fma_seo_descrizione": "Casa de huéspedes de las Salesianas en la via Marghera, a pocos pasos de la estación Termini: 20 habitaciones para grupos parroquiales, familias, religiosos y peregrinos."
+   }
+  },
+  "fma-napoli": {
+   "titolo": "Casa FMA Napoli",
+   "slug": "casa-fma-napoles",
+   "riassunto": "Conocidas también como Salesianas de Don Bosco, las Hijas de María Auxiliadora acogen a sus huéspedes en el corazón de Nápoles, en la sede de la Inspectoría Meridional «Madonna del Buon Consiglio».",
+   "contenuto": "<h2>Nuestra misión</h2><p>La educación y la evangelización de los jóvenes, sobre todo de los más pobres y marginados, están en el centro de nuestra misión. Donde hay jóvenes, allí está nuestra casa.</p><p>El lema de Don Bosco, «Buenos cristianos y honrados ciudadanos», resume el sentido y el objetivo de nuestra misión: educación, oportunidades y futuro.</p><h2>La Inspectoría Meridional</h2><p>La congregación se organiza por territorios, en inspectorías. La Inspectoría Meridional «Madonna del Buon Consiglio» abarca Campania, Apulia, Basilicata y Calabria, además de Albania y Malta. La casa inspectorial está en Nápoles.</p>",
+   "campi": {
+    "fma_tipo": "Casa de huéspedes",
+    "fma_localita": "Nápoles",
+    "fma_titolo_hero": "Un lugar de paz en Nápoles",
+    "fma_tassa": "2 € por persona y noche",
+    "fma_camere": [
+     {
+      "nome": "Habitación individual",
+      "letti": "1 cama individual"
+     },
+     {
+      "nome": "Habitación doble",
+      "letti": "Cama de matrimonio o 2 individuales"
+     }
+    ],
+    "fma_seo_titolo": "Casa FMA Napoli, casa de huéspedes en Nápoles",
+    "fma_seo_descrizione": "Casa de huéspedes de las Salesianas en Nápoles, en la casa inspectorial: 12 habitaciones individuales y dobles con aire acondicionado y wifi, para familias y grupos."
+   }
+  },
+  "villa-crawford": {
+   "titolo": "Villa Crawford",
+   "slug": "villa-crawford-es",
+   "riassunto": "La residencia histórica original del escritor Marion Crawford, suspendida sobre el mar con vistas al golfo de Nápoles y al Vesubio. Abierta todo el año, cuenta con una sala de reuniones amplia, elegante y luminosa con vistas panorámicas y otras salas de distintos tamaños, ideales para pequeñas reuniones.",
+   "contenuto": "<h2>La historia</h2><p>Cuando el escritor estadounidense Francis Marion Crawford compró la villa en 1885, era una sencilla casa de campo rodeada de un gran jardín: aquí escribió muchas de las obras que lo hicieron famoso en todo el mundo. Con el tiempo el edificio se fue transformando hasta parecer un antiguo castillo medieval, y el interior se decoró con paneles de madera tallados por el artesano sorrentino Giovanni Massa.</p><p>A la muerte del escritor, en 1909, la villa pasó a su hija Eleonora y, en 1954, fue donada al Instituto María Auxiliadora, que todavía hoy acoge a los numerosos jóvenes que se reúnen aquí para pasar unas horas de recreo y oración.</p><h2>Los contrafuertes</h2><p>Los característicos contrafuertes se construyeron para evitar desprendimientos a lo largo de la costa y para que la villa fuera visible desde el mar. En las piedras de las murallas Crawford hizo grabar el lema «In tempestate securitas»: un lugar seguro en la tormenta.</p>",
+   "campi": {
+    "fma_tipo": "Residencia histórica",
+    "fma_localita": "Sant’Agnello",
+    "fma_titolo_hero": "Una residencia histórica suspendida sobre el mar",
+    "fma_camere": [
+     {
+      "nome": "Habitaciones de la villa",
+      "dettaglio": "Grandes y espaciosas, en un elegante ambiente de época, en 3 plantas con ascensor. La mitad de las habitaciones tiene vistas al mar."
+     },
+     {
+      "nome": "Habitaciones del jardín",
+      "dettaglio": "En el parque de 1500 m², separadas del edificio principal: estilo sencillo y una mesita al aire libre para disfrutar de los aromas del monte mediterráneo."
+     }
+    ],
+    "fma_seo_titolo": "Villa Crawford, residencia histórica en Sant’Agnello",
+    "fma_seo_descrizione": "La villa del escritor Marion Crawford en Sant’Agnello, suspendida sobre el golfo de Nápoles. Parque, capilla y salas panorámicas para retiros y reuniones."
+   }
+  },
+  "villa-tiberiade": {
+   "titolo": "Villa Tiberiade",
+   "slug": "villa-tiberiade-es",
+   "riassunto": "«Villa Tiberiade» ha sido renovada y adaptada para la acogida, para jornadas de encuentro y ejercicios espirituales. Desde su espléndida posición se contempla el panorama único de la península sorrentina, y está rodeada de amplias zonas verdes.",
+   "contenuto": "<h2>Cuando un lugar tiene una historia, queda para siempre en la memoria</h2><p>Las obras comenzaron en 1973: originalmente la villa pertenecía a la señora Teresa Rossi, condesa Filangieri.</p><p>Al dividirse la finca, la villa pasó a uno de sus hijos, casado con la señorita Olimpia De Donat, que más tarde enviudó. Su marido había regalado a monseñor Muller un terreno con una construcción rural muy deteriorada que, debidamente adaptada, se destinó a la obra apostólica.</p><p>Monseñor Muller decidió después confiar toda la propiedad al Instituto de las Hijas de María Auxiliadora, dándole, con una clara referencia al Evangelio, el nombre de «Villa Tiberiade».</p>",
+   "campi": {
+    "fma_tipo": "Casa de retiros y huéspedes",
+    "fma_localita": "Torre Annunziata",
+    "fma_titolo_hero": "Desconecta en el golfo de Nápoles",
+    "fma_camere": [
+     {
+      "nome": "Habitación individual",
+      "dettaglio": "Vistas al golfo, baño privado",
+      "letti": "1 cama individual"
+     },
+     {
+      "nome": "Habitación doble",
+      "dettaglio": "Baño privado",
+      "letti": "Cama de matrimonio o 2 individuales"
+     },
+     {
+      "nome": "Habitación triple",
+      "dettaglio": "Baño privado",
+      "letti": "Cama de matrimonio + 1 individual"
+     }
+    ],
+    "fma_dintorni": [
+     {
+      "luogo": "Golfo de Nápoles",
+      "distanza": "frente a la casa"
+     },
+     {
+      "luogo": "Excavaciones de Pompeya",
+      "distanza": "10 minutos en coche"
+     },
+     {
+      "luogo": "Vesubio",
+      "distanza": "30 minutos en coche"
+     },
+     {
+      "luogo": "Aeropuerto de Nápoles-Capodichino",
+      "distanza": "30 minutos en coche"
+     },
+     {
+      "luogo": "Sorrento",
+      "distanza": "60 minutos en coche"
+     }
+    ],
+    "fma_regole": [
+     "Entrada de 14:00 a 21:00",
+     "Salida antes de las 11:00",
+     "Alojamiento para no fumadores",
+     "No se admiten mascotas",
+     "No se permiten fiestas ni eventos privados",
+     "Edad mínima para reservar: 18 años",
+     "Reembolso total si cancelas al menos 30 días antes de la llegada, del 50 % si es al menos 7 días antes"
+    ],
+    "fma_seo_titolo": "Villa Tiberiade, casa de huéspedes en Torre Annunziata",
+    "fma_seo_descrizione": "Casa de retiros y huéspedes en Torre Annunziata con vistas al golfo de Nápoles y jardín, a 10 minutos de Pompeya. Habitaciones, sala de conferencias y aparcamiento."
+   }
+  }
+ },
+ "articoli": {
+  "torre-annunziata-oplontis-pompei-vesuvio": {
+   "titolo": "Torre Annunziata, entre Oplontis, Pompeya y el Vesubio",
+   "slug": "torre-annunziata-oplontis-pompeya-vesubio",
+   "riassunto": "",
+   "contenuto": "<p><strong>Torre Annunziata se encuentra en un punto del golfo de Nápoles donde la historia se lee por capas: bajo la ciudad moderna hay una villa romana con frescos, Pompeya está a diez minutos, detrás se alza el Vesubio y enfrente, al otro lado del mar, se extiende la península sorrentina.</strong> Es una base cómoda y tranquila para descubrir los lugares más famosos de Campania sin dormir en medio de su bullicio.</p>\n<h2>Por qué visitar Torre Annunziata</h2>\n<h3>Oplontis y la villa de Popea</h3>\n<p>En pleno centro de la ciudad se visita uno de los yacimientos arqueológicos más bellos y menos concurridos de la zona del Vesubio: la <strong>villa de Popea</strong> en Oplontis. Era una lujosa villa de recreo, atribuida a la familia de Popea Sabina, segunda esposa de Nerón, sepultada por la erupción del año 79 d. C. Los frescos de sus salas, con jardines pintados, columnatas ilusorias y pájaros, están entre los mejor conservados del mundo romano. Desde 1997 Oplontis es Patrimonio de la Humanidad de la UNESCO junto con Pompeya y Herculano.</p>\n<h3>El mar y las vistas</h3>\n<p>El paseo marítimo de Torre Annunziata mira directamente hacia la península sorrentina y, en los días despejados, hacia Capri. Al atardecer la luz cae sobre el golfo e ilumina el perfil de los montes Lattari: es una de las vistas más bellas de la costa vesubiana.</p>\n<h3>La tradición de la pasta</h3>\n<p>En el siglo XIX y principios del XX, Torre Annunziata era, junto con la cercana Gragnano, una de las capitales de la <strong>pasta seca</strong>: molinos y fábricas elaboraban el trigo y colgaban los espaguetis a secar al sol y a la brisa del mar. Algunos productores artesanos siguen trabajando y venden sus productos.</p>\n<h2>Los alrededores</h2>\n<h3>Pompeya</h3>\n<p>A unos diez minutos en coche o a dos paradas de la Circumvesuviana, las <strong>excavaciones de Pompeya</strong> merecen al menos media jornada: el Foro, las casas con frescos, el anfiteatro, las calles empedradas con las huellas de los carros. En la ciudad moderna se alza el <strong>santuario de la Beata Virgen del Rosario</strong>, fundado por Bartolo Longo y meta de peregrinos de toda Italia.</p>\n<h3>El Vesubio</h3>\n<p>En una media hora se sube en coche o en lanzadera hasta los mil metros; desde allí, un sendero de unos veinte minutos lleva al borde del cráter. Desde lo alto se contempla todo el golfo de Nápoles.</p>\n<h3>Herculano</h3>\n<p>Más pequeña que Pompeya pero extraordinariamente bien conservada, <strong>Herculano</strong> muestra casas de varios pisos, madera carbonizada y mosaicos todavía en su sitio.</p>\n<h3>Sorrento y la península</h3>\n<p>Con la Circumvesuviana o en coche se llega a <strong>Sorrento</strong> en una hora aproximadamente; desde allí salen los ferris a Capri y la carretera continúa hacia la costa amalfitana.</p>\n<table>\n<thead>\n<tr><th>De Torre Annunziata a…</th><th>Tiempo aproximado</th></tr>\n</thead>\n<tbody>\n<tr><td>Excavaciones de Pompeya</td><td>10 minutos en coche</td></tr>\n<tr><td>Herculano</td><td>20 minutos en tren</td></tr>\n<tr><td>Vesubio</td><td>30 minutos en coche</td></tr>\n<tr><td>Nápoles</td><td>30–40 minutos en tren</td></tr>\n<tr><td>Sorrento</td><td>60 minutos en coche</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>La primavera y el otoño son las mejores estaciones para las excavaciones: se camina mucho y al aire libre, y el calor del verano lo hace todo más cansado. Octubre y mayo traen días despejados, ideales también para subir al Vesubio. En verano conviene visitar los yacimientos arqueológicos a primera hora de la mañana y reservar la tarde para descansar.</p>\n<h2>Dónde alojarse</h2>\n<p><strong>Villa Tiberiade</strong> es una casa de retiros y huéspedes gestionada por las Hijas de María Auxiliadora, asomada a la península sorrentina y rodeada de amplias zonas verdes. Tiene jardín, balcones, tumbonas, sala de conferencias y aparcamiento gratuito: es adecuada para familias, grupos y jornadas de retiro. Por la noche, después de un día entre Pompeya y el Vesubio, se vuelve al silencio de un lugar pensado para el descanso.</p>"
+  },
+  "santagnello-penisola-sorrentina-villa-crawford": {
+   "titolo": "Sant’Agnello y la península sorrentina, tras los pasos de Marion Crawford",
+   "slug": "santagnello-peninsula-sorrentina-marion-crawford",
+   "riassunto": "",
+   "contenuto": "<p><strong>«In tempestate securitas», un lugar seguro en la tormenta: el escritor estadounidense Francis Marion Crawford hizo grabar estas palabras en las murallas de su villa de Sant’Agnello, suspendida sobre el mar.</strong> Más de un siglo después, esa casa sigue acogiendo a quienes buscan un lugar tranquilo en el golfo de Nápoles, a un paso de Sorrento.</p>\n<h2>Por qué visitar Sant’Agnello</h2>\n<h3>La península de los escritores</h3>\n<p>En el siglo XIX la península sorrentina era una etapa del Grand Tour, y Sant’Agnello uno de los lugares más queridos por los viajeros extranjeros. Crawford, autor de novelas de gran éxito, compró aquí en 1885 una casa de campo rodeada de un jardín. Vivió y escribió aquí hasta su muerte en 1909, y poco a poco la transformó en una residencia parecida a un antiguo castillo. Hoy la calle principal del pueblo lleva su nombre.</p>\n<h3>El mar al pie de la toba</h3>\n<p>La península es una meseta de toba que cae a pico sobre el mar. Las playas son pequeñas y se llega a ellas por escaleras y ascensores excavados en la roca; el agua cubre a pocos metros de la orilla, con el Vesubio enfrente y Nápoles en el horizonte.</p>\n<h3>Cítricos y calma</h3>\n<p>Sant’Agnello está a diez minutos a pie de la piazza Tasso y, sin embargo, conserva el ritmo de un pueblo: muros de toba, limoneros y naranjos que en primavera perfuman cada calle.</p>\n<h2>Los alrededores</h2>\n<h3>Sorrento</h3>\n<p>Se llega a pie al centro de <strong>Sorrento</strong>: el valle de los Molinos, el claustro de San Francesco con sus arcos entrelazados, la basílica de Sant’Antonino, patrón de la ciudad, y el antiguo barrio de pescadores de Marina Grande.</p>\n<h3>Capri</h3>\n<p>Desde el puerto de Sorrento, los hidroalas llegan a <strong>Capri</strong> en unos veinte minutos. Con las primeras salidas de la mañana se puede subir a Anacapri y al monte Solaro antes que la multitud.</p>\n<h3>Massa Lubrense y Punta Campanella</h3>\n<p>Hacia la punta de la península el paisaje se vuelve más salvaje: el Área Marina Protegida de Punta Campanella, la bahía de Ieranto y los senderos entre olivares y terrazas frente a Capri.</p>\n<h3>Pompeya y la costa amalfitana</h3>\n<p>La Circumvesuviana lleva a <strong>Pompeya</strong> en una media hora. Pasado el puerto de montaña, la carretera baja hacia <strong>Positano</strong> y la costa; en verano es más cómodo el barco.</p>\n<table>\n<thead>\n<tr><th>De Sant’Agnello a…</th><th>Tiempo aproximado</th></tr>\n</thead>\n<tbody>\n<tr><td>Centro de Sorrento</td><td>10–15 minutos a pie</td></tr>\n<tr><td>Capri</td><td>20–25 minutos en hidroala desde Sorrento</td></tr>\n<tr><td>Pompeya</td><td>30 minutos en tren</td></tr>\n<tr><td>Positano</td><td>40 minutos en coche</td></tr>\n<tr><td>Nápoles</td><td>35–60 minutos en hidroala o en tren</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>Abril y mayo son los meses del azahar y de los días largos; septiembre y octubre todavía tienen el mar templado y menos gente. En invierno la península vuelve a sus habitantes y es el momento ideal para un retiro o un congreso, con el golfo despejado y el Vesubio a menudo nevado.</p>\n<h2>Dónde alojarse</h2>\n<p><strong>Villa Crawford</strong> es la residencia histórica original del escritor, hoy casa de las Hijas de María Auxiliadora. Está suspendida sobre el mar, con vistas al golfo de Nápoles y al Vesubio, y abre todo el año. Cuenta con un parque de 1500 metros cuadrados, una capilla, una gran sala de reuniones luminosa con vistas panorámicas y otras salas más pequeñas para reuniones y grupos. Los contrafuertes que Crawford construyó para proteger la costa siguen ahí, bajo las ventanas.</p>"
+  },
+  "napoli-chiese-centro-storico-itinerario": {
+   "titolo": "Nápoles a pie, de iglesia en iglesia: un paseo por el centro histórico",
+   "slug": "napoles-iglesias-centro-historico-itinerario",
+   "riassunto": "",
+   "contenuto": "<p><strong>Nápoles tiene más de quinientas iglesias, y muchas de ellas se encuentran en el kilómetro cuadrado del centro histórico.</strong> Para quien viaja con un grupo parroquial, en peregrinación o simplemente con curiosidad por entender el alma de la ciudad, la mejor manera de conocerla es a pie, de iglesia en iglesia, entre claustros, capillas y belenes.</p>\n<h2>Por qué visitar Nápoles</h2>\n<p>El centro histórico de Nápoles es Patrimonio de la Humanidad de la UNESCO desde 1995 y todavía conserva el trazado de calles de la ciudad griega. Aquí la fe popular se funde con el arte: pequeños altares en las esquinas, fiestas de barrio, obras maestras del Barroco. He aquí un itinerario para descubrirlo.</p>\n<h3>La catedral y el Tesoro de San Genaro</h3>\n<p>La <strong>catedral de Santa Maria Assunta</strong> alberga la capilla del Tesoro de San Genaro, una de las más ricas de Europa. Tres veces al año, el sábado anterior al primer domingo de mayo, el 19 de septiembre y el 16 de diciembre, la ciudad espera el milagro de la licuefacción de la sangre de su patrón.</p>\n<h3>Santa Chiara y el claustro de mayólica</h3>\n<p>La basílica gótica de <strong>Santa Chiara</strong>, construida por los Anjou, esconde un claustro revestido de azulejos de mayólica pintados con escenas de la vida del siglo XVIII: uno de los rincones más tranquilos de la ciudad.</p>\n<h3>Gesù Nuovo y San Domenico Maggiore</h3>\n<p>En la misma plaza que Santa Chiara se alza el <strong>Gesù Nuovo</strong>, con su fachada de piedra piperno tallada en punta de diamante. En su interior se venera a san José Moscati, el santo médico de Nápoles. No muy lejos, <strong>San Domenico Maggiore</strong> conserva la celda donde vivió santo Tomás de Aquino.</p>\n<h3>La capilla Sansevero y San Gregorio Armeno</h3>\n<p>En la <strong>capilla Sansevero</strong> se admira el Cristo velado de Giuseppe Sanmartino (1753), cuyo velo de mármol parece de tela. A la vuelta de la esquina, la <strong>via San Gregorio Armeno</strong> es la calle de las figuras de belén, abierta todo el año.</p>\n<h3>Las catacumbas de San Genaro</h3>\n<p>En el barrio de la Sanità, las <strong>catacumbas de San Genaro</strong> son las más grandes del sur de Italia, con frescos paleocristianos. El barrio ha renacido gracias a una cooperativa de jóvenes que las gestiona y cuenta su historia.</p>\n<h2>Los alrededores</h2>\n<ul>\n<li><strong>Pompeya</strong>: las excavaciones y el santuario de la Beata Virgen del Rosario, a unos 40 minutos en tren.</li>\n<li><strong>El paseo marítimo y el Castel dell’Ovo</strong>: veinte minutos a pie desde el centro histórico hasta el mar.</li>\n<li><strong>Capri, Ischia y Procida</strong>: en hidroala desde el Molo Beverello, de 40 minutos a una hora.</li>\n<li><strong>Los Campos Flégreos</strong>: la Solfatara y el anfiteatro Flavio de Pozzuoli, donde según la tradición fue condenado san Genaro.</li>\n</ul>\n<table>\n<thead>\n<tr><th>Etapa</th><th>Tiempo recomendado</th></tr>\n</thead>\n<tbody>\n<tr><td>Catedral y Tesoro de San Genaro</td><td>1 hora y media</td></tr>\n<tr><td>Santa Chiara, Gesù Nuovo, San Domenico</td><td>Media jornada</td></tr>\n<tr><td>Capilla Sansevero y San Gregorio Armeno</td><td>2 horas</td></tr>\n<tr><td>Catacumbas de San Genaro</td><td>1 hora y media</td></tr>\n<tr><td>Pompeya y el santuario</td><td>Un día entero</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>Nápoles merece una visita en cualquier época del año. Septiembre, con la fiesta de San Genaro, y diciembre, con los belenes de San Gregorio Armeno, son los meses en que la devoción popular es más visible. La primavera y el otoño son ideales para caminar sin calor.</p>\n<h2>Dónde alojarse</h2>\n<p><strong>Casa FMA Napoli</strong> está en el corazón de la ciudad, en la sede de la Inspectoría Meridional «Madonna del Buon Consiglio» de las Hijas de María Auxiliadora. Tiene 12 habitaciones con aire acondicionado, calefacción, wifi y ascensor. Alojarse aquí significa tener las iglesias del centro histórico a poca distancia a pie y la posibilidad de vivir la ciudad al ritmo de una comunidad salesiana.</p>"
+  },
+  "roma-basiliche-sacro-cuore-don-bosco": {
+   "titolo": "Roma desde Termini: la iglesia de Don Bosco y las basílicas papales",
+   "slug": "roma-termini-iglesia-don-bosco-basilicas-papales",
+   "riassunto": "",
+   "contenuto": "<p><strong>A pocos pasos de la estación Termini, en la via Marsala, hay una basílica que Don Bosco hizo construir con sus últimas fuerzas: el Sagrado Corazón de Jesús en Castro Pretorio.</strong> Es el punto de partida ideal para descubrir la Roma de las basílicas y de los barrios, a pie o en metro, para quien viaja con espíritu salesiano.</p>\n<h2>Por qué visitar Roma desde la zona de Termini</h2>\n<p>La zona de Castro Pretorio, entre Termini y San Lorenzo, es una de las mejor comunicadas de la ciudad: de aquí salen las dos líneas de metro, los autobuses hacia todo el centro y los trenes hacia el aeropuerto y los Castelli Romani. En pocos minutos se llega a las basílicas papales y a los lugares más importantes de la Roma cristiana.</p>\n<h3>La basílica del Sagrado Corazón, la iglesia de Don Bosco</h3>\n<p>El papa León XIII pidió a Don Bosco que terminara esta basílica, que se había quedado sin fondos. El santo aceptó, reunió donativos por toda Europa y la vio consagrada en 1887, pocos meses antes de morir. Al lado se pueden visitar las <strong>habitaciones de Don Bosco</strong>, donde se alojaba durante sus estancias en Roma.</p>\n<h3>Santa María la Mayor</h3>\n<p>A diez minutos a pie, <strong>Santa María la Mayor</strong> es la basílica mariana más antigua de Occidente, con mosaicos del siglo V y un techo artesonado dorado que, según la tradición, se hizo con el primer oro llegado de América.</p>\n<h3>San Juan de Letrán y la Escalera Santa</h3>\n<p>Una parada de metro o un paseo llevan a <strong>San Juan de Letrán</strong>, catedral de Roma y «madre de todas las iglesias». Enfrente se encuentra el santuario de la <strong>Escalera Santa</strong>, que los peregrinos suben de rodillas.</p>\n<h3>San Pedro y los Museos Vaticanos</h3>\n<p>La línea A del metro lleva a la zona del <strong>Vaticano</strong> en unos veinte minutos: la basílica de San Pedro, la cúpula de Miguel Ángel y los Museos Vaticanos con la Capilla Sixtina.</p>\n<h3>San Pablo Extramuros</h3>\n<p>A la cuarta basílica papal se llega con la línea B: alberga la tumba del apóstol Pablo y la serie de retratos de todos los papas.</p>\n<h2>Los alrededores</h2>\n<ul>\n<li><strong>Las catacumbas de la via Appia</strong>: San Calixto, confiadas a los salesianos, y San Sebastián, entre los primeros cementerios cristianos.</li>\n<li><strong>Tívoli</strong>: Villa d’Este con sus fuentes y Villa Adriana, a menos de una hora.</li>\n<li><strong>Los Castelli Romani</strong>: Castel Gandolfo, Frascati, Ariccia y los lagos volcánicos, en tren desde Termini.</li>\n<li><strong>Ostia Antica</strong>: el puerto de la antigua Roma, con sus calles, su teatro y sus termas.</li>\n</ul>\n<table>\n<thead>\n<tr><th>De la via Marghera a…</th><th>Cómo</th><th>Tiempo aproximado</th></tr>\n</thead>\n<tbody>\n<tr><td>Basílica del Sagrado Corazón</td><td>A pie</td><td>5 minutos</td></tr>\n<tr><td>Santa María la Mayor</td><td>A pie</td><td>10–15 minutos</td></tr>\n<tr><td>San Juan de Letrán</td><td>Metro A</td><td>15 minutos</td></tr>\n<tr><td>San Pedro</td><td>Metro A</td><td>20–25 minutos</td></tr>\n<tr><td>Catacumbas de San Calixto</td><td>Autobús</td><td>40 minutos</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>La primavera y el otoño son las mejores estaciones para pasear entre basílicas y ruinas. Julio y agosto son calurosos: conviene visitar las iglesias a mediodía, cuando dentro hace fresco, y reservar la noche para pasear. En Navidad y Semana Santa la ciudad se llena de peregrinos: reserva con mucha antelación.</p>\n<h2>Dónde alojarse</h2>\n<p>La <strong>casa de huéspedes «Maria Ausiliatrice»</strong>, en la via Marghera 59, está gestionada por el Instituto María Auxiliadora de las Salesianas de Don Bosco, fuera de los circuitos comerciales habituales. Tiene 20 habitaciones con aire acondicionado y wifi, y acoge a religiosos, familias, grupos parroquiales y particulares que comparten un camino de fe. Es la base ideal para una peregrinación a Roma, con la iglesia de Don Bosco a la vuelta de la esquina.</p>"
+  },
+  "caorle-borgo-laguna-spiagge": {
+   "titolo": "Caorle: el pueblo de pescadores, la laguna y el mar",
+   "slug": "caorle-pueblo-pescadores-laguna-playas",
+   "riassunto": "",
+   "contenuto": "<p><strong>Caorle es un pueblo de pescadores con casas de colores, un campanario cilíndrico milenario y un santuario sobre las rocas.</strong> Detrás se extiende una laguna de canales y cabañas de juncos; delante, kilómetros de playa. Es uno de los destinos más queridos del norte del Adriático, a una hora de Venecia.</p>\n<h2>Por qué visitar Caorle</h2>\n<h3>El casco antiguo</h3>\n<p>El corazón de Caorle es un laberinto de callejuelas, placitas y casas pintadas de rojo, amarillo, azul y verde, como los pueblos de la laguna veneciana. Por la noche las plazas se llenan de familias, heladerías y restaurantes de pescado.</p>\n<h3>La catedral y el campanario cilíndrico</h3>\n<p>La <strong>catedral de Santo Stefano</strong>, del siglo XI, se alza junto a uno de los símbolos de la ciudad: el <strong>campanario cilíndrico</strong> románico, con su chapitel cónico, visible desde toda la costa. En su interior hay un valioso retablo de plata dorada.</p>\n<h3>El santuario de la Madonna dell’Angelo</h3>\n<p>Al final del espigón, sobre el mar, se alza el <strong>santuario de la Madonna dell’Angelo</strong>, muy querido por los pescadores. Según la tradición, la imagen de la Virgen llegó del mar, y cada cinco años, en septiembre, una procesión la lleva en barco a lo largo de la costa.</p>\n<h3>La Scogliera Viva</h3>\n<p>A lo largo del paseo que une el centro con el santuario, las rocas del espigón se han convertido en un museo al aire libre: la <strong>Scogliera Viva</strong> («escollera viva»), con esculturas y pinturas de artistas de todo el mundo.</p>\n<h3>Las playas</h3>\n<p>Caorle tiene dos grandes playas de arena fina, la <strong>Spiaggia di Levante</strong> y la <strong>Spiaggia di Ponente</strong>, con aguas poco profundas y establecimientos bien equipados. Son ideales para familias con niños.</p>\n<h2>Los alrededores</h2>\n<h3>La laguna y los casoni</h3>\n<p>Detrás de Caorle se extiende una <strong>laguna</strong> de canales, marismas y piscifactorías. Los <strong>casoni</strong>, antiguas cabañas de pescadores hechas con juncos de la marisma, se pueden visitar a pie, en bicicleta o en barco. Ernest Hemingway, huésped de estas lagunas, las describió en su novela <em>Al otro lado del río y entre los árboles</em>.</p>\n<h3>Venecia</h3>\n<p>En una hora aproximadamente en coche, o con autobuses y barcos de temporada, se llega a <strong>Venecia</strong> para pasar un día entre San Marcos, el Rialto y las islas.</p>\n<h3>Concordia Sagittaria y Portogruaro</h3>\n<p>En el interior, <strong>Concordia Sagittaria</strong> conserva los restos de la ciudad romana de Iulia Concordia y una catedral con un baptisterio románico. No muy lejos, <strong>Portogruaro</strong> tiene un centro porticado y molinos sobre el río Lemene.</p>\n<h3>Bibione y Lignano</h3>\n<p>Más al este, a lo largo de la costa, están las grandes playas de <strong>Bibione</strong> y <strong>Lignano Sabbiadoro</strong>.</p>\n<table>\n<thead>\n<tr><th>De Caorle a…</th><th>Tiempo aproximado en coche</th></tr>\n</thead>\n<tbody>\n<tr><td>Laguna y casoni</td><td>10 minutos</td></tr>\n<tr><td>Concordia Sagittaria</td><td>20 minutos</td></tr>\n<tr><td>Portogruaro</td><td>25 minutos</td></tr>\n<tr><td>Bibione</td><td>35 minutos</td></tr>\n<tr><td>Venecia</td><td>Alrededor de 1 hora</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>La temporada de playa va de junio a septiembre. Mayo y septiembre son ideales para pasear por la laguna y recorrer en bicicleta los carriles bici de la costa. En diciembre el casco antiguo se ilumina por Navidad, con un belén y luces por las callejuelas.</p>\n<h2>Dónde alojarse</h2>\n<p>La <strong>Casa per Ferie San Giuseppe</strong> está gestionada por las Hijas de María Auxiliadora y quiere ser algo más que un alojamiento: un lugar donde cada uno encuentra paz y calor humano, donde el tiempo se ralentiza y la belleza del mar invita a recuperar el equilibrio. Es la base ideal para unas vacaciones en el mar con la familia o el grupo, con el pueblo de Caorle y la laguna muy cerca.</p>"
+  },
+  "cesuna-altopiano-asiago-sentieri-grande-guerra": {
+   "titolo": "Cesuna y el altiplano de Asiago: bosques, memoria de la Gran Guerra y sabores de montaña",
+   "slug": "cesuna-altiplano-asiago-bosques-gran-guerra-queserias",
+   "riassunto": "",
+   "contenuto": "<p><strong>En Cesuna, en el altiplano de Asiago, los bosques de hayas y abetos esconden trincheras, cementerios de guerra y senderos que suben hasta los pastos.</strong> Hace un siglo se libró aquí una de las batallas más duras de la Gran Guerra; hoy es uno de los lugares más tranquilos del Véneto, ideal para caminar, reflexionar y probar quesos de los pastos de montaña.</p>\n<h2>Por qué visitar Cesuna y el altiplano</h2>\n<h3>El altiplano de los Siete Municipios</h3>\n<p>El altiplano de Asiago, a unos mil metros de altitud, también se llama altiplano de los <strong>Siete Municipios</strong>: Asiago, Roana, Rotzo, Gallio, Foza, Enego y Lusiana Conco. Durante siglos fue una pequeña república de montaña, habitada por los <strong>cimbrios</strong>, un pueblo de origen germánico que hablaba una lengua antigua que todavía se recuerda en los topónimos. Cesuna es una aldea del municipio de Roana, uno de los centros de la cultura cimbria.</p>\n<h3>Los lugares de la Gran Guerra</h3>\n<p>En 1916 y en 1918 el altiplano fue primera línea del frente. Los bosques que rodean Cesuna conservan trincheras, emplazamientos de artillería y galerías, y algunos de los <strong>cementerios militares británicos</strong> donde están enterrados los soldados británicos que combatieron aquí. En Asiago, el <strong>Sacrario del Leiten</strong> guarda los restos de decenas de miles de caídos. Son lugares de memoria y oración, que se visitan con respeto.</p>\n<h3>Senderos y naturaleza</h3>\n<p>El altiplano está surcado por cientos de kilómetros de senderos, pistas forestales y rutas ciclistas. Se camina entre bosques, queserías de montaña y pastos, hasta miradores sobre la llanura véneta. En invierno los mismos recorridos se convierten en pistas de esquí de fondo e itinerarios con raquetas de nieve.</p>\n<h3>Los sabores</h3>\n<p>Esta es la tierra del queso <strong>Asiago DOP</strong>, fresco o curado, elaborado con la leche de los pastos de montaña. En la temporada adecuada se encuentran setas, frutos del bosque y miel, y en las trattorias de montaña se comen ñoquis, polenta y caza.</p>\n<h2>Los alrededores</h2>\n<ul>\n<li><strong>Asiago</strong>: la capital del altiplano, con la catedral de San Matteo, el Sacrario del Leiten y sus calles comerciales, a pocos minutos de Cesuna.</li>\n<li><strong>Roana y Canove</strong>: museos dedicados a la cultura cimbria y a la Gran Guerra.</li>\n<li><strong>Forte Corbin</strong>: una fortaleza italiana de principios del siglo XX, colgada sobre un precipicio hacia el Val d’Astico.</li>\n<li><strong>Las queserías de montaña</strong>: en verano muchas abren a los visitantes y venden queso y mantequilla.</li>\n<li><strong>Marostica y Bassano del Grappa</strong>: bajando hacia la llanura, la plaza de la partida de ajedrez viviente y el puente de los Alpini.</li>\n</ul>\n<table>\n<thead>\n<tr><th>De Cesuna a…</th><th>Tiempo aproximado en coche</th></tr>\n</thead>\n<tbody>\n<tr><td>Asiago</td><td>10–15 minutos</td></tr>\n<tr><td>Roana y Canove</td><td>10 minutos</td></tr>\n<tr><td>Forte Corbin</td><td>20 minutos</td></tr>\n<tr><td>Bassano del Grappa</td><td>Alrededor de 1 hora</td></tr>\n<tr><td>Vicenza</td><td>Alrededor de 1 hora</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>El verano es la temporada de las caminatas, de las queserías abiertas y del aire fresco: en julio y agosto las temperaturas se mantienen agradables. En otoño los bosques cambian de color y se recogen setas y castañas. El invierno trae nieve, esquí de fondo y un silencio perfecto para un retiro.</p>\n<h2>Dónde alojarse</h2>\n<p><strong>Villa Tabor</strong> se encuentra en Cesuna, rodeada de hayas y abetos, y está confiada a las Hijas de María Auxiliadora desde 1943. Es una casa dedicada a la vida espiritual de jóvenes y adultos, con 15 habitaciones, capilla votiva, ascensor y aparcamiento gratuito. Acoge fines de semana de formación, semanas de espiritualidad, ejercicios espirituales y vacaciones, y ofrece la posibilidad de compartir momentos de oración con la comunidad de hermanas.</p>"
+  },
+  "verbania-lago-maggiore-isole-borromee": {
+   "titolo": "Verbania y el lago Maggiore: Villa Taranto, las islas Borromeas y lugares de silencio",
+   "slug": "verbania-lago-maggiore-villa-taranto-islas-borromeas",
+   "riassunto": "",
+   "contenuto": "<p><strong>Visto desde la colina de Zoverallo, el lago Maggiore parece un mar inmóvil rodeado de montañas: en medio del agua están las islas Borromeas; en las orillas, villas del siglo XIX y jardines botánicos.</strong> Verbania es el lugar ideal para descubrir uno de los lagos más bellos de Europa, al ritmo lento que sugiere el paisaje.</p>\n<h2>Por qué visitar Verbania</h2>\n<p>Verbania nació en 1939 de la unión de Intra y Pallanza, dos ciudades de carácter distinto: Intra, más comercial, con su mercado del sábado; Pallanza, más elegante, con su paseo a orillas del lago y sus villas. Juntas forman la ciudad más grande de la orilla piamontesa del lago.</p>\n<h3>Los jardines de Villa Taranto</h3>\n<p>En el promontorio de la Castagnola, los <strong>jardines botánicos de Villa Taranto</strong> fueron creados en los años treinta por el capitán escocés Neil McEacharn. Reúnen miles de especies de todo el mundo: rododendros, azaleas, arces, nenúfares gigantes en los invernaderos. En primavera la floración de tulipanes y azaleas es espectacular.</p>\n<h3>El paseo de Pallanza</h3>\n<p>El paseo de Pallanza, con sus plátanos y embarcaderos, mira hacia las islas y el golfo Borromeo. Enfrente está el islote de <strong>San Giovanni</strong>, donde se alojaba Arturo Toscanini.</p>\n<h3>Iglesias y oratorios</h3>\n<p>Entre Intra y Pallanza se encuentran iglesias románicas y barrocas, como la colegiata de San Leonardo y la antigua iglesia de <strong>San Remigio</strong>, en la colina de la Castagnola, con frescos medievales.</p>\n<h2>Los alrededores</h2>\n<h3>Las islas Borromeas</h3>\n<p>En barco se llega a las tres islas del golfo: <strong>Isola Bella</strong>, con el palacio barroco y el jardín en terrazas de los Borromeo; <strong>Isola Madre</strong>, la más grande, con un jardín botánico por el que pasean pavos reales blancos; <strong>Isola dei Pescatori</strong>, un pequeño pueblo de casas apiñadas a lo largo de estrechas callejuelas.</p>\n<h3>Stresa y el Mottarone</h3>\n<p>En la orilla opuesta, <strong>Stresa</strong> tiene un paseo de grandes hoteles de la Belle Époque. Desde allí se sube al <strong>Mottarone</strong>, la montaña entre el lago Maggiore y el lago de Orta, desde la que se ven siete lagos.</p>\n<h3>Santa Caterina del Sasso</h3>\n<p>En la orilla lombarda, la ermita de <strong>Santa Caterina del Sasso</strong> se aferra a una pared de roca que cae a pico sobre el agua. Se llega en barco o bajando una larga escalinata: un lugar único de silencio y oración.</p>\n<h3>Parque Nacional del Val Grande</h3>\n<p>Detrás de Verbania se abre el <strong>Val Grande</strong>, la zona salvaje más extensa de Italia, un parque nacional de bosques, torrentes y pastos de montaña abandonados.</p>\n<h3>El lago de Orta y Cannobio</h3>\n<p>A unos cuarenta minutos están <strong>Orta San Giulio</strong> y la isla de San Giulio con su basílica. Al norte, <strong>Cannobio</strong> tiene un paseo lleno de color y un animado mercado dominical.</p>\n<table>\n<thead>\n<tr><th>De Verbania a…</th><th>Cómo</th><th>Tiempo aproximado</th></tr>\n</thead>\n<tbody>\n<tr><td>Villa Taranto</td><td>En coche o a pie</td><td>10–15 minutos</td></tr>\n<tr><td>Islas Borromeas</td><td>Barco desde Pallanza</td><td>15–30 minutos</td></tr>\n<tr><td>Stresa</td><td>Barco o coche</td><td>30 minutos</td></tr>\n<tr><td>Cannobio</td><td>Coche</td><td>30 minutos</td></tr>\n<tr><td>Orta San Giulio</td><td>Coche</td><td>40 minutos</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>Abril y mayo son los meses de las floraciones: azaleas, rododendros y camelias transforman jardines y villas. El verano es la temporada de los paseos en barco y de las excursiones a las islas. En otoño el lago se vuelve silencioso y los bosques de alrededor se tiñen de rojo y oro: es el mejor momento para un retiro.</p>\n<h2>Dónde alojarse</h2>\n<p>La <strong>Casa per Ferie Maria Mazzarello</strong> se encuentra en la colina de Zoverallo, en plena naturaleza y frente al lago Maggiore. Es un lugar sencillo y tranquilo, con habitaciones cuidadas, un parque panorámico con mirador sobre el lago, salas de reuniones, capillas y aparcamiento privado. Acoge retiros y ejercicios espirituales y organiza cursos y encuentros durante todo el año: la base ideal para quien quiere descubrir el lago y encontrar tiempo para sí mismo.</p>"
+  },
+  "soverato-costa-degli-aranci-squillace": {
+   "titolo": "Soverato y la Costa de los Naranjos: el mar, la Piedad de Gagini y Squillace",
+   "slug": "soverato-costa-naranjos-pieta-gagini-squillace",
+   "riassunto": "",
+   "contenuto": "<p><strong>Soverato se asoma al golfo de Squillace, en un tramo de costa jónica que los calabreses llaman Costa degli Aranci, la Costa de los Naranjos.</strong> Tiene playas de arena clara, un paseo marítimo animado y, en la parte alta, una obra maestra del Renacimiento. Alrededor hay pueblos medievales, parques arqueológicos y el recuerdo de un gran monje del siglo VI.</p>\n<h2>Por qué visitar Soverato</h2>\n<h3>El mar de la Costa de los Naranjos</h3>\n<p>Las playas de Soverato son amplias y de arena, con un agua cristalina que ha valido a la ciudad la <strong>Bandera Azul</strong> en varias ocasiones. El fondo desciende suavemente y la bahía está resguardada: es un destino excelente para familias.</p>\n<h3>El paseo marítimo</h3>\n<p>Por la noche la vida de Soverato se traslada al paseo marítimo, entre palmeras, heladerías y paseos. En verano la ciudad acoge conciertos y eventos que la convierten en uno de los lugares más animados de la costa jónica.</p>\n<h3>La Piedad de Gagini</h3>\n<p>En la parte alta, <strong>Soverato Superiore</strong>, la iglesia de Maria Santissima Addolorata alberga la <strong>Piedad de Antonello Gagini</strong>, escultor siciliano del Renacimiento. Es un grupo de mármol blanco de gran delicadeza, uno de los tesoros artísticos de Calabria.</p>\n<h3>El viejo Soverato</h3>\n<p>En las colinas se alzan las ruinas del antiguo pueblo, abandonado tras el terremoto de 1783, con amplias vistas sobre el golfo.</p>\n<h2>Los alrededores</h2>\n<h3>Las playas de Copanello y Caminia</h3>\n<p>A pocos minutos al norte la costa se vuelve rocosa: <strong>Copanello</strong> y <strong>Caminia</strong> tienen calas de arena entre rocas de granito y agua cristalina, perfecta para el esnórquel. Entre las rocas de Copanello se ven pozas excavadas en la piedra, que la tradición relaciona con Casiodoro.</p>\n<h3>Squillace</h3>\n<p>En la colina que domina el golfo, <strong>Squillace</strong> es un pueblo medieval con un castillo normando y una larga tradición <strong>cerámica</strong>, todavía viva en sus talleres. Fue la cuna de <strong>Casiodoro</strong>, que en el siglo VI fundó el monasterio de Vivarium, donde los monjes copiaban y salvaban los textos antiguos.</p>\n<h3>Parque arqueológico de Scolacium</h3>\n<p>En Roccelletta di Borgia, entre olivos, el <strong>parque de Scolacium</strong> conserva los restos de la ciudad romana, con su teatro y su foro, y la gran basílica normanda de Santa Maria della Roccella.</p>\n<h3>Catanzaro y Le Castella</h3>\n<p><strong>Catanzaro</strong>, la capital regional, está a media hora. Hacia el sureste, en una hora y media aproximadamente, se llega a la fortaleza aragonesa de <strong>Le Castella</strong>, que parece flotar sobre el mar en Isola di Capo Rizzuto.</p>\n<table>\n<thead>\n<tr><th>De Soverato a…</th><th>Tiempo aproximado en coche</th></tr>\n</thead>\n<tbody>\n<tr><td>Copanello y Caminia</td><td>15 minutos</td></tr>\n<tr><td>Squillace</td><td>20 minutos</td></tr>\n<tr><td>Parque de Scolacium</td><td>25 minutos</td></tr>\n<tr><td>Catanzaro</td><td>30–40 minutos</td></tr>\n<tr><td>Le Castella</td><td>1 hora y media</td></tr>\n</tbody>\n</table>\n<h2>Cuándo ir</h2>\n<p>La temporada de playa va de junio a septiembre, con el agua templada hasta octubre. Mayo y septiembre son los meses ideales para combinar playa y visitas a los pueblos sin el calor de agosto. En primavera la costa huele a azahar, y se entiende de dónde viene su nombre.</p>\n<h2>Dónde alojarse</h2>\n<p><strong>Casa FMA Soverato</strong> está en la via San Giovanni Bosco y la gestionan las Hijas de María Auxiliadora. Tiene 15 habitaciones con aire acondicionado, calefacción, wifi y aparcamiento gratuito. Es la base ideal para familias y grupos que quieren disfrutar del mar de la Costa de los Naranjos y descubrir los pueblos y la historia del golfo de Squillace.</p>"
+  },
+  "la-storia-dellaltopiano-di-asiago": {
+   "titolo": "La historia del altiplano de Asiago",
+   "slug": "historia-del-altiplano-de-asiago",
+   "riassunto": "",
+   "contenuto": "<p>El altiplano de Asiago hunde sus raíces en la época romana y, en particular, en la cultura celta. Todavía hoy se encuentran huellas de esta presencia en el dialecto local y en los topónimos de toda la zona. De 1310 a 1807, la Spettabile Reggenza dei Sette Comuni fue un gobierno autónomo y comunitario, aliado de la República de Venecia.</p>\n<p>Las montañas y los bosques que rodean Cesuna fueron escenario de acontecimientos importantes durante la <a rel=\"noopener\" target=\"_blank\" href=\"https://es.wikipedia.org/wiki/Primera_Guerra_Mundial\">Primera Guerra Mundial</a>: en particular, a partir de abril de 1918 la zona estuvo en manos de las fuerzas británicas, que se enfrentaron a las tropas austriacas en junio siguiente. Sigue siendo uno de los lugares más evocadores para visitar los restos del gran sistema de trincheras, posiciones blindadas, refugios y el gran «Osario» que, junto con museos y cementerios, mantiene viva la memoria de los caídos.</p>\n<p>Esta riqueza histórica y cultural se ve realzada por el entorno natural de Cesuna y de todo el altiplano, cuyos colores, más vivos gracias al ciclo de las estaciones, aprecian todos los que quieren pasar un periodo de descanso y renovación a lo largo de recorridos y senderos que serpentean por los bosques, o con los deportes que se pueden practicar en el altiplano: de la bicicleta de montaña al tenis, del golf al trekking, del esquí al patinaje.</p>\n<p>Las numerosas queserías de montaña y los talleres de pequeños productores convierten cada simple paseo por el altiplano en una ocasión para descubrir la gastronomía local. Los sabores tradicionales se mezclan con los escaparates de la artesanía de la madera para ofrecer a cada visitante un entorno interesante y lleno de descubrimientos.</p>"
+  },
+  "soverato-la-perla-della-calabria": {
+   "titolo": "Soverato, la perla de Calabria",
+   "slug": "soverato-la-perla-de-calabria",
+   "riassunto": "",
+   "contenuto": "<p>Con una mezcla perfecta de historia, naturaleza y diversión, Soverato es la perla de Calabria.<br />Aquí tienes algunos consejos para que tu estancia sea inolvidable.</p>\n<p><strong>Qué ver y hacer:</strong></p>\n<ul>\n<li><strong>Playas:</strong> Soverato es famosa por sus playas de arena finísima y su mar cristalino. La playa de Caminia es especialmente apreciada por su tranquilidad.</li>\n<li><strong>Casco antiguo:</strong> Pasea por el casco antiguo y admira los palacios nobiliarios, las iglesias y los talleres artesanos.</li>\n<li><strong>Jardín botánico de Santicelli:</strong> Un oasis de paz con una vista espectacular del golfo.</li>\n<li><strong>Roccelletta di Borgia:</strong> Un yacimiento arqueológico de gran interés, con los restos de una basílica bizantina.</li>\n<li><strong>Torre de Carlos V:</strong> Una antigua torre de vigilancia con vistas panorámicas al mar.</li>\n<li><strong>Deportes acuáticos:</strong> Si te gustan los deportes acuáticos, en Soverato puedes practicar windsurf, kitesurf y buceo.</li>\n<li><strong>Vida nocturna:</strong> Por la noche Soverato se anima con muchos bares y locales.</li>\n</ul>\n<p><strong>Cuándo ir:</strong></p>\n<p>La mejor época para visitar Soverato es de junio a septiembre, cuando el tiempo es cálido y soleado.</p>\n<p><strong>Dónde comer:</strong></p>\n<p>La cocina calabresa es rica en sabores y tradiciones. En Soverato puedes disfrutar de platos de pescado fresco, además de ’nduja, soppressata y peperoni cruschi.</p>\n<p><strong>Eventos:</strong></p>\n<ul>\n<li><strong>Soverato Summer Festival:</strong> Un festival de verano con música, espectáculos y eventos culturales.</li>\n<li><strong>Fiesta del pez espada:</strong> Una fiesta gastronómica dedicada al pez espada, uno de los productos típicos de la zona.</li>\n</ul>\n<p><strong>Consejos adicionales:</strong></p>\n<ul>\n<li><strong>Alquila un coche:</strong> Para explorar los alrededores y llegar a las playas más escondidas.</li>\n<li><strong>Prueba los productos locales:</strong> No te pierdas la ocasión de probar los productos típicos calabreses, como el vino, el aceite de oliva y los quesos.</li>\n<li><strong>Apúntate a una excursión:</strong> Muchas agencias organizan excursiones a las islas Eolias, a Catanzaro o al Parque Nacional del Aspromonte.</li>\n</ul>\n<p><strong>Qué llevar:</strong></p>\n<ul>\n<li><strong>Bañador:</strong> Imprescindible para disfrutar del mar.</li>\n<li><strong>Crema solar:</strong> Para protegerte de los rayos del sol.</li>\n<li><strong>Sombrero y gafas de sol:</strong> Para resguardarte del sol.</li>\n<li><strong>Calzado cómodo:</strong> Para caminar y explorar.</li>\n<li><strong>Cámara de fotos:</strong> Para inmortalizar tus recuerdos.</li>\n</ul>\n<p>Fotos de https://a.travel-assets.com/ , https://cs-stage.altrama.com/ , https://www.lesuberante.it/,  https://booking.caorle.eu/</p>"
+  },
+  "il-giubileo-a-roma": {
+   "titolo": "El Jubileo en Roma",
+   "slug": "el-jubileo-en-roma",
+   "riassunto": "",
+   "contenuto": "<p>Roma durante el Jubileo es una experiencia inolvidable. Para ayudarte a organizar tu viaje lo mejor posible, aquí tienes algunos consejos.</p>\n<p><strong>Cuándo ir:</strong></p>\n<ul>\n<li><strong>Apertura de la Puerta Santa:</strong> El Jubileo comenzará oficialmente el 24 de diciembre de 2024 con la apertura de la Puerta Santa de la basílica de San Pedro. Es el momento culminante para los peregrinos.</li>\n<li><strong>Otros eventos:</strong> A lo largo del año se organizarán muchos eventos relacionados con el Jubileo, como jubileos temáticos (por ejemplo, para el mundo de la comunicación, las fuerzas armadas, etc.). Consulta la web oficial del Jubileo para estar al día.</li>\n</ul>\n<p><strong>Qué ver y hacer:</strong></p>\n<ul>\n<li><strong>Las basílicas:</strong> Además de San Pedro, visita las otras cuatro basílicas papales: San Juan de Letrán, San Pablo Extramuros, Santa María la Mayor y San Lorenzo Extramuros.</li>\n<li><strong>El vía crucis:</strong> Participa en alguno de los muchos vía crucis organizados en la ciudad, una experiencia espiritual intensa.</li>\n<li><strong>Las iglesias:</strong> Roma está llena de iglesias, cada una con su historia y su arte únicos. Visita las que más te interesen.</li>\n<li><strong>Los Museos Vaticanos y la Capilla Sixtina:</strong> Una visita obligada para todo el que va a Roma. Reserva las entradas con antelación para evitar largas colas.</li>\n<li><strong>Otros lugares:</strong> No olvides visitar el Coliseo, el Foro Romano, el Panteón, el Castillo de Sant’Angelo y las fuentes de Roma.</li>\n</ul>\n<p><strong>Cómo moverse:</strong></p>\n<ul>\n<li><strong>Metro:</strong> El metro es la forma más rápida de moverse por la ciudad.</li>\n<li><strong>Autobuses:</strong> Muchas líneas de autobús conectan todos los barrios de Roma.</li>\n<li><strong>A pie:</strong> Roma es una ciudad hecha para recorrerla a pie, sobre todo en el centro histórico.</li>\n</ul>\n<p><strong>Dónde alojarse:</strong></p>\n<ul>\n<li><strong>Cerca del Vaticano:</strong> Si quieres estar cerca de los principales lugares del Jubileo, busca alojamiento cerca del Vaticano.</li>\n<li><strong>Centro histórico:</strong> El centro histórico ofrece una amplia oferta de hoteles, B&amp;B y apartamentos.</li>\n<li><strong>Barrios periféricos:</strong> Si tienes un presupuesto ajustado, puedes buscar alojamiento en los barrios periféricos y usar el transporte público para llegar al centro.</li>\n</ul>\n<p><strong>Consejos útiles:</strong></p>\n<ul>\n<li><strong>Reserva con antelación:</strong> Hoteles, vuelos y entradas a museos deben reservarse con mucha antelación, sobre todo si viajas en temporada alta.</li>\n<li><strong>Ropa cómoda:</strong> Prepárate para caminar mucho y lleva calzado cómodo.</li>\n<li><strong>Lleva una botella de agua:</strong> Roma es una ciudad calurosa, así que lleva siempre agua contigo.</li>\n<li><strong>Respeta las normas:</strong> En los lugares de culto hay que respetar ciertas normas de vestimenta.</li>\n<li><strong>Seguro de viaje:</strong> Contrata un seguro de viaje que cubra posibles gastos médicos o la repatriación.</li>\n</ul>\n<p>Fotos de <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/jerome82-11303951/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">JEROME CLARYSSE</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/nimrodins-12874542/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4529605\">Nimrod Oren</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/mailanmaik-4340251/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4634107\">Maik</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/paula11767-7946983/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3133764\">Paula Flan</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/rainhard2-19578714/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6207755\">Rainhard Wiesinger</a> en <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">Pixabay</a></p>"
+  },
+  "cosa-fare-a-napoli": {
+   "titolo": "Qué hacer en Nápoles",
+   "slug": "que-hacer-en-napoles",
+   "riassunto": "",
+   "contenuto": "<ul>\n<li><strong>Spaccanapoli:</strong> Perderse por las callejuelas de Spaccanapoli es una experiencia única. Admira los palacios nobiliarios, los talleres artesanos y las iglesias barrocas.</li>\n<li><strong>Castel Nuovo:</strong> Una imponente fortaleza que domina el puerto. Visita sus salas interiores y disfruta de la vista panorámica de la ciudad.</li>\n<li><strong>Galleria Umberto I:</strong> Una galería comercial del siglo XIX, joya de la arquitectura modernista. Admira las vidrieras de colores y pasea entre las tiendas.</li>\n<li><strong>Nápoles subterránea:</strong> Descubre la Nápoles escondida bajo la ciudad. Visita los túneles, las cisternas y los teatros romanos.</li>\n<li><strong>Museo Arqueológico Nacional:</strong> Admira una de las colecciones arqueológicas más importantes de Italia. No te pierdas los famosos mosaicos y los hallazgos de Pompeya.</li>\n<li><strong>Capilla Sansevero:</strong> Respira la atmósfera mística de esta capilla y admira el Cristo velado, una de las obras de arte más fascinantes del mundo.</li>\n<li><strong>Pizza:</strong> Prueba la auténtica pizza napolitana en una de las muchas pizzerías históricas de la ciudad.</li>\n<li><strong>Paseo por el paseo marítimo:</strong> Disfruta de un paseo junto al mar de Nápoles, contemplando el Vesubio y el golfo.</li>\n<li><strong>Quartieri Spagnoli:</strong> Sumérgete en la atmósfera auténtica de los Barrios Españoles, un barrio animado y lleno de color.</li>\n</ul>\n<p><strong>Cuándo ir:</strong></p>\n<p>La mejor época para visitar Nápoles es la primavera (abril–mayo) o el otoño (septiembre–octubre), cuando el clima es suave y hay menos aglomeraciones de turistas.</p>\n<p><strong>Cómo moverse:</strong></p>\n<p>Nápoles es una ciudad que se presta a ser recorrida a pie. Si no, puedes usar el transporte público (autobuses, metro) o el taxi.</p>\n<p><strong>Dónde comer:</strong></p>\n<p>La cocina napolitana es famosa en todo el mundo. No dejes de probar:</p>\n<ul>\n<li><strong>Pizza:</strong> La auténtica pizza napolitana es una experiencia única.</li>\n<li><strong>Pasta:</strong> Espaguetis con almejas, pasta e patate, genovese… ¡hay para todos los gustos!</li>\n<li><strong>Friarielli:</strong> Una guarnición típica napolitana, imprescindible para los amantes de los sabores intensos.</li>\n<li><strong>Babà:</strong> Un bizcocho esponjoso empapado en ron, perfecto para terminar la comida.</li>\n</ul>\n<p><strong>Consejos adicionales:</strong></p>\n<ul>\n<li><strong>Reserva con antelación:</strong> Si quieres visitar los museos más importantes, te recomiendo reservar las entradas con antelación, sobre todo en temporada alta.</li>\n<li><strong>Vístete con comodidad:</strong> ¡Para perderse por las callejuelas de Nápoles hace falta calzado cómodo!</li>\n<li><strong>Prueba la comida callejera:</strong> No te pierdas las muchas especialidades de comida callejera que encontrarás por las calles de Nápoles.</li>\n<li><strong>Aprende algunas palabras en napolitano:</strong> Conocer algunas palabras en napolitano hará tu experiencia aún más auténtica.</li>\n</ul>"
+  },
+  "perche-visitare-torre-annunziata": {
+   "titolo": "¿Por qué visitar Torre Annunziata?",
+   "slug": "por-que-visitar-torre-annunziata",
+   "riassunto": "",
+   "contenuto": "<p>Hay muchas razones para visitar Torre Annunziata. Estas son algunas de las más importantes:</p>\n<ul>\n<li><strong>Su posición estratégica:</strong> Torre Annunziata ocupa una posición estratégica en el golfo de Nápoles. La ciudad ofrece vistas panorámicas del Vesubio y de la isla de Capri.</li>\n<li><strong>Su historia antigua:</strong> Torre Annunziata tiene una historia antigua que se remonta a la época romana. La ciudad alberga numerosos yacimientos arqueológicos, entre ellos las ruinas de la villa de Popea y el Museo Arqueológico Nacional de Torre Annunziata.</li>\n<li><strong>El cultivo del tomate:</strong> Torre Annunziata es famosa por sus tomates. La ciudad es el centro de producción del tomate San Marzano, una variedad muy apreciada por su sabor y versatilidad.</li>\n<li><strong>Las playas:</strong> Torre Annunziata tiene varias playas a lo largo de la costa. Son ideales para bañarse, hacer surf y windsurf.</li>\n<li><strong>La vida nocturna:</strong> Torre Annunziata tiene una vida nocturna animada. En la ciudad hay muchos bares, restaurantes y locales.</li>\n</ul>\n<p><strong>¿Qué hacer en Torre Annunziata?</strong></p>\n<p>Hay muchas cosas que hacer en Torre Annunziata. Estas son algunas de las actividades más populares:</p>\n<ul>\n<li><strong>Visitar los yacimientos arqueológicos:</strong> Los yacimientos arqueológicos de Torre Annunziata son una atracción imprescindible. Los más importantes son las ruinas de la villa de Popea y el Museo Arqueológico Nacional de Torre Annunziata.</li>\n<li><strong>Darse un baño:</strong> Las playas de Torre Annunziata son ideales para bañarse, hacer surf y windsurf.</li>\n<li><strong>Probar el tomate San Marzano:</strong> Los tomates San Marzano de Torre Annunziata son muy apreciados por su sabor y versatilidad.</li>\n<li><strong>Disfrutar de la vida nocturna:</strong> Torre Annunziata tiene una vida nocturna animada. En la ciudad hay muchos bares, restaurantes y locales.</li>\n</ul>\n<p><strong>¿Cómo llegar a Torre Annunziata?</strong></p>\n<p>Torre Annunziata es fácil de alcanzar en tren o en autobús desde Nápoles. También se puede llegar en coche.</p>\n<p><strong>¿Cuándo visitar Torre Annunziata?</strong></p>\n<p>La mejor época para visitar Torre Annunziata es la primavera o el otoño, cuando el clima es suave. Sin embargo, la ciudad también merece una visita en verano y en invierno.</p>\n<p><strong>Consejos para visitar Torre Annunziata</strong></p>\n<ul>\n<li><strong>Tómate tu tiempo:</strong> Torre Annunziata es una ciudad rica en historia y cultura. Tómate tu tiempo para explorarla y descubrir sus tesoros escondidos.</li>\n<li><strong>Prueba el tomate San Marzano:</strong> Los tomates San Marzano de Torre Annunziata son una experiencia culinaria que no te puedes perder.</li>\n<li><strong>Prueba la vida nocturna:</strong> Torre Annunziata tiene una vida nocturna animada. No dejes de probar algunos bares, restaurantes y locales de la ciudad.</li>\n<li><strong>Relájate en las playas:</strong> Las playas de Torre Annunziata son ideales para relajarse y divertirse.</li>\n</ul>\n<p><strong>Conclusión</strong></p>\n<p>Torre Annunziata es una ciudad rica en historia, cultura y belleza natural. Ofrece a los visitantes una amplia gama de actividades: visitas a yacimientos arqueológicos, baños, surf, windsurf, degustación de tomates San Marzano y vida nocturna. Si buscas un destino interesante y asequible, Torre Annunziata es una excelente elección.</p>"
+  }
+ }
+}
