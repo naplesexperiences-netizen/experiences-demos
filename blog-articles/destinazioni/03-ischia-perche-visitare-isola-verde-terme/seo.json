@@ -24,7 +24,12 @@
   "struttura": "Terme di Vivara",
   "citta": "Ischia",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/terme-di-vivara-ischia-demo-experiences/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Il Castello Aragonese di Ischia sul suo isolotto di roccia",
+    "credit": "Ischia - Castello aragonese - 202209012243 di Pipito93, CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=122545326"
+  },
   "word_count": 587,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Ischia, l'isola verde: terme, Sant'Angelo e giardini — perché visitarla",
     "description": "Perché visitare Ischia: sorgenti termali, Castello Aragonese, il borgo di Sant'Angelo, i giardini La Mortella e la vicina Procida.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/ischia-perche-visitare-isola-verde-terme.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/03-ischia-perche-visitare-isola-verde-terme/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Ischia"

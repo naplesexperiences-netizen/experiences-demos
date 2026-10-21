@@ -24,7 +24,12 @@
   "struttura": "Hotel Ristorante Cavaliere",
   "citta": "Scario",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-cavaliere-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Il porto di Scario sul Golfo di Policastro",
+    "credit": "Port of Scario di Bernd Schade, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=5555050"
+  },
   "word_count": 589,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Scario, il porto sul Golfo di Policastro: la costa della Masseta e San Giovanni a Piro",
     "description": "Perché visitare Scario: il porto, la costa della Masseta e degli Infreschi in barca, San Giovanni a Piro e il Monte Bulgheria.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/scario-golfo-di-policastro-masseta.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/54-scario-golfo-di-policastro-masseta/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Scario"

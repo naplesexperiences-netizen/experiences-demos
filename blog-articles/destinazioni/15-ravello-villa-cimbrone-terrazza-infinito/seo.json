@@ -23,7 +23,12 @@
   "struttura": "Hotel Villa Cimbrone",
   "citta": "Ravello",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-villa-cimbrone-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "I busti di marmo della Terrazza dell'Infinito a Villa Cimbrone, Ravello",
+    "credit": "Ravello - Villa Cimbrone 02 di Mihael Grmek, CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=35665180"
+  },
   "word_count": 637,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -31,7 +36,7 @@
     "@type": "Article",
     "headline": "Villa Cimbrone e la Terrazza dell'Infinito: perché Ravello vale il viaggio",
     "description": "Villa Cimbrone e la Terrazza dell'Infinito: storia, giardini e cosa vedere a Ravello e dintorni, dal Duomo all'Auditorium Niemeyer.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/ravello-villa-cimbrone-terrazza-infinito.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/15-ravello-villa-cimbrone-terrazza-infinito/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Ravello"
