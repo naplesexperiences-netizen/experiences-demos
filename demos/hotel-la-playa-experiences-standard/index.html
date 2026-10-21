@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel La Playa — Sul mare Via Nicotera 135 Parco Nazionale Cilento mid. Situato a Acciaroli, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel La Playa si trova sul mare ad Acciaroli, in Via Nicotera, all'interno del Parco Nazionale del Cilento. È la base ideale per alternare i giorni di spiaggia alle passeggiate nei borghi di Pollica, vivendo il ritmo lento che da queste parti allunga la vita.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotellaplayaacciaroli.it/wp/wp-content/uploads/2022/04/home-spiaggia-2-800x639.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono il segreto della longevità, Acciaroli e Pioppi. Tutti i consigli nella nostra guida di Acciaroli.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Acciaroli</h2>
+            <p>Nel comune di Pollica il numero di ultranovantenni e centenari in buona salute è sorprendentemente alto. Ricercatori di mezzo mondo sono venuti qui per capire il segreto: alimentazione, movimento, legami sociali, un ambiente sano.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Il borgo di Pollica sulla collina, nel Parco Nazionale del Cilento" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=59862246">CilPollica16</a> di Ziegler175, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Il segreto della longevità</h3><p>Gli studi condotti sugli anziani di Pollica hanno evidenziato un mix di fattori: una dieta ricca di olio extravergine, legumi, verdure, pesce azzurro e poca carne; un'attività fisica quotidiana fatta di camminate su e giù per i paesi in collina; una vita sociale intensa e il rapporto con la natura.</p></li>
+                        <li class="terr-item"><h3>Acciaroli</h3><p>Il borgo marinaro più famoso del comune, con il mare Bandiera Blu, il porto, la torre medievale e la chiesa dell'Annunziata sulla spiaggia. Secondo la leggenda, qui Hemingway trovò l'ispirazione per Il vecchio e il mare.</p></li>
+                        <li class="terr-item"><h3>Pioppi</h3><p>Piccolo paese sul mare dove visse per decenni il fisiologo Ancel Keys, padre degli studi sulla dieta mediterranea. Nel Palazzo Vinciprova ha sede il Museo Vivente della Dieta Mediterranea.</p></li>
+                        <li class="terr-item"><h3>Pollica</h3><p>Il capoluogo, sulla collina, è un borgo medievale dominato dal Castello dei Principi Capano, che ospita eventi e attività culturali. I vicoli in pietra si aprono su terrazze affacciate sul mare.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Acciaroli →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel La Playa. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Acciaroli?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Hotel La Playa";
     var citta = "Acciaroli";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Il segreto della longevità</strong> e <strong>Acciaroli</strong>. Gli studi condotti sugli anziani di Pollica hanno evidenziato un mix di fattori: una dieta ricca di olio extravergine, legumi, verdure, pesce azzurro e poca carne; un'attività fisica quotidiana fatta di camminate su e giù per i paesi in collina; una vita sociale intensa e il rapporto con la natura. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

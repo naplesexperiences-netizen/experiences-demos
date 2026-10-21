@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Grand Hotel Santa Maria — 54 camere vista mare spiaggia Pozzillo centro wellness upper. Situato a Santa Maria di Castellabate, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Il Grand Hotel Santa Maria ha 54 camere con vista mare, si affaccia sulla spiaggia del Pozzillo e dispone di un centro wellness. È la scelta ideale per chi vuole vivere il mare di Castellabate nel modo più diretto: l'ombrellone a pochi passi, il borgo a portata di passeggiata e Punta Licosa a un breve tragitto.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.grandhotel-santamaria.it/wp-content/uploads/2026/02/cucina-cilento-grand-hotel-santa-maria.webp" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono la spiaggia del Pozzillo, l'Area Marina Protetta e Punta Licosa. Tutti i consigli nella nostra guida di Santa Maria di Castellabate.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Santa Maria di Castellabate, in posizione comoda per il territorio. Castellabate borgo: 10 minuti; San Marco di Castellabate: 5 minuti; Punta Licosa: 15 minuti + sentiero.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Santa Maria di Castellabate</h2>
+            <p>Il mare di Santa Maria di Castellabate ha un colore che cambia a ogni ora: verde chiaro sulla sabbia, turchese sugli scogli, blu profondo verso Punta Licosa. Non è un caso: questo tratto di costa è un'Area Marina Protetta, uno dei mari più puliti d'Italia.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Santa Maria di Castellabate e il suo mare visti dall&#x27;alto" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=148687254">Santa Maria di Castellabate in May 2024</a> di Ihateeverythingaboutphysics, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en/">CC0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>La spiaggia del Pozzillo</h3><p>Al centro del paese, la spiaggia del Pozzillo è una distesa di sabbia dorata con un fondale che scende dolcemente.</p></li>
+                        <li class="terr-item"><h3>L'Area Marina Protetta</h3><p>Istituita nel 2009, l'Area Marina Protetta di Santa Maria di Castellabate tutela un lungo tratto di costa che comprende Punta Tresino e Punta Licosa.</p></li>
+                        <li class="terr-item"><h3>Punta Licosa</h3><p>All'estremità meridionale dell'Area Marina, Punta Licosa è un promontorio selvaggio coperto di macchia mediterranea, con un isolotto e un faro. Secondo la leggenda, qui si gettò in mare la sirena Leucosia, respinta da Ulisse.</p></li>
+                        <li class="terr-item"><h3>Il borgo e la storia</h3><p>Santa Maria di Castellabate non è solo mare. Lungo la costa si incontrano palazzi e ville storiche, come Villa Matarazzo, appartenuta a una famiglia emigrata in Brasile e diventata potentissima, e la chiesa di Santa Maria a Mare.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Castellabate borgo</dt><dd>10 minuti</dd><dt>San Marco di Castellabate</dt><dd>5 minuti</dd><dt>Punta Licosa</dt><dd>15 minuti + sentiero</dd><dt>Ogliastro Marina</dt><dd>15 minuti</dd><dt>Agropoli</dt><dd>25 minuti</dd><dt>Paestum</dt><dd>40 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Santa Maria di Castellabate →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +300,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Grand Hotel Santa Maria. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Santa Maria di Castellabate?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +512,7 @@
     var hotelName = "Grand Hotel Santa Maria";
     var citta = "Santa Maria di Castellabate";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>La spiaggia del Pozzillo</strong> e <strong>L'Area Marina Protetta</strong>. Al centro del paese, la spiaggia del Pozzillo è una distesa di sabbia dorata con un fondale che scende dolcemente. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

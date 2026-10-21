@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Il San Pietro di Positano — Relais & Chateaux 57 camere strapiombo sul mare spiaggia privata ristorante stellato Zass. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Il San Pietro di Positano, Relais &amp; Châteaux, è costruito a strapiombo sul mare con 57 camere, una spiaggia privata raggiungibile con l'ascensore scavato nella roccia e il ristorante stellato Zass. È l'indirizzo perfetto per chi vuole vivere Positano dal punto di vista che conta di più: quello dell'acqua.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.ilsanpietro.com/wp-content/uploads/2024/09/Fishbeach-768x1149.jpeg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono Li Galli, l'arcipelago delle Sirene, le calette verso Praiano e la Grotta dello Smeraldo. Tutti i consigli nella nostra guida di Positano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Positano</h2>
+            <p>Positano si capisce davvero solo dal mare. Da terra la si vive a pezzi, una scalinata alla volta; dalla barca, invece, il paese si apre tutto insieme come un anfiteatro, e la costa rivela calette, grotte e isole che dalla strada non si immaginano.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Gli isolotti de Li Galli davanti alla costa di Positano" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=16889847">Isolotti de Li Galli (Costiera Sorrentina)</a> di IlSistemone, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Li Galli, l'arcipelago delle Sirene</h3><p>A pochi chilometri dalla costa, verso Punta Campanella, emergono le tre isolette de Li Galli: Gallo Lungo, La Castelluccia e La Rotonda. Gli antichi le chiamavano Sirenuse e le identificavano con l'isola delle Sirene dell'Odissea.</p></li>
+                        <li class="terr-item"><h3>Le calette verso Praiano</h3><p>Navigando verso est si incontrano piccole spiagge di ciottoli, come Laurito e Arienzo, e poi la costa di Praiano con la Marina di Praia, una spiaggetta incastonata in una gola.</p></li>
+                        <li class="terr-item"><h3>La Grotta dello Smeraldo</h3><p>A Conca dei Marini, la Grotta dello Smeraldo deve il nome alla luce verde che filtra da un'apertura sommersa e accende l'acqua.</p></li>
+                        <li class="terr-item"><h3>Capri</h3><p>Una giornata a Capri in barca privata è un classico: si fa il giro dell'isola, si passa sotto l'arco dei Faraglioni, ci si ferma alla Grotta Verde e, se il mare lo permette, alla Grotta Azzurra.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Positano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Il San Pietro di Positano. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Positano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Il San Pietro di Positano";
     var citta = "Positano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Li Galli, l'arcipelago delle Sirene</strong> e <strong>Le calette verso Praiano</strong>. A pochi chilometri dalla costa, verso Punta Campanella, emergono le tre isolette de Li Galli: Gallo Lungo, La Castelluccia e La Rotonda. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

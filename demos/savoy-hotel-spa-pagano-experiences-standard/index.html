@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -48,6 +49,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -100,7 +102,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Savoy Hotel & Spa Pagano — Lusso vicino pineta e spiaggia Via Poseidonia Preferred Hotels luxury. Situato a Paestum, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Il Savoy Hotel &amp; Spa Pagano, membro di Preferred Hotels, si trova in Via Poseidonia, vicino alla pineta e alla spiaggia. Con la sua spa, è il luogo ideale per una vacanza di benessere che alterni il mare, le passeggiate nella natura e la visita ai templi.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -150,12 +152,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono la pineta, l'Oasi Dunale e le spiagge. Tutti i consigli nella nostra guida di Paestum.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -165,7 +168,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Paestum, in posizione comoda per il territorio. Oasi WWF di Persano: 30 minuti; Grotte di Pertosa-Auletta: 50 minuti; Punta Tresino: 25 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -180,6 +183,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Paestum</h2>
+            <p>Tutti vengono a Paestum per i templi. Pochi scoprono che, a un chilometro di distanza, c'è una pineta che profuma di resina, una duna protetta e una spiaggia che si allunga per chilometri verso sud.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Giglio di mare in fiore sulle dune di Paestum" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=85664176">Pacratium maritimum Paestum 03</a> di Laurentius, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>La pineta</h3><p>La pineta di Paestum accompagna la costa per chilometri, con sentieri ombreggiati percorribili a piedi o in bicicletta.</p></li>
+                        <li class="terr-item"><h3>L'Oasi Dunale</h3><p>Lungo il litorale, l'Oasi Dunale di Paestum protegge un tratto di duna costiera con la sua vegetazione tipica: gigli di mare, ginepri, lentischi ed erbe pioniere che resistono al sale e al vento.</p></li>
+                        <li class="terr-item"><h3>Le spiagge</h3><p>La spiaggia di Paestum è di sabbia dorata e fine, con un fondale che scende dolcemente. Gli stabilimenti attrezzati si alternano a tratti liberi.</p></li>
+                        <li class="terr-item"><h3>Il fiume Sele e le sue oasi</h3><p>A nord di Paestum, il fiume Sele scende dalle montagne dell'Irpinia e sfocia nel Golfo di Salerno. Lungo il suo corso, l'Oasi WWF di Persano protegge un bosco umido dove vivono lontre, aironi, garzette e martin pescatori.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Oasi WWF di Persano</dt><dd>30 minuti</dd><dt>Grotte di Pertosa-Auletta</dt><dd>50 minuti</dd><dt>Punta Tresino</dt><dd>25 minuti</dd><dt>Monti Alburni</dt><dd>1 ora</dd><dt>Punta Licosa</dt><dd>40 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Paestum →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -263,7 +298,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Savoy Hotel & Spa Pagano. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Paestum?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -475,6 +510,7 @@
     var hotelName = "Savoy Hotel & Spa Pagano";
     var citta = "Paestum";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>La pineta</strong> e <strong>L'Oasi Dunale</strong>. La pineta di Paestum accompagna la costa per chilometri, con sentieri ombreggiati percorribili a piedi o in bicicletta. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
