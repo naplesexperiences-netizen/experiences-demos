@@ -37,25 +37,25 @@ foreach ( $strutture as $s ) {
 ?>
 <section class="places" id="strutture" aria-labelledby="places-title">
 	<div class="places__head">
-		<<?php echo $tag; // phpcs:ignore ?> id="places-title" class="section-title"><?php echo esc_html( $args['titolo'] ?? 'Le strutture' ); ?></<?php echo $tag; // phpcs:ignore ?>>
+		<<?php echo $tag; // phpcs:ignore ?> id="places-title" class="section-title"><?php echo esc_html( $args['titolo'] ?? __( 'Le strutture', 'accoglienza-fma' ) ); ?></<?php echo $tag; // phpcs:ignore ?>>
 		<?php if ( ! empty( $args['testo'] ) ) : ?>
 			<p class="places__lede"><?php echo esc_html( $args['testo'] ); ?></p>
 		<?php endif; ?>
 	</div>
 	<div class="places__tools">
 		<?php if ( count( $regioni ) > 1 ) : ?>
-			<div class="chips" role="group" aria-label="Filtra per regione">
-				<button type="button" class="chip is-active" data-filter="" aria-pressed="true">Tutte <span><?php echo (int) $n; ?></span></button>
+			<div class="chips" role="group" aria-label="<?php esc_attr_e( 'Filtra per regione', 'accoglienza-fma' ); ?>">
+				<button type="button" class="chip is-active" data-filter="" aria-pressed="true"><?php esc_html_e( 'Tutte', 'accoglienza-fma' ); ?> <span><?php echo (int) $n; ?></span></button>
 				<?php foreach ( $regioni as $nome => $quante ) : ?>
 					<button type="button" class="chip" data-filter="<?php echo esc_attr( $nome ); ?>" aria-pressed="false"><?php echo esc_html( $nome ); ?> <span><?php echo (int) $quante; ?></span></button>
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
-		<p class="places__status" aria-live="polite" data-places-status><?php echo esc_html( 1 === $n ? '1 casa' : "$n case" ); ?></p>
+		<p class="places__status" aria-live="polite" data-places-status><?php echo esc_html( fma_n_case( $n ) ); ?></p>
 	</div>
 	<div class="search-echo" hidden data-search-echo>
 		<p><span data-search-echo-text></span></p>
-		<button type="button" class="link-btn" data-search-reset>Azzera la ricerca</button>
+		<button type="button" class="link-btn" data-search-reset><?php esc_html_e( 'Azzera la ricerca', 'accoglienza-fma' ); ?></button>
 	</div>
 	<div class="places__grid">
 		<ol class="places__list" data-places-list>
@@ -76,10 +76,10 @@ foreach ( $strutture as $s ) {
 			<?php endforeach; ?>
 		</ol>
 		<div class="places__map">
-			<div class="map" id="mappa-strutture" data-map role="region" aria-label="Mappa delle case"></div>
-			<p class="map__fallback">La mappa si carica con la connessione. Tutte le case sono comunque nell’elenco.</p>
+			<div class="map" id="mappa-strutture" data-map role="region" aria-label="<?php esc_attr_e( 'Mappa delle case', 'accoglienza-fma' ); ?>"></div>
+			<p class="map__fallback"><?php esc_html_e( 'La mappa si carica con la connessione. Tutte le case sono comunque nell’elenco.', 'accoglienza-fma' ); ?></p>
 		</div>
 	</div>
-	<p class="places__empty" hidden data-places-empty>Nessuna casa corrisponde a questa ricerca. <button type="button" class="link-btn" data-search-reset>Mostra tutte le case</button></p>
+	<p class="places__empty" hidden data-places-empty><?php esc_html_e( 'Nessuna casa corrisponde a questa ricerca.', 'accoglienza-fma' ); ?> <button type="button" class="link-btn" data-search-reset><?php esc_html_e( 'Mostra tutte le case', 'accoglienza-fma' ); ?></button></p>
 	<script type="application/json" id="fma-map-data"><?php echo wp_json_encode( $mappa, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP ); ?></script>
 </section>
