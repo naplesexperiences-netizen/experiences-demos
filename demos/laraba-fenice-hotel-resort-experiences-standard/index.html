@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>L'Araba Fenice Hotel & Resort — Parco 4 ettari SPA piscina 5 min dai templi UNESCO luxury. Situato a Paestum, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Araba Fenice Hotel &amp; Resort è immerso in un parco di quattro ettari con SPA e piscina, a cinque minuti dai templi UNESCO. Dopo una giornata fra scavi e musei, il silenzio del parco e il benessere della spa sono il modo migliore per lasciare che la storia sedimenti.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.arabafenicespa.com/wp-content/uploads/2025/05/Hotel-Paestum.webp" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono il Museo Archeologico Nazionale, i templi e la città e l'Heraion alla Foce del Sele. Tutti i consigli nella nostra guida di Paestum.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Paestum, in posizione comoda per il territorio. Heraion alla Foce del Sele: 15 minuti; Velia: 1 ora; Pompei: 1 ora.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Paestum</h2>
+            <p>Un giovane nudo si lancia nel vuoto da un trampolino, a braccia tese, verso un'acqua che non vediamo. È la Tomba del Tuffatore, dipinta intorno al 470 a.C. e ritrovata a Paestum nel 1968.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="La lastra dipinta della Tomba del Tuffatore al Museo di Paestum" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=33119457">The Tomb of the Diver - Paestum - Italy</a> di Heinz-Josef Lücking, <a href="https://creativecommons.org/licenses/by-sa/3.0/de/deed.en/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Il Museo Archeologico Nazionale</h3><p>Il Museo è la tappa più importante dopo i templi, e merita almeno due ore. Oltre alla Tomba del Tuffatore, con le scene di banchetto sulle pareti laterali, conserva:</p></li>
+                        <li class="terr-item"><h3>I templi e la città</h3><p>I tre templi dorici, la Basilica, il Tempio di Nettuno e il Tempio di Atena, sono la parte più famosa del parco.</p></li>
+                        <li class="terr-item"><h3>L'Heraion alla Foce del Sele</h3><p>A circa dieci chilometri a nord di Paestum, vicino alla foce del fiume Sele, sorgeva un grande santuario dedicato a Hera, che secondo il mito fu fondato da Giasone e dagli Argonauti.</p></li>
+                        <li class="terr-item"><h3>Velia</h3><p>A circa un'ora a sud, Elea-Velia è la città dei filosofi Parmenide e Zenone, con la celebre Porta Rosa del IV secolo a.C., uno dei primi archi a tutto sesto della Magna Grecia.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Heraion alla Foce del Sele</dt><dd>15 minuti</dd><dt>Velia</dt><dd>1 ora</dd><dt>Pompei</dt><dd>1 ora</dd><dt>Certosa di Padula</dt><dd>1 ora e 30</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Paestum →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +300,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire L'Araba Fenice Hotel & Resort. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Paestum?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +512,7 @@
     var hotelName = "L'Araba Fenice Hotel & Resort";
     var citta = "Paestum";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Il Museo Archeologico Nazionale</strong> e <strong>I templi e la città</strong>. Il Museo è la tappa più importante dopo i templi, e merita almeno due ore. Oltre alla Tomba del Tuffatore, con le scene di banchetto sulle pareti laterali, conserva: Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

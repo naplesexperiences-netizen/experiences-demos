@@ -11,7 +11,8 @@ Nella demo:
   * crea la pagina guida/index.html con l'articolo completo;
   * copia la foto in evidenza in img/territorio.jpg.
 
-Idempotente: si può rilanciare dopo aver modificato l'articolo.
+Funziona sui due template standard: «classic» (shared/classic.css) e «gsap»
+(shared/gsap.css). Idempotente: si può rilanciare dopo aver modificato l'articolo.
 
 Usage:
   python3 demos/scripts/enrich-territorio.py albergo-delfino-experiences-standard [altre-demo...]
@@ -70,26 +71,52 @@ def parse(body):
                 return body[pos:end]
         return ""
 
-    items = []
-    for m in re.finditer(r"<h3>(.*?)</h3>\s*<p>(.*?)</p>", body, re.S):
-        title = text(m.group(1))
-        if not title.lower().startswith(("giorno", "mattina", "pomeriggio", "sera", "pranzo")):
-            items.append((title, short(text(m.group(2)))))
+    def first_text(block):
+        m = re.search(r"<p>(.*?)</p>", block, re.S) or re.search(r"<li>(.*?)</li>", block, re.S)
+        return short(text(m.group(1))) if m else ""
+
+    skip = ("perché", "quando", "dove", "leggi", "i dintorni", "l'itinerario", "giorno", "come arrivare")
+    meals = ("pranzo", "sera", "cena", "aperitivo",  # e titoli che non nominano un luogo
+             "altre idee", "se avete", "a piedi", "in barca", "che cosa", "cosa ", "un itinerario", "il percorso", "benvenuti", "come si")
+    trip = re.compile(r"^(?:giorno \d+|mattina|tarda mattina|pomeriggio)\s*[—:–-]\s*(.+)$", re.I)
+    blocks = [(m.group(1), text(m.group(2)), m.group(3))
+              for m in re.finditer(r"<(h[23])>(.*?)</h[23]>(.*?)(?=<h[23]>|$)", body, re.S)]
+    places, topics, stops = [], [], []
+    for tag, title, block in blocks:
+        desc = first_text(block)
+        if not desc or title.lower().startswith(meals):
+            continue
+        stop = trip.match(title)
+        if stop:
+            stops.append((stop.group(1)[0].upper() + stop.group(1)[1:], desc))
+        elif tag == "h3":
+            places.append((title, desc))
+        elif not title.lower().startswith(skip):
+            topics.append((title, desc))
+    items = places + topics + stops
     if len(items) < 3:
-        for m in re.finditer(r"<li><strong>(.*?)</strong>(.*?)</li>", h2_block("i dintorni") or body, re.S):
-            items.append((text(m.group(1)).rstrip(":"), short(text(m.group(2)).lstrip(":, ").capitalize())))
+        for m in re.finditer(r"<li><strong>(.*?)</strong>(.*?)</li>", h2_block("i dintorni") + body, re.S):
+            title = text(m.group(1)).rstrip(":")
+            if title not in (t for t, _ in items):
+                items.append((title, short(text(m.group(2)).lstrip(":, ").capitalize())))
 
     dist = []
     for t in re.finditer(r"<table>(.*?)</table>", body, re.S):
-        head = text(re.search(r"<thead>(.*?)</thead>", t.group(1), re.S).group(1)).lower()
-        if any(k in head for k in ("tempo", "distanza")):
-            cols = [h.lower() for h in re.findall(r"<th>(.*?)</th>", t.group(1))]
-            ti = next(i for i, h in enumerate(cols) if "tempo" in h or "distanza" in h)
-            for row in re.findall(r"<tr>(.*?)</tr>", t.group(1), re.S)[1:]:
-                cells = [text(c) for c in re.findall(r"<td>(.*?)</td>", row, re.S)]
-                if len(cells) > ti:
-                    dist.append((cells[0], cells[ti]))
-            break
+        cols = [text(h).lower() for h in re.findall(r"<th>(.*?)</th>", t.group(1), re.S)]
+        # Colonna del tempo/distanza ("tempo da dedicare" è la durata della visita, non la distanza)
+        ti = next((i for i, h in enumerate(cols) if "distanza" in h), None)
+        if ti is None:
+            ti = next((i for i, h in enumerate(cols) if "tempo" in h and "dedicare" not in h), None)
+            if cols[0].startswith("esperienza"):  # «Esperienza | Tempo»: durate, non distanze
+                ti = None
+        if ti is None:
+            continue
+        ni = next(i for i, h in enumerate(cols) if not h.startswith("giorno"))
+        for row in re.findall(r"<tr>(.*?)</tr>", t.group(1), re.S)[1:]:
+            cells = [text(c) for c in re.findall(r"<td>(.*?)</td>", row, re.S)]
+            if len(cells) > max(ti, ni) and cells[ti] not in ("—", "-", ""):
+                dist.append((cells[ni], cells[ti]))
+        break
 
     stay = re.search(r"<p>(.*?)</p>", h2_block("dove dormire"), re.S)
     return {
@@ -101,7 +128,7 @@ def parse(body):
     }
 
 
-def section_html(entry, info, img):
+def section_html(entry, info, img, gsap=False):
     slug, struttura, demo, citta = entry[:4]
     e = lambda s: html.escape(s, quote=False)
     cards = "\n".join(
@@ -115,6 +142,32 @@ def section_html(entry, info, img):
                         <dl>{rows}</dl>
                     </div>'''
     credit = DEST.credit_html(img) if img else ""
+    alt = html.escape(img["alt"]) if img else ""
+    if gsap:
+        return f'''{START}
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare {e(citta)}</h2>
+            <p>{e(short(info["lead"], 260))}</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="{alt}" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: {credit}</figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+{cards}
+                </ul>{dist}
+                <a href="guida/" class="btn btn-primary">Leggi la guida di {e(citta)} →</a>
+            </div>
+        </div>
+    </div>
+</section>
+{END}'''
     return f'''{START}
     <!-- ===== TERRITORIO ===== -->
     <section class="territorio section-pad" id="territorio">
@@ -127,7 +180,7 @@ def section_html(entry, info, img):
             </div>
             <div class="terr-grid">
                 <figure class="terr-photo reveal">
-                    <img src="img/territorio.jpg" alt="{html.escape(img["alt"]) if img else ""}" width="1200" height="675" loading="lazy">
+                    <img src="img/territorio.jpg" alt="{alt}" width="1200" height="675" loading="lazy">
                     <figcaption class="terr-credit">Foto: {credit}</figcaption>
                 </figure>
                 <div class="reveal">
@@ -148,23 +201,27 @@ def section_html(entry, info, img):
 def enrich_index(page, entry, info, img):
     citta = entry[3]
     e = lambda s: html.escape(s, quote=False)
+    gsap = "shared/gsap.css" in page
+    base = "gsap" if gsap else "classic"
     if "territorio.css" not in page:
-        page = page.replace('<link rel="stylesheet" href="../../shared/classic.css">',
-                            '<link rel="stylesheet" href="../../shared/classic.css">\n'
+        page = page.replace(f'<link rel="stylesheet" href="../../shared/{base}.css">',
+                            f'<link rel="stylesheet" href="../../shared/{base}.css">\n'
                             '    <link rel="stylesheet" href="../../shared/territorio.css">', 1)
         if "territorio.css" not in page:
             page = page.replace("</head>", '    <link rel="stylesheet" href="../../shared/territorio.css">\n</head>', 1)
     if 'href="#territorio"' not in page:
-        page = page.replace('<li><a href="#services">Servizi</a></li>',
-                            '<li><a href="#services">Servizi</a></li>\n                <li><a href="#territorio">Il Territorio</a></li>', 1)
+        page = re.sub(r'( *)(<li><a href="#services">Servizi</a></li>)',
+                      lambda m: m.group(0) + "\n" + m.group(1) + '<li><a href="#territorio">Il Territorio</a></li>', page, count=1)
 
-    block = section_html(entry, info, img)
+    block = section_html(entry, info, img, gsap)
     if START in page:
         page = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: block, page, flags=re.S)
     else:
         s = page.index('id="services"')
         end = page.index("</section>", s) + len("</section>")
         page = page[:end] + "\n\n" + block + page[end:]
+    if gsap:
+        return enrich_gsap(page, entry, info)
 
     if info["stay"]:
         page = re.sub(r'(<p class="about-desc">).*?(</p>)', lambda m: m.group(1) + e(info["stay"]) + m.group(2), page, count=1, flags=re.S)
@@ -176,9 +233,8 @@ def enrich_index(page, entry, info, img):
     page = re.sub(r'(<p class="(?:hero|footer)-tagline">)[^<]*?\b(?:mid|upper|upscale|luxury|mid-upper|ultra-luxury)\s*(</p>)',
                   lambda m: m.group(1) + e(tagline) + m.group(2), page)
 
-    names = [re.sub(r"^(Il|Lo|La|I|Gli|Le|L')\b", lambda m: m.group(1).lower(), t) for t, _ in info["items"][:3]]
-    if names:
-        listed = ", ".join(names[:-1]) + (" e " if len(names) > 1 else "") + names[-1]
+    listed = listed_names(info)
+    if listed:
         page = re.sub(r'(<div class="svc-img" style="background-image:url\()[^)]*(\)"></div>\s*<div class="svc-body">\s*<h3 class="svc-title">Esperienze sul Territorio</h3>)',
                       lambda m: m.group(1) + "'img/territorio.jpg'" + m.group(2), page, count=1)
         page = svc(page, "Esperienze sul Territorio",
@@ -189,15 +245,56 @@ def enrich_index(page, entry, info, img):
         page = svc(page, "Posizione Strategica", f"A {citta}, in posizione comoda per il territorio. {near}.")
 
     if info["items"]:
-        a, b = info["items"][0], info["items"][1] if len(info["items"]) > 1 else None
-        answer = f"Da non perdere: <strong>{e(a[0])}</strong>" + (f" e <strong>{e(b[0])}</strong>" if b else "") + \
-                 f". {e(short(a[1], 150))} Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?"
+        answer = chat_answer(citta, info, e)
         page = re.sub(r'(<div class="chat-row user">\s*<div class="msg-av">👤</div>\s*<div class="msg-bub">).*?(</div>)',
                       lambda m: m.group(1) + f"Cosa ci consigliate di vedere a {e(citta)} e nei dintorni?" + m.group(2),
                       page, count=1, flags=re.S)
         page = re.sub(r'(<div class="chat-row user">.*?</div>\s*</div>\s*<div class="chat-row">\s*<div class="msg-av">🤖</div>\s*<div class="msg-bub">).*?(</div>)',
                       lambda m: m.group(1) + "\n                                    " + answer + "\n                                " + m.group(2),
                       page, count=1, flags=re.S)
+    return page
+
+
+def listed_names(info):
+    names = [re.sub(r"^(Il|Lo|La|I|Gli|Le|L')\b", lambda m: m.group(1).lower(), t) for t, _ in info["items"][:3]]
+    return ", ".join(names[:-1]) + (" e " if len(names) > 1 else "") + names[-1] if names else ""
+
+
+def chat_answer(citta, info, e):
+    a, b = info["items"][0], info["items"][1] if len(info["items"]) > 1 else None
+    return (f"Da non perdere: <strong>{e(a[0])}</strong>" + (f" e <strong>{e(b[0])}</strong>" if b else "") +
+            f". {e(short(a[1], 150))} Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?")
+
+
+def enrich_gsap(page, entry, info):
+    """Template gsap: «Chi siamo», schede servizio e risposte del concierge."""
+    citta = entry[3]
+    e = lambda s: html.escape(s, quote=False)
+    if info["stay"]:
+        page = re.sub(r'(<div class="about-text">.*?</h2>\s*<p>).*?(</p>)',
+                      lambda m: m.group(1) + e(info["stay"]) + m.group(2), page, count=1, flags=re.S)
+
+    def card(page, title, desc, img=None, link=None):
+        pat = re.compile(r'(<img src=")([^"]*)(" alt="' + re.escape(title) + r'"[^>]*>(?:(?!<img ).)*?<h3 class="card-title">'
+                         + re.escape(title) + r'</h3>\s*<p class="card-desc">).*?(</p>)(\s*<a class="terr-card-link"[^>]*>.*?</a>)?', re.S)
+        extra = f'\n                <a class="terr-card-link" href="{link[0]}">{link[1]} →</a>' if link else ""
+        return pat.sub(lambda m: m.group(1) + (img or m.group(2)) + m.group(3) + e(desc) + m.group(4) + extra, page, count=1)
+
+    if info["items"]:
+        page = card(page, "Esperienze sul Territorio",
+                    f"Da qui si scoprono {listed_names(info)}. Tutti i consigli nella nostra guida di {citta}.",
+                    "img/territorio.jpg", ("guida/", "Scopri la guida"))
+    if info["dist"]:
+        near = "; ".join(f"{a}: {b}" for a, b in info["dist"][:3])
+        page = card(page, "Posizione Strategica", f"A {citta}, in posizione comoda per il territorio. {near}.")
+
+    if info["items"]:
+        reply = ("        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "
+                 + json.dumps(chat_answer(citta, info, e), ensure_ascii=False) + " },\n")
+        page = re.sub(r"        /\* territorio \*/ .*\n", "", page)
+        page = page.replace("    var replies = [\n", "    var replies = [\n" + reply, 1)
+        page = page.replace('placeholder="Prova: avete disponibilità per il weekend?"',
+                            f'placeholder="Prova: cosa vedere a {html.escape(citta)}?"', 1)
     return page
 
 
@@ -234,8 +331,23 @@ def guida_html(page, entry, info, img, seo):
     nav = page[page.index('<nav class="navbar"'): page.index("</nav>") + len("</nav>")]
     nav = re.sub(r'href="#', 'href="../#', nav)
     nav = nav.replace('href="../#territorio"', 'href="./"')
+    gsap = "gsap.css" in head
+    # Il menu mobile del template gsap si apre via JS: la guida porta il suo script.
+    toggle = '''
+    <script>
+    (function () {
+        var t = document.querySelector('.nav-toggle'), l = document.getElementById('navLinks');
+        if (!t || !l) return;
+        t.addEventListener('click', function () {
+            var open = l.classList.toggle('open');
+            t.classList.toggle('open', open);
+            t.setAttribute('aria-expanded', open);
+        });
+    })();
+    </script>
+''' if gsap else ""
     return f'''{head}</head>
-<body>
+<body{' class="guida-gsap"' if gsap else ""}>
 
     {banner.group(0) if banner else ""}
 
@@ -262,7 +374,7 @@ def guida_html(page, entry, info, img, seo):
     </main>
 
     {foot}
-
+{toggle}
 </body>
 </html>
 '''
