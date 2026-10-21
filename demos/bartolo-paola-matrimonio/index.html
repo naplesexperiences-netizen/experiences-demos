@@ -275,6 +275,8 @@ footer .ai-note a{color:inherit}
 html.env-wait .music{opacity:0;pointer-events:none}
 .music .bars{display:flex;align-items:flex-end;gap:2px;height:14px}
 .music .bars i{width:3px;height:30%;border-radius:1px;background:currentColor}
+.music .bars i:nth-child(1){height:45%}.music .bars i:nth-child(2){height:80%}.music .bars i:nth-child(3){height:60%}.music .bars i:nth-child(4){height:95%}
+.music[aria-pressed="false"] .bars{opacity:.75}
 .music[aria-pressed="true"] .bars i{animation:eq 1s ease-in-out infinite alternate}
 .music[aria-pressed="true"] .bars i:nth-child(2){animation-delay:-.4s}
 .music[aria-pressed="true"] .bars i:nth-child(3){animation-delay:-.7s}
@@ -913,7 +915,7 @@ html.env-wait .dots{opacity:0}
 <footer>
   <p class="sig">Bartolo &amp; Paola</p>
   <p>19 giugno 2027, Paestum</p>
-  <p class="ai-note">Le immagini di sfondo segnate «IA» sono generate con l'intelligenza artificiale e saranno sostituite dalle foto degli sposi. Le foto dell'hotel e della spiaggia sono di Hotel Ariston Paestum. Tempio al tramonto: <a href="https://commons.wikimedia.org/wiki/File:Paestum,_Italia,_2023-03-26,_DD_66-68_HDR.jpg">Diego Delso</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+  <p class="ai-note">Le immagini di sfondo segnate «IA» sono generate con l'intelligenza artificiale e saranno sostituite dalle foto degli sposi. Le foto dell'hotel e della spiaggia sono di Hotel Ariston Paestum. Tempio al tramonto: <a href="https://commons.wikimedia.org/wiki/File:Paestum,_Italia,_2023-03-26,_DD_66-68_HDR.jpg">Diego Delso</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Musica: Debussy, «Clair de lune», suonata da <a href="https://commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg">Laurens Goedhart</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a> (ricompressa e con dissolvenze).</p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
