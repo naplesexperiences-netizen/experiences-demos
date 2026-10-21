@@ -39,6 +39,26 @@ function fma_testi_predefiniti(): array {
 
 add_action( 'customize_register', 'fma_customizer' );
 
+/**
+ * Polylang: i testi della home cambiati in Personalizza compaiono in Lingue → Traduzioni stringhe
+ * (gruppo «Accoglienza FMA»), dove si scrive la versione in ogni lingua. Quelli predefiniti sono già
+ * tradotti nei file del tema.
+ */
+add_action(
+	'admin_init',
+	function () {
+		if ( ! function_exists( 'pll_register_string' ) ) {
+			return;
+		}
+		foreach ( fma_testi_predefiniti() as $chiave => $originale ) {
+			$valore = (string) get_theme_mod( 'fma_' . $chiave, $originale );
+			if ( '' !== $valore && $valore !== $originale ) {
+				pll_register_string( 'fma_' . $chiave, $valore, 'Accoglienza FMA', strlen( $valore ) > 80 );
+			}
+		}
+	}
+);
+
 function fma_customizer( WP_Customize_Manager $wp ): void {
 	$wp->add_section( 'fma_home', array( 'title' => 'Home page', 'priority' => 30, 'description' => 'Testi della home. Le strutture, i partner e gli articoli si gestiscono dalle rispettive voci del menu.' ) );
 

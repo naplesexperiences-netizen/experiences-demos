@@ -18,8 +18,8 @@ $id     = $blocco ? 'h-recensioni' : 'reviews-title';
 ?>
 <section class="<?php echo $blocco ? 'block reviews reviews--block' : 'reviews'; ?>" aria-labelledby="<?php echo esc_attr( $id ); ?>">
 	<div class="reviews__head">
-		<h2 id="<?php echo esc_attr( $id ); ?>" class="<?php echo $blocco ? 'block__title' : 'section-title'; ?>"><?php echo esc_html( $args['titolo'] ?? 'Dicono di noi' ); ?></h2>
-		<p class="reviews__note">Recensioni di ospiti reali, con il link alla fonte originale.</p>
+		<h2 id="<?php echo esc_attr( $id ); ?>" class="<?php echo $blocco ? 'block__title' : 'section-title'; ?>"><?php echo esc_html( $args['titolo'] ?? __( 'Dicono di noi', 'accoglienza-fma' ) ); ?></h2>
+		<p class="reviews__note"><?php esc_html_e( 'Recensioni di ospiti reali, con il link alla fonte originale.', 'accoglienza-fma' ); ?></p>
 	</div>
 	<ul class="reviews__list">
 		<?php foreach ( $recensioni as $r ) : ?>
@@ -35,14 +35,14 @@ $id     = $blocco ? 'h-recensioni' : 'reviews-title';
 					<?php
 					$parti = array_filter(
 						array(
-							$r['voto'] && $r['fonte'] ? sprintf( '%s su %s', $r['voto'], $r['fonte'] ) : ( $r['fonte'] ?: $r['voto'] ),
+							$r['voto'] && $r['fonte'] ? sprintf( /* translators: 1: voto, 2: sito della recensione */ __( '%1$s su %2$s', 'accoglienza-fma' ), $r['voto'], $r['fonte'] ) : ( $r['fonte'] ?: $r['voto'] ),
 							$r['periodo'],
 						)
 					);
 					echo esc_html( implode( ' · ', $parti ) );
 					?>
 					<?php if ( $r['link'] ) : ?>
-						<?php echo $parti ? ' · ' : ''; ?><a href="<?php echo esc_url( $r['link'] ); ?>" rel="noopener nofollow" target="_blank">Leggi l’originale<span class="screen-reader-text"> (si apre in una nuova scheda)</span></a>
+						<?php echo $parti ? ' · ' : ''; ?><a href="<?php echo esc_url( $r['link'] ); ?>" rel="noopener nofollow" target="_blank"><?php esc_html_e( 'Leggi l’originale', 'accoglienza-fma' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(si apre in una nuova scheda)', 'accoglienza-fma' ); ?></span></a>
 					<?php endif; ?>
 				</p>
 			</li>

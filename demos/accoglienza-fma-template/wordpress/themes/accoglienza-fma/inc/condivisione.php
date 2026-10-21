@@ -72,9 +72,10 @@ function fma_titolo_documento( array $parti ): array {
 	} elseif ( is_singular( 'struttura' ) && fma_plugin_attivo() ) {
 		$parti['title'] = fma_titolo_struttura( get_queried_object() );
 	} elseif ( is_post_type_archive( 'struttura' ) ) {
-		$parti['title'] = 'Case per ferie in Italia';
+		$parti['title'] = __( 'Case per ferie in Italia', 'accoglienza-fma' );
 	} elseif ( is_tax( 'regione' ) ) {
-		$parti['title'] = 'Case per ferie in ' . single_term_title( '', false );
+		/* translators: %s: regione */
+		$parti['title'] = sprintf( __( 'Case per ferie in %s', 'accoglienza-fma' ), single_term_title( '', false ) );
 	}
 	// Oltre i 60-65 caratteri Google taglia: meglio perdere il nome del sito che la località.
 	if ( isset( $parti['site'], $parti['title'] ) && mb_strlen( $parti['title'] . ' – ' . $parti['site'] ) > 65 ) {
@@ -147,11 +148,12 @@ function fma_condivisione_dati(): array {
 		$url     = (string) get_term_link( $termine );
 		if ( ! wp_strip_all_tags( $testo ) && is_tax( 'regione' ) ) {
 			$n     = (int) $termine->count;
-			$testo = sprintf( '%s delle Salesiane in %s: foto, camere e servizi. Scegli la casa e scrivi direttamente alla struttura, senza intermediari.', 1 === $n ? 'Una casa per ferie' : "{$n} case per ferie", $termine->name );
+			/* translators: 1: «3 case per ferie», 2: regione */
+			$testo = sprintf( __( '%1$s delle Salesiane in %2$s: foto, camere e servizi. Scegli la casa e scrivi direttamente alla struttura, senza intermediari.', 'accoglienza-fma' ), sprintf( /* translators: %d: numero di case */ _n( '%d casa per ferie', '%d case per ferie', $n, 'accoglienza-fma' ), $n ), $termine->name );
 		}
 	} elseif ( is_home() ) {
 		$pagina = (int) get_option( 'page_for_posts' );
-		$testo  = $pagina && has_excerpt( $pagina ) ? get_the_excerpt( $pagina ) : 'Consigli di viaggio e storie dai luoghi delle nostre case: cosa vedere, quando andare, come arrivare.';
+		$testo  = $pagina && has_excerpt( $pagina ) ? get_the_excerpt( $pagina ) : fma_blog_lede();
 		$url    = $pagina ? (string) get_permalink( $pagina ) : $url;
 	}
 
@@ -182,7 +184,7 @@ function fma_condivisione_meta(): void {
 	$d    = fma_condivisione_dati();
 	$meta = array(
 		array( 'name', 'description', $d['descrizione'] ),
-		array( 'property', 'og:locale', 'it_IT' ),
+		array( 'property', 'og:locale', get_locale() ),
 		array( 'property', 'og:site_name', get_bloginfo( 'name' ) ),
 		array( 'property', 'og:type', $d['tipo'] ),
 		array( 'property', 'og:title', $d['titolo'] ),
