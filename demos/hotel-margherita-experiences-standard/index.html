@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -48,6 +49,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -100,7 +102,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Margherita — Gestione familiare vista Costiera terrazza solarium idromassaggio. Situato a Praiano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Margherita è un albergo a gestione familiare con vista sulla Costiera, una terrazza solarium e l'idromassaggio da cui guardare il sole scendere dietro Positano. È l'accoglienza semplice e calorosa che rende Praiano diversa: ci si sente ospiti di una famiglia, non clienti di un albergo.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -150,12 +152,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono i tramonti, la chiesa di San Gennaro e il Convento di San Domenico. Tutti i consigli nella nostra guida di Praiano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -165,7 +168,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Praiano, in posizione comoda per il territorio. Positano: 10-15 minuti; Fiordo di Furore: 5-10 minuti; Amalfi: 20 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -180,6 +183,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Praiano</h2>
+            <p>Praiano è il paese della Costiera Amalfitana che guarda a ovest. Mentre Positano e Amalfi si spengono all'ombra delle montagne, qui il sole scende ogni sera dietro Capri e Li Galli, incendiando il mare.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Le case di Praiano sulla costa, con vista verso Positano" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=53624279">Praiano Above Town Looking West - panoramio</a> di trukdotcom, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>I tramonti</h3><p>È il motivo per cui Praiano è famosa. Dalla piazza di San Gennaro, dalle terrazze degli alberghi o dalla spiaggia della Gavitella, il sole tramonta dietro la sagoma di Positano e la punta della Penisola Sorrentina.</p></li>
+                        <li class="terr-item"><h3>La chiesa di San Gennaro</h3><p>La chiesa di San Gennaro domina il paese con la sua cupola di maioliche verdi e gialle. Il sagrato, pavimentato anch'esso in maiolica, è una delle terrazze panoramiche più belle della Costiera: da qui si vede tutta la costa fino a Positano.</p></li>
+                        <li class="terr-item"><h3>Il Convento di San Domenico</h3><p>Arroccato sopra il paese, il Convento di San Domenico si raggiunge con una salita di circa un'ora fra gradini e sentieri. Il premio è una vista a 360 gradi sulla Costiera e la quiete totale di un luogo che sembra fuori dal tempo.</p></li>
+                        <li class="terr-item"><h3>La Luminaria di San Domenico</h3><p>Ogni anno, a inizio agosto, Praiano accende la Luminaria: migliaia di lumini e fiaccole illuminano terrazze, scale e balconi del paese in onore di San Domenico, mentre dal mare si guardano le luci arrampicarsi sulla montagna.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Positano</dt><dd>10-15 minuti</dd><dt>Fiordo di Furore</dt><dd>5-10 minuti</dd><dt>Amalfi</dt><dd>20 minuti</dd><dt>Ravello</dt><dd>35 minuti</dd><dt>Agerola</dt><dd>30 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Praiano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -263,7 +298,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Margherita. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Praiano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -475,6 +510,7 @@
     var hotelName = "Hotel Margherita";
     var citta = "Praiano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>I tramonti</strong> e <strong>La chiesa di San Gennaro</strong>. È il motivo per cui Praiano è famosa. Dalla piazza di San Gennaro, dalle terrazze degli alberghi o dalla spiaggia della Gavitella, il sole tramonta dietro la sagoma di Positano e la punta della Penisola Sorrentina. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

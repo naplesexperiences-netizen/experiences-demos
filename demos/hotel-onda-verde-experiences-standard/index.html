@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Onda Verde — A picco sul mare vicino spiaggia e borgo piscina gestione familiare. Situato a Praiano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Onda Verde è un albergo a gestione familiare a picco sul mare, vicino alla spiaggia e al borgo, con piscina panoramica. È la posizione ideale per chi vuole alternare il bagno a Marina di Praia, una gita in barca al Fiordo e una cena in paese, senza mai prendere l'auto.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.ondaverde.it/wp-content/uploads/2024/05/ondaverde_home_album1_3.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono Marina di Praia, la Gavitella e la Praia e gli scogli. Tutti i consigli nella nostra guida di Praiano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Praiano</h2>
+            <p>A Praiano il mare non si guarda soltanto: si raggiunge scendendo scale fra le rocce, si attraversa in barca, si scopre in calette che sembrano private.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="La spiaggetta di Marina di Praia fra le pareti di roccia" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=106455297">I08 412 Marina di Praia</a> di Falk2, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Marina di Praia</h3><p>È la spiaggia più conosciuta del paese: una piccola insenatura di ciottoli in fondo a una gola, tra le pareti di roccia, con le barche colorate dei pescatori tirate a secco e un paio di ristoranti di pesce.</p></li>
+                        <li class="terr-item"><h3>La Gavitella</h3><p>Sotto il nucleo di Vettica, la Gavitella è una spiaggetta con solarium sugli scogli, l'unica della Costiera esposta al sole fino al tramonto.</p></li>
+                        <li class="terr-item"><h3>La Praia e gli scogli</h3><p>Lungo la costa di Praiano, molti stabilimenti sono piattaforme di legno e scalette che scendono direttamente in acqua profonda. Per chi ama nuotare in mare aperto, è il modo più bello di vivere la Costiera.</p></li>
+                        <li class="terr-item"><h3>Il Fiordo di Furore</h3><p>A due chilometri da Praiano, il Fiordo di Furore è una profonda spaccatura nella roccia creata dal torrente Schiato.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Praiano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Onda Verde. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Praiano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Hotel Onda Verde";
     var citta = "Praiano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Marina di Praia</strong> e <strong>La Gavitella</strong>. È la spiaggia più conosciuta del paese: una piccola insenatura di ciottoli in fondo a una gola, tra le pareti di roccia, con le barche colorate dei pescatori tirate a secco e un paio di ristoranti di pesce. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

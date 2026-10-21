@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Villa Sirio — 4 stelle 34 camere dimora liberty fronte mare centro storico upscale. Situato a Santa Maria di Castellabate, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Villa Sirio è un quattro stelle di 34 camere ricavato da una dimora liberty, fronte mare, nel centro storico di Santa Maria di Castellabate. È il modo più elegante di vivere Castellabate: il mare sotto le finestre, il borgo medievale a pochi minuti, e l'atmosfera di una casa nobiliare dei primi del Novecento.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.villasirio.it/wp-content/uploads/2026/03/Villa-Sirio-00021.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono il Castello dell'Abate, il borgo medievale e il Belvedere di San Costabile. Tutti i consigli nella nostra guida di Santa Maria di Castellabate.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Santa Maria di Castellabate, in posizione comoda per il territorio. Visita al borgo e al Castello dell'Abate: Mezza giornata; Tour dei luoghi di Benvenuti al Sud: 2 ore; Tramonto al Belvedere di San Costabile: 1 ora.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Santa Maria di Castellabate</h2>
+            <p>"Qui non si muore": la frase, attribuita a Gioacchino Murat, è diventata il motto di Castellabate. Nel 2010 il film Benvenuti al Sud lo ha fatto conoscere a milioni di italiani, ma il borgo era già da tempo inserito fra i Borghi più belli d'Italia.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Uno scorcio del borgo medievale di Castellabate" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=54259004">Castellabate porta la chiazza - panoramio</a> di templare3000, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Il Castello dell'Abate</h3><p>Tutto comincia nel 1123, quando l'abate Costabile Gentilcore, del monastero benedettino di Cava de' Tirreni, fece costruire un castello sulla collina per difendere la popolazione dalle incursioni saracene.</p></li>
+                        <li class="terr-item"><h3>Il borgo medievale</h3><p>Il centro storico si sviluppa in cerchi concentrici attorno al castello, con vicoli lastricati, scalinate, archi e passaggi coperti. Le case in pietra hanno portali scolpiti e balconi fioriti.</p></li>
+                        <li class="terr-item"><h3>Il Belvedere di San Costabile</h3><p>Il punto più fotografato del borgo è il Belvedere di San Costabile, una terrazza panoramica affacciata sulla costa, con la vista che abbraccia il mare, Santa Maria di Castellabate e Punta Licosa. Al tramonto è uno spettacolo.</p></li>
+                        <li class="terr-item"><h3>Santa Maria di Castellabate</h3><p>Sotto il borgo, Santa Maria di Castellabate è la frazione marina, nata come villaggio di pescatori.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Santa Maria di Castellabate →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Villa Sirio. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Santa Maria di Castellabate?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Hotel Villa Sirio";
     var citta = "Santa Maria di Castellabate";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Il Castello dell'Abate</strong> e <strong>Il borgo medievale</strong>. Tutto comincia nel 1123, quando l'abate Costabile Gentilcore, del monastero benedettino di Cava de' Tirreni, fece costruire un castello sulla collina per difendere la popolazione dalle incursioni saracene. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

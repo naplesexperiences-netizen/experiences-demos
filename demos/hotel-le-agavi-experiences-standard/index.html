@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Le Agavi — Terrazze panoramiche funicolare privata alla spiaggia lusso. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Le Agavi si sviluppa su terrazze panoramiche che scendono verso il mare e ha una funicolare privata fino alla spiaggia: il problema delle scale di Positano, per i suoi ospiti, semplicemente non esiste. È la soluzione ideale per chi vuole un soggiorno di lusso in cui il mare sia sempre a portata di mano.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.leagavi.it/static/09e29c8ad8d0a5883cc3a962eef69bd1/c9a1a/0428d73c-557d-4e3b-8846-de192255a4ef.webp" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono Spiaggia Grande, Fornillo e Arienzo. Tutti i consigli nella nostra guida di Positano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Positano</h2>
+            <p>Positano ha poche spiagge, e proprio per questo ognuna ha un carattere preciso. C'è quella del paese, viva e scenografica; quella dei positanesi, più raccolta; quelle che si conquistano con centinaia di gradini o con un barchino.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Panorama della Spiaggia Grande di Positano con le case colorate sulla collina" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=35659805">Positano panorama 01</a> di Mihael Grmek, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Spiaggia Grande</h3><p>È il cuore del paese, davanti alla chiesa di Santa Maria Assunta. Stabilimenti, ristoranti, il molo dei traghetti e il viavai delle barche: qui si sta per vedere e farsi vedere. Ideale per chi vuole tutto a portata di mano.</p></li>
+                        <li class="terr-item"><h3>Fornillo</h3><p>Si raggiunge in dieci minuti dalla Spiaggia Grande con il sentiero che costeggia la Torre Trasita, scavato nella roccia sopra il mare.</p></li>
+                        <li class="terr-item"><h3>Arienzo</h3><p>A est del paese, Arienzo è raggiungibile con una lunga scalinata di circa trecento gradini dalla strada statale oppure con le navette in barca dal molo. Il sole rimane fino a tardo pomeriggio: è la spiaggia dei tramonti.</p></li>
+                        <li class="terr-item"><h3>Laurito</h3><p>Ancora più a est, Laurito è una caletta raccolta con un paio di ristoranti storici. Il modo più semplice per arrivarci è la barca gratuita che parte dal molo della Spiaggia Grande per i clienti del ristorante: si pranza sui piedi dell'acqua e si resta per il bagno.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Positano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Le Agavi. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Positano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Hotel Le Agavi";
     var citta = "Positano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Spiaggia Grande</strong> e <strong>Fornillo</strong>. È il cuore del paese, davanti alla chiesa di Santa Maria Assunta. Stabilimenti, ristoranti, il molo dei traghetti e il viavai delle barche: qui si sta per vedere e farsi vedere. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
