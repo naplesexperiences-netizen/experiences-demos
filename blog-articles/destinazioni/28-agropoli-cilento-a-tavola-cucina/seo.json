@@ -23,7 +23,12 @@
   "struttura": "Hotel Ristorante Il Ceppo",
   "citta": "Agropoli",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Formaggi a pasta filata appesi a stagionare in un caseificio campano",
+    "credit": "Caseificio Mozzarella di Bufala Campana DOP en Métropole de Naples (2) di Pierre André Leclercq, CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=128526043"
+  },
   "word_count": 618,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -31,7 +36,7 @@
     "@type": "Article",
     "headline": "Il Cilento a tavola partendo da Agropoli: cosa mangiare e dove trovarlo",
     "description": "Cosa mangiare nel Cilento partendo da Agropoli: mozzarella, fico bianco, alici di menaica, cacioricotta e i presidi Slow Food.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/agropoli-cilento-a-tavola-cucina.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/28-agropoli-cilento-a-tavola-cucina/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Agropoli"

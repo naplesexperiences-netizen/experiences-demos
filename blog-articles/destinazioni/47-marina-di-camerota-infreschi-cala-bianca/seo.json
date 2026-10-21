@@ -24,7 +24,12 @@
   "struttura": "Albergo Delfino",
   "citta": "Marina di Camerota",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/albergo-delfino-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Il mare turchese della Costa degli Infreschi presso Marina di Camerota",
+    "credit": "Costa degli Infreschi presso Marina di Camerota (panoramio) di Mario Penner, CC BY 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=53196432"
+  },
   "word_count": 553,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Marina di Camerota, Infreschi e Cala Bianca: il mare più bello del Cilento",
     "description": "Perché visitare Marina di Camerota: Cala Bianca, Porto Infreschi, l'Area Marina Protetta e le spiagge del paese.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/marina-di-camerota-infreschi-cala-bianca.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/47-marina-di-camerota-infreschi-cala-bianca/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Marina di Camerota"
