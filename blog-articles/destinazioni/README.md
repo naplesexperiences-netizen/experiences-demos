@@ -37,8 +37,9 @@ script: modificali lì e rilancia. I link "Leggi anche" usano `/blog/<slug>/`
   cambiano ogni stagione. Le distanze sono indicative.
 - Le informazioni sulle strutture vengono solo dai dati delle demo (stelle,
   posizione, servizi dichiarati). Fatele confermare al cliente.
-- La CTA punta alla demo su GitHub Pages: sostituite il link con il sito o il
-  booking engine della struttura quando va in produzione.
+- Il pulsante finale porta al sito ufficiale della struttura (tabella `SITES`
+  nello script). Villa Crawford e Terme di Vivara non hanno un sito noto e puntano
+  ancora alla demo.
 - Escluse: Marèzzo (struttura di fantasia), il template FMA (8 case in 8 regioni),
   i template generici.
 
