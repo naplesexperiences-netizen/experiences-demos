@@ -24,7 +24,12 @@
   "struttura": "Mec Paestum Hotel",
   "citta": "Paestum",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/mec-paestum-hotel-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "I templi dorici di Paestum fra i prati dell'area archeologica",
+    "credit": "Paestum ruins (6120919766) di Dave &amp; Margie Hill / Kleerup from Centennial, CO, USA, CC BY-SA 2.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=30181254"
+  },
   "word_count": 652,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Un weekend a Paestum: itinerario di due giorni fra templi, mare e caseifici",
     "description": "Itinerario di due giorni a Paestum: area archeologica, museo, spiaggia, caseifici e un tramonto a Capaccio Vecchio. Consigli pratici.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/paestum-weekend-itinerario-due-giorni.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/23-paestum-weekend-itinerario-due-giorni/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Paestum"

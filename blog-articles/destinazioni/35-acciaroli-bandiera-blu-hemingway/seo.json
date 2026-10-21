@@ -24,7 +24,12 @@
   "struttura": "Hotel Acciaroli",
   "citta": "Acciaroli",
   "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-acciaroli-experiences-standard/",
-  "featured_image": null,
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "La torre e la chiesa dell'Annunziata di Acciaroli illuminate la sera",
+    "credit": "Acciaroli (4) di Ciaurlec, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=16214368"
+  },
   "word_count": 625,
   "estimated_reading_time": 3,
   "schema_article": {
@@ -32,7 +37,7 @@
     "@type": "Article",
     "headline": "Acciaroli: il mare Bandiera Blu, il porto e la leggenda di Hemingway",
     "description": "Perché visitare Acciaroli: mare limpido, il borgo dei pescatori, la torre, la leggenda di Hemingway e i dintorni di Pollica.",
-    "image": "https://naplesexperiences.com/wp-content/uploads/blog/acciaroli-bandiera-blu-hemingway.jpg",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/35-acciaroli-bandiera-blu-hemingway/featured.jpg",
     "about": {
       "@type": "Place",
       "name": "Acciaroli"
