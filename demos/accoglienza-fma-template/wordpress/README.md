@@ -19,6 +19,7 @@ Tema e plugin sono separati apposta: strutture e richieste restano nel sito anch
    - **Aspetto → Temi → Aggiungi nuovo → Carica tema**: carica e attiva `accoglienza-fma.zip`.
 3. **Impostazioni → Permalink**: scegli «Nome articolo» e salva. Servono gli indirizzi `/strutture/<nome>/`.
 4. Contenuti, in uno di questi tre modi. Tutti importano 8 strutture, 6 partner e 5 articoli con le foto. Si possono rilanciare: aggiornano quello che c'è già e non creano doppioni.
+     Un file con i soli articoli (`"strutture": []`) aggiunge o aggiorna gli articoli e li collega alle case già presenti, senza toccare le schede delle strutture.
    - **Dal browser** (consigliato): **Strumenti → Importa contenuti FMA**, scegli `fma-contenuti.zip` e premi *Importa*. Una barra mostra l'avanzamento, una struttura alla volta, in circa un minuto. Se la pagina si chiude o un passo fallisce, riaprendola riprende da dove era rimasta.
      - Se lo zip supera il limite di caricamento dell'hosting (indicato nella pagina), caricalo via FTP in `wp-content/uploads/fma-contenuti.zip` e scegli «File già sul server». A importazione finita il file viene cancellato.
      - «Configura anche il sito» crea le pagine Home e Blog, il menu, i permalink e il logo, e rimuove i contenuti di esempio di WordPress. È già spuntato su un sito nuovo; lascialo spento se il sito è già avviato.
