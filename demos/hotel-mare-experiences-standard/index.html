@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Mare — Hotel sul mare in centro Via Michelangelo mid. Situato a Agropoli, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Mare si trova sul mare, nel centro di Agropoli, in Via Michelangelo. È la posizione ideale per vivere la città a piedi: la spiaggia sotto casa, il borgo antico e il castello a pochi minuti di passeggiata, e i ristoranti del lungomare per la sera.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotel-mare.com/wp-content/uploads/2017/05/IMG_0940-1700x449.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono gli scaloni e la porta, Santa Maria di Costantinopoli e la chiesa dei Santi Pietro e Paolo. Tutti i consigli nella nostra guida di Agropoli.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Agropoli, in posizione comoda per il territorio. Paestum: 15 minuti; Trentova e Punta Tresino: 10-20 minuti; Castellabate: 25 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Agropoli</h2>
+            <p>Agropoli è una città con due anime: in basso, il lungomare e le spiagge in pieno centro; in alto, un borgo medievale chiuso fra mura e un castello che guarda il mare da mille anni. Basta salire una scalinata per passare dall'una all'altra.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Il promontorio di Agropoli con il borgo antico a picco sul mare" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=2732018">Agropoli, promontorio</a> di Mujaidin, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Gli scaloni e la porta</h3><p>Dalla parte bassa della città si sale al borgo attraverso gli scaloni, una larga scalinata a gradoni bassi pensata per essere percorsa anche dagli animali da soma.</p></li>
+                        <li class="terr-item"><h3>Santa Maria di Costantinopoli</h3><p>Appena entrati nel borgo, la chiesa di Santa Maria di Costantinopoli si affaccia su un belvedere a picco sul mare.</p></li>
+                        <li class="terr-item"><h3>La chiesa dei Santi Pietro e Paolo</h3><p>Nel cuore del borgo, la chiesa madre dei Santi Pietro e Paolo custodisce la statua della Madonna di Costantinopoli, protagonista della festa patronale estiva, quando la statua viene portata in processione anche sul mare.</p></li>
+                        <li class="terr-item"><h3>Il castello angioino-aragonese</h3><p>Sulla sommità del promontorio sorge il castello, di origine bizantina e ampliato nei secoli successivi. Ha pianta triangolare, tre torri circolari e un fossato. Oggi è visitabile e ospita mostre, concerti ed eventi estivi.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Paestum</dt><dd>15 minuti</dd><dt>Trentova e Punta Tresino</dt><dd>10-20 minuti</dd><dt>Castellabate</dt><dd>25 minuti</dd><dt>Ogliastro Cilento</dt><dd>20 minuti</dd><dt>Acciaroli</dt><dd>45 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Agropoli →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +300,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Mare. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Agropoli?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +512,7 @@
     var hotelName = "Hotel Mare";
     var citta = "Agropoli";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Gli scaloni e la porta</strong> e <strong>Santa Maria di Costantinopoli</strong>. Dalla parte bassa della città si sale al borgo attraverso gli scaloni, una larga scalinata a gradoni bassi pensata per essere percorsa anche dagli animali da soma. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

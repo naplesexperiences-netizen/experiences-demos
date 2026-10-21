@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Ruggiero Park Hotel — A pochi passi dal centro Via della Gatta business mid. Situato a Vallo della Lucania, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Il Ruggiero Park Hotel si trova a pochi passi dal centro di Vallo della Lucania, in Via della Gatta, comodo per chi viaggia per lavoro e per chi vuole esplorare il Cilento interno. È la base ideale per alternare montagna e mare, con tutto il Parco intorno.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="http://www.ruggieroparkhotel.com/immagini/bandiera-ita.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono la Cattedrale di San Pantaleone, il Monte Gelbison e il Sacro Monte di Novi Velia e i borghi dell'interno. Tutti i consigli nella nostra guida di Vallo della Lucania.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Vallo della Lucania, in posizione comoda per il territorio. Novi Velia e Sacro Monte: 20-30 minuti; Velia: 20 minuti; Marina di Ascea: 20 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Vallo della Lucania</h2>
+            <p>Tutti conoscono il mare del Cilento. Pochi sanno che il suo cuore batte nell'interno, fra montagne, boschi, borghi di pietra e santuari sulle cime.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Il Santuario del Sacro Monte di Novi Velia sulla cima del Monte Gelbison" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=175232479">Novi Velia - Santuario di Maria Santissima del Sacro Monte Gelbison - 2025-09-18 20-10-18 001</a> di Aniello_Bizzoco, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>La Cattedrale di San Pantaleone</h3><p>Il centro della città è la Cattedrale di San Pantaleone, sede della diocesi di Vallo della Lucania. Al suo interno si conservano opere d'arte sacra e un'atmosfera solenne.</p></li>
+                        <li class="terr-item"><h3>Il Monte Gelbison e il Sacro Monte di Novi Velia</h3><p>Il Monte Gelbison, oltre 1.700 metri, domina il paesaggio. Sulla cima sorge il Santuario della Madonna del Sacro Monte, uno dei santuari mariani più alti d'Italia, meta di pellegrinaggi secolari da maggio a ottobre.</p></li>
+                        <li class="terr-item"><h3>I borghi dell'interno</h3><p>Novi Velia: il borgo da cui parte la salita al Sacro Monte, con un centro storico in pietra.</p></li>
+                        <li class="terr-item"><h3>La natura del Parco</h3><p>Da Vallo della Lucania si raggiungono in poco tempo alcuni dei luoghi naturali più belli del Cilento: le Gole del Calore a Felitto, con il fiume che scorre fra pareti di roccia; i boschi di faggi e castagni del Gelbison; le sorgenti e le cascate dei Monti Alburni; l'Oasi del fiume Alento, con percorsi e attività all'aperto.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Novi Velia e Sacro Monte</dt><dd>20-30 minuti</dd><dt>Velia</dt><dd>20 minuti</dd><dt>Marina di Ascea</dt><dd>20 minuti</dd><dt>Pisciotta</dt><dd>25 minuti</dd><dt>Palinuro</dt><dd>45 minuti</dd><dt>Gole del Calore</dt><dd>50 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Vallo della Lucania →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +300,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Ruggiero Park Hotel. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Vallo della Lucania?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +512,7 @@
     var hotelName = "Ruggiero Park Hotel";
     var citta = "Vallo della Lucania";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>La Cattedrale di San Pantaleone</strong> e <strong>Il Monte Gelbison e il Sacro Monte di Novi Velia</strong>. Il centro della città è la Cattedrale di San Pantaleone, sede della diocesi di Vallo della Lucania. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

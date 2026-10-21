@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Le Sirenuse — Villa '700 famiglia Sersale 58 camere ristorante stellato La Sponda icona lusso indipendente. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Le Sirenuse occupa una villa settecentesca appartenuta alla famiglia Sersale, che ne ha fatto uno degli alberghi indipendenti più iconici d'Italia: 58 camere affacciate sulla cupola di Santa Maria Assunta e sul mare, e il ristorante stellato La Sponda. Il nome viene dalle Sirenuse, l'antico nome dell'arcipelago de Li Galli davanti a Positano: dalla terrazza si vede l'intera storia del paese in un solo colpo d'occhio.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://sirenuse.it/media/t0znt25c/sir-intro-04-new.jpg?width=768&height=576&format=webp&v=1dcab2d113a1750" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono Santa Maria Assunta e la villa romana, le scale e le botteghe e la Spiaggia Grande. Tutti i consigli nella nostra guida di Positano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Positano</h2>
+            <p>Positano è un paese costruito in verticale: case color pastello aggrappate alla montagna, una cupola di maioliche al centro e il mare in fondo a ogni scalinata. Non esistono due punti di vista uguali, perché ogni gradino cambia l'inquadratura.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Positano con la cupola di Santa Maria Assunta e la Spiaggia Grande" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=123674707">Positano veduta 003</a> di Luca Aless, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Santa Maria Assunta e la villa romana</h3><p>La chiesa di Santa Maria Assunta, con la sua cupola rivestita di maioliche gialle, verdi e blu, è il simbolo del paese.</p></li>
+                        <li class="terr-item"><h3>Le scale e le botteghe</h3><p>Positano si gira a piedi. La via principale scende serpeggiando dalla parte alta fino al mare, fra boutique di moda Positano (lino, cotone e colori vivaci, nata qui negli anni Sessanta), sandali fatti a mano su misura e ceramiche.</p></li>
+                        <li class="terr-item"><h3>La Spiaggia Grande</h3><p>Davanti alla chiesa si apre la Spiaggia Grande, la più ampia del paese, con stabilimenti, barche colorate e il molo da cui partono traghetti e gite.</p></li>
+                        <li class="terr-item"><h3>Amalfi e Ravello</h3><p>Con il traghetto si arriva ad Amalfi in circa 25 minuti. Il Duomo di Sant'Andrea, con la sua scalinata e il Chiostro del Paradiso, racconta il passato della Repubblica Marinara.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Positano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Le Sirenuse. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Positano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Le Sirenuse";
     var citta = "Positano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Santa Maria Assunta e la villa romana</strong> e <strong>Le scale e le botteghe</strong>. La chiesa di Santa Maria Assunta, con la sua cupola rivestita di maioliche gialle, verdi e blu, è il simbolo del paese. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

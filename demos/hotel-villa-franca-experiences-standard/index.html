@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Villa Franca — Collina sopra la baia rooftop con piscina Small Luxury Hotels. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Villa Franca, membro di Small Luxury Hotels, sorge sulla collina sopra la baia di Positano e ha un rooftop con piscina da cui si vedono il paese e il mare. È la base ideale per chi passa la giornata sui sentieri e vuole ritrovare, al rientro, una piscina panoramica e il paese a pochi passi.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.villafrancahotel.it/cms-admin/materiale/pagine/elemento-498-74/villa-franca-hotel.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono il Sentiero degli Dei, Nocelle e Montepertuso. Tutti i consigli nella nostra guida di Positano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Positano</h2>
+            <p>Sopra Positano c'è un'altra Costiera: mulattiere fra terrazzamenti di limoni, borghi di montagna, capre e il mare sempre ottocento metri più in basso. Per chi ama camminare, Positano è uno dei posti più belli d'Europa, e il Sentiero degli Dei è solo l'inizio.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Il borgo di Nocelle e la vista sulla Costiera Amalfitana dal Sentiero degli Dei" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=76244606">Nocelle</a> di Ugeorge, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Il Sentiero degli Dei</h3><p>Parte da Bomerano, frazione di Agerola, e arriva a Nocelle, sopra Positano: circa 7 chilometri, prevalentemente in discesa o in piano, per tre ore di cammino con soste.</p></li>
+                        <li class="terr-item"><h3>Nocelle</h3><p>Fino a pochi decenni fa raggiungibile solo a piedi, Nocelle è un minuscolo borgo di case bianche a 450 metri d'altezza, con una piazzetta, una chiesa e alcune trattorie dove fermarsi per un piatto di pasta e una spremuta di limone.</p></li>
+                        <li class="terr-item"><h3>Montepertuso</h3><p>Poco sotto Nocelle, Montepertuso prende il nome da un grande foro naturale nella roccia della montagna. La leggenda racconta che fu la Madonna a bucare la parete per sconfiggere il diavolo.</p></li>
+                        <li class="terr-item"><h3>Santa Maria del Castello</h3><p>Per i camminatori più allenati, il sentiero che sale da Montepertuso a Santa Maria del Castello, a circa 680 metri, porta su un altopiano boscoso con una vista spettacolare sul Golfo di Salerno e su quello di Napoli.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Positano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Villa Franca. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Positano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Hotel Villa Franca";
     var citta = "Positano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Il Sentiero degli Dei</strong> e <strong>Nocelle</strong>. Parte da Bomerano, frazione di Agerola, e arriva a Nocelle, sopra Positano: circa 7 chilometri, prevalentemente in discesa o in piano, per tre ore di cammino con soste. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

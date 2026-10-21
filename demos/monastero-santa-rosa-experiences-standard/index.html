@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Monastero Santa Rosa — Ex monastero '600 20 camere spa premiata giardini terrazzati ultra-luxury. Situato a Conca dei Marini, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Il Monastero Santa Rosa è lo stesso edificio del Seicento in cui le monache inventarono il dolce. Oggi è un hotel ultra-luxury con 20 camere, una spa premiata e giardini terrazzati a strapiombo sul mare. Dormire qui significa vivere la storia di Conca dei Marini dall'interno, con la Costiera intera davanti agli occhi.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://monasterosantarosa.com/wp-content/uploads/2020/08/nun-old-photo-980x1323.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono la Grotta dello Smeraldo, Capo di Conca e la Marina e le chiese e i belvedere. Tutti i consigli nella nostra guida di Conca dei Marini.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Conca dei Marini, in posizione comoda per il territorio. Amalfi: 10 minuti; Furore: 5 minuti; Ravello: 25 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Conca dei Marini</h2>
+            <p>Ogni pasticceria della Campania la vende, ma pochi sanno che la sfogliatella Santa Rosa è nata in un monastero affacciato sul mare di Conca dei Marini. È una storia che unisce suore di clausura, ricette segrete e un paesaggio che sembra disegnato.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Conca dei Marini e la Costiera Amalfitana viste dall&#x27;alto" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=2841422">Conca dei Marini 03</a> di Mess, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>La Grotta dello Smeraldo</h3><p>Sotto il paese si apre la Grotta dello Smeraldo, scoperta nel 1932: una cavità in parte sommersa in cui la luce filtra da un'apertura sotto il livello del mare e accende l'acqua di verde.</p></li>
+                        <li class="terr-item"><h3>Capo di Conca e la Marina</h3><p>La Torre di Capo di Conca, del Cinquecento, domina il promontorio da cui si vedono Amalfi e Atrani. Ai suoi piedi, la piccola Marina di Conca è un borgo di pescatori con una spiaggetta di ciottoli e trattorie sul mare.</p></li>
+                        <li class="terr-item"><h3>Le chiese e i belvedere</h3><p>Il paese è punteggiato di chiese con cupole maiolicate, come San Pancrazio, che conserva le reliquie del patrono, e piccole cappelle affacciate sul mare. Da ognuna si apre un belvedere diverso sulla Costiera.</p></li>
+                        <li class="terr-item"><h3>La storia: un dolce nato in clausura</h3><p>Nel Seicento, sulla cima di uno sperone di roccia sopra Conca dei Marini, sorgeva il monastero delle monache domenicane di Santa Rosa da Lima.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Amalfi</dt><dd>10 minuti</dd><dt>Furore</dt><dd>5 minuti</dd><dt>Ravello</dt><dd>25 minuti</dd><dt>Agerola</dt><dd>30 minuti</dd><dt>Cetara</dt><dd>40 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Conca dei Marini →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +300,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Monastero Santa Rosa. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Conca dei Marini?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +512,7 @@
     var hotelName = "Monastero Santa Rosa";
     var citta = "Conca dei Marini";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>La Grotta dello Smeraldo</strong> e <strong>Capo di Conca e la Marina</strong>. Sotto il paese si apre la Grotta dello Smeraldo, scoperta nel 1932: una cavità in parte sommersa in cui la luce filtra da un'apertura sotto il livello del mare e accende l'acqua di verde. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
