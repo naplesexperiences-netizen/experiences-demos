@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Villa Cimbrone — Dimora XII sec giardini celebri hotel de charme panoramica luxury. Situato a Ravello, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Villa Cimbrone è una dimora del XII secolo trasformata in hotel de charme, all'interno dei celebri giardini. Per gli ospiti, la Terrazza dell'Infinito è un luogo privato quando i cancelli chiudono ai visitatori: la si può vivere al tramonto e all'alba, quando Ravello è tutta silenzio e il mare cambia colore ogni minuto.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/12/Hotel-Villa-Cimbrone-slide-home-1-1024x683.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono i giardini, la Terrazza dell'Infinito e Villa Rufolo. Tutti i consigli nella nostra guida di Ravello.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,34 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Ravello</h2>
+            <p>In fondo a un viale di glicini, una balaustra di marmo con una fila di busti settecenteschi si affaccia sul vuoto: sotto, a trecento metri, c'è il mare. È la Terrazza dell'Infinito di Villa Cimbrone, e Gore Vidal la definì "il panorama più bello del mondo".</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="I busti di marmo della Terrazza dell&#x27;Infinito a Villa Cimbrone, Ravello" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=35665180">Ravello - Villa Cimbrone 02</a> di Mihael Grmek, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>I giardini</h3><p>Il parco si estende per circa sei ettari lungo lo sperone di roccia che chiude Ravello verso il mare.</p></li>
+                        <li class="terr-item"><h3>La Terrazza dell'Infinito</h3><p>Il viale principale, il cosiddetto Viale dell'Immensità, conduce dritto alla Terrazza dell'Infinito. Dalla balaustra, il Golfo di Salerno si apre fino a Capo d'Orso e, nelle giornate limpide, fino al Cilento.</p></li>
+                        <li class="terr-item"><h3>Villa Rufolo</h3><p>Nel cuore del paese, Villa Rufolo è la villa del XIII secolo in cui Wagner trovò l'ispirazione per il Parsifal.</p></li>
+                        <li class="terr-item"><h3>Il Duomo</h3><p>Il Duomo di Ravello, fondato nel 1086, conserva le porte di bronzo di Barisano da Trani, due amboni a mosaico e la cappella di San Pantaleone, il patrono, il cui sangue secondo la tradizione si scioglie ogni anno a fine luglio.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Ravello →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +296,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Villa Cimbrone. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Ravello?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +508,7 @@
     var hotelName = "Hotel Villa Cimbrone";
     var citta = "Ravello";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>I giardini</strong> e <strong>La Terrazza dell'Infinito</strong>. Il parco si estende per circa sei ettari lungo lo sperone di roccia che chiude Ravello verso il mare. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

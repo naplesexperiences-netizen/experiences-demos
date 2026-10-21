@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -48,6 +49,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -100,7 +102,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel La Vela — Direttamente sul mare camere vista mare Via Caracciolo 130 mid. Situato a Pioppi, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel La Vela si trova direttamente sul mare, in Via Caracciolo a Pioppi, con camere vista mare. È il luogo ideale per vivere il paese di Ancel Keys come lo viveva lui: il mare davanti, il museo a pochi passi e i sapori del Cilento ogni giorno in tavola.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -150,12 +152,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%23dde3ea' width='800' height='600'/%3E%3C/svg%3E" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono la storia di Ancel Keys, il Museo Vivente della Dieta Mediterranea e il mare. Tutti i consigli nella nostra guida di Pioppi.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -165,7 +168,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Pioppi, in posizione comoda per il territorio. Acciaroli: 10 minuti; Pollica: 15 minuti; Casal Velino Marina: 15 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -180,6 +183,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Pioppi</h2>
+            <p>Ancel Keys, il fisiologo americano che rese famosa nel mondo la dieta mediterranea, scelse di vivere a Pioppi per quasi trent'anni. Non per caso: in questo minuscolo paese sul mare del Cilento aveva trovato la conferma delle sue ricerche.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="La spiaggia e il litorale di Pioppi" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=15851376">Litorale di Pioppi</a> di Spinoziano, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>La storia di Ancel Keys</h3><p>Negli anni Cinquanta Ancel Keys notò che le popolazioni del Sud Italia avevano un'incidenza di malattie cardiovascolari molto più bassa di quella americana.</p></li>
+                        <li class="terr-item"><h3>Il Museo Vivente della Dieta Mediterranea</h3><p>Nel Palazzo Vinciprova, affacciato sul mare, ha sede il Museo Vivente della Dieta Mediterranea.</p></li>
+                        <li class="terr-item"><h3>Il mare</h3><p>Pioppi ha un lungomare tranquillo e spiagge di ciottoli e sabbia con un'acqua cristallina. Gli scogli piatti a nord e a sud del paese sono perfetti per chi ama nuotare in acque profonde.</p></li>
+                        <li class="terr-item"><h3>Acciaroli</h3><p>A dieci minuti, il borgo di pescatori di Acciaroli con il porto, la torre e il mare Bandiera Blu. Secondo la leggenda, qui passò Hemingway.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Acciaroli</dt><dd>10 minuti</dd><dt>Pollica</dt><dd>15 minuti</dd><dt>Casal Velino Marina</dt><dd>15 minuti</dd><dt>Velia</dt><dd>20 minuti</dd><dt>Santa Maria di Castellabate</dt><dd>40 minuti</dd><dt>Palinuro</dt><dd>45 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Pioppi →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -263,7 +298,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel La Vela. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Pioppi?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -475,6 +510,7 @@
     var hotelName = "Hotel La Vela";
     var citta = "Pioppi";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>La storia di Ancel Keys</strong> e <strong>Il Museo Vivente della Dieta Mediterranea</strong>. Negli anni Cinquanta Ancel Keys notò che le popolazioni del Sud Italia avevano un'incidenza di malattie cardiovascolari molto più bassa di quella americana. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

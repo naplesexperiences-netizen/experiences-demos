@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Villa Treville — Ex residenza Zeffirelli 4 ville giardini scogliera ultra-luxury. Situato a Positano, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>Villa Treville, ex residenza di Franco Zeffirelli, è oggi un rifugio ultra-luxury composto da quattro ville immerse nei giardini sulla scogliera. Dormire qui significa entrare nella storia della Positano degli artisti, con il mare sotto e il paese all'orizzonte.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://villatreville.com/wp-content/themes/villatreville/assets/images/partners/xo.png" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono Steinbeck e la scoperta americana, Massine, Nureyev e Li Galli e Zeffirelli e le ville sulla scogliera. Tutti i consigli nella nostra guida di Positano.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,33 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Positano</h2>
+            <p>"Positano morde nel profondo. È un luogo di sogno che non sembra reale quando ci sei, e diventa reale con nostalgia quando sei andato via." Lo scrisse John Steinbeck nel 1953, in un articolo per Harper's Bazaar che fece conoscere il paese al mondo.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Positano illuminata al tramonto, vista dal mare" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=34693351">Positano Sunset</a> di JeCCo, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Steinbeck e la scoperta americana</h3><p>Steinbeck arrivò in auto dalla strada costiera e rimase colpito dalla verticalità del paese. Il suo articolo, "Positano", è ancora oggi il testo più citato su questi luoghi.</p></li>
+                        <li class="terr-item"><h3>Massine, Nureyev e Li Galli</h3><p>Davanti alla costa, l'arcipelago de Li Galli fu acquistato negli anni Venti dal coreografo dei Balletti Russi Léonide Massine, che vi costruì una villa e un teatro all'aperto.</p></li>
+                        <li class="terr-item"><h3>Zeffirelli e le ville sulla scogliera</h3><p>Il regista Franco Zeffirelli scelse la costa fra Positano e Praiano per la sua residenza estiva: un complesso di ville bianche tra giardini terrazzati che scendono fino al mare, dove ospitò per decenni attori, cantanti lirici e amici da tutto il mondo.</p></li>
+                </ul>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Positano →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +295,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Villa Treville. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Positano?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +507,7 @@
     var hotelName = "Villa Treville";
     var citta = "Positano";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Steinbeck e la scoperta americana</strong> e <strong>Massine, Nureyev e Li Galli</strong>. Steinbeck arrivò in auto dalla strada costiera e rimase colpito dalla verticalità del paese. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },

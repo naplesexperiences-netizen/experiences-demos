@@ -17,6 +17,7 @@
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
     <link rel="stylesheet" href="../../shared/gsap.css">
+    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
@@ -50,6 +51,7 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">Chi Siamo</a></li>
             <li><a href="#services">Servizi</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -102,7 +104,7 @@
     <div class="about-text">
         <div class="section-tag">Chi Siamo</div>
         <h2>Un'Accoglienza su Misura</h2>
-        <p>Hotel Polo Nautico — 30 camere unico hotel sul lungomare di Salerno vista mare indipendente. Situato a Salerno, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.</p>
+        <p>L'Hotel Polo Nautico è un albergo indipendente di 30 camere, l'unico direttamente sul lungomare di Salerno, con vista sul mare. È la posizione ideale per vivere la città a piedi e raggiungere il porto dei traghetti in pochi minuti: la Costiera e il Cilento cominciano dalla porta dell'hotel.</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> Qualità garantita</li>
             <li><span class="check">✓</span> Territorio autentico</li>
@@ -152,12 +154,13 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelpolonautico.it/images/public/slider/mobile-big/terrazza_1657011198.jpg" alt="Esperienze sul Territorio" loading="lazy">
+                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
                 <div class="card-icon">⛵</div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Escursioni, tour ed attività per scoprire le bellezze naturali e culturali della zona.</p>
+                <p class="card-desc">Da qui si scoprono il lungomare Trieste, il Duomo di San Matteo e la Scuola Medica e il Giardino della Minerva. Tutti i consigli nella nostra guida di Salerno.</p>
+                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
             </div>
         </div>
         <div class="card reveal">
@@ -167,7 +170,7 @@
             </div>
             <div class="card-body">
                 <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <p class="card-desc">A Salerno, in posizione comoda per il territorio. Vietri sul Mare: 10 minuti; Amalfi e Positano: 35-70 minuti; Paestum: 35-45 minuti.</p>
             </div>
         </div>
         <div class="card reveal">
@@ -182,6 +185,38 @@
         </div>
     </div>
 </section>
+
+<!-- territorio:start -->
+<!-- ===== TERRITORIO ===== -->
+<section class="territorio terr-gsap" id="territorio">
+    <div class="terr-wrap">
+        <div class="section-header reveal">
+            <div class="section-tag">Il Territorio</div>
+            <h2>Perché visitare Salerno</h2>
+            <p>Salerno è la città che molti attraversano per andare in Costiera o nel Cilento, e che pochi si fermano davvero a scoprire.</p>
+        </div>
+        <div class="terr-grid">
+            <figure class="terr-photo reveal">
+                <img src="img/territorio.jpg" alt="Il lungomare di Salerno con le palme" width="1200" height="675" loading="lazy">
+                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=3215407">SalernoSeaPromenade</a> di SOLOXSALERNO (it.wikipedia), <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></figcaption>
+            </figure>
+            <div class="reveal">
+                <ul class="terr-list">
+                        <li class="terr-item"><h3>Il lungomare Trieste</h3><p>Il lungomare Trieste corre per chilometri fra palme, aiuole e panchine, con il mare da un lato e il centro storico dall'altro. Al mattino è il regno dei runner, al tramonto quello delle famiglie e delle coppie.</p></li>
+                        <li class="terr-item"><h3>Il Duomo di San Matteo</h3><p>Voluto da Roberto il Guiscardo e consacrato nel 1084 da papa Gregorio VII, che qui è sepolto, il Duomo di Salerno custodisce le reliquie dell'evangelista Matteo.</p></li>
+                        <li class="terr-item"><h3>La Scuola Medica e il Giardino della Minerva</h3><p>Salerno fu sede della Scuola Medica Salernitana, la prima istituzione medica d'Europa, attiva dal X secolo.</p></li>
+                        <li class="terr-item"><h3>Il centro storico e il Castello di Arechi</h3><p>Via dei Mercanti è la strada medievale dello shopping e dell'aperitivo, fra chiese, palazzi e botteghe. Sopra la città, il Castello di Arechi, di origine longobarda, offre il panorama più ampio sul Golfo.</p></li>
+                </ul>
+                    <div class="terr-dist">
+                        <h3>Distanze dalla struttura</h3>
+                        <dl><dt>Vietri sul Mare</dt><dd>10 minuti</dd><dt>Amalfi e Positano</dt><dd>35-70 minuti</dd><dt>Paestum</dt><dd>35-45 minuti</dd><dt>Pompei</dt><dd>30-40 minuti</dd><dt>Capri</dt><dd>1 ora e 45 circa</dd><dt>Napoli</dt><dd>35 minuti</dd></dl>
+                    </div>
+                <a href="guida/" class="btn btn-primary">Leggi la guida di Salerno →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
@@ -265,7 +300,7 @@
                 <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Polo Nautico. Come posso esserti utile?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Salerno?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -477,6 +512,7 @@
     var hotelName = "Hotel Polo Nautico";
     var citta = "Salerno";
     var replies = [
+        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>Il lungomare Trieste</strong> e <strong>Il Duomo di San Matteo</strong>. Il lungomare Trieste corre per chilometri fra palme, aiuole e panchine, con il mare da un lato e il centro storico dall'altro. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
