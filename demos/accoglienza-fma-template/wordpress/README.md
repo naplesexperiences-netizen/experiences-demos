@@ -62,7 +62,7 @@ Il sito è in italiano; inglese, francese, spagnolo, portoghese e cinese si aggi
 
 1. **Lingue → Lingue**: aggiungi English (en_GB), Français (fr_FR), Español (es_ES), Português (pt_PT) e 中文 (zh_CN). L'italiano resta la lingua predefinita.
 2. **Lingue → Impostazioni → Modifiche URL**: spunta «L’URL della pagina iniziale contiene il codice della lingua…», così la home inglese è `/en/` e non `/en/home-en/`.
-3. **Strumenti → Traduzioni FMA**: scegli le lingue e premi *Importa le traduzioni*. Crea, collegate a quelle italiane, le 8 case (testi, camere, regole, dintorni, titolo e descrizione per Google), i 13 articoli, le pagine Home e Blog, la categoria, le regioni, i servizi e il motto del sito. Foto, coordinate, contatti, email per le richieste e prezzi si copiano dalla versione italiana. Con WP-CLI: `wp fma traduzioni [--lingua=en]`.
+3. **Strumenti → Traduzioni FMA**: scegli le lingue e premi *Importa le traduzioni*. Crea, collegate a quelle italiane, le 8 case (testi, camere, regole, dintorni, titolo e descrizione per Google), i 21 articoli, le pagine Home e Blog, le categorie, le regioni, i servizi e il motto del sito. Foto, coordinate, contatti, email per le richieste e prezzi si copiano dalla versione italiana. Con WP-CLI: `wp fma traduzioni [--lingua=en]`.
 
 | Cosa | Dove |
 |---|---|
