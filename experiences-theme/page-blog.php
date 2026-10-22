@@ -48,9 +48,7 @@ $exp_cats = get_categories([ 'orderby' => 'count', 'order' => 'DESC', 'hide_empt
                     <?php the_content(); ?>
                 </div>
             <?php else : ?>
-                <p class="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                    Strategie, guide pratiche e case study per digitalizzare il tuo business turistico.
-                </p>
+                <p class="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed"><?php esc_html_e( 'Strategie, guide pratiche e case study per digitalizzare il tuo business turistico.', 'experiences-srl' ); ?></p>
             <?php endif; ?>
 
             <p class="mt-6 text-sm text-white/70">

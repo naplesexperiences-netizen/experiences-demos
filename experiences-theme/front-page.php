@@ -33,51 +33,45 @@ get_header();
                 <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
                     <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6">
                         <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                        <span class="text-accent text-sm font-medium">Soluzioni per Hotel, Agenzie & Tour Operator</span>
+                        <span class="text-accent text-sm font-medium"><?php esc_html_e( 'Soluzioni per Hotel, Agenzie & Tour Operator', 'experiences-srl' ); ?></span>
                     </div>
                     
-                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                        Aumenta le tue <span class="text-gradient">prenotazioni</span>,
-                        <span class="block mt-2">lavorando di meno</span>
-                    </h1>
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"><?php echo wp_kses_post( __( 'Aumenta le tue <span class="text-gradient">prenotazioni</span>, <span class="block mt-2">lavorando di meno</span>', 'experiences-srl' ) ); ?></h1>
 
-                    <p class="text-gray-300 text-lg lg:text-xl mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        Mentre tu gestisci <strong class="text-white">5 piattaforme manualmente</strong>, i tuoi competitor incassano prenotazioni dirette 24/7.
-                        <span class="text-accent font-medium block mt-2">Channel Manager + Sito Moderno + AI: Tutto Sincronizzato, Zero Overbooking</span>
-                    </p>
+                    <p class="text-gray-300 text-lg lg:text-xl mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"><?php echo wp_kses_post( __( 'Mentre tu gestisci <strong class="text-white">5 piattaforme manualmente</strong>, i tuoi competitor incassano prenotazioni dirette 24/7. <span class="text-accent font-medium block mt-2">Channel Manager + Sito Moderno + AI: Tutto Sincronizzato, Zero Overbooking</span>', 'experiences-srl' ) ); ?></p>
 
                     <!-- Verticale Selector -->
                     <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 mb-8 max-w-lg mx-auto lg:mx-0">
-                        <p class="text-white/70 text-sm mb-3 font-medium">Per chi vuoi vedere la soluzione?</p>
+                        <p class="text-white/70 text-sm mb-3 font-medium"><?php esc_html_e( 'Per chi vuoi vedere la soluzione?', 'experiences-srl' ); ?></p>
                         <div class="flex flex-wrap gap-2">
                             <a href="#services" class="verticale-btn px-4 py-2 bg-accent/20 hover:bg-accent text-white text-sm font-semibold rounded-lg border border-accent/30 hover:border-accent transition-all flex items-center gap-2">
-                                <i class="fas fa-hotel text-xs"></i> Hotel & B&B
+                                <i class="fas fa-hotel text-xs"></i> <?php esc_html_e( 'Hotel & B&B', 'experiences-srl' ); ?>
                             </a>
                             <a href="#services" class="verticale-btn px-4 py-2 bg-secondary/20 hover:bg-secondary text-white text-sm font-semibold rounded-lg border border-secondary/30 hover:border-secondary transition-all flex items-center gap-2">
-                                <i class="fas fa-suitcase text-xs"></i> Agenzie Viaggi
+                                <i class="fas fa-suitcase text-xs"></i> <?php esc_html_e( 'Agenzie Viaggi', 'experiences-srl' ); ?>
                             </a>
                             <a href="#services" class="verticale-btn px-4 py-2 bg-primary/40 hover:bg-primary text-white text-sm font-semibold rounded-lg border border-white/20 hover:border-white/40 transition-all flex items-center gap-2">
-                                <i class="fas fa-map-marked-alt text-xs"></i> Tour Operator
+                                <i class="fas fa-map-marked-alt text-xs"></i> <?php esc_html_e( 'Tour Operator', 'experiences-srl' ); ?>
                             </a>
                         </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                         <a href="#booking" data-booking-trigger class="shimmer-btn px-8 py-4 text-white font-semibold rounded-xl shadow-lg hover:shadow-accent/25 hover:-translate-y-1 transition-transform flex items-center justify-center gap-2">
-                            <span>Prenota Audit Gratuito</span>
+                            <span><?php esc_html_e( 'Prenota Audit Gratuito', 'experiences-srl' ); ?></span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="https://wa.me/393926917657" class="px-8 py-4 border border-white/20 text-white hover:bg-white/10 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
                             <i class="fab fa-whatsapp text-xl text-green-400"></i>
-                            <span>Parla con noi</span>
+                            <span><?php esc_html_e( 'Parla con noi', 'experiences-srl' ); ?></span>
                         </a>
                     </div>
                     
                     <!-- Trust signals -->
                     <div class="mt-6 flex items-center gap-4 text-xs text-white/60 justify-center lg:justify-start">
-                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-accent"></i> Consulenza gratuita</span>
-                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-accent"></i> Risposta in 24h</span>
-                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-accent"></i> No vincoli</span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-accent"></i> <?php esc_html_e( 'Consulenza gratuita', 'experiences-srl' ); ?></span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-accent"></i> <?php esc_html_e( 'Risposta in 24h', 'experiences-srl' ); ?></span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check-circle text-accent"></i> <?php esc_html_e( 'No vincoli', 'experiences-srl' ); ?></span>
                     </div>
                 </div>
 
@@ -105,19 +99,19 @@ get_header();
                         <!-- Center logo -->
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="pulse-ring w-36 h-36 lg:w-44 lg:h-44 rounded-full bg-white/8 backdrop-blur-sm border border-white/10 flex items-center justify-center p-3">
-                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.webp" alt="Experiences" width="282" height="300" class="w-full h-full object-contain drop-shadow-2xl" style="filter: drop-shadow(0 0 20px rgba(20,163,163,0.4))">
+                                <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.webp" alt="<?php echo esc_attr__( 'Experiences', 'experiences-srl' ); ?>" width="282" height="300" class="w-full h-full object-contain drop-shadow-2xl" style="filter: drop-shadow(0 0 20px rgba(20,163,163,0.4))">
                             </div>
                         </div>
 
                         <!-- Orbiting badges -->
                         <div class="orbit-badge orbit-1">
                             <div class="-translate-x-1/2 -translate-y-1/2 bg-accent text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg whitespace-nowrap flex items-center gap-1.5">
-                                <i class="fas fa-globe text-xs"></i> Online
+                                <i class="fas fa-globe text-xs"></i> <?php esc_html_e( 'Online', 'experiences-srl' ); ?>
                             </div>
                         </div>
                         <div class="orbit-badge orbit-2">
                             <div class="-translate-x-1/2 -translate-y-1/2 bg-secondary text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg whitespace-nowrap flex items-center gap-1.5">
-                                <i class="fas fa-mobile-alt text-xs"></i> Mobile
+                                <i class="fas fa-mobile-alt text-xs"></i> <?php esc_html_e( 'Mobile', 'experiences-srl' ); ?>
                             </div>
                         </div>
                         <div class="orbit-badge orbit-3">
@@ -127,7 +121,7 @@ get_header();
                         </div>
                         <div class="orbit-badge orbit-4">
                             <div class="-translate-x-1/2 -translate-y-1/2 bg-accent/80 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg whitespace-nowrap flex items-center gap-1.5">
-                                <i class="fas fa-robot text-xs"></i> AI
+                                <i class="fas fa-robot text-xs"></i> <?php esc_html_e( 'AI', 'experiences-srl' ); ?>
                             </div>
                         </div>
                     </div>
@@ -136,19 +130,19 @@ get_header();
                     <div class="grid grid-cols-2 gap-4 mt-8 w-full max-w-sm">
                         <div class="stat-card rounded-xl p-4 text-center" data-aos="zoom-in" data-aos-delay="400">
                             <div class="text-2xl lg:text-3xl font-bold text-accent stat-number stats-counter" data-target="30" data-suffix="h">0</div>
-                            <div class="text-xs text-gray-400 mt-1">Ore/sett. risparmiate</div>
+                            <div class="text-xs text-gray-400 mt-1"><?php esc_html_e( 'Ore/sett. risparmiate', 'experiences-srl' ); ?></div>
                         </div>
                         <div class="stat-card rounded-xl p-4 text-center" data-aos="zoom-in" data-aos-delay="500">
                             <div class="text-2xl lg:text-3xl font-bold text-accent stat-number stats-counter" data-target="50" data-suffix="%">0</div>
-                            <div class="text-xs text-gray-400 mt-1">Più prenotazioni dirette</div>
+                            <div class="text-xs text-gray-400 mt-1"><?php esc_html_e( 'Più prenotazioni dirette', 'experiences-srl' ); ?></div>
                         </div>
                         <div class="stat-card rounded-xl p-4 text-center" data-aos="zoom-in" data-aos-delay="600">
                             <div class="text-2xl lg:text-3xl font-bold text-accent stat-number stats-counter" data-target="0" data-suffix="">0</div>
-                            <div class="text-xs text-gray-400 mt-1">Overbooking</div>
+                            <div class="text-xs text-gray-400 mt-1"><?php esc_html_e( 'Overbooking', 'experiences-srl' ); ?></div>
                         </div>
                         <div class="stat-card rounded-xl p-4 text-center" data-aos="zoom-in" data-aos-delay="700">
                             <div class="text-2xl lg:text-3xl font-bold text-accent stat-number stats-counter" data-target="24" data-suffix="/7">0</div>
-                            <div class="text-xs text-gray-400 mt-1">Supporto AI clienti</div>
+                            <div class="text-xs text-gray-400 mt-1"><?php esc_html_e( 'Supporto AI clienti', 'experiences-srl' ); ?></div>
                         </div>
                     </div>
                 </div>
@@ -157,7 +151,7 @@ get_header();
             <!-- Scroll Indicator - centered via absolute positioning -->
             <div class="scroll-indicator">
                 <a href="#services" class="flex flex-col items-center text-white/50 hover:text-accent transition">
-                    <span class="text-xs mb-2">Scorri</span>
+                    <span class="text-xs mb-2"><?php esc_html_e( 'Scorri', 'experiences-srl' ); ?></span>
                     <i class="fas fa-chevron-down"></i>
                 </a>
             </div>
@@ -169,90 +163,90 @@ get_header();
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 lg:mb-20" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">SOLUZIONI CHE FUNZIONANO</span>
-                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Da problema a <span class="text-gradient">prenotazione</span> in 30 giorni</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">Ogni servizio risolve un problema reale che ti costa tempo e prenotazioni. Implementazione veloce, risultati misurabili.</p>
+                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'SOLUZIONI CHE FUNZIONANO', 'experiences-srl' ); ?></span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'Da problema a <span class="text-gradient">prenotazione</span> in 30 giorni', 'experiences-srl' ) ); ?></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed"><?php esc_html_e( 'Ogni servizio risolve un problema reale che ti costa tempo e prenotazioni. Implementazione veloce, risultati misurabili.', 'experiences-srl' ); ?></p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-3">Sito Web Moderno</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> Problema</p>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Il tuo sito attuale è pre-2020, non funziona da mobile e perde l'<strong>89% dei visitatori</strong>.</p>
-                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
+                    <h3 class="font-heading text-xl font-bold text-primary mb-3"><?php esc_html_e( 'Sito Web Moderno', 'experiences-srl' ); ?></h3>
+                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> <?php esc_html_e( 'Problema', 'experiences-srl' ); ?></p>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo wp_kses_post( __( 'Il tuo sito attuale è pre-2020, non funziona da mobile e perde l\'<strong>89% dei visitatori</strong>.', 'experiences-srl' ) ); ?></p>
+                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> <?php esc_html_e( 'Soluzione', 'experiences-srl' ); ?></p>
                     <ul class="space-y-2 text-sm text-gray-600 mb-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Design mobile-first (carica in &lt;2 sec)</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Booking integrato che converte</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Gestione contenuti autonoma</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Design mobile-first (carica in <2 sec)', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Booking integrato che converte', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Gestione contenuti autonoma', 'experiences-srl' ); ?></li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: un sito che si apre in fretta e si usa col pollice</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3"><?php esc_html_e( '📈 Risultato: un sito che si apre in fretta e si usa col pollice', 'experiences-srl' ); ?></p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-search-dollar"></i></div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-3">SEO/SEM Marketing</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> Problema</p>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">I clienti cercano "hotel Napoli" e trovano i tuoi competitor. <strong>Tu sei invisibile</strong>.</p>
-                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
+                    <h3 class="font-heading text-xl font-bold text-primary mb-3"><?php esc_html_e( 'SEO/SEM Marketing', 'experiences-srl' ); ?></h3>
+                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> <?php esc_html_e( 'Problema', 'experiences-srl' ); ?></p>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo wp_kses_post( __( 'I clienti cercano "hotel Napoli" e trovano i tuoi competitor. <strong>Tu sei invisibile</strong>.', 'experiences-srl' ) ); ?></p>
+                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> <?php esc_html_e( 'Soluzione', 'experiences-srl' ); ?></p>
                     <ul class="space-y-2 text-sm text-gray-600 mb-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> SEO locale (top 3 su Google)</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Google Ads con ROI tracking</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Social Media targeting clienti ideali</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'SEO locale (top 3 su Google)', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Google Ads con ROI tracking', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Social Media targeting clienti ideali', 'experiences-srl' ); ?></li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: ti trovano cercando la zona, non solo il tuo nome</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3"><?php esc_html_e( '📈 Risultato: ti trovano cercando la zona, non solo il tuo nome', 'experiences-srl' ); ?></p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border-2 border-accent shadow-lg group ring-2 ring-accent/20" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-start justify-between mb-3">
                         <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center text-secondary text-2xl"><i class="fas fa-exchange-alt"></i></div>
-                        <span class="px-2 py-1 bg-accent/10 text-accent text-xs font-bold rounded-full">⭐ TOP</span>
+                        <span class="px-2 py-1 bg-accent/10 text-accent text-xs font-bold rounded-full"><?php esc_html_e( '⭐ TOP', 'experiences-srl' ); ?></span>
                     </div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-3">Channel Manager</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> Problema</p>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Gestisci Booking, Airbnb, Expedia <strong>manualmente</strong>. Rischi overbooking e perdi 30 ore/settimana.</p>
-                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
+                    <h3 class="font-heading text-xl font-bold text-primary mb-3"><?php esc_html_e( 'Channel Manager', 'experiences-srl' ); ?></h3>
+                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> <?php esc_html_e( 'Problema', 'experiences-srl' ); ?></p>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo wp_kses_post( __( 'Gestisci Booking, Airbnb, Expedia <strong>manualmente</strong>. Rischi overbooking e perdi 30 ore/settimana.', 'experiences-srl' ) ); ?></p>
+                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> <?php esc_html_e( 'Soluzione', 'experiences-srl' ); ?></p>
                     <ul class="space-y-2 text-sm text-gray-600 mb-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Sync real-time con tutte le OTA</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Sync real-time con tutte le OTA', 'experiences-srl' ); ?></li>
                         <!-- "Garantito" e una parola che impegna: se un
                              overbooking succede lo stesso, la promessa
                              diventa contestabile. Il meccanismo reale e
                              che la sincronizzazione lo previene. -->
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Disponibilità allineata su ogni canale, niente doppie prenotazioni</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico + analytics</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Disponibilità allineata su ogni canale, niente doppie prenotazioni', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Pricing dinamico + analytics', 'experiences-srl' ); ?></li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: un calendario solo, e le dirette non passano più dalle OTA</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3"><?php esc_html_e( '📈 Risultato: un calendario solo, e le dirette non passano più dalle OTA', 'experiences-srl' ); ?></p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-bullhorn"></i></div>
-                    <h3 class="font-heading text-xl font-bold text-primary mb-3">Annunci OTA Ottimizzati</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> Problema</p>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Il tuo annuncio su Booking sembra come migliaia di altri. <strong>Conversione bassa = revenue persa</strong>.</p>
-                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
+                    <h3 class="font-heading text-xl font-bold text-primary mb-3"><?php esc_html_e( 'Annunci OTA Ottimizzati', 'experiences-srl' ); ?></h3>
+                    <p class="text-red-600 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> <?php esc_html_e( 'Problema', 'experiences-srl' ); ?></p>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo wp_kses_post( __( 'Il tuo annuncio su Booking sembra come migliaia di altri. <strong>Conversione bassa = revenue persa</strong>.', 'experiences-srl' ) ); ?></p>
+                    <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> <?php esc_html_e( 'Soluzione', 'experiences-srl' ); ?></p>
                     <ul class="space-y-2 text-sm text-gray-600 mb-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Copy persuasivo (testato A/B)</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Foto professionali + ottimizzazione SEO</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico per stagione</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Copy persuasivo (testato A/B)', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Foto professionali + ottimizzazione SEO', 'experiences-srl' ); ?></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> <?php esc_html_e( 'Pricing dinamico per stagione', 'experiences-srl' ); ?></li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: annunci completi, fotografati e scritti per convertire</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3"><?php esc_html_e( '📈 Risultato: annunci completi, fotografati e scritti per convertire', 'experiences-srl' ); ?></p>
                 </div>
                 <div class="card-hover bg-gradient-to-br from-primary to-secondary rounded-2xl p-6 lg:p-8 shadow-lg group sm:col-span-2 lg:col-span-2" data-aos="fade-up" data-aos-delay="500">
                     <div class="flex flex-col">
                         <div class="flex items-start justify-between mb-5">
                             <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center bg-white/10 text-white text-2xl flex-shrink-0"><i class="fas fa-robot"></i></div>
-                            <span class="px-2 py-1 bg-accent text-white text-xs font-bold rounded-full">🚀 ESCLUSIVO</span>
+                            <span class="px-2 py-1 bg-accent text-white text-xs font-bold rounded-full"><?php esc_html_e( '🚀 ESCLUSIVO', 'experiences-srl' ); ?></span>
                         </div>
-                        <h3 class="font-heading text-xl lg:text-2xl font-bold text-white mb-3">Assistente AI 24/7 per i tuoi clienti</h3>
-                        <p class="text-yellow-300 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> Problema</p>
-                        <p class="text-white/80 text-sm leading-relaxed mb-3">I clienti scrivono di notte, chiedono prezzi, vogliono informazioni. <strong>Tu dormi. Loro vanno dai competitor.</strong></p>
-                        <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
+                        <h3 class="font-heading text-xl lg:text-2xl font-bold text-white mb-3"><?php esc_html_e( 'Assistente AI 24/7 per i tuoi clienti', 'experiences-srl' ); ?></h3>
+                        <p class="text-yellow-300 text-xs font-semibold mb-2"><i class="fas fa-exclamation-triangle"></i> <?php esc_html_e( 'Problema', 'experiences-srl' ); ?></p>
+                        <p class="text-white/80 text-sm leading-relaxed mb-3"><?php echo wp_kses_post( __( 'I clienti scrivono di notte, chiedono prezzi, vogliono informazioni. <strong>Tu dormi. Loro vanno dai competitor.</strong>', 'experiences-srl' ) ); ?></p>
+                        <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> <?php esc_html_e( 'Soluzione', 'experiences-srl' ); ?></p>
                         <div class="lg:flex lg:gap-8">
-                            <p class="text-white/90 text-sm leading-relaxed mb-4 lg:max-w-sm">Assistente AI configurato sul tuo business: risponde in 12 lingue, prenota direttamente, suggerisce attività locali, integra con il tuo Channel Manager.</p>
+                            <p class="text-white/90 text-sm leading-relaxed mb-4 lg:max-w-sm"><?php esc_html_e( 'Assistente AI configurato sul tuo business: risponde in 12 lingue, prenota direttamente, suggerisce attività locali, integra con il tuo Channel Manager.', 'experiences-srl' ); ?></p>
                             <div class="flex flex-wrap gap-3 lg:items-start lg:content-start">
-                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium">⚡ Risposta in 2 sec</span>
-                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium">🌍 12 lingue</span>
-                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium">💰 Prenotazione diretta</span>
-                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium">🎯 Lead capture</span>
+                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium"><?php esc_html_e( '⚡ Risposta in 2 sec', 'experiences-srl' ); ?></span>
+                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium"><?php esc_html_e( '🌍 12 lingue', 'experiences-srl' ); ?></span>
+                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium"><?php esc_html_e( '💰 Prenotazione diretta', 'experiences-srl' ); ?></span>
+                                <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium"><?php esc_html_e( '🎯 Lead capture', 'experiences-srl' ); ?></span>
                             </div>
                         </div>
-                        <p class="text-accent text-xs font-bold border-t border-white/10 pt-3 mt-4">📈 Risultato: nessuna richiesta resta senza risposta fino al mattino</p>
+                        <p class="text-accent text-xs font-bold border-t border-white/10 pt-3 mt-4"><?php esc_html_e( '📈 Risultato: nessuna richiesta resta senza risposta fino al mattino', 'experiences-srl' ); ?></p>
                     </div>
                 </div>
             </div>
@@ -274,28 +268,24 @@ get_header();
 
             <!-- Section Header -->
             <div class="text-center mb-14" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">ASSISTENTE VIRTUALE AI</span>
-                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">
-                    Parla con il nostro <span class="text-gradient">Esperto Digitale</span>
-                </h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-                    Il nostro assistente AI è disponibile 24/7 per rispondere alle tue domande sui servizi, i piani tariffari e le soluzioni digitali per il turismo.
-                </p>
+                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'ASSISTENTE VIRTUALE AI', 'experiences-srl' ); ?></span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'Parla con il nostro <span class="text-gradient">Esperto Digitale</span>', 'experiences-srl' ) ); ?></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed"><?php esc_html_e( 'Il nostro assistente AI è disponibile 24/7 per rispondere alle tue domande sui servizi, i piani tariffari e le soluzioni digitali per il turismo.', 'experiences-srl' ); ?></p>
             </div>
 
             <!-- Info badges -->
             <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="100">
                 <span class="px-4 py-2 bg-light text-secondary text-sm font-semibold rounded-full flex items-center gap-2">
-                    <i class="fas fa-clock"></i> Disponibile 24/7
+                    <i class="fas fa-clock"></i> <?php esc_html_e( 'Disponibile 24/7', 'experiences-srl' ); ?>
                 </span>
                 <span class="px-4 py-2 bg-light text-secondary text-sm font-semibold rounded-full flex items-center gap-2">
-                    <i class="fas fa-language"></i> Multilingua
+                    <i class="fas fa-language"></i> <?php esc_html_e( 'Multilingua', 'experiences-srl' ); ?>
                 </span>
                 <span class="px-4 py-2 bg-light text-secondary text-sm font-semibold rounded-full flex items-center gap-2">
-                    <i class="fas fa-bolt"></i> Risposta istantanea
+                    <i class="fas fa-bolt"></i> <?php esc_html_e( 'Risposta istantanea', 'experiences-srl' ); ?>
                 </span>
                 <span class="px-4 py-2 bg-light text-secondary text-sm font-semibold rounded-full flex items-center gap-2">
-                    <i class="fas fa-robot"></i> AI Powered
+                    <i class="fas fa-robot"></i> <?php esc_html_e( 'AI Powered', 'experiences-srl' ); ?>
                 </span>
             </div>
 
@@ -314,23 +304,23 @@ get_header();
                     <button type="button" class="exp-avatar-start" data-avatar-start
                             aria-describedby="exp-avatar-nota">
                         <span class="exp-avatar-play" aria-hidden="true"><i class="fas fa-play"></i></span>
-                        <span class="exp-avatar-label">Parla con l'Esperto Digitale</span>
-                        <span class="exp-avatar-hint">Si apre l'assistente video, in italiano</span>
+                        <span class="exp-avatar-label"><?php esc_html_e( 'Parla con l\'Esperto Digitale', 'experiences-srl' ); ?></span>
+                        <span class="exp-avatar-hint"><?php esc_html_e( 'Si apre l\'assistente video, in italiano', 'experiences-srl' ); ?></span>
                     </button>
                 </div>
                 <p id="exp-avatar-nota" class="text-center text-xs text-gray-500 mt-3">
                     Avviandolo ti colleghi a LiveAvatar, un servizio esterno, che potrà
                     chiederti il microfono per parlare. Dettagli nella
-                    <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="underline hover:text-secondary">Privacy Policy</a>.
+                    <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="underline hover:text-secondary"><?php esc_html_e( 'Privacy Policy', 'experiences-srl' ); ?></a>.
                 </p>
             </div>
 
             <!-- CTA below avatar -->
             <div class="text-center mt-10" data-aos="fade-up" data-aos-delay="300">
-                <p class="text-gray-500 text-sm mb-4">Preferisci un contatto diretto?</p>
+                <p class="text-gray-500 text-sm mb-4"><?php esc_html_e( 'Preferisci un contatto diretto?', 'experiences-srl' ); ?></p>
                 <a href="#booking" data-booking-trigger
                    class="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
-                    <i class="fas fa-rocket"></i> Prenota una call di 30 min
+                    <i class="fas fa-rocket"></i> <?php esc_html_e( 'Prenota una call di 30 min', 'experiences-srl' ); ?>
                 </a>
             </div>
 
@@ -352,14 +342,9 @@ get_header();
                      articolo con la tabella KPI; gli altri due raccontano
                      cosa e cambiato, che e vero e dimostrabile, senza
                      percentuali che nessuno puo verificare. -->
-                <span class="inline-block px-4 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4">CASI REALI</span>
-                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                    Cosa abbiamo fatto per <span class="text-gradient">altri come te</span>
-                </h2>
-                <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-                    Tre situazioni in cui siamo entrati e cosa è cambiato. Dove abbiamo i numeri
-                    li pubblichiamo per intero, con il case study completo da leggere.
-                </p>
+                <span class="inline-block px-4 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'CASI REALI', 'experiences-srl' ); ?></span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"><?php echo wp_kses_post( __( 'Cosa abbiamo fatto per <span class="text-gradient">altri come te</span>', 'experiences-srl' ) ); ?></h2>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto"><?php esc_html_e( 'Tre situazioni in cui siamo entrati e cosa è cambiato. Dove abbiamo i numeri li pubblichiamo per intero, con il case study completo da leggere.', 'experiences-srl' ); ?></p>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-6">
@@ -368,29 +353,29 @@ get_header();
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center"><i class="fas fa-hotel text-accent text-xl"></i></div>
                         <div>
-                            <p class="text-white font-bold">Hotel 4 stelle</p>
-                            <p class="text-gray-400 text-xs">Ischia • 80 camere</p>
+                            <p class="text-white font-bold"><?php esc_html_e( 'Hotel 4 stelle', 'experiences-srl' ); ?></p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Ischia • 80 camere', 'experiences-srl' ); ?></p>
                         </div>
                     </div>
                     <!-- Le percentuali qui erano inventate: nessuno ha
                          misurato +45% o +€50k. Cosa e cambiato lo sappiamo
                          e lo possiamo dimostrare; di quanto, no. -->
-                    <h3 class="text-white text-lg font-bold mb-3">Dall&rsquo;overbooking al controllo del calendario</h3>
+                    <h3 class="text-white text-lg font-bold mb-3"><?php esc_html_e( 'Dall’overbooking al controllo del calendario', 'experiences-srl' ); ?></h3>
                     <ul class="space-y-2.5 mb-4">
                         <li class="flex items-start gap-2.5 text-gray-300 text-sm">
                             <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Disponibilità sincronizzata fra Booking, Expedia e sito: le doppie prenotazioni non capitano più</span>
+                            <span><?php esc_html_e( 'Disponibilità sincronizzata fra Booking, Expedia e sito: le doppie prenotazioni non capitano più', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-2.5 text-gray-300 text-sm">
                             <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Niente più aggiornamento manuale dei prezzi su quattro portali, ogni mattina</span>
+                            <span><?php esc_html_e( 'Niente più aggiornamento manuale dei prezzi su quattro portali, ogni mattina', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-2.5 text-gray-300 text-sm">
                             <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Motore di prenotazione sul sito: chi arriva dal nome dell&rsquo;hotel prenota lì, senza commissione</span>
+                            <span><?php esc_html_e( 'Motore di prenotazione sul sito: chi arriva dal nome dell’hotel prenota lì, senza commissione', 'experiences-srl' ); ?></span>
                         </li>
                     </ul>
-                    <p class="text-gray-300 text-sm italic">"In 6 mesi abbiamo recuperato il controllo totale. Il direttore ora si concentra sull'esperienza ospiti, non sul gestionale."</p>
+                    <p class="text-gray-300 text-sm italic"><?php esc_html_e( '"In 6 mesi abbiamo recuperato il controllo totale. Il direttore ora si concentra sull\'esperienza ospiti, non sul gestionale."', 'experiences-srl' ); ?></p>
                 </div>
 
                 <!-- Case Study 2: Agenzia Travel -->
@@ -398,8 +383,8 @@ get_header();
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center"><i class="fas fa-suitcase text-secondary text-xl"></i></div>
                         <div>
-                            <p class="text-white font-bold">Agenzia Tour</p>
-                            <p class="text-gray-400 text-xs">Napoli • Tour Vesuvio/Pompei • dal 2022</p>
+                            <p class="text-white font-bold"><?php esc_html_e( 'Agenzia Tour', 'experiences-srl' ); ?></p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Napoli • Tour Vesuvio/Pompei • dal 2022', 'experiences-srl' ); ?></p>
                         </div>
                     </div>
                     <!-- Le cifre sono quelle del case study pubblicato sul
@@ -409,26 +394,26 @@ get_header();
                          prenotazioni e da €21K a €92K di fatturato e avvenuto
                          sull'anno. Un numero che il lettore puo verificare
                          cliccando non deve contraddire la pagina che apre. -->
-                    <h3 class="text-white text-lg font-bold mb-3">Da 5 a 20 prenotazioni/mese in 12 mesi</h3>
+                    <h3 class="text-white text-lg font-bold mb-3"><?php esc_html_e( 'Da 5 a 20 prenotazioni/mese in 12 mesi', 'experiences-srl' ); ?></h3>
                     <div class="grid grid-cols-2 gap-3 mb-4">
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">4&times;</p>
-                            <p class="text-gray-400 text-xs">Prenotazioni/mese</p>
+                            <p class="text-secondary text-2xl font-bold"><?php esc_html_e( '4×', 'experiences-srl' ); ?></p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Prenotazioni/mese', 'experiences-srl' ); ?></p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
                             <p class="text-secondary text-2xl font-bold">38%</p>
-                            <p class="text-gray-400 text-xs">Vendite dirette</p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Vendite dirette', 'experiences-srl' ); ?></p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
                             <p class="text-secondary text-2xl font-bold">+14%</p>
-                            <p class="text-gray-400 text-xs">Ticket medio</p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Ticket medio', 'experiences-srl' ); ?></p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
                             <!-- "€21K→€92K" a text-2xl sfora il riquadro
                                  sotto i 1280px: il confronto sta meglio
                                  nell'etichetta, dove c'e spazio. -->
                             <p class="text-secondary text-2xl font-bold">€92K</p>
-                            <p class="text-gray-400 text-xs">Fatturato annuo, da €21K</p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Fatturato annuo, da €21K', 'experiences-srl' ); ?></p>
                         </div>
                     </div>
                     <!-- I quattro riquadri sopra sono il primo anno,
@@ -436,12 +421,8 @@ get_header();
                          quattro anni successivi, letti dall'analytics del
                          cliente: arrotondati perche a lui basta l'ordine
                          di grandezza e non vuole essere riconoscibile. -->
-                    <p class="text-gray-300 text-sm leading-relaxed mb-4 pt-3 border-t border-white/10">
-                        Da allora a oggi: <strong class="text-white">oltre 200.000 visite</strong>,
-                        più di <strong class="text-white">4.400 contatti diretti</strong> fra telefonate,
-                        moduli ed email, e 7 visitatori su 10 dall&rsquo;estero.
-                    </p>
-                    <p class="text-gray-300 text-sm italic">"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7."</p>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4 pt-3 border-t border-white/10"><?php echo wp_kses_post( __( 'Da allora a oggi: <strong class="text-white">oltre 200.000 visite</strong>, più di <strong class="text-white">4.400 contatti diretti</strong> fra telefonate, moduli ed email, e 7 visitatori su 10 dall&rsquo;estero.', 'experiences-srl' ) ); ?></p>
+                    <p class="text-gray-300 text-sm italic"><?php esc_html_e( '"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7."', 'experiences-srl' ); ?></p>
                 </div>
 
                 <!-- Case Study 3: Tour Operator -->
@@ -449,8 +430,8 @@ get_header();
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center"><i class="fas fa-map-marked-alt text-white text-xl"></i></div>
                         <div>
-                            <p class="text-white font-bold">Tour Operator</p>
-                            <p class="text-gray-400 text-xs">Campania • 300+ tour</p>
+                            <p class="text-white font-bold"><?php esc_html_e( 'Tour Operator', 'experiences-srl' ); ?></p>
+                            <p class="text-gray-400 text-xs"><?php esc_html_e( 'Campania • 300+ tour', 'experiences-srl' ); ?></p>
                         </div>
                     </div>
                     <!-- "Da 15 a 8 dipendenti" raccontato come un risultato
@@ -458,30 +439,30 @@ get_header();
                          persone a casa. Il punto vero e che il team non e
                          dovuto crescere col catalogo. Le percentuali, come
                          sopra, non le ha misurate nessuno. -->
-                    <h3 class="text-white text-lg font-bold mb-3">Trecento tour, una sola dashboard</h3>
+                    <h3 class="text-white text-lg font-bold mb-3"><?php esc_html_e( 'Trecento tour, una sola dashboard', 'experiences-srl' ); ?></h3>
                     <ul class="space-y-2.5 mb-4">
                         <li class="flex items-start gap-2.5 text-gray-300 text-sm">
                             <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Oltre 300 tour e tutti i canali di vendita gestiti da un punto solo</span>
+                            <span><?php esc_html_e( 'Oltre 300 tour e tutti i canali di vendita gestiti da un punto solo', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-2.5 text-gray-300 text-sm">
                             <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Il catalogo è cresciuto senza che dovesse crescere il team amministrativo</span>
+                            <span><?php esc_html_e( 'Il catalogo è cresciuto senza che dovesse crescere il team amministrativo', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-2.5 text-gray-300 text-sm">
                             <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Prezzi e disponibilità aggiornati una volta, validi ovunque</span>
+                            <span><?php esc_html_e( 'Prezzi e disponibilità aggiornati una volta, validi ovunque', 'experiences-srl' ); ?></span>
                         </li>
                     </ul>
-                    <p class="text-gray-300 text-sm italic">"La gestione centralizzata ci ha permesso di scalare senza assumere. Ora il team è focalizzato sulla crescita."</p>
+                    <p class="text-gray-300 text-sm italic"><?php esc_html_e( '"La gestione centralizzata ci ha permesso di scalare senza assumere. Ora il team è focalizzato sulla crescita."', 'experiences-srl' ); ?></p>
                 </div>
             </div>
 
             <!-- CTA -->
             <div class="text-center mt-12" data-aos="fade-up">
-                <p class="text-gray-300 mb-6">Vuoi sapere come possiamo aiutare il <strong class="text-white">tuo</strong> business?</p>
+                <p class="text-gray-300 mb-6"><?php echo wp_kses_post( __( 'Vuoi sapere come possiamo aiutare il <strong class="text-white">tuo</strong> business?', 'experiences-srl' ) ); ?></p>
                 <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-accent/30 hover:-translate-y-1">
-                    <i class="fas fa-calculator"></i> Calcola il tuo ROI in 5 minuti
+                    <i class="fas fa-calculator"></i> <?php esc_html_e( 'Calcola il tuo ROI in 5 minuti', 'experiences-srl' ); ?>
                 </a>
             </div>
         </div>
@@ -505,75 +486,55 @@ get_header();
             <div class="lg:grid lg:grid-cols-12 lg:gap-14 lg:items-center">
 
                 <div class="lg:col-span-6" data-aos="fade-right">
-                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-5">
-                        VISIBILITÀ SUGLI ASSISTENTI AI
-                    </span>
-                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">
-                        Quando un cliente chiede a ChatGPT, <span class="text-gradient">chi risponde?</span>
-                    </h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-5">
-                        Sempre più persone cercano dove dormire e cosa fare chiedendolo a un assistente,
-                        non digitandolo su Google. L&rsquo;assistente risponde con quello che ha letto —
-                        e per leggerti deve trovarti, e capirti.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed mb-8">
-                        Sul sito di un nostro cliente i crawler delle AI hanno fatto
-                        <strong class="text-primary">circa 65.000 letture</strong>, tre quarti delle quali ChatGPT,
-                        partendo da zero poche settimane prima. Non sono visitatori: sono i motori che decidono
-                        cosa rispondere. I visitatori veri arrivano dopo, e per ora sono lo 0,7% del totale —
-                        una quota piccola, su una strada che fino a ieri non esisteva.
-                    </p>
+                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-5"><?php esc_html_e( 'VISIBILITÀ SUGLI ASSISTENTI AI', 'experiences-srl' ); ?></span>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'Quando un cliente chiede a ChatGPT, <span class="text-gradient">chi risponde?</span>', 'experiences-srl' ) ); ?></h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-5"><?php esc_html_e( 'Sempre più persone cercano dove dormire e cosa fare chiedendolo a un assistente, non digitandolo su Google. L’assistente risponde con quello che ha letto — e per leggerti deve trovarti, e capirti.', 'experiences-srl' ); ?></p>
+                    <p class="text-gray-600 leading-relaxed mb-8"><?php echo wp_kses_post( __( 'Sul sito di un nostro cliente i crawler delle AI hanno fatto <strong class="text-primary">circa 65.000 letture</strong>, tre quarti delle quali ChatGPT, partendo da zero poche settimane prima. Non sono visitatori: sono i motori che decidono cosa rispondere. I visitatori veri arrivano dopo, e per ora sono lo 0,7% del totale — una quota piccola, su una strada che fino a ieri non esisteva.', 'experiences-srl' ) ); ?></p>
 
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-start gap-3 text-gray-600">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Contenuti strutturati perché un assistente possa citarli, non solo indicizzarli</span>
+                            <span><?php esc_html_e( 'Contenuti strutturati perché un assistente possa citarli, non solo indicizzarli', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-600">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Dati della struttura leggibili da una macchina: prezzi, servizi, posizione, disponibilità</span>
+                            <span><?php esc_html_e( 'Dati della struttura leggibili da una macchina: prezzi, servizi, posizione, disponibilità', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-600">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Monitoraggio di quali assistenti ti leggono e quanto</span>
+                            <span><?php esc_html_e( 'Monitoraggio di quali assistenti ti leggono e quanto', 'experiences-srl' ); ?></span>
                         </li>
                     </ul>
 
                     <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-colors shadow-md">
-                        <i class="fas fa-robot" aria-hidden="true"></i> Fatti trovare dalle AI
+                        <i class="fas fa-robot" aria-hidden="true"></i> <?php esc_html_e( 'Fatti trovare dalle AI', 'experiences-srl' ); ?>
                     </a>
                 </div>
 
                 <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
                     <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-6 lg:p-8 shadow-xl">
-                        <p class="text-xs font-semibold tracking-wider text-accent mb-6">
-                            LETTURE DEI CRAWLER AI · UN CLIENTE, DUE MESI
-                        </p>
+                        <p class="text-xs font-semibold tracking-wider text-accent mb-6"><?php esc_html_e( 'LETTURE DEI CRAWLER AI · UN CLIENTE, DUE MESI', 'experiences-srl' ); ?></p>
 
                         <div class="grid grid-cols-2 gap-4 mb-6">
                             <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                                <p class="text-accent text-3xl font-bold">65.000</p>
-                                <p class="text-gray-400 text-xs mt-1">Letture dai crawler AI</p>
+                                <p class="text-accent text-3xl font-bold"><?php esc_html_e( '65.000', 'experiences-srl' ); ?></p>
+                                <p class="text-gray-400 text-xs mt-1"><?php esc_html_e( 'Letture dai crawler AI', 'experiences-srl' ); ?></p>
                             </div>
                             <div class="bg-white/5 rounded-xl p-4 border border-white/10">
                                 <p class="text-accent text-3xl font-bold">78%</p>
-                                <p class="text-gray-400 text-xs mt-1">Sono ChatGPT</p>
+                                <p class="text-gray-400 text-xs mt-1"><?php esc_html_e( 'Sono ChatGPT', 'experiences-srl' ); ?></p>
                             </div>
                             <div class="bg-white/5 rounded-xl p-4 border border-white/10">
                                 <p class="text-accent text-3xl font-bold">30</p>
-                                <p class="text-gray-400 text-xs mt-1">Assistenti diversi</p>
+                                <p class="text-gray-400 text-xs mt-1"><?php esc_html_e( 'Assistenti diversi', 'experiences-srl' ); ?></p>
                             </div>
                             <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                                <p class="text-accent text-3xl font-bold">0,7%</p>
-                                <p class="text-gray-400 text-xs mt-1">Visite reali da assistenti</p>
+                                <p class="text-accent text-3xl font-bold"><?php esc_html_e( '0,7%', 'experiences-srl' ); ?></p>
+                                <p class="text-gray-400 text-xs mt-1"><?php esc_html_e( 'Visite reali da assistenti', 'experiences-srl' ); ?></p>
                             </div>
                         </div>
 
-                        <p class="text-gray-400 text-xs leading-relaxed border-t border-white/10 pt-4">
-                            Dati dal cruscotto analytics di un cliente, arrotondati.
-                            Le letture dei crawler non sono visite di persone: misurano quanto le AI
-                            leggono il sito, non quanti clienti porta. Lo 0,7% sono visite vere.
-                        </p>
+                        <p class="text-gray-400 text-xs leading-relaxed border-t border-white/10 pt-4"><?php esc_html_e( 'Dati dal cruscotto analytics di un cliente, arrotondati. Le letture dei crawler non sono visite di persone: misurano quanto le AI leggono il sito, non quanti clienti porta. Lo 0,7% sono visite vere.', 'experiences-srl' ); ?></p>
                     </div>
                 </div>
 
@@ -585,17 +546,13 @@ get_header();
     <section id="portfolio" class="py-20 lg:py-28 bg-gray-50 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">PORTFOLIO</span>
-                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">
-                    I Siti <span class="text-gradient">Live</span> che abbiamo realizzato
-                </h2>
+                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'PORTFOLIO', 'experiences-srl' ); ?></span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'I Siti <span class="text-gradient">Live</span> che abbiamo realizzato', 'experiences-srl' ) ); ?></h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">
                     <!-- Nel portfolio ci sono anche un centro medico, un
                          museo e un ente di formazione: "generano
                          prenotazioni" non li riguarda, e un visitatore che
-                         clicca se ne accorge in due secondi. -->
-                    Click su ogni progetto per vederlo dal vivo. Sono tutti siti in produzione, usati ogni giorno dai loro clienti &mdash; strutture ricettive, tour operator, enti culturali e di formazione.
-                </p>
+                         clicca se ne accorge in due secondi. --><?php esc_html_e( 'Click su ogni progetto per vederlo dal vivo. Sono tutti siti in produzione, usati ogni giorno dai loro clienti — strutture ricettive, tour operator, enti culturali e di formazione.', 'experiences-srl' ); ?></p>
             </div>
             <?php echo do_shortcode('[experiences_portfolio posts="8"]'); ?>
         </div>
@@ -622,46 +579,36 @@ get_header();
 
                 <!-- Testo -->
                 <div class="lg:col-span-6" data-aos="fade-right">
-                    <span class="inline-block px-4 py-1 bg-accent/15 border border-accent/30 text-accent text-sm font-semibold rounded-full mb-5">
-                        GALLERIA DEMO
-                    </span>
-                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                        Dieci modi diversi di fare <span class="text-gradient">un sito</span>
-                    </h2>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                        Prima di commissionare un sito, guarda come lavoriamo. Sono siti veri,
-                        non mockup: si aprono e si usano. Ma duecento demo sono per lo più
-                        varianti dello stesso impianto, e scorrerle tutte non aiuta a scegliere:
-                        per questo ne abbiamo messe da parte <strong class="text-white">dieci</strong>,
-                        una per ogni modo davvero diverso di costruire una pagina.
-                    </p>
+                    <span class="inline-block px-4 py-1 bg-accent/15 border border-accent/30 text-accent text-sm font-semibold rounded-full mb-5"><?php esc_html_e( 'GALLERIA DEMO', 'experiences-srl' ); ?></span>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"><?php echo wp_kses_post( __( 'Dieci modi diversi di fare <span class="text-gradient">un sito</span>', 'experiences-srl' ) ); ?></h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-8"><?php echo wp_kses_post( __( 'Prima di commissionare un sito, guarda come lavoriamo. Sono siti veri, non mockup: si aprono e si usano. Ma duecento demo sono per lo più varianti dello stesso impianto, e scorrerle tutte non aiuta a scegliere: per questo ne abbiamo messe da parte <strong class="text-white">dieci</strong>, una per ogni modo davvero diverso di costruire una pagina.', 'experiences-srl' ) ); ?></p>
 
                     <ul class="space-y-3 mb-9">
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Dal racconto per immagini al totem touch, passando per il 3D</span>
+                            <span><?php esc_html_e( 'Dal racconto per immagini al totem touch, passando per il 3D', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Dove due approcci meritano un confronto, li trovi affiancati</span>
+                            <span><?php esc_html_e( 'Dove due approcci meritano un confronto, li trovi affiancati', 'experiences-srl' ); ?></span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Ognuna apribile dal vivo, anche da telefono, e personalizzabile sul tuo brand</span>
+                            <span><?php esc_html_e( 'Ognuna apribile dal vivo, anche da telefono, e personalizzabile sul tuo brand', 'experiences-srl' ); ?></span>
                         </li>
                     </ul>
 
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a href="<?php echo esc_url( $exp_vetrina_url ); ?>" target="_blank" rel="noopener"
                            class="px-8 py-4 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-colors shadow-lg inline-flex items-center justify-center gap-2 group">
-                            Guarda la selezione
+                            <?php esc_html_e( 'Guarda la selezione', 'experiences-srl' ); ?>
                             <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
                         </a>
                         <!-- Il configuratore viene prima della call: ha
                              molto meno attrito e qualifica il contatto. -->
                         <a href="<?php echo esc_url( experiences_configuratore_url() ); ?>"
                            class="px-8 py-4 bg-white/10 backdrop-blur border border-white/25 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2">
-                            <i class="fas fa-eye" aria-hidden="true"></i> Provalo con le tue foto
+                            <i class="fas fa-eye" aria-hidden="true"></i> <?php esc_html_e( 'Provalo con le tue foto', 'experiences-srl' ); ?>
                         </a>
                     </div>
 
@@ -679,14 +626,14 @@ get_header();
                 <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
                     <a href="<?php echo esc_url( $exp_vetrina_url ); ?>" target="_blank" rel="noopener"
                        class="block rounded-2xl overflow-hidden border border-white/15 shadow-2xl group"
-                       aria-label="Apri la vetrina delle demo selezionate in una nuova scheda">
+                       aria-label="<?php echo esc_attr__( 'Apri la vetrina delle demo selezionate in una nuova scheda', 'experiences-srl' ); ?>">
 
                         <!-- Barra della finestra -->
                         <div class="flex items-center gap-2 px-4 py-3 bg-white/10 border-b border-white/10">
                             <span class="w-3 h-3 rounded-full bg-red-400/70" aria-hidden="true"></span>
                             <span class="w-3 h-3 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
                             <span class="w-3 h-3 rounded-full bg-green-400/70" aria-hidden="true"></span>
-                            <span class="ml-3 text-xs text-gray-400 truncate">vetrina · Experiences Srl</span>
+                            <span class="ml-3 text-xs text-gray-400 truncate"><?php esc_html_e( 'vetrina · Experiences Srl', 'experiences-srl' ); ?></span>
                         </div>
 
                         <!-- Griglia di miniature -->
@@ -710,11 +657,9 @@ get_header();
                             </div>
 
                             <div class="mt-4 flex items-center justify-between px-1">
-                                <span class="text-xs text-gray-400">
-                                    Una per impianto, non una per cliente
-                                </span>
+                                <span class="text-xs text-gray-400"><?php esc_html_e( 'Una per impianto, non una per cliente', 'experiences-srl' ); ?></span>
                                 <span class="text-xs font-semibold text-accent inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                                    Apri la vetrina <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                    <?php esc_html_e( 'Apri la vetrina', 'experiences-srl' ); ?> <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </div>
@@ -731,13 +676,9 @@ get_header();
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">RISORSE GRATUITE</span>
-                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">
-                    Guide & <span class="text-gradient">Insights</span>
-                </h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Strategie pratiche per digitalizzare il tuo business turistico. Articoli, case study e guide gratuite.
-                </p>
+                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'RISORSE GRATUITE', 'experiences-srl' ); ?></span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'Guide & <span class="text-gradient">Insights</span>', 'experiences-srl' ) ); ?></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto"><?php esc_html_e( 'Strategie pratiche per digitalizzare il tuo business turistico. Articoli, case study e guide gratuite.', 'experiences-srl' ); ?></p>
             </div>
 
             <?php
@@ -784,7 +725,7 @@ get_header();
                                     <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
                                 </p>
                                 <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-accent transition-colors">
-                                    Leggi articolo <i class="fas fa-arrow-right text-xs"></i>
+                                    <?php esc_html_e( 'Leggi articolo', 'experiences-srl' ); ?> <i class="fas fa-arrow-right text-xs"></i>
                                 </a>
                             </div>
                         </article>
@@ -793,17 +734,21 @@ get_header();
 
                 <div class="text-center mt-12" data-aos="fade-up">
                     <a href="<?php echo esc_url( experiences_blog_archive_url() ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
-                        Tutti gli articoli <i class="fas fa-arrow-right"></i>
+                        <?php esc_html_e( 'Tutti gli articoli', 'experiences-srl' ); ?> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             <?php else : ?>
                 <!-- Placeholder se non ci sono ancora articoli -->
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     <?php 
+                    // Schede finte, mostrate solo finche' non c'e' nessun
+                    // articolo pubblicato. Tradotte comunque: su un sito
+                    // appena installato in inglese sarebbero l'unica cosa
+                    // visibile in questa sezione.
                     $placeholders = [
-                        ['cat' => 'Channel Manager', 'icon' => 'fa-exchange-alt', 'title' => 'Come evitare overbooking su Booking + Airbnb', 'excerpt' => 'Guida pratica per sincronizzare le tue piattaforme e dire addio agli overbooking. Risparmia 30 ore/settimana.'],
-                        ['cat' => 'SEO Turismo', 'icon' => 'fa-search', 'title' => 'SEO locale per hotel: arrivare al top di Google', 'excerpt' => 'Strategie testate per far apparire il tuo hotel ai primi risultati di Google in 90 giorni. Senza Google Ads.'],
-                        ['cat' => 'Strategia', 'icon' => 'fa-chart-line', 'title' => 'Da 5 a 20 prenotazioni/mese: il metodo step-by-step', 'excerpt' => 'Case study reale di un\'agenzia tour di Napoli. Cosa hanno fatto, in quanto tempo, con quale budget.']
+                        ['cat' => __( 'Channel Manager', 'experiences-srl' ), 'icon' => 'fa-exchange-alt', 'title' => __( 'Come evitare overbooking su Booking + Airbnb', 'experiences-srl' ), 'excerpt' => __( 'Guida pratica per sincronizzare le tue piattaforme e dire addio agli overbooking. Risparmia 30 ore/settimana.', 'experiences-srl' )],
+                        ['cat' => __( 'SEO Turismo', 'experiences-srl' ), 'icon' => 'fa-search', 'title' => __( 'SEO locale per hotel: arrivare al top di Google', 'experiences-srl' ), 'excerpt' => __( 'Strategie testate per far apparire il tuo hotel ai primi risultati di Google in 90 giorni. Senza Google Ads.', 'experiences-srl' )],
+                        ['cat' => __( 'Strategia', 'experiences-srl' ), 'icon' => 'fa-chart-line', 'title' => __( 'Da 5 a 20 prenotazioni/mese: il metodo step-by-step', 'experiences-srl' ), 'excerpt' => __( 'Case study reale di un\'agenzia tour di Napoli. Cosa hanno fatto, in quanto tempo, con quale budget.', 'experiences-srl' )]
                     ];
                     foreach ($placeholders as $i => $p) : ?>
                         <article class="blog-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group" data-aos="fade-up" data-aos-delay="<?php echo $i * 100; ?>">
@@ -815,8 +760,8 @@ get_header();
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
-                                    <span class="flex items-center gap-1"><i class="fas fa-calendar text-accent"></i> In arrivo</span>
-                                    <span class="flex items-center gap-1"><i class="fas fa-clock text-accent"></i> 5 min</span>
+                                    <span class="flex items-center gap-1"><i class="fas fa-calendar text-accent"></i> <?php esc_html_e( 'In arrivo', 'experiences-srl' ); ?></span>
+                                    <span class="flex items-center gap-1"><i class="fas fa-clock text-accent"></i> <?php esc_html_e( '5 min', 'experiences-srl' ); ?></span>
                                 </div>
                                 <h3 class="font-heading text-xl font-bold text-primary mb-3 leading-tight">
                                     <?php echo esc_html($p['title']); ?>
@@ -825,7 +770,7 @@ get_header();
                                     <?php echo esc_html($p['excerpt']); ?>
                                 </p>
                                 <span class="inline-flex items-center gap-2 text-gray-400 font-semibold text-sm">
-                                    Coming soon <i class="fas fa-lock text-xs"></i>
+                                    <?php esc_html_e( 'Coming soon', 'experiences-srl' ); ?> <i class="fas fa-lock text-xs"></i>
                                 </span>
                             </div>
                         </article>
@@ -833,9 +778,9 @@ get_header();
                 </div>
                 
                 <div class="text-center mt-12" data-aos="fade-up">
-                    <p class="text-gray-500 mb-4">I primi articoli arriveranno presto. Iscriviti per non perderli.</p>
+                    <p class="text-gray-500 mb-4"><?php esc_html_e( 'I primi articoli arriveranno presto. Iscriviti per non perderli.', 'experiences-srl' ); ?></p>
                     <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-md hover:shadow-lg">
-                        <i class="fas fa-envelope"></i> Iscriviti alla newsletter
+                        <i class="fas fa-envelope"></i> <?php esc_html_e( 'Iscriviti alla newsletter', 'experiences-srl' ); ?>
                     </a>
                 </div>
             <?php endif; ?>
@@ -847,17 +792,17 @@ get_header();
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">PREZZI</span>
-                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Paghi solo quando <span class="text-gradient">guadagni</span></h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-6">Modello unico nel mercato: <strong>commissione sulle vendite + fee annuale</strong>. Il piano si determina sui <strong>clienti che gestisci in un anno</strong>: più volume, meno fisso.</p>
+                <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'PREZZI', 'experiences-srl' ); ?></span>
+                <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'Paghi solo quando <span class="text-gradient">guadagni</span>', 'experiences-srl' ) ); ?></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-6"><?php echo wp_kses_post( __( 'Modello unico nel mercato: <strong>commissione sulle vendite + fee annuale</strong>. Il piano si determina sui <strong>clienti che gestisci in un anno</strong>: più volume, meno fisso.', 'experiences-srl' ) ); ?></p>
                 
                 <!-- Pricing Explainer -->
                 <div class="max-w-3xl mx-auto bg-light rounded-2xl p-6 border border-secondary/20" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-start gap-4">
                         <div class="flex-shrink-0 w-10 h-10 bg-secondary text-white rounded-lg flex items-center justify-center"><i class="fas fa-info-circle"></i></div>
                         <div class="text-left">
-                            <p class="text-primary font-bold mb-2">Come funziona il nostro modello pricing</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">Il <strong>requisito indicato su ogni piano è il volume di clienti annui</strong>: è quello a stabilire quale tariffa ti spetta. Ti aiutiamo a crescere e cresciamo con te, quindi più vendi e meno paghi in fisso — fino al piano Enterprise, <strong>senza fee fissa</strong>, perché a quel punto il valore lo abbiamo dimostrato. Tutti i piani includono i 4 servizi core.</p>
+                            <p class="text-primary font-bold mb-2"><?php esc_html_e( 'Come funziona il nostro modello pricing', 'experiences-srl' ); ?></p>
+                            <p class="text-gray-600 text-sm leading-relaxed"><?php echo wp_kses_post( __( 'Il <strong>requisito indicato su ogni piano è il volume di clienti annui</strong>: è quello a stabilire quale tariffa ti spetta. Ti aiutiamo a crescere e cresciamo con te, quindi più vendi e meno paghi in fisso — fino al piano Enterprise, <strong>senza fee fissa</strong>, perché a quel punto il valore lo abbiamo dimostrato. Tutti i piani includono i 4 servizi core.', 'experiences-srl' ) ); ?></p>
                         </div>
                     </div>
                 </div>
@@ -865,7 +810,7 @@ get_header();
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="pricing-card flex flex-col bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-center mb-6 mt-2">
-                        <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">BASE</span>
+                        <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3"><?php esc_html_e( 'BASE', 'experiences-srl' ); ?></span>
                         <!-- Il volume annuo sta sopra al prezzo perche e la
                              condizione che lo sblocca, non una nota a margine:
                              come testo grigio sotto la cifra non lo leggeva
@@ -874,87 +819,87 @@ get_header();
                              struttura piccola rientrava in tutte e avrebbe
                              preso la tariffa piu bassa. -->
                         <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
-                            <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
-                            <span class="block text-primary text-lg font-bold leading-tight">fino a 1.000</span>
-                            <span class="block text-gray-600 text-xs">clienti all'anno</span>
+                            <span class="block text-primary text-xs font-bold uppercase tracking-wide"><?php esc_html_e( 'Requisito', 'experiences-srl' ); ?></span>
+                            <span class="block text-primary text-lg font-bold leading-tight"><?php esc_html_e( 'fino a 1.000', 'experiences-srl' ); ?></span>
+                            <span class="block text-gray-600 text-xs"><?php esc_html_e( 'clienti all\'anno', 'experiences-srl' ); ?></span>
                         </div>
-                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€1.400</span><span class="text-gray-500 text-sm">/anno</span></div>
-                        <p class="text-gray-500 text-sm mt-1">+ IVA</p>
+                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary"><?php esc_html_e( '€1.400', 'experiences-srl' ); ?></span><span class="text-gray-500 text-sm"><?php esc_html_e( '/anno', 'experiences-srl' ); ?></span></div>
+                        <p class="text-gray-500 text-sm mt-1"><?php esc_html_e( '+ IVA', 'experiences-srl' ); ?></p>
                     </div>
-                    <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+10%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
+                    <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+10%</span><span class="text-gray-500 text-sm block"><?php esc_html_e( 'commissione sulle vendite', 'experiences-srl' ); ?></span></div></div>
                     <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Creazione e gestione annunci OTA</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-times mt-1 flex-shrink-0"></i><span>Assistenti virtuali IA</span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Sviluppo sito web e gestione', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'SEO/SEM marketing', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Gestione Channel Manager', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Creazione e gestione annunci OTA', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-times mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Assistenti virtuali IA', 'experiences-srl' ); ?></span></li>
                     </ul>
-                    <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all">Scegli Base</a>
+                    <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all"><?php esc_html_e( 'Scegli Base', 'experiences-srl' ); ?></a>
                 </div>
                 <div class="pricing-card flex flex-col bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-center mb-6 mt-2">
-                        <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">ADVANCED</span>
+                        <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3"><?php esc_html_e( 'ADVANCED', 'experiences-srl' ); ?></span>
                         <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
-                            <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
-                            <span class="block text-primary text-lg font-bold leading-tight">1.000–5.000</span>
-                            <span class="block text-gray-600 text-xs">clienti all'anno</span>
+                            <span class="block text-primary text-xs font-bold uppercase tracking-wide"><?php esc_html_e( 'Requisito', 'experiences-srl' ); ?></span>
+                            <span class="block text-primary text-lg font-bold leading-tight"><?php esc_html_e( '1.000–5.000', 'experiences-srl' ); ?></span>
+                            <span class="block text-gray-600 text-xs"><?php esc_html_e( 'clienti all\'anno', 'experiences-srl' ); ?></span>
                         </div>
-                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€1.000</span><span class="text-gray-500 text-sm">/anno</span></div>
-                        <p class="text-gray-500 text-sm mt-1">+ IVA</p>
+                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary"><?php esc_html_e( '€1.000', 'experiences-srl' ); ?></span><span class="text-gray-500 text-sm"><?php esc_html_e( '/anno', 'experiences-srl' ); ?></span></div>
+                        <p class="text-gray-500 text-sm mt-1"><?php esc_html_e( '+ IVA', 'experiences-srl' ); ?></p>
                     </div>
-                    <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+8%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
+                    <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+8%</span><span class="text-gray-500 text-sm block"><?php esc_html_e( 'commissione sulle vendite', 'experiences-srl' ); ?></span></div></div>
                     <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Creazione e gestione annunci OTA</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-times mt-1 flex-shrink-0"></i><span>Assistenti virtuali IA</span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Sviluppo sito web e gestione', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'SEO/SEM marketing', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Gestione Channel Manager', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Creazione e gestione annunci OTA', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-times mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Assistenti virtuali IA', 'experiences-srl' ); ?></span></li>
                     </ul>
-                    <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all">Scegli Advanced</a>
+                    <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all"><?php esc_html_e( 'Scegli Advanced', 'experiences-srl' ); ?></a>
                 </div>
                 <div class="pricing-card flex flex-col bg-white rounded-2xl p-6 lg:p-8 border border-gray-200 shadow-sm" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-center mb-6 mt-2">
-                        <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3">PRO</span>
+                        <span class="inline-block px-3 py-1 bg-light text-secondary text-xs font-bold rounded-full mb-3"><?php esc_html_e( 'PRO', 'experiences-srl' ); ?></span>
                         <div class="bg-light border border-secondary/20 rounded-xl px-3 py-2 mb-4">
-                            <span class="block text-primary text-xs font-bold uppercase tracking-wide">Requisito</span>
-                            <span class="block text-primary text-lg font-bold leading-tight">5.000–10.000</span>
-                            <span class="block text-gray-600 text-xs">clienti all'anno</span>
+                            <span class="block text-primary text-xs font-bold uppercase tracking-wide"><?php esc_html_e( 'Requisito', 'experiences-srl' ); ?></span>
+                            <span class="block text-primary text-lg font-bold leading-tight"><?php esc_html_e( '5.000–10.000', 'experiences-srl' ); ?></span>
+                            <span class="block text-gray-600 text-xs"><?php esc_html_e( 'clienti all\'anno', 'experiences-srl' ); ?></span>
                         </div>
-                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€500</span><span class="text-gray-500 text-sm">/anno</span></div>
-                        <p class="text-gray-500 text-sm mt-1">+ IVA</p>
+                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-primary">€500</span><span class="text-gray-500 text-sm"><?php esc_html_e( '/anno', 'experiences-srl' ); ?></span></div>
+                        <p class="text-gray-500 text-sm mt-1"><?php esc_html_e( '+ IVA', 'experiences-srl' ); ?></p>
                     </div>
-                    <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+5%</span><span class="text-gray-500 text-sm block">commissione sulle vendite</span></div></div>
+                    <div class="border-t border-gray-100 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-accent">+5%</span><span class="text-gray-500 text-sm block"><?php esc_html_e( 'commissione sulle vendite', 'experiences-srl' ); ?></span></div></div>
                     <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Creazione e gestione annunci OTA</span></li>
-                        <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-times mt-1 flex-shrink-0"></i><span>Assistenti virtuali IA</span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Sviluppo sito web e gestione', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'SEO/SEM marketing', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Gestione Channel Manager', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Creazione e gestione annunci OTA', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-gray-400"><i class="fas fa-times mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Assistenti virtuali IA', 'experiences-srl' ); ?></span></li>
                     </ul>
-                    <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all">Scegli Pro</a>
+                    <a href="#contact" class="block text-center py-3 px-6 border-2 border-secondary text-secondary font-semibold rounded-xl hover:bg-secondary hover:text-white transition-all"><?php esc_html_e( 'Scegli Pro', 'experiences-srl' ); ?></a>
                 </div>
                 <div class="pricing-card featured flex flex-col rounded-2xl p-6 lg:p-8 shadow-xl relative" data-aos="fade-up" data-aos-delay="400">
-                    <div class="absolute top-4 right-4"><span class="inline-block px-3 py-1 bg-accent text-white text-xs font-bold rounded-full">POPOLARE</span></div>
+                    <div class="absolute top-4 right-4"><span class="inline-block px-3 py-1 bg-accent text-white text-xs font-bold rounded-full"><?php esc_html_e( 'POPOLARE', 'experiences-srl' ); ?></span></div>
                     <div class="text-center mb-6 mt-2">
-                        <span class="inline-block px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full mb-3">ENTERPRISE</span>
+                        <span class="inline-block px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full mb-3"><?php esc_html_e( 'ENTERPRISE', 'experiences-srl' ); ?></span>
                         <div class="bg-black/20 border border-white/20 rounded-xl px-3 py-2 mb-4">
-                            <span class="block text-white text-xs font-bold uppercase tracking-wide">Requisito</span>
-                            <span class="block text-white text-lg font-bold leading-tight">oltre 10.000</span>
-                            <span class="block text-white/80 text-xs">clienti all'anno</span>
+                            <span class="block text-white text-xs font-bold uppercase tracking-wide"><?php esc_html_e( 'Requisito', 'experiences-srl' ); ?></span>
+                            <span class="block text-white text-lg font-bold leading-tight"><?php esc_html_e( 'oltre 10.000', 'experiences-srl' ); ?></span>
+                            <span class="block text-white/80 text-xs"><?php esc_html_e( 'clienti all\'anno', 'experiences-srl' ); ?></span>
                         </div>
-                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-white">€0</span><span class="text-white/60 text-sm">/anno</span></div>
+                        <div class="flex items-baseline justify-center gap-1"><span class="text-4xl lg:text-5xl font-bold text-white">€0</span><span class="text-white/60 text-sm"><?php esc_html_e( '/anno', 'experiences-srl' ); ?></span></div>
                         <!-- "+ IVA" su zero non vuol dire niente. -->
-                        <p class="text-white/60 text-sm mt-1">nessuna fee fissa</p>
+                        <p class="text-white/60 text-sm mt-1"><?php esc_html_e( 'nessuna fee fissa', 'experiences-srl' ); ?></p>
                     </div>
-                    <div class="border-t border-white/20 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-white">+3%</span><span class="text-white/60 text-sm block">commissione sulle vendite</span></div></div>
+                    <div class="border-t border-white/20 pt-6 mb-6"><div class="text-center mb-4"><span class="text-2xl font-bold text-white">+3%</span><span class="text-white/60 text-sm block"><?php esc_html_e( 'commissione sulle vendite', 'experiences-srl' ); ?></span></div></div>
                     <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Sviluppo sito web e gestione</span></li>
-                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>SEO/SEM marketing</span></li>
-                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Gestione Channel Manager</span></li>
-                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span>Creazione e gestione annunci OTA</span></li>
-                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><strong>Assistenti virtuali IA e chatbot</strong></span></li>
+                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Sviluppo sito web e gestione', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'SEO/SEM marketing', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Gestione Channel Manager', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><?php esc_html_e( 'Creazione e gestione annunci OTA', 'experiences-srl' ); ?></span></li>
+                        <li class="flex items-start gap-3 text-sm text-white/90"><i class="fas fa-check text-accent mt-1 flex-shrink-0"></i><span><strong><?php esc_html_e( 'Assistenti virtuali IA e chatbot', 'experiences-srl' ); ?></strong></span></li>
                     </ul>
-                    <a href="#contact" class="block text-center py-3 px-6 bg-white border-2 border-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-all shadow-lg">Scegli Enterprise</a>
+                    <a href="#contact" class="block text-center py-3 px-6 bg-white border-2 border-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-all shadow-lg"><?php esc_html_e( 'Scegli Enterprise', 'experiences-srl' ); ?></a>
                 </div>
             </div>
             <div class="mt-12 max-w-4xl mx-auto space-y-4" data-aos="fade-up">
@@ -965,10 +910,8 @@ get_header();
                         <i class="fas fa-chart-line text-secondary"></i>
                     </div>
                     <div>
-                        <p class="font-semibold text-primary mb-1">Il piano e la commissione dipendono dal volume di clienti annuali</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Le fasce indicate su ogni piano sono il <strong>requisito di accesso</strong>: il piano (Base / Advanced / Pro / Enterprise) e la relativa percentuale di commissione si determinano sul <strong>numero stimato di clienti/prenotazioni annui</strong> della tua struttura. Se sei a cavallo fra due fasce lo valutiamo insieme in fase di consulenza, e rivediamo il piano quando il volume cambia.
-                        </p>
+                        <p class="font-semibold text-primary mb-1"><?php esc_html_e( 'Il piano e la commissione dipendono dal volume di clienti annuali', 'experiences-srl' ); ?></p>
+                        <p class="text-gray-600 text-sm leading-relaxed"><?php echo wp_kses_post( __( 'Le fasce indicate su ogni piano sono il <strong>requisito di accesso</strong>: il piano (Base / Advanced / Pro / Enterprise) e la relativa percentuale di commissione si determinano sul <strong>numero stimato di clienti/prenotazioni annui</strong> della tua struttura. Se sei a cavallo fra due fasce lo valutiamo insieme in fase di consulenza, e rivediamo il piano quando il volume cambia.', 'experiences-srl' ) ); ?></p>
                     </div>
                 </div>
 
@@ -978,19 +921,15 @@ get_header();
                         <i class="fas fa-exchange-alt text-accent"></i>
                     </div>
                     <div>
-                        <p class="font-semibold text-primary mb-1">Channel Manager: la scelta è tua, il costo è a tuo carico</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Suggeriamo il Channel Manager più adatto al tuo caso (Octorate, SiteMinder, Smoobu, RoomCloud, Cubilis…), ma puoi anche <strong>indicarci quello che già utilizzi</strong> o sceglierne uno a tua preferenza: ci integriamo con il fornitore che preferisci. La licenza e i costi mensili del Channel Manager sono <strong>a carico del cliente</strong> e non sono inclusi nei nostri piani.
-                        </p>
+                        <p class="font-semibold text-primary mb-1"><?php esc_html_e( 'Channel Manager: la scelta è tua, il costo è a tuo carico', 'experiences-srl' ); ?></p>
+                        <p class="text-gray-600 text-sm leading-relaxed"><?php echo wp_kses_post( __( 'Suggeriamo il Channel Manager più adatto al tuo caso (Octorate, SiteMinder, Smoobu, RoomCloud, Cubilis…), ma puoi anche <strong>indicarci quello che già utilizzi</strong> o sceglierne uno a tua preferenza: ci integriamo con il fornitore che preferisci. La licenza e i costi mensili del Channel Manager sono <strong>a carico del cliente</strong> e non sono inclusi nei nostri piani.', 'experiences-srl' ) ); ?></p>
                     </div>
                 </div>
 
                 <!-- Nota IVA + commissioni vendite -->
                 <div class="flex items-start gap-3 px-5 py-4 bg-white rounded-xl border border-gray-200">
                     <i class="fas fa-info-circle text-gray-400 mt-0.5"></i>
-                    <p class="text-gray-500 text-sm leading-relaxed">
-                        Tutti i prezzi sono indicati <strong>+ IVA</strong>. La commissione è applicata solo sulle vendite generate attraverso i nostri canali.
-                    </p>
+                    <p class="text-gray-500 text-sm leading-relaxed"><?php echo wp_kses_post( __( 'Tutti i prezzi sono indicati <strong>+ IVA</strong>. La commissione è applicata solo sulle vendite generate attraverso i nostri canali.', 'experiences-srl' ) ); ?></p>
                 </div>
 
             </div>
@@ -1002,9 +941,9 @@ get_header();
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
                 <div data-aos="fade-right">
-                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4">CONTATTI</span>
-                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Innovate il vostro <span class="text-gradient">business</span> con noi</h2>
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">Pronto a digitalizzare la tua struttura? Contattaci per una consulenza gratuita e scopri come possiamo aiutarti ad aumentare le prenotazioni online.</p>
+                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-4"><?php esc_html_e( 'CONTATTI', 'experiences-srl' ); ?></span>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6"><?php echo wp_kses_post( __( 'Innovate il vostro <span class="text-gradient">business</span> con noi', 'experiences-srl' ) ); ?></h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed"><?php esc_html_e( 'Pronto a digitalizzare la tua struttura? Contattaci per una consulenza gratuita e scopri come possiamo aiutarti ad aumentare le prenotazioni online.', 'experiences-srl' ); ?></p>
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 bg-light rounded-xl flex items-center justify-center flex-shrink-0 text-secondary"><i class="fab fa-whatsapp text-xl"></i></div>
@@ -1015,62 +954,62 @@ get_header();
                                  schermo per navigare la pagina. Lo stile e
                                  tutto nelle classi, quindi non cambia nulla
                                  a vedersi. -->
-                            <div><h3 class="font-semibold text-primary mb-1">WhatsApp</h3><a href="https://wa.me/393926917657" target="_blank" class="text-gray-600 hover:text-secondary transition">Scrivici su WhatsApp</a></div>
+                            <div><h3 class="font-semibold text-primary mb-1"><?php esc_html_e( 'WhatsApp', 'experiences-srl' ); ?></h3><a href="https://wa.me/393926917657" target="_blank" class="text-gray-600 hover:text-secondary transition"><?php esc_html_e( 'Scrivici su WhatsApp', 'experiences-srl' ); ?></a></div>
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-gray-200">
-                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">8+</div><div class="text-sm text-gray-500 mt-1">Siti Realizzati</div></div>
-                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">24/7</div><div class="text-sm text-gray-500 mt-1">Supporto AI</div></div>
+                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">8+</div><div class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Siti Realizzati', 'experiences-srl' ); ?></div></div>
+                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">24/7</div><div class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Supporto AI', 'experiences-srl' ); ?></div></div>
                         <!-- "100% soddisfazione" non poggia su niente di
                              misurabile e nessuno se lo beve. Il tempo di
                              risposta e una promessa che possiamo mantenere
                              e che al cliente interessa davvero. -->
-                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">&lt;24h</div><div class="text-sm text-gray-500 mt-1">Tempo di risposta</div></div>
+                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary"><?php esc_html_e( '<24h', 'experiences-srl' ); ?></div><div class="text-sm text-gray-500 mt-1"><?php esc_html_e( 'Tempo di risposta', 'experiences-srl' ); ?></div></div>
                     </div>
                 </div>
                 <div data-aos="fade-left">
                     <div class="bg-white rounded-2xl p-6 lg:p-10 shadow-lg border border-gray-100">
-                        <h3 class="font-heading text-xl font-bold text-primary mb-6">Richiedi una Consulenza Gratuita</h3>
+                        <h3 class="font-heading text-xl font-bold text-primary mb-6"><?php esc_html_e( 'Richiedi una Consulenza Gratuita', 'experiences-srl' ); ?></h3>
                         <form id="contact-form" class="space-y-5" novalidate>
                             <!-- Honeypot anti-spam: deve restare vuoto. Nascosto agli utenti, visibile ai bot. -->
                             <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
-                                <label for="exp-website">Lascia vuoto questo campo</label>
+                                <label for="exp-website"><?php esc_html_e( 'Lascia vuoto questo campo', 'experiences-srl' ); ?></label>
                                 <input type="text" id="exp-website" name="website" tabindex="-1" autocomplete="off">
                             </div>
                             <div class="grid sm:grid-cols-2 gap-5">
-                                <div><label for="exp-nome" class="block text-sm font-medium text-gray-700 mb-2">Nome *</label><input type="text" id="exp-nome" name="nome" required autocomplete="given-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="Il tuo nome"></div>
-                                <div><label for="exp-cognome" class="block text-sm font-medium text-gray-700 mb-2">Cognome *</label><input type="text" id="exp-cognome" name="cognome" required autocomplete="family-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="Il tuo cognome"></div>
+                                <div><label for="exp-nome" class="block text-sm font-medium text-gray-700 mb-2"><?php esc_html_e( 'Nome *', 'experiences-srl' ); ?></label><input type="text" id="exp-nome" name="nome" required autocomplete="given-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="<?php echo esc_attr__( 'Il tuo nome', 'experiences-srl' ); ?>"></div>
+                                <div><label for="exp-cognome" class="block text-sm font-medium text-gray-700 mb-2"><?php esc_html_e( 'Cognome *', 'experiences-srl' ); ?></label><input type="text" id="exp-cognome" name="cognome" required autocomplete="family-name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="<?php echo esc_attr__( 'Il tuo cognome', 'experiences-srl' ); ?>"></div>
                             </div>
-                            <div><label for="exp-email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label><input type="email" id="exp-email" name="email" required autocomplete="email" inputmode="email" spellcheck="false" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="la-tua@email.com"></div>
-                            <div><label for="exp-attivita" class="block text-sm font-medium text-gray-700 mb-2">Tipo di Attività *</label>
+                            <div><label for="exp-email" class="block text-sm font-medium text-gray-700 mb-2"><?php esc_html_e( 'Email *', 'experiences-srl' ); ?></label><input type="email" id="exp-email" name="email" required autocomplete="email" inputmode="email" spellcheck="false" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm" placeholder="<?php echo esc_attr__( 'la-tua@email.com', 'experiences-srl' ); ?>"></div>
+                            <div><label for="exp-attivita" class="block text-sm font-medium text-gray-700 mb-2"><?php esc_html_e( 'Tipo di Attività *', 'experiences-srl' ); ?></label>
                                 <select id="exp-attivita" name="tipo_attivita" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
-                                    <option value="">Seleziona…</option>
-                                    <option value="hotel">Hotel / Struttura Alberghiera</option>
-                                    <option value="agenzia">Agenzia di Viaggi</option>
-                                    <option value="villa">Villa / Appartamento</option>
-                                    <option value="altro">Altro</option>
+                                    <option value=""><?php esc_html_e( 'Seleziona…', 'experiences-srl' ); ?></option>
+                                    <option value="hotel"><?php esc_html_e( 'Hotel / Struttura Alberghiera', 'experiences-srl' ); ?></option>
+                                    <option value="agenzia"><?php esc_html_e( 'Agenzia di Viaggi', 'experiences-srl' ); ?></option>
+                                    <option value="villa"><?php esc_html_e( 'Villa / Appartamento', 'experiences-srl' ); ?></option>
+                                    <option value="altro"><?php esc_html_e( 'Altro', 'experiences-srl' ); ?></option>
                                 </select>
                             </div>
-                            <div><label for="exp-piano" class="block text-sm font-medium text-gray-700 mb-2">Piano di Interesse</label>
+                            <div><label for="exp-piano" class="block text-sm font-medium text-gray-700 mb-2"><?php esc_html_e( 'Piano di Interesse', 'experiences-srl' ); ?></label>
                                 <select id="exp-piano" name="piano" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm bg-white">
                                     <!-- La fascia di clienti nell'etichetta: e il
                                          requisito, e qui serve a scegliere il
                                          piano giusto senza tornare su. -->
-                                    <option value="">Seleziona un piano…</option>
-                                    <option value="enterprise">Enterprise — oltre 10.000 clienti/anno · €0 + 3%</option>
-                                    <option value="pro">Pro — 5.000–10.000 clienti/anno · €500 + 5%</option>
-                                    <option value="advanced">Advanced — 1.000–5.000 clienti/anno · €1.000 + 8%</option>
-                                    <option value="base">Base — fino a 1.000 clienti/anno · €1.400 + 10%</option>
-                                    <option value="info">Vorrei maggiori informazioni</option>
+                                    <option value=""><?php esc_html_e( 'Seleziona un piano…', 'experiences-srl' ); ?></option>
+                                    <option value="enterprise"><?php esc_html_e( 'Enterprise — oltre 10.000 clienti/anno · €0 + 3%', 'experiences-srl' ); ?></option>
+                                    <option value="pro"><?php esc_html_e( 'Pro — 5.000–10.000 clienti/anno · €500 + 5%', 'experiences-srl' ); ?></option>
+                                    <option value="advanced"><?php esc_html_e( 'Advanced — 1.000–5.000 clienti/anno · €1.000 + 8%', 'experiences-srl' ); ?></option>
+                                    <option value="base"><?php esc_html_e( 'Base — fino a 1.000 clienti/anno · €1.400 + 10%', 'experiences-srl' ); ?></option>
+                                    <option value="info"><?php esc_html_e( 'Vorrei maggiori informazioni', 'experiences-srl' ); ?></option>
                                 </select>
                             </div>
-                            <div><label for="exp-messaggio" class="block text-sm font-medium text-gray-700 mb-2">Messaggio *</label><textarea id="exp-messaggio" name="messaggio" required rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm resize-none" placeholder="Descrivi le tue esigenze…"></textarea></div>
+                            <div><label for="exp-messaggio" class="block text-sm font-medium text-gray-700 mb-2"><?php esc_html_e( 'Messaggio *', 'experiences-srl' ); ?></label><textarea id="exp-messaggio" name="messaggio" required rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition text-sm resize-none" placeholder="<?php echo esc_attr__( 'Descrivi le tue esigenze…', 'experiences-srl' ); ?>"></textarea></div>
                             <div class="flex items-start gap-3">
                                 <input type="checkbox" id="privacy" name="privacy_consent" required class="mt-1 w-4 h-4 text-secondary rounded border-gray-300 focus:ring-secondary">
-                                <label for="privacy" class="text-sm text-gray-500">Acconsento al trattamento dei miei dati personali secondo la <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" target="_blank" rel="noopener" class="text-secondary hover:underline">Privacy Policy</a>.</label>
+                                <label for="privacy" class="text-sm text-gray-500">Acconsento al trattamento dei miei dati personali secondo la <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" target="_blank" rel="noopener" class="text-secondary hover:underline"><?php esc_html_e( 'Privacy Policy', 'experiences-srl' ); ?></a>.</label>
                             </div>
                             <button type="submit" class="w-full py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group">
-                                <span>Invia Richiesta</span>
+                                <span><?php esc_html_e( 'Invia Richiesta', 'experiences-srl' ); ?></span>
                                 <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
                             </button>
                             <p id="form-status" class="text-center text-sm hidden" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -1099,15 +1038,10 @@ get_header();
         <div class="relative z-10 w-full px-4 sm:px-8 lg:px-16 pt-16 pb-10 text-center" data-aos="fade-up" data-aos-duration="800">
             <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-full mb-5">
                 <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                <span class="text-accent text-sm font-semibold tracking-wide">AI Chatbot Live</span>
+                <span class="text-accent text-sm font-semibold tracking-wide"><?php esc_html_e( 'AI Chatbot Live', 'experiences-srl' ); ?></span>
             </div>
-            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Prova il nostro <span class="text-accent">Chatbot AI</span>
-            </h2>
-            <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                Scopri come un assistente virtuale intelligente può rispondere ai tuoi clienti <strong class="text-white">24/7</strong>,
-                in tempo reale, senza orari di apertura.
-            </p>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"><?php echo wp_kses_post( __( 'Prova il nostro <span class="text-accent">Chatbot AI</span>', 'experiences-srl' ) ); ?></h2>
+            <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"><?php echo wp_kses_post( __( 'Scopri come un assistente virtuale intelligente può rispondere ai tuoi clienti <strong class="text-white">24/7</strong>, in tempo reale, senza orari di apertura.', 'experiences-srl' ) ); ?></p>
         </div>
 
         <!-- Chatbot area — full width, nessun max-width -->
@@ -1124,13 +1058,9 @@ get_header();
                         <div class="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center">
                             <i class="fas fa-robot text-accent text-3xl"></i>
                         </div>
-                        <h3 class="font-heading font-bold text-white text-xl">Plugin Chatbot non attivo</h3>
-                        <p class="text-gray-300 text-sm max-w-sm">
-                            Installa e attiva il plugin <strong class="text-accent">Experiences Chatbot</strong> dalla bacheca WordPress per abilitare questa sezione.
-                        </p>
-                        <a href="<?php echo esc_url( admin_url('plugins.php') ); ?>" class="px-6 py-3 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-all text-sm">
-                            Vai ai Plugin
-                        </a>
+                        <h3 class="font-heading font-bold text-white text-xl"><?php esc_html_e( 'Plugin Chatbot non attivo', 'experiences-srl' ); ?></h3>
+                        <p class="text-gray-300 text-sm max-w-sm"><?php echo wp_kses_post( __( 'Installa e attiva il plugin <strong class="text-accent">Experiences Chatbot</strong> dalla bacheca WordPress per abilitare questa sezione.', 'experiences-srl' ) ); ?></p>
+                        <a href="<?php echo esc_url( admin_url('plugins.php') ); ?>" class="px-6 py-3 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-all text-sm"><?php esc_html_e( 'Vai ai Plugin', 'experiences-srl' ); ?></a>
                     </div>
                     <?php
                 }
@@ -1141,11 +1071,11 @@ get_header();
         <!-- Bottom CTA strip -->
         <div class="relative z-10 w-full border-t border-white/10 bg-black/20 backdrop-blur-sm py-8 px-4 sm:px-8 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-5">
             <div>
-                <p class="text-white font-semibold text-base sm:text-lg">Vuoi un chatbot personalizzato per la tua struttura?</p>
-                <p class="text-gray-400 text-sm mt-1">Configurabile in pochi minuti direttamente dalla bacheca WordPress.</p>
+                <p class="text-white font-semibold text-base sm:text-lg"><?php esc_html_e( 'Vuoi un chatbot personalizzato per la tua struttura?', 'experiences-srl' ); ?></p>
+                <p class="text-gray-400 text-sm mt-1"><?php esc_html_e( 'Configurabile in pochi minuti direttamente dalla bacheca WordPress.', 'experiences-srl' ); ?></p>
             </div>
             <a href="#booking" data-booking-trigger class="flex-shrink-0 px-8 py-3 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-accent/30 flex items-center gap-2 group">
-                Richiedi una Demo
+                <?php esc_html_e( 'Richiedi una Demo', 'experiences-srl' ); ?>
                 <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </a>
         </div>

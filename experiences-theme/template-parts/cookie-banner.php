@@ -36,28 +36,22 @@ $cookie_url  = home_url( '/cookie-policy/' );
     <div class="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center gap-5">
         <div class="flex-1 min-w-0">
             <h2 id="exp-cookie-title" class="font-heading text-lg font-bold text-primary mb-1 flex items-center gap-2">
-                <i class="fas fa-info-circle text-accent"></i> Rispettiamo la tua privacy
+                <i class="fas fa-info-circle text-accent"></i> <?php esc_html_e( 'Rispettiamo la tua privacy', 'experiences-srl' ); ?>
             </h2>
             <p id="exp-cookie-desc" class="text-sm text-gray-600 leading-relaxed">
                 Usiamo cookie tecnici essenziali e, previo tuo consenso, cookie di analytics per
                 migliorare il sito e di marketing per mostrarti offerte rilevanti. Puoi accettare
                 tutto, accettare solo gli essenziali o personalizzare le tue scelte in ogni momento.
                 Maggiori dettagli nella nostra
-                <a href="<?php echo esc_url( $cookie_url ); ?>" class="text-secondary hover:text-accent font-medium underline">Cookie Policy</a>
+                <a href="<?php echo esc_url( $cookie_url ); ?>" class="text-secondary hover:text-accent font-medium underline"><?php esc_html_e( 'Cookie Policy', 'experiences-srl' ); ?></a>
                 e
-                <a href="<?php echo esc_url( $privacy_url ); ?>" class="text-secondary hover:text-accent font-medium underline">Privacy Policy</a>.
+                <a href="<?php echo esc_url( $privacy_url ); ?>" class="text-secondary hover:text-accent font-medium underline"><?php esc_html_e( 'Privacy Policy', 'experiences-srl' ); ?></a>.
             </p>
         </div>
         <div class="flex flex-col sm:flex-row gap-2 flex-shrink-0">
-            <button type="button" data-cookie-action="customize" class="px-4 py-2.5 text-sm font-semibold text-secondary border-2 border-secondary hover:bg-secondary hover:text-white rounded-xl transition-all">
-                Personalizza
-            </button>
-            <button type="button" data-cookie-action="reject" class="px-4 py-2.5 text-sm font-semibold text-gray-700 border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 rounded-xl transition-all">
-                Solo essenziali
-            </button>
-            <button type="button" data-cookie-action="accept-all" class="px-5 py-2.5 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-xl transition-all shadow-md">
-                Accetta tutti
-            </button>
+            <button type="button" data-cookie-action="customize" class="px-4 py-2.5 text-sm font-semibold text-secondary border-2 border-secondary hover:bg-secondary hover:text-white rounded-xl transition-all"><?php esc_html_e( 'Personalizza', 'experiences-srl' ); ?></button>
+            <button type="button" data-cookie-action="reject" class="px-4 py-2.5 text-sm font-semibold text-gray-700 border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 rounded-xl transition-all"><?php esc_html_e( 'Solo essenziali', 'experiences-srl' ); ?></button>
+            <button type="button" data-cookie-action="accept-all" class="px-5 py-2.5 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-xl transition-all shadow-md"><?php esc_html_e( 'Accetta tutti', 'experiences-srl' ); ?></button>
         </div>
     </div>
 </div>
@@ -67,30 +61,27 @@ $cookie_url  = home_url( '/cookie-policy/' );
     <div class="absolute inset-0 bg-black/60" data-cookie-action="close"></div>
     <div class="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-            <h2 id="exp-cookie-modal-title" class="font-heading text-xl font-bold text-primary">Preferenze cookie</h2>
-            <button type="button" data-cookie-action="close" class="w-9 h-9 rounded-lg hover:bg-gray-100 flex items-center justify-center text-gray-500" aria-label="Chiudi">
+            <h2 id="exp-cookie-modal-title" class="font-heading text-xl font-bold text-primary"><?php esc_html_e( 'Preferenze cookie', 'experiences-srl' ); ?></h2>
+            <button type="button" data-cookie-action="close" class="w-9 h-9 rounded-lg hover:bg-gray-100 flex items-center justify-center text-gray-500" aria-label="<?php echo esc_attr__( 'Chiudi', 'experiences-srl' ); ?>">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
         <div class="px-6 py-5 space-y-4">
-            <p class="text-sm text-gray-600 leading-relaxed">
-                Scegli quali categorie di cookie autorizzare. Puoi modificare queste preferenze
-                in qualsiasi momento dal link "Preferenze Cookie" in fondo alla pagina.
-            </p>
+            <p class="text-sm text-gray-600 leading-relaxed"><?php esc_html_e( 'Scegli quali categorie di cookie autorizzare. Puoi modificare queste preferenze in qualsiasi momento dal link "Preferenze Cookie" in fondo alla pagina.', 'experiences-srl' ); ?></p>
 
             <!-- Essenziali -->
             <div class="border border-gray-200 rounded-xl p-4">
                 <div class="flex items-start justify-between gap-4">
                     <div class="flex-1">
                         <h3 class="font-semibold text-primary mb-1 flex items-center gap-2">
-                            <i class="fas fa-lock text-accent text-sm"></i> Cookie essenziali
+                            <i class="fas fa-lock text-accent text-sm"></i> <?php esc_html_e( 'Cookie essenziali', 'experiences-srl' ); ?>
                         </h3>
-                        <p class="text-sm text-gray-600">Necessari per il funzionamento del sito (sessione, sicurezza, consenso). Non possono essere disattivati.</p>
+                        <p class="text-sm text-gray-600"><?php esc_html_e( 'Necessari per il funzionamento del sito (sessione, sicurezza, consenso). Non possono essere disattivati.', 'experiences-srl' ); ?></p>
                     </div>
                     <div class="flex-shrink-0">
                         <span class="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">
-                            <i class="fas fa-check text-xs"></i> Sempre attivi
+                            <i class="fas fa-check text-xs"></i> <?php esc_html_e( 'Sempre attivi', 'experiences-srl' ); ?>
                         </span>
                     </div>
                 </div>
@@ -101,9 +92,9 @@ $cookie_url  = home_url( '/cookie-policy/' );
                 <div class="flex items-start justify-between gap-4">
                     <div class="flex-1">
                         <h3 class="font-semibold text-primary mb-1 flex items-center gap-2">
-                            <i class="fas fa-chart-line text-accent text-sm"></i> Cookie di analytics
+                            <i class="fas fa-chart-line text-accent text-sm"></i> <?php esc_html_e( 'Cookie di analytics', 'experiences-srl' ); ?>
                         </h3>
-                        <p class="text-sm text-gray-600">Ci aiutano a capire come usi il sito (pagine viste, sessioni) in forma anonima e aggregata. Es: Google Analytics, Microsoft Clarity.</p>
+                        <p class="text-sm text-gray-600"><?php esc_html_e( 'Ci aiutano a capire come usi il sito (pagine viste, sessioni) in forma anonima e aggregata. Es: Google Analytics, Microsoft Clarity.', 'experiences-srl' ); ?></p>
                     </div>
                     <label class="exp-toggle flex-shrink-0">
                         <input type="checkbox" data-cookie-category="analytics" class="sr-only">
@@ -117,9 +108,9 @@ $cookie_url  = home_url( '/cookie-policy/' );
                 <div class="flex items-start justify-between gap-4">
                     <div class="flex-1">
                         <h3 class="font-semibold text-primary mb-1 flex items-center gap-2">
-                            <i class="fas fa-bullhorn text-accent text-sm"></i> Cookie di marketing
+                            <i class="fas fa-bullhorn text-accent text-sm"></i> <?php esc_html_e( 'Cookie di marketing', 'experiences-srl' ); ?>
                         </h3>
-                        <p class="text-sm text-gray-600">Usati per mostrarti annunci più pertinenti su altri siti (es: Meta Pixel, Google Ads remarketing). Attivi solo se acconsenti.</p>
+                        <p class="text-sm text-gray-600"><?php esc_html_e( 'Usati per mostrarti annunci più pertinenti su altri siti (es: Meta Pixel, Google Ads remarketing). Attivi solo se acconsenti.', 'experiences-srl' ); ?></p>
                     </div>
                     <label class="exp-toggle flex-shrink-0">
                         <input type="checkbox" data-cookie-category="marketing" class="sr-only">
@@ -130,15 +121,9 @@ $cookie_url  = home_url( '/cookie-policy/' );
         </div>
 
         <div class="sticky bottom-0 bg-gray-50 border-t border-gray-200 px-6 py-4 flex flex-col sm:flex-row gap-2 justify-end">
-            <button type="button" data-cookie-action="reject" class="px-5 py-2.5 text-sm font-semibold text-gray-700 border-2 border-gray-300 hover:bg-gray-100 rounded-xl transition-all">
-                Rifiuta tutti
-            </button>
-            <button type="button" data-cookie-action="save" class="px-5 py-2.5 text-sm font-semibold text-secondary border-2 border-secondary hover:bg-secondary hover:text-white rounded-xl transition-all">
-                Salva preferenze
-            </button>
-            <button type="button" data-cookie-action="accept-all" class="px-5 py-2.5 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-xl transition-all shadow-md">
-                Accetta tutti
-            </button>
+            <button type="button" data-cookie-action="reject" class="px-5 py-2.5 text-sm font-semibold text-gray-700 border-2 border-gray-300 hover:bg-gray-100 rounded-xl transition-all"><?php esc_html_e( 'Rifiuta tutti', 'experiences-srl' ); ?></button>
+            <button type="button" data-cookie-action="save" class="px-5 py-2.5 text-sm font-semibold text-secondary border-2 border-secondary hover:bg-secondary hover:text-white rounded-xl transition-all"><?php esc_html_e( 'Salva preferenze', 'experiences-srl' ); ?></button>
+            <button type="button" data-cookie-action="accept-all" class="px-5 py-2.5 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-xl transition-all shadow-md"><?php esc_html_e( 'Accetta tutti', 'experiences-srl' ); ?></button>
         </div>
     </div>
 </div>

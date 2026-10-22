@@ -1,36 +1,72 @@
 # Traduzioni del tema
 
 `functions.php` dichiara il dominio `experiences-srl` e lo carica da questa
-cartella. Fino alla v2.6.0 la cartella non esisteva: `load_theme_textdomain()`
-puntava nel vuoto e nessuna traduzione poteva essere caricata.
+cartella con `load_theme_textdomain()`.
 
-Le stringhe traducibili sono 32 e riguardano tutte la **bacheca di WordPress**
-— etichette del Personalizzatore, nomi del custom post type Portfolio, avvisi.
-I testi del sito pubblico stanno nei template e non passano da qui.
+## Convenzione dei nomi
+
+Per un **tema** WordPress cerca `languages/{locale}.mo` — quindi `en_US.mo`,
+`de_DE.mo`, `fr_FR.mo`. **Non** `experiences-srl-en_US.mo`: quella è la
+convenzione dei *plugin* (`load_plugin_textdomain`) e qui non funzionerebbe.
+Fino alla v2.17.0 questo README diceva il contrario ed era sbagliato.
 
 ## Cosa c'è
 
-- `experiences-srl.pot` — il modello, con tutte le stringhe e il punto del
-  codice da cui arrivano. Non va tradotto: si copia.
+| File | Cosa contiene |
+|---|---|
+| `experiences-srl.pot` | Il modello, con tutte le stringhe e il punto del codice da cui arrivano. Non si traduce: si copia. |
+| `en_US.po` | La traduzione inglese, leggibile e modificabile. |
+| `en_US.mo` | La stessa, compilata. È il file che WordPress legge davvero. |
 
-## Tradurre in una lingua
+Dalla v2.17.0 **tutte le stringhe visibili del sito** sono traducibili, non solo
+quelle della bacheca: homepage, intestazione, piede di pagina, articoli,
+configuratore, banner cookie e modale di prenotazione.
 
-1. Copia il `.pot` in `experiences-srl-CODICE.po` (es. `experiences-srl-en_US.po`
-   per l'inglese, `experiences-srl-de_DE.po` per il tedesco).
-2. Apri il `.po` con [Poedit](https://poedit.net/) — gratuito, Mac e Windows —
-   e compila i campi `msgstr`.
-3. Al salvataggio Poedit genera anche il `.mo` affiancato. Servono **entrambi**
-   i file in questa cartella: WordPress legge il `.mo`.
+## Rigenerare il modello
 
-Il codice lingua è quello impostato in *Impostazioni → Generali → Lingua del
-sito*: se i due non coincidono la traduzione non viene caricata.
+Dopo aver toccato un template:
 
-## Dopo aver modificato il codice
+```bash
+python3 scripts/make-pot.py
+```
 
-Se aggiungi o cambi stringhe dentro `__()` o `esc_html__()`, rigenera il
-modello dalla radice del repository:
+Legge `__()`, `_e()`, `esc_html__()`, `esc_attr__()`, `esc_html_e()` e
+`esc_attr_e()` con dominio `experiences-srl` e riscrive il `.pot`.
 
-    python3 scripts/make-pot.py
+## Aggiungere o correggere una traduzione
 
-Poi in Poedit usa *Catalogo → Aggiorna da POT* per riportare le novità nelle
-traduzioni già fatte senza perdere il lavoro.
+Con [Poedit](https://poedit.net/) (gratuito): si apre il `.po`, si traduce, si
+salva — Poedit scrive il `.mo` da solo.
+
+Senza Poedit, in questo repo c'è il percorso usato per l'inglese: le stringhe
+stanno in un dizionario Python e uno script scrive `.po` e `.mo` insieme,
+fallendo se anche una sola stringa è senza traduzione. Utile quando le stringhe
+sono centinaia e si vuole la garanzia che non ne manchi nessuna.
+
+## Stringhe con markup dentro
+
+Alcune frasi contengono tag in linea, per esempio:
+
+```
+Aumenta le tue <span class="text-gradient">prenotazioni</span>, …
+```
+
+Il markup va **ricopiato identico** nella traduzione: cambiano solo le parole.
+Spezzare la frase in pezzi separati darebbe una traduzione sgrammaticata, ed è
+il motivo per cui queste frasi non sono state divise.
+
+Le icone decorative (`<i class="fas fa-check"></i>`) invece restano **fuori**
+dalle stringhe: così un cambio di icona non invalida la traduzione.
+
+## Due lingue insieme (Polylang)
+
+Il tema da solo mostra **una** lingua, quella del locale di WordPress. Per
+avere italiano e inglese contemporaneamente serve Polylang, che:
+
+- assegna il locale per lingua, quindi `__()` pesca dal `.mo` giusto;
+- gestisce gli URL (`/` italiano, `/en/` inglese) e i tag `hreflang`;
+- collega ogni articolo e pagina alla sua traduzione.
+
+Il selettore IT|EN nell'intestazione lo stampa `experiences_lingue()`
+(`functions.php`), che legge `pll_the_languages()`. Senza Polylang la funzione
+torna un array vuoto e il selettore non compare: il sito resta identico a prima.

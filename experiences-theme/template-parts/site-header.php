@@ -18,10 +18,11 @@ $exp_logo   = get_template_directory_uri() . '/assets/img/logo.webp';
 // pagina: tenerle qui significava riscriverle là e vederle divergere.
 $exp_nav = experiences_nav_items();
 $exp_cta = experiences_nav_cta();
+$exp_lingue = experiences_lingue();
 ?>
 
     <!-- Skip link: primo elemento della pagina, raggiungibile con un Tab -->
-    <a class="skip-link" href="#main-content">Salta al contenuto principale</a>
+    <a class="skip-link" href="#main-content"><?php esc_html_e( 'Salta al contenuto principale', 'experiences-srl' ); ?></a>
 
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100">
@@ -32,15 +33,15 @@ $exp_cta = experiences_nav_cta();
                 <!-- Logo: centrato su mobile, allineato a sinistra su desktop -->
                 <div class="flex-1 flex justify-center lg:justify-start lg:flex-none">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 group">
-                        <img src="<?php echo esc_url( $exp_logo ); ?>" alt="Experiences Logo" width="282" height="300" class="logo-img group-hover:scale-105 transition-transform">
+                        <img src="<?php echo esc_url( $exp_logo ); ?>" alt="<?php echo esc_attr__( 'Experiences Logo', 'experiences-srl' ); ?>" width="282" height="300" class="logo-img group-hover:scale-105 transition-transform">
                         <div class="hidden sm:block">
-                            <span class="font-heading font-bold text-lg lg:text-xl text-primary">EXPERIENCES</span>
-                            <span class="block text-xs text-secondary font-medium">SRL</span>
+                            <span class="font-heading font-bold text-lg lg:text-xl text-primary"><?php esc_html_e( 'EXPERIENCES', 'experiences-srl' ); ?></span>
+                            <span class="block text-xs text-secondary font-medium"><?php esc_html_e( 'SRL', 'experiences-srl' ); ?></span>
                         </div>
                     </a>
                 </div>
 
-                <nav class="hidden lg:flex items-center gap-1" aria-label="Menu principale">
+                <nav class="hidden lg:flex items-center gap-1" aria-label="<?php echo esc_attr__( 'Menu principale', 'experiences-srl' ); ?>">
                     <?php foreach ( $exp_nav as $exp_item ) : ?>
                         <a href="<?php echo esc_url( $exp_item['href'] ); ?>"
                            class="px-3 py-2 text-sm font-medium text-gray-600 hover:text-secondary hover:bg-light rounded-lg transition-all<?php echo empty( $exp_item['icon'] ) ? '' : ' flex items-center gap-1'; ?>">
@@ -53,6 +54,20 @@ $exp_cta = experiences_nav_cta();
                     <a href="<?php echo esc_url( $exp_cta['href'] ); ?>" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-secondary hover:bg-accent rounded-lg transition-all shadow-md hover:shadow-lg">
                         <?php echo esc_html( $exp_cta['label'] ); ?>
                     </a>
+                    <?php if ( $exp_lingue ) : ?>
+                        <div class="flex items-center gap-1 ml-3" role="group" aria-label="<?php echo esc_attr__( 'Lingua del sito', 'experiences-srl' ); ?>">
+                            <?php foreach ( $exp_lingue as $exp_l ) : ?>
+                                <a href="<?php echo esc_url( $exp_l['url'] ); ?>"
+                                   hreflang="<?php echo esc_attr( $exp_l['slug'] ); ?>"
+                                   lang="<?php echo esc_attr( $exp_l['slug'] ); ?>"
+                                   class="px-2 py-1 text-xs font-semibold uppercase tracking-wide rounded transition-all <?php echo $exp_l['attuale'] ? 'text-secondary bg-light' : 'text-gray-500 hover:text-secondary hover:bg-light'; ?>"
+                                   <?php echo $exp_l['attuale'] ? 'aria-current="true"' : ''; ?>>
+                                    <?php echo esc_html( $exp_l['slug'] ); ?>
+                                    <span class="sr-only"><?php echo esc_html( $exp_l['nome'] ); ?></span>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </nav>
 
                 <!-- 44×44 minimi: sotto quella soglia il dito manca il bersaglio.
@@ -61,7 +76,7 @@ $exp_cta = experiences_nav_cta();
                      due classi non ci sono dentro. -->
                 <button id="mobile-menu-btn" type="button"
                         class="lg:hidden exp-tap-target flex items-center justify-center rounded-lg hover:bg-gray-100 transition"
-                        aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+                        aria-label="<?php echo esc_attr__( 'Apri menu', 'experiences-srl' ); ?>" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-xl text-primary" aria-hidden="true"></i>
                 </button>
             </div>
@@ -73,10 +88,10 @@ $exp_cta = experiences_nav_cta();
          raggiungibili col Tab anche da desktop, con il focus che spariva
          fuori schermo. -->
     <nav id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 p-6"
-         aria-label="Menu principale (mobile)">
+         aria-label="<?php echo esc_attr__( 'Menu principale (mobile)', 'experiences-srl' ); ?>">
         <button id="close-menu" type="button"
                 class="absolute top-4 right-4 exp-tap-target flex items-center justify-center rounded-lg hover:bg-gray-100"
-                aria-label="Chiudi menu">
+                aria-label="<?php echo esc_attr__( 'Chiudi menu', 'experiences-srl' ); ?>">
             <i class="fas fa-times text-xl text-gray-600" aria-hidden="true"></i>
         </button>
         <div class="mt-12 flex flex-col gap-2">
@@ -93,8 +108,22 @@ $exp_cta = experiences_nav_cta();
                 <?php echo esc_html( $exp_cta['label'] ); ?>
             </a>
             <a href="https://wa.me/393926917657" class="mt-4 px-4 py-3 bg-green-500 text-white rounded-lg font-medium text-center flex items-center justify-center gap-2">
-                <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i> WhatsApp
+                <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i> <?php esc_html_e( 'WhatsApp', 'experiences-srl' ); ?>
             </a>
+            <?php if ( $exp_lingue ) : ?>
+                <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-center gap-1" role="group" aria-label="<?php echo esc_attr__( 'Lingua del sito', 'experiences-srl' ); ?>">
+                    <?php foreach ( $exp_lingue as $exp_l ) : ?>
+                        <a href="<?php echo esc_url( $exp_l['url'] ); ?>"
+                           hreflang="<?php echo esc_attr( $exp_l['slug'] ); ?>"
+                           lang="<?php echo esc_attr( $exp_l['slug'] ); ?>"
+                           class="exp-tap-target inline-flex items-center justify-center text-sm font-semibold uppercase tracking-wide rounded <?php echo $exp_l['attuale'] ? 'text-secondary bg-light' : 'text-gray-500'; ?>"
+                           <?php echo $exp_l['attuale'] ? 'aria-current="true"' : ''; ?>>
+                            <?php echo esc_html( $exp_l['slug'] ); ?>
+                            <span class="sr-only"><?php echo esc_html( $exp_l['nome'] ); ?></span>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </nav>
     <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>

@@ -7,7 +7,10 @@ DOMAIN = 'experiences-srl'
 
 # __( 'testo', 'experiences-srl' )  /  esc_html__( 'testo', 'experiences-srl' )
 CALL = re.compile(
-    r"\b(?:esc_html__|esc_attr__|__)\s*\(\s*"
+    # Anche la famiglia _e(), che stampa invece di restituire: i
+    # template usano soprattutto esc_html_e(). Senza, il .pot
+    # resta indietro di due terzi delle stringhe.
+    r"\b(?:esc_html__|esc_attr__|esc_html_e|esc_attr_e|_e|__)\s*\(\s*"
     r"'((?:[^'\\]|\\.)*)'"
     r"\s*,\s*'" + re.escape(DOMAIN) + r"'\s*\)"
 )

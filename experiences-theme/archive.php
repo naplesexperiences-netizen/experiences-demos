@@ -66,9 +66,7 @@ if (is_category()) {
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
                     <a href="<?php echo esc_url( function_exists( 'experiences_blog_archive_url' ) ? experiences_blog_archive_url() : home_url( '/blog/' ) ); ?>"
-                       class="flex-shrink-0 px-5 py-2 bg-primary text-white text-sm font-semibold rounded-full hover:bg-secondary transition-all">
-                        Tutti
-                    </a>
+                       class="flex-shrink-0 px-5 py-2 bg-primary text-white text-sm font-semibold rounded-full hover:bg-secondary transition-all"><?php esc_html_e( 'Tutti', 'experiences-srl' ); ?></a>
                     <?php foreach ($all_cats as $cat) : ?>
                         <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
                            class="flex-shrink-0 px-5 py-2 bg-light hover:bg-accent text-secondary hover:text-white text-sm font-semibold rounded-full transition-all">
@@ -101,9 +99,7 @@ endif; ?>
                                     <i class="fas fa-star text-white/30 text-8xl"></i>
                                 </div>
                             <?php endif; ?>
-                            <span class="absolute top-4 left-4 px-3 py-1 bg-accent text-white text-xs font-bold rounded-full uppercase tracking-wide">
-                                ⭐ In Evidenza
-                            </span>
+                            <span class="absolute top-4 left-4 px-3 py-1 bg-accent text-white text-xs font-bold rounded-full uppercase tracking-wide"><?php esc_html_e( '⭐ In Evidenza', 'experiences-srl' ); ?></span>
                         </div>
                         <div class="p-8 lg:p-12 flex flex-col justify-center">
                             <?php $cats = get_the_category(); if (!empty($cats)) : ?>
@@ -124,7 +120,7 @@ endif; ?>
                                 <span class="flex items-center gap-1"><i class="fas fa-clock text-accent"></i> <?php echo function_exists('exp_reading_time') ? exp_reading_time() : '5'; ?> min</span>
                             </div>
                             <span class="inline-flex items-center gap-2 text-secondary font-semibold group-hover:text-accent transition-colors">
-                                Leggi articolo completo <i class="fas fa-arrow-right"></i>
+                                <?php esc_html_e( 'Leggi articolo completo', 'experiences-srl' ); ?> <i class="fas fa-arrow-right"></i>
                             </span>
                         </div>
                     </a>
@@ -171,7 +167,7 @@ endif; ?>
                             </p>
                             <div class="flex items-center justify-between">
                                 <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-accent transition-colors">
-                                    Leggi <i class="fas fa-arrow-right text-xs"></i>
+                                    <?php esc_html_e( 'Leggi', 'experiences-srl' ); ?> <i class="fas fa-arrow-right text-xs"></i>
                                 </a>
                                 <span class="text-xs text-gray-400">
                                     <i class="fas fa-user"></i> <?php the_author(); ?>
@@ -201,10 +197,10 @@ endif; ?>
                 <div class="w-24 h-24 mx-auto mb-6 bg-light rounded-2xl flex items-center justify-center">
                     <i class="fas fa-inbox text-gray-300 text-4xl"></i>
                 </div>
-                <h2 class="font-heading text-2xl font-bold text-primary mb-3">Nessun articolo trovato</h2>
-                <p class="text-gray-600 mb-8 max-w-md mx-auto">Non ci sono ancora articoli in questa sezione. Torna presto: stiamo preparando contenuti utili per te.</p>
+                <h2 class="font-heading text-2xl font-bold text-primary mb-3"><?php esc_html_e( 'Nessun articolo trovato', 'experiences-srl' ); ?></h2>
+                <p class="text-gray-600 mb-8 max-w-md mx-auto"><?php esc_html_e( 'Non ci sono ancora articoli in questa sezione. Torna presto: stiamo preparando contenuti utili per te.', 'experiences-srl' ); ?></p>
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-all">
-                    <i class="fas fa-home"></i> Torna alla home
+                    <i class="fas fa-home"></i> <?php esc_html_e( 'Torna alla home', 'experiences-srl' ); ?>
                 </a>
             </div>
 
@@ -223,14 +219,10 @@ endif; ?>
                 <div class="w-16 h-16 mx-auto mb-6 bg-white/10 backdrop-blur rounded-2xl flex items-center justify-center">
                     <i class="fas fa-envelope text-accent text-2xl"></i>
                 </div>
-                <h2 class="font-heading text-2xl lg:text-3xl xl:text-4xl font-bold mb-4">
-                    Una guida pratica nella tua inbox, ogni settimana
-                </h2>
-                <p class="text-white/80 mb-8 max-w-2xl mx-auto">
-                    Strategie testate per Channel Manager, SEO turismo, conversione siti hotel. Niente spam, solo valore.
-                </p>
+                <h2 class="font-heading text-2xl lg:text-3xl xl:text-4xl font-bold mb-4"><?php esc_html_e( 'Una guida pratica nella tua inbox, ogni settimana', 'experiences-srl' ); ?></h2>
+                <p class="text-white/80 mb-8 max-w-2xl mx-auto"><?php esc_html_e( 'Strategie testate per Channel Manager, SEO turismo, conversione siti hotel. Niente spam, solo valore.', 'experiences-srl' ); ?></p>
                 <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-accent hover:text-white transition-all shadow-xl">
-                    <i class="fas fa-paper-plane"></i> Iscriviti gratis
+                    <i class="fas fa-paper-plane"></i> <?php esc_html_e( 'Iscriviti gratis', 'experiences-srl' ); ?>
                 </a>
             </div>
         </div>
