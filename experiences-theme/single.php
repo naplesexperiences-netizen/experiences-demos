@@ -33,7 +33,7 @@ while ( have_posts() ) : the_post();
                     <i class="fas fa-home"></i>
                 </a>
                 <i class="fas fa-chevron-right text-xs"></i>
-                <a href="<?php echo esc_url( function_exists( 'experiences_blog_archive_url' ) ? experiences_blog_archive_url() : home_url( '/blog/' ) ); ?>" class="hover:text-accent transition-colors">Blog</a>
+                <a href="<?php echo esc_url( function_exists( 'experiences_blog_archive_url' ) ? experiences_blog_archive_url() : home_url( '/blog/' ) ); ?>" class="hover:text-accent transition-colors"><?php esc_html_e( 'Blog', 'experiences-srl' ); ?></a>
                 <i class="fas fa-chevron-right text-xs"></i>
                 <span class="text-accent"><?php echo esc_html($primary_cat); ?></span>
             </nav>
@@ -66,7 +66,7 @@ while ( have_posts() ) : the_post();
                     <?php echo get_avatar($author_id, 48, '', '', ['class' => 'rounded-full border-2 border-accent/30']); ?>
                     <div>
                         <p class="text-sm font-semibold text-white"><?php the_author(); ?></p>
-                        <p class="text-xs text-white/60">Autore</p>
+                        <p class="text-xs text-white/60"><?php esc_html_e( 'Autore', 'experiences-srl' ); ?></p>
                     </div>
                 </div>
                 <div class="hidden sm:block w-px h-10 bg-white/20"></div>
@@ -105,35 +105,35 @@ while ( have_posts() ) : the_post();
                     <div class="sticky top-28 space-y-6">
                         <!-- Share buttons -->
                         <div>
-                            <p class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider">Condividi</p>
+                            <p class="text-xs font-bold text-gray-500 uppercase mb-3 tracking-wider"><?php esc_html_e( 'Condividi', 'experiences-srl' ); ?></p>
                             <div class="flex flex-col gap-2">
                                 <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>"
                                    target="_blank" rel="noopener"
                                    class="w-10 h-10 rounded-full bg-light hover:bg-accent text-secondary hover:text-white flex items-center justify-center transition-all"
-                                   aria-label="Condividi su Facebook">
+                                   aria-label="<?php echo esc_attr__( 'Condividi su Facebook', 'experiences-srl' ); ?>">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                                 <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
                                    target="_blank" rel="noopener"
                                    class="w-10 h-10 rounded-full bg-light hover:bg-accent text-secondary hover:text-white flex items-center justify-center transition-all"
-                                   aria-label="Condividi su Twitter">
+                                   aria-label="<?php echo esc_attr__( 'Condividi su Twitter', 'experiences-srl' ); ?>">
                                     <i class="fab fa-x-twitter"></i>
                                 </a>
                                 <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
                                    target="_blank" rel="noopener"
                                    class="w-10 h-10 rounded-full bg-light hover:bg-accent text-secondary hover:text-white flex items-center justify-center transition-all"
-                                   aria-label="Condividi su LinkedIn">
+                                   aria-label="<?php echo esc_attr__( 'Condividi su LinkedIn', 'experiences-srl' ); ?>">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                                 <a href="https://wa.me/?text=<?php echo urlencode(get_the_title() . ' - ' . get_permalink()); ?>"
                                    target="_blank" rel="noopener"
                                    class="w-10 h-10 rounded-full bg-light hover:bg-green-500 text-secondary hover:text-white flex items-center justify-center transition-all"
-                                   aria-label="Condividi su WhatsApp">
+                                   aria-label="<?php echo esc_attr__( 'Condividi su WhatsApp', 'experiences-srl' ); ?>">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
                                 <button onclick="navigator.clipboard.writeText('<?php echo esc_js(get_permalink()); ?>'); this.querySelector('i').className='fas fa-check'; setTimeout(()=>this.querySelector('i').className='fas fa-link', 2000);"
                                         class="w-10 h-10 rounded-full bg-light hover:bg-accent text-secondary hover:text-white flex items-center justify-center transition-all"
-                                        aria-label="Copia link">
+                                        aria-label="<?php echo esc_attr__( 'Copia link', 'experiences-srl' ); ?>">
                                     <i class="fas fa-link"></i>
                                 </button>
                             </div>
@@ -149,7 +149,7 @@ while ( have_posts() ) : the_post();
 
                     <!-- Mobile share buttons -->
                     <div class="lg:hidden mt-12 pt-8 border-t border-gray-200">
-                        <p class="text-sm font-semibold text-gray-500 mb-4">Condividi questo articolo:</p>
+                        <p class="text-sm font-semibold text-gray-500 mb-4"><?php esc_html_e( 'Condividi questo articolo:', 'experiences-srl' ); ?></p>
                         <div class="flex gap-3">
                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener" class="flex-1 py-3 bg-light hover:bg-accent text-secondary hover:text-white text-center rounded-lg transition-all"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener" class="flex-1 py-3 bg-light hover:bg-accent text-secondary hover:text-white text-center rounded-lg transition-all"><i class="fab fa-x-twitter"></i></a>
@@ -161,7 +161,7 @@ while ( have_posts() ) : the_post();
                     <!-- Tags -->
                     <?php if (has_tag()) : ?>
                         <div class="mt-12 pt-8 border-t border-gray-200">
-                            <p class="text-sm font-semibold text-gray-500 mb-4 flex items-center gap-2"><i class="fas fa-tags text-accent"></i> Tag:</p>
+                            <p class="text-sm font-semibold text-gray-500 mb-4 flex items-center gap-2"><i class="fas fa-tags text-accent"></i> <?php esc_html_e( 'Tag:', 'experiences-srl' ); ?></p>
                             <div class="flex flex-wrap gap-2">
                                 <?php foreach (get_the_tags() as $tag) : ?>
                                     <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"
@@ -178,7 +178,7 @@ while ( have_posts() ) : the_post();
                         <div class="flex items-start gap-4">
                             <?php echo get_avatar($author_id, 80, '', '', ['class' => 'rounded-full border-4 border-accent/20']); ?>
                             <div>
-                                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Scritto da</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1"><?php esc_html_e( 'Scritto da', 'experiences-srl' ); ?></p>
                                 <h3 class="font-heading text-xl font-bold text-primary mb-2"><?php the_author(); ?></h3>
                                 <p class="text-gray-600 text-sm leading-relaxed mb-3">
                                     <?php
@@ -189,11 +189,11 @@ while ( have_posts() ) : the_post();
                                 <div class="flex gap-3">
                                     <?php $author_url = get_the_author_meta('user_url'); if ($author_url) : ?>
                                         <a href="<?php echo esc_url($author_url); ?>" target="_blank" rel="noopener" class="text-secondary hover:text-accent text-sm font-semibold">
-                                            <i class="fas fa-globe"></i> Sito web
+                                            <i class="fas fa-globe"></i> <?php esc_html_e( 'Sito web', 'experiences-srl' ); ?>
                                         </a>
                                     <?php endif; ?>
                                     <a href="<?php echo esc_url(get_author_posts_url($author_id)); ?>" class="text-secondary hover:text-accent text-sm font-semibold">
-                                        <i class="fas fa-edit"></i> Altri articoli
+                                        <i class="fas fa-edit"></i> <?php esc_html_e( 'Altri articoli', 'experiences-srl' ); ?>
                                     </a>
                                 </div>
                             </div>
@@ -204,18 +204,14 @@ while ( have_posts() ) : the_post();
                     <div class="mt-8 p-8 bg-gradient-to-br from-primary to-secondary rounded-2xl text-white relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
                         <div class="relative z-10">
-                            <h3 class="font-heading text-2xl lg:text-3xl font-bold mb-3">
-                                Vuoi applicare queste strategie al tuo business?
-                            </h3>
-                            <p class="text-white/80 mb-6 leading-relaxed">
-                                Richiedi un'audit gratuito del tuo sito. Analizziamo dove perdi prenotazioni e ti diciamo esattamente cosa fare. Senza vincoli.
-                            </p>
+                            <h3 class="font-heading text-2xl lg:text-3xl font-bold mb-3"><?php esc_html_e( 'Vuoi applicare queste strategie al tuo business?', 'experiences-srl' ); ?></h3>
+                            <p class="text-white/80 mb-6 leading-relaxed"><?php esc_html_e( 'Richiedi un\'audit gratuito del tuo sito. Analizziamo dove perdi prenotazioni e ti diciamo esattamente cosa fare. Senza vincoli.', 'experiences-srl' ); ?></p>
                             <div class="flex flex-col sm:flex-row gap-3">
                                 <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="px-6 py-3 bg-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-all flex items-center justify-center gap-2">
-                                    <i class="fas fa-rocket"></i> Audit Gratuito
+                                    <i class="fas fa-rocket"></i> <?php esc_html_e( 'Audit Gratuito', 'experiences-srl' ); ?>
                                 </a>
                                 <a href="https://wa.me/393926917657" class="px-6 py-3 bg-white/10 backdrop-blur border border-white/30 text-white font-semibold rounded-xl hover:bg-white/20 transition-all flex items-center justify-center gap-2">
-                                    <i class="fab fa-whatsapp text-xl"></i> WhatsApp
+                                    <i class="fab fa-whatsapp text-xl"></i> <?php esc_html_e( 'WhatsApp', 'experiences-srl' ); ?>
                                 </a>
                             </div>
                         </div>
@@ -232,11 +228,9 @@ while ( have_posts() ) : the_post();
                             <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center mb-4">
                                 <i class="fas fa-envelope text-white text-xl"></i>
                             </div>
-                            <h3 class="font-heading text-lg font-bold text-primary mb-2">Newsletter</h3>
-                            <p class="text-gray-600 text-sm mb-4">Ricevi una guida pratica ogni settimana per crescere il tuo business turistico.</p>
-                            <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="block w-full py-3 px-4 bg-secondary hover:bg-accent text-white text-center text-sm font-semibold rounded-lg transition-all">
-                                Iscriviti gratis
-                            </a>
+                            <h3 class="font-heading text-lg font-bold text-primary mb-2"><?php esc_html_e( 'Newsletter', 'experiences-srl' ); ?></h3>
+                            <p class="text-gray-600 text-sm mb-4"><?php esc_html_e( 'Ricevi una guida pratica ogni settimana per crescere il tuo business turistico.', 'experiences-srl' ); ?></p>
+                            <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="block w-full py-3 px-4 bg-secondary hover:bg-accent text-white text-center text-sm font-semibold rounded-lg transition-all"><?php esc_html_e( 'Iscriviti gratis', 'experiences-srl' ); ?></a>
                         </div>
 
                         <!-- Categorie popolari -->
@@ -245,7 +239,7 @@ while ( have_posts() ) : the_post();
                         if (!empty($cats)) : ?>
                             <div class="bg-white rounded-2xl border border-gray-100 p-6">
                                 <h3 class="font-heading text-lg font-bold text-primary mb-4 flex items-center gap-2">
-                                    <i class="fas fa-folder text-accent"></i> Categorie
+                                    <i class="fas fa-folder text-accent"></i> <?php esc_html_e( 'Categorie', 'experiences-srl' ); ?>
                                 </h3>
                                 <ul class="space-y-2">
                                     <?php foreach ($cats as $cat) : ?>
@@ -282,8 +276,8 @@ while ( have_posts() ) : the_post();
         <section class="py-16 lg:py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-3">ARTICOLI CORRELATI</span>
-                    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-primary">Continua a leggere</h2>
+                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-3"><?php esc_html_e( 'ARTICOLI CORRELATI', 'experiences-srl' ); ?></span>
+                    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-primary"><?php esc_html_e( 'Continua a leggere', 'experiences-srl' ); ?></h2>
                 </div>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -314,7 +308,7 @@ while ( have_posts() ) : the_post();
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h3>
                                 <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:text-accent">
-                                    Leggi <i class="fas fa-arrow-right text-xs"></i>
+                                    <?php esc_html_e( 'Leggi', 'experiences-srl' ); ?> <i class="fas fa-arrow-right text-xs"></i>
                                 </a>
                             </div>
                         </article>
@@ -333,7 +327,7 @@ while ( have_posts() ) : the_post();
                 if ($prev) : ?>
                     <a href="<?php echo esc_url(get_permalink($prev->ID)); ?>" class="group p-6 bg-light hover:bg-accent rounded-xl transition-all">
                         <div class="flex items-center gap-2 text-xs text-secondary group-hover:text-white mb-2">
-                            <i class="fas fa-arrow-left"></i> Articolo precedente
+                            <i class="fas fa-arrow-left"></i> <?php esc_html_e( 'Articolo precedente', 'experiences-srl' ); ?>
                         </div>
                         <p class="font-heading font-bold text-primary group-hover:text-white text-sm leading-tight">
                             <?php echo esc_html($prev->post_title); ?>
@@ -345,7 +339,7 @@ while ( have_posts() ) : the_post();
                 if ($next) : ?>
                     <a href="<?php echo esc_url(get_permalink($next->ID)); ?>" class="group p-6 bg-light hover:bg-accent rounded-xl transition-all text-right">
                         <div class="flex items-center justify-end gap-2 text-xs text-secondary group-hover:text-white mb-2">
-                            Articolo successivo <i class="fas fa-arrow-right"></i>
+                            <?php esc_html_e( 'Articolo successivo', 'experiences-srl' ); ?> <i class="fas fa-arrow-right"></i>
                         </div>
                         <p class="font-heading font-bold text-primary group-hover:text-white text-sm leading-tight">
                             <?php echo esc_html($next->post_title); ?>

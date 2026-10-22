@@ -7,137 +7,1633 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-22T04:58:21+00:00\n"
+"POT-Creation-Date: 2026-10-22T07:50:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: experiences-srl\n"
 
+#: 404.php:5
+msgid "Pagina non trovata"
+msgstr ""
+
+#: 404.php:6
+msgid "La pagina che cerchi non esiste o è stata spostata."
+msgstr ""
+
+#: 404.php:9
+msgid "Torna alla Home"
+msgstr ""
+
+#: archive.php:69 template-parts/blog-listing.php:50
+msgid "Tutti"
+msgstr ""
+
+#: archive.php:102
+msgid "⭐ In Evidenza"
+msgstr ""
+
+#: archive.php:123
+msgid "Leggi articolo completo"
+msgstr ""
+
+#: archive.php:170 single.php:311 template-parts/blog-listing.php:108
+msgid "Leggi"
+msgstr ""
+
+#: archive.php:200 template-parts/blog-listing.php:120
+msgid "Nessun articolo trovato"
+msgstr ""
+
+#: archive.php:201
+msgid "Non ci sono ancora articoli in questa sezione. Torna presto: stiamo preparando contenuti utili per te."
+msgstr ""
+
+#: archive.php:203
+msgid "Torna alla home"
+msgstr ""
+
+#: archive.php:222
+msgid "Una guida pratica nella tua inbox, ogni settimana"
+msgstr ""
+
+#: archive.php:223
+msgid "Strategie testate per Channel Manager, SEO turismo, conversione siti hotel. Niente spam, solo valore."
+msgstr ""
+
+#: archive.php:225 single.php:233
+msgid "Iscriviti gratis"
+msgstr ""
+
+#: front-page.php:36
+msgid "Soluzioni per Hotel, Agenzie & Tour Operator"
+msgstr ""
+
+#: front-page.php:39
+msgid "Aumenta le tue <span class=\"text-gradient\">prenotazioni</span>, <span class=\"block mt-2\">lavorando di meno</span>"
+msgstr ""
+
+#: front-page.php:41
+msgid "Mentre tu gestisci <strong class=\"text-white\">5 piattaforme manualmente</strong>, i tuoi competitor incassano prenotazioni dirette 24/7. <span class=\"text-accent font-medium block mt-2\">Channel Manager + Sito Moderno + AI: Tutto Sincronizzato, Zero Overbooking</span>"
+msgstr ""
+
+#: front-page.php:45
+msgid "Per chi vuoi vedere la soluzione?"
+msgstr ""
+
+#: front-page.php:48
+msgid "Hotel & B&B"
+msgstr ""
+
+#: front-page.php:51
+msgid "Agenzie Viaggi"
+msgstr ""
+
+#: front-page.php:54 front-page.php:433
+msgid "Tour Operator"
+msgstr ""
+
+#: front-page.php:61 template-parts/blog-listing.php:150
+msgid "Prenota Audit Gratuito"
+msgstr ""
+
+#: front-page.php:66
+msgid "Parla con noi"
+msgstr ""
+
+#: front-page.php:72
+msgid "Consulenza gratuita"
+msgstr ""
+
+#: front-page.php:73
+msgid "Risposta in 24h"
+msgstr ""
+
+#: front-page.php:74
+msgid "No vincoli"
+msgstr ""
+
+#: front-page.php:102
+msgid "Experiences"
+msgstr ""
+
+#: front-page.php:109
+msgid "Online"
+msgstr ""
+
+#: front-page.php:114
+msgid "Mobile"
+msgstr ""
+
+#: front-page.php:124 functions.php:170
+msgid "AI"
+msgstr ""
+
+#: front-page.php:133
+msgid "Ore/sett. risparmiate"
+msgstr ""
+
+#: front-page.php:137
+msgid "Più prenotazioni dirette"
+msgstr ""
+
+#: front-page.php:141
+msgid "Overbooking"
+msgstr ""
+
+#: front-page.php:145
+msgid "Supporto AI clienti"
+msgstr ""
+
+#: front-page.php:154
+msgid "Scorri"
+msgstr ""
+
+#: front-page.php:166
+msgid "SOLUZIONI CHE FUNZIONANO"
+msgstr ""
+
+#: front-page.php:167
+msgid "Da problema a <span class=\"text-gradient\">prenotazione</span> in 30 giorni"
+msgstr ""
+
+#: front-page.php:168
+msgid "Ogni servizio risolve un problema reale che ti costa tempo e prenotazioni. Implementazione veloce, risultati misurabili."
+msgstr ""
+
+#: front-page.php:173
+msgid "Sito Web Moderno"
+msgstr ""
+
+#: front-page.php:174 front-page.php:187 front-page.php:203 front-page.php:220 front-page.php:237
+msgid "Problema"
+msgstr ""
+
+#: front-page.php:175
+msgid "Il tuo sito attuale è pre-2020, non funziona da mobile e perde l'<strong>89% dei visitatori</strong>."
+msgstr ""
+
+#: front-page.php:176 front-page.php:189 front-page.php:205 front-page.php:222 front-page.php:239
+msgid "Soluzione"
+msgstr ""
+
+#: front-page.php:178
+msgid "Design mobile-first (carica in <2 sec)"
+msgstr ""
+
+#: front-page.php:179
+msgid "Booking integrato che converte"
+msgstr ""
+
+#: front-page.php:180
+msgid "Gestione contenuti autonoma"
+msgstr ""
+
+#: front-page.php:182
+msgid "📈 Risultato: un sito che si apre in fretta e si usa col pollice"
+msgstr ""
+
+#: front-page.php:186 template-parts/site-footer.php:58
+msgid "SEO/SEM Marketing"
+msgstr ""
+
+#: front-page.php:188
+msgid "I clienti cercano \"hotel Napoli\" e trovano i tuoi competitor. <strong>Tu sei invisibile</strong>."
+msgstr ""
+
+#: front-page.php:191
+msgid "SEO locale (top 3 su Google)"
+msgstr ""
+
+#: front-page.php:192
+msgid "Google Ads con ROI tracking"
+msgstr ""
+
+#: front-page.php:193
+msgid "Social Media targeting clienti ideali"
+msgstr ""
+
+#: front-page.php:195
+msgid "📈 Risultato: ti trovano cercando la zona, non solo il tuo nome"
+msgstr ""
+
+#: front-page.php:200
+msgid "⭐ TOP"
+msgstr ""
+
+#: front-page.php:202 front-page.php:749 template-parts/site-footer.php:59
+msgid "Channel Manager"
+msgstr ""
+
+#: front-page.php:204
+msgid "Gestisci Booking, Airbnb, Expedia <strong>manualmente</strong>. Rischi overbooking e perdi 30 ore/settimana."
+msgstr ""
+
+#: front-page.php:207
+msgid "Sync real-time con tutte le OTA"
+msgstr ""
+
+#: front-page.php:212
+msgid "Disponibilità allineata su ogni canale, niente doppie prenotazioni"
+msgstr ""
+
+#: front-page.php:213
+msgid "Pricing dinamico + analytics"
+msgstr ""
+
+#: front-page.php:215
+msgid "📈 Risultato: un calendario solo, e le dirette non passano più dalle OTA"
+msgstr ""
+
+#: front-page.php:219
+msgid "Annunci OTA Ottimizzati"
+msgstr ""
+
+#: front-page.php:221
+msgid "Il tuo annuncio su Booking sembra come migliaia di altri. <strong>Conversione bassa = revenue persa</strong>."
+msgstr ""
+
+#: front-page.php:224
+msgid "Copy persuasivo (testato A/B)"
+msgstr ""
+
+#: front-page.php:225
+msgid "Foto professionali + ottimizzazione SEO"
+msgstr ""
+
+#: front-page.php:226
+msgid "Pricing dinamico per stagione"
+msgstr ""
+
+#: front-page.php:228
+msgid "📈 Risultato: annunci completi, fotografati e scritti per convertire"
+msgstr ""
+
+#: front-page.php:234
+msgid "🚀 ESCLUSIVO"
+msgstr ""
+
+#: front-page.php:236
+msgid "Assistente AI 24/7 per i tuoi clienti"
+msgstr ""
+
+#: front-page.php:238
+msgid "I clienti scrivono di notte, chiedono prezzi, vogliono informazioni. <strong>Tu dormi. Loro vanno dai competitor.</strong>"
+msgstr ""
+
+#: front-page.php:241
+msgid "Assistente AI configurato sul tuo business: risponde in 12 lingue, prenota direttamente, suggerisce attività locali, integra con il tuo Channel Manager."
+msgstr ""
+
+#: front-page.php:243
+msgid "⚡ Risposta in 2 sec"
+msgstr ""
+
+#: front-page.php:244
+msgid "🌍 12 lingue"
+msgstr ""
+
+#: front-page.php:245
+msgid "💰 Prenotazione diretta"
+msgstr ""
+
+#: front-page.php:246
+msgid "🎯 Lead capture"
+msgstr ""
+
+#: front-page.php:249
+msgid "📈 Risultato: nessuna richiesta resta senza risposta fino al mattino"
+msgstr ""
+
+#: front-page.php:271
+msgid "ASSISTENTE VIRTUALE AI"
+msgstr ""
+
+#: front-page.php:272
+msgid "Parla con il nostro <span class=\"text-gradient\">Esperto Digitale</span>"
+msgstr ""
+
+#: front-page.php:273
+msgid "Il nostro assistente AI è disponibile 24/7 per rispondere alle tue domande sui servizi, i piani tariffari e le soluzioni digitali per il turismo."
+msgstr ""
+
+#: front-page.php:279
+msgid "Disponibile 24/7"
+msgstr ""
+
+#: front-page.php:282
+msgid "Multilingua"
+msgstr ""
+
+#: front-page.php:285
+msgid "Risposta istantanea"
+msgstr ""
+
+#: front-page.php:288
+msgid "AI Powered"
+msgstr ""
+
+#: front-page.php:307
+msgid "Parla con l'Esperto Digitale"
+msgstr ""
+
+#: front-page.php:308
+msgid "Si apre l'assistente video, in italiano"
+msgstr ""
+
+#: front-page.php:314 front-page.php:1009 page-configuratore.php:154 template-parts/cookie-banner.php:48 template-parts/site-footer.php:88
+msgid "Privacy Policy"
+msgstr ""
+
+#: front-page.php:320
+msgid "Preferisci un contatto diretto?"
+msgstr ""
+
+#: front-page.php:323
+msgid "Prenota una call di 30 min"
+msgstr ""
+
+#: front-page.php:345
+msgid "CASI REALI"
+msgstr ""
+
+#: front-page.php:346
+msgid "Cosa abbiamo fatto per <span class=\"text-gradient\">altri come te</span>"
+msgstr ""
+
+#: front-page.php:347
+msgid "Tre situazioni in cui siamo entrati e cosa è cambiato. Dove abbiamo i numeri li pubblichiamo per intero, con il case study completo da leggere."
+msgstr ""
+
+#: front-page.php:356
+msgid "Hotel 4 stelle"
+msgstr ""
+
+#: front-page.php:357
+msgid "Ischia • 80 camere"
+msgstr ""
+
+#: front-page.php:363
+msgid "Dall’overbooking al controllo del calendario"
+msgstr ""
+
+#: front-page.php:367
+msgid "Disponibilità sincronizzata fra Booking, Expedia e sito: le doppie prenotazioni non capitano più"
+msgstr ""
+
+#: front-page.php:371
+msgid "Niente più aggiornamento manuale dei prezzi su quattro portali, ogni mattina"
+msgstr ""
+
+#: front-page.php:375
+msgid "Motore di prenotazione sul sito: chi arriva dal nome dell’hotel prenota lì, senza commissione"
+msgstr ""
+
+#: front-page.php:378
+msgid "\"In 6 mesi abbiamo recuperato il controllo totale. Il direttore ora si concentra sull'esperienza ospiti, non sul gestionale.\""
+msgstr ""
+
+#: front-page.php:386
+msgid "Agenzia Tour"
+msgstr ""
+
+#: front-page.php:387
+msgid "Napoli • Tour Vesuvio/Pompei • dal 2022"
+msgstr ""
+
+#: front-page.php:397
+msgid "Da 5 a 20 prenotazioni/mese in 12 mesi"
+msgstr ""
+
+#: front-page.php:400
+msgid "4×"
+msgstr ""
+
+#: front-page.php:401
+msgid "Prenotazioni/mese"
+msgstr ""
+
+#: front-page.php:405
+msgid "Vendite dirette"
+msgstr ""
+
+#: front-page.php:409
+msgid "Ticket medio"
+msgstr ""
+
+#: front-page.php:416
+msgid "Fatturato annuo, da €21K"
+msgstr ""
+
+#: front-page.php:424
+msgid "Da allora a oggi: <strong class=\"text-white\">oltre 200.000 visite</strong>, più di <strong class=\"text-white\">4.400 contatti diretti</strong> fra telefonate, moduli ed email, e 7 visitatori su 10 dall&rsquo;estero."
+msgstr ""
+
+#: front-page.php:425
+msgid "\"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7.\""
+msgstr ""
+
+#: front-page.php:434
+msgid "Campania • 300+ tour"
+msgstr ""
+
+#: front-page.php:442
+msgid "Trecento tour, una sola dashboard"
+msgstr ""
+
+#: front-page.php:446
+msgid "Oltre 300 tour e tutti i canali di vendita gestiti da un punto solo"
+msgstr ""
+
+#: front-page.php:450
+msgid "Il catalogo è cresciuto senza che dovesse crescere il team amministrativo"
+msgstr ""
+
+#: front-page.php:454
+msgid "Prezzi e disponibilità aggiornati una volta, validi ovunque"
+msgstr ""
+
+#: front-page.php:457
+msgid "\"La gestione centralizzata ci ha permesso di scalare senza assumere. Ora il team è focalizzato sulla crescita.\""
+msgstr ""
+
+#: front-page.php:463
+msgid "Vuoi sapere come possiamo aiutare il <strong class=\"text-white\">tuo</strong> business?"
+msgstr ""
+
+#: front-page.php:465
+msgid "Calcola il tuo ROI in 5 minuti"
+msgstr ""
+
+#: front-page.php:489
+msgid "VISIBILITÀ SUGLI ASSISTENTI AI"
+msgstr ""
+
+#: front-page.php:490
+msgid "Quando un cliente chiede a ChatGPT, <span class=\"text-gradient\">chi risponde?</span>"
+msgstr ""
+
+#: front-page.php:491
+msgid "Sempre più persone cercano dove dormire e cosa fare chiedendolo a un assistente, non digitandolo su Google. L’assistente risponde con quello che ha letto — e per leggerti deve trovarti, e capirti."
+msgstr ""
+
+#: front-page.php:492
+msgid "Sul sito di un nostro cliente i crawler delle AI hanno fatto <strong class=\"text-primary\">circa 65.000 letture</strong>, tre quarti delle quali ChatGPT, partendo da zero poche settimane prima. Non sono visitatori: sono i motori che decidono cosa rispondere. I visitatori veri arrivano dopo, e per ora sono lo 0,7% del totale — una quota piccola, su una strada che fino a ieri non esisteva."
+msgstr ""
+
+#: front-page.php:497
+msgid "Contenuti strutturati perché un assistente possa citarli, non solo indicizzarli"
+msgstr ""
+
+#: front-page.php:501
+msgid "Dati della struttura leggibili da una macchina: prezzi, servizi, posizione, disponibilità"
+msgstr ""
+
+#: front-page.php:505
+msgid "Monitoraggio di quali assistenti ti leggono e quanto"
+msgstr ""
+
+#: front-page.php:510
+msgid "Fatti trovare dalle AI"
+msgstr ""
+
+#: front-page.php:516
+msgid "LETTURE DEI CRAWLER AI · UN CLIENTE, DUE MESI"
+msgstr ""
+
+#: front-page.php:520
+msgid "65.000"
+msgstr ""
+
+#: front-page.php:521
+msgid "Letture dai crawler AI"
+msgstr ""
+
+#: front-page.php:525
+msgid "Sono ChatGPT"
+msgstr ""
+
+#: front-page.php:529
+msgid "Assistenti diversi"
+msgstr ""
+
+#: front-page.php:532
+msgid "0,7%"
+msgstr ""
+
+#: front-page.php:533
+msgid "Visite reali da assistenti"
+msgstr ""
+
+#: front-page.php:537
+msgid "Dati dal cruscotto analytics di un cliente, arrotondati. Le letture dei crawler non sono visite di persone: misurano quanto le AI leggono il sito, non quanti clienti porta. Lo 0,7% sono visite vere."
+msgstr ""
+
+#: front-page.php:549
+msgid "PORTFOLIO"
+msgstr ""
+
+#: front-page.php:550
+msgid "I Siti <span class=\"text-gradient\">Live</span> che abbiamo realizzato"
+msgstr ""
+
+#: front-page.php:555
+msgid "Click su ogni progetto per vederlo dal vivo. Sono tutti siti in produzione, usati ogni giorno dai loro clienti — strutture ricettive, tour operator, enti culturali e di formazione."
+msgstr ""
+
+#: front-page.php:582
+msgid "GALLERIA DEMO"
+msgstr ""
+
+#: front-page.php:583
+msgid "Dieci modi diversi di fare <span class=\"text-gradient\">un sito</span>"
+msgstr ""
+
+#: front-page.php:584
+msgid "Prima di commissionare un sito, guarda come lavoriamo. Sono siti veri, non mockup: si aprono e si usano. Ma duecento demo sono per lo più varianti dello stesso impianto, e scorrerle tutte non aiuta a scegliere: per questo ne abbiamo messe da parte <strong class=\"text-white\">dieci</strong>, una per ogni modo davvero diverso di costruire una pagina."
+msgstr ""
+
+#: front-page.php:589
+msgid "Dal racconto per immagini al totem touch, passando per il 3D"
+msgstr ""
+
+#: front-page.php:593
+msgid "Dove due approcci meritano un confronto, li trovi affiancati"
+msgstr ""
+
+#: front-page.php:597
+msgid "Ognuna apribile dal vivo, anche da telefono, e personalizzabile sul tuo brand"
+msgstr ""
+
+#: front-page.php:604
+msgid "Guarda la selezione"
+msgstr ""
+
+#: front-page.php:611
+msgid "Provalo con le tue foto"
+msgstr ""
+
+#: front-page.php:629
+msgid "Apri la vetrina delle demo selezionate in una nuova scheda"
+msgstr ""
+
+#: front-page.php:636
+msgid "vetrina · Experiences Srl"
+msgstr ""
+
+#: front-page.php:660
+msgid "Una per impianto, non una per cliente"
+msgstr ""
+
+#: front-page.php:662
+msgid "Apri la vetrina"
+msgstr ""
+
+#: front-page.php:679
+msgid "RISORSE GRATUITE"
+msgstr ""
+
+#: front-page.php:680
+msgid "Guide & <span class=\"text-gradient\">Insights</span>"
+msgstr ""
+
+#: front-page.php:681
+msgid "Strategie pratiche per digitalizzare il tuo business turistico. Articoli, case study e guide gratuite."
+msgstr ""
+
+#: front-page.php:728
+msgid "Leggi articolo"
+msgstr ""
+
+#: front-page.php:737
+msgid "Tutti gli articoli"
+msgstr ""
+
+#: front-page.php:749
+msgid "Come evitare overbooking su Booking + Airbnb"
+msgstr ""
+
+#: front-page.php:749
+msgid "Guida pratica per sincronizzare le tue piattaforme e dire addio agli overbooking. Risparmia 30 ore/settimana."
+msgstr ""
+
+#: front-page.php:750
+msgid "SEO Turismo"
+msgstr ""
+
+#: front-page.php:750
+msgid "SEO locale per hotel: arrivare al top di Google"
+msgstr ""
+
+#: front-page.php:750
+msgid "Strategie testate per far apparire il tuo hotel ai primi risultati di Google in 90 giorni. Senza Google Ads."
+msgstr ""
+
+#: front-page.php:751
+msgid "Strategia"
+msgstr ""
+
+#: front-page.php:751
+msgid "Da 5 a 20 prenotazioni/mese: il metodo step-by-step"
+msgstr ""
+
+#: front-page.php:751
+msgid "Case study reale di un'agenzia tour di Napoli. Cosa hanno fatto, in quanto tempo, con quale budget."
+msgstr ""
+
+#: front-page.php:763
+msgid "In arrivo"
+msgstr ""
+
+#: front-page.php:764
+msgid "5 min"
+msgstr ""
+
+#: front-page.php:773
+msgid "Coming soon"
+msgstr ""
+
+#: front-page.php:781
+msgid "I primi articoli arriveranno presto. Iscriviti per non perderli."
+msgstr ""
+
+#: front-page.php:783
+msgid "Iscriviti alla newsletter"
+msgstr ""
+
+#: front-page.php:795
+msgid "PREZZI"
+msgstr ""
+
+#: front-page.php:796
+msgid "Paghi solo quando <span class=\"text-gradient\">guadagni</span>"
+msgstr ""
+
+#: front-page.php:797
+msgid "Modello unico nel mercato: <strong>commissione sulle vendite + fee annuale</strong>. Il piano si determina sui <strong>clienti che gestisci in un anno</strong>: più volume, meno fisso."
+msgstr ""
+
+#: front-page.php:804
+msgid "Come funziona il nostro modello pricing"
+msgstr ""
+
+#: front-page.php:805
+msgid "Il <strong>requisito indicato su ogni piano è il volume di clienti annui</strong>: è quello a stabilire quale tariffa ti spetta. Ti aiutiamo a crescere e cresciamo con te, quindi più vendi e meno paghi in fisso — fino al piano Enterprise, <strong>senza fee fissa</strong>, perché a quel punto il valore lo abbiamo dimostrato. Tutti i piani includono i 4 servizi core."
+msgstr ""
+
+#: front-page.php:813
+msgid "BASE"
+msgstr ""
+
+#: front-page.php:822 front-page.php:843 front-page.php:864 front-page.php:886
+msgid "Requisito"
+msgstr ""
+
+#: front-page.php:823
+msgid "fino a 1.000"
+msgstr ""
+
+#: front-page.php:824 front-page.php:845 front-page.php:866 front-page.php:888
+msgid "clienti all'anno"
+msgstr ""
+
+#: front-page.php:826
+msgid "€1.400"
+msgstr ""
+
+#: front-page.php:826 front-page.php:847 front-page.php:868 front-page.php:890
+msgid "/anno"
+msgstr ""
+
+#: front-page.php:827 front-page.php:848 front-page.php:869
+msgid "+ IVA"
+msgstr ""
+
+#: front-page.php:829 front-page.php:850 front-page.php:871 front-page.php:894
+msgid "commissione sulle vendite"
+msgstr ""
+
+#: front-page.php:831 front-page.php:852 front-page.php:873 front-page.php:896
+msgid "Sviluppo sito web e gestione"
+msgstr ""
+
+#: front-page.php:832 front-page.php:853 front-page.php:874 front-page.php:897
+msgid "SEO/SEM marketing"
+msgstr ""
+
+#: front-page.php:833 front-page.php:854 front-page.php:875 front-page.php:898
+msgid "Gestione Channel Manager"
+msgstr ""
+
+#: front-page.php:834 front-page.php:855 front-page.php:876 front-page.php:899
+msgid "Creazione e gestione annunci OTA"
+msgstr ""
+
+#: front-page.php:835 front-page.php:856 front-page.php:877
+msgid "Assistenti virtuali IA"
+msgstr ""
+
+#: front-page.php:837
+msgid "Scegli Base"
+msgstr ""
+
+#: front-page.php:841
+msgid "ADVANCED"
+msgstr ""
+
+#: front-page.php:844
+msgid "1.000–5.000"
+msgstr ""
+
+#: front-page.php:847
+msgid "€1.000"
+msgstr ""
+
+#: front-page.php:858
+msgid "Scegli Advanced"
+msgstr ""
+
+#: front-page.php:862
+msgid "PRO"
+msgstr ""
+
+#: front-page.php:865
+msgid "5.000–10.000"
+msgstr ""
+
+#: front-page.php:879
+msgid "Scegli Pro"
+msgstr ""
+
+#: front-page.php:882
+msgid "POPOLARE"
+msgstr ""
+
+#: front-page.php:884
+msgid "ENTERPRISE"
+msgstr ""
+
+#: front-page.php:887
+msgid "oltre 10.000"
+msgstr ""
+
+#: front-page.php:892
+msgid "nessuna fee fissa"
+msgstr ""
+
+#: front-page.php:900
+msgid "Assistenti virtuali IA e chatbot"
+msgstr ""
+
+#: front-page.php:902
+msgid "Scegli Enterprise"
+msgstr ""
+
+#: front-page.php:913
+msgid "Il piano e la commissione dipendono dal volume di clienti annuali"
+msgstr ""
+
+#: front-page.php:914
+msgid "Le fasce indicate su ogni piano sono il <strong>requisito di accesso</strong>: il piano (Base / Advanced / Pro / Enterprise) e la relativa percentuale di commissione si determinano sul <strong>numero stimato di clienti/prenotazioni annui</strong> della tua struttura. Se sei a cavallo fra due fasce lo valutiamo insieme in fase di consulenza, e rivediamo il piano quando il volume cambia."
+msgstr ""
+
+#: front-page.php:924
+msgid "Channel Manager: la scelta è tua, il costo è a tuo carico"
+msgstr ""
+
+#: front-page.php:925
+msgid "Suggeriamo il Channel Manager più adatto al tuo caso (Octorate, SiteMinder, Smoobu, RoomCloud, Cubilis…), ma puoi anche <strong>indicarci quello che già utilizzi</strong> o sceglierne uno a tua preferenza: ci integriamo con il fornitore che preferisci. La licenza e i costi mensili del Channel Manager sono <strong>a carico del cliente</strong> e non sono inclusi nei nostri piani."
+msgstr ""
+
+#: front-page.php:932
+msgid "Tutti i prezzi sono indicati <strong>+ IVA</strong>. La commissione è applicata solo sulle vendite generate attraverso i nostri canali."
+msgstr ""
+
+#: front-page.php:944
+msgid "CONTATTI"
+msgstr ""
+
+#: front-page.php:945
+msgid "Innovate il vostro <span class=\"text-gradient\">business</span> con noi"
+msgstr ""
+
+#: front-page.php:946
+msgid "Pronto a digitalizzare la tua struttura? Contattaci per una consulenza gratuita e scopri come possiamo aiutarti ad aumentare le prenotazioni online."
+msgstr ""
+
+#: front-page.php:957 single.php:214 template-parts/blog-listing.php:154 template-parts/booking-modal.php:63 template-parts/site-footer.php:33 template-parts/site-header.php:111
+msgid "WhatsApp"
+msgstr ""
+
+#: front-page.php:957
+msgid "Scrivici su WhatsApp"
+msgstr ""
+
+#: front-page.php:961
+msgid "Siti Realizzati"
+msgstr ""
+
+#: front-page.php:962
+msgid "Supporto AI"
+msgstr ""
+
+#: front-page.php:967
+msgid "<24h"
+msgstr ""
+
+#: front-page.php:967
+msgid "Tempo di risposta"
+msgstr ""
+
+#: front-page.php:972
+msgid "Richiedi una Consulenza Gratuita"
+msgstr ""
+
+#: front-page.php:976
+msgid "Lascia vuoto questo campo"
+msgstr ""
+
+#: front-page.php:980
+msgid "Nome *"
+msgstr ""
+
+#: front-page.php:980
+msgid "Il tuo nome"
+msgstr ""
+
+#: front-page.php:981
+msgid "Cognome *"
+msgstr ""
+
+#: front-page.php:981
+msgid "Il tuo cognome"
+msgstr ""
+
+#: front-page.php:983
+msgid "Email *"
+msgstr ""
+
+#: front-page.php:983
+msgid "la-tua@email.com"
+msgstr ""
+
+#: front-page.php:984
+msgid "Tipo di Attività *"
+msgstr ""
+
+#: front-page.php:986
+msgid "Seleziona…"
+msgstr ""
+
+#: front-page.php:987
+msgid "Hotel / Struttura Alberghiera"
+msgstr ""
+
+#: front-page.php:988
+msgid "Agenzia di Viaggi"
+msgstr ""
+
+#: front-page.php:989
+msgid "Villa / Appartamento"
+msgstr ""
+
+#: front-page.php:990
+msgid "Altro"
+msgstr ""
+
+#: front-page.php:993
+msgid "Piano di Interesse"
+msgstr ""
+
+#: front-page.php:998
+msgid "Seleziona un piano…"
+msgstr ""
+
+#: front-page.php:999
+msgid "Enterprise — oltre 10.000 clienti/anno · €0 + 3%"
+msgstr ""
+
+#: front-page.php:1000
+msgid "Pro — 5.000–10.000 clienti/anno · €500 + 5%"
+msgstr ""
+
+#: front-page.php:1001
+msgid "Advanced — 1.000–5.000 clienti/anno · €1.000 + 8%"
+msgstr ""
+
+#: front-page.php:1002
+msgid "Base — fino a 1.000 clienti/anno · €1.400 + 10%"
+msgstr ""
+
+#: front-page.php:1003
+msgid "Vorrei maggiori informazioni"
+msgstr ""
+
+#: front-page.php:1006
+msgid "Messaggio *"
+msgstr ""
+
+#: front-page.php:1006
+msgid "Descrivi le tue esigenze…"
+msgstr ""
+
+#: front-page.php:1012
+msgid "Invia Richiesta"
+msgstr ""
+
+#: front-page.php:1041
+msgid "AI Chatbot Live"
+msgstr ""
+
+#: front-page.php:1043
+msgid "Prova il nostro <span class=\"text-accent\">Chatbot AI</span>"
+msgstr ""
+
+#: front-page.php:1044
+msgid "Scopri come un assistente virtuale intelligente può rispondere ai tuoi clienti <strong class=\"text-white\">24/7</strong>, in tempo reale, senza orari di apertura."
+msgstr ""
+
+#: front-page.php:1061
+msgid "Plugin Chatbot non attivo"
+msgstr ""
+
+#: front-page.php:1062
+msgid "Installa e attiva il plugin <strong class=\"text-accent\">Experiences Chatbot</strong> dalla bacheca WordPress per abilitare questa sezione."
+msgstr ""
+
+#: front-page.php:1063
+msgid "Vai ai Plugin"
+msgstr ""
+
+#: front-page.php:1074
+msgid "Vuoi un chatbot personalizzato per la tua struttura?"
+msgstr ""
+
+#: front-page.php:1075
+msgid "Configurabile in pochi minuti direttamente dalla bacheca WordPress."
+msgstr ""
+
+#: front-page.php:1078
+msgid "Richiedi una Demo"
+msgstr ""
+
 #: functions.php:22
 msgid "Menu Principale"
 msgstr ""
 
-#: functions.php:91
-msgid "Audit gratuito (Cal.com)"
-msgstr ""
-
-#: functions.php:101
-msgid "Link Cal.com o Calendly per l'audit gratuito"
-msgstr ""
-
-#: functions.php:102
-msgid "Es: https://cal.com/experiences/audit-gratuito oppure https://calendly.com/.../30min. Il modal \"Prenota Audit Gratuito\" usa questo link."
-msgstr ""
-
-#: functions.php:109
-msgid "Galleria demo"
-msgstr ""
-
-#: functions.php:119
-msgid "URL della galleria demo"
-msgstr ""
-
-#: functions.php:120
-msgid "La pagina che raccoglie tutte le demo. Per impostazione predefinita punta all'hub su GitHub Pages, rigenerato a ogni push da scripts/generate-hub.py."
-msgstr ""
-
-#: functions.php:131
-msgid "Quante demo dichiarare"
-msgstr ""
-
-#: functions.php:132
-msgid "Mostrato come \"Oltre N demo\". Tienilo prudenzialmente sotto il numero reale."
-msgstr ""
-
-#: functions.php:139
-msgid "Privacy & Cookie"
-msgstr ""
-
-#: functions.php:149
-msgid "Mostra cookie banner GDPR"
-msgstr ""
-
-#: functions.php:150
-msgid "Disattivare solo se usi un plugin di cookie consent (Iubenda, Complianz, CookieYes…)."
-msgstr ""
-
-#: functions.php:160
-msgid "Dati legali"
-msgstr ""
-
-#: functions.php:161
-msgid "Compaiono nella Privacy Policy, nella Cookie Policy e nei Termini e Condizioni. Finché restano vuoti le pagine mostrano un segnaposto."
-msgstr ""
-
-#: functions.php:167
-msgid "Ragione sociale"
+#: functions.php:167 template-parts/site-footer.php:55
+msgid "Servizi"
 msgstr ""
 
 #: functions.php:168
+msgid "Lavori"
+msgstr ""
+
+#: functions.php:169
+msgid "Anteprima"
+msgstr ""
+
+#: functions.php:171
+msgid "Prezzi"
+msgstr ""
+
+#: functions.php:172 single.php:36
+msgid "Blog"
+msgstr ""
+
+#: functions.php:214 template-parts/site-footer.php:65
+msgid "Contatti"
+msgstr ""
+
+#: functions.php:491
+msgid "Audit gratuito (Cal.com)"
+msgstr ""
+
+#: functions.php:501
+msgid "Link Cal.com o Calendly per l'audit gratuito"
+msgstr ""
+
+#: functions.php:502
+msgid "Es: https://cal.com/experiences/audit-gratuito oppure https://calendly.com/.../30min. Il modal \"Prenota Audit Gratuito\" usa questo link."
+msgstr ""
+
+#: functions.php:509
+msgid "Galleria demo"
+msgstr ""
+
+#: functions.php:519
+msgid "URL della galleria demo"
+msgstr ""
+
+#: functions.php:520
+msgid "La pagina che raccoglie tutte le demo. Per impostazione predefinita punta all'hub su GitHub Pages, rigenerato a ogni push da scripts/generate-hub.py."
+msgstr ""
+
+#: functions.php:531
+msgid "URL della vetrina (selezione)"
+msgstr ""
+
+#: functions.php:532
+msgid "La pagina con le demo scelte, una per ogni impianto diverso. È quella che il bottone principale della sezione apre; l'elenco completo resta come seconda scelta."
+msgstr ""
+
+#: functions.php:543
+msgid "Quante demo dichiarare"
+msgstr ""
+
+#: functions.php:544
+msgid "Mostrato come \"Oltre N demo\". Tienilo prudenzialmente sotto il numero reale."
+msgstr ""
+
+#: functions.php:552
+msgid "Assistente virtuale (avatar)"
+msgstr ""
+
+#: functions.php:562
+msgid "Indirizzo embed dell'avatar"
+msgstr ""
+
+#: functions.php:563
+msgid "Senza il parametro \"orientation\": lo aggiunge il sito da solo, verticale sui telefoni e orizzontale su schermi grandi. Svuota il campo per tornare a quello predefinito."
+msgstr ""
+
+#: functions.php:569
+msgid "Privacy & Cookie"
+msgstr ""
+
+#: functions.php:584
+msgid "Mostra cookie banner GDPR"
+msgstr ""
+
+#: functions.php:588
+msgid "Non serve toccarlo: il tema ha rilevato %s e il suo banner resta spento da solo, per non mostrarne due. Torna attivo se disinstalli il plugin."
+msgstr ""
+
+#: functions.php:591
+msgid "Il tema si spegne da sé se rileva un plugin di cookie consent (Iubenda, Complianz, CookieYes, CookieAdmin…). Togli la spunta solo per disattivarlo comunque."
+msgstr ""
+
+#: functions.php:601
+msgid "Dati legali"
+msgstr ""
+
+#: functions.php:602
+msgid "Compaiono nella Privacy Policy, nella Cookie Policy e nei Termini e Condizioni. Finché restano vuoti le pagine mostrano un segnaposto."
+msgstr ""
+
+#: functions.php:608
+msgid "Ragione sociale"
+msgstr ""
+
+#: functions.php:609
 msgid "Es: Experiences Srl"
 msgstr ""
 
-#: functions.php:172
+#: functions.php:613
 msgid "Sede legale"
 msgstr ""
 
-#: functions.php:173
+#: functions.php:614
 msgid "Indirizzo completo, es: Via Toledo 100, 80134 Napoli (NA)"
 msgstr ""
 
-#: functions.php:177
+#: functions.php:618
 msgid "Partita IVA"
 msgstr ""
 
-#: functions.php:178
+#: functions.php:619
 msgid "Es: IT01234567890"
 msgstr ""
 
-#: functions.php:182
+#: functions.php:623
+msgid "Numero REA"
+msgstr ""
+
+#: functions.php:624
+msgid "Il numero di iscrizione al Registro Imprese, es: NA-123456. Insieme a ragione sociale, sede e P.IVA è obbligatorio sul sito di un'impresa italiana (art. 2250 c.c.); compare nel piede di pagina appena lo compili."
+msgstr ""
+
+#: functions.php:628
+msgid "Capitale sociale"
+msgstr ""
+
+#: functions.php:629
+msgid "Solo per le società di capitali, es: 10.000 € i.v. Lascia vuoto se non serve."
+msgstr ""
+
+#: functions.php:633
 msgid "Provider di hosting"
 msgstr ""
 
-#: functions.php:183
+#: functions.php:634
 msgid "Va indicato tra i destinatari dei dati nella Privacy Policy. Es: Aruba S.p.A., SiteGround, IONOS…"
 msgstr ""
 
-#: functions.php:356
+#: functions.php:850
 msgid "sede legale"
 msgstr ""
 
-#: functions.php:359
+#: functions.php:853
 msgid "partita IVA"
 msgstr ""
 
-#: functions.php:362
+#: functions.php:856
 msgid "provider di hosting"
 msgstr ""
 
-#: functions.php:371
+#: functions.php:865
 msgid "Pagine legali incomplete."
 msgstr ""
 
-#: functions.php:372
+#: functions.php:866
 msgid "Privacy Policy e Termini mostrano un segnaposto al posto di:"
 msgstr ""
 
-#: functions.php:375
+#: functions.php:869
 msgid "Compila i dati legali →"
 msgstr ""
 
-#: functions.php:797
+#: functions.php:1233
+msgid "Anteprima gratuita del tuo sito — Experiences Srl"
+msgstr ""
+
+#: functions.php:1235
+msgid "Carica le foto della tua struttura e guarda come verrebbe il tuo sito, in tre stili. Gratis, senza registrazione: le foto restano sul tuo dispositivo."
+msgstr ""
+
+#: functions.php:1238
+msgid "Guide e case study per il turismo — Experiences Srl"
+msgstr ""
+
+#: functions.php:1239
+msgid "Channel manager, prenotazioni dirette, SEO locale, AI: guide pratiche e case study con numeri veri per hotel, B&B, agenzie di viaggi e tour operator."
+msgstr ""
+
+#: functions.php:1442
 msgid "Portfolio Siti"
 msgstr ""
 
-#: functions.php:798
+#: functions.php:1443
 msgid "Sito Portfolio"
 msgstr ""
 
-#: functions.php:799
+#: functions.php:1444
 msgid "Aggiungi Nuovo Sito"
 msgstr ""
 
-#: functions.php:800
+#: functions.php:1445
 msgid "Modifica Sito"
+msgstr ""
+
+#: home.php:52 page-blog.php:51
+msgid "Strategie, guide pratiche e case study per digitalizzare il tuo business turistico."
+msgstr ""
+
+#: page-configuratore.php:31
+msgid "Anteprima gratuita"
+msgstr ""
+
+#: page-configuratore.php:32
+msgid "Guarda come verrebbe <em>il tuo sito</em>"
+msgstr ""
+
+#: page-configuratore.php:33
+msgid "Tre domande e qualche fotografia. In meno di un minuto vedi la tua struttura dentro un sito vero, in tre stili diversi."
+msgstr ""
+
+#: page-configuratore.php:36
+msgid "Le fotografie restano sul tuo dispositivo: l’anteprima si costruisce qui nel browser e le immagini non vengono caricate da nessuna parte."
+msgstr ""
+
+#: page-configuratore.php:42
+msgid "Che attività hai?"
+msgstr ""
+
+#: page-configuratore.php:43
+msgid "Tipo di attività"
+msgstr ""
+
+#: page-configuratore.php:46
+msgid "Hotel o B&B"
+msgstr ""
+
+#: page-configuratore.php:47
+msgid "Camere, servizi, prenotazione"
+msgstr ""
+
+#: page-configuratore.php:51
+msgid "Tour ed esperienze"
+msgstr ""
+
+#: page-configuratore.php:52
+msgid "Escursioni, durata, partenze"
+msgstr ""
+
+#: page-configuratore.php:56
+msgid "Altra attività"
+msgstr ""
+
+#: page-configuratore.php:57
+msgid "Ristorante, noleggio, servizi"
+msgstr ""
+
+#: page-configuratore.php:64
+msgid "Come si chiama?"
+msgstr ""
+
+#: page-configuratore.php:67
+msgid "Nome della struttura"
+msgstr ""
+
+#: page-configuratore.php:69
+msgid "Villa Serena"
+msgstr ""
+
+#: page-configuratore.php:72
+msgid "Città o località"
+msgstr ""
+
+#: page-configuratore.php:74
+msgid "Sorrento"
+msgstr ""
+
+#: page-configuratore.php:81
+msgid "Carica da tre a sei fotografie"
+msgstr ""
+
+#: page-configuratore.php:82
+msgid "La prima diventa l’immagine grande in cima. Vanno bene anche scatti dal telefono: meglio orizzontali, luminosi, senza persone riconoscibili."
+msgstr ""
+
+#: page-configuratore.php:88
+msgid "Trascina qui le fotografie"
+msgstr ""
+
+#: page-configuratore.php:89
+msgid "oppure premi per sceglierle — JPG, PNG o WEBP, fino a 10 MB l’una"
+msgstr ""
+
+#: page-configuratore.php:98
+msgid "Completa i tre passi qui sopra e l’anteprima comparirà qui."
+msgstr ""
+
+#: page-configuratore.php:103
+msgid "La tua anteprima"
+msgstr ""
+
+#: page-configuratore.php:104
+msgid "Stile dell’anteprima"
+msgstr ""
+
+#: page-configuratore.php:105
+msgid "Classico"
+msgstr ""
+
+#: page-configuratore.php:106
+msgid "Editoriale"
+msgstr ""
+
+#: page-configuratore.php:107
+msgid "Scuro"
+msgstr ""
+
+#: page-configuratore.php:114
+msgid "www.latuastruttura.it"
+msgstr ""
+
+#: page-configuratore.php:119
+msgid "È un’anteprima costruita al volo con le tue fotografie, non un sito finito: serve a farti vedere l’impianto. Il sito vero ha prenotazione, mappa, lingue e il resto."
+msgstr ""
+
+#: page-configuratore.php:124
+msgid "Ti piace? Partiamo da qui"
+msgstr ""
+
+#: page-configuratore.php:125
+msgid "Ti mandiamo questa impostazione sviluppata per davvero, con le tue fotografie e i tuoi testi. Nessun impegno."
+msgstr ""
+
+#: page-configuratore.php:130
+msgid "Nome"
+msgstr ""
+
+#: page-configuratore.php:134
+msgid "Cognome"
+msgstr ""
+
+#: page-configuratore.php:139
+msgid "Email"
+msgstr ""
+
+#: page-configuratore.php:145
+msgid "Non compilare questo campo"
+msgstr ""
+
+#: page-configuratore.php:159
+msgid "Voglio questo sito"
+msgstr ""
+
+#: single.php:69
+msgid "Autore"
+msgstr ""
+
+#: single.php:108
+msgid "Condividi"
+msgstr ""
+
+#: single.php:113
+msgid "Condividi su Facebook"
+msgstr ""
+
+#: single.php:119
+msgid "Condividi su Twitter"
+msgstr ""
+
+#: single.php:125
+msgid "Condividi su LinkedIn"
+msgstr ""
+
+#: single.php:131
+msgid "Condividi su WhatsApp"
+msgstr ""
+
+#: single.php:136
+msgid "Copia link"
+msgstr ""
+
+#: single.php:152
+msgid "Condividi questo articolo:"
+msgstr ""
+
+#: single.php:164
+msgid "Tag:"
+msgstr ""
+
+#: single.php:181
+msgid "Scritto da"
+msgstr ""
+
+#: single.php:192
+msgid "Sito web"
+msgstr ""
+
+#: single.php:196
+msgid "Altri articoli"
+msgstr ""
+
+#: single.php:207 template-parts/blog-listing.php:145
+msgid "Vuoi applicare queste strategie al tuo business?"
+msgstr ""
+
+#: single.php:208
+msgid "Richiedi un'audit gratuito del tuo sito. Analizziamo dove perdi prenotazioni e ti diciamo esattamente cosa fare. Senza vincoli."
+msgstr ""
+
+#: single.php:211
+msgid "Audit Gratuito"
+msgstr ""
+
+#: single.php:231
+msgid "Newsletter"
+msgstr ""
+
+#: single.php:232
+msgid "Ricevi una guida pratica ogni settimana per crescere il tuo business turistico."
+msgstr ""
+
+#: single.php:242
+msgid "Categorie"
+msgstr ""
+
+#: single.php:279
+msgid "ARTICOLI CORRELATI"
+msgstr ""
+
+#: single.php:280
+msgid "Continua a leggere"
+msgstr ""
+
+#: single.php:330
+msgid "Articolo precedente"
+msgstr ""
+
+#: single.php:342
+msgid "Articolo successivo"
+msgstr ""
+
+#: template-parts/blog-listing.php:38
+msgid "Cerca fra gli articoli"
+msgstr ""
+
+#: template-parts/blog-listing.php:42
+msgid "Cerca fra gli articoli…"
+msgstr ""
+
+#: template-parts/blog-listing.php:48
+msgid "Filtra per categoria"
+msgstr ""
+
+#: template-parts/blog-listing.php:121
+msgid "Prova con un altro termine o rimuovi il filtro per categoria."
+msgstr ""
+
+#: template-parts/blog-listing.php:123
+msgid "Mostra tutti gli articoli"
+msgstr ""
+
+#: template-parts/blog-listing.php:135
+msgid "Nessun articolo pubblicato"
+msgstr ""
+
+#: template-parts/blog-listing.php:136
+msgid "Gli articoli compariranno qui appena verranno pubblicati."
+msgstr ""
+
+#: template-parts/blog-listing.php:146
+msgid "Richiedi un audit gratuito: analizziamo dove perdi prenotazioni e ti diciamo cosa fare. Senza vincoli."
+msgstr ""
+
+#: template-parts/booking-modal.php:31
+msgid "Prenota il tuo Audit Gratuito"
+msgstr ""
+
+#: template-parts/booking-modal.php:33
+msgid "30 minuti di call. Analizziamo dove perdi prenotazioni e ti diciamo esattamente cosa fare."
+msgstr ""
+
+#: template-parts/booking-modal.php:35 template-parts/cookie-banner.php:65
+msgid "Chiudi"
+msgstr ""
+
+#: template-parts/booking-modal.php:47
+msgid "Carico il calendario…"
+msgstr ""
+
+#: template-parts/booking-modal.php:59
+msgid "Contattaci direttamente"
+msgstr ""
+
+#: template-parts/booking-modal.php:60
+msgid "Scrivici su WhatsApp o usa il form contatti: ti rispondiamo entro 24 ore con la disponibilità per la tua call gratuita."
+msgstr ""
+
+#: template-parts/booking-modal.php:66
+msgid "Form contatti"
+msgstr ""
+
+#: template-parts/booking-modal.php:72
+msgid "Personalizza tema"
+msgstr ""
+
+#: template-parts/booking-modal.php:82
+msgid "Nessun impegno"
+msgstr ""
+
+#: template-parts/booking-modal.php:83
+msgid "30 min"
+msgstr ""
+
+#: template-parts/booking-modal.php:84
+msgid "Online (Google Meet/Zoom)"
+msgstr ""
+
+#: template-parts/booking-modal.php:85
+msgid "100% gratuito"
+msgstr ""
+
+#: template-parts/cookie-banner.php:39
+msgid "Rispettiamo la tua privacy"
+msgstr ""
+
+#: template-parts/cookie-banner.php:46 template-parts/site-footer.php:89
+msgid "Cookie Policy"
+msgstr ""
+
+#: template-parts/cookie-banner.php:52
+msgid "Personalizza"
+msgstr ""
+
+#: template-parts/cookie-banner.php:53
+msgid "Solo essenziali"
+msgstr ""
+
+#: template-parts/cookie-banner.php:54 template-parts/cookie-banner.php:126
+msgid "Accetta tutti"
+msgstr ""
+
+#: template-parts/cookie-banner.php:64
+msgid "Preferenze cookie"
+msgstr ""
+
+#: template-parts/cookie-banner.php:71
+msgid "Scegli quali categorie di cookie autorizzare. Puoi modificare queste preferenze in qualsiasi momento dal link \"Preferenze Cookie\" in fondo alla pagina."
+msgstr ""
+
+#: template-parts/cookie-banner.php:78
+msgid "Cookie essenziali"
+msgstr ""
+
+#: template-parts/cookie-banner.php:80
+msgid "Necessari per il funzionamento del sito (sessione, sicurezza, consenso). Non possono essere disattivati."
+msgstr ""
+
+#: template-parts/cookie-banner.php:84
+msgid "Sempre attivi"
+msgstr ""
+
+#: template-parts/cookie-banner.php:95
+msgid "Cookie di analytics"
+msgstr ""
+
+#: template-parts/cookie-banner.php:97
+msgid "Ci aiutano a capire come usi il sito (pagine viste, sessioni) in forma anonima e aggregata. Es: Google Analytics, Microsoft Clarity."
+msgstr ""
+
+#: template-parts/cookie-banner.php:111
+msgid "Cookie di marketing"
+msgstr ""
+
+#: template-parts/cookie-banner.php:113
+msgid "Usati per mostrarti annunci più pertinenti su altri siti (es: Meta Pixel, Google Ads remarketing). Attivi solo se acconsenti."
+msgstr ""
+
+#: template-parts/cookie-banner.php:124
+msgid "Rifiuta tutti"
+msgstr ""
+
+#: template-parts/cookie-banner.php:125
+msgid "Salva preferenze"
+msgstr ""
+
+#: template-parts/site-footer.php:28 template-parts/site-header.php:36
+msgid "Experiences Logo"
+msgstr ""
+
+#: template-parts/site-footer.php:29 template-parts/site-header.php:38
+msgid "EXPERIENCES"
+msgstr ""
+
+#: template-parts/site-footer.php:29 template-parts/site-header.php:39
+msgid "SRL"
+msgstr ""
+
+#: template-parts/site-footer.php:31
+msgid "Soluzioni digitali complete per il settore turistico. Digitalizzazione, marketing e AI per agenzie di viaggi e strutture alberghiere."
+msgstr ""
+
+#: template-parts/site-footer.php:41
+msgid "Menu"
+msgstr ""
+
+#: template-parts/site-footer.php:57
+msgid "Sviluppo Sito Web"
+msgstr ""
+
+#: template-parts/site-footer.php:60
+msgid "Gestione OTA"
+msgstr ""
+
+#: template-parts/site-footer.php:61
+msgid "AI Assistant"
+msgstr ""
+
+#: template-parts/site-footer.php:69
+msgid "WhatsApp Business"
+msgstr ""
+
+#: template-parts/site-footer.php:90
+msgid "Preferenze Cookie"
+msgstr ""
+
+#: template-parts/site-footer.php:91
+msgid "Termini e Condizioni"
+msgstr ""
+
+#: template-parts/site-footer.php:98
+msgid "Contattaci su WhatsApp"
+msgstr ""
+
+#: template-parts/site-header.php:25
+msgid "Salta al contenuto principale"
+msgstr ""
+
+#: template-parts/site-header.php:44
+msgid "Menu principale"
+msgstr ""
+
+#: template-parts/site-header.php:58 template-parts/site-header.php:114
+msgid "Lingua del sito"
+msgstr ""
+
+#: template-parts/site-header.php:79
+msgid "Apri menu"
+msgstr ""
+
+#: template-parts/site-header.php:91
+msgid "Menu principale (mobile)"
+msgstr ""
+
+#: template-parts/site-header.php:94
+msgid "Chiudi menu"
 msgstr ""

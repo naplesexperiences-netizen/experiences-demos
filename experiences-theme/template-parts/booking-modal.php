@@ -28,11 +28,11 @@ $cal_link = esc_url( $cal_link );
         <div class="bg-gradient-to-r from-primary to-secondary px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between text-white flex-shrink-0">
             <div class="min-w-0">
                 <h2 id="exp-booking-title" class="font-heading text-lg sm:text-2xl font-bold flex items-center gap-2">
-                    <i class="fas fa-rocket text-accent"></i> Prenota il tuo Audit Gratuito
+                    <i class="fas fa-rocket text-accent"></i> <?php esc_html_e( 'Prenota il tuo Audit Gratuito', 'experiences-srl' ); ?>
                 </h2>
-                <p class="text-sm text-white/80 mt-1 hidden sm:block">30 minuti di call. Analizziamo dove perdi prenotazioni e ti diciamo esattamente cosa fare.</p>
+                <p class="text-sm text-white/80 mt-1 hidden sm:block"><?php esc_html_e( '30 minuti di call. Analizziamo dove perdi prenotazioni e ti diciamo esattamente cosa fare.', 'experiences-srl' ); ?></p>
             </div>
-            <button type="button" data-booking-action="close" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center flex-shrink-0" aria-label="Chiudi">
+            <button type="button" data-booking-action="close" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center flex-shrink-0" aria-label="<?php echo esc_attr__( 'Chiudi', 'experiences-srl' ); ?>">
                 <i class="fas fa-times text-lg"></i>
             </button>
         </div>
@@ -44,7 +44,7 @@ $cal_link = esc_url( $cal_link );
                 <div data-booking-loader class="absolute inset-0 flex items-center justify-center text-gray-400">
                     <div class="text-center">
                         <i class="fas fa-spinner fa-spin text-4xl mb-3 text-secondary"></i>
-                        <p class="text-sm">Carico il calendario…</p>
+                        <p class="text-sm"><?php esc_html_e( 'Carico il calendario…', 'experiences-srl' ); ?></p>
                     </div>
                 </div>
                 <!-- iframe creato da JS al primo open (lazy: nessun network finché il modal non viene aperto) -->
@@ -56,22 +56,20 @@ $cal_link = esc_url( $cal_link );
                         <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                             <i class="fab fa-whatsapp text-3xl text-accent"></i>
                         </div>
-                        <h3 class="font-heading text-xl font-bold text-primary mb-2">Contattaci direttamente</h3>
-                        <p class="text-gray-600 text-sm mb-6">
-                            Scrivici su WhatsApp o usa il form contatti: ti rispondiamo entro 24 ore con la disponibilità per la tua call gratuita.
-                        </p>
+                        <h3 class="font-heading text-xl font-bold text-primary mb-2"><?php esc_html_e( 'Contattaci direttamente', 'experiences-srl' ); ?></h3>
+                        <p class="text-gray-600 text-sm mb-6"><?php esc_html_e( 'Scrivici su WhatsApp o usa il form contatti: ti rispondiamo entro 24 ore con la disponibilità per la tua call gratuita.', 'experiences-srl' ); ?></p>
                         <div class="flex flex-col sm:flex-row gap-3 justify-center">
                             <a href="https://wa.me/393926917657" target="_blank" rel="noopener" class="px-5 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2">
-                                <i class="fab fa-whatsapp text-xl"></i> WhatsApp
+                                <i class="fab fa-whatsapp text-xl"></i> <?php esc_html_e( 'WhatsApp', 'experiences-srl' ); ?>
                             </a>
                             <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" data-booking-action="close" class="px-5 py-3 bg-secondary hover:bg-accent text-white font-semibold rounded-xl flex items-center justify-center gap-2">
-                                <i class="fas fa-envelope"></i> Form contatti
+                                <i class="fas fa-envelope"></i> <?php esc_html_e( 'Form contatti', 'experiences-srl' ); ?>
                             </a>
                         </div>
                         <?php if ( current_user_can( 'manage_options' ) ) : ?>
                             <p class="mt-6 text-xs text-gray-400 border-t border-gray-200 pt-4">
                                 <i class="fas fa-info-circle"></i> Admin: configura il link Cal.com da
-                                <a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[control]=exp_cal_link' ) ); ?>" class="text-secondary underline">Personalizza tema</a>.
+                                <a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[control]=exp_cal_link' ) ); ?>" class="text-secondary underline"><?php esc_html_e( 'Personalizza tema', 'experiences-srl' ); ?></a>.
                             </p>
                         <?php endif; ?>
                     </div>
@@ -81,10 +79,10 @@ $cal_link = esc_url( $cal_link );
 
         <!-- Trust strip -->
         <div class="bg-white border-t border-gray-200 px-5 sm:px-8 py-3 sm:py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-gray-600 flex-shrink-0">
-            <span class="inline-flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-500"></i> Nessun impegno</span>
-            <span class="inline-flex items-center gap-1.5"><i class="fas fa-clock text-accent"></i> 30 min</span>
-            <span class="inline-flex items-center gap-1.5"><i class="fas fa-video text-secondary"></i> Online (Google Meet/Zoom)</span>
-            <span class="inline-flex items-center gap-1.5"><i class="fas fa-gift text-primary"></i> 100% gratuito</span>
+            <span class="inline-flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-500"></i> <?php esc_html_e( 'Nessun impegno', 'experiences-srl' ); ?></span>
+            <span class="inline-flex items-center gap-1.5"><i class="fas fa-clock text-accent"></i> <?php esc_html_e( '30 min', 'experiences-srl' ); ?></span>
+            <span class="inline-flex items-center gap-1.5"><i class="fas fa-video text-secondary"></i> <?php esc_html_e( 'Online (Google Meet/Zoom)', 'experiences-srl' ); ?></span>
+            <span class="inline-flex items-center gap-1.5"><i class="fas fa-gift text-primary"></i> <?php esc_html_e( '100% gratuito', 'experiences-srl' ); ?></span>
         </div>
     </div>
 </div>

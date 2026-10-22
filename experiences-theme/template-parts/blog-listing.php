@@ -35,21 +35,19 @@ $exp_cats = isset( $args['cats'] ) ? $args['cats'] : get_categories([
 
                 <!-- Ricerca -->
                 <div class="lg:w-72 flex-shrink-0">
-                    <label for="exp-blog-search" class="sr-only">Cerca fra gli articoli</label>
+                    <label for="exp-blog-search" class="sr-only"><?php esc_html_e( 'Cerca fra gli articoli', 'experiences-srl' ); ?></label>
                     <div class="relative">
                         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" aria-hidden="true"></i>
                         <input type="search" id="exp-blog-search" autocomplete="off"
-                               placeholder="Cerca fra gli articoli…"
+                               placeholder="<?php echo esc_attr__( 'Cerca fra gli articoli…', 'experiences-srl' ); ?>"
                                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-secondary text-sm outline-none">
                     </div>
                 </div>
 
                 <!-- Categorie -->
-                <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" role="group" aria-label="Filtra per categoria">
+                <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" role="group" aria-label="<?php echo esc_attr__( 'Filtra per categoria', 'experiences-srl' ); ?>">
                     <button type="button" data-cat="*" aria-pressed="true"
-                            class="exp-chip flex-shrink-0 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-full transition-colors">
-                        Tutti
-                    </button>
+                            class="exp-chip flex-shrink-0 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-full transition-colors"><?php esc_html_e( 'Tutti', 'experiences-srl' ); ?></button>
                     <?php foreach ( $exp_cats as $c ) : ?>
                         <button type="button" data-cat="<?php echo esc_attr( $c->slug ); ?>" aria-pressed="false"
                                 class="exp-chip flex-shrink-0 px-4 py-2 bg-light hover:bg-accent text-secondary hover:text-white text-sm font-semibold rounded-full transition-colors">
@@ -107,7 +105,7 @@ $exp_cats = isset( $args['cats'] ) ? $args['cats'] : get_categories([
                                 <?php echo esc_html( wp_trim_words( get_the_excerpt(), 20, '…' ) ); ?>
                             </p>
                             <span class="inline-flex items-center gap-2 text-secondary font-semibold text-sm group-hover:text-accent transition-colors">
-                                Leggi <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+                                <?php esc_html_e( 'Leggi', 'experiences-srl' ); ?> <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
                             </span>
                         </div>
                     </article>
@@ -119,12 +117,10 @@ $exp_cats = isset( $args['cats'] ) ? $args['cats'] : get_categories([
                 <div class="w-16 h-16 bg-light rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-search text-secondary text-2xl" aria-hidden="true"></i>
                 </div>
-                <h2 class="font-heading text-xl font-bold text-primary mb-2">Nessun articolo trovato</h2>
-                <p class="text-gray-600 mb-6">Prova con un altro termine o rimuovi il filtro per categoria.</p>
+                <h2 class="font-heading text-xl font-bold text-primary mb-2"><?php esc_html_e( 'Nessun articolo trovato', 'experiences-srl' ); ?></h2>
+                <p class="text-gray-600 mb-6"><?php esc_html_e( 'Prova con un altro termine o rimuovi il filtro per categoria.', 'experiences-srl' ); ?></p>
                 <button type="button" id="exp-blog-reset"
-                        class="px-6 py-3 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-colors">
-                    Mostra tutti gli articoli
-                </button>
+                        class="px-6 py-3 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-colors"><?php esc_html_e( 'Mostra tutti gli articoli', 'experiences-srl' ); ?></button>
             </div>
         </div>
     </section>
@@ -136,8 +132,8 @@ $exp_cats = isset( $args['cats'] ) ? $args['cats'] : get_categories([
             <div class="w-16 h-16 bg-light rounded-2xl flex items-center justify-center mx-auto mb-5">
                 <i class="fas fa-book-open text-secondary text-2xl" aria-hidden="true"></i>
             </div>
-            <h2 class="font-heading text-2xl font-bold text-primary mb-3">Nessun articolo pubblicato</h2>
-            <p class="text-gray-600">Gli articoli compariranno qui appena verranno pubblicati.</p>
+            <h2 class="font-heading text-2xl font-bold text-primary mb-3"><?php esc_html_e( 'Nessun articolo pubblicato', 'experiences-srl' ); ?></h2>
+            <p class="text-gray-600"><?php esc_html_e( 'Gli articoli compariranno qui appena verranno pubblicati.', 'experiences-srl' ); ?></p>
         </div>
     </section>
 
@@ -146,20 +142,16 @@ $exp_cats = isset( $args['cats'] ) ? $args['cats'] : get_categories([
     <!-- CTA finale -->
     <section class="py-16 bg-gradient-to-br from-primary to-secondary">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mb-4">
-                Vuoi applicare queste strategie al tuo business?
-            </h2>
-            <p class="text-white/80 mb-8 leading-relaxed">
-                Richiedi un audit gratuito: analizziamo dove perdi prenotazioni e ti diciamo cosa fare. Senza vincoli.
-            </p>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mb-4"><?php esc_html_e( 'Vuoi applicare queste strategie al tuo business?', 'experiences-srl' ); ?></h2>
+            <p class="text-white/80 mb-8 leading-relaxed"><?php esc_html_e( 'Richiedi un audit gratuito: analizziamo dove perdi prenotazioni e ti diciamo cosa fare. Senza vincoli.', 'experiences-srl' ); ?></p>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
                 <a href="#booking" data-booking-trigger
                    class="px-6 py-3 bg-white text-primary font-semibold rounded-xl hover:bg-accent hover:text-white transition-colors inline-flex items-center justify-center gap-2">
-                    <i class="fas fa-rocket" aria-hidden="true"></i> Prenota Audit Gratuito
+                    <i class="fas fa-rocket" aria-hidden="true"></i> <?php esc_html_e( 'Prenota Audit Gratuito', 'experiences-srl' ); ?>
                 </a>
                 <a href="https://wa.me/393926917657" target="_blank" rel="noopener"
                    class="px-6 py-3 bg-white/10 backdrop-blur border border-white/30 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i> WhatsApp
+                    <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i> <?php esc_html_e( 'WhatsApp', 'experiences-srl' ); ?>
                 </a>
             </div>
         </div>

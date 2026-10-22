@@ -164,19 +164,54 @@ function experiences_nav_items() {
     $base = is_front_page() ? '' : esc_url( home_url( '/' ) );
 
     return apply_filters( 'experiences_nav_items', [
-        [ 'label' => 'Servizi',   'href' => $base . '#services' ],
-        [ 'label' => 'Lavori',    'href' => $base . '#portfolio' ],
-        [ 'label' => 'Anteprima', 'href' => experiences_configuratore_url(), 'icon' => 'fas fa-eye' ],
-        [ 'label' => 'AI',        'href' => $base . '#avatar', 'icon' => 'fas fa-robot' ],
-        [ 'label' => 'Prezzi',    'href' => $base . '#pricing' ],
-        [ 'label' => 'Blog',      'href' => experiences_blog_archive_url() ],
+        [ 'label' => __( 'Servizi', 'experiences-srl' ),   'href' => $base . '#services' ],
+        [ 'label' => __( 'Lavori', 'experiences-srl' ),    'href' => $base . '#portfolio' ],
+        [ 'label' => __( 'Anteprima', 'experiences-srl' ), 'href' => experiences_configuratore_url(), 'icon' => 'fas fa-eye' ],
+        [ 'label' => __( 'AI', 'experiences-srl' ),        'href' => $base . '#avatar', 'icon' => 'fas fa-robot' ],
+        [ 'label' => __( 'Prezzi', 'experiences-srl' ),    'href' => $base . '#pricing' ],
+        [ 'label' => __( 'Blog', 'experiences-srl' ),      'href' => experiences_blog_archive_url() ],
     ] );
+}
+
+// ── Lingue del sito ────────────────────────────────────────────────────
+// Il tema non gestisce il routing per lingua: lo fa Polylang, che offre
+// pll_the_languages(). Qui si normalizza la sua risposta in un elenco
+// semplice, cosi' i template non sanno di Polylang e la riga non si
+// rompe se il plugin non c'e' (torna un array vuoto e il selettore non
+// viene stampato affatto).
+function experiences_lingue() {
+    if ( ! function_exists( 'pll_the_languages' ) ) {
+        return [];
+    }
+
+    $grezze = pll_the_languages( [
+        'raw'                    => 1,
+        'hide_if_no_translation' => 0,
+        'hide_current'           => 0,
+    ] );
+    if ( ! is_array( $grezze ) || count( $grezze ) < 2 ) {
+        return [];   // una lingua sola: il selettore non serve
+    }
+
+    $lingue = [];
+    foreach ( $grezze as $l ) {
+        $lingue[] = [
+            'slug'    => $l['slug'],
+            'nome'    => $l['name'],
+            'url'     => $l['url'],
+            'attuale' => ! empty( $l['current_lang'] ),
+            // Senza traduzione Polylang manda alla home di quella lingua:
+            // meglio dirlo a chi usa uno screen reader.
+            'tradotta' => ! empty( $l['no_translation'] ) ? false : true,
+        ];
+    }
+    return apply_filters( 'experiences_lingue', $lingue );
 }
 
 function experiences_nav_cta() {
     $base = is_front_page() ? '' : esc_url( home_url( '/' ) );
     return apply_filters( 'experiences_nav_cta', [
-        'label' => 'Contatti',
+        'label' => __( 'Contatti', 'experiences-srl' ),
         'href'  => $base . '#contact',
     ] );
 }
@@ -1195,13 +1230,13 @@ function experiences_stored_seo_meta( $post_id, $kind ) {
 function experiences_meta_pagine() {
     return apply_filters( 'experiences_meta_pagine', [
         'configuratore' => [
-            'title' => 'Anteprima gratuita del tuo sito — Experiences Srl',
+            'title' => __( 'Anteprima gratuita del tuo sito — Experiences Srl', 'experiences-srl' ),
             // Sotto i 155 caratteri, oltre i quali Google tronca.
-            'desc'  => 'Carica le foto della tua struttura e guarda come verrebbe il tuo sito, in tre stili. Gratis, senza registrazione: le foto restano sul tuo dispositivo.',
+            'desc'  => __( 'Carica le foto della tua struttura e guarda come verrebbe il tuo sito, in tre stili. Gratis, senza registrazione: le foto restano sul tuo dispositivo.', 'experiences-srl' ),
         ],
         'blog' => [
-            'title' => 'Guide e case study per il turismo — Experiences Srl',
-            'desc'  => 'Channel manager, prenotazioni dirette, SEO locale, AI: guide pratiche e case study con numeri veri per hotel, B&B, agenzie di viaggi e tour operator.',
+            'title' => __( 'Guide e case study per il turismo — Experiences Srl', 'experiences-srl' ),
+            'desc'  => __( 'Channel manager, prenotazioni dirette, SEO locale, AI: guide pratiche e case study con numeri veri per hotel, B&B, agenzie di viaggi e tour operator.', 'experiences-srl' ),
         ],
     ] );
 }
