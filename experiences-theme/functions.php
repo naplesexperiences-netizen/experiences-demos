@@ -6,6 +6,14 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// Testi legali inglesi e integrazione Polylang: file a parte perche'
+// functions.php e' gia' lungo e questi due pezzi si leggono meglio da
+// soli. Si caricano qui e non dentro un hook, cosi' le funzioni ci sono
+// comunque prima che qualcuno le chiami. Il file di Polylang non fa
+// nulla se il plugin non e' attivo.
+require_once get_template_directory() . '/inc/legal-en.php';
+require_once get_template_directory() . '/inc/polylang.php';
+
 // ── Theme Setup ────────────────────────────────────────────────
 function experiences_setup() {
     load_theme_textdomain( 'experiences-srl', get_template_directory() . '/languages' );
