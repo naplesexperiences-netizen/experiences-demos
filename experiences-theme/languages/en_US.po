@@ -123,7 +123,7 @@ msgstr "Online"
 msgid "Mobile"
 msgstr "Mobile"
 
-#: front-page.php:124 functions.php:170
+#: front-page.php:124 functions.php:178
 msgid "AI"
 msgstr "AI"
 
@@ -975,217 +975,281 @@ msgstr "Set up in a few minutes straight from the WordPress dashboard."
 msgid "Richiedi una Demo"
 msgstr "Request a demo"
 
-#: functions.php:22
+#: functions.php:30
 msgid "Menu Principale"
 msgstr "Main menu"
 
-#: functions.php:167 template-parts/site-footer.php:55
+#: functions.php:175 template-parts/site-footer.php:55
 msgid "Servizi"
 msgstr "Services"
 
-#: functions.php:168
+#: functions.php:176
 msgid "Lavori"
 msgstr "Work"
 
-#: functions.php:169
+#: functions.php:177
 msgid "Anteprima"
 msgstr "Preview"
 
-#: functions.php:171
+#: functions.php:179
 msgid "Prezzi"
 msgstr "Pricing"
 
-#: functions.php:172 single.php:36
+#: functions.php:180 single.php:36
 msgid "Blog"
 msgstr "Blog"
 
-#: functions.php:214 template-parts/site-footer.php:65
+#: functions.php:222 template-parts/site-footer.php:65
 msgid "Contatti"
 msgstr "Contact"
 
-#: functions.php:491
+#: functions.php:499
 msgid "Audit gratuito (Cal.com)"
 msgstr "Free audit (Cal.com)"
 
-#: functions.php:501
+#: functions.php:509
 msgid "Link Cal.com o Calendly per l'audit gratuito"
 msgstr "Cal.com or Calendly link for the free audit"
 
-#: functions.php:502
+#: functions.php:510
 msgid "Es: https://cal.com/experiences/audit-gratuito oppure https://calendly.com/.../30min. Il modal \"Prenota Audit Gratuito\" usa questo link."
 msgstr "For example https://cal.com/experiences/free-audit or https://calendly.com/.../30min. The \"Book a free audit\" dialog uses this link."
 
-#: functions.php:509
+#: functions.php:517
 msgid "Galleria demo"
 msgstr "Demo gallery"
 
-#: functions.php:519
+#: functions.php:527
 msgid "URL della galleria demo"
 msgstr "Demo gallery URL"
 
-#: functions.php:520
+#: functions.php:528
 msgid "La pagina che raccoglie tutte le demo. Per impostazione predefinita punta all'hub su GitHub Pages, rigenerato a ogni push da scripts/generate-hub.py."
 msgstr "The page that collects every demo. By default it points at the GitHub Pages hub, rebuilt on each push by scripts/generate-hub.py."
 
-#: functions.php:531
+#: functions.php:539
 msgid "URL della vetrina (selezione)"
 msgstr "Showcase URL (selection)"
 
-#: functions.php:532
+#: functions.php:540
 msgid "La pagina con le demo scelte, una per ogni impianto diverso. È quella che il bottone principale della sezione apre; l'elenco completo resta come seconda scelta."
 msgstr "The page with the selected demos, one for each different structure. It is what the section's main button opens; the full list stays as the secondary option."
 
-#: functions.php:543
+#: functions.php:551
 msgid "Quante demo dichiarare"
 msgstr "How many demos to claim"
 
-#: functions.php:544
+#: functions.php:552
 msgid "Mostrato come \"Oltre N demo\". Tienilo prudenzialmente sotto il numero reale."
 msgstr "Shown as \"Over N demos\". Keep it conservatively below the real number."
 
-#: functions.php:552
+#: functions.php:560
 msgid "Assistente virtuale (avatar)"
 msgstr "Virtual assistant (avatar)"
 
-#: functions.php:562
+#: functions.php:570
 msgid "Indirizzo embed dell'avatar"
 msgstr "Avatar embed address"
 
-#: functions.php:563
+#: functions.php:571
 msgid "Senza il parametro \"orientation\": lo aggiunge il sito da solo, verticale sui telefoni e orizzontale su schermi grandi. Svuota il campo per tornare a quello predefinito."
 msgstr "Without the \"orientation\" parameter: the site adds it on its own, portrait on phones and landscape on large screens. Empty the field to go back to the default."
 
-#: functions.php:569
+#: functions.php:577
 msgid "Privacy & Cookie"
 msgstr "Privacy & cookies"
 
-#: functions.php:584
+#: functions.php:592
 msgid "Mostra cookie banner GDPR"
 msgstr "Show the GDPR cookie banner"
 
-#: functions.php:588
+#: functions.php:596
 msgid "Non serve toccarlo: il tema ha rilevato %s e il suo banner resta spento da solo, per non mostrarne due. Torna attivo se disinstalli il plugin."
 msgstr "No need to touch this: the theme has detected %s, so its own banner stays off to avoid showing two. It comes back if you uninstall the plugin."
 
-#: functions.php:591
+#: functions.php:599
 msgid "Il tema si spegne da sé se rileva un plugin di cookie consent (Iubenda, Complianz, CookieYes, CookieAdmin…). Togli la spunta solo per disattivarlo comunque."
 msgstr "The theme switches itself off if it detects a cookie consent plugin (Iubenda, Complianz, CookieYes, CookieAdmin and others). Untick this only to disable it anyway."
 
-#: functions.php:601
+#: functions.php:609
 msgid "Dati legali"
 msgstr "Legal details"
 
-#: functions.php:602
+#: functions.php:610
 msgid "Compaiono nella Privacy Policy, nella Cookie Policy e nei Termini e Condizioni. Finché restano vuoti le pagine mostrano un segnaposto."
 msgstr "These appear in the privacy policy, the cookie policy and the terms and conditions. While they are empty the pages show a placeholder."
 
-#: functions.php:608
+#: functions.php:616
 msgid "Ragione sociale"
 msgstr "Registered company name"
 
-#: functions.php:609
+#: functions.php:617
 msgid "Es: Experiences Srl"
 msgstr "For example: Experiences Srl"
 
-#: functions.php:613
+#: functions.php:621
 msgid "Sede legale"
 msgstr "Registered office"
 
-#: functions.php:614
+#: functions.php:622
 msgid "Indirizzo completo, es: Via Toledo 100, 80134 Napoli (NA)"
 msgstr "Full address, for example: Via Toledo 100, 80134 Naples, Italy"
 
-#: functions.php:618
+#: functions.php:626
 msgid "Partita IVA"
 msgstr "VAT number"
 
-#: functions.php:619
+#: functions.php:627
 msgid "Es: IT01234567890"
 msgstr "For example: IT01234567890"
 
-#: functions.php:623
+#: functions.php:631
 msgid "Numero REA"
 msgstr "REA number"
 
-#: functions.php:624
+#: functions.php:632
 msgid "Il numero di iscrizione al Registro Imprese, es: NA-123456. Insieme a ragione sociale, sede e P.IVA è obbligatorio sul sito di un'impresa italiana (art. 2250 c.c.); compare nel piede di pagina appena lo compili."
 msgstr "The Companies Register entry number, for example NA-123456. Together with the company name, registered office and VAT number it is required on the website of an Italian company (art. 2250 of the Civil Code); it appears in the footer as soon as you fill it in."
 
-#: functions.php:628
+#: functions.php:636
 msgid "Capitale sociale"
 msgstr "Share capital"
 
-#: functions.php:629
+#: functions.php:637
 msgid "Solo per le società di capitali, es: 10.000 € i.v. Lascia vuoto se non serve."
 msgstr "Only for limited companies, for example €10,000 fully paid up. Leave empty if it does not apply."
 
-#: functions.php:633
+#: functions.php:641
 msgid "Provider di hosting"
 msgstr "Hosting provider"
 
-#: functions.php:634
+#: functions.php:642
 msgid "Va indicato tra i destinatari dei dati nella Privacy Policy. Es: Aruba S.p.A., SiteGround, IONOS…"
 msgstr "It has to be listed among the data recipients in the privacy policy. For example: Aruba S.p.A., SiteGround, IONOS."
 
-#: functions.php:850
+#: functions.php:858
 msgid "sede legale"
 msgstr "registered office"
 
-#: functions.php:853
+#: functions.php:861
 msgid "partita IVA"
 msgstr "VAT number"
 
-#: functions.php:856
+#: functions.php:864
 msgid "provider di hosting"
 msgstr "hosting provider"
 
-#: functions.php:865
+#: functions.php:873
 msgid "Pagine legali incomplete."
 msgstr "Legal pages are incomplete."
 
-#: functions.php:866
+#: functions.php:874
 msgid "Privacy Policy e Termini mostrano un segnaposto al posto di:"
 msgstr "The privacy policy and terms show a placeholder instead of:"
 
-#: functions.php:869
+#: functions.php:877
 msgid "Compila i dati legali →"
 msgstr "Fill in the legal details →"
 
-#: functions.php:1233
+#: functions.php:1241
 msgid "Anteprima gratuita del tuo sito — Experiences Srl"
 msgstr "A free preview of your website — Experiences Srl"
 
-#: functions.php:1235
+#: functions.php:1243
 msgid "Carica le foto della tua struttura e guarda come verrebbe il tuo sito, in tre stili. Gratis, senza registrazione: le foto restano sul tuo dispositivo."
 msgstr "Upload photos of your property and see how your website could look, in three styles. Free, no sign-up: the photos stay on your device."
 
-#: functions.php:1238
+#: functions.php:1246
 msgid "Guide e case study per il turismo — Experiences Srl"
 msgstr "Guides and case studies for tourism — Experiences Srl"
 
-#: functions.php:1239
+#: functions.php:1247
 msgid "Channel manager, prenotazioni dirette, SEO locale, AI: guide pratiche e case study con numeri veri per hotel, B&B, agenzie di viaggi e tour operator."
 msgstr "Channel managers, direct bookings, local SEO, AI: practical guides and case studies with real figures for hotels, B&Bs, travel agencies and tour operators."
 
-#: functions.php:1442
+#: functions.php:1450
 msgid "Portfolio Siti"
 msgstr "Site portfolio"
 
-#: functions.php:1443
+#: functions.php:1451
 msgid "Sito Portfolio"
 msgstr "Portfolio site"
 
-#: functions.php:1444
+#: functions.php:1452
 msgid "Aggiungi Nuovo Sito"
 msgstr "Add new site"
 
-#: functions.php:1445
+#: functions.php:1453
 msgid "Modifica Sito"
 msgstr "Edit site"
 
 #: home.php:52 page-blog.php:51
 msgid "Strategie, guide pratiche e case study per digitalizzare il tuo business turistico."
 msgstr "Strategies, practical guides and case studies for taking your tourism business digital."
+
+#: inc/polylang.php:291 inc/polylang.php:292 inc/polylang.php:317
+msgid "Collega traduzioni"
+msgstr "Link translations"
+
+#: inc/polylang.php:318
+msgid "Crea le pagine inglesi mancanti e accoppia ogni articolo italiano con la sua versione inglese, usando gli slug. Si lancia dopo aver importato gli articoli: rifarlo non fa danni."
+msgstr "Creates any missing English pages and pairs each Italian article with its English version, matching on slugs. Run it after importing the articles; running it again does no harm."
+
+#: inc/polylang.php:322
+msgid "Fatto."
+msgstr "Done."
+
+#: inc/polylang.php:324
+msgid "Pagine create"
+msgstr "Pages created"
+
+#: inc/polylang.php:325
+msgid "Pagine collegate"
+msgstr "Pages linked"
+
+#: inc/polylang.php:326
+msgid "Articoli collegati"
+msgstr "Articles linked"
+
+#: inc/polylang.php:327
+msgid "Gia collegati"
+msgstr "Already linked"
+
+#: inc/polylang.php:328
+msgid "Senza corrispondenza"
+msgstr "No counterpart found"
+
+#: inc/polylang.php:342
+msgid "Rifai anche le coppie gia collegate"
+msgstr "Redo pairs that are already linked"
+
+#: inc/polylang.php:344
+msgid "Collega adesso"
+msgstr "Link now"
+
+#: inc/polylang.php:347
+msgid "Coppie previste"
+msgstr "Expected pairs"
+
+#: inc/polylang.php:349
+msgid "Stato"
+msgstr "Status"
+
+#: inc/polylang.php:354
+msgid "tutti e due presenti"
+msgstr "both present"
+
+#: inc/polylang.php:356
+msgid "manca l inglese"
+msgstr "English missing"
+
+#: inc/polylang.php:358
+msgid "manca l italiano"
+msgstr "Italian missing"
+
+#: inc/polylang.php:360
+msgid "nessuno dei due importato"
+msgstr "neither imported"
 
 #: page-configuratore.php:31
 msgid "Anteprima gratuita"
