@@ -32,15 +32,99 @@ function fma_e_icona( string $nome, string $classe = 'icon' ): void {
 	echo fma_icona( $nome, $classe ); // phpcs:ignore WordPress.Security.EscapeOutput -- SVG statico.
 }
 
-/** "29 ottobre 2024" dal timestamp del post (formato italiano, indipendente dalle impostazioni). */
+/** Data dell'articolo nel formato della lingua del sito: «29 ottobre 2024», «29 October 2024», «2024年10月29日». */
 function fma_data( $post = null ): string {
-	return mb_strtolower( wp_date( 'j F Y', get_post_timestamp( $post ) ) ); // in italiano i mesi vanno in minuscolo
+	/* translators: formato della data degli articoli (https://www.php.net/manual/datetime.format.php) */
+	$data = wp_date( _x( 'j F Y', 'formato data articoli', 'accoglienza-fma' ), get_post_timestamp( $post ) );
+	return str_starts_with( determine_locale(), 'it' ) ? mb_strtolower( $data ) : $data; // in italiano i mesi vanno in minuscolo
 }
 
+/** Minuti di lettura: 200 parole al minuto; in cinese, giapponese e coreano 400 caratteri al minuto. */
 function fma_minuti_lettura( $post = null ): int {
-	$testo  = trim( wp_strip_all_tags( get_post_field( 'post_content', $post ) ) );
+	$testo = trim( wp_strip_all_tags( get_post_field( 'post_content', $post ) ) );
+	if ( preg_match( '/^(zh|ja|ko)/', determine_locale() ) ) {
+		return max( 1, (int) round( mb_strlen( preg_replace( '/\s+/u', '', $testo ) ) / 400 ) );
+	}
 	$parole = '' === $testo ? 0 : count( preg_split( '/\s+/u', $testo ) );
 	return max( 1, (int) round( $parole / 200 ) );
+}
+
+/** «4 min» oppure, con $lungo, «4 min di lettura». */
+function fma_minuti_testo( int $minuti, bool $lungo = false ): string {
+	/* translators: %d: minuti */
+	return sprintf( $lungo ? __( '%d min di lettura', 'accoglienza-fma' ) : __( '%d min', 'accoglienza-fma' ), $minuti );
+}
+
+/** «8 case in 5 regioni», o in breve «8 case · 5 regioni». */
+function fma_case_regioni( int $case, int $regioni, bool $breve = false ): string {
+	/* translators: %d: numero di case */
+	$c = sprintf( _n( '%d casa', '%d case', $case, 'accoglienza-fma' ), $case );
+	/* translators: %d: numero di regioni */
+	$r = sprintf( _n( '%d regione', '%d regioni', $regioni, 'accoglienza-fma' ), $regioni );
+	/* translators: 1: «8 case», 2: «5 regioni» */
+	return $breve ? $c . ' · ' . $r : sprintf( __( '%1$s in %2$s', 'accoglienza-fma' ), $c, $r );
+}
+
+/** «1 casa», «8 case». */
+function fma_n_case( int $n ): string {
+	/* translators: %d: numero di case */
+	return sprintf( _n( '%d casa', '%d case', $n, 'accoglienza-fma' ), $n );
+}
+
+/** Testo sotto il titolo del blog quando la pagina Blog non ha un riassunto. */
+function fma_blog_lede(): string {
+	return __( 'Consigli di viaggio e storie dai luoghi delle nostre case: cosa vedere, quando andare, come arrivare.', 'accoglienza-fma' );
+}
+
+/** Con Polylang, la traduzione nella lingua corrente di un contenuto (per esempio la casa vicina di un articolo). */
+function fma_traduzione( int $id ): int {
+	if ( $id && function_exists( 'pll_get_post' ) ) {
+		$tradotto = (int) pll_get_post( $id );
+		return $tradotto ?: $id;
+	}
+	return $id;
+}
+
+/**
+ * Selettore della lingua (Polylang). In testata un menu a tendina con il codice della lingua
+ * corrente; nel menu del telefono l'elenco completo. Senza Polylang, o con una sola lingua, nulla.
+ */
+function fma_lingue( string $classe ): void {
+	if ( ! function_exists( 'pll_the_languages' ) ) {
+		return;
+	}
+	$lingue = (array) pll_the_languages( array( 'raw' => 1, 'hide_if_empty' => 0 ) );
+	if ( count( $lingue ) < 2 ) {
+		return;
+	}
+	$corrente = current( array_filter( $lingue, fn( $l ) => ! empty( $l['current_lang'] ) ) ) ?: reset( $lingue );
+	$voci     = '';
+	foreach ( $lingue as $l ) {
+		$voci .= sprintf(
+			'<li><a href="%1$s" hreflang="%2$s" lang="%2$s"%3$s>%4$s</a></li>',
+			esc_url( $l['url'] ),
+			esc_attr( $l['locale'] ? str_replace( '_', '-', $l['locale'] ) : $l['slug'] ),
+			empty( $l['current_lang'] ) ? '' : ' aria-current="true"',
+			esc_html( $l['name'] )
+		);
+	}
+	if ( 'mast__lang' === $classe ) {
+		printf(
+			'<details class="lang %1$s" data-lang><summary aria-label="%2$s"><span aria-hidden="true">%3$s</span></summary><ul>%4$s</ul></details>',
+			esc_attr( $classe ),
+			/* translators: %s: lingua corrente */
+			esc_attr( sprintf( __( 'Lingua: %s', 'accoglienza-fma' ), $corrente['name'] ) ),
+			esc_html( fma_codice_lingua( $corrente['slug'] ) ),
+			$voci // phpcs:ignore WordPress.Security.EscapeOutput -- costruito sopra con esc_*.
+		);
+	} else {
+		printf( '<nav class="lang %1$s" aria-label="%2$s"><ul>%3$s</ul></nav>', esc_attr( $classe ), esc_attr__( 'Lingua', 'accoglienza-fma' ), $voci ); // phpcs:ignore
+	}
+}
+
+/** Sigla breve della lingua in testata: IT, EN, FR… e 中文 per il cinese. */
+function fma_codice_lingua( string $slug ): string {
+	return 'zh' === $slug ? '中文' : strtoupper( $slug );
 }
 
 /** Immagine allegata con classi e priorità, o stringa vuota. */
@@ -56,17 +140,26 @@ function fma_plugin_attivo(): bool {
 	return function_exists( 'fma_struttura_dati' ) && post_type_exists( 'struttura' );
 }
 
+/**
+ * Testo della home (Personalizza → Home page). Se è quello predefinito si traduce come il resto
+ * del tema; se è stato cambiato, la traduzione si scrive in Lingue → Traduzioni stringhe (Polylang).
+ */
 function fma_testo( string $chiave ): string {
 	$predefiniti = fma_testi_predefiniti();
-	return (string) get_theme_mod( 'fma_' . $chiave, $predefiniti[ $chiave ] ?? '' );
+	$originale   = $predefiniti[ $chiave ] ?? '';
+	$valore      = (string) get_theme_mod( 'fma_' . $chiave, $originale );
+	if ( $valore === $originale ) {
+		return '' === $valore ? '' : translate( $valore, 'accoglienza-fma' ); // phpcs:ignore WordPress.WP.I18n -- testi predefiniti, elencati in fma_testi_predefiniti() con __().
+	}
+	return function_exists( 'pll__' ) ? pll__( $valore ) : $valore;
 }
 
 /** Link del menu principale di riserva, quando il menu non è ancora stato creato. */
 function fma_menu_riserva( array $args ): void {
 	$voci = array(
-		'Strutture' => get_post_type_archive_link( 'struttura' ) ?: home_url( '/#strutture' ),
-		'Chi siamo' => home_url( '/#chi-siamo' ),
-		'Blog'      => get_option( 'page_for_posts' ) ? get_permalink( (int) get_option( 'page_for_posts' ) ) : home_url( '/?post_type=post' ),
+		__( 'Strutture', 'accoglienza-fma' ) => get_post_type_archive_link( 'struttura' ) ?: home_url( '/#strutture' ),
+		__( 'Chi siamo', 'accoglienza-fma' ) => home_url( '/#chi-siamo' ),
+		__( 'Blog', 'accoglienza-fma' )      => get_option( 'page_for_posts' ) ? get_permalink( (int) get_option( 'page_for_posts' ) ) : home_url( '/?post_type=post' ),
 	);
 	echo '<ul>';
 	foreach ( $voci as $etichetta => $url ) {
@@ -81,7 +174,7 @@ function fma_conteggi(): array {
 		return array( 'case' => 0, 'regioni' => 0 );
 	}
 	return array(
-		'case'    => (int) wp_count_posts( 'struttura' )->publish,
+		'case'    => count( fma_strutture() ), // solo la lingua corrente: wp_count_posts conterebbe anche le traduzioni
 		'regioni' => count( fma_regioni() ),
 	);
 }
@@ -131,6 +224,16 @@ function fma_sezioni_contenuto( string $html ): string {
 /** Prezzo leggibile: 45 → "45", 42.5 → "42,50". */
 function fma_prezzo( float $valore ): string {
 	return floor( $valore ) === $valore ? number_format_i18n( $valore ) : number_format_i18n( $valore, 2 );
+}
+
+/** «a persona a notte», «a camera a notte» o solo «a notte», secondo il campo «Il prezzo è». */
+function fma_prezzo_unita( string $unita ): string {
+	return array( 'persona' => __( 'a persona a notte', 'accoglienza-fma' ), 'camera' => __( 'a camera a notte', 'accoglienza-fma' ) )[ $unita ] ?? __( 'a notte', 'accoglienza-fma' );
+}
+
+/** Tassa di soggiorno senza l'eventuale «Tassa di soggiorno:» iniziale, perché l'etichetta la mette il tema. */
+function fma_tassa_testo( string $tassa ): string {
+	return trim( (string) preg_replace( '/^\s*tassa\s+di\s+soggiorno\s*[:\-–]?\s*/iu', '', $tassa ) );
 }
 
 /**

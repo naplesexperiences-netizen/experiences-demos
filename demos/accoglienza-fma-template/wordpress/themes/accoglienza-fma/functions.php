@@ -5,7 +5,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_TEMA_VERSIONE', '1.1.0' );
+define( 'FMA_TEMA_VERSIONE', '1.4.0' );
 
 require get_template_directory() . '/inc/helpers.php';
 require get_template_directory() . '/inc/customizer.php';
@@ -67,6 +67,100 @@ function fma_tema_asset(): void {
 		$dip[] = 'fma-leaflet';
 	}
 	wp_enqueue_script( 'fma-sito', "$uri/js/site.js", $dip, $v( 'js/site.js' ), $def );
+	if ( ! str_starts_with( determine_locale(), 'it' ) ) {
+		wp_add_inline_script( 'fma-sito', 'window.fmaTesti=' . wp_json_encode( fma_testi_js(), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG ) . ';', 'before' );
+	}
+	if ( is_singular( 'struttura' ) ) {
+		// Dopo site.js: legge la conferma del modulo che site.js mostra. Vedi assets/js/eventi.js.
+		wp_enqueue_script( 'fma-eventi', "$uri/js/eventi.js", array( 'fma-sito' ), $v( 'js/eventi.js' ), $def );
+	}
+}
+
+/**
+ * Google Analytics (Site Kit): nella pagina di una casa il parametro «casa» entra nella
+ * configurazione del tag, così accompagna tutti gli eventi della pagina, compresi i clic su
+ * email, telefono e WhatsApp che Site Kit registra da solo. Un gtag('set') a pagina caricata
+ * non basta: Google applica i parametri condivisi solo se arrivano con la configurazione.
+ */
+add_filter(
+	'googlesitekit_gtag_opt',
+	function ( $opzioni ) {
+		if ( is_array( $opzioni ) && is_singular( 'struttura' ) ) {
+			$opzioni['casa'] = wp_strip_all_tags( get_the_title( get_queried_object_id() ) );
+		}
+		return $opzioni;
+	}
+);
+
+/**
+ * Testi di site.js nella lingua della pagina (le chiavi sono quelle dell'oggetto T in site.js,
+ * dove c'è l'italiano). %1, %2… sono i valori inseriti dallo script.
+ */
+function fma_testi_js(): array {
+	global $wp_locale;
+	return array(
+		// Mesi abbreviati come nelle date: «mai» e non «Mai» in francese, «5月» senza spazio in cinese.
+		'mesi'             => array_values(
+			array_map(
+				fn( $m ) => str_starts_with( determine_locale(), 'en' ) ? wp_strip_all_tags( $m ) : mb_strtolower( str_replace( ' ', '', wp_strip_all_tags( $m ) ) ),
+				$wp_locale->month_abbrev
+			)
+		),
+		/* translators: data breve in JavaScript: %1 giorno, %2 mese abbreviato */
+		'giornoMese'       => _x( '%1 %2', 'data breve: giorno e mese', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'notte'            => __( '%1 notte', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'notti'            => __( '%1 notti', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'ospite'           => __( '%1 ospite', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'ospiti'           => __( '%1 ospiti', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'adulto'           => __( '%1 adulto', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'adulti'           => __( '%1 adulti', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'bambino'          => __( '%1 bambino', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'bambini'          => __( '%1 bambini', 'accoglienza-fma' ),
+		'unaCasa'          => __( '1 casa', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'nCase'            => __( '%1 case', 'accoglienza-fma' ),
+		'tutteCase'        => __( 'Tutte le case', 'accoglienza-fma' ),
+		'scopri'           => __( 'Scopri la casa →', 'accoglienza-fma' ),
+		'pausa'            => __( 'Metti in pausa lo scorrimento', 'accoglienza-fma' ),
+		'riprendi'         => __( 'Riprendi lo scorrimento', 'accoglienza-fma' ),
+		'dateMancanti'     => __( 'Indica sia la data di arrivo sia quella di partenza, oppure lasciale vuote.', 'accoglienza-fma' ),
+		'dateOrdine'       => __( 'La partenza deve essere dopo l’arrivo.', 'accoglienza-fma' ),
+		/* translators: %1: riepilogo della ricerca */
+		'staiCercando'     => __( 'Stai cercando: %1. Le date passano al modulo della casa che scegli.', 'accoglienza-fma' ),
+		'fotoStruttura'    => __( 'Foto della struttura', 'accoglienza-fma' ),
+		'chiudi'           => __( 'Chiudi', 'accoglienza-fma' ),
+		'fotoPrec'         => __( 'Foto precedente', 'accoglienza-fma' ),
+		'fotoSucc'         => __( 'Foto successiva', 'accoglienza-fma' ),
+		/* translators: %1: nome della casa, %2: numero della foto, %3: totale */
+		'fotoAlt'          => __( '%1, foto %2 di %3', 'accoglienza-fma' ),
+		/* translators: %1: «3 notti», %2: data di arrivo, %3: data di partenza */
+		'notteDalAl'       => __( '%1 · dal %2 al %3', 'accoglienza-fma' ),
+		'arrivoVuoto'      => __( 'Scegli la data di arrivo.', 'accoglienza-fma' ),
+		'partenzaVuota'    => __( 'Scegli la data di partenza.', 'accoglienza-fma' ),
+		'nomeCorto'        => __( 'Scrivi nome e cognome.', 'accoglienza-fma' ),
+		'emailErrata'      => __( 'Controlla l’indirizzo email (es. nome@esempio.it).', 'accoglienza-fma' ),
+		'privacy'          => __( 'Serve il consenso per inviare la richiesta.', 'accoglienza-fma' ),
+		'mancaUna'         => __( 'Manca un’informazione: la trovi evidenziata qui sopra.', 'accoglienza-fma' ),
+		/* translators: %1: numero */
+		'mancanoN'         => __( 'Mancano %1 informazioni: le trovi evidenziate qui sopra.', 'accoglienza-fma' ),
+		'laCasa'           => __( 'la casa', 'accoglienza-fma' ),
+		'cameraConcordare' => __( 'camera da concordare', 'accoglienza-fma' ),
+		/* translators: %1: nome della casa, %2: arrivo, %3: partenza */
+		'riepilogoCasa'    => __( '%1 · dal %2 al %3', 'accoglienza-fma' ),
+		/* translators: %1: arrivo, %2: partenza */
+		'riepilogo'        => __( 'Dal %1 al %2', 'accoglienza-fma' ),
+		'connessione'      => __( 'Connessione non riuscita: la richiesta non è partita.', 'accoglienza-fma' ),
+		/* translators: %1: indirizzo email */
+		'scriviA'          => __( 'Puoi scrivere direttamente a %1.', 'accoglienza-fma' ),
+	);
 }
 
 /** Classi "js" e "motion" prima del primo disegno, come nella demo (evita il lampo delle animazioni). */

@@ -15,7 +15,8 @@ get_header();
 
 $strutture = array_map( 'fma_struttura_dati', $GLOBALS['wp_query']->posts );
 if ( is_tax( 'regione' ) ) {
-	$titolo = sprintf( 'Le case in %s', single_term_title( '', false ) );
+	/* translators: %s: nome della regione */
+	$titolo = sprintf( __( 'Le case in %s', 'accoglienza-fma' ), single_term_title( '', false ) );
 	$testo  = wp_strip_all_tags( term_description() );
 } else {
 	$titolo = fma_testo( 'strutture_titolo' );
@@ -41,7 +42,7 @@ if ( is_tax( 'regione' ) ) {
 			<h1 class="page-head__title" data-hero-in><?php echo esc_html( $titolo ); ?></h1>
 		</header>
 		<div class="page-body">
-			<div class="empty"><p class="empty__title">Non ci sono ancora case da mostrare.</p><p>Torna a trovarci presto, oppure <a href="<?php echo esc_url( home_url( '/' ) ); ?>">vai alla home</a>.</p></div>
+			<div class="empty"><p class="empty__title"><?php esc_html_e( 'Non ci sono ancora case da mostrare.', 'accoglienza-fma' ); ?></p><p><?php esc_html_e( 'Torna a trovarci presto.', 'accoglienza-fma' ); ?> <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Torna alla home', 'accoglienza-fma' ); ?></a></p></div>
 		</div>
 	<?php endif; ?>
 </main>

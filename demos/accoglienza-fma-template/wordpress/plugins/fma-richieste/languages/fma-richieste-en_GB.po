@@ -1,0 +1,228 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: fma-richieste\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Vacanza"
+msgstr "Holiday"
+
+msgid "Famiglia"
+msgstr "Family"
+
+msgid "Gruppo o parrocchia"
+msgstr "Group or parish"
+
+msgid "Ritiro spirituale"
+msgstr "Spiritual retreat"
+
+msgctxt "formato data email"
+msgid "j F Y"
+msgstr "j F Y"
+
+msgid "Scegli la data di arrivo."
+msgstr "Choose the arrival date."
+
+msgid "La data di arrivo è già passata."
+msgstr "The arrival date has already passed."
+
+msgid "Scegli la data di partenza."
+msgstr "Choose the departure date."
+
+msgid "La partenza deve essere dopo l’arrivo."
+msgstr "Departure must be after arrival."
+
+msgid "Per soggiorni oltre 120 notti scrivi direttamente alla casa."
+msgstr "For stays of more than 120 nights, write to the house directly."
+
+msgid "Indica da 1 a 120 adulti."
+msgstr "Enter between 1 and 120 adults."
+
+msgid "Indica da 0 a 60 bambini."
+msgstr "Enter between 0 and 60 children."
+
+msgid "Scrivi nome e cognome."
+msgstr "Enter your first and last name."
+
+msgid "Controlla l’indirizzo email (es. nome@esempio.it)."
+msgstr "Check your email address (e.g. name@example.com)."
+
+msgid "Serve il consenso per inviare la richiesta."
+msgstr "Your consent is needed to send the request."
+
+msgid "Richiesta inviata."
+msgstr "Request sent."
+
+msgid "Hai inviato molte richieste in poco tempo. Riprova tra qualche minuto o scrivi direttamente alla casa."
+msgstr "You have sent many requests in a short time. Try again in a few minutes or write to the house directly."
+
+msgid "Struttura non trovata. Ricarica la pagina e riprova."
+msgstr "House not found. Reload the page and try again."
+
+msgid "Questa casa non riceve ancora richieste dal sito: usa i recapiti indicati nella pagina."
+msgstr "This house does not yet receive requests through the website: please use the contact details on the page."
+
+msgid "Manca un’informazione: la trovi evidenziata."
+msgstr "One detail is missing: it is highlighted."
+
+msgid "Mancano %d informazioni: le trovi evidenziate."
+msgstr "%d details are missing: they are highlighted."
+
+msgid "%d adulto"
+msgid_plural "%d adulti"
+msgstr[0] "%d adult"
+msgstr[1] "%d adults"
+
+msgid "%d bambino"
+msgid_plural "%d bambini"
+msgstr[0] "%d child"
+msgstr[1] "%d children"
+
+msgid "%d notte"
+msgid_plural "%d notti"
+msgstr[0] "%d night"
+msgstr[1] "%d nights"
+
+msgid "Struttura: %s"
+msgstr "House: %s"
+
+msgid "Date: %s"
+msgstr "Dates: %s"
+
+msgid "Partecipanti: %s"
+msgstr "Guests: %s"
+
+msgid "Camera: %s"
+msgstr "Room: %s"
+
+msgid "da concordare con la casa"
+msgstr "to be agreed with the house"
+
+msgid "Tipo di soggiorno: %s"
+msgstr "Type of stay: %s"
+
+msgid "Non siamo riusciti a inviare la richiesta. Scrivi direttamente a %s."
+msgstr "We could not send your request. Please write directly to %s."
+
+msgid "Ciao %s,"
+msgstr "Hello %s,"
+
+msgid "abbiamo inoltrato la tua richiesta a %s. Ti risponderà direttamente la casa, con disponibilità e prezzi."
+msgstr "we have forwarded your request to %s. The house will reply to you directly with availability and prices."
+
+msgid "Per aggiungere dettagli rispondi a questa email: arriverà a %1$s (%2$s)."
+msgstr "To add details, reply to this email: it will reach %1$s (%2$s)."
+
+msgid "Abbiamo inoltrato la tua richiesta a %s"
+msgstr "We have forwarded your request to %s"
+
+msgid "Richiesta inviata a %1$s. Ti abbiamo mandato una copia a %2$s."
+msgstr "Request sent to %1$s. We have sent a copy to %2$s."
+
+msgid "Lascia vuoto questo campo"
+msgstr "Leave this field empty"
+
+msgid "Richiedi un soggiorno"
+msgstr "Request a stay"
+
+msgid "Senza impegno: la casa ti risponde con disponibilità e prezzi."
+msgstr "No obligation: the house replies with availability and prices."
+
+msgid "Arrivo"
+msgstr "Arrival"
+
+msgid "Partenza"
+msgstr "Departure"
+
+msgid "Partecipanti"
+msgstr "Guests"
+
+msgid "Adulti"
+msgstr "Adults"
+
+msgid "Un adulto in meno"
+msgstr "One adult fewer"
+
+msgid "Un adulto in più"
+msgstr "One more adult"
+
+msgid "Bambini"
+msgstr "Children"
+
+msgid "Un bambino in meno"
+msgstr "One child fewer"
+
+msgid "Un bambino in più"
+msgstr "One more child"
+
+msgid "Tipologia di camera"
+msgstr "Room type"
+
+msgid "Da concordare con la casa"
+msgstr "To be agreed with the house"
+
+msgid "Più tipologie (gruppo)"
+msgstr "Several types (group)"
+
+msgid "Camera singola"
+msgstr "Single room"
+
+msgid "Camera doppia"
+msgstr "Double room"
+
+msgid "Camera per famiglia"
+msgstr "Family room"
+
+msgid "Più camere (gruppo)"
+msgstr "Several rooms (group)"
+
+msgid "Tipo di soggiorno"
+msgstr "Type of stay"
+
+msgid "Nome e cognome"
+msgstr "First and last name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Telefono"
+msgstr "Phone"
+
+msgid "(facoltativo)"
+msgstr "(optional)"
+
+msgid "Messaggio"
+msgstr "Message"
+
+msgid "Esigenze particolari, orario di arrivo, pasti…"
+msgstr "Special requirements, arrival time, meals…"
+
+msgid "Ho letto l’%s e acconsento al trattamento dei dati per rispondere alla richiesta."
+msgstr "I have read the %s and consent to my data being processed to answer my request."
+
+msgid "informativa privacy"
+msgstr "privacy notice"
+
+msgid "Acconsento al trattamento dei dati per rispondere alla richiesta: li riceve solo la casa scelta."
+msgstr "I consent to my data being processed to answer my request: only the chosen house receives it."
+
+msgid "La richiesta non è partita: controlla i campi e riprova."
+msgstr "The request was not sent: check the fields and try again."
+
+msgid "Invia la richiesta"
+msgstr "Send request"
+
+msgid "La richiesta arriva a %s."
+msgstr "The request goes to %s."
+
+msgid "Richiesta inviata"
+msgstr "Request sent"
+
+msgid "La tua richiesta è arrivata a %s: ti risponderà direttamente la casa. Ti abbiamo mandato una copia via email."
+msgstr "Your request has reached %s: the house will reply to you directly. We have sent you a copy by email."
+
+msgid "Invia un’altra richiesta"
+msgstr "Send another request"

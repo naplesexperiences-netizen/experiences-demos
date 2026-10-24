@@ -106,6 +106,7 @@ class FMA_Importatore {
 			return 0;
 		}
 		update_post_meta( $id, '_fma_origine', $relativo );
+		$alt = fma_alt_per_origine( $relativo ) ?: $alt;
 		if ( $alt ) {
 			update_post_meta( $id, '_wp_attachment_image_alt', $alt );
 		}
@@ -113,7 +114,7 @@ class FMA_Importatore {
 	}
 
 	/** Converte le sezioni HTML della demo in blocchi Gutenberg (titoli, paragrafi, elenchi). */
-	private function blocchi( array $sezioni ): string {
+	public static function blocchi( array $sezioni ): string {
 		$out = '';
 		foreach ( $sezioni as $sez ) {
 			$out .= "<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">" . esc_html( $sez['titolo'] ) . "</h2>\n<!-- /wp:heading -->\n\n";
@@ -141,7 +142,7 @@ class FMA_Importatore {
 			'post_title'   => $s['nome'],
 			'post_name'    => $s['slug'],
 			'post_excerpt' => $s['intro'] ?? '',
-			'post_content' => $this->blocchi( $s['sezioni'] ?? array() ),
+			'post_content' => self::blocchi( $s['sezioni'] ?? array() ),
 			'menu_order'   => $ordine,
 		);
 		$id = $this->trova( 'struttura', $s['slug'] );
@@ -166,6 +167,7 @@ class FMA_Importatore {
 			'fma_lng'           => $s['lng'] ?? '',
 			'fma_camere_totali' => $s['camere_totali'] ?? '',
 			'fma_prezzo_da'     => $s['prezzo_da'] ?? '',
+			'fma_prezzo_unita'  => $s['prezzo_unita'] ?? '',
 			'fma_tassa'         => $s['tassa'] ?? '',
 			'fma_orari'         => $s['orari'] ?? '',
 			'fma_booking_url'   => $s['booking_url'] ?? '',
@@ -184,6 +186,8 @@ class FMA_Importatore {
 				update_post_meta( $id, $k, $v );
 			}
 		}
+
+		fma_seo_completa( $id );
 
 		$slug = $s['slug'];
 		$foto = $this->allegato( "strutture/$slug/hero.webp", $id, $s['nome'] );
