@@ -328,4 +328,45 @@ ARTICOLI = {
     'tags': ['metasearch', 'google hotel ads', 'trivago', 'tripadvisor', 'advertising', 'direct bookings'],
 },
 
+'whatsapp-business-hotel-tour-operator': {
+    'slug': 'whatsapp-business-hotels-tour-operators-guide',
+    'post_title': 'WhatsApp Business for Hotels and Tour Operators: The Channel That Converts 45%',
+    'seo_title': 'WhatsApp Business for Hotels: 45% Conversion',
+    'meta_description': 'WhatsApp Business for hotels and tour operators: automations, approved templates, PMS integration, and how to convert 45% of enquiries.',
+    'focus_keyword': 'whatsapp business for hotels',
+    'secondary_keywords': [
+        'whatsapp api in tourism',
+        'hotel whatsapp automation',
+        'guest messaging',
+        'hotel guest service',
+        'conversational booking',
+        'whatsapp for tour operators',
+    ],
+    'og_title': 'WhatsApp Business for Hotels and Tour Operators: The Channel That Converts 45%',
+    'og_description': 'Reply within five minutes and you convert 45% of enquiries; after thirty minutes, 11%. The six automations that matter, the approved templates, and a Naples tour operator at 38× return.',
+    'tags': ['whatsapp business', 'automation', 'guest messaging', 'hotels', 'tour operator', 'guest service'],
+},
+
+'instagram-tiktok-hotel-strutture-ricettive-ugc': {
+    'slug': 'instagram-tiktok-hotels-accommodation-ugc',
+    'post_title': 'Instagram and TikTok for Hotels: The Content Strategy (and the Guest Content) That Fills Rooms',
+    'seo_title': 'Instagram and TikTok for Hotels: Strategy and UGC',
+    'meta_description': 'Instagram and TikTok for hotels: a content plan, the formats that work, guest content with usage rights and creator collaborations that bring direct bookings.',
+    'focus_keyword': 'instagram marketing for hotels',
+    'secondary_keywords': [
+        'tiktok for hotels',
+        'social media for accommodation',
+        'user generated content in tourism',
+        'hotel content strategy',
+        'travel creators',
+        'hotel reels',
+    ],
+    'og_title': 'Instagram and TikTok for Hotels: the content strategy that generates direct bookings',
+    'og_description': 'Sixty-one per cent of travellers under 35 choose their destination from a social video before they ever open Booking. The 40/30/20/10 content plan, the ten formats that work, guest content with usage rights and creator collaborations: the real figures from a boutique hotel on the Amalfi Coast.',
+    'tags': [
+        'instagram', 'tiktok', 'social media', 'user generated content',
+        'content marketing', 'reels', 'creators', 'hotels',
+    ],
+},
+
 }
