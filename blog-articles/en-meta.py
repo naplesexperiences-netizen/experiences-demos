@@ -290,4 +290,42 @@ ARTICOLI = {
     'tags': ['online reviews', 'reputation', 'booking.com', 'tripadvisor', 'google reviews', 'guest service', 'guest experience'],
 },
 
+'email-marketing-hotel-pre-stay-post-stay': {
+    'slug': 'email-marketing-hotels-pre-stay-post-stay',
+    'post_title': 'Email Marketing for Hotels: Pre-Stay, Post-Stay and Recovering Abandoned Bookings',
+    'seo_title': 'Email Marketing for Hotels: Pre-Stay and Upsell',
+    'meta_description': 'Email marketing for hotels: pre-stay, post-stay and abandoned booking sequences. How to generate €38,000 a year of upselling with six automatic emails.',
+    'focus_keyword': 'email marketing for hotels',
+    'secondary_keywords': [
+        'hotel email automation',
+        'pre-stay email',
+        'hotel abandoned booking',
+        'hotel upselling',
+        'accommodation newsletter',
+        'hotel CRM',
+    ],
+    'og_title': 'Email Marketing for Hotels: Pre-Stay, Post-Stay and Recovering Abandoned Bookings',
+    'og_description': 'Sixty-eight per cent of people who start a booking abandon it. The three automatic sequences that recover bookings, sell upgrades and bring guests back, with real figures from a Sorrento hotel.',
+    'tags': ['email marketing', 'automation', 'pre-stay', 'post-stay', 'upselling', 'CRM', 'direct bookings'],
+},
+
+'metasearch-google-hotel-ads-trivago-tripadvisor': {
+    'slug': 'metasearch-google-hotel-ads-trivago-tripadvisor-en',
+    'post_title': 'Metasearch for Hotels: Google Hotel Ads, Trivago and TripAdvisor',
+    'seo_title': 'Metasearch for Hotels: Google Hotel Ads and Trivago',
+    'meta_description': 'Metasearch for hotels: how Google Hotel Ads, Trivago and TripAdvisor work, what they cost, and how to generate direct bookings at a return of 8:1.',
+    'focus_keyword': 'metasearch for hotels',
+    'secondary_keywords': [
+        'google hotel ads',
+        'trivago for hotels',
+        'tripadvisor sponsored placements',
+        'direct bookings from metasearch',
+        'hotel advertising return',
+        'free booking links',
+    ],
+    'og_title': 'Metasearch for Hotels: Google Hotel Ads, Trivago and TripAdvisor',
+    'og_description': 'When a guest searches your hotel by name they see a box of rates: if your site is not in it, you pay 18% commission on a customer already looking for you. The three pricing models, the free booking links, and an Ischia hotel at 8.8:1.',
+    'tags': ['metasearch', 'google hotel ads', 'trivago', 'tripadvisor', 'advertising', 'direct bookings'],
+},
+
 }
