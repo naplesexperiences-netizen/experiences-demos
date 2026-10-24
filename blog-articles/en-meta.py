@@ -141,4 +141,59 @@ ARTICOLI = {
     'tags': ['channel manager', 'tour operator', 'tour software', 'dynamic pricing', 'rezdy', 'bokun'],
 },
 
+'ai-chatbot-hotel-bnb-segretario-digitale-24-7': {
+    'slug': 'ai-chatbot-hotels-bnb-digital-front-desk',
+    'post_title': 'AI Chatbots for Hotels and B&Bs: The Digital Front Desk That Works 24/7',
+    'seo_title': 'AI Chatbot for Hotels and B&Bs: The 24/7 Guide',
+    'meta_description': 'AI chatbots for hotels: answering guests around the clock, taking direct bookings and saving 20 hours of customer care a week. The full 2026 guide.',
+    'focus_keyword': 'ai chatbot for hotels',
+    'secondary_keywords': [
+        'booking chatbot',
+        'hotel virtual assistant',
+        'automated guest service',
+        'whatsapp chatbot hotel',
+        'artificial intelligence in tourism',
+    ],
+    'og_title': 'AI Chatbots for Hotels and B&Bs: The Digital Front Desk That Works 24/7',
+    'og_description': 'How an AI chatbot answers guests around the clock, closes direct bookings and saves 20 hours a week. Real case: a 12-room B&B in Sorrento, €57,000 more in one season.',
+    'tags': ['ai chatbot', 'artificial intelligence', 'hotels', 'automation', 'guest service', 'whatsapp business', 'direct bookings'],
+},
+
+'dynamic-pricing-ai-hotel-revpar': {
+    'slug': 'dynamic-pricing-ai-hotels-revpar',
+    'post_title': 'AI Dynamic Pricing: How Hotels Raise RevPAR by 35%',
+    'seo_title': 'AI Dynamic Pricing for Hotels: +35% RevPAR',
+    'meta_description': 'AI dynamic pricing for hotels: what it is, how it works, which tools to use and what it returns. Real case: an Amalfi Coast hotel, €280,000 more in one season.',
+    'focus_keyword': 'dynamic pricing for hotels',
+    'secondary_keywords': [
+        'hotel revenue management',
+        'intelligent pricing',
+        'hotel rate automation',
+        'revpar',
+        'AI pricing tourism',
+    ],
+    'og_title': 'AI Dynamic Pricing: How Hotels Raise RevPAR by 35%',
+    'og_description': 'How an AI pricing tool grows ADR, occupancy and RevPAR without cheapening the brand. Real case: a 50-room Amalfi Coast hotel, €280,000 more in one season.',
+    'tags': ['dynamic pricing', 'revenue management', 'hotels', 'AI', 'RevPAR', 'ADR', 'occupancy', 'rates'],
+},
+
+'turismo-sostenibile-hotel-certificazioni-green-2026': {
+    'slug': 'sustainable-tourism-hotels-green-certifications-2026',
+    'post_title': 'Sustainable Tourism 2026: Green Certifications, KPIs and Eco-Conscious Travellers',
+    'seo_title': 'Sustainable Hotels: Green Certifications 2026',
+    'meta_description': 'Sustainable tourism: how to earn Green Key, Travelife and EU Ecolabel and reach the 73% of travellers who look for eco-friendly hotels. Costs and returns.',
+    'focus_keyword': 'sustainable tourism hotels',
+    'secondary_keywords': [
+        'green key certification',
+        'travelife',
+        'eu ecolabel hotel',
+        'eco friendly hotel',
+        'tourism environmental certification',
+        'hotel ESG',
+    ],
+    'og_title': 'Sustainable Tourism 2026: Green Certifications, KPIs and Eco-Conscious Travellers',
+    'og_description': 'Seventy-three per cent of travellers choose eco hotels. Green Key, Travelife and EU Ecolabel compared: criteria, costs, returns. Real case: a Positano B&B, €79,000 more in one season.',
+    'tags': ['sustainable tourism', 'green certification', 'eco hotels', 'ESG', 'green key', 'travelife', 'sustainability'],
+},
+
 }
