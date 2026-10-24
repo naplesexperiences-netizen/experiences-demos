@@ -1,0 +1,60 @@
+{
+  "slug": "smart-hotel-keyless-check-in-iot-guide-2026",
+  "lang": "en",
+  "translation_of": "smart-hotel-check-in-keyless-iot-guida-2026",
+  "post_title": "Smart Hotels: Keyless Check-In, Smart Keys and In-Room IoT",
+  "seo_title": "Smart Hotels 2026: Keyless Check-In and IoT",
+  "meta_description": "Smart hotels: check-in without a reception desk, digital smart keys, in-room IoT. What you need, what it costs, what it returns. A 60-room case on Ischia.",
+  "focus_keyword": "smart hotel",
+  "secondary_keywords": [
+    "keyless check-in",
+    "hotel smart key",
+    "hotel IoT",
+    "digital hotel",
+    "self check-in",
+    "hotel automation"
+  ],
+  "og_title": "Smart Hotels: Keyless Check-In, Smart Keys and In-Room IoT",
+  "og_description": "Check-in from 11 minutes to 90 seconds, NPS up 25 points, reception costs down 54%. Real case: a 60-room four-star on Ischia, €440,000 more in one season.",
+  "category": "Technology & Innovation",
+  "tags": [
+    "smart hotel",
+    "IoT",
+    "keyless check-in",
+    "smart key",
+    "automation",
+    "innovation",
+    "digital hotel"
+  ],
+  "estimated_reading_time": 12,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Smart Hotels: Keyless Check-In, Smart Keys and In-Room IoT",
+    "description": "Smart hotels: check-in without a reception desk, digital smart keys, in-room IoT. What you need, what it costs, what it returns. A 60-room case on Ischia.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/smart-hotel-check-in-keyless-iot-guida-2026.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo.png"
+      }
+    },
+    "datePublished": "2026-02-26",
+    "dateModified": "2026-02-26",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/smart-hotel-keyless-check-in-iot-guide-2026/"
+    },
+    "keywords": "keyless check-in, hotel smart key, hotel IoT, digital hotel, self check-in, hotel automation",
+    "articleSection": "Technology & Innovation",
+    "wordCount": 2548,
+    "inLanguage": "en"
+  }
+}

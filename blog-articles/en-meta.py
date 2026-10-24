@@ -196,4 +196,42 @@ ARTICOLI = {
     'tags': ['sustainable tourism', 'green certification', 'eco hotels', 'ESG', 'green key', 'travelife', 'sustainability'],
 },
 
+'smart-hotel-check-in-keyless-iot-guida-2026': {
+    'slug': 'smart-hotel-keyless-check-in-iot-guide-2026',
+    'post_title': 'Smart Hotels: Keyless Check-In, Smart Keys and In-Room IoT',
+    'seo_title': 'Smart Hotels 2026: Keyless Check-In and IoT',
+    'meta_description': 'Smart hotels: check-in without a reception desk, digital smart keys, in-room IoT. What you need, what it costs, what it returns. A 60-room case on Ischia.',
+    'focus_keyword': 'smart hotel',
+    'secondary_keywords': [
+        'keyless check-in',
+        'hotel smart key',
+        'hotel IoT',
+        'digital hotel',
+        'self check-in',
+        'hotel automation',
+    ],
+    'og_title': 'Smart Hotels: Keyless Check-In, Smart Keys and In-Room IoT',
+    'og_description': 'Check-in from 11 minutes to 90 seconds, NPS up 25 points, reception costs down 54%. Real case: a 60-room four-star on Ischia, €440,000 more in one season.',
+    'tags': ['smart hotel', 'IoT', 'keyless check-in', 'smart key', 'automation', 'innovation', 'digital hotel'],
+},
+
+'vr-ar-tour-operator-esperienze-immersive': {
+    'slug': 'vr-ar-tour-operators-immersive-experiences',
+    'post_title': 'Virtual and Augmented Reality for Tour Operators: Selling the Experience Before It Happens',
+    'seo_title': 'VR for Tour Operators: Selling Immersive Experiences',
+    'meta_description': 'Virtual and augmented reality for tour operators: how immersive previews raise conversion by 40% and average booking value by 28%. Costs and a real case.',
+    'focus_keyword': 'virtual reality for tour operators',
+    'secondary_keywords': [
+        'virtual tours',
+        'AR in tourism',
+        'immersive experiences',
+        'tourism technology',
+        'selling tours online',
+        'tourism metaverse',
+    ],
+    'og_title': 'Virtual and Augmented Reality for Tour Operators',
+    'og_description': 'VR and AR previews for tour operators: 40% more conversion and 28% higher order value. Real case: a Naples agency from 140 to 361 bookings a month in six months.',
+    'tags': ['virtual reality', 'augmented reality', 'VR', 'AR', 'tour operator', 'immersive experiences', 'innovation', 'tourism'],
+},
+
 }
