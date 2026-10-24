@@ -1,0 +1,59 @@
+{
+  "slug": "voice-search-hotels-alexa-google-assistant",
+  "lang": "en",
+  "translation_of": "voice-search-hotel-ottimizzazione-alexa-google-assistant",
+  "post_title": "Voice Search for Hotels: Optimising for Alexa and Google Assistant",
+  "seo_title": "Voice Search for Hotels: Alexa and Google",
+  "meta_description": "Voice search for hotels: how to optimise for Alexa, Google Assistant and Siri. Half of travel searches will be spoken by 2027. The complete strategy.",
+  "focus_keyword": "voice search for hotels",
+  "secondary_keywords": [
+    "voice search in tourism",
+    "voice SEO",
+    "alexa hotel search",
+    "google assistant bookings",
+    "featured snippet hotel"
+  ],
+  "og_title": "Voice Search for Hotels: Optimising for Alexa and Google Assistant",
+  "og_description": "Voice SEO for hotels: schema markup, FAQs, featured snippets. Real case from a Naples boutique hotel: 155% more direct bookings and €11,400 a month saved in OTA commission.",
+  "category": "SEO & Digital Marketing",
+  "tags": [
+    "voice search",
+    "voice SEO",
+    "alexa",
+    "google assistant",
+    "siri",
+    "hotels",
+    "featured snippet"
+  ],
+  "estimated_reading_time": 10,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Voice Search for Hotels: Optimising for Alexa and Google Assistant",
+    "description": "Voice search for hotels: how to optimise for Alexa, Google Assistant and Siri. Half of travel searches will be spoken by 2027. The complete strategy.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/voice-search-hotel-ottimizzazione-alexa-google-assistant.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo.png"
+      }
+    },
+    "datePublished": "2026-03-12",
+    "dateModified": "2026-03-12",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/voice-search-hotels-alexa-google-assistant/"
+    },
+    "keywords": "voice search in tourism, voice SEO, alexa hotel search, google assistant bookings, featured snippet hotel",
+    "articleSection": "SEO & Digital Marketing",
+    "wordCount": 2278,
+    "inLanguage": "en"
+  }
+}

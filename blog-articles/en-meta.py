@@ -234,4 +234,60 @@ ARTICOLI = {
     'tags': ['virtual reality', 'augmented reality', 'VR', 'AR', 'tour operator', 'immersive experiences', 'innovation', 'tourism'],
 },
 
+'voice-search-hotel-ottimizzazione-alexa-google-assistant': {
+    'slug': 'voice-search-hotels-alexa-google-assistant',
+    'post_title': 'Voice Search for Hotels: Optimising for Alexa and Google Assistant',
+    'seo_title': 'Voice Search for Hotels: Alexa and Google',
+    'meta_description': 'Voice search for hotels: how to optimise for Alexa, Google Assistant and Siri. Half of travel searches will be spoken by 2027. The complete strategy.',
+    'focus_keyword': 'voice search for hotels',
+    'secondary_keywords': [
+        'voice search in tourism',
+        'voice SEO',
+        'alexa hotel search',
+        'google assistant bookings',
+        'featured snippet hotel',
+    ],
+    'og_title': 'Voice Search for Hotels: Optimising for Alexa and Google Assistant',
+    'og_description': 'Voice SEO for hotels: schema markup, FAQs, featured snippets. Real case from a Naples boutique hotel: 155% more direct bookings and €11,400 a month saved in OTA commission.',
+    'tags': ['voice search', 'voice SEO', 'alexa', 'google assistant', 'siri', 'hotels', 'featured snippet'],
+},
+
+'aumentare-prenotazioni-dirette-hotel-disintermediazione': {
+    'slug': 'increase-direct-bookings-hotels-disintermediation',
+    'post_title': 'Direct Bookings: Cutting OTA Commission and Raising Margins by 40%',
+    'seo_title': 'Direct Hotel Bookings: Cutting OTA Commission',
+    'meta_description': 'Direct hotel bookings: concrete strategies to reduce dependence on Booking.com, cut the 18% commission and raise margins by 40%. With a real case.',
+    'focus_keyword': 'direct hotel bookings',
+    'secondary_keywords': [
+        'hotel disintermediation',
+        'booking.com commission',
+        'hotel booking engine',
+        'direct selling for hotels',
+        'reduce OTA commission',
+        'book direct strategy',
+    ],
+    'og_title': 'Direct Bookings: Cutting OTA Commission and Raising Margins by 40%',
+    'og_description': 'On every €800 booking Booking.com keeps €144. The six pillars of a book-direct strategy that works, with the real figures of an Amalfi Coast hotel that went from 12% to 34% direct.',
+    'tags': ['direct bookings', 'disintermediation', 'booking engine', 'OTA commission', 'booking.com', 'revenue management', 'margins'],
+},
+
+'gestire-recensioni-online-hotel-booking-tripadvisor': {
+    'slug': 'managing-online-reviews-hotels-booking-tripadvisor',
+    'post_title': 'Online Reviews for Hotels: Going From 8.1 to 9.0 on Booking in Six Months',
+    'seo_title': 'Hotel Reviews: From 8.1 to 9.0 on Booking',
+    'meta_description': 'Managing hotel reviews: how to reply to negatives, raise the volume of positives and climb 0.9 points on Booking in six months. With a real case.',
+    'focus_keyword': 'hotel online reviews',
+    'secondary_keywords': [
+        'replying to negative reviews',
+        'hotel online reputation',
+        'booking.com score',
+        'tripadvisor for hotels',
+        'review management',
+        'guest satisfaction',
+    ],
+    'og_title': 'Online Reviews for Hotels: Going From 8.1 to 9.0 on Booking',
+    'og_description': 'Every tenth of a point on Booking is worth 2.3% of RevPAR, yet 71% of Italian properties never reply to negative reviews. The five-step formula, and a Naples hotel that climbed 0.9 points and 29 ranking places.',
+    'tags': ['online reviews', 'reputation', 'booking.com', 'tripadvisor', 'google reviews', 'guest service', 'guest experience'],
+},
+
 }
