@@ -19,8 +19,28 @@
   function iso(d) { return d.toISOString().slice(0, 10); }
   function addDays(isoStr, n) { var d = new Date(isoStr + 'T12:00:00'); d.setDate(d.getDate() + n); return iso(d); }
   function nights(a, b) { return Math.round((new Date(b + 'T12:00:00') - new Date(a + 'T12:00:00')) / 864e5); }
-  var MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
-  function short(isoStr) { var d = new Date(isoStr + 'T12:00:00'); return d.getDate() + ' ' + MESI[d.getMonth()]; }
+  /* Testi dell'interfaccia: italiano qui, le altre lingue arrivano da WordPress in window.fmaTesti.
+     %1, %2… sono i valori inseriti da fmt(). */
+  var T = Object.assign({
+    mesi: ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'],
+    giornoMese: '%1 %2', notte: '%1 notte', notti: '%1 notti', ospite: '%1 ospite', ospiti: '%1 ospiti',
+    adulto: '%1 adulto', adulti: '%1 adulti', bambino: '%1 bambino', bambini: '%1 bambini',
+    unaCasa: '1 casa', nCase: '%1 case', tutteCase: 'Tutte le case', scopri: 'Scopri la casa →',
+    pausa: 'Metti in pausa lo scorrimento', riprendi: 'Riprendi lo scorrimento',
+    dateMancanti: 'Indica sia la data di arrivo sia quella di partenza, oppure lasciale vuote.',
+    dateOrdine: 'La partenza deve essere dopo l’arrivo.',
+    staiCercando: 'Stai cercando: %1. Le date passano al modulo della casa che scegli.',
+    fotoStruttura: 'Foto della struttura', chiudi: 'Chiudi', fotoPrec: 'Foto precedente', fotoSucc: 'Foto successiva',
+    fotoAlt: '%1, foto %2 di %3', notteDalAl: '%1 · dal %2 al %3',
+    arrivoVuoto: 'Scegli la data di arrivo.', partenzaVuota: 'Scegli la data di partenza.', nomeCorto: 'Scrivi nome e cognome.',
+    emailErrata: 'Controlla l’indirizzo email (es. nome@esempio.it).', privacy: 'Serve il consenso per inviare la richiesta.',
+    mancaUna: 'Manca un’informazione: la trovi evidenziata qui sopra.', mancanoN: 'Mancano %1 informazioni: le trovi evidenziate qui sopra.',
+    laCasa: 'la casa', cameraConcordare: 'camera da concordare', riepilogoCasa: '%1 · dal %2 al %3', riepilogo: 'Dal %1 al %2',
+    connessione: 'Connessione non riuscita: la richiesta non è partita.', scriviA: 'Puoi scrivere direttamente a %1.'
+  }, window.fmaTesti || {});
+  function fmt(s) { var a = arguments; return String(s).replace(/%(\d)/g, function (m, i) { return a[+i] === undefined ? m : a[+i]; }); }
+  function plur(n, uno, molti) { return fmt(+n === 1 ? T[uno] : T[molti], n); }
+  function short(isoStr) { var d = new Date(isoStr + 'T12:00:00'); return fmt(T.giornoMese, d.getDate(), T.mesi[d.getMonth()]); }
   var today = iso(new Date());
 
   function linkDates(form) {
@@ -168,7 +188,7 @@
     function setPaused(p) {
       paused = p;
       btnToggle.setAttribute('aria-pressed', String(p));
-      btnToggle.setAttribute('aria-label', p ? 'Riprendi lo scorrimento' : 'Metti in pausa lo scorrimento');
+      btnToggle.setAttribute('aria-label', p ? T.riprendi : T.pausa);
       if (p) { if (progressTween) progressTween.pause(); clearTimeout(timer); } else restart();
     }
 
@@ -234,7 +254,7 @@
     var vis = visibleSlugs();
     $$('[data-place]', list).forEach(function (li) { li.hidden = vis.indexOf(li.dataset.place) < 0; });
     var st = $('[data-places-status]');
-    if (st) st.textContent = vis.length === 1 ? '1 casa' : vis.length + ' case';
+    if (st) st.textContent = vis.length === 1 ? T.unaCasa : fmt(T.nCase, vis.length);
     var empty = $('[data-places-empty]'); if (empty) empty.hidden = vis.length > 0;
     $$('.chip').forEach(function (c) {
       var on = !activeFilter.slug && c.dataset.filter === activeFilter.regione;
@@ -284,7 +304,7 @@
     L.tileLayer(TILES, { attribution: ATTR, maxZoom: 18 }).addTo(map);
     mapData.forEach(function (d, i) {
       var m = L.marker([d.lat, d.lng], { icon: pinIcon(i + 1), title: d.nome, alt: d.nome, riseOnHover: true });
-      m.bindPopup('<a class="popup" href="' + d.url + '"><img src="' + d.img + '" alt=""><strong>' + d.nome + '</strong><span>' + d.luogo + '</span><em>Scopri la casa →</em></a>');
+      m.bindPopup('<a class="popup" href="' + d.url + '"><img src="' + d.img + '" alt=""><strong>' + d.nome + '</strong><span>' + d.luogo + '</span><em>' + T.scopri + '</em></a>');
       m.on('mouseover', function () { hot(d.slug, true); });
       m.on('mouseout', function () { hot(d.slug, false); });
       m.on('click', function () {
@@ -317,8 +337,8 @@
       e.preventDefault();
       var err = $('[data-search-error]', search);
       var dove = search.dove.value, a = search.arrivo.value, p = search.partenza.value, n = search.ospiti.value;
-      if ((a && !p) || (!a && p)) { err.textContent = 'Indica sia la data di arrivo sia quella di partenza, oppure lasciale vuote.'; err.hidden = false; return; }
-      if (a && p && p <= a) { err.textContent = 'La partenza deve essere dopo l’arrivo.'; err.hidden = false; search.partenza.focus(); return; }
+      if ((a && !p) || (!a && p)) { err.textContent = T.dateMancanti; err.hidden = false; return; }
+      if (a && p && p <= a) { err.textContent = T.dateOrdine; err.hidden = false; search.partenza.focus(); return; }
       err.hidden = true;
       activeFilter = dove.indexOf('regione:') === 0 ? { regione: dove.slice(8), slug: '' } : { regione: '', slug: dove };
       applyFilter();
@@ -328,10 +348,10 @@
       $$('[data-place-link]').forEach(function (l) { l.href = l.getAttribute('href').split('?')[0] + '?' + q.toString(); });
       var echo = $('[data-search-echo]'), txt = $('[data-search-echo-text]');
       var parts = [];
-      parts.push(dove ? search.dove.options[search.dove.selectedIndex].text.replace(/ — tutte le case.*$/, '') : 'Tutte le case');
-      if (a) parts.push(short(a) + ' – ' + short(p) + ' (' + nights(a, p) + (nights(a, p) === 1 ? ' notte)' : ' notti)'));
-      parts.push(n + (n === '1' ? ' ospite' : ' ospiti'));
-      txt.textContent = 'Stai cercando: ' + parts.join(' · ') + '. Le date passano al modulo della casa che scegli.';
+      parts.push(dove ? search.dove.options[search.dove.selectedIndex].text.split(' — ')[0] : T.tutteCase);
+      if (a) parts.push(short(a) + ' – ' + short(p) + ' (' + plur(nights(a, p), 'notte', 'notti') + ')');
+      parts.push(plur(n, 'ospite', 'ospiti'));
+      txt.textContent = fmt(T.staiCercando, parts.join(' · '));
       echo.hidden = false;
       $('#strutture').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
     });
@@ -384,17 +404,17 @@
   if (galleryData.length) (function () {
     var dlg = document.createElement('dialog');
     dlg.className = 'lightbox';
-    dlg.setAttribute('aria-label', 'Foto della struttura');
-    dlg.innerHTML = '<div class="lightbox__bar"><p class="lightbox__count" aria-live="polite"></p><button type="button" class="slider__btn" data-lb-close aria-label="Chiudi">' + svg('M6 6l12 12M18 6L6 18') + '</button></div>' +
+    dlg.setAttribute('aria-label', T.fotoStruttura);
+    dlg.innerHTML = '<div class="lightbox__bar"><p class="lightbox__count" aria-live="polite"></p><button type="button" class="slider__btn" data-lb-close aria-label="' + T.chiudi + '">' + svg('M6 6l12 12M18 6L6 18') + '</button></div>' +
       '<div class="lightbox__stage"><img alt=""></div>' +
-      '<div class="lightbox__nav"><button type="button" class="slider__btn" data-lb-prev aria-label="Foto precedente">' + svg('M15 5l-7 7 7 7') + '</button><button type="button" class="slider__btn" data-lb-next aria-label="Foto successiva">' + svg('M9 5l7 7-7 7') + '</button></div>';
+      '<div class="lightbox__nav"><button type="button" class="slider__btn" data-lb-prev aria-label="' + T.fotoPrec + '">' + svg('M15 5l-7 7 7 7') + '</button><button type="button" class="slider__btn" data-lb-next aria-label="' + T.fotoSucc + '">' + svg('M9 5l7 7-7 7') + '</button></div>';
     document.body.appendChild(dlg);
     var im = $('img', dlg), cnt = $('.lightbox__count', dlg), i = 0, opener = null;
     var name = ($('.stay__title') || {}).textContent || '';
     function go(n) {
       i = (n + galleryData.length) % galleryData.length;
       im.src = galleryData[i];
-      im.alt = name + ', foto ' + (i + 1) + ' di ' + galleryData.length;
+      im.alt = fmt(T.fotoAlt, name, i + 1, galleryData.length);
       cnt.textContent = (i + 1) + ' / ' + galleryData.length;
       if (motion) gsap.fromTo(im, { autoAlpha: 0, scale: 0.98 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
     }
@@ -430,7 +450,7 @@
     var nightsEl = $('[data-nights]', req);
     function showNights() {
       var a = req.arrivo.value, p = req.partenza.value;
-      nightsEl.textContent = a && p && p > a ? nights(a, p) + (nights(a, p) === 1 ? ' notte' : ' notti') + ' · dal ' + short(a) + ' al ' + short(p) : '';
+      nightsEl.textContent = a && p && p > a ? fmt(T.notteDalAl, plur(nights(a, p), 'notte', 'notti'), short(a), short(p)) : '';
     }
     req.addEventListener('change', showNights); showNights();
 
@@ -463,11 +483,11 @@
     }
     function check(input) {
       var v = input.value.trim(), msg = '';
-      if (input.name === 'arrivo' && !v) msg = 'Scegli la data di arrivo.';
-      if (input.name === 'partenza') { if (!v) msg = 'Scegli la data di partenza.'; else if (req.arrivo.value && v <= req.arrivo.value) msg = 'La partenza deve essere dopo l’arrivo.'; }
-      if (input.name === 'nome' && v.length < 2) msg = 'Scrivi nome e cognome.';
-      if (input.name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = 'Controlla l’indirizzo email (es. nome@esempio.it).';
-      if (input.name === 'privacy' && !input.checked) msg = 'Serve il consenso per inviare la richiesta.';
+      if (input.name === 'arrivo' && !v) msg = T.arrivoVuoto;
+      if (input.name === 'partenza') { if (!v) msg = T.partenzaVuota; else if (req.arrivo.value && v <= req.arrivo.value) msg = T.dateOrdine; }
+      if (input.name === 'nome' && v.length < 2) msg = T.nomeCorto;
+      if (input.name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = T.emailErrata;
+      if (input.name === 'privacy' && !input.checked) msg = T.privacy;
       fieldError(input, msg);
       return !msg;
     }
@@ -482,7 +502,7 @@
       var fields = [req.arrivo, req.partenza, req.nome, req.email, req.privacy];
       var bad = fields.filter(function (f) { return !check(f); });
       if (bad.length) {
-        errBox.textContent = bad.length === 1 ? 'Manca un’informazione: la trovi evidenziata qui sopra.' : 'Mancano ' + bad.length + ' informazioni: le trovi evidenziate qui sopra.';
+        errBox.textContent = bad.length === 1 ? T.mancaUna : fmt(T.mancanoN, bad.length);
         errBox.hidden = false; bad[0].focus(); return;
       }
       errBox.hidden = true;
@@ -491,11 +511,13 @@
       var spin = setTimeout(function () { btn.classList.add('is-loading'); }, 150);
       function stop() { clearTimeout(spin); btn.classList.remove('is-loading'); btn.disabled = false; }
       function riepilogo(conCasa) {
-        var casa = ($('.stay__title') || {}).textContent || 'la casa';
+        var casa = ($('.stay__title') || {}).textContent || T.laCasa;
         var a = req.arrivo.value, p = req.partenza.value, ad = +req.adulti.value, bb = +req.bambini.value;
-        var chi = ad + (ad === 1 ? ' adulto' : ' adulti') + (bb ? ', ' + bb + (bb === 1 ? ' bambino' : ' bambini') : '');
-        var camera = req.camera.value || 'camera da concordare';
-        return (conCasa ? casa + ' · dal ' : 'Dal ') + short(a) + ' al ' + short(p) + ' (' + nights(a, p) + (nights(a, p) === 1 ? ' notte' : ' notti') + ') · ' + chi + ' · ' + camera + ' · ' + req.tipo.value + '.';
+        var chi = plur(ad, 'adulto', 'adulti') + (bb ? ', ' + plur(bb, 'bambino', 'bambini') : '');
+        var camera = req.camera.value || T.cameraConcordare;
+        var tipo = $('[name="tipo"]:checked + span', req); // l'etichetta nella lingua della pagina, non il valore inviato
+        var date = conCasa ? fmt(T.riepilogoCasa, casa, short(a), short(p)) : fmt(T.riepilogo, short(a), short(p));
+        return date + ' (' + plur(nights(a, p), 'notte', 'notti') + ') · ' + chi + ' · ' + camera + ' · ' + (tipo ? tipo.textContent : req.tipo.value) + '.';
       }
       function mostraConferma(testo) {
         $('[data-request-summary]', done).textContent = testo;
@@ -520,7 +542,7 @@
           .catch(function () {
             stop();
             var to = $('.request__to strong', req);
-            errBox.textContent = 'Connessione non riuscita: la richiesta non è partita.' + (to ? ' Puoi scrivere direttamente a ' + to.textContent + '.' : '');
+            errBox.textContent = T.connessione + (to ? ' ' + fmt(T.scriviA, to.textContent) : '');
             errBox.hidden = false;
           });
         return;

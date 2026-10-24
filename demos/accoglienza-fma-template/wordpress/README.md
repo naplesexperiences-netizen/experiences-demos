@@ -19,7 +19,8 @@ Tema e plugin sono separati apposta: strutture e richieste restano nel sito anch
    - **Aspetto → Temi → Aggiungi nuovo → Carica tema**: carica e attiva `accoglienza-fma.zip`.
 3. **Impostazioni → Permalink**: scegli «Nome articolo» e salva. Servono gli indirizzi `/strutture/<nome>/`.
 4. Contenuti, in uno di questi tre modi. Tutti importano 8 strutture, 6 partner e 5 articoli con le foto. Si possono rilanciare: aggiornano quello che c'è già e non creano doppioni.
-     Un file con i soli articoli (`"strutture": []`) aggiunge o aggiorna gli articoli e li collega alle case già presenti, senza toccare le schede delle strutture.
+   Un file con i soli articoli (`"strutture": []`) aggiunge o aggiorna gli articoli e li collega alle case già presenti, senza toccare le schede delle strutture.
+   Le immagini si riconoscono dal percorso nello zip (es. `blog/<slug>.webp`): se il file è cambiato viene caricata la nuova versione e quella vecchia resta in **Media**; se è uguale non si carica niente.
    - **Dal browser** (consigliato): **Strumenti → Importa contenuti FMA**, scegli `fma-contenuti.zip` e premi *Importa*. Una barra mostra l'avanzamento, una struttura alla volta, in circa un minuto. Se la pagina si chiude o un passo fallisce, riaprendola riprende da dove era rimasta.
      - Se lo zip supera il limite di caricamento dell'hosting (indicato nella pagina), caricalo via FTP in `wp-content/uploads/fma-contenuti.zip` e scegli «File già sul server». A importazione finita il file viene cancellato.
      - «Configura anche il sito» crea le pagine Home e Blog, il menu, i permalink e il logo, e rimuove i contenuti di esempio di WordPress. È già spuntato su un sito nuovo; lascialo spento se il sito è già avviato.
@@ -42,6 +43,7 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Loghi che scorrono | **Partner**: titolo, logo (immagine in evidenza) e link. |
 | Chi siamo, testata, piè di pagina | **Personalizza → Home page**. Logo: **Personalizza → Identità del sito**. |
 | Pagina della struttura | Riassunto = introduzione; il testo dell'editor diventa una sezione per ogni titolo H2. Camere, galleria, dintorni, regole, contatti e prezzo sono nei box sotto l'editor. |
+| Prezzo e tassa di soggiorno (scheda contatti della casa) | Box *Scheda della struttura*: «Prezzo minimo a notte», «Il prezzo è» (a persona o a camera) e «Tassa di soggiorno» (testo libero, con importo ed esenzioni). Compaiono solo se compilati. |
 | Box «Dormi vicino» negli articoli | Box *Casa collegata* nella modifica dell'articolo. |
 | «Come si prenota» (3 passi) in home | **Personalizza → Home page**, campi «Passo 1/2/3» (titolo, testo e foto; senza foto scelta si usa una foto delle case). |
 | Recensioni («Dicono di noi» in home, «Cosa dicono gli ospiti» nella pagina della casa) | **Strutture → Tutte le recensioni**: nome dell'ospite, testo, casa, fonte, voto, periodo e link all'originale. Solo recensioni reali. Senza recensioni pubblicate le sezioni non compaiono. |
@@ -49,7 +51,28 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 | Menu | **Aspetto → Menu**, posizioni «Menu principale» e «Menu a piè di pagina». |
 | Anteprima dei link condivisi (WhatsApp, Facebook, LinkedIn) | Strutture e articoli usano l'immagine in evidenza; home e altre pagine la foto di **Personalizza → Condivisione sui social** (se vuota, la prima casa dello slider). I tag si disattivano da soli con Yoast, Rank Math, AIOSEO, SEOPress o The SEO Framework. |
 | Informativa privacy (link nel modulo e nel piè di pagina) | **Impostazioni → Privacy**. Se manca, la bacheca mostra un avviso con il pulsante «Crea l’informativa»: crea la pagina in bozza con un testo già scritto per questo sito; vanno completati i punti tra parentesi quadre «[da completare…]» prima di pubblicarla. Finché manca, il modulo non mostra link vuoti. |
+| Titolo e descrizione su Google (case) | Box *Su Google e nelle condivisioni*: «Titolo per Google» (nome, tipo di casa e località) e «Descrizione per Google» (120–155 caratteri, frasi intere). Le otto case FMA li hanno già compilati; se vuoti, il titolo si compone da solo e la descrizione è l’inizio del riassunto, tagliata a fine frase. |
+| Titolo e descrizione su Google (home) | **Personalizza → Google e condivisione**. Il titolo è quello che si cerca («Case per ferie religiose in Italia»), non lo slogan. Archivio e regioni hanno titoli automatici («Case per ferie in Campania»). |
+| Testo alternativo delle foto | **Media → Libreria**, campo «Testo alternativo» di ogni foto. Le foto delle otto case ne hanno già uno che descrive cosa mostrano. |
+| Eventi di Google Analytics | Nessuna impostazione nel sito: nella pagina di una casa il tema invia `richiesta_iniziata` (inizio compilazione) e `generate_lead` (richiesta partita davvero), e aggiunge il parametro `casa` a tutti gli eventi della pagina (nella configurazione del tag di Site Kit, filtro `googlesitekit_gtag_opt`). I clic su email, telefono e WhatsApp li registra Site Kit (`contact_link_click`, parametro `link_type`). Partono solo se il tag di Google è presente, cioè con Site Kit attivo e il consenso dato. In Analytics: dimensioni personalizzate `casa` e `tipo_soggiorno`, evento chiave `generate_lead`. |
 | Icona nella scheda del browser | **Personalizza → Identità del sito → Icona del sito** (PNG quadrato di almeno 512 px). |
+
+## Lingue (Polylang)
+
+Il sito è in italiano; inglese, francese, spagnolo, portoghese e cinese si aggiungono con **Polylang** (versione gratuita).
+
+1. **Lingue → Lingue**: aggiungi English (en_GB), Français (fr_FR), Español (es_ES), Português (pt_PT) e 中文 (zh_CN). L'italiano resta la lingua predefinita.
+2. **Lingue → Impostazioni → Modifiche URL**: spunta «L’URL della pagina iniziale contiene il codice della lingua…», così la home inglese è `/en/` e non `/en/home-en/`.
+3. **Strumenti → Traduzioni FMA**: scegli le lingue e premi *Importa le traduzioni*. Crea, collegate a quelle italiane, le 8 case (testi, camere, regole, dintorni, titolo e descrizione per Google), i 21 articoli, le pagine Home e Blog, le categorie, le regioni, i servizi e il motto del sito. Foto, coordinate, contatti, email per le richieste e prezzi si copiano dalla versione italiana. Con WP-CLI: `wp fma traduzioni [--lingua=en]`.
+
+| Cosa | Dove |
+|---|---|
+| Testi delle traduzioni importate | `fma-strutture/traduzioni/<lingua>.json`. L'importazione si può rilanciare: aggiorna le traduzioni con questi file, quindi **le correzioni fatte a mano in amministrazione vengono sovrascritte**. Dopo la prima importazione conviene correggere direttamente in WordPress e non rilanciarla. |
+| Testi del tema e del modulo (pulsanti, etichette, messaggi, email all'ospite) | `accoglienza-fma/languages/<locale>.po` e `fma-richieste/languages/fma-richieste-<locale>.po` (con `.mo` e `.l10n.php`). I testi predefiniti della home in **Personalizza** sono già tradotti; se li cambi, la versione nelle altre lingue si scrive in **Lingue → Traduzioni stringhe**, gruppo «Accoglienza FMA». |
+| Selettore della lingua | In testata accanto al pulsante «Richiedi un soggiorno» e nel menu su telefono. Compare solo con Polylang attivo. |
+| Email alla casa | Restano in italiano, con la riga «Lingua dell’ospite: …». La copia all'ospite è nella sua lingua. |
+| Informativa privacy e cookie | Non tradotte: finché manca la traduzione, link e consenso del modulo rimandano alla pagina italiana. |
+| Nuova casa o nuovo articolo | Si scrive in italiano; la traduzione si crea dal «+» di Polylang nella colonna della lingua. |
 
 ## Scelte tecniche
 
@@ -58,6 +81,8 @@ Ogni struttura deve avere l'**Email per le richieste di soggiorno** (box *Contat
 - **Home leggera**: lo slider carica subito solo la prima foto e prepara la successiva; le altre arrivano quando stanno per comparire. Le foto hanno più misure (16:10 da 800, 1200 e 1920 px; miniature da 400 px) e ogni immagine dichiara la sua larghezza a schermo, così il browser scarica la misura giusta. Su un sito già popolato, dopo l'aggiornamento del tema rigenera le miniature (`wp media regenerate --only-missing` oppure il plugin *Regenerate Thumbnails*).
 - **Aggiornamenti senza cache vecchia**: CSS e JS del tema hanno nell'indirizzo la data di modifica del file, quindi dopo un aggiornamento browser e cache prendono subito i file nuovi. Con WP-Optimize o un'altra cache di pagina, svuotala dopo aver aggiornato il tema.
 - **Cache svuotata dopo gli aggiornamenti**: quando cambia uno dei file di tema o plugin FMA (nuovo zip caricato), alla prima pagina non in cache — per esempio la bacheca — `fma-strutture` svuota la cache di WP-Optimize (e di WP Rocket, W3 Total Cache, WP Super Cache, LiteSpeed se presenti).
+- **robots.txt pulito**: un solo gruppo per User-agent anche quando un plugin aggiunge le sue regole; `/sitemap_index.xml` porta a `/wp-sitemap.xml`.
+- **Aggiornamenti dei contenuti senza sovrascrivere**: descrizioni per Google, testi alternativi e i testi riscritti di Caorle e Mazzarello (prima uguali ai siti delle case) arrivano con l’aggiornamento del plugin, una volta sola e solo dove il campo è vuoto o ancora quello importato.
 - **Nome di accesso non visibile**: niente pagine autore (portano alla home), niente mappa del sito degli utenti, niente autore nei dati di incorporamento e nei feed, elenco utenti delle API solo per chi è collegato.
 - **Leaflet solo dove c'è una mappa**: home, archivio, regioni, singola struttura.
 - **Nessun nonce nel modulo di richiesta**, perché le pagine sono in cache. L'antispam usa honeypot, tempo minimo e limite per IP (dettagli in `../README.md`).

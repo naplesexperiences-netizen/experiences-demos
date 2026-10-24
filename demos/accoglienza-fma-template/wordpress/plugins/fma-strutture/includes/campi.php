@@ -16,10 +16,13 @@ function fma_campi_struttura(): array {
 		'fma_lat'           => array( 'tipo' => 'number', 'etichetta' => 'Latitudine', 'aiuto' => 'Es. 40.7522. Su openstreetmap.org: tasto destro sul punto → “Mostra indirizzo”.' ),
 		'fma_lng'           => array( 'tipo' => 'number', 'etichetta' => 'Longitudine', 'aiuto' => 'Es. 14.4265.' ),
 		'fma_camere_totali' => array( 'tipo' => 'integer', 'etichetta' => 'Numero di camere' ),
-		'fma_prezzo_da'     => array( 'tipo' => 'number', 'etichetta' => 'Prezzo indicativo da (€ a notte)' ),
-		'fma_tassa'         => array( 'tipo' => 'string', 'etichetta' => 'Tassa di soggiorno', 'aiuto' => 'Es. 2 € a persona per notte.' ),
+		'fma_prezzo_da'     => array( 'tipo' => 'number', 'etichetta' => 'Prezzo minimo a notte (€)', 'aiuto' => 'Il prezzo più basso, indicativo. Vuoto: il prezzo non compare.' ),
+		'fma_prezzo_unita'  => array( 'tipo' => 'string', 'etichetta' => 'Il prezzo è', 'opzioni' => array( '' => 'Non specificato (solo «a notte»)', 'persona' => 'A persona, a notte', 'camera' => 'A camera, a notte' ) ),
+		'fma_tassa'         => array( 'tipo' => 'string', 'etichetta' => 'Tassa di soggiorno', 'aiuto' => 'Importo e regole, es. 2 € a persona per notte, esenti i minori di 14 anni. Compare accanto al prezzo.' ),
 		'fma_orari'         => array( 'tipo' => 'string', 'etichetta' => 'Orari della reception' ),
 		'fma_booking_url'   => array( 'tipo' => 'url', 'etichetta' => 'Pagina su Booking.com (facoltativa)' ),
+		'fma_seo_titolo'      => array( 'tipo' => 'string', 'etichetta' => 'Titolo per Google', 'aiuto' => 'Nome, tipo di casa e località, entro 60 caratteri. Es. «Villa Tiberiade, casa per ferie a Torre Annunziata». Vuoto: si compone da solo.' ),
+		'fma_seo_descrizione' => array( 'tipo' => 'string', 'etichetta' => 'Descrizione per Google', 'righe' => 3, 'aiuto' => 'Una o due frasi intere, fra 120 e 155 caratteri: dove si trova, per chi è, cosa offre. Compare sotto il titolo nei risultati di Google e nelle anteprime di WhatsApp. Vuoto: l’inizio del riassunto.' ),
 		'fma_in_slider'     => array( 'tipo' => 'boolean', 'etichetta' => 'Mostra nello slider della home' ),
 		'fma_referente'     => array( 'tipo' => 'string', 'etichetta' => 'Nome del referente o della reception' ),
 		'fma_logo'          => array( 'tipo' => 'integer', 'etichetta' => 'Logo della struttura' ),
@@ -47,6 +50,13 @@ function fma_campi_ripetibili(): array {
 			'distanza' => 'string',
 		),
 	);
+}
+
+/** Valore pulito di un campo semplice; i campi a scelta accettano solo le loro opzioni. */
+function fma_pulisci_campo( string $chiave, $valore ) {
+	$campo  = fma_campi_struttura()[ $chiave ];
+	$pulito = fma_pulisci_valore( $valore, $campo['tipo'] );
+	return isset( $campo['opzioni'] ) && ! array_key_exists( (string) $pulito, $campo['opzioni'] ) ? '' : $pulito;
 }
 
 function fma_pulisci_valore( $valore, string $tipo ) {
@@ -111,16 +121,15 @@ function fma_registra_meta(): void {
 	$tipi_rest = array( 'string' => 'string', 'email' => 'string', 'url' => 'string', 'integer' => 'integer', 'number' => 'number', 'boolean' => 'boolean' );
 
 	foreach ( fma_campi_struttura() as $chiave => $campo ) {
-		$tipo = $campo['tipo'];
 		register_post_meta(
 			'struttura',
 			$chiave,
 			array(
-				'type'              => $tipi_rest[ $tipo ],
+				'type'              => $tipi_rest[ $campo['tipo'] ],
 				'single'            => true,
 				'show_in_rest'      => 'fma_email' !== $chiave, // l'email di destinazione resta fuori dall'API pubblica
-				'sanitize_callback' => function ( $v ) use ( $tipo ) {
-					return fma_pulisci_valore( $v, $tipo );
+				'sanitize_callback' => function ( $v ) use ( $chiave ) {
+					return fma_pulisci_campo( $chiave, $v );
 				},
 				'auth_callback'     => $permesso,
 			)

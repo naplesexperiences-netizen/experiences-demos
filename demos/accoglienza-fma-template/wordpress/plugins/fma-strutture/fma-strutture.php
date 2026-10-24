@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       FMA Strutture
  * Description:       Strutture ricettive, partner e articoli collegati per il sito Accoglienza delle Salesiane.
- * Version:           1.2.1
+ * Version:           1.5.3
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            experiences srl
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FMA_STRUTTURE_VERSIONE', '1.2.1' );
+define( 'FMA_STRUTTURE_VERSIONE', '1.5.3' );
 define( 'FMA_STRUTTURE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FMA_STRUTTURE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -22,14 +22,20 @@ require FMA_STRUTTURE_DIR . 'includes/dati.php';
 require FMA_STRUTTURE_DIR . 'includes/recensioni.php';
 require FMA_STRUTTURE_DIR . 'includes/riservatezza.php';
 require FMA_STRUTTURE_DIR . 'includes/cache.php';
+require FMA_STRUTTURE_DIR . 'includes/seo.php';
+require FMA_STRUTTURE_DIR . 'includes/polylang.php';
 
 if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 	require FMA_STRUTTURE_DIR . 'includes/importatore.php';
+	require FMA_STRUTTURE_DIR . 'includes/traduzioni.php';
+	require FMA_STRUTTURE_DIR . 'includes/testi.php';
+	require FMA_STRUTTURE_DIR . 'includes/alt.php';
 }
 
 if ( is_admin() ) {
 	require FMA_STRUTTURE_DIR . 'includes/admin.php';
 	require FMA_STRUTTURE_DIR . 'includes/importa-pagina.php';
+	require FMA_STRUTTURE_DIR . 'includes/traduzioni-pagina.php';
 }
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {

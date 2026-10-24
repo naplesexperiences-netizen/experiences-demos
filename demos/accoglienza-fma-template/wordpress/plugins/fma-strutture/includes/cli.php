@@ -40,3 +40,44 @@ class FMA_Importa_Comando {
 }
 
 WP_CLI::add_command( 'fma importa', 'FMA_Importa_Comando' );
+
+/**
+ * Importa le traduzioni dai file traduzioni/<lingua>.json del plugin (serve Polylang con le lingue aggiunte).
+ *
+ * ## OPTIONS
+ *
+ * [--lingua=<slug>]
+ * : Solo questa lingua (es. en). Senza, tutte quelle presenti in Polylang.
+ *
+ * @when after_wp_load
+ */
+WP_CLI::add_command(
+	'fma traduzioni',
+	function ( $args, $assoc ) {
+		if ( FMA_Traduttore::problema() ) {
+			WP_CLI::error( FMA_Traduttore::problema() );
+		}
+		$lingue = FMA_Traduttore::lingue();
+		if ( ! empty( $assoc['lingua'] ) ) {
+			$lingue = array_values( array_intersect( $lingue, array( sanitize_key( $assoc['lingua'] ) ) ) );
+		}
+		if ( ! $lingue ) {
+			WP_CLI::error( 'Nessuna lingua da importare.' );
+		}
+		$traduttore = new FMA_Traduttore(
+			function ( string $messaggio, string $tipo ) {
+				'avviso' === $tipo ? WP_CLI::warning( $messaggio ) : WP_CLI::log( $messaggio );
+			}
+		);
+		foreach ( FMA_Traduttore::passi( $lingue ) as $passo ) {
+			try {
+				$traduttore->esegui( $passo );
+				WP_CLI::log( '✓ ' . $passo[3] );
+			} catch ( Throwable $e ) {
+				WP_CLI::error( $passo[3] . ': ' . $e->getMessage() );
+			}
+		}
+		FMA_Traduttore::concludi();
+		WP_CLI::success( 'Traduzioni importate: ' . implode( ', ', $lingue ) );
+	}
+);
