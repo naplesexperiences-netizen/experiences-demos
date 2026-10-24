@@ -345,11 +345,11 @@
    "indirizzo": "30021 Caorle (VE)",
    "lat": 45.5979147,
    "lng": 12.8876282,
-   "intro": "La Casa per Ferie San Giuseppe è gestita dall’Istituto Maria Ausiliatrice delle Figlie di Maria Ausiliatrice. Aspira a essere molto più di una struttura ricettiva: un luogo dove ogni persona trovi serenità e autentico calore umano, dove il tempo rallenta e la bellezza della natura e del mare invita a ritrovare equilibrio.",
+   "intro": "A Caorle, a pochi passi dal mare, le Figlie di Maria Ausiliatrice accolgono famiglie, gruppi e singoli in una casa semplice e familiare. Qui il ritmo rallenta: il verde, il mare e un clima sereno aiutano a ritrovare l’equilibrio.",
    "sezioni": [
     {
-     "titolo": "La carta dei valori",
-     "html": "<ul><li><strong>Una casa per tutti.</strong> Ogni angolo, ogni gesto, ogni sorriso è pensato per far sentire gli ospiti al sicuro e a proprio agio.</li><li><strong>Accoglienza.</strong> Ogni persona è accolta con calore e rispetto, indipendentemente dal suo percorso di vita, cultura o credo.</li><li><strong>Oasi di pace.</strong> Un ambiente sereno, immerso nella natura a un passo dal mare, per ritrovare un ritmo di vita più lento.</li><li><strong>Familiarità.</strong> Relazioni autentiche, fatte di dialogo, ascolto e rispetto reciproco, anche per brevi periodi.</li><li><strong>Benvenuti.</strong> Dall’ospitalità dello staff alla cura degli spazi, ogni dettaglio comunica attenzione e premura.</li></ul>"
+     "titolo": "Come accogliamo",
+     "html": "<ul><li><strong>Aperta a tutti.</strong> Chi arriva è accolto con rispetto, qualunque siano la sua storia, la sua cultura o la sua fede.</li><li><strong>Un clima di famiglia.</strong> Si parla, ci si ascolta, ci si conosce, anche in un soggiorno di pochi giorni.</li><li><strong>Tranquillità.</strong> Il verde e la vicinanza del mare invitano a vivere con più calma.</li><li><strong>Cura dei dettagli.</strong> Gli spazi sono tenuti con attenzione e chi lavora nella casa è sempre disponibile.</li></ul>"
     }
    ],
    "servizi": [
@@ -482,15 +482,15 @@
    "indirizzo": "Corso Italia, Zoverallo, 28921 Verbania (VB)",
    "lat": 45.9473313,
    "lng": 8.5780776,
-   "intro": "Un luogo semplice e silenzioso, immerso nella natura, dove trovare tempo per te, per il tuo gruppo e per la spiritualità. Un’accoglienza familiare fatta di gentilezza, ascolto e attenzione alla persona, con camere curate, parco panoramico, sale incontri, cappelle, parcheggio privato e una meravigliosa vista sul Lago Maggiore.",
+   "intro": "Sulla collina di Zoverallo, sopra Verbania, la casa si affaccia sul Lago Maggiore da un grande parco. È un posto tranquillo per chi viaggia da solo, per i gruppi e per chi cerca qualche giorno di silenzio: camere curate, sale per gli incontri, cappelle e parcheggio privato.",
    "sezioni": [
     {
-     "titolo": "Un luogo che invita al silenzio",
-     "html": "<p>Immersa nella natura di Zoverallo e affacciata sul Lago Maggiore, la Casa propone e ospita ritiri ed esercizi spirituali, in un contesto semplice e riservato. Durante l’anno organizza percorsi, incontri e corsi con momenti di preghiera, ascolto e approfondimento.</p>"
+     "titolo": "Ritiri e incontri durante l’anno",
+     "html": "<p>La casa accoglie ritiri ed esercizi spirituali, sia dei gruppi che arrivano con un proprio programma sia proposti dalla comunità, con tempi di preghiera, ascolto e approfondimento. Chi viene semplicemente per riposare trova lo stesso clima raccolto.</p>"
     },
     {
-     "titolo": "Il nostro parco panoramico",
-     "html": "<p>Sulla collina di Zoverallo, il parco regala una vista aperta sul lago, dalla luce del mattino alla calma del tramonto. Il belvedere è uno dei punti più suggestivi: una terrazza naturale affacciata sul paesaggio.</p><ul><li>Camminate lente e meditazione</li><li>Yoga all’aperto</li><li>Momenti di silenzio e preghiera</li><li>Lettura e studio</li><li>Incontri di gruppo nella natura</li></ul>"
+     "titolo": "Il parco e il belvedere",
+     "html": "<p>Dal parco il lago resta sempre in vista, dalle prime ore del giorno fino al tramonto. Il belvedere, una terrazza naturale sul paesaggio, è il posto giusto per fermarsi un momento.</p><ul><li>Passeggiate e meditazione</li><li>Yoga all’aperto</li><li>Preghiera e silenzio</li><li>Lettura e studio</li><li>Incontri di gruppo all’aperto</li></ul>"
     }
    ],
    "servizi": [
