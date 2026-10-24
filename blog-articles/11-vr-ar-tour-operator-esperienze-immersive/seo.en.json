@@ -1,0 +1,61 @@
+{
+  "slug": "vr-ar-tour-operators-immersive-experiences",
+  "lang": "en",
+  "translation_of": "vr-ar-tour-operator-esperienze-immersive",
+  "post_title": "Virtual and Augmented Reality for Tour Operators: Selling the Experience Before It Happens",
+  "seo_title": "VR for Tour Operators: Selling Immersive Experiences",
+  "meta_description": "Virtual and augmented reality for tour operators: how immersive previews raise conversion by 40% and average booking value by 28%. Costs and a real case.",
+  "focus_keyword": "virtual reality for tour operators",
+  "secondary_keywords": [
+    "virtual tours",
+    "AR in tourism",
+    "immersive experiences",
+    "tourism technology",
+    "selling tours online",
+    "tourism metaverse"
+  ],
+  "og_title": "Virtual and Augmented Reality for Tour Operators",
+  "og_description": "VR and AR previews for tour operators: 40% more conversion and 28% higher order value. Real case: a Naples agency from 140 to 361 bookings a month in six months.",
+  "category": "Tour Operators & Innovation",
+  "tags": [
+    "virtual reality",
+    "augmented reality",
+    "VR",
+    "AR",
+    "tour operator",
+    "immersive experiences",
+    "innovation",
+    "tourism"
+  ],
+  "estimated_reading_time": 11,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Virtual and Augmented Reality for Tour Operators: Selling the Experience Before It Happens",
+    "description": "Virtual and augmented reality for tour operators: how immersive previews raise conversion by 40% and average booking value by 28%. Costs and a real case.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/vr-ar-tour-operator-esperienze-immersive.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo.png"
+      }
+    },
+    "datePublished": "2026-03-05",
+    "dateModified": "2026-03-05",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/vr-ar-tour-operators-immersive-experiences/"
+    },
+    "keywords": "virtual tours, AR in tourism, immersive experiences, tourism technology, selling tours online, tourism metaverse",
+    "articleSection": "Tour Operators & Innovation",
+    "wordCount": 2331,
+    "inLanguage": "en"
+  }
+}
