@@ -87,4 +87,58 @@ ARTICOLI = {
     'tags': ['local SEO', 'hotels', 'google business profile', 'tourism marketing', 'search ranking'],
 },
 
+'da-5-a-20-prenotazioni-mese-agenzia-tour': {
+    'slug': 'from-5-to-20-bookings-month-tour-agency',
+    'post_title': 'From 5 to 20 Bookings a Month: A Naples Tour Agency Case Study',
+    'seo_title': 'From 5 to 20 Bookings a Month: A Real Case Study',
+    'meta_description': 'Growing a travel agency from 5 to 20 bookings a month in 90 days with a new site, OTAs, SEO and an AI chatbot. Real figures and a checklist you can repeat.',
+    'focus_keyword': 'grow travel agency bookings',
+    'secondary_keywords': [
+        'digitising a travel agency',
+        'tour operator marketing',
+        'selling tours online',
+        'travel agency naples',
+        'tourism case study',
+    ],
+    'og_title': 'From 5 to 20 Bookings a Month: A Naples Tour Agency Case Study',
+    'og_description': 'In twelve months: four times the bookings, revenue from €21K to €92K, 38% of sales direct. Every figure, every step and a checklist you can repeat.',
+    'tags': ['case study', 'travel agency', 'tour operator', 'digitisation', 'naples', 'tourism marketing'],
+},
+
+'vendere-tour-online-getyourguide-viator-sito-proprio': {
+    'slug': 'selling-tours-online-getyourguide-viator-own-site',
+    'post_title': 'GetYourGuide vs Viator vs Your Own Site: Where to Sell Your Tours in 2026',
+    'seo_title': 'Selling Tours Online 2026: GetYourGuide vs Viator',
+    'meta_description': 'Selling tours online in 2026: GetYourGuide, Viator, Airbnb Experiences and your own site compared. Real commissions, strengths, weaknesses and the winning mix.',
+    'focus_keyword': 'selling tours online',
+    'secondary_keywords': [
+        'getyourguide commission',
+        'viator vs getyourguide',
+        'online tour platforms',
+        'tour operator strategy',
+        'airbnb experiences',
+    ],
+    'og_title': 'GetYourGuide vs Viator vs Your Own Site: Where to Sell Your Tours',
+    'og_description': 'A full comparison of the four main platforms for selling tours. Real commissions, strengths and weaknesses, and the multi-channel mix that wins, with a worked example.',
+    'tags': ['selling tours online', 'getyourguide', 'viator', 'airbnb experiences', 'tour operator', 'digital strategy'],
+},
+
+'channel-manager-tour-operator': {
+    'slug': 'channel-manager-tour-operators',
+    'post_title': 'Channel Managers for Tour Operators: 100+ Tours From One Dashboard',
+    'seo_title': 'Channel Manager for Tour Operators: 2026 Guide',
+    'meta_description': 'Channel managers for tour operators: features, OTA integrations, dynamic pricing and return. Real case with 300 tours: €640K a year. A 60-day roadmap.',
+    'focus_keyword': 'channel manager for tour operators',
+    'secondary_keywords': [
+        'tour operator software',
+        'multi channel tour management',
+        'dynamic pricing for tours',
+        'rezdy bokun',
+        'tour operator inventory',
+    ],
+    'og_title': 'Channel Managers for Tour Operators: 100+ Tours From One Dashboard',
+    'og_description': 'Everything you need to choose and implement a channel manager for tours: the features that matter, the integrations, dynamic pricing and the return, with a real case.',
+    'tags': ['channel manager', 'tour operator', 'tour software', 'dynamic pricing', 'rezdy', 'bokun'],
+},
+
 }
