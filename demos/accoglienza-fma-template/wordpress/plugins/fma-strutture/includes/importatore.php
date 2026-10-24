@@ -78,7 +78,11 @@ class FMA_Importatore {
 		return $trovati ? (int) $trovati[0] : 0;
 	}
 
-	/** Carica un file della cartella immagini una sola volta (riconosciuto dal percorso di origine). */
+	/**
+	 * Carica un file della cartella immagini una sola volta (riconosciuto dal percorso di origine).
+	 * Se il file con lo stesso percorso è cambiato, carica la nuova versione: quella vecchia resta
+	 * in Media, senza più il percorso di origine.
+	 */
 	private function allegato( string $relativo, int $genitore = 0, string $alt = '' ): int {
 		if ( ! $this->cartella || ! $relativo ) {
 			return 0;
@@ -86,14 +90,23 @@ class FMA_Importatore {
 		if ( isset( $this->allegati[ $relativo ] ) ) {
 			return $this->allegati[ $relativo ];
 		}
-		$esistente = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => '_fma_origine', 'meta_value' => $relativo ) );
-		if ( $esistente ) {
-			return $this->allegati[ $relativo ] = (int) $esistente[0];
-		}
 		// Solo file dentro la cartella delle immagini: un percorso con ../ nel file dati non esce di lì.
 		$base     = realpath( $this->cartella );
 		$percorso = realpath( $this->cartella . '/' . $relativo );
 		if ( ! $base || ! $percorso || ! str_starts_with( $percorso, $base . DIRECTORY_SEPARATOR ) || ! is_file( $percorso ) ) {
+			$percorso = '';
+		}
+		$esistente = get_posts( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => '_fma_origine', 'meta_value' => $relativo ) );
+		if ( $esistente ) {
+			$id = (int) $esistente[0];
+			if ( ! $percorso || $this->stesso_file( $id, $percorso ) ) {
+				return $this->allegati[ $relativo ] = $id;
+			}
+			delete_post_meta( $id, '_fma_origine' );
+			update_post_meta( $id, '_fma_origine_sostituita', $relativo );
+			$this->log( "Immagine aggiornata: $relativo" );
+		}
+		if ( ! $percorso ) {
 			$this->log( "Immagine mancante: $relativo", 'avviso' );
 			return 0;
 		}
@@ -106,14 +119,39 @@ class FMA_Importatore {
 			return 0;
 		}
 		update_post_meta( $id, '_fma_origine', $relativo );
+		update_post_meta( $id, '_fma_md5', md5_file( $percorso ) );
+		$alt = fma_alt_per_origine( $relativo ) ?: $alt;
 		if ( $alt ) {
 			update_post_meta( $id, '_wp_attachment_image_alt', $alt );
 		}
 		return $this->allegati[ $relativo ] = (int) $id;
 	}
 
+	/**
+	 * Il file da importare è quello già caricato? Si confronta con l'impronta salvata al caricamento;
+	 * per le immagini importate prima che esistesse, con il file originale in uploads (e da lì in poi
+	 * l'impronta resta salvata). Un file in uploads che non si trova conta come uguale: meglio tenere
+	 * l'immagine che c'è che caricarne un doppione.
+	 */
+	private function stesso_file( int $id, string $percorso ): bool {
+		$nuovo   = (string) md5_file( $percorso );
+		$salvato = (string) get_post_meta( $id, '_fma_md5', true );
+		if ( '' === $salvato ) {
+			$file = function_exists( 'wp_get_original_image_path' ) ? wp_get_original_image_path( $id ) : '';
+			$file = $file ?: get_attached_file( $id );
+			if ( ! $file || ! is_readable( $file ) ) {
+				return true;
+			}
+			$salvato = (string) md5_file( $file );
+			if ( $salvato === $nuovo ) {
+				update_post_meta( $id, '_fma_md5', $salvato );
+			}
+		}
+		return $salvato === $nuovo;
+	}
+
 	/** Converte le sezioni HTML della demo in blocchi Gutenberg (titoli, paragrafi, elenchi). */
-	private function blocchi( array $sezioni ): string {
+	public static function blocchi( array $sezioni ): string {
 		$out = '';
 		foreach ( $sezioni as $sez ) {
 			$out .= "<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">" . esc_html( $sez['titolo'] ) . "</h2>\n<!-- /wp:heading -->\n\n";
@@ -141,7 +179,7 @@ class FMA_Importatore {
 			'post_title'   => $s['nome'],
 			'post_name'    => $s['slug'],
 			'post_excerpt' => $s['intro'] ?? '',
-			'post_content' => $this->blocchi( $s['sezioni'] ?? array() ),
+			'post_content' => self::blocchi( $s['sezioni'] ?? array() ),
 			'menu_order'   => $ordine,
 		);
 		$id = $this->trova( 'struttura', $s['slug'] );
@@ -166,6 +204,7 @@ class FMA_Importatore {
 			'fma_lng'           => $s['lng'] ?? '',
 			'fma_camere_totali' => $s['camere_totali'] ?? '',
 			'fma_prezzo_da'     => $s['prezzo_da'] ?? '',
+			'fma_prezzo_unita'  => $s['prezzo_unita'] ?? '',
 			'fma_tassa'         => $s['tassa'] ?? '',
 			'fma_orari'         => $s['orari'] ?? '',
 			'fma_booking_url'   => $s['booking_url'] ?? '',
@@ -184,6 +223,8 @@ class FMA_Importatore {
 				update_post_meta( $id, $k, $v );
 			}
 		}
+
+		fma_seo_completa( $id );
 
 		$slug = $s['slug'];
 		$foto = $this->allegato( "strutture/$slug/hero.webp", $id, $s['nome'] );

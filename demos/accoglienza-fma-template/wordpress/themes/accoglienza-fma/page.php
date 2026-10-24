@@ -25,7 +25,7 @@ while ( have_posts() ) :
 		<?php
 		wp_link_pages(
 			array(
-				'before' => '<nav class="page-links" aria-label="Pagine">',
+				'before' => '<nav class="page-links" aria-label="' . esc_attr__( 'Pagine', 'accoglienza-fma' ) . '">',
 				'after'  => '</nav>',
 			)
 		);
