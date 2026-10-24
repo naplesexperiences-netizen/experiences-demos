@@ -1,0 +1,496 @@
+{
+ "nome": "Français",
+ "termini": {
+  "category": {
+   "consigli-di-viaggio": {
+    "nome": "Conseils de voyage",
+    "slug": "conseils-de-voyage-fr"
+   },
+   "gruppi-e-ritiri": {
+    "nome": "Groupes et retraites",
+    "slug": "groupes-et-retraites-fr"
+   }
+  },
+  "regione": {
+   "calabria": {
+    "nome": "Calabre",
+    "slug": "calabre-fr"
+   },
+   "campania": {
+    "nome": "Campanie",
+    "slug": "campanie-fr"
+   },
+   "lazio": {
+    "nome": "Latium",
+    "slug": "latium-fr"
+   },
+   "piemonte": {
+    "nome": "Piémont",
+    "slug": "piemont-fr"
+   },
+   "veneto": {
+    "nome": "Vénétie",
+    "slug": "venetie-fr"
+   }
+  },
+  "servizio": {
+   "acqua-calda": {
+    "nome": "Eau chaude",
+    "slug": "eau-chaude-fr"
+   },
+   "aperta-tutto-lanno": {
+    "nome": "Ouvert toute l’année",
+    "slug": "ouvert-toute-lannee-fr"
+   },
+   "aria-condizionata": {
+    "nome": "Climatisation",
+    "slug": "climatisation-fr"
+   },
+   "ascensore": {
+    "nome": "Ascenseur",
+    "slug": "ascenseur-fr"
+   },
+   "asciuga-capelli": {
+    "nome": "Sèche-cheveux",
+    "slug": "seche-cheveux-fr"
+   },
+   "balcone": {
+    "nome": "Balcon",
+    "slug": "balcon-fr"
+   },
+   "cappella": {
+    "nome": "Chapelle",
+    "slug": "chapelle-fr"
+   },
+   "cappella-votiva": {
+    "nome": "Chapelle votive",
+    "slug": "chapelle-votive-fr"
+   },
+   "cappelle": {
+    "nome": "Chapelles",
+    "slug": "chapelles-fr"
+   },
+   "cucina": {
+    "nome": "Cuisine",
+    "slug": "cuisine-fr"
+   },
+   "ferro-da-stiro": {
+    "nome": "Fer à repasser",
+    "slug": "fer-a-repasser-fr"
+   },
+   "forno-a-microonde": {
+    "nome": "Four à micro-ondes",
+    "slug": "four-a-micro-ondes-fr"
+   },
+   "frigorifero": {
+    "nome": "Réfrigérateur",
+    "slug": "refrigerateur-fr"
+   },
+   "giardino": {
+    "nome": "Jardin",
+    "slug": "jardin-fr"
+   },
+   "laptop-friendly": {
+    "nome": "Espace de travail pour ordinateur portable",
+    "slug": "espace-de-travail-pour-ordinateur-portable-fr"
+   },
+   "lettini-prendisole": {
+    "nome": "Transats",
+    "slug": "transats-fr"
+   },
+   "macchinetta-del-caffe": {
+    "nome": "Machine à café",
+    "slug": "machine-a-cafe-fr"
+   },
+   "parcheggio-gratuito": {
+    "nome": "Parking gratuit",
+    "slug": "parking-gratuit-fr"
+   },
+   "parcheggio-privato": {
+    "nome": "Parking privé",
+    "slug": "parking-prive-fr"
+   },
+   "parco-di-1-500-m%c2%b2": {
+    "nome": "Parc de 1 500 m²",
+    "slug": "parc-de-1-500-m2-fr"
+   },
+   "parco-panoramico": {
+    "nome": "Parc panoramique",
+    "slug": "parc-panoramique-fr"
+   },
+   "riscaldamento": {
+    "nome": "Chauffage",
+    "slug": "chauffage-fr"
+   },
+   "sala-convegni": {
+    "nome": "Salle de conférences",
+    "slug": "salle-de-conferences-fr"
+   },
+   "sala-riunioni-panoramica": {
+    "nome": "Salle de réunion panoramique",
+    "slug": "salle-de-reunion-panoramique-fr"
+   },
+   "sale-incontri": {
+    "nome": "Salles de réunion",
+    "slug": "salles-de-reunion-fr"
+   },
+   "sale-per-piccoli-meeting": {
+    "nome": "Salles pour petites réunions",
+    "slug": "salles-pour-petites-reunions-fr"
+   },
+   "tv": {
+    "nome": "Télévision",
+    "slug": "television-fr"
+   },
+   "vista-lago": {
+    "nome": "Vue sur le lac",
+    "slug": "vue-sur-le-lac-fr"
+   },
+   "vista-panoramica": {
+    "nome": "Vue panoramique",
+    "slug": "vue-panoramique-fr"
+   },
+   "wifi": {
+    "nome": "Wi-Fi",
+    "slug": "wi-fi-fr"
+   }
+  }
+ },
+ "pagine": {
+  "home": {
+   "titolo": "Accueil",
+   "slug": "home-fr"
+  },
+  "blog": {
+   "titolo": "Blog",
+   "slug": "blog-fr"
+  }
+ },
+ "stringhe": {
+  "Ti sentirai come a casa": "Vous vous sentirez chez vous"
+ },
+ "strutture": {
+  "fma-soverato": {
+   "titolo": "Casa FMA Soverato",
+   "slug": "casa-fma-soverato-fr",
+   "riassunto": "",
+   "contenuto": "",
+   "campi": {
+    "fma_tipo": "Maison d’accueil",
+    "fma_localita": "Soverato",
+    "fma_seo_titolo": "Casa FMA Soverato, maison d’accueil en Calabre",
+    "fma_seo_descrizione": "Maison d’accueil des Sœurs salésiennes à Soverato, sur la côte ionienne de Calabre : 15 chambres climatisées, Wi-Fi et parking gratuit pour familles et groupes."
+   }
+  },
+  "casa-per-feriemaria-mazzarello": {
+   "titolo": "Casa per Ferie Maria Mazzarello",
+   "slug": "maison-accueil-maria-mazzarello-verbania",
+   "riassunto": "Sur la colline de Zoverallo, au-dessus de Verbania, la maison domine le lac Majeur depuis un grand parc. C’est un lieu paisible pour ceux qui voyagent seuls, pour les groupes et pour quiconque cherche quelques jours de silence : chambres soignées, salles de réunion, chapelles et parking privé.",
+   "contenuto": "<h2>Retraites et rencontres toute l’année</h2><p>La maison accueille retraites et exercices spirituels, aussi bien pour les groupes qui arrivent avec leur propre programme que pour ceux organisés par la communauté, avec des temps de prière, d’écoute et de réflexion. Ceux qui viennent simplement se reposer y trouvent la même atmosphère sereine.</p><h2>Le parc et le belvédère</h2><p>Depuis le parc, le lac est toujours en vue, des premières heures du jour jusqu’au coucher du soleil. Le belvédère, terrasse naturelle ouverte sur le paysage, est l’endroit idéal pour s’arrêter un instant.</p><ul><li>Promenades et méditation</li><li>Yoga en plein air</li><li>Prière et silence</li><li>Lecture et étude</li><li>Rencontres de groupe en plein air</li></ul>",
+   "campi": {
+    "fma_tipo": "Maison d’accueil",
+    "fma_localita": "Verbania",
+    "fma_titolo_hero": "Une maison religieuse au cœur du lac Majeur",
+    "fma_seo_titolo": "Maison d’accueil Maria Mazzarello à Verbania, lac Majeur",
+    "fma_seo_descrizione": "Maison d’accueil à Verbania face au lac Majeur : parc panoramique, salles de réunion, chapelles et parking privé. Silence et accueil familial."
+   }
+  },
+  "villa-tabor": {
+   "titolo": "Villa Tabor",
+   "slug": "villa-tabor-fr",
+   "riassunto": "Villa Tabor est le lieu idéal pour retrouver son énergie intérieure. Tenue par les Filles de Marie Auxiliatrice, c’est un espace consacré à la vie spirituelle des jeunes et des adultes, qui peuvent y redécouvrir la richesse d’une vie simple dans un cadre naturel exceptionnel.",
+   "contenuto": "<h2>Un lieu à part</h2><ul><li>Il permet de profiter d’un temps de repos et de vacances.</li><li>Il offre la possibilité de partager des moments de prière et de service avec la communauté des sœurs.</li><li>Il accueille et fait place aux activités éducatives, formatives, spirituelles et culturelles de groupes formels et informels.</li></ul><h2>Depuis 1943, soin et attention au service de tous</h2><p>Confiée aux Filles de Marie Auxiliatrice en 1943 comme maison de spiritualité pour les jeunes filles, Villa Tabor est un centre de rencontre pour des week-ends de formation, des semaines de spiritualité, des exercices spirituels, des journées de prière et des retraites pour groupes, prêtres et religieuses.</p><p>Après sa rénovation et son agrandissement en 1999, elle est devenue un point de référence sur le plateau pour la formation des jeunes. Depuis 2017, la communauté a aussi ouvert ses portes aux familles, avec des week-ends de détente et des moments conviviaux pour tous.</p><h2>Parfums et saveurs du plateau d’Asiago</h2><p>Entourée de hêtres et de sapins, Villa Tabor se trouve sur le plateau des Sept Communes, dans le village de Cesuna, commune de Roana. Les bois autour de Cesuna ont été le théâtre d’événements majeurs de la Première Guerre mondiale et restent parmi les lieux les plus évocateurs pour visiter tranchées, positions d’artillerie et le grand Ossuaire.</p><p>Sentiers dans les bois, VTT, tennis, golf, randonnée, ski et patinage ; et puis les fromageries d’alpage et les petits producteurs, qui font de chaque promenade une découverte gourmande.</p>",
+   "campi": {
+    "fma_tipo": "Maison d’accueil",
+    "fma_localita": "Cesuna di Roana",
+    "fma_titolo_hero": "Un lieu hors du temps qui parle à l’âme",
+    "fma_seo_titolo": "Villa Tabor, maison d’accueil sur le plateau d’Asiago",
+    "fma_seo_descrizione": "Maison d’accueil à Cesuna di Roana, sur le plateau d’Asiago, entre hêtres et sapins : 15 chambres, une chapelle et parking gratuit pour groupes, familles et retraites."
+   }
+  },
+  "san-giuseppe-caorle": {
+   "titolo": "Casa per Ferie San Giuseppe",
+   "slug": "maison-accueil-san-giuseppe-caorle",
+   "riassunto": "À Caorle, à quelques pas de la mer, les Filles de Marie Auxiliatrice accueillent familles, groupes et voyageurs individuels dans une maison simple et chaleureuse. Ici, la vie ralentit : la verdure, la mer et une atmosphère calme aident à retrouver son équilibre.",
+   "contenuto": "<h2>Notre façon d’accueillir</h2><ul><li><strong>Ouverte à tous.</strong> Chacun est accueilli avec respect, quels que soient son histoire, sa culture ou sa foi.</li><li><strong>Une atmosphère familiale.</strong> On se parle, on s’écoute et on apprend à se connaître, même pour un séjour de quelques jours.</li><li><strong>Calme et tranquillité.</strong> La verdure et la mer toute proche invitent à vivre plus sereinement.</li><li><strong>Le soin du détail.</strong> Les espaces sont entretenus avec attention et les personnes qui travaillent dans la maison sont toujours disponibles.</li></ul>",
+   "campi": {
+    "fma_tipo": "Maison d’accueil",
+    "fma_localita": "Caorle",
+    "fma_titolo_hero": "Une oasis de paix à deux pas de la mer",
+    "fma_orari": "Accueil (e-mail et téléphone) : 9 h – 12 h 30 et 14 h – 17 h 30",
+    "fma_camere": [
+     {
+      "nome": "Chambre simple"
+     },
+     {
+      "nome": "Chambre triple"
+     },
+     {
+      "nome": "Chambre quadruple",
+      "dettaglio": "Idéale pour les familles"
+     }
+    ],
+    "fma_seo_titolo": "Maison d’accueil San Giuseppe à Caorle, au bord de la mer",
+    "fma_seo_descrizione": "Maison d’accueil des Sœurs salésiennes à Caorle, à deux pas de la mer : chambres simples, triples et quadruples pour familles, groupes et toute personne en quête de repos."
+   }
+  },
+  "fma-roma": {
+   "titolo": "Casa per Ferie Maria Ausiliatrice",
+   "slug": "maison-accueil-maria-ausiliatrice-rome",
+   "riassunto": "La maison d’accueil « Maria Ausiliatrice » est gérée par l’Institut Marie Auxiliatrice des Sœurs salésiennes de Don Bosco. Elle propose des séjours temporaires aux personnes qui partagent un chemin de foi et de spiritualité : prêtres et religieuses, familles, groupes paroissiaux, particuliers et associations.",
+   "contenuto": "<h2>Qui nous accueillons</h2><p>La maison est gérée en dehors des circuits commerciaux habituels, sans but lucratif. Les hôtes partagent les idéaux et les règles de conduite de l’Institut, adoptent un comportement et une tenue conformes à la finalité sociale et religieuse de la maison et respectent ses horaires.</p><p>La maison d’accueil est autorisée par la Ville de Rome (réf. QA/2018/41919 du 18/09/2018).</p>",
+   "campi": {
+    "fma_tipo": "Maison d’accueil",
+    "fma_localita": "Rome",
+    "fma_titolo_hero": "Un accueil chaleureux au cœur de Rome",
+    "fma_regole": [
+     "Réception : 12 h – 13 h et 14 h – 21 h",
+     "Retour le soir avant 21 h (octobre–avril) ou 22 h (mai–septembre)",
+     "Libérer la chambre avant 9 h 30 le jour du départ",
+     "Ménage quotidien des chambres, draps changés tous les trois jours",
+     "Parking gratuit, selon disponibilité",
+     "Animaux non admis, interdiction de fumer dans le bâtiment",
+     "Réservations : du lundi au samedi, 9 h – 13 h et 15 h – 18 h"
+    ],
+    "fma_seo_titolo": "Maison d’accueil Maria Ausiliatrice près de Roma Termini",
+    "fma_seo_descrizione": "Maison d’accueil des Sœurs salésiennes via Marghera, à quelques pas de la gare Termini : 20 chambres pour groupes paroissiaux, familles, religieux et pèlerins."
+   }
+  },
+  "fma-napoli": {
+   "titolo": "Casa FMA Napoli",
+   "slug": "casa-fma-naples-fr",
+   "riassunto": "Connues aussi sous le nom de Sœurs salésiennes de Don Bosco, les Filles de Marie Auxiliatrice accueillent leurs hôtes au cœur de Naples, au siège de la Province méridionale « Madonna del Buon Consiglio ».",
+   "contenuto": "<h2>Notre mission</h2><p>L’éducation et l’évangélisation des jeunes, en particulier des plus pauvres et des plus marginalisés, sont au cœur de notre mission. Là où il y a des jeunes, là est notre maison.</p><p>La devise de Don Bosco, « Bons chrétiens et honnêtes citoyens », résume le sens et le but de notre mission : éducation, opportunités et avenir.</p><h2>La Province méridionale</h2><p>La congrégation est organisée par territoires, en provinces. La Province méridionale « Madonna del Buon Consiglio » couvre la Campanie, les Pouilles, la Basilicate et la Calabre, ainsi que l’Albanie et Malte. La maison provinciale se trouve à Naples.</p>",
+   "campi": {
+    "fma_tipo": "Maison d’accueil",
+    "fma_localita": "Naples",
+    "fma_titolo_hero": "Un lieu de paix à Naples",
+    "fma_tassa": "2 € par personne et par nuit",
+    "fma_camere": [
+     {
+      "nome": "Chambre simple",
+      "letti": "1 lit simple"
+     },
+     {
+      "nome": "Chambre double",
+      "letti": "Lit double ou 2 lits simples"
+     }
+    ],
+    "fma_seo_titolo": "Casa FMA Napoli, maison d’accueil à Naples",
+    "fma_seo_descrizione": "Maison d’accueil des Sœurs salésiennes à Naples, dans la maison provinciale : 12 chambres simples et doubles climatisées avec Wi-Fi, pour familles et groupes."
+   }
+  },
+  "villa-crawford": {
+   "titolo": "Villa Crawford",
+   "slug": "villa-crawford-fr",
+   "riassunto": "La demeure historique d’origine de l’écrivain Marion Crawford, suspendue au-dessus de la mer avec vue sur le golfe de Naples et le Vésuve. Ouverte toute l’année, elle dispose d’une grande salle de réunion élégante et lumineuse avec vue panoramique et d’autres salles de différentes tailles, idéales pour de petites réunions.",
+   "contenuto": "<h2>L’histoire</h2><p>Lorsque l’écrivain américain Francis Marion Crawford acheta la villa en 1885, c’était une simple ferme entourée d’un grand jardin : c’est ici qu’il écrivit nombre des œuvres qui le rendirent célèbre dans le monde entier. Au fil du temps, le bâtiment fut transformé jusqu’à ressembler à un ancien château médiéval, et l’intérieur fut décoré de boiseries sculptées par l’artisan sorrentin Giovanni Massa.</p><p>À la mort de l’écrivain, en 1909, la villa passa à sa fille Eleonora puis, en 1954, fut donnée à l’Institut Marie Auxiliatrice, qui accueille encore aujourd’hui les nombreux jeunes qui s’y retrouvent pour quelques heures de détente et de prière.</p><h2>Les contreforts</h2><p>Les contreforts caractéristiques furent construits pour prévenir les éboulements le long de la côte et rendre la villa visible depuis la mer. Sur les pierres des remparts, Crawford fit graver la devise « In tempestate securitas » : un abri sûr dans la tempête.</p>",
+   "campi": {
+    "fma_tipo": "Demeure historique",
+    "fma_localita": "Sant’Agnello",
+    "fma_titolo_hero": "Une demeure historique suspendue au-dessus de la mer",
+    "fma_camere": [
+     {
+      "nome": "Chambres de la villa",
+      "dettaglio": "Grandes et spacieuses, dans un cadre d’époque élégant, sur 3 étages avec ascenseur. La moitié des chambres a vue sur la mer."
+     },
+     {
+      "nome": "Chambres du jardin",
+      "dettaglio": "Dans le parc de 1 500 m², à l’écart du bâtiment principal : style simple et petite table à l’extérieur pour profiter des parfums du maquis méditerranéen."
+     }
+    ],
+    "fma_seo_titolo": "Villa Crawford, demeure historique à Sant’Agnello",
+    "fma_seo_descrizione": "La villa de l’écrivain Marion Crawford à Sant’Agnello, suspendue au-dessus du golfe de Naples. Parc, chapelle et salles panoramiques pour retraites et réunions."
+   }
+  },
+  "villa-tiberiade": {
+   "titolo": "Villa Tiberiade",
+   "slug": "villa-tiberiade-fr",
+   "riassunto": "« Villa Tiberiade » a été rénovée et aménagée pour l’accueil, pour des journées de rencontre et des exercices spirituels. Depuis sa position splendide, on admire le panorama unique de la péninsule de Sorrente ; elle est entourée d’un vaste espace vert.",
+   "contenuto": "<h2>Quand un lieu a une histoire, il reste à jamais dans la mémoire</h2><p>Les travaux commencèrent en 1973 : à l’origine, la villa appartenait à Mme Teresa Rossi, comtesse Filangieri.</p><p>Lors du partage du domaine, la villa revint à l’un de ses fils, qui avait épousé Mlle Olimpia De Donat, devenue veuve par la suite. Son mari avait offert à Mgr Muller un terrain avec un bâtiment agricole très délabré qui, convenablement aménagé, fut consacré à l’œuvre apostolique.</p><p>Mgr Muller décida ensuite de confier toute la propriété à l’Institut des Filles de Marie Auxiliatrice, en lui donnant, en référence claire à l’Évangile, le nom de « Villa Tiberiade ».</p>",
+   "campi": {
+    "fma_tipo": "Maison de retraite spirituelle et d’accueil",
+    "fma_localita": "Torre Annunziata",
+    "fma_titolo_hero": "Se ressourcer sur le golfe de Naples",
+    "fma_camere": [
+     {
+      "nome": "Chambre simple",
+      "dettaglio": "Vue sur le golfe, salle de bains privée",
+      "letti": "1 lit simple"
+     },
+     {
+      "nome": "Chambre double",
+      "dettaglio": "Salle de bains privée",
+      "letti": "Lit double ou 2 lits simples"
+     },
+     {
+      "nome": "Chambre triple",
+      "dettaglio": "Salle de bains privée",
+      "letti": "Lit double + 1 lit simple"
+     }
+    ],
+    "fma_dintorni": [
+     {
+      "luogo": "Golfe de Naples",
+      "distanza": "face à la maison"
+     },
+     {
+      "luogo": "Fouilles de Pompéi",
+      "distanza": "10 minutes en voiture"
+     },
+     {
+      "luogo": "Vésuve",
+      "distanza": "30 minutes en voiture"
+     },
+     {
+      "luogo": "Aéroport de Naples-Capodichino",
+      "distanza": "30 minutes en voiture"
+     },
+     {
+      "luogo": "Sorrente",
+      "distanza": "60 minutes en voiture"
+     }
+    ],
+    "fma_regole": [
+     "Arrivée de 14 h à 21 h",
+     "Départ avant 11 h",
+     "Établissement non-fumeur",
+     "Animaux non admis",
+     "Fêtes et événements privés non autorisés",
+     "Âge minimum pour réserver : 18 ans",
+     "Remboursement intégral en cas d’annulation au moins 30 jours avant l’arrivée, 50 % au moins 7 jours avant"
+    ],
+    "fma_seo_titolo": "Villa Tiberiade, maison d’accueil à Torre Annunziata",
+    "fma_seo_descrizione": "Maison de retraite et d’accueil à Torre Annunziata avec vue sur le golfe de Naples et jardin, à 10 minutes de Pompéi. Chambres, salle de conférences et parking."
+   }
+  }
+ },
+ "articoli": {
+  "torre-annunziata-oplontis-pompei-vesuvio": {
+   "titolo": "Torre Annunziata, entre Oplontis, Pompéi et le Vésuve",
+   "slug": "torre-annunziata-oplontis-pompei-vesuve",
+   "riassunto": "",
+   "contenuto": "<p><strong>Torre Annunziata se trouve en un point du golfe de Naples où l’histoire se lit par couches : sous la ville moderne repose une villa romaine aux fresques intactes, Pompéi est à dix minutes, le Vésuve se dresse derrière et, en face, de l’autre côté de la mer, s’étend la péninsule de Sorrente.</strong> C’est une base pratique et tranquille pour découvrir les lieux les plus célèbres de Campanie sans dormir au milieu de leur agitation.</p>\n<h2>Pourquoi visiter Torre Annunziata</h2>\n<h3>Oplontis et la villa de Poppée</h3>\n<p>En plein centre-ville se visite l’un des sites archéologiques les plus beaux et les moins fréquentés de la région du Vésuve : la <strong>villa de Poppée</strong> à Oplontis. C’était une luxueuse villa de plaisance, attribuée à la famille de Poppée Sabine, seconde épouse de Néron, ensevelie par l’éruption de 79 apr. J.-C. Les fresques de ses salles, avec des jardins peints, des colonnades en trompe-l’œil et des oiseaux, comptent parmi les mieux conservées du monde romain. Depuis 1997, Oplontis est inscrite au patrimoine mondial de l’UNESCO avec Pompéi et Herculanum.</p>\n<h3>La mer et le panorama</h3>\n<p>Le front de mer de Torre Annunziata regarde droit vers la péninsule de Sorrente et, par temps clair, vers Capri. Au coucher du soleil, la lumière tombe sur le golfe et dessine la silhouette des monts Lattari : c’est l’un des plus beaux panoramas de la côte vésuvienne.</p>\n<h3>La tradition des pâtes</h3>\n<p>Au XIXe et au début du XXe siècle, Torre Annunziata était, avec Gragnano toute proche, l’une des capitales des <strong>pâtes sèches</strong> : moulins et fabriques travaillaient le blé et suspendaient les spaghettis pour les faire sécher au soleil et à la brise marine. Quelques artisans pastiers sont toujours en activité et vendent leurs produits.</p>\n<h2>Les environs</h2>\n<h3>Pompéi</h3>\n<p>À une dizaine de minutes en voiture ou à deux arrêts de la Circumvesuviana, les <strong>fouilles de Pompéi</strong> méritent au moins une demi-journée : le Forum, les maisons à fresques, l’amphithéâtre, les rues pavées creusées d’ornières. Dans la ville moderne se dresse le <strong>sanctuaire de la Bienheureuse Vierge du Rosaire</strong>, fondé par Bartolo Longo, lieu de pèlerinage pour des fidèles venus de toute l’Italie.</p>\n<h3>Le Vésuve</h3>\n<p>En une demi-heure environ, on monte en voiture ou en navette jusqu’à mille mètres ; de là, un sentier d’une vingtaine de minutes mène au bord du cratère. De là-haut, on embrasse tout le golfe de Naples.</p>\n<h3>Herculanum</h3>\n<p>Plus petite que Pompéi mais extraordinairement bien conservée, <strong>Herculanum</strong> montre des maisons à plusieurs étages, du bois carbonisé et des mosaïques encore en place.</p>\n<h3>Sorrente et la péninsule</h3>\n<p>Par la Circumvesuviana ou en voiture, on rejoint <strong>Sorrente</strong> en une heure environ ; de là partent les ferries pour Capri et la route continue vers la côte amalfitaine.</p>\n<table>\n<thead>\n<tr><th>De Torre Annunziata à…</th><th>Temps indicatif</th></tr>\n</thead>\n<tbody>\n<tr><td>Fouilles de Pompéi</td><td>10 minutes en voiture</td></tr>\n<tr><td>Herculanum</td><td>20 minutes en train</td></tr>\n<tr><td>Vésuve</td><td>30 minutes en voiture</td></tr>\n<tr><td>Naples</td><td>30–40 minutes en train</td></tr>\n<tr><td>Sorrente</td><td>60 minutes en voiture</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>Le printemps et l’automne sont les meilleures saisons pour les fouilles : on marche beaucoup, en plein air, et la chaleur estivale rend tout plus fatigant. Octobre et mai offrent des journées limpides, idéales aussi pour monter au Vésuve. En été, mieux vaut visiter les sites archéologiques tôt le matin et garder l’après-midi pour se reposer.</p>\n<h2>Où séjourner</h2>\n<p><strong>Villa Tiberiade</strong> est une maison de retraite spirituelle et d’accueil tenue par les Filles de Marie Auxiliatrice, tournée vers la péninsule de Sorrente et entourée d’un vaste espace vert. Elle dispose d’un jardin, de balcons, de transats, d’une salle de conférences et d’un parking gratuit : elle convient aux familles, aux groupes et aux journées de retraite. Le soir, après une journée entre Pompéi et le Vésuve, on retrouve le silence d’un lieu pensé pour le repos.</p>"
+  },
+  "santagnello-penisola-sorrentina-villa-crawford": {
+   "titolo": "Sant’Agnello et la péninsule de Sorrente, sur les traces de Marion Crawford",
+   "slug": "santagnello-peninsule-sorrente-marion-crawford",
+   "riassunto": "",
+   "contenuto": "<p><strong>« In tempestate securitas », un abri sûr dans la tempête : l’écrivain américain Francis Marion Crawford fit graver ces mots sur les remparts de sa villa de Sant’Agnello, suspendue au-dessus de la mer.</strong> Plus d’un siècle plus tard, cette maison accueille toujours ceux qui cherchent un lieu tranquille sur le golfe de Naples, à deux pas de Sorrente.</p>\n<h2>Pourquoi visiter Sant’Agnello</h2>\n<h3>La péninsule des écrivains</h3>\n<p>Au XIXe siècle, la péninsule de Sorrente était une étape du Grand Tour, et Sant’Agnello l’un des lieux préférés des voyageurs étrangers. Crawford, auteur de romans à grand succès, y acheta en 1885 une ferme entourée d’un jardin. Il y vécut et y écrivit jusqu’à sa mort en 1909, la transformant peu à peu en une demeure semblable à un vieux château. Aujourd’hui, la rue principale de la commune porte son nom.</p>\n<h3>La mer au pied du tuf</h3>\n<p>La péninsule est un plateau de tuf qui plonge à pic dans la mer. Les plages sont petites, accessibles par des escaliers et des ascenseurs creusés dans la roche ; l’eau devient profonde à quelques mètres du rivage, avec le Vésuve en face et Naples à l’horizon.</p>\n<h3>Agrumes et sérénité</h3>\n<p>Sant’Agnello est à dix minutes à pied de la piazza Tasso, et garde pourtant le rythme d’un village : murs de tuf, citronniers et orangers qui parfument chaque ruelle au printemps.</p>\n<h2>Les environs</h2>\n<h3>Sorrente</h3>\n<p>On rejoint à pied le centre de <strong>Sorrente</strong> : le vallon des Moulins, le cloître de San Francesco aux arcs entrelacés, la basilique de Sant’Antonino, saint patron de la ville, et l’ancien village de pêcheurs de Marina Grande.</p>\n<h3>Capri</h3>\n<p>Depuis le port de Sorrente, les hydroglisseurs rejoignent <strong>Capri</strong> en une vingtaine de minutes. Avec les premières traversées du matin, on peut monter à Anacapri et au mont Solaro avant la foule.</p>\n<h3>Massa Lubrense et Punta Campanella</h3>\n<p>Vers la pointe de la péninsule, le paysage devient plus sauvage : l’aire marine protégée de Punta Campanella, la baie de Ieranto et les sentiers entre oliveraies et terrasses face à Capri.</p>\n<h3>Pompéi et la côte amalfitaine</h3>\n<p>La Circumvesuviana mène à <strong>Pompéi</strong> en une demi-heure environ. Passé le col, la route descend vers <strong>Positano</strong> et la côte ; en été, le bateau est plus pratique.</p>\n<table>\n<thead>\n<tr><th>De Sant’Agnello à…</th><th>Temps indicatif</th></tr>\n</thead>\n<tbody>\n<tr><td>Centre de Sorrente</td><td>10–15 minutes à pied</td></tr>\n<tr><td>Capri</td><td>20–25 minutes en hydroglisseur depuis Sorrente</td></tr>\n<tr><td>Pompéi</td><td>30 minutes en train</td></tr>\n<tr><td>Positano</td><td>40 minutes en voiture</td></tr>\n<tr><td>Naples</td><td>35–60 minutes en hydroglisseur ou en train</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>Avril et mai sont les mois de la fleur d’oranger et des longues journées ; septembre et octobre offrent encore une mer chaude et moins de monde. En hiver, la péninsule revient à ses habitants : c’est le moment idéal pour une retraite ou un congrès, avec un golfe limpide et le Vésuve souvent enneigé.</p>\n<h2>Où séjourner</h2>\n<p><strong>Villa Crawford</strong> est la demeure historique d’origine de l’écrivain, aujourd’hui maison des Filles de Marie Auxiliatrice. Suspendue au-dessus de la mer, avec vue sur le golfe de Naples et le Vésuve, elle est ouverte toute l’année. Elle dispose d’un parc de 1 500 mètres carrés, d’une chapelle, d’une grande salle de réunion lumineuse avec vue panoramique et d’autres salles plus petites pour les réunions et les groupes. Les contreforts que Crawford fit construire pour protéger la côte sont toujours là, sous les fenêtres.</p>"
+  },
+  "napoli-chiese-centro-storico-itinerario": {
+   "titolo": "Naples à pied, d’église en église : promenade dans le centre historique",
+   "slug": "naples-eglises-centre-historique-itineraire",
+   "riassunto": "",
+   "contenuto": "<p><strong>Naples compte plus de cinq cents églises, et beaucoup se trouvent dans le kilomètre carré du centre historique.</strong> Pour qui voyage avec un groupe paroissial, en pèlerinage ou simplement par curiosité de comprendre l’âme de la ville, la meilleure façon de la découvrir est à pied, d’église en église, entre cloîtres, chapelles et crèches.</p>\n<h2>Pourquoi visiter Naples</h2>\n<p>Le centre historique de Naples est inscrit au patrimoine mondial de l’UNESCO depuis 1995 et conserve encore le plan des rues de la cité grecque. Ici, la foi populaire se mêle à l’art : petits autels au coin des rues, fêtes de quartier, chefs-d’œuvre baroques. Voici un itinéraire pour le découvrir.</p>\n<h3>La cathédrale et le Trésor de saint Janvier</h3>\n<p>La <strong>cathédrale Santa Maria Assunta</strong> abrite la chapelle du Trésor de saint Janvier (San Gennaro), l’une des plus riches d’Europe. Trois fois par an, le samedi précédant le premier dimanche de mai, le 19 septembre et le 16 décembre, la ville attend le miracle de la liquéfaction du sang de son saint patron.</p>\n<h3>Santa Chiara et le cloître de majoliques</h3>\n<p>La basilique gothique de <strong>Santa Chiara</strong>, construite par les Angevins, cache un cloître recouvert de majoliques peintes de scènes de la vie au XVIIIe siècle : l’un des coins les plus paisibles de la ville.</p>\n<h3>Gesù Nuovo et San Domenico Maggiore</h3>\n<p>Sur la même place que Santa Chiara se dresse le <strong>Gesù Nuovo</strong>, avec sa façade en bossages de piperno taillés en pointe de diamant. À l’intérieur est vénéré saint Joseph Moscati, le saint médecin de Naples. Non loin, <strong>San Domenico Maggiore</strong> conserve la cellule où vécut saint Thomas d’Aquin.</p>\n<h3>La chapelle Sansevero et San Gregorio Armeno</h3>\n<p>Dans la <strong>chapelle Sansevero</strong>, on admire le Christ voilé de Giuseppe Sanmartino (1753), dont le voile de marbre semble de tissu. Juste à côté, la <strong>via San Gregorio Armeno</strong> est la rue des santons de crèche, ouverte toute l’année.</p>\n<h3>Les catacombes de San Gennaro</h3>\n<p>Dans le quartier de la Sanità, les <strong>catacombes de San Gennaro</strong> sont les plus grandes du sud de l’Italie, avec des fresques paléochrétiennes. Le quartier a repris vie grâce à une coopérative de jeunes qui les gèrent et en racontent l’histoire.</p>\n<h2>Les environs</h2>\n<ul>\n<li><strong>Pompéi</strong> : les fouilles et le sanctuaire de la Bienheureuse Vierge du Rosaire, à environ 40 minutes en train.</li>\n<li><strong>Le front de mer et le Castel dell’Ovo</strong> : vingt minutes à pied du centre historique jusqu’à la mer.</li>\n<li><strong>Capri, Ischia et Procida</strong> : en hydroglisseur depuis le Molo Beverello, de 40 minutes à une heure.</li>\n<li><strong>Les Champs Phlégréens</strong> : la Solfatara et l’amphithéâtre flavien de Pouzzoles, où selon la tradition saint Janvier fut condamné.</li>\n</ul>\n<table>\n<thead>\n<tr><th>Étape</th><th>Temps à prévoir</th></tr>\n</thead>\n<tbody>\n<tr><td>Cathédrale et Trésor de saint Janvier</td><td>1 heure et demie</td></tr>\n<tr><td>Santa Chiara, Gesù Nuovo, San Domenico</td><td>Une demi-journée</td></tr>\n<tr><td>Chapelle Sansevero et San Gregorio Armeno</td><td>2 heures</td></tr>\n<tr><td>Catacombes de San Gennaro</td><td>1 heure et demie</td></tr>\n<tr><td>Pompéi et le sanctuaire</td><td>Une journée entière</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>Naples se visite toute l’année. Septembre, avec la fête de saint Janvier, et décembre, avec les crèches de San Gregorio Armeno, sont les mois où la dévotion populaire est la plus visible. Le printemps et l’automne sont idéaux pour marcher sans la chaleur.</p>\n<h2>Où séjourner</h2>\n<p><strong>Casa FMA Napoli</strong> se trouve au cœur de la ville, au siège de la Province méridionale « Madonna del Buon Consiglio » des Filles de Marie Auxiliatrice. Elle dispose de 12 chambres avec climatisation, chauffage, Wi-Fi et ascenseur. Y séjourner, c’est avoir les églises du centre historique à portée de pied et la possibilité de vivre la ville au rythme d’une communauté salésienne.</p>"
+  },
+  "roma-basiliche-sacro-cuore-don-bosco": {
+   "titolo": "Rome depuis Termini : l’église de Don Bosco et les basiliques papales",
+   "slug": "rome-termini-eglise-don-bosco-basiliques-papales",
+   "riassunto": "",
+   "contenuto": "<p><strong>À quelques pas de la gare Termini, via Marsala, se trouve une basilique que Don Bosco fit construire avec ses dernières forces : le Sacré-Cœur de Jésus à Castro Pretorio.</strong> C’est le point de départ idéal pour découvrir la Rome des basiliques et des quartiers, à pied ou en métro, pour qui voyage dans l’esprit salésien.</p>\n<h2>Pourquoi visiter Rome depuis le quartier de Termini</h2>\n<p>Le quartier de Castro Pretorio, entre Termini et San Lorenzo, est l’un des mieux desservis de la ville : les deux lignes de métro en partent, ainsi que les bus vers tout le centre et les trains pour l’aéroport et les Castelli Romani. En quelques minutes, on rejoint les basiliques papales et les lieux les plus importants de la Rome chrétienne.</p>\n<h3>La basilique du Sacré-Cœur, l’église de Don Bosco</h3>\n<p>Le pape Léon XIII demanda à Don Bosco d’achever cette basilique, restée sans fonds. Le saint accepta, recueillit des dons dans toute l’Europe et la vit consacrée en 1887, quelques mois avant sa mort. Juste à côté, on peut visiter les <strong>chambres de Don Bosco</strong>, où il logeait lors de ses séjours à Rome.</p>\n<h3>Sainte-Marie-Majeure</h3>\n<p>À dix minutes à pied, <strong>Sainte-Marie-Majeure</strong> est la plus ancienne basilique mariale d’Occident, avec des mosaïques du Ve siècle et un plafond à caissons doré qui, selon la tradition, fut réalisé avec le premier or rapporté des Amériques.</p>\n<h3>Saint-Jean-de-Latran et la Scala Santa</h3>\n<p>Une station de métro ou une promenade mène à <strong>Saint-Jean-de-Latran</strong>, cathédrale de Rome et « mère de toutes les églises ». En face se trouve le sanctuaire de la <strong>Scala Santa</strong>, que les pèlerins gravissent à genoux.</p>\n<h3>Saint-Pierre et les musées du Vatican</h3>\n<p>La ligne A du métro conduit au <strong>Vatican</strong> en une vingtaine de minutes : la basilique Saint-Pierre, la coupole de Michel-Ange et les musées du Vatican avec la chapelle Sixtine.</p>\n<h3>Saint-Paul-hors-les-Murs</h3>\n<p>La quatrième basilique papale se rejoint par la ligne B : elle abrite le tombeau de l’apôtre Paul et la série des portraits de tous les papes.</p>\n<h2>Les environs</h2>\n<ul>\n<li><strong>Les catacombes de la via Appia</strong> : Saint-Calixte, confiées aux Salésiens, et Saint-Sébastien, parmi les premiers cimetières chrétiens.</li>\n<li><strong>Tivoli</strong> : la villa d’Este et ses fontaines, et la villa d’Hadrien, à moins d’une heure.</li>\n<li><strong>Les Castelli Romani</strong> : Castel Gandolfo, Frascati, Ariccia et les lacs volcaniques, en train depuis Termini.</li>\n<li><strong>Ostia Antica</strong> : le port de la Rome antique, avec ses rues, son théâtre et ses thermes.</li>\n</ul>\n<table>\n<thead>\n<tr><th>De la via Marghera à…</th><th>Comment</th><th>Temps indicatif</th></tr>\n</thead>\n<tbody>\n<tr><td>Basilique du Sacré-Cœur</td><td>À pied</td><td>5 minutes</td></tr>\n<tr><td>Sainte-Marie-Majeure</td><td>À pied</td><td>10–15 minutes</td></tr>\n<tr><td>Saint-Jean-de-Latran</td><td>Métro A</td><td>15 minutes</td></tr>\n<tr><td>Saint-Pierre</td><td>Métro A</td><td>20–25 minutes</td></tr>\n<tr><td>Catacombes de Saint-Calixte</td><td>Bus</td><td>40 minutes</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>Le printemps et l’automne sont les meilleures saisons pour se promener entre basiliques et vestiges. Juillet et août sont chauds : mieux vaut visiter les églises en milieu de journée, quand il y fait frais, et garder la soirée pour les promenades. À Noël et à Pâques, la ville se remplit de pèlerins : réservez bien à l’avance.</p>\n<h2>Où séjourner</h2>\n<p>La <strong>maison d’accueil « Maria Ausiliatrice »</strong>, au 59 via Marghera, est gérée par l’Institut Marie Auxiliatrice des Sœurs salésiennes de Don Bosco, en dehors des circuits commerciaux habituels. Elle dispose de 20 chambres climatisées avec Wi-Fi et accueille religieux, familles, groupes paroissiaux et particuliers qui partagent un chemin de foi. C’est la base idéale pour un pèlerinage à Rome, avec l’église de Don Bosco à deux pas.</p>"
+  },
+  "caorle-borgo-laguna-spiagge": {
+   "titolo": "Caorle : le village de pêcheurs, la lagune et la mer",
+   "slug": "caorle-village-pecheurs-lagune-plages",
+   "riassunto": "",
+   "contenuto": "<p><strong>Caorle est un village de pêcheurs aux maisons colorées, avec un clocher cylindrique millénaire et un sanctuaire sur les rochers.</strong> Derrière s’étend une lagune de canaux et de cabanes de roseaux, devant, des kilomètres de plage. C’est l’une des stations balnéaires les plus appréciées du nord de l’Adriatique, à une heure de Venise.</p>\n<h2>Pourquoi visiter Caorle</h2>\n<h3>Le centre historique</h3>\n<p>Le cœur de Caorle est un enchevêtrement de ruelles, de placettes et de maisons peintes en rouge, jaune, bleu et vert, comme les villages de la lagune vénitienne. Le soir, les places se remplissent de familles, de glaciers et de restaurants de poisson.</p>\n<h3>La cathédrale et le clocher cylindrique</h3>\n<p>La <strong>cathédrale Santo Stefano</strong>, du XIe siècle, se dresse à côté de l’un des symboles de la ville : le <strong>clocher cylindrique</strong> roman, à la flèche conique, visible de toute la côte. À l’intérieur se trouve un précieux retable en argent doré.</p>\n<h3>Le sanctuaire de la Madonna dell’Angelo</h3>\n<p>Au bout de la digue, sur la mer, se dresse le <strong>sanctuaire de la Madonna dell’Angelo</strong>, très cher aux pêcheurs. Selon la tradition, la statue de la Vierge est venue de la mer, et tous les cinq ans, en septembre, une procession la porte en bateau le long de la côte.</p>\n<h3>La Scogliera Viva</h3>\n<p>Le long de la promenade qui relie le centre au sanctuaire, les blocs de la digue sont devenus un musée à ciel ouvert : la <strong>Scogliera Viva</strong> (« récif vivant »), avec des sculptures et des peintures d’artistes du monde entier.</p>\n<h3>Les plages</h3>\n<p>Caorle possède deux grandes plages de sable fin, la <strong>Spiaggia di Levante</strong> et la <strong>Spiaggia di Ponente</strong>, avec des eaux peu profondes et des établissements bien équipés. Elles sont idéales pour les familles avec enfants.</p>\n<h2>Les environs</h2>\n<h3>La lagune et les casoni</h3>\n<p>Derrière Caorle s’étend une <strong>lagune</strong> de canaux, de prés salés et de bassins à poissons. Les <strong>casoni</strong>, anciennes cabanes de pêcheurs en roseau des marais, se visitent à pied, à vélo ou en bateau. Ernest Hemingway, hôte de ces lagunes, les a décrites dans son roman <em>Au-delà du fleuve et sous les arbres</em>.</p>\n<h3>Venise</h3>\n<p>En une heure environ en voiture, ou avec les bus et bateaux saisonniers, on rejoint <strong>Venise</strong> pour une journée entre Saint-Marc, le Rialto et les îles.</p>\n<h3>Concordia Sagittaria et Portogruaro</h3>\n<p>Dans l’arrière-pays, <strong>Concordia Sagittaria</strong> conserve les vestiges de la cité romaine de Iulia Concordia et une cathédrale avec un baptistère roman. Non loin, <strong>Portogruaro</strong> a un centre à arcades et des moulins sur le Lemene.</p>\n<h3>Bibione et Lignano</h3>\n<p>Plus à l’est le long de la côte se trouvent les grandes plages de <strong>Bibione</strong> et de <strong>Lignano Sabbiadoro</strong>.</p>\n<table>\n<thead>\n<tr><th>De Caorle à…</th><th>Temps indicatif en voiture</th></tr>\n</thead>\n<tbody>\n<tr><td>Lagune et casoni</td><td>10 minutes</td></tr>\n<tr><td>Concordia Sagittaria</td><td>20 minutes</td></tr>\n<tr><td>Portogruaro</td><td>25 minutes</td></tr>\n<tr><td>Bibione</td><td>35 minutes</td></tr>\n<tr><td>Venise</td><td>Environ 1 heure</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>La saison balnéaire va de juin à septembre. Mai et septembre sont idéaux pour les promenades dans la lagune et les balades à vélo sur les pistes cyclables du littoral. En décembre, le centre historique s’illumine pour Noël, avec une crèche et des lumières dans les ruelles.</p>\n<h2>Où séjourner</h2>\n<p>La <strong>Casa per Ferie San Giuseppe</strong> est tenue par les Filles de Marie Auxiliatrice et se veut plus qu’un simple hébergement : un lieu où chacun trouve la paix et la chaleur humaine, où le temps ralentit et où la beauté de la mer invite à retrouver son équilibre. C’est la base idéale pour des vacances à la mer en famille ou en groupe, avec le village de Caorle et la lagune tout proches.</p>"
+  },
+  "cesuna-altopiano-asiago-sentieri-grande-guerra": {
+   "titolo": "Cesuna et le plateau d’Asiago : bois, mémoire de la Grande Guerre et saveurs de montagne",
+   "slug": "cesuna-plateau-asiago-bois-grande-guerre-fromageries",
+   "riassunto": "",
+   "contenuto": "<p><strong>À Cesuna, sur le plateau d’Asiago, les bois de hêtres et de sapins cachent des tranchées, des cimetières militaires et des sentiers qui montent vers les alpages.</strong> Il y a un siècle, on y a livré l’une des batailles les plus dures de la Grande Guerre ; aujourd’hui, c’est l’un des endroits les plus paisibles de la Vénétie, idéal pour marcher, réfléchir et goûter les fromages d’alpage.</p>\n<h2>Pourquoi visiter Cesuna et le plateau</h2>\n<h3>Le plateau des Sept Communes</h3>\n<p>Le plateau d’Asiago, à environ mille mètres d’altitude, est aussi appelé plateau des <strong>Sept Communes</strong> : Asiago, Roana, Rotzo, Gallio, Foza, Enego et Lusiana Conco. Pendant des siècles, ce fut une petite république montagnarde, habitée par les <strong>Cimbres</strong>, un peuple d’origine germanique qui parlait une langue ancienne dont les noms de lieux gardent encore la trace. Cesuna est un hameau de la commune de Roana, l’un des centres de la culture cimbre.</p>\n<h3>Les lieux de la Grande Guerre</h3>\n<p>En 1916 et en 1918, le plateau était en première ligne. Les bois autour de Cesuna conservent tranchées, positions d’artillerie et galeries, ainsi que certains des <strong>cimetières militaires britanniques</strong> où reposent les soldats britanniques tombés ici. À Asiago, l’<strong>Ossuaire du Leiten</strong> recueille les restes de dizaines de milliers de soldats. Ce sont des lieux de mémoire et de prière, à visiter avec respect.</p>\n<h3>Sentiers et nature</h3>\n<p>Le plateau est sillonné par des centaines de kilomètres de sentiers, de pistes forestières et d’itinéraires cyclables. On marche entre bois, fromageries d’alpage et pâturages, jusqu’à des belvédères sur la plaine vénitienne. En hiver, les mêmes parcours deviennent des pistes de ski de fond et des itinéraires en raquettes.</p>\n<h3>Les saveurs</h3>\n<p>C’est ici le pays du fromage <strong>Asiago AOP</strong>, frais ou affiné, fabriqué avec le lait des alpages. À la bonne saison, on trouve champignons, baies et miel, et dans les trattorias de montagne on mange gnocchis, polenta et gibier.</p>\n<h2>Les environs</h2>\n<ul>\n<li><strong>Asiago</strong> : le chef-lieu du plateau, avec la cathédrale San Matteo, l’Ossuaire du Leiten et ses rues commerçantes, à quelques minutes de Cesuna.</li>\n<li><strong>Roana et Canove</strong> : des musées consacrés à la culture cimbre et à la Grande Guerre.</li>\n<li><strong>Forte Corbin</strong> : une forteresse italienne du début du XXe siècle, perchée au-dessus d’un à-pic sur le Val d’Astico.</li>\n<li><strong>Les fromageries d’alpage</strong> : en été, beaucoup s’ouvrent aux visiteurs et vendent fromage et beurre.</li>\n<li><strong>Marostica et Bassano del Grappa</strong> : en descendant vers la plaine, la place de la partie d’échecs vivante et le pont des Alpini.</li>\n</ul>\n<table>\n<thead>\n<tr><th>De Cesuna à…</th><th>Temps indicatif en voiture</th></tr>\n</thead>\n<tbody>\n<tr><td>Asiago</td><td>10–15 minutes</td></tr>\n<tr><td>Roana et Canove</td><td>10 minutes</td></tr>\n<tr><td>Forte Corbin</td><td>20 minutes</td></tr>\n<tr><td>Bassano del Grappa</td><td>Environ 1 heure</td></tr>\n<tr><td>Vicence</td><td>Environ 1 heure</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>L’été est la saison des randonnées, des fromageries ouvertes et de l’air frais : en juillet et en août, les températures restent agréables. En automne, les bois changent de couleur et l’on ramasse champignons et châtaignes. L’hiver apporte la neige, le ski de fond et un silence parfait pour une retraite.</p>\n<h2>Où séjourner</h2>\n<p><strong>Villa Tabor</strong> se trouve à Cesuna, entourée de hêtres et de sapins, et est confiée aux Filles de Marie Auxiliatrice depuis 1943. C’est une maison consacrée à la vie spirituelle des jeunes et des adultes, avec 15 chambres, une chapelle votive, un ascenseur et un parking gratuit. Elle accueille des week-ends de formation, des semaines de spiritualité, des exercices spirituels et des séjours de vacances, et offre la possibilité de partager des moments de prière avec la communauté des sœurs.</p>"
+  },
+  "verbania-lago-maggiore-isole-borromee": {
+   "titolo": "Verbania et le lac Majeur : la villa Taranto, les îles Borromées et des lieux de silence",
+   "slug": "verbania-lac-majeur-villa-taranto-iles-borromees",
+   "riassunto": "",
+   "contenuto": "<p><strong>Vu de la colline de Zoverallo, le lac Majeur ressemble à une mer immobile enserrée par les montagnes : au milieu de l’eau, les îles Borromées ; sur les rives, des villas du XIXe siècle et des jardins botaniques.</strong> Verbania est l’endroit idéal pour découvrir l’un des plus beaux lacs d’Europe, au rythme lent que suggère le paysage.</p>\n<h2>Pourquoi visiter Verbania</h2>\n<p>Verbania est née en 1939 de l’union d’Intra et de Pallanza, deux villes au caractère différent : Intra, plus commerçante, avec son marché du samedi ; Pallanza, plus élégante, avec ses quais et ses villas. Ensemble, elles forment la plus grande ville de la rive piémontaise du lac.</p>\n<h3>Les jardins de la villa Taranto</h3>\n<p>Sur le promontoire de la Castagnola, les <strong>jardins botaniques de la villa Taranto</strong> ont été créés dans les années 1930 par le capitaine écossais Neil McEacharn. Ils réunissent des milliers d’espèces du monde entier : rhododendrons, azalées, érables, nénuphars géants dans les serres. Au printemps, la floraison des tulipes et des azalées est spectaculaire.</p>\n<h3>Les quais de Pallanza</h3>\n<p>La promenade de Pallanza, avec ses platanes et ses embarcadères, regarde vers les îles et le golfe Borromée. En face se trouve l’îlot de <strong>San Giovanni</strong>, où séjournait Arturo Toscanini.</p>\n<h3>Églises et oratoires</h3>\n<p>Entre Intra et Pallanza, on rencontre des églises romanes et baroques, comme la collégiale San Leonardo et l’ancienne église <strong>San Remigio</strong>, sur la colline de la Castagnola, aux fresques médiévales.</p>\n<h2>Les environs</h2>\n<h3>Les îles Borromées</h3>\n<p>En bateau, on rejoint les trois îles du golfe : l’<strong>Isola Bella</strong>, avec le palais baroque et le jardin en terrasses des Borromée ; l’<strong>Isola Madre</strong>, la plus grande, avec un jardin botanique où se promènent des paons blancs ; l’<strong>Isola dei Pescatori</strong>, petit village aux maisons serrées le long de ruelles étroites.</p>\n<h3>Stresa et le Mottarone</h3>\n<p>Sur la rive opposée, <strong>Stresa</strong> aligne sur ses quais de grands hôtels de la Belle Époque. De là, on monte au <strong>Mottarone</strong>, la montagne entre le lac Majeur et le lac d’Orta, d’où l’on voit sept lacs.</p>\n<h3>Santa Caterina del Sasso</h3>\n<p>Sur la rive lombarde, l’ermitage de <strong>Santa Caterina del Sasso</strong> s’accroche à une paroi rocheuse qui tombe à pic dans l’eau. On y accède en bateau ou par un long escalier : un lieu unique de silence et de prière.</p>\n<h3>Le parc national du Val Grande</h3>\n<p>Derrière Verbania s’ouvre le <strong>Val Grande</strong>, la plus grande zone sauvage d’Italie, un parc national de bois, de torrents et d’alpages abandonnés.</p>\n<h3>Le lac d’Orta et Cannobio</h3>\n<p>À une quarantaine de minutes se trouvent <strong>Orta San Giulio</strong> et l’île de San Giulio avec sa basilique. Au nord, <strong>Cannobio</strong> offre des quais colorés et un marché du dimanche très animé.</p>\n<table>\n<thead>\n<tr><th>De Verbania à…</th><th>Comment</th><th>Temps indicatif</th></tr>\n</thead>\n<tbody>\n<tr><td>Villa Taranto</td><td>En voiture ou à pied</td><td>10–15 minutes</td></tr>\n<tr><td>Îles Borromées</td><td>Bateau depuis Pallanza</td><td>15–30 minutes</td></tr>\n<tr><td>Stresa</td><td>Bateau ou voiture</td><td>30 minutes</td></tr>\n<tr><td>Cannobio</td><td>Voiture</td><td>30 minutes</td></tr>\n<tr><td>Orta San Giulio</td><td>Voiture</td><td>40 minutes</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>Avril et mai sont les mois des floraisons : azalées, rhododendrons et camélias transforment jardins et villas. L’été est la saison des promenades en bateau et des excursions vers les îles. En automne, le lac devient silencieux et les bois alentour se teintent de rouge et d’or : c’est le meilleur moment pour une retraite.</p>\n<h2>Où séjourner</h2>\n<p>La <strong>Casa per Ferie Maria Mazzarello</strong> se trouve sur la colline de Zoverallo, en pleine nature, face au lac Majeur. C’est un lieu simple et tranquille, avec des chambres soignées, un parc panoramique doté d’un belvédère sur le lac, des salles de réunion, des chapelles et un parking privé. Elle accueille retraites et exercices spirituels et organise des cours et des rencontres tout au long de l’année : la base idéale pour qui veut découvrir le lac et retrouver du temps pour soi.</p>"
+  },
+  "soverato-costa-degli-aranci-squillace": {
+   "titolo": "Soverato et la Côte des Orangers : la mer, la Pietà de Gagini et Squillace",
+   "slug": "soverato-cote-des-orangers-pieta-gagini-squillace",
+   "riassunto": "",
+   "contenuto": "<p><strong>Soverato donne sur le golfe de Squillace, sur une portion de côte ionienne que les Calabrais appellent Costa degli Aranci, la Côte des Orangers.</strong> On y trouve des plages de sable clair, un front de mer animé et, dans la ville haute, un chef-d’œuvre de la Renaissance. Tout autour, des villages médiévaux, des parcs archéologiques et le souvenir d’un grand moine du VIe siècle.</p>\n<h2>Pourquoi visiter Soverato</h2>\n<h3>La mer de la Côte des Orangers</h3>\n<p>Les plages de Soverato sont larges et sablonneuses, avec une eau limpide qui a valu plusieurs fois à la ville le <strong>Pavillon bleu</strong>. Les fonds descendent en pente douce et la baie est abritée : c’est une excellente destination pour les familles.</p>\n<h3>Le front de mer</h3>\n<p>Le soir, la vie de Soverato se déplace sur le front de mer, entre palmiers, glaciers et promenades. En été, la ville accueille concerts et événements qui en font l’un des lieux les plus animés de la côte ionienne.</p>\n<h3>La Pietà de Gagini</h3>\n<p>Dans la ville haute, <strong>Soverato Superiore</strong>, l’église Maria Santissima Addolorata abrite la <strong>Pietà d’Antonello Gagini</strong>, sculpteur sicilien de la Renaissance. C’est un groupe en marbre blanc d’une grande délicatesse, l’un des trésors artistiques de la Calabre.</p>\n<h3>Le vieux Soverato</h3>\n<p>Sur les collines se dressent les ruines de l’ancien village, abandonné après le tremblement de terre de 1783, avec une vue étendue sur le golfe.</p>\n<h2>Les environs</h2>\n<h3>Les plages de Copanello et de Caminia</h3>\n<p>À quelques minutes au nord, la côte devient rocheuse : <strong>Copanello</strong> et <strong>Caminia</strong> offrent des criques de sable entre des rochers de granit et une eau cristalline, parfaite pour le snorkeling. Parmi les rochers de Copanello, on voit des bassins creusés dans la pierre, que la tradition relie à Cassiodore.</p>\n<h3>Squillace</h3>\n<p>Sur la colline qui domine le golfe, <strong>Squillace</strong> est un village médiéval avec un château normand et une longue tradition de <strong>céramique</strong>, toujours vivante dans ses ateliers. C’est la ville natale de <strong>Cassiodore</strong> qui, au VIe siècle, fonda le monastère de Vivarium, où les moines copiaient et sauvaient les textes anciens.</p>\n<h3>Le parc archéologique de Scolacium</h3>\n<p>À Roccelletta di Borgia, au milieu des oliviers, le <strong>parc de Scolacium</strong> conserve les vestiges de la cité romaine, avec son théâtre et son forum, et la grande basilique normande de Santa Maria della Roccella.</p>\n<h3>Catanzaro et Le Castella</h3>\n<p><strong>Catanzaro</strong>, chef-lieu de la région, est à une demi-heure. En direction du sud-est, en une heure et demie environ, on atteint la forteresse aragonaise de <strong>Le Castella</strong>, qui semble flotter sur la mer à Isola di Capo Rizzuto.</p>\n<table>\n<thead>\n<tr><th>De Soverato à…</th><th>Temps indicatif en voiture</th></tr>\n</thead>\n<tbody>\n<tr><td>Copanello et Caminia</td><td>15 minutes</td></tr>\n<tr><td>Squillace</td><td>20 minutes</td></tr>\n<tr><td>Parc de Scolacium</td><td>25 minutes</td></tr>\n<tr><td>Catanzaro</td><td>30–40 minutes</td></tr>\n<tr><td>Le Castella</td><td>1 heure et demie</td></tr>\n</tbody>\n</table>\n<h2>Quand partir</h2>\n<p>La saison balnéaire va de juin à septembre, avec une eau chaude jusqu’en octobre. Mai et septembre sont les mois idéaux pour combiner plage et visite des villages sans la chaleur d’août. Au printemps, la côte embaume la fleur d’oranger, et l’on comprend d’où vient son nom.</p>\n<h2>Où séjourner</h2>\n<p><strong>Casa FMA Soverato</strong> se trouve via San Giovanni Bosco et est tenue par les Filles de Marie Auxiliatrice. Elle dispose de 15 chambres avec climatisation, chauffage, Wi-Fi et parking gratuit. C’est la base idéale pour les familles et les groupes qui veulent profiter de la mer de la Côte des Orangers et découvrir les villages et l’histoire du golfe de Squillace.</p>"
+  },
+  "la-storia-dellaltopiano-di-asiago": {
+   "titolo": "L’histoire du plateau d’Asiago",
+   "slug": "histoire-du-plateau-asiago",
+   "riassunto": "",
+   "contenuto": "<p>Le plateau d’Asiago plonge ses racines dans l’époque romaine et en particulier dans la culture celtique. On en retrouve encore aujourd’hui des traces dans le dialecte local et dans les noms de lieux de toute la région. De 1310 à 1807, la Spettabile Reggenza dei Sette Comuni fut un gouvernement autonome et communautaire, allié de la République de Venise.</p>\n<p>Les montagnes et les bois autour de Cesuna furent le théâtre d’événements importants pendant la <a rel=\"noopener\" target=\"_blank\" href=\"https://fr.wikipedia.org/wiki/Première_Guerre_mondiale\">Première Guerre mondiale</a> : en particulier, à partir d’avril 1918, la zone fut tenue par les forces britanniques, qui affrontèrent les troupes autrichiennes en juin suivant. C’est encore l’un des lieux les plus évocateurs pour visiter les vestiges du grand système de tranchées, de positions blindées, d’abris et le grand « Ossuaire » qui, avec les musées et les cimetières, garde vivante la mémoire des morts.</p>\n<p>Cette richesse historique et culturelle est mise en valeur par le cadre naturel de Cesuna et de tout le plateau, dont les couleurs, rendues plus vives par le cycle des saisons, sont appréciées de tous ceux qui veulent passer une période de détente et de ressourcement le long des parcours et des sentiers qui serpentent dans les bois, ou grâce aux sports que l’on peut pratiquer sur le plateau : du VTT au tennis, du golf à la randonnée, du ski au patinage.</p>\n<p>Les nombreuses fromageries d’alpage et les ateliers des petits producteurs font de chaque simple promenade sur le plateau une occasion de découverte gourmande. Les saveurs traditionnelles se mêlent aux vitrines de l’artisanat du bois pour offrir à chaque visiteur un cadre intéressant et riche en découvertes.</p>"
+  },
+  "soverato-la-perla-della-calabria": {
+   "titolo": "Soverato, la perle de la Calabre",
+   "slug": "soverato-la-perle-de-la-calabre",
+   "riassunto": "",
+   "contenuto": "<p>Avec un mélange parfait d’histoire, de nature et de divertissement, Soverato est la perle de la Calabre.<br />Voici quelques conseils pour rendre votre séjour inoubliable.</p>\n<p><strong>Que voir et que faire :</strong></p>\n<ul>\n<li><strong>Plages :</strong> Soverato est célèbre pour ses plages de sable très fin et sa mer cristalline. La plage de Caminia est particulièrement appréciée pour sa tranquillité.</li>\n<li><strong>Centre historique :</strong> Promenez-vous dans le centre historique et admirez les palais nobles, les églises et les ateliers d’artisans.</li>\n<li><strong>Jardin botanique de Santicelli :</strong> Une oasis de paix avec une vue spectaculaire sur le golfe.</li>\n<li><strong>Roccelletta di Borgia :</strong> Un site archéologique d’un grand intérêt, avec les vestiges d’une basilique byzantine.</li>\n<li><strong>Tour de Charles Quint :</strong> Une ancienne tour de guet avec vue panoramique sur la mer.</li>\n<li><strong>Sports nautiques :</strong> Si vous aimez les sports nautiques, à Soverato vous pouvez pratiquer la planche à voile, le kitesurf et la plongée sous-marine.</li>\n<li><strong>Vie nocturne :</strong> Le soir, Soverato s’anime avec de nombreux bars et clubs.</li>\n</ul>\n<p><strong>Quand partir :</strong></p>\n<p>La meilleure période pour visiter Soverato va de juin à septembre, quand le temps est chaud et ensoleillé.</p>\n<p><strong>Où manger :</strong></p>\n<p>La cuisine calabraise est riche en saveurs et en traditions. À Soverato, vous pourrez déguster des plats de poisson frais, mais aussi la ’nduja, la soppressata et les peperoni cruschi.</p>\n<p><strong>Événements :</strong></p>\n<ul>\n<li><strong>Soverato Summer Festival :</strong> Un festival d’été avec musique, spectacles et événements culturels.</li>\n<li><strong>Fête de l’espadon :</strong> Une fête gastronomique consacrée à l’espadon, l’un des produits typiques de la région.</li>\n</ul>\n<p><strong>Conseils supplémentaires :</strong></p>\n<ul>\n<li><strong>Louez une voiture :</strong> Pour explorer les environs et rejoindre les plages les plus cachées.</li>\n<li><strong>Goûtez les produits locaux :</strong> Ne manquez pas l’occasion de goûter les produits typiques de Calabre, comme le vin, l’huile d’olive et les fromages.</li>\n<li><strong>Participez à une excursion :</strong> De nombreuses agences organisent des excursions vers les îles Éoliennes, Catanzaro ou le parc national de l’Aspromonte.</li>\n</ul>\n<p><strong>Que mettre dans sa valise :</strong></p>\n<ul>\n<li><strong>Maillot de bain :</strong> Indispensable pour profiter de la mer.</li>\n<li><strong>Crème solaire :</strong> Pour vous protéger des rayons du soleil.</li>\n<li><strong>Chapeau et lunettes de soleil :</strong> Pour vous abriter du soleil.</li>\n<li><strong>Chaussures confortables :</strong> Pour marcher et explorer.</li>\n<li><strong>Appareil photo :</strong> Pour immortaliser vos souvenirs.</li>\n</ul>\n<p>Photos : https://a.travel-assets.com/ , https://cs-stage.altrama.com/ , https://www.lesuberante.it/,  https://booking.caorle.eu/</p>"
+  },
+  "il-giubileo-a-roma": {
+   "titolo": "Le Jubilé à Rome",
+   "slug": "le-jubile-a-rome",
+   "riassunto": "",
+   "contenuto": "<p>Rome pendant le Jubilé est une expérience inoubliable. Pour vous aider à organiser au mieux votre voyage, voici quelques conseils.</p>\n<p><strong>Quand partir :</strong></p>\n<ul>\n<li><strong>Ouverture de la Porte sainte :</strong> Le Jubilé commencera officiellement le 24 décembre 2024 avec l’ouverture de la Porte sainte de la basilique Saint-Pierre. C’est le moment fort pour les pèlerins.</li>\n<li><strong>Autres événements :</strong> Tout au long de l’année, de nombreux événements liés au Jubilé seront organisés, comme des jubilés thématiques (par exemple pour le monde de la communication, les forces armées, etc.). Consultez le site officiel du Jubilé pour rester informé.</li>\n</ul>\n<p><strong>Que voir et que faire :</strong></p>\n<ul>\n<li><strong>Les basiliques :</strong> En plus de Saint-Pierre, visitez les quatre autres basiliques papales : Saint-Jean-de-Latran, Saint-Paul-hors-les-Murs, Sainte-Marie-Majeure et Saint-Laurent-hors-les-Murs.</li>\n<li><strong>Le chemin de croix :</strong> Participez à l’un des nombreux chemins de croix organisés en ville, une expérience spirituelle intense.</li>\n<li><strong>Les églises :</strong> Rome est pleine d’églises, chacune avec son histoire et son art uniques. Visitez celles qui vous intéressent le plus.</li>\n<li><strong>Les musées du Vatican et la chapelle Sixtine :</strong> Un incontournable pour tout visiteur de Rome. Réservez vos billets à l’avance pour éviter les longues files d’attente.</li>\n<li><strong>Autres sites :</strong> N’oubliez pas de visiter le Colisée, le Forum romain, le Panthéon, le château Saint-Ange et les fontaines de Rome.</li>\n</ul>\n<p><strong>Se déplacer :</strong></p>\n<ul>\n<li><strong>Métro :</strong> Le métro est le moyen le plus rapide de se déplacer en ville.</li>\n<li><strong>Bus :</strong> De nombreuses lignes de bus relient tous les quartiers de Rome.</li>\n<li><strong>À pied :</strong> Rome est une ville faite pour être explorée à pied, surtout dans le centre historique.</li>\n</ul>\n<p><strong>Où séjourner :</strong></p>\n<ul>\n<li><strong>Près du Vatican :</strong> Si vous voulez être près des principaux lieux du Jubilé, cherchez un hébergement près du Vatican.</li>\n<li><strong>Centre historique :</strong> Le centre historique offre un large choix d’hôtels, de B&amp;B et d’appartements.</li>\n<li><strong>Quartiers périphériques :</strong> Si votre budget est limité, vous pouvez chercher un hébergement dans les quartiers périphériques et utiliser les transports en commun pour rejoindre le centre.</li>\n</ul>\n<p><strong>Conseils utiles :</strong></p>\n<ul>\n<li><strong>Réservez à l’avance :</strong> Hôtels, vols et billets de musées doivent être réservés bien à l’avance, surtout si vous voyagez en haute saison.</li>\n<li><strong>Tenue confortable :</strong> Préparez-vous à beaucoup marcher : portez des chaussures confortables.</li>\n<li><strong>Emportez une gourde :</strong> Rome est une ville chaude, ayez toujours de l’eau avec vous.</li>\n<li><strong>Respectez les règles :</strong> Dans les lieux de culte, il faut respecter certaines règles vestimentaires.</li>\n<li><strong>Assurance voyage :</strong> Souscrivez une assurance voyage qui couvre les éventuels frais médicaux ou le rapatriement.</li>\n</ul>\n<p>Photos : <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/jerome82-11303951/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">JEROME CLARYSSE</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/nimrodins-12874542/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4529605\">Nimrod Oren</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/mailanmaik-4340251/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4634107\">Maik</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/paula11767-7946983/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3133764\">Paula Flan</a>, <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/rainhard2-19578714/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6207755\">Rainhard Wiesinger</a> sur <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">Pixabay</a></p>"
+  },
+  "cosa-fare-a-napoli": {
+   "titolo": "Que faire à Naples",
+   "slug": "que-faire-a-naples",
+   "riassunto": "",
+   "contenuto": "<ul>\n<li><strong>Spaccanapoli :</strong> Se perdre dans les ruelles de Spaccanapoli est une expérience unique. Admirez les palais nobles, les ateliers d’artisans et les églises baroques.</li>\n<li><strong>Castel Nuovo :</strong> Une forteresse imposante qui domine le port. Visitez les salles intérieures et profitez de la vue panoramique sur la ville.</li>\n<li><strong>Galleria Umberto I :</strong> Une galerie marchande du XIXe siècle, joyau de l’architecture Art nouveau. Admirez les verrières colorées et flânez entre les boutiques.</li>\n<li><strong>Naples souterraine :</strong> Découvrez la Naples cachée sous la ville. Visitez les galeries, les citernes et les théâtres romains.</li>\n<li><strong>Musée archéologique national :</strong> Admirez l’une des plus importantes collections archéologiques d’Italie. Ne manquez pas les célèbres mosaïques et les objets découverts à Pompéi.</li>\n<li><strong>Chapelle Sansevero :</strong> Respirez l’atmosphère mystique de cette chapelle et admirez le Christ voilé, l’une des œuvres d’art les plus fascinantes au monde.</li>\n<li><strong>Pizza :</strong> Goûtez la vraie pizza napolitaine dans l’une des nombreuses pizzerias historiques de la ville.</li>\n<li><strong>Promenade sur le front de mer :</strong> Offrez-vous une promenade le long du front de mer de Naples, face au Vésuve et au golfe.</li>\n<li><strong>Quartieri Spagnoli :</strong> Plongez dans l’atmosphère authentique des Quartiers espagnols, un quartier animé et coloré.</li>\n</ul>\n<p><strong>Quand partir :</strong></p>\n<p>La meilleure période pour visiter Naples est le printemps (avril–mai) ou l’automne (septembre–octobre), quand le climat est doux et les foules de touristes moins nombreuses.</p>\n<p><strong>Se déplacer :</strong></p>\n<p>Naples est une ville qui se prête à la découverte à pied. Sinon, vous pouvez utiliser les transports en commun (bus, métro) ou le taxi.</p>\n<p><strong>Où manger :</strong></p>\n<p>La cuisine napolitaine est célèbre dans le monde entier. À goûter absolument :</p>\n<ul>\n<li><strong>Pizza :</strong> La vraie pizza napolitaine est une expérience unique.</li>\n<li><strong>Pâtes :</strong> Spaghettis aux palourdes, pasta e patate, genovese… il y en a pour tous les goûts !</li>\n<li><strong>Friarielli :</strong> Un accompagnement typiquement napolitain, incontournable pour les amateurs de saveurs franches.</li>\n<li><strong>Baba :</strong> Un gâteau moelleux imbibé de rhum, parfait pour finir le repas.</li>\n</ul>\n<p><strong>Conseils supplémentaires :</strong></p>\n<ul>\n<li><strong>Réservez à l’avance :</strong> Si vous voulez visiter les musées les plus importants, je vous conseille de réserver vos billets à l’avance, surtout en haute saison.</li>\n<li><strong>Habillez-vous confortablement :</strong> Pour se perdre dans les ruelles de Naples, il faut des chaussures confortables !</li>\n<li><strong>Goûtez la cuisine de rue :</strong> Ne manquez pas les nombreuses spécialités de street food que l’on trouve dans les rues de Naples.</li>\n<li><strong>Apprenez quelques mots de napolitain :</strong> Connaître quelques mots de napolitain rendra votre expérience encore plus authentique.</li>\n</ul>"
+  },
+  "perche-visitare-torre-annunziata": {
+   "titolo": "Pourquoi visiter Torre Annunziata ?",
+   "slug": "pourquoi-visiter-torre-annunziata",
+   "riassunto": "",
+   "contenuto": "<p>Les raisons de visiter Torre Annunziata sont nombreuses. Voici quelques-unes des plus importantes :</p>\n<ul>\n<li><strong>Sa position stratégique :</strong> Torre Annunziata occupe une position stratégique sur le golfe de Naples. La ville offre une vue panoramique sur le Vésuve et l’île de Capri.</li>\n<li><strong>Son histoire ancienne :</strong> Torre Annunziata a une histoire ancienne qui remonte à l’époque romaine. La ville abrite de nombreux sites archéologiques, dont les vestiges de la villa de Poppée et le Musée archéologique national de Torre Annunziata.</li>\n<li><strong>La culture de la tomate :</strong> Torre Annunziata est célèbre pour ses tomates. La ville est le centre de production de la tomate San Marzano, une variété très appréciée pour sa saveur et sa polyvalence.</li>\n<li><strong>Les plages :</strong> Torre Annunziata possède plusieurs plages le long de la côte. Elles sont idéales pour la baignade, le surf et la planche à voile.</li>\n<li><strong>La vie nocturne :</strong> Torre Annunziata a une vie nocturne animée. La ville compte de nombreux bars, restaurants et clubs.</li>\n</ul>\n<p><strong>Que faire à Torre Annunziata ?</strong></p>\n<p>Il y a beaucoup de choses à faire à Torre Annunziata. Voici quelques-unes des activités les plus appréciées :</p>\n<ul>\n<li><strong>Visiter les sites archéologiques :</strong> Les sites archéologiques de Torre Annunziata sont une attraction incontournable. Les plus importants sont les vestiges de la villa de Poppée et le Musée archéologique national de Torre Annunziata.</li>\n<li><strong>Se baigner :</strong> Les plages de Torre Annunziata sont idéales pour la baignade, le surf et la planche à voile.</li>\n<li><strong>Goûter la tomate San Marzano :</strong> Les tomates San Marzano de Torre Annunziata sont très appréciées pour leur saveur et leur polyvalence.</li>\n<li><strong>Profiter de la vie nocturne :</strong> Torre Annunziata a une vie nocturne animée. La ville compte de nombreux bars, restaurants et clubs.</li>\n</ul>\n<p><strong>Comment se rendre à Torre Annunziata ?</strong></p>\n<p>Torre Annunziata est facile à rejoindre en train ou en bus depuis Naples. On peut aussi y aller en voiture.</p>\n<p><strong>Quand visiter Torre Annunziata ?</strong></p>\n<p>La meilleure période pour visiter Torre Annunziata est le printemps ou l’automne, quand le climat est doux. La ville mérite toutefois aussi une visite en été et en hiver.</p>\n<p><strong>Conseils pour visiter Torre Annunziata</strong></p>\n<ul>\n<li><strong>Prenez votre temps :</strong> Torre Annunziata est une ville riche d’histoire et de culture. Prenez le temps de l’explorer et de découvrir ses trésors cachés.</li>\n<li><strong>Goûtez la tomate San Marzano :</strong> Les tomates San Marzano de Torre Annunziata sont une expérience culinaire à ne pas manquer.</li>\n<li><strong>Essayez la vie nocturne :</strong> Torre Annunziata a une vie nocturne animée. Ne manquez pas d’essayer quelques bars, restaurants et clubs de la ville.</li>\n<li><strong>Détendez-vous sur les plages :</strong> Les plages de Torre Annunziata sont idéales pour se détendre et s’amuser.</li>\n</ul>\n<p><strong>Conclusion</strong></p>\n<p>Torre Annunziata est une ville riche d’histoire, de culture et de beautés naturelles. Elle offre aux visiteurs un large éventail d’activités : visites de sites archéologiques, baignade, surf, planche à voile, dégustation de tomates San Marzano et vie nocturne. Si vous cherchez une destination intéressante et abordable, Torre Annunziata est un excellent choix.</p>"
+  },
+  "villa-tiberiade-esercizi-spirituali-gruppi": {
+   "titolo": "Exercices spirituels et journées de retraite à la Villa Tiberiade, sur le golfe de Naples",
+   "slug": "exercices-spirituels-retraites-villa-tiberiade-naples",
+   "riassunto": "",
+   "contenuto": "<p><strong>La Villa Tiberiade est née pour cela : accueillir des groupes pour des journées de spiritualité et des exercices spirituels.</strong> Une villa nichée dans la verdure à Torre Annunziata, avec vue sur la péninsule de Sorrente et des chambres presque toutes individuelles : le lieu idéal pour un temps de silence, de prière et de rencontre.</p>\n\n<h2>Pour qui</h2>\n<p>La maison accueille paroisses, communautés religieuses, associations et mouvements à la recherche d’un lieu recueilli pour une retraite d’un ou plusieurs jours. Elle convient aussi à une journée de formation ou à une rencontre de groupe sans nuitée.</p>\n\n<h2>Les espaces pour le groupe</h2>\n<ul>\n<li><strong>Une salle de conférences</strong> pour les méditations, les interventions et les temps communautaires.</li>\n<li><strong>Un grand parc</strong> avec jardin et transats, où se promener en silence entre deux rencontres.</li>\n<li><strong>Une vue panoramique</strong> sur le golfe de Naples et la péninsule de Sorrente, depuis les balcons et le jardin.</li>\n<li><strong>Ascenseur, Wi-Fi et parking gratuit</strong>, bien pratiques pour ceux qui arrivent en car ou avec plusieurs voitures.</li>\n</ul>\n\n<h3>Les chambres : presque toutes individuelles</h3>\n<p>La maison compte <strong>30 chambres simples</strong> avec vue sur le golfe et salle de bains privée, ainsi que 3 chambres doubles et 1 triple. C’est une configuration rare, précieuse pour les exercices spirituels : chacun dispose de son propre espace pour le recueillement personnel, et les chambres doubles restent disponibles pour les couples, les familles ou les accompagnateurs.</p>\n\n<h2>Comment organiser la retraite</h2>\n<ul>\n<li><strong>Choisissez la formule.</strong> Une journée de retraite, un week-end ou une session d’exercices de cinq jours : indiquez-le tout de suite à la maison, avec le nombre de participants.</li>\n<li><strong>Demandez ce qui est compris.</strong> Vérifiez avec la maison les repas, l’utilisation de la salle et les horaires, en fonction du programme que vous avez en tête.</li>\n<li><strong>Laissez du temps libre.</strong> Le parc et le panorama font partie de l’expérience : prévoyez de longues pauses pour le silence et la prière personnelle.</li>\n<li><strong>Une sortie, si le temps le permet.</strong> Les fouilles de Pompéi sont à 10 minutes en voiture, le Vésuve à 30 : une demi-journée de visite peut joliment conclure une retraite de plusieurs jours.</li>\n</ul>\n\n<h2>À savoir avant de réserver</h2>\n<ul>\n<li>Arrivée de 14 h à 21 h, départ avant 11 h.</li>\n<li>L’établissement est non-fumeur et n’admet ni les animaux, ni les fêtes ou événements privés.</li>\n<li>Remboursement intégral en cas d’annulation au moins 30 jours avant l’arrivée, de 50 % au moins 7 jours avant : tenez-en compte lorsque vous recueillez les inscriptions.</li>\n<li>L’aéroport de Naples-Capodichino est à environ 30 minutes en voiture.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>Pour les disponibilités et les devis de groupe, écrivez à <a href=\"mailto:info@villatiberiade.it\">info@villatiberiade.it</a> ou appelez le <a href=\"tel:+390818836450\">+39 081 883 6450</a>, en précisant les dates, le nombre de personnes et le type de rencontre.</p>"
+  },
+  "villa-crawford-ritiri-riunioni-gruppi-sorrento": {
+   "titolo": "La Villa Crawford pour les groupes : retraites, réunions et journées de formation au-dessus de la mer",
+   "slug": "villa-crawford-groupes-retraites-reunions-formation",
+   "riassunto": "",
+   "contenuto": "<p><strong>La Villa Crawford, à Sant’Agnello, réunit deux choses rares : une demeure historique tournée vers le golfe de Naples et des espaces conçus pour le travail en groupe.</strong> Ouverte toute l’année, elle accueille depuis 1954 les jeunes qui s’y retrouvent pour quelques heures de détente et de prière.</p>\n\n<h2>Pour qui</h2>\n<p>La villa se prête aux retraites de groupes paroissiaux et de jeunes, aux rencontres de formation, aux réunions d’associations et de conseils d’administration. Les organisateurs y trouvent des salles de différentes tailles et un parc où poursuivre la conversation en plein air.</p>\n\n<h2>Les espaces pour le groupe</h2>\n<ul>\n<li><strong>Une grande salle de réunion</strong> élégante, panoramique et très lumineuse, pour les séances plénières.</li>\n<li><strong>D’autres salles de tailles diverses</strong>, idéales pour le travail en petits groupes ou pour des réunions restreintes.</li>\n<li><strong>La chapelle</strong>, pour la prière et les célébrations du groupe.</li>\n<li><strong>Un parc de 1 500 m²</strong> au bord de la mer, avec vue sur le Vésuve.</li>\n<li><strong>Ascenseur, Wi-Fi, climatisation et chauffage</strong> : la villa se prête bien à toutes les saisons.</li>\n</ul>\n\n<h3>Deux façons de loger</h3>\n<p>Les <strong>chambres de la villa</strong> sont spacieuses, réparties sur trois étages desservis par l’ascenseur, et la moitié donne sur la mer. Les <strong>chambres du jardin</strong> se trouvent dans le parc, à l’écart du bâtiment principal, dans un style simple et avec une petite table à l’extérieur : une bonne solution pour les animateurs ou pour ceux qui recherchent plus de tranquillité.</p>\n\n<h2>Comment organiser la rencontre</h2>\n<ul>\n<li><strong>Pensez les espaces en fonction du programme.</strong> Plénière dans la grande salle, travail en groupes dans les petites salles, pauses dans le parc : demandez à la maison quelles salles sont libres à vos dates.</li>\n<li><strong>Appuyez-vous sur l’histoire de la villa.</strong> L’écrivain Francis Marion Crawford fit graver sur les remparts la devise <em>« In tempestate securitas »</em>, un abri sûr dans la tempête : c’est un point de départ tout trouvé pour une méditation ou pour ouvrir une rencontre.</li>\n<li><strong>Hors saison.</strong> La villa est ouverte toute l’année : l’automne et le printemps sont idéaux pour une retraite au calme, loin de la foule estivale de la côte.</li>\n<li><strong>Un après-midi libre.</strong> Sorrente et la mer de la péninsule sont à deux pas.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>Pour les dates, les salles et les devis, écrivez à <a href=\"mailto:info@villacrawford.it\">info@villacrawford.it</a> ou appelez le <a href=\"tel:+390818073084\">081 807 3084</a>, en indiquant le nombre de participants et les salles dont vous avez besoin.</p>"
+  },
+  "napoli-casa-fma-gruppi-pellegrinaggi": {
+   "titolo": "Groupes et pèlerinages à Naples : loger chez les Sœurs salésiennes, au cœur de la ville",
+   "slug": "naples-groupes-pelerinages-soeurs-salesiennes",
+   "riassunto": "",
+   "contenuto": "<p><strong>Pour un groupe paroissial, une classe ou une association en visite à Naples, la Casa FMA est un point de chute simple et central.</strong> Les Filles de Marie Auxiliatrice accueillent leurs hôtes au siège de la Province méridionale, un ensemble avec cloître et jardin, à quelques pas des églises et des monuments du centre.</p>\n\n<h2>Pour qui</h2>\n<p>La maison convient aux petits groupes qui souhaitent visiter la ville à pied : pèlerinages dans les églises du centre historique, voyages scolaires, groupes de catéchèse ou de patronage, amis qui partagent un cheminement. Avec <strong>12 chambres</strong>, simples et doubles, elle est pensée pour des groupes restreints plutôt que pour de grandes compagnies.</p>\n\n<h2>Ce que propose la maison</h2>\n<ul>\n<li>Chambres simples et doubles avec lit double ou deux lits simples.</li>\n<li>Climatisation, chauffage, ascenseur et Wi-Fi.</li>\n<li>Un réfrigérateur à la disposition des hôtes.</li>\n<li>Le cloître et la cour intérieure, un coin de silence au milieu de la ville.</li>\n</ul>\n<p>Les tarifs commencent à <strong>60 €</strong> la nuit. À Naples s’ajoute la taxe de séjour de 2 € par personne et par nuit.</p>\n\n<h2>Comment organiser le voyage</h2>\n<ul>\n<li><strong>Déplacez-vous à pied.</strong> Le centre historique se découvre en marchant : loger ici vous évite les cars et le stationnement, le plus gros casse-tête des groupes en ville.</li>\n<li><strong>Un thème pour chaque journée.</strong> Les églises du centre, Naples souterraine, le front de mer : répartissez le programme par quartiers, afin que les déplacements restent courts.</li>\n<li><strong>Réservez les visites à l’avance.</strong> De nombreux sites du centre, comme les parcours souterrains et les musées les plus fréquentés, exigent une réservation pour les groupes.</li>\n<li><strong>Prévoyez la taxe de séjour dans le budget.</strong> Pour un groupe de dix personnes et trois nuits, cela représente 60 € de plus.</li>\n</ul>\n\n<h2>La mission de la maison</h2>\n<p>Les Sœurs salésiennes de Don Bosco placent l’éducation des jeunes, en particulier des plus pauvres, au cœur de leur mission. Séjourner ici, c’est entrer pour quelques jours dans une maison qui vit de cet esprit, celui de la devise de Don Bosco : « Bons chrétiens et honnêtes citoyens ».</p>\n\n<h2>Contacts</h2>\n<p>Pour les groupes, écrivez à <a href=\"mailto:amministrazione.napoli.sgb@fma-imr.it\">amministrazione.napoli.sgb@fma-imr.it</a> ou contactez le <a href=\"tel:+393759151774\">375 915 1774</a>, également sur <a href=\"https://wa.me/393759151774\">WhatsApp</a>.</p>"
+  },
+  "roma-casa-per-ferie-gruppi-parrocchiali": {
+   "titolo": "Rome avec le groupe paroissial : la maison d’accueil Maria Ausiliatrice près de Termini",
+   "slug": "rome-groupe-paroissial-maison-accueil-termini",
+   "riassunto": "",
+   "contenuto": "<p><strong>Organiser un pèlerinage ou un voyage de groupe à Rome commence par un choix : où dormir.</strong> La maison d’accueil Maria Ausiliatrice, via Marghera, se trouve à quelques pas de la gare Termini et s’adresse précisément à ceux qui partagent un chemin de foi : groupes paroissiaux, religieux et religieuses, familles et associations.</p>\n\n<h2>Pour qui</h2>\n<p>La maison est gérée par les Sœurs salésiennes de Don Bosco sans but lucratif, en dehors des circuits commerciaux habituels. Les hôtes partagent les idéaux de la maison et en respectent les règles : c’est un cadre serein et ordonné, adapté aux groupes qui viennent à Rome pour prier, visiter les basiliques et vivre quelques jours ensemble.</p>\n\n<h2>Ce que propose la maison</h2>\n<ul>\n<li><strong>20 chambres</strong>, avec climatisation, chauffage et Wi-Fi.</li>\n<li>Ménage quotidien des chambres et draps changés tous les trois jours.</li>\n<li>Parking gratuit, dans la limite des places disponibles.</li>\n<li>Un emplacement pratique pour ceux qui arrivent en train : depuis la gare Termini partent le métro et les bus vers toute la ville.</li>\n</ul>\n\n<h2>Les règles de la maison, à communiquer au groupe</h2>\n<p>Le responsable d’un groupe a tout intérêt à les expliquer avant le départ, pour éviter les surprises :</p>\n<ul>\n<li>Réception ouverte de 12 h à 13 h et de 14 h à 21 h.</li>\n<li>Retour le soir avant 21 h d’octobre à avril, avant 22 h de mai à septembre.</li>\n<li>Les chambres doivent être libérées avant 9 h 30 le jour du départ.</li>\n<li>Les animaux ne sont pas admis et il est interdit de fumer dans le bâtiment.</li>\n<li>Comportement et tenue conformes à la vocation religieuse de la maison.</li>\n</ul>\n\n<h2>Comment organiser le voyage</h2>\n<ul>\n<li><strong>Organisez les journées en fonction du retour du soir.</strong> Dînez tôt et gardez les visites nocturnes pour une autre occasion : le rythme de la maison aide aussi le groupe à se reposer.</li>\n<li><strong>Le jour du départ.</strong> Comme la chambre doit être libérée avant 9 h 30, mieux vaut organiser la consigne des bagages et une dernière visite avant le train.</li>\n<li><strong>Les basiliques et les audiences.</strong> Pour les audiences papales et certaines visites guidées, les groupes doivent réserver à l’avance : faites-le dès que vos dates sont fixées.</li>\n<li><strong>Don Bosco à Rome.</strong> La basilique du Sacré-Cœur, voulue par Don Bosco, est toute proche de la gare Termini : une étape naturelle pour un groupe salésien.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>Les réservations sont reçues du lundi au samedi, de 9 h à 13 h et de 15 h à 18 h. Écrivez à <a href=\"mailto:m.accoglienza@fmairo.net\">m.accoglienza@fmairo.net</a> ou contactez le <a href=\"tel:+393292352419\">329 235 2419</a>, également sur <a href=\"https://wa.me/393292352419\">WhatsApp</a>.</p>"
+  },
+  "caorle-casa-san-giuseppe-gruppi-famiglie": {
+   "titolo": "À la mer en groupe : la maison d’accueil San Giuseppe de Caorle pour patronages, familles et associations",
+   "slug": "caorle-maison-accueil-san-giuseppe-groupes-familles",
+   "riassunto": "",
+   "contenuto": "<p><strong>Une semaine à la mer avec le patronage, le groupe de familles ou l’association : à Caorle, la maison d’accueil San Giuseppe offre un cadre serein à deux pas de la plage.</strong> Elle est tenue par les Filles de Marie Auxiliatrice, avec une idée claire : être bien plus qu’un simple lieu d’hébergement.</p>\n\n<h2>Pour qui</h2>\n<p>La maison accueille chacun avec chaleur et respect, quels que soient son parcours de vie, sa culture ou sa foi. Elle convient aux groupes paroissiaux et de patronage, à plusieurs familles qui voyagent ensemble, aux associations et à tous ceux qui recherchent des vacances tranquilles à la mer, faites de relations authentiques.</p>\n\n<h2>Les chambres</h2>\n<p>La maison dispose de chambres <strong>simples, triples et quadruples</strong>. Les quadruples sont idéales pour les familles, les triples conviennent bien aux jeunes et aux animateurs. Toutes sont équipées du chauffage, de la télévision et du Wi-Fi.</p>\n\n<h2>L’esprit de la maison</h2>\n<p>La charte des valeurs de la maison se résume en cinq mots :</p>\n<ul>\n<li><strong>Une maison pour tous</strong>, où se sentir en sécurité et à son aise.</li>\n<li><strong>Accueil</strong>, avec chaleur et respect pour chacun.</li>\n<li><strong>Oasis de paix</strong>, dans la nature et à deux pas de la mer.</li>\n<li><strong>Esprit de famille</strong>, fait de dialogue, d’écoute et de respect, même pour de courts séjours.</li>\n<li><strong>Bienvenue</strong> : chaque détail témoigne d’attention et de prévenance.</li>\n</ul>\n\n<h2>Comment organiser le séjour</h2>\n<ul>\n<li><strong>Réservez l’été tôt.</strong> Juillet et août sont les mois les plus demandés par les groupes : fixez vos dates dès l’hiver.</li>\n<li><strong>Pensez à la répartition dans les chambres.</strong> Indiquez à la maison combien de familles, de jeunes et d’animateurs vous comptez : les chambres triples et quadruples se combinent facilement.</li>\n<li><strong>Alternez plage et découverte.</strong> Le village de pêcheurs, le sanctuaire au bord de la mer et la lagune de Caorle sont parfaits pour une matinée ou une soirée sans plage.</li>\n<li><strong>Basse saison.</strong> Mai, juin et septembre sont idéaux pour une retraite ou un week-end de groupe, avec une mer calme et une plage dégagée.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>L’accueil répond par e-mail et par téléphone de 9 h à 12 h 30 et de 14 h à 17 h 30. Écrivez à <a href=\"mailto:info@sangiuseppecaorle.it\">info@sangiuseppecaorle.it</a>, appelez le <a href=\"tel:+39042181051\">0421 81051</a> ou utilisez <a href=\"https://wa.me/393342044670\">WhatsApp</a>.</p>"
+  },
+  "villa-tabor-campi-weekend-formativi-asiago": {
+   "titolo": "Villa Tabor : week-ends de formation, camps et semaines de spiritualité sur le plateau d’Asiago",
+   "slug": "villa-tabor-week-ends-formation-camps-asiago",
+   "riassunto": "",
+   "contenuto": "<p><strong>Depuis 1943, Villa Tabor accueille des groupes sur le plateau d’Asiago : week-ends de formation, semaines de spiritualité, exercices spirituels, journées de prière et de retraite.</strong> Entourée de hêtres et de sapins, à Cesuna di Roana, c’est le lieu idéal pour un groupe qui veut allier formation, nature et vie simple.</p>\n\n<h2>Pour qui</h2>\n<p>Après sa rénovation en 1999, la maison est devenue un point de référence sur le plateau pour la formation des jeunes. Elle accueille des groupes formels et informels avec leurs propositions éducatives, formatives, spirituelles et culturelles, ainsi que des prêtres et des religieuses. Depuis 2017, elle s’est aussi ouverte aux familles, avec des week-ends de détente et de vie partagée.</p>\n\n<h2>Ce que propose la maison</h2>\n<ul>\n<li><strong>15 chambres</strong>, avec ascenseur, chauffage et Wi-Fi.</li>\n<li><strong>La chapelle votive</strong>, pour la prière du groupe.</li>\n<li><strong>Un parking gratuit</strong>, pratique pour ceux qui montent en voiture ou en car.</li>\n<li><strong>La communauté des sœurs</strong>, avec laquelle il est possible de partager certains moments de prière et de service.</li>\n</ul>\n\n<h2>Des idées pour le programme</h2>\n<h3>La nature</h3>\n<p>Autour de la maison partent des sentiers dans les bois, des parcours de VTT et des itinéraires de randonnée. En hiver, le plateau offre ski et patinage : un camp d’hiver ici a une tout autre saveur.</p>\n<h3>La mémoire de la Grande Guerre</h3>\n<p>Les bois de Cesuna ont été le théâtre d’événements majeurs de la Première Guerre mondiale. Tranchées, positions et le grand Ossuaire sont une étape marquante pour un groupe de jeunes : l’occasion de parler de paix, d’histoire et de choix.</p>\n<h3>Les saveurs du plateau</h3>\n<p>Fromageries d’alpage et petits producteurs transforment une promenade en découverte de la gastronomie locale. La visite d’un alpage est un beau moment à vivre ensemble.</p>\n\n<h2>Comment organiser le camp</h2>\n<ul>\n<li><strong>Alliez activités et silence.</strong> Formation le matin, bois l’après-midi, chapelle le soir : le rythme de la montagne aide le groupe.</li>\n<li><strong>Apportez l’équipement adapté.</strong> Chaussures de randonnée et vêtements chauds, même en été : en altitude, les soirées sont fraîches.</li>\n<li><strong>Mettez-vous d’accord avec la communauté.</strong> Demandez quels moments de prière et de service le groupe peut partager avec les sœurs.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>Écrivez à <a href=\"mailto:villatabor@fmaitv.eu\">villatabor@fmaitv.eu</a>, appelez le <a href=\"tel:+39042467002\">0424 67002</a> ou le <a href=\"tel:+393294870389\">329 487 0389</a>, en précisant les dates, le nombre de personnes et le type de proposition.</p>"
+  },
+  "verbania-casa-mazzarello-ritiri-esercizi-spirituali": {
+   "titolo": "Retraites et exercices spirituels sur le lac Majeur : la maison d’accueil Maria Mazzarello de Verbania",
+   "slug": "verbania-maison-mazzarello-retraites-exercices-spirituels",
+   "riassunto": "",
+   "contenuto": "<p><strong>Sur la colline de Zoverallo, au-dessus de Verbania, la maison d’accueil Maria Mazzarello est un lieu simple et silencieux, tourné vers le lac Majeur.</strong> Elle propose et accueille des retraites et des exercices spirituels : un endroit où trouver du temps pour soi, pour son groupe et pour la vie spirituelle.</p>\n\n<h2>Pour qui</h2>\n<p>La maison accueille groupes paroissiaux, communautés religieuses, associations et mouvements à la recherche d’un cadre discret pour une retraite. Au fil de l’année, elle organise aussi des parcours, des rencontres et des sessions avec des temps de prière, d’écoute et de réflexion, ouverts à tous ceux qui souhaitent y participer.</p>\n\n<h2>Les espaces pour le groupe</h2>\n<ul>\n<li><strong>Des salles de réunion</strong> pour les méditations et le travail en groupe.</li>\n<li><strong>Les chapelles</strong>, pour la prière personnelle et les célébrations.</li>\n<li><strong>Un parc panoramique</strong> avec un belvédère qui domine le lac, une terrasse naturelle ouverte sur le paysage.</li>\n<li><strong>Des chambres soignées</strong> et un <strong>parking privé</strong>.</li>\n</ul>\n\n<h2>Le parc, une salle en plein air</h2>\n<p>Le parc fait partie intégrante de ce que propose la maison. Il se prête :</p>\n<ul>\n<li>aux promenades lentes et à la méditation ;</li>\n<li>au yoga en plein air ;</li>\n<li>aux moments de silence et de prière ;</li>\n<li>à la lecture et à l’étude ;</li>\n<li>aux rencontres de groupe dans la nature.</li>\n</ul>\n<p>De la lumière du matin au calme du coucher du soleil, le belvédère offre chaque jour un panorama différent : une invitation naturelle au recueillement.</p>\n\n<h2>Comment organiser la retraite</h2>\n<ul>\n<li><strong>Protégez le silence.</strong> Convenez avec le groupe des temps de silence et utilisez le parc pour la prière personnelle.</li>\n<li><strong>Une rencontre en plein air.</strong> Quand le temps le permet, tenez une séance dans le parc : le changement de décor ravive l’attention.</li>\n<li><strong>Les bonnes saisons.</strong> Au printemps, les floraisons du lac ; en automne, les couleurs des bois et la quiétude : ce sont les meilleures périodes pour une retraite.</li>\n<li><strong>Une demi-journée sur le lac.</strong> Les jardins de la villa Taranto et les îles Borromées sont tout proches, pour une sortie du groupe.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>Écrivez à <a href=\"mailto:info@casaferiemazzarello.it\">info@casaferiemazzarello.it</a>, appelez le <a href=\"tel:+390323402365\">0323 402365</a> ou le <a href=\"tel:+393441875602\">344 187 5602</a> (également sur <a href=\"https://wa.me/393441875602\">WhatsApp</a>). Retrouvez les propositions de la maison sur <a href=\"https://www.casaferiemazzarello.it/\">casaferiemazzarello.it</a>.</p>"
+  },
+  "soverato-casa-fma-gruppi-campi-estivi": {
+   "titolo": "Camps d’été et vacances de groupe en Calabre : la Casa FMA de Soverato",
+   "slug": "soverato-casa-fma-camps-ete-vacances-groupe",
+   "riassunto": "",
+   "contenuto": "<p><strong>Pour un camp d’été, des vacances de patronage ou une semaine à la mer en groupe, la Casa FMA de Soverato est un point de chute simple sur la Côte des Orangers.</strong> Elle est tenue par les Filles de Marie Auxiliatrice, via San Giovanni Bosco.</p>\n\n<h2>Pour qui</h2>\n<p>La maison se prête aux groupes paroissiaux et de patronage, aux familles, aux associations et aux communautés qui souhaitent allier la mer de la côte ionienne à des moments de vie commune. Avec <strong>15 chambres</strong>, elle convient à des groupes de taille moyenne.</p>\n\n<h2>Ce que propose la maison</h2>\n<ul>\n<li>Chambres avec climatisation et chauffage.</li>\n<li>Wi-Fi dans toute la maison.</li>\n<li><strong>Un parking gratuit</strong>, pratique pour ceux qui arrivent en car ou avec plusieurs voitures.</li>\n</ul>\n\n<h2>Pourquoi Soverato convient aux groupes</h2>\n<ul>\n<li><strong>La mer.</strong> Les plages sont vastes, de sable clair, avec des fonds qui descendent en pente douce : adaptées même aux plus petits.</li>\n<li><strong>Les sorties.</strong> Copanello et Caminia pour le snorkeling, le bourg de Squillace et ses ateliers de céramique, le parc archéologique de Scolacium : des idées pour les journées sans plage.</li>\n<li><strong>Les soirées.</strong> Le front de mer est animé en été, avec des concerts et des événements.</li>\n</ul>\n\n<h2>Comment organiser le camp</h2>\n<ul>\n<li><strong>Fixez vos dates tôt.</strong> Juillet et août sont les mois les plus demandés : réservez dès l’hiver.</li>\n<li><strong>Évitez les heures les plus chaudes.</strong> La plage tôt le matin et en fin d’après-midi ; les heures centrales sont réservées aux activités dans la maison.</li>\n<li><strong>Juin et septembre.</strong> La mer est déjà chaude et la côte plus tranquille : idéal pour une retraite ou un camp de groupe plus intime.</li>\n<li><strong>Demandez à la maison ce qui est disponible.</strong> Repas, espaces communs et horaires sont à convenir en fonction de votre programme.</li>\n</ul>\n\n<h2>Contacts</h2>\n<p>Écrivez à <a href=\"mailto:fmasoverato07@gmail.com\">fmasoverato07@gmail.com</a> ou contactez le <a href=\"tel:+393206908459\">320 690 8459</a>, également sur <a href=\"https://wa.me/393206908459\">WhatsApp</a>, en indiquant les dates et le nombre de participants.</p>"
+  }
+ }
+}
