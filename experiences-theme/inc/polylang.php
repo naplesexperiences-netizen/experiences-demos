@@ -277,6 +277,116 @@ function experiences_collega_articoli( $forza = false ) {
 }
 
 /**
+ * Assegna la lingua a categorie e tag, e accoppia le categorie.
+ *
+ * Il WXR inglese arriva con i suoi termini — `Hotels & Accommodation`,
+ * `instagram-en` — ma l'importer di WordPress non sa niente di lingue:
+ * li crea e li lascia senza. Un termine senza lingua, per Polylang, non
+ * sta da nessuna parte: l'archivio /en/tag/... non risponde e il
+ * selettore di lingua su una pagina di categoria non ha dove andare.
+ *
+ * La lingua di un termine la si deduce da chi lo usa: i termini degli
+ * articoli italiani sono italiani, quelli degli inglesi inglesi. Le
+ * categorie si accoppiano per la stessa via, non per nome: `Revenue
+ * Management` si scrive uguale nelle due lingue, e cercare il termine
+ * per nome restituirebbe uno dei due a caso.
+ *
+ * @param bool $forza Se true riassegna anche i termini che hanno gia' una lingua.
+ * @return array Resoconto.
+ */
+function experiences_lingua_termini( $forza = false ) {
+	$esito = [ 'lingua' => [], 'categorie' => [], 'condivisi' => [], 'ambigui' => [] ];
+
+	if ( ! experiences_polylang_pronto()
+		|| ! function_exists( 'pll_set_term_language' )
+		|| ! function_exists( 'pll_save_term_translations' ) ) {
+		return $esito;
+	}
+	$codici = experiences_lingue_codici();
+	if ( '' === $codici['it'] || '' === $codici['en'] ) {
+		return $esito;
+	}
+
+	$usati      = [ 'it' => [], 'en' => [] ];   // term_id => oggetto termine
+	$coppie_cat = [];
+
+	foreach ( experiences_mappa_traduzioni_articoli() as $slug_it => $slug_en ) {
+		$post_it = get_page_by_path( $slug_it, OBJECT, 'post' );
+		$post_en = get_page_by_path( $slug_en, OBJECT, 'post' );
+		if ( ! $post_it || ! $post_en ) {
+			continue;
+		}
+
+		$cat = [];
+		foreach ( [ 'it' => $post_it, 'en' => $post_en ] as $lingua => $post ) {
+			foreach ( [ 'category', 'post_tag' ] as $tassonomia ) {
+				$termini = get_the_terms( $post->ID, $tassonomia );
+				if ( ! is_array( $termini ) ) {
+					continue;
+				}
+				foreach ( $termini as $termine ) {
+					$usati[ $lingua ][ $termine->term_id ] = $termine;
+				}
+				if ( 'category' === $tassonomia ) {
+					$cat[ $lingua ] = $termini;
+				}
+			}
+		}
+
+		// Si accoppiano solo gli articoli con una categoria per parte:
+		// con due, quale traduce quale e' una supposizione.
+		if ( isset( $cat['it'], $cat['en'] ) && 1 === count( $cat['it'] ) && 1 === count( $cat['en'] ) ) {
+			$it_id = reset( $cat['it'] )->term_id;
+			$en_id = reset( $cat['en'] )->term_id;
+			$coppie_cat[ $it_id . ':' . $en_id ] = [ $it_id, $en_id ];
+		} elseif ( isset( $cat['it'], $cat['en'] ) ) {
+			$esito['ambigui'][] = $slug_it;
+		}
+	}
+
+	// Un termine usato dalle due lingue non puo' averne una: succede
+	// quando l'import inglese ha riagganciato un termine italiano
+	// esistente perche' lo slug coincideva. Va diviso a mano, e
+	// assegnargli una lingua a caso peggiorerebbe le cose.
+	$condivisi = array_intersect_key( $usati['it'], $usati['en'] );
+	foreach ( $condivisi as $id => $termine ) {
+		$esito['condivisi'][] = $termine->name . ' (' . $termine->taxonomy . ')';
+		unset( $usati['it'][ $id ], $usati['en'][ $id ] );
+	}
+
+	foreach ( $usati as $lingua => $termini ) {
+		foreach ( $termini as $id => $termine ) {
+			if ( ! $forza && pll_get_term_language( $id ) ) {
+				continue;
+			}
+			pll_set_term_language( $id, $codici[ $lingua ] );
+			$esito['lingua'][] = $termine->name . ' → ' . $codici[ $lingua ];
+		}
+	}
+
+	foreach ( $coppie_cat as $coppia ) {
+		list( $it_id, $en_id ) = $coppia;
+		if ( isset( $condivisi[ $it_id ] ) || isset( $condivisi[ $en_id ] ) ) {
+			continue;
+		}
+		if ( ! $forza && pll_get_term( $it_id, $codici['en'] ) ) {
+			continue;
+		}
+		pll_save_term_translations( [
+			$codici['it'] => $it_id,
+			$codici['en'] => $en_id,
+		] );
+		$it = get_term( $it_id );
+		$en = get_term( $en_id );
+		if ( $it && $en && ! is_wp_error( $it ) && ! is_wp_error( $en ) ) {
+			$esito['categorie'][] = $it->name . ' ⇄ ' . $en->name;
+		}
+	}
+
+	return $esito;
+}
+
+/**
  * Pulsante in bacheca: Strumenti → Collega traduzioni.
  *
  * Non gira da solo a ogni caricamento: l'import degli articoli si fa
@@ -302,20 +412,24 @@ function experiences_pagina_traduzioni() {
 		return;
 	}
 
-	$esito_pagine = null;
-	$esito_post   = null;
+	$esito_pagine   = null;
+	$esito_post     = null;
+	$esito_termini  = null;
 
 	if ( isset( $_POST['experiences_collega'] )
 		&& check_admin_referer( 'experiences_collega_traduzioni' ) ) {
-		$forza        = ! empty( $_POST['forza'] );
-		$esito_pagine = experiences_crea_pagine_en();
-		$esito_post   = experiences_collega_articoli( $forza );
+		$forza         = ! empty( $_POST['forza'] );
+		$esito_pagine  = experiences_crea_pagine_en();
+		$esito_post    = experiences_collega_articoli( $forza );
+		// Dopo gli articoli: i termini prendono la lingua da chi li usa,
+		// quindi prima gli articoli devono avere la loro.
+		$esito_termini = experiences_lingua_termini( $forza );
 	}
 
 	$mappa = experiences_mappa_traduzioni_articoli();
 	echo '<div class="wrap">';
 	echo '<h1>' . esc_html__( 'Collega traduzioni', 'experiences-srl' ) . '</h1>';
-	echo '<p>' . esc_html__( 'Crea le pagine inglesi mancanti e accoppia ogni articolo italiano con la sua versione inglese, usando gli slug. Si lancia dopo aver importato gli articoli: rifarlo non fa danni.', 'experiences-srl' ) . '</p>';
+	echo '<p>' . esc_html__( 'Crea le pagine inglesi mancanti, accoppia ogni articolo italiano con la sua versione inglese usando gli slug, poi assegna la lingua a categorie e tag e accoppia le categorie. Si lancia dopo aver importato gli articoli: rifarlo non fa danni.', 'experiences-srl' ) . '</p>';
 
 	if ( null !== $esito_post ) {
 		echo '<div class="notice notice-success"><p><strong>'
@@ -326,6 +440,10 @@ function experiences_pagina_traduzioni() {
 			__( 'Articoli collegati', 'experiences-srl' )  => $esito_post['collegati'],
 			__( 'Gia collegati', 'experiences-srl' )       => $esito_post['gia_fatti'],
 			__( 'Senza corrispondenza', 'experiences-srl' ) => $esito_post['mancanti'],
+			__( 'Categorie accoppiate', 'experiences-srl' ) => $esito_termini['categorie'],
+			__( 'Termini con lingua assegnata', 'experiences-srl' ) => $esito_termini['lingua'],
+			__( 'Termini usati dalle due lingue: da dividere a mano', 'experiences-srl' ) => $esito_termini['condivisi'],
+			__( 'Articoli con piu di una categoria: categoria non accoppiata', 'experiences-srl' ) => $esito_termini['ambigui'],
 		] as $titolo => $voci ) {
 			if ( ! $voci ) {
 				continue;

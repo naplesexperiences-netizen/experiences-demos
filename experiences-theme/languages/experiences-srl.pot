@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-23T05:56:43+00:00\n"
+"POT-Creation-Date: 2026-10-24T19:20:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1190,67 +1190,83 @@ msgstr ""
 msgid "Strategie, guide pratiche e case study per digitalizzare il tuo business turistico."
 msgstr ""
 
-#: inc/polylang.php:291 inc/polylang.php:292 inc/polylang.php:317
+#: inc/polylang.php:401 inc/polylang.php:402 inc/polylang.php:431
 msgid "Collega traduzioni"
 msgstr ""
 
-#: inc/polylang.php:318
-msgid "Crea le pagine inglesi mancanti e accoppia ogni articolo italiano con la sua versione inglese, usando gli slug. Si lancia dopo aver importato gli articoli: rifarlo non fa danni."
+#: inc/polylang.php:432
+msgid "Crea le pagine inglesi mancanti, accoppia ogni articolo italiano con la sua versione inglese usando gli slug, poi assegna la lingua a categorie e tag e accoppia le categorie. Si lancia dopo aver importato gli articoli: rifarlo non fa danni."
 msgstr ""
 
-#: inc/polylang.php:322
+#: inc/polylang.php:436
 msgid "Fatto."
 msgstr ""
 
-#: inc/polylang.php:324
+#: inc/polylang.php:438
 msgid "Pagine create"
 msgstr ""
 
-#: inc/polylang.php:325
+#: inc/polylang.php:439
 msgid "Pagine collegate"
 msgstr ""
 
-#: inc/polylang.php:326
+#: inc/polylang.php:440
 msgid "Articoli collegati"
 msgstr ""
 
-#: inc/polylang.php:327
+#: inc/polylang.php:441
 msgid "Gia collegati"
 msgstr ""
 
-#: inc/polylang.php:328
+#: inc/polylang.php:442
 msgid "Senza corrispondenza"
 msgstr ""
 
-#: inc/polylang.php:342
+#: inc/polylang.php:443
+msgid "Categorie accoppiate"
+msgstr ""
+
+#: inc/polylang.php:444
+msgid "Termini con lingua assegnata"
+msgstr ""
+
+#: inc/polylang.php:445
+msgid "Termini usati dalle due lingue: da dividere a mano"
+msgstr ""
+
+#: inc/polylang.php:446
+msgid "Articoli con piu di una categoria: categoria non accoppiata"
+msgstr ""
+
+#: inc/polylang.php:460
 msgid "Rifai anche le coppie gia collegate"
 msgstr ""
 
-#: inc/polylang.php:344
+#: inc/polylang.php:462
 msgid "Collega adesso"
 msgstr ""
 
-#: inc/polylang.php:347
+#: inc/polylang.php:465
 msgid "Coppie previste"
 msgstr ""
 
-#: inc/polylang.php:349
+#: inc/polylang.php:467
 msgid "Stato"
 msgstr ""
 
-#: inc/polylang.php:354
+#: inc/polylang.php:472
 msgid "tutti e due presenti"
 msgstr ""
 
-#: inc/polylang.php:356
+#: inc/polylang.php:474
 msgid "manca l inglese"
 msgstr ""
 
-#: inc/polylang.php:358
+#: inc/polylang.php:476
 msgid "manca l italiano"
 msgstr ""
 
-#: inc/polylang.php:360
+#: inc/polylang.php:478
 msgid "nessuno dei due importato"
 msgstr ""
 

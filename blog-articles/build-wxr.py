@@ -8,6 +8,15 @@ assegnati.
 
     python3 blog-articles/build-wxr.py                 # tutti gli articoli
     python3 blog-articles/build-wxr.py 19 20 21 22     # solo questi
+    python3 blog-articles/build-wxr.py --lang en       # la versione inglese
+
+Con `--lang en` legge `article.en.html` e `seo.en.json`: stessi articoli,
+slug e termini inglesi. La lingua NON viene scritta nel WXR, perche'
+l'importer di WordPress non sa niente di Polylang: la assegna dopo
+l'import la pagina Strumenti -> Collega traduzioni del tema, che accoppia
+anche gli articoli e le categorie fra le due lingue. Nel frattempo ogni
+articolo porta un postmeta `_exp_lang`, che e' il riferimento se qualcosa
+va rifatto a mano.
 
 Il file esce in `blog-articles/import-wordpress.xml` piu la variante
 compressa `.xml.gz`, che serve quando l'importer di WordPress tronca
@@ -42,12 +51,34 @@ NS = {
 }
 
 
-def term_slug(name):
+def term_slug(name, lang='it'):
     """Slug WordPress per una categoria o un tag."""
     s = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode()
-    s = s.lower().replace('&', ' e ')
+    s = s.lower().replace('&', ' e ' if lang == 'it' else ' and ')
     s = re.sub(r"[^a-z0-9]+", '-', s)
     return s.strip('-')
+
+
+def slug_italiani():
+    """Slug dei termini che gli articoli italiani hanno gia' sul sito.
+
+    Serve per i termini inglesi: l'importer di WordPress riconosce un
+    termine dallo slug, non dalla lingua. Un tag inglese che si scrive
+    come quello italiano — `instagram`, `reels`, `social media` — verrebbe
+    agganciato al termine italiano esistente, e l'articolo inglese si
+    ritroverebbe un tag di un'altra lingua, invisibile sotto /en/.
+
+    Categorie e tag sono tassonomie diverse e possono avere lo stesso
+    slug senza darsi noia, quindi i due insiemi restano separati.
+    """
+    slugs = {'category': set(), 'post_tag': set()}
+    for percorso in glob.glob(os.path.join(BASE, '[0-9][0-9]-*', 'seo.json')):
+        with open(percorso, encoding='utf-8') as fh:
+            seo = json.load(fh)
+        slugs['category'].add(term_slug(seo['category']))
+        for tag in seo.get('tags', []):
+            slugs['post_tag'].add(term_slug(tag))
+    return slugs
 
 
 def rfc822(date_str):
@@ -56,10 +87,14 @@ def rfc822(date_str):
     return dt.strftime('%a, %d %b %Y %H:%M:%S +0000'), dt.strftime('%Y-%m-%d %H:%M:%S')
 
 
-def load(folder):
-    with open(os.path.join(folder, 'seo.json'), encoding='utf-8') as fh:
+def load(folder, lang='it'):
+    nomi = {
+        'it': ('seo.json', 'article.html'),
+        'en': ('seo.en.json', 'article.en.html'),
+    }[lang]
+    with open(os.path.join(folder, nomi[0]), encoding='utf-8') as fh:
         seo = json.load(fh)
-    with open(os.path.join(folder, 'article.html'), encoding='utf-8') as fh:
+    with open(os.path.join(folder, nomi[1]), encoding='utf-8') as fh:
         body = fh.read().strip()
     return seo, body
 
@@ -79,10 +114,26 @@ def sub(parent, tag, text=None, cdata=False):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('numbers', nargs='*', help='prefissi numerici da includere (default: tutti)')
-    ap.add_argument('--out', default=os.path.join(BASE, 'import-wordpress.xml'))
+    ap.add_argument('--lang', default='it', choices=['it', 'en'],
+                    help='lingua da esportare (default: it)')
+    ap.add_argument('--out', help='file di uscita (default: import-wordpress[-en].xml)')
     ap.add_argument('--status', default='draft', choices=['draft', 'publish', 'future'],
                     help='post_status degli articoli importati (default: draft)')
     args = ap.parse_args()
+
+    lang = args.lang
+    if not args.out:
+        nome = 'import-wordpress.xml' if lang == 'it' else 'import-wordpress-en.xml'
+        args.out = os.path.join(BASE, nome)
+    # Gli id degli articoli inglesi partono piu' in alto: non serve a
+    # WordPress, che li riassegna, ma tiene i due file distinguibili.
+    first_post_id = FIRST_POST_ID + (0 if lang == 'it' else 100)
+    url_blog = '%s/blog/%%s/' % SITE if lang == 'it' else '%s/en/blog/%%s/' % SITE
+    occupati = slug_italiani() if lang == 'en' else {'category': set(), 'post_tag': set()}
+
+    def slug_termine(name, taxonomy):
+        s = term_slug(name, lang)
+        return s + '-en' if s in occupati[taxonomy] else s
 
     folders = sorted(glob.glob(os.path.join(BASE, '[0-9][0-9]-*')))
     if args.numbers:
@@ -105,7 +156,7 @@ def main():
     sub(channel, 'link', SITE)
     sub(channel, 'description', 'Articoli B2B per hotel e tour operator')
     sub(channel, 'pubDate', rfc822(datetime.date.today().isoformat())[0])
-    sub(channel, 'language', 'it-IT')
+    sub(channel, 'language', 'it-IT' if lang == 'it' else 'en-US')
     sub(channel, '{%s}wxr_version' % NS['wp'], '1.2')
     sub(channel, '{%s}base_site_url' % NS['wp'], SITE)
     sub(channel, '{%s}base_blog_url' % NS['wp'], SITE)
@@ -121,7 +172,7 @@ def main():
     seen_cat, seen_tag = {}, {}
     articles = []
     for folder in folders:
-        seo, body = load(folder)
+        seo, body = load(folder, lang)
         articles.append((folder, seo, body))
         if seo['category'] not in seen_cat:
             seen_cat[seo['category']] = term_id
@@ -134,22 +185,22 @@ def main():
     for name, tid in seen_cat.items():
         el = ET.SubElement(channel, '{%s}category' % NS['wp'])
         sub(el, '{%s}term_id' % NS['wp'], str(tid))
-        sub(el, '{%s}category_nicename' % NS['wp'], term_slug(name), cdata=True)
+        sub(el, '{%s}category_nicename' % NS['wp'], slug_termine(name, 'category'), cdata=True)
         sub(el, '{%s}category_parent' % NS['wp'], '', cdata=True)
         sub(el, '{%s}cat_name' % NS['wp'], name, cdata=True)
 
     for name, tid in seen_tag.items():
         el = ET.SubElement(channel, '{%s}tag' % NS['wp'])
         sub(el, '{%s}term_id' % NS['wp'], str(tid))
-        sub(el, '{%s}tag_slug' % NS['wp'], term_slug(name), cdata=True)
+        sub(el, '{%s}tag_slug' % NS['wp'], slug_termine(name, 'post_tag'), cdata=True)
         sub(el, '{%s}tag_name' % NS['wp'], name, cdata=True)
 
-    post_id = FIRST_POST_ID
+    post_id = first_post_id
     for folder, seo, body in articles:
         schema = seo.get('schema_article', {})
         date = schema.get('datePublished') or datetime.date.today().isoformat()
         pub, sql = rfc822(date)
-        url = '%s/blog/%s/' % (SITE, seo['slug'])
+        url = url_blog % seo['slug']
 
         item = ET.SubElement(channel, 'item')
         sub(item, 'title', seo['post_title'])
@@ -176,11 +227,11 @@ def main():
         sub(item, '{%s}is_sticky' % NS['wp'], '0')
 
         cat = ET.SubElement(item, 'category', {
-            'domain': 'category', 'nicename': term_slug(seo['category'])})
+            'domain': 'category', 'nicename': slug_termine(seo['category'], 'category')})
         cat.text = seo['category']
         cat.set('_cdata', '1')
         for tag in seo.get('tags', []):
-            el = ET.SubElement(item, 'category', {'domain': 'post_tag', 'nicename': term_slug(tag)})
+            el = ET.SubElement(item, 'category', {'domain': 'post_tag', 'nicename': slug_termine(tag, 'post_tag')})
             el.text = tag
             el.set('_cdata', '1')
 
@@ -199,6 +250,8 @@ def main():
             '_seopress_titles_desc': seo.get('meta_description', ''),
             '_seopress_analysis_target_kw': seo.get('focus_keyword', ''),
             # Riferimenti nostri, utili in fase di revisione.
+            '_exp_lang': lang,
+            '_exp_translation_of': seo.get('translation_of', ''),
             '_exp_reading_time': str(seo.get('estimated_reading_time', '')),
             '_exp_secondary_keywords': ', '.join(seo.get('secondary_keywords', [])),
             '_exp_schema_article': json.dumps(schema, ensure_ascii=False),
@@ -241,8 +294,17 @@ def main():
         shutil.copyfileobj(src, dst)
 
     size = os.path.getsize(args.out)
-    print('%s — %d articoli, %d categorie, %d tag, %.1f KB (+ .gz)' % (
-        os.path.relpath(args.out, BASE), len(articles), len(seen_cat), len(seen_tag), size / 1024))
+    print('%s — lingua %s, %d articoli, %d categorie, %d tag, %.1f KB (+ .gz)' % (
+        os.path.relpath(args.out, BASE), lang,
+        len(articles), len(seen_cat), len(seen_tag), size / 1024))
+    if lang == 'en':
+        collisi = sorted(
+            [n for n in seen_cat if term_slug(n, 'en') in occupati['category']]
+            + [n for n in seen_tag if term_slug(n, 'en') in occupati['post_tag']]
+        )
+        if collisi:
+            print('  slug con suffisso -en (coincidevano con un termine italiano): %s'
+                  % ', '.join(collisi))
 
 
 if __name__ == '__main__':

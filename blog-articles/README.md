@@ -51,7 +51,8 @@ Include i prompt Gemini e, per la prima volta, il **file WXR** per l'import in b
 | 21 | `accessibilita-sito-hotel-eaa-esenzione-microimprese` | Accessibilità del Sito: la Vostra Struttura è Esente? (Sì, Probabilmente — Ma Non per il 2030) | accessibilità sito hotel | Normativa & Compliance | 2.295 |
 | 22 | `banner-cookie-hotel-consenso-dati-analytics` | Il Banner dei Cookie che Non Serve a Niente: Consenso, Dati Sbagliati e Budget Buttato | banner cookie hotel | Normativa & Compliance | 2.093 |
 
-**Totale: 22 articoli, ~47.200 parole** di contenuto B2B.
+**Totale: 22 articoli, ~47.200 parole** di contenuto B2B — più altrettanti in
+inglese, ~49.100 parole (vedi [Versione inglese](#versione-inglese)).
 
 ### Nota sul batch 4: come sono trattate le norme
 
@@ -80,12 +81,15 @@ legale. Non rimuoverlo.
 13-aumentare-prenotazioni-dirette-hotel-disintermediazione/
 ├── article.html        ← contenuto HTML pronto per WordPress
 ├── seo.json            ← pacchetto SEO completo + schema JSON-LD
+├── article.en.html     ← la versione inglese dello stesso articolo
+├── seo.en.json         ← pacchetto SEO inglese (generato, non scritto a mano)
 └── image-prompts.md    ← 4 prompt Gemini + alt text (dal batch 3)
 ```
 
 Gli articoli **01-12** hanno `article.html` e `seo.json`. Il file `image-prompts.md`
 è presente dal **batch 3** (13-22); per i primi dodici le immagini vanno
-scelte da stock o generate adattando i prompt esistenti.
+scelte da stock o generate adattando i prompt esistenti. I due file `.en.`
+ci sono per tutti e ventidue (vedi [Versione inglese](#versione-inglese)).
 
 ### `article.html`
 
@@ -221,6 +225,114 @@ memoria bypassando i limiti di `upload_max_filesize`.
 *L'autore non viene riconosciuto*: il WXR dichiara l'utente `admin`. Se sul
 sito l'amministratore ha un altro login, nella schermata di import scegli
 «assegna gli articoli a un utente esistente».
+
+---
+
+## Versione inglese
+
+Tutti e ventidue gli articoli esistono anche in inglese. Non sono una
+traduzione automatica: sono riscritti, e dove il testo italiano dà per noti
+istituti italiani — BDSR, Alloggiati Web, Garante, AGCM — la versione inglese
+spiega cosa impongono invece di citarne il nome, che a un lettore straniero non
+dice niente. Le citazioni letterali delle Linee guida AgID nell'articolo 21
+hanno la traduzione nel `blockquote` e sotto l'originale italiano, perché il
+testo che fa fede è quello.
+
+### I file
+
+```
+blog-articles/
+├── NN-slug-italiano/
+│   ├── article.en.html     ← scritto a mano
+│   └── seo.en.json         ← GENERATO: non modificarlo
+├── en-meta.py              ← i testi inglesi dei pacchetti SEO
+└── build-seo-en.py         ← genera i seo.en.json
+```
+
+Il pacchetto SEO è per nove decimi identico fra le due lingue — autore, editore,
+date, struttura dello schema — e per un decimo testo tradotto. Scrivere a mano
+ventidue file quasi uguali è il modo migliore per infilarci una svista, quindi in
+`en-meta.py` stanno solo le stringhe inglesi e il resto lo ricopia
+`build-seo-en.py` dal `seo.json` italiano:
+
+```bash
+python3 blog-articles/build-seo-en.py          # tutti
+python3 blog-articles/build-seo-en.py 19 20    # solo questi
+```
+
+Lo script controlla anche la lunghezza di `seo_title` (max 62) e
+`meta_description` (max 160) ed esce con stato 1 se qualcosa sfora: è il
+controllo che altrimenti si scopre a sito pubblicato.
+
+**La chiave di ogni voce di `en-meta.py` è lo slug italiano.** È il legame fra
+le due versioni, ed è lo stesso che
+`experiences-theme/inc/polylang.php` usa per accoppiarle in bacheca: cambiarlo
+in un posto solo scollega l'articolo.
+
+### Il file WXR inglese
+
+```
+blog-articles/import-wordpress-en.xml        (22 articoli, ~570 KB)
+blog-articles/import-wordpress-en.xml.gz     (stesso file, compresso)
+```
+
+Si rigenera con:
+
+```bash
+python3 blog-articles/build-wxr.py --lang en
+```
+
+Due cose da sapere su come è fatto.
+
+**La lingua non è nel file.** L'importer di WordPress non sa niente di Polylang:
+qualunque cosa ci scrivessimo, gli articoli entrerebbero senza lingua. La lingua
+la assegna dopo l'import la voce **Strumenti → Collega traduzioni** del tema, che
+accoppia anche gli articoli e le categorie. Nel frattempo ogni articolo porta un
+postmeta `_exp_lang` (e `_exp_translation_of` con lo slug italiano), che è il
+riferimento se qualcosa va rifatto a mano.
+
+**Alcuni tag inglesi hanno lo slug con `-en`.** L'importer riconosce un termine
+dallo slug, non dalla lingua: `instagram`, `reels`, `chatgpt`, `social media` si
+scrivono uguale nelle due lingue, e senza suffisso l'articolo inglese si
+ritroverebbe agganciato al tag italiano — quindi invisibile sotto `/en/` e con
+il link che porta all'archivio italiano. Il nome visibile resta quello inglese
+(`#instagram`), cambia solo l'URL dell'archivio (`/en/tag/instagram-en/`). Lo
+script elenca in fondo quali termini hanno preso il suffisso.
+
+### L'ordine delle operazioni
+
+L'ordine conta: se si importa prima di aver creato le lingue, gli articoli
+inglesi finiscono mescolati a quelli italiani e vanno ripresi uno per uno.
+
+1. **Installare Polylang** e creare le due lingue: italiano (predefinita) e
+   inglese con locale `en_US`, lo stesso nome del file in
+   `experiences-theme/languages/`.
+2. **Assegnare l'italiano** a tutto quello che c'è già: Polylang offre
+   «imposta la lingua predefinita su tutti i contenuti senza lingua».
+3. **Importare** `import-wordpress-en.xml` da Strumenti → Importa → WordPress.
+   Gli articoli entrano come bozze.
+4. **Strumenti → Collega traduzioni** → *Collega adesso*. Crea le pagine
+   inglesi mancanti (privacy, cookies, terms, preview, guides), accoppia i 32
+   articoli, assegna la lingua a categorie e tag e accoppia le categorie.
+   Rilanciarlo non fa danni: la seconda passata non rifà niente.
+5. **Rileggere e pubblicare** le bozze.
+
+Il passo 4 mostra un resoconto. Due voci da leggere, se compaiono:
+
+- *Termini usati dalle due lingue: da dividere a mano* — un tag è finito su
+  articoli di entrambe le lingue (succede se l'import è stato fatto con un file
+  più vecchio, senza i suffissi). Lo strumento non gli assegna una lingua a
+  caso: va sdoppiato in bacheca.
+- *Senza corrispondenza* — di una coppia è presente un articolo solo. Va
+  importato l'altro, oppure lo slug in `polylang.php` non coincide con quello
+  pubblicato.
+
+### I dieci articoli già bilingui
+
+I dieci articoli forniti dal cliente già in italiano e inglese non sono in
+questa cartella e non vanno reimportati. Sono comunque nella mappa di
+`experiences-theme/inc/polylang.php`, quindi lo strumento di accoppiamento li
+collega se li trova pubblicati, e li ignora se non ci sono.
 
 ---
 

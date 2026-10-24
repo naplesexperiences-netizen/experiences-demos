@@ -1,15 +1,15 @@
-# Traduzione inglese del tema Experiences Srl.
-# Generato da tooling interno: non modificare a mano il .mo,
-# si rigenera da questo .po.
+# Traduzione en_US del tema Experiences Srl.
+# Questo file e la sorgente: il .mo si rigenera da qui con
+# scripts/sync-po.py, non si modifica a mano.
 msgid ""
 msgstr ""
-"Project-Id-Version: Experiences Srl\n"
 "Language: en_US\n"
+"Project-Id-Version: Experiences Srl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: scripts/make-pot.py + scrivi_po_mo.py\n"
+"X-Generator: scripts/make-pot.py + scripts/sync-po.py\n"
 
 #: 404.php:5
 msgid "Pagina non trovata"
@@ -1187,67 +1187,83 @@ msgstr "Edit site"
 msgid "Strategie, guide pratiche e case study per digitalizzare il tuo business turistico."
 msgstr "Strategies, practical guides and case studies for taking your tourism business digital."
 
-#: inc/polylang.php:291 inc/polylang.php:292 inc/polylang.php:317
+#: inc/polylang.php:401 inc/polylang.php:402 inc/polylang.php:431
 msgid "Collega traduzioni"
 msgstr "Link translations"
 
-#: inc/polylang.php:318
-msgid "Crea le pagine inglesi mancanti e accoppia ogni articolo italiano con la sua versione inglese, usando gli slug. Si lancia dopo aver importato gli articoli: rifarlo non fa danni."
-msgstr "Creates any missing English pages and pairs each Italian article with its English version, matching on slugs. Run it after importing the articles; running it again does no harm."
+#: inc/polylang.php:432
+msgid "Crea le pagine inglesi mancanti, accoppia ogni articolo italiano con la sua versione inglese usando gli slug, poi assegna la lingua a categorie e tag e accoppia le categorie. Si lancia dopo aver importato gli articoli: rifarlo non fa danni."
+msgstr "Creates the missing English pages, pairs each Italian article with its English version using the slugs, then assigns a language to categories and tags and pairs the categories. Run it after importing the articles: running it again does no harm."
 
-#: inc/polylang.php:322
+#: inc/polylang.php:436
 msgid "Fatto."
 msgstr "Done."
 
-#: inc/polylang.php:324
+#: inc/polylang.php:438
 msgid "Pagine create"
 msgstr "Pages created"
 
-#: inc/polylang.php:325
+#: inc/polylang.php:439
 msgid "Pagine collegate"
 msgstr "Pages linked"
 
-#: inc/polylang.php:326
+#: inc/polylang.php:440
 msgid "Articoli collegati"
 msgstr "Articles linked"
 
-#: inc/polylang.php:327
+#: inc/polylang.php:441
 msgid "Gia collegati"
 msgstr "Already linked"
 
-#: inc/polylang.php:328
+#: inc/polylang.php:442
 msgid "Senza corrispondenza"
 msgstr "No counterpart found"
 
-#: inc/polylang.php:342
+#: inc/polylang.php:443
+msgid "Categorie accoppiate"
+msgstr "Categories paired"
+
+#: inc/polylang.php:444
+msgid "Termini con lingua assegnata"
+msgstr "Terms given a language"
+
+#: inc/polylang.php:445
+msgid "Termini usati dalle due lingue: da dividere a mano"
+msgstr "Terms used by both languages: split them by hand"
+
+#: inc/polylang.php:446
+msgid "Articoli con piu di una categoria: categoria non accoppiata"
+msgstr "Articles with more than one category: category not paired"
+
+#: inc/polylang.php:460
 msgid "Rifai anche le coppie gia collegate"
 msgstr "Redo pairs that are already linked"
 
-#: inc/polylang.php:344
+#: inc/polylang.php:462
 msgid "Collega adesso"
 msgstr "Link now"
 
-#: inc/polylang.php:347
+#: inc/polylang.php:465
 msgid "Coppie previste"
 msgstr "Expected pairs"
 
-#: inc/polylang.php:349
+#: inc/polylang.php:467
 msgid "Stato"
 msgstr "Status"
 
-#: inc/polylang.php:354
+#: inc/polylang.php:472
 msgid "tutti e due presenti"
 msgstr "both present"
 
-#: inc/polylang.php:356
+#: inc/polylang.php:474
 msgid "manca l inglese"
 msgstr "English missing"
 
-#: inc/polylang.php:358
+#: inc/polylang.php:476
 msgid "manca l italiano"
 msgstr "Italian missing"
 
-#: inc/polylang.php:360
+#: inc/polylang.php:478
 msgid "nessuno dei due importato"
 msgstr "neither imported"
 

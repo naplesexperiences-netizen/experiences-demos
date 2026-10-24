@@ -38,10 +38,24 @@ Legge `__()`, `_e()`, `esc_html__()`, `esc_attr__()`, `esc_html_e()` e
 Con [Poedit](https://poedit.net/) (gratuito): si apre il `.po`, si traduce, si
 salva — Poedit scrive il `.mo` da solo.
 
-Senza Poedit, in questo repo c'è il percorso usato per l'inglese: le stringhe
-stanno in un dizionario Python e uno script scrive `.po` e `.mo` insieme,
-fallendo se anche una sola stringa è senza traduzione. Utile quando le stringhe
-sono centinaia e si vuole la garanzia che non ne manchi nessuna.
+Senza Poedit:
+
+```bash
+python3 scripts/make-pot.py        # aggiorna il modello dal codice
+python3 scripts/sync-po.py         # allinea en_US.po e compila en_US.mo
+```
+
+`sync-po.py` rimette le voci del `.po` nell'ordine del `.pot` con i riferimenti
+aggiornati, aggiunge le stringhe nuove con `msgstr ""`, toglie quelle che nel
+tema non esistono più e **non tocca le traduzioni già fatte**: il `.po` è la
+sorgente, non un file generato. Se resta anche un solo `msgstr` vuoto elenca
+quali, esce con stato 1 e lascia stare il `.mo` — così non si pubblica mai un
+`.mo` con dei buchi dentro. Riempiti i buchi nel `.po`, si rilancia.
+
+Per un'altra lingua: `python3 scripts/sync-po.py de_DE`.
+
+Il `.mo` lo scrive lo script da sé, senza `msgfmt`, che non è detto sia
+installato.
 
 ## Stringhe con markup dentro
 
