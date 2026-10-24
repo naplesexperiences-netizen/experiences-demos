@@ -9,10 +9,11 @@ get_header();
 
 $pagina_blog = (int) get_option( 'page_for_posts' );
 if ( is_home() ) {
-	$titolo = $pagina_blog ? get_the_title( $pagina_blog ) : 'Blog';
-	$lede   = $pagina_blog && has_excerpt( $pagina_blog ) ? get_the_excerpt( $pagina_blog ) : 'Consigli di viaggio e storie dai luoghi delle nostre case: cosa vedere, quando andare, come arrivare.';
+	$titolo = $pagina_blog ? get_the_title( $pagina_blog ) : __( 'Blog', 'accoglienza-fma' );
+	$lede   = $pagina_blog && has_excerpt( $pagina_blog ) ? get_the_excerpt( $pagina_blog ) : fma_blog_lede();
 } elseif ( is_search() ) {
-	$titolo = sprintf( 'Risultati per “%s”', get_search_query() );
+	/* translators: %s: testo cercato */
+	$titolo = sprintf( __( 'Risultati per “%s”', 'accoglienza-fma' ), get_search_query() );
 	$lede   = '';
 } else {
 	$titolo = wp_strip_all_tags( get_the_archive_title() );
@@ -42,16 +43,16 @@ $in_evidenza = ! is_paged();
 		the_posts_pagination(
 			array(
 				'mid_size'           => 1,
-				'prev_text'          => fma_icona( 'chev-l', 'icon icon--sm' ) . '<span class="screen-reader-text">Articoli più recenti</span>',
-				'next_text'          => '<span class="screen-reader-text">Articoli meno recenti</span>' . fma_icona( 'chev-r', 'icon icon--sm' ),
-				'screen_reader_text' => 'Altre pagine del blog',
-				'aria_label'         => 'Pagine',
+				'prev_text'          => fma_icona( 'chev-l', 'icon icon--sm' ) . '<span class="screen-reader-text">' . esc_html__( 'Articoli più recenti', 'accoglienza-fma' ) . '</span>',
+				'next_text'          => '<span class="screen-reader-text">' . esc_html__( 'Articoli meno recenti', 'accoglienza-fma' ) . '</span>' . fma_icona( 'chev-r', 'icon icon--sm' ),
+				'screen_reader_text' => __( 'Altre pagine del blog', 'accoglienza-fma' ),
+				'aria_label'         => __( 'Pagine', 'accoglienza-fma' ),
 			)
 		);
 		?>
 	<?php else : ?>
 		<div class="page-body">
-			<div class="empty"><p class="empty__title">Nessun articolo trovato.</p><p><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Torna alla home</a></p></div>
+			<div class="empty"><p class="empty__title"><?php esc_html_e( 'Nessun articolo trovato.', 'accoglienza-fma' ); ?></p><p><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Torna alla home', 'accoglienza-fma' ); ?></a></p></div>
 		</div>
 	<?php endif; ?>
 </main>

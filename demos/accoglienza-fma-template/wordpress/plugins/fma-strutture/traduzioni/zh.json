@@ -1,0 +1,496 @@
+{
+ "nome": "中文",
+ "termini": {
+  "category": {
+   "consigli-di-viaggio": {
+    "nome": "旅行建议",
+    "slug": "travel-tips-zh"
+   },
+   "gruppi-e-ritiri": {
+    "nome": "团体与避静",
+    "slug": "groups-and-retreats-zh"
+   }
+  },
+  "regione": {
+   "calabria": {
+    "nome": "卡拉布里亚",
+    "slug": "calabria-zh"
+   },
+   "campania": {
+    "nome": "坎帕尼亚",
+    "slug": "campania-zh"
+   },
+   "lazio": {
+    "nome": "拉齐奥",
+    "slug": "lazio-zh"
+   },
+   "piemonte": {
+    "nome": "皮埃蒙特",
+    "slug": "piedmont-zh"
+   },
+   "veneto": {
+    "nome": "威尼托",
+    "slug": "veneto-zh"
+   }
+  },
+  "servizio": {
+   "acqua-calda": {
+    "nome": "热水",
+    "slug": "hot-water-zh"
+   },
+   "aperta-tutto-lanno": {
+    "nome": "全年开放",
+    "slug": "open-all-year-zh"
+   },
+   "aria-condizionata": {
+    "nome": "空调",
+    "slug": "air-conditioning-zh"
+   },
+   "ascensore": {
+    "nome": "电梯",
+    "slug": "lift-zh"
+   },
+   "asciuga-capelli": {
+    "nome": "吹风机",
+    "slug": "hairdryer-zh"
+   },
+   "balcone": {
+    "nome": "阳台",
+    "slug": "balcony-zh"
+   },
+   "cappella": {
+    "nome": "小教堂",
+    "slug": "chapel-zh"
+   },
+   "cappella-votiva": {
+    "nome": "还愿小教堂",
+    "slug": "votive-chapel-zh"
+   },
+   "cappelle": {
+    "nome": "多座小教堂",
+    "slug": "chapels-zh"
+   },
+   "cucina": {
+    "nome": "厨房",
+    "slug": "kitchen-zh"
+   },
+   "ferro-da-stiro": {
+    "nome": "熨斗",
+    "slug": "iron-zh"
+   },
+   "forno-a-microonde": {
+    "nome": "微波炉",
+    "slug": "microwave-zh"
+   },
+   "frigorifero": {
+    "nome": "冰箱",
+    "slug": "fridge-zh"
+   },
+   "giardino": {
+    "nome": "花园",
+    "slug": "garden-zh"
+   },
+   "laptop-friendly": {
+    "nome": "适合笔记本电脑办公",
+    "slug": "laptop-friendly-workspace-zh"
+   },
+   "lettini-prendisole": {
+    "nome": "日光浴躺椅",
+    "slug": "sun-loungers-zh"
+   },
+   "macchinetta-del-caffe": {
+    "nome": "咖啡机",
+    "slug": "coffee-machine-zh"
+   },
+   "parcheggio-gratuito": {
+    "nome": "免费停车",
+    "slug": "free-parking-zh"
+   },
+   "parcheggio-privato": {
+    "nome": "私人停车场",
+    "slug": "private-parking-zh"
+   },
+   "parco-di-1-500-m%c2%b2": {
+    "nome": "1500平方米花园",
+    "slug": "1-500-m2-park-zh"
+   },
+   "parco-panoramico": {
+    "nome": "观景花园",
+    "slug": "panoramic-park-zh"
+   },
+   "riscaldamento": {
+    "nome": "暖气",
+    "slug": "heating-zh"
+   },
+   "sala-convegni": {
+    "nome": "会议厅",
+    "slug": "conference-room-zh"
+   },
+   "sala-riunioni-panoramica": {
+    "nome": "观景会议室",
+    "slug": "panoramic-meeting-room-zh"
+   },
+   "sale-incontri": {
+    "nome": "聚会室",
+    "slug": "meeting-rooms-zh"
+   },
+   "sale-per-piccoli-meeting": {
+    "nome": "小型会议室",
+    "slug": "rooms-for-small-meetings-zh"
+   },
+   "tv": {
+    "nome": "电视",
+    "slug": "tv-zh"
+   },
+   "vista-lago": {
+    "nome": "湖景",
+    "slug": "lake-view-zh"
+   },
+   "vista-panoramica": {
+    "nome": "全景视野",
+    "slug": "panoramic-view-zh"
+   },
+   "wifi": {
+    "nome": "无线网络",
+    "slug": "wi-fi-zh"
+   }
+  }
+ },
+ "pagine": {
+  "home": {
+   "titolo": "首页",
+   "slug": "home-zh"
+  },
+  "blog": {
+   "titolo": "博客",
+   "slug": "blog-zh"
+  }
+ },
+ "stringhe": {
+  "Ti sentirai come a casa": "宾至如归"
+ },
+ "strutture": {
+  "fma-soverato": {
+   "titolo": "Casa FMA Soverato",
+   "slug": "casa-fma-soverato-zh",
+   "riassunto": "",
+   "contenuto": "",
+   "campi": {
+    "fma_tipo": "宾馆",
+    "fma_localita": "索韦拉托",
+    "fma_seo_titolo": "Casa FMA Soverato：卡拉布里亚的宾馆",
+    "fma_seo_descrizione": "慈幼会修女在卡拉布里亚爱奥尼亚海岸索韦拉托开办的宾馆：15间客房，配备空调、无线网络和免费停车场，适合家庭和团体。"
+   }
+  },
+  "casa-per-feriemaria-mazzarello": {
+   "titolo": "Casa per Ferie Maria Mazzarello",
+   "slug": "maria-mazzarello-verbania-zh",
+   "riassunto": "宾馆坐落在韦尔巴尼亚上方的佐韦拉洛山丘上，从宽阔的园林中俯瞰马焦雷湖。这里宁静安详，适合独自旅行的人、团体，以及想寻找几天静默时光的人：客房整洁，设有会议室、小教堂和私人停车场。",
+   "contenuto": "<h2>全年举办避静与聚会</h2><p>宾馆接待避静和神操活动，既有自带日程前来的团体，也有由修会团体组织的活动，安排祈祷、聆听和反思的时间。只想来休息的客人，也能在这里感受到同样安宁的氛围。</p><h2>园林与观景台</h2><p>从清晨到日落，在园林中随时都能望见湖景。观景台是一处面向风景的天然露台，是驻足片刻的理想之处。</p><ul><li>散步与默想</li><li>户外瑜伽</li><li>祈祷与静默</li><li>阅读与学习</li><li>户外团体聚会</li></ul>",
+   "campi": {
+    "fma_tipo": "宾馆",
+    "fma_localita": "韦尔巴尼亚",
+    "fma_titolo_hero": "马焦雷湖畔的修会之家",
+    "fma_seo_titolo": "韦尔巴尼亚 Maria Mazzarello 宾馆，马焦雷湖",
+    "fma_seo_descrizione": "韦尔巴尼亚的宾馆，面朝马焦雷湖：观景园林、会议室、小教堂和私人停车场。静谧之地，家一般的接待。"
+   }
+  },
+  "villa-tabor": {
+   "titolo": "Villa Tabor",
+   "slug": "villa-tabor-zh",
+   "riassunto": "Villa Tabor 是恢复内在活力的理想之地。它由母佑会修女管理，致力于青年和成人的灵修生活，让人们在得天独厚的自然环境中重新发现简朴生活的丰富。",
+   "contenuto": "<h2>一个特别的地方</h2><ul><li>在这里可以享受休息和度假的时光。</li><li>可以与修女团体一起分享祈祷和服务的时刻。</li><li>欢迎各类正式和非正式团体在此开展教育、培育、灵修和文化活动。</li></ul><h2>自1943年起，用心服务每一个人</h2><p>1943年，Villa Tabor 被托付给母佑会修女，作为女青年的灵修之家。如今它是一个聚会中心，接待培育周末、灵修周、神操、祈祷日，以及团体、神父和修女的避静。</p><p>1999年经过翻修和扩建后，它成为高原上青年培育的重要场所。自2017年起，修会团体也向家庭敞开大门，为所有人提供放松的周末和温馨的相聚时光。</p><h2>阿夏戈高原的香气与风味</h2><p>Villa Tabor 被山毛榉和冷杉环绕，位于七镇高原上罗阿纳市的切苏纳村。切苏纳周围的森林曾是第一次世界大战重大事件的发生地，至今仍是参观战壕、炮兵阵地和大型纪念骨堂最令人难忘的地方之一。</p><p>林间小径、山地自行车、网球、高尔夫、徒步、滑雪和滑冰；还有高山奶酪作坊和小型生产者，让每一次散步都变成一次美食发现之旅。</p>",
+   "campi": {
+    "fma_tipo": "宾馆",
+    "fma_localita": "罗阿纳的切苏纳",
+    "fma_titolo_hero": "一个触动心灵的永恒之地",
+    "fma_seo_titolo": "Villa Tabor：阿夏戈高原上的宾馆",
+    "fma_seo_descrizione": "位于阿夏戈高原罗阿纳切苏纳的宾馆，掩映在山毛榉和冷杉之间：15间客房、小教堂和免费停车场，适合团体、家庭和避静。"
+   }
+  },
+  "san-giuseppe-caorle": {
+   "titolo": "Casa per Ferie San Giuseppe",
+   "slug": "san-giuseppe-caorle-zh",
+   "riassunto": "在卡奥尔莱，距海边仅几步之遥，母佑会修女在一座简朴温馨的房子里接待家庭、团体和个人旅客。在这里，生活的节奏慢了下来：绿意、大海和宁静的氛围帮助你重新找回内心的平衡。",
+   "contenuto": "<h2>我们如何接待你</h2><ul><li><strong>向所有人敞开。</strong>无论来自何种背景、文化或信仰，每位来客都会受到尊重和欢迎。</li><li><strong>家庭般的氛围。</strong>即使只住几天，大家也会交谈、倾听、彼此认识。</li><li><strong>宁静安详。</strong>绿意和近在咫尺的大海，邀请你放慢生活的脚步。</li><li><strong>注重细节。</strong>各个空间都经过精心照料，宾馆的工作人员随时乐于提供帮助。</li></ul>",
+   "campi": {
+    "fma_tipo": "宾馆",
+    "fma_localita": "卡奥尔莱",
+    "fma_titolo_hero": "海边的一片宁静绿洲",
+    "fma_orari": "接待时间（电子邮件和电话）：9:00–12:30 及 14:00–17:30",
+    "fma_camere": [
+     {
+      "nome": "单人间"
+     },
+     {
+      "nome": "三人间"
+     },
+     {
+      "nome": "四人间",
+      "dettaglio": "适合家庭"
+     }
+    ],
+    "fma_seo_titolo": "卡奥尔莱 San Giuseppe 宾馆，海边住宿",
+    "fma_seo_descrizione": "慈幼会修女在卡奥尔莱开办的宾馆，距海边仅几步之遥：提供单人间、三人间和四人间，适合家庭、团体和需要休息的人。"
+   }
+  },
+  "fma-roma": {
+   "titolo": "Casa per Ferie Maria Ausiliatrice",
+   "slug": "maria-ausiliatrice-roma-zh",
+   "riassunto": "“Maria Ausiliatrice”宾馆由鲍思高慈幼会修女的母佑会管理，为共同走在信仰和灵修道路上的人提供短期住宿：神父和修女、家庭、堂区团体、个人和协会。",
+   "contenuto": "<h2>我们接待谁</h2><p>宾馆在一般商业渠道之外运营，不以营利为目的。住客认同修会的理念和行为规范，言行和着装与宾馆的社会及宗教宗旨相符，并遵守作息时间。</p><p>本宾馆经罗马市政府批准（批准文号 QA/2018/41919，2018年9月18日）。</p>",
+   "campi": {
+    "fma_tipo": "宾馆",
+    "fma_localita": "罗马",
+    "fma_titolo_hero": "罗马市中心的温暖接待",
+    "fma_regole": [
+     "前台时间：12:00–13:00 及 14:00–21:00",
+     "晚上须在21:00前（10月至4月）或22:00前（5月至9月）返回",
+     "离店当天须在9:30前退房",
+     "客房每日清洁，床单每三天更换一次",
+     "免费停车，视车位情况而定",
+     "不可携带宠物，楼内禁止吸烟",
+     "预订时间：周一至周六 9:00–13:00 及 15:00–18:00"
+    ],
+    "fma_seo_titolo": "罗马特米尼车站附近的 Maria Ausiliatrice 宾馆",
+    "fma_seo_descrizione": "慈幼会修女在马尔盖拉街开办的宾馆，步行即可到达特米尼车站：20间客房，接待堂区团体、家庭、修道人士和朝圣者。"
+   }
+  },
+  "fma-napoli": {
+   "titolo": "Casa FMA Napoli",
+   "slug": "casa-fma-napoli-zh",
+   "riassunto": "母佑会修女又称鲍思高慈幼会修女，她们在那不勒斯市中心的南方会省“Madonna del Buon Consiglio”总部接待宾客。",
+   "contenuto": "<h2>我们的使命</h2><p>为青年，尤其是最贫穷、最边缘化的青年提供教育和福传，是我们使命的核心。哪里有青年，哪里就是我们的家。</p><p>鲍思高神父的格言“做好基督徒和正直的公民”概括了我们使命的意义和目标：教育、机会和未来。</p><h2>南方会省</h2><p>修会按地域划分为若干会省。南方会省“Madonna del Buon Consiglio”涵盖坎帕尼亚、普利亚、巴西利卡塔和卡拉布里亚，以及阿尔巴尼亚和马耳他。会省总院位于那不勒斯。</p>",
+   "campi": {
+    "fma_tipo": "宾馆",
+    "fma_localita": "那不勒斯",
+    "fma_titolo_hero": "那不勒斯的一方宁静",
+    "fma_tassa": "每人每晚2欧元",
+    "fma_camere": [
+     {
+      "nome": "单人间",
+      "letti": "1张单人床"
+     },
+     {
+      "nome": "双人间",
+      "letti": "1张双人床或2张单人床"
+     }
+    ],
+    "fma_seo_titolo": "Casa FMA Napoli：那不勒斯的宾馆",
+    "fma_seo_descrizione": "慈幼会修女在那不勒斯会省总院开办的宾馆：12间配备空调和无线网络的单人间和双人间，适合家庭和团体。"
+   }
+  },
+  "villa-crawford": {
+   "titolo": "Villa Crawford",
+   "slug": "villa-crawford-zh",
+   "riassunto": "这里是作家马里恩·克劳福德的原始故居，高踞海面之上，可眺望那不勒斯湾和维苏威火山。别墅全年开放，设有一间宽敞、典雅、明亮的观景会议厅，以及多间大小不一、适合小型会议的房间。",
+   "contenuto": "<h2>历史</h2><p>1885年，美国作家弗朗西斯·马里恩·克劳福德买下这座别墅时，它还只是一座被大花园环绕的普通农舍：他在这里写下了许多让他闻名世界的作品。随着时间推移，建筑逐渐改建，直至形似一座古老的中世纪城堡，室内则装饰着索伦托工匠乔瓦尼·马萨雕刻的木制护墙板。</p><p>1909年作家去世后，别墅传给了他的女儿埃莱奥诺拉；1954年，别墅被捐赠给母佑会，至今仍接待许多来这里娱乐和祈祷的青年。</p><h2>扶壁</h2><p>别具特色的扶壁是为了防止海岸塌方、并让人从海上就能望见别墅而修建的。克劳福德让人在城墙的石头上刻下了“In tempestate securitas”（风暴中的安全）：暴风雨中的避风港。</p>",
+   "campi": {
+    "fma_tipo": "历史建筑",
+    "fma_localita": "圣阿涅洛",
+    "fma_titolo_hero": "高踞海面之上的历史别墅",
+    "fma_camere": [
+     {
+      "nome": "别墅客房",
+      "dettaglio": "宽敞大气，置身典雅的古典氛围中，共3层，设有电梯。一半客房可欣赏海景。"
+     },
+     {
+      "nome": "花园客房",
+      "dettaglio": "位于1500平方米的花园中，独立于主楼：风格简朴，室外设有小桌，可尽享地中海灌木的芬芳。"
+     }
+    ],
+    "fma_seo_titolo": "Villa Crawford：圣阿涅洛的历史别墅",
+    "fma_seo_descrizione": "作家马里恩·克劳福德在圣阿涅洛的别墅，高踞那不勒斯湾之上。园林、小教堂和观景厅，适合避静和会议。"
+   }
+  },
+  "villa-tiberiade": {
+   "titolo": "Villa Tiberiade",
+   "slug": "villa-tiberiade-zh",
+   "riassunto": "“Villa Tiberiade”经过翻修，改造为接待场所，用于举办接待日和神操。从它绝佳的位置可以欣赏索伦托半岛独一无二的全景，四周环绕着大片绿地。",
+   "contenuto": "<h2>有故事的地方，会永远留在记忆里</h2><p>工程始于1973年：别墅最初属于菲兰杰里伯爵夫人特蕾莎·罗西。</p><p>庄园分家时，别墅归了她的一个儿子，他娶了奥林匹娅·德·多纳特小姐，后者后来守寡。她的丈夫曾将一块带有破旧农舍的土地赠给穆勒蒙席，农舍经适当改建后用于传教事业。</p><p>后来，穆勒蒙席决定将整片产业托付给母佑会，并以明显取自福音的名字将其命名为“Villa Tiberiade”（提比哩亚别墅）。</p>",
+   "campi": {
+    "fma_tipo": "避静及接待之家",
+    "fma_localita": "托雷安农齐亚塔",
+    "fma_titolo_hero": "在那不勒斯湾放松身心",
+    "fma_camere": [
+     {
+      "nome": "单人间",
+      "dettaglio": "海湾景观，独立卫浴",
+      "letti": "1张单人床"
+     },
+     {
+      "nome": "双人间",
+      "dettaglio": "独立卫浴",
+      "letti": "1张双人床或2张单人床"
+     },
+     {
+      "nome": "三人间",
+      "dettaglio": "独立卫浴",
+      "letti": "1张双人床 + 1张单人床"
+     }
+    ],
+    "fma_dintorni": [
+     {
+      "luogo": "那不勒斯湾",
+      "distanza": "宾馆对面"
+     },
+     {
+      "luogo": "庞贝古城遗址",
+      "distanza": "驾车10分钟"
+     },
+     {
+      "luogo": "维苏威火山",
+      "distanza": "驾车30分钟"
+     },
+     {
+      "luogo": "那不勒斯卡波迪基诺机场",
+      "distanza": "驾车30分钟"
+     },
+     {
+      "luogo": "索伦托",
+      "distanza": "驾车60分钟"
+     }
+    ],
+    "fma_regole": [
+     "入住时间 14:00–21:00",
+     "11:00前退房",
+     "全面禁烟",
+     "不可携带宠物",
+     "禁止举办派对或私人活动",
+     "预订最低年龄：18岁",
+     "抵达前至少30天取消可全额退款，至少7天前取消退款50%"
+    ],
+    "fma_seo_titolo": "Villa Tiberiade：托雷安农齐亚塔的宾馆",
+    "fma_seo_descrizione": "托雷安农齐亚塔的避静及接待之家，可眺望那不勒斯湾，带花园，距庞贝10分钟车程。提供客房、会议厅和停车场。"
+   }
+  }
+ },
+ "articoli": {
+  "torre-annunziata-oplontis-pompei-vesuvio": {
+   "titolo": "托雷安农齐亚塔：奥普隆蒂斯、庞贝与维苏威火山之间",
+   "slug": "torre-annunziata-oplontis-pompeii-vesuvius-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>托雷安农齐亚塔位于那不勒斯湾的一处特别地点，在这里，历史一层层清晰可读：现代城市之下埋藏着一座绘满壁画的罗马别墅，庞贝近在十分钟车程之外，身后耸立着维苏威火山，对面隔海相望的是索伦托半岛。</strong>这里是探索坎帕尼亚最著名景点的便利而宁静的落脚点，不必住在喧嚣之中。</p>\n<h2>为什么要去托雷安农齐亚塔</h2>\n<h3>奥普隆蒂斯与波佩娅别墅</h3>\n<p>在市中心，可以参观维苏威地区最美丽、游客也最少的考古遗址之一：奥普隆蒂斯的<strong>波佩娅别墅</strong>。这是一座奢华的度假别墅，被认为属于尼禄第二任妻子波佩娅·萨比娜的家族，在公元79年的火山喷发中被掩埋。别墅各厅室中描绘花园、错视柱廊和飞鸟的壁画，是罗马世界保存最完好的壁画之一。自1997年起，奥普隆蒂斯与庞贝、赫库兰尼姆一同被列入联合国教科文组织世界遗产名录。</p>\n<h3>大海与风景</h3>\n<p>托雷安农齐亚塔的海滨正对索伦托半岛，天气晴朗时还能望见卡普里岛。日落时分，阳光洒在海湾上，勾勒出拉塔里山脉的轮廓：这是维苏威海岸最美的景色之一。</p>\n<h3>意面传统</h3>\n<p>19世纪至20世纪初，托雷安农齐亚塔与邻近的格拉尼亚诺同为<strong>干意面</strong>之都：磨坊和意面工厂加工小麦，把意大利面挂在阳光和海风中晾干。如今仍有一些手工意面作坊在生产和销售。</p>\n<h2>周边</h2>\n<h3>庞贝</h3>\n<p>驾车约十分钟或乘环维苏威铁路两站即可到达<strong>庞贝古城遗址</strong>，至少值得花半天时间：广场、壁画民居、圆形剧场，以及留有车辙的石板路。现代城区里矗立着由巴托洛·隆戈创建的<strong>玫瑰圣母朝圣地</strong>，是来自意大利各地信众的朝圣目的地。</p>\n<h3>维苏威火山</h3>\n<p>驾车或乘摆渡车约半小时可上到海拔一千米处；再沿小路步行约二十分钟即可到达火山口边缘。从山顶可以俯瞰整个那不勒斯湾。</p>\n<h3>赫库兰尼姆</h3>\n<p><strong>赫库兰尼姆</strong>比庞贝小，但保存得异常完好，可以看到多层房屋、碳化的木材和仍在原处的马赛克。</p>\n<h3>索伦托与半岛</h3>\n<p>乘环维苏威铁路或驾车约一小时可到达<strong>索伦托</strong>；从那里有渡轮前往卡普里岛，公路则继续通往阿马尔菲海岸。</p>\n<table>\n<thead>\n<tr><th>从托雷安农齐亚塔到…</th><th>大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>庞贝古城遗址</td><td>驾车10分钟</td></tr>\n<tr><td>赫库兰尼姆</td><td>乘火车20分钟</td></tr>\n<tr><td>维苏威火山</td><td>驾车30分钟</td></tr>\n<tr><td>那不勒斯</td><td>乘火车30–40分钟</td></tr>\n<tr><td>索伦托</td><td>驾车60分钟</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>春秋两季是参观遗址的最佳时节：参观需要在户外大量步行，而夏季的炎热会让一切更加疲惫。十月和五月天气晴朗，也非常适合登维苏威火山。夏天最好清晨参观考古遗址，下午留作休息。</p>\n<h2>住在哪里</h2>\n<p><strong>Villa Tiberiade</strong> 是由母佑会修女管理的避静及接待之家，面向索伦托半岛，四周环绕着大片绿地。这里有花园、阳台、日光浴躺椅、会议厅和免费停车场，适合家庭、团体和避静日。在庞贝和维苏威之间度过一天后，晚上可以回到这片专为休憩而设的宁静之地。</p>"
+  },
+  "santagnello-penisola-sorrentina-villa-crawford": {
+   "titolo": "圣阿涅洛与索伦托半岛：追寻马里恩·克劳福德的足迹",
+   "slug": "santagnello-sorrento-peninsula-marion-crawford-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>“In tempestate securitas”，风暴中的安全之所：美国作家弗朗西斯·马里恩·克劳福德让人把这句话刻在他位于圣阿涅洛、高踞海面之上的别墅城墙上。</strong>一个多世纪后，这座房子依然在接待那些想在那不勒斯湾、离索伦托咫尺之遥处寻找一方宁静的人。</p>\n<h2>为什么要去圣阿涅洛</h2>\n<h3>作家们的半岛</h3>\n<p>19世纪，索伦托半岛是“壮游”的一站，圣阿涅洛则是外国旅行者最喜爱的地方之一。著有多部畅销小说的克劳福德于1885年在这里买下一座带花园的农舍。他在此生活和写作，直到1909年去世，并逐渐把它改造成一座形似古堡的宅邸。如今，镇上的主街就以他的名字命名。</p>\n<h3>凝灰岩下的大海</h3>\n<p>半岛是一片陡然插入海中的凝灰岩台地。海滩都不大，需经由凿在岩石中的台阶和电梯到达；离岸几米海水就变深，对面是维苏威火山，远处是那不勒斯。</p>\n<h3>柑橘与宁静</h3>\n<p>圣阿涅洛离塔索广场步行仅十分钟，却保留着小村庄的节奏：凝灰岩墙、柠檬树和橙树，春天里每条街道都弥漫着花香。</p>\n<h2>周边</h2>\n<h3>索伦托</h3>\n<p>步行即可到达<strong>索伦托</strong>市中心：磨坊谷、拱廊交错的圣方济各修道院回廊、城市主保圣人圣安东尼诺大教堂，以及古老的渔村大码头（Marina Grande）。</p>\n<h3>卡普里岛</h3>\n<p>从索伦托港乘水翼船约二十分钟即可到达<strong>卡普里岛</strong>。搭乘早上的头几班船，可以赶在人潮之前登上阿纳卡普里和索拉罗山。</p>\n<h3>马萨卢布伦塞与坎帕内拉角</h3>\n<p>越往半岛尖端，景色越显野性：坎帕内拉角海洋保护区、耶兰托湾，以及穿行于橄榄园和梯田之间、面朝卡普里的小径。</p>\n<h3>庞贝与阿马尔菲海岸</h3>\n<p>乘环维苏威铁路约半小时可到达<strong>庞贝</strong>。翻过山口，公路向<strong>波西塔诺</strong>和海岸延伸而下；夏季乘船更为方便。</p>\n<table>\n<thead>\n<tr><th>从圣阿涅洛到…</th><th>大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>索伦托市中心</td><td>步行10–15分钟</td></tr>\n<tr><td>卡普里岛</td><td>从索伦托乘水翼船20–25分钟</td></tr>\n<tr><td>庞贝</td><td>乘火车30分钟</td></tr>\n<tr><td>波西塔诺</td><td>驾车40分钟</td></tr>\n<tr><td>那不勒斯</td><td>乘水翼船或火车35–60分钟</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>四月和五月是橙花盛开、白昼漫长的月份；九月和十月海水依然温暖，游客也更少。冬天，半岛回归当地居民，是避静或开会的理想时节，海湾清澈，维苏威火山常常白雪皑皑。</p>\n<h2>住在哪里</h2>\n<p><strong>Villa Crawford</strong> 是作家的原始故居，如今是母佑会修女的会院。它高踞海面之上，可眺望那不勒斯湾和维苏威火山，全年开放。这里有1500平方米的园林、一座小教堂、一间宽敞明亮的观景会议厅，以及若干供会议和团体使用的小厅。克劳福德为保护海岸而修建的扶壁至今仍在窗下。</p>"
+  },
+  "napoli-chiese-centro-storico-itinerario": {
+   "titolo": "步行那不勒斯，从一座教堂到另一座教堂：老城漫步",
+   "slug": "naples-churches-historic-centre-walking-itinerary-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>那不勒斯有五百多座教堂，其中许多都集中在老城一平方公里的范围内。</strong>无论是随堂区团体出行、朝圣，还是只想了解这座城市的灵魂，认识它最好的方式就是步行，从一座教堂走到另一座教堂，穿行于回廊、小教堂和圣诞马槽之间。</p>\n<h2>为什么要去那不勒斯</h2>\n<p>那不勒斯历史中心自1995年起被列入联合国教科文组织世界遗产名录，至今仍保留着古希腊城市的街道格局。在这里，民间信仰与艺术交融：街角的小神龛、街区节庆、巴洛克杰作。下面是一条探索老城的路线。</p>\n<h3>主教座堂与圣真纳罗宝库</h3>\n<p><strong>圣母升天主教座堂</strong>内有圣真纳罗宝库小堂，是欧洲最富丽的小堂之一。每年三次——五月第一个星期日前的星期六、9月19日和12月16日——全城都在等待主保圣人血液液化的奇迹。</p>\n<h3>圣嘉勒堂与马约利卡回廊</h3>\n<p>安茹王朝修建的哥特式<strong>圣嘉勒大殿</strong>里藏着一座回廊，覆盖着描绘18世纪生活场景的马约利卡彩陶砖：这是城中最宁静的角落之一。</p>\n<h3>新耶稣堂与圣多明我大殿</h3>\n<p>与圣嘉勒堂同在一个广场上的是<strong>新耶稣堂</strong>，其立面由钻石形凸起的皮佩尔诺石砌成。堂内敬礼那不勒斯的圣医朱塞佩·莫斯卡蒂。不远处的<strong>圣多明我大殿</strong>保存着圣托马斯·阿奎那曾居住过的小室。</p>\n<h3>圣塞韦罗小堂与圣格雷戈里奥·阿尔梅诺街</h3>\n<p>在<strong>圣塞韦罗小堂</strong>可以欣赏朱塞佩·桑马蒂诺的《蒙纱基督》（1753年），大理石面纱宛如真实的布料。拐角处的<strong>圣格雷戈里奥·阿尔梅诺街</strong>是圣诞马槽人偶街，全年开放。</p>\n<h3>圣真纳罗地下墓穴</h3>\n<p>位于萨尼塔区的<strong>圣真纳罗地下墓穴</strong>是意大利南部最大的地下墓穴，保存有早期基督教壁画。由于一个青年合作社负责管理并讲述它的故事，整个街区焕发了新生。</p>\n<h2>周边</h2>\n<ul>\n<li><strong>庞贝</strong>：古城遗址和玫瑰圣母朝圣地，乘火车约40分钟。</li>\n<li><strong>海滨大道与蛋堡</strong>：从老城步行二十分钟即可到达海边。</li>\n<li><strong>卡普里岛、伊斯基亚岛和普罗奇达岛</strong>：从贝韦雷洛码头乘水翼船，40分钟到一小时。</li>\n<li><strong>弗莱格瑞平原</strong>：索尔法塔拉火山口和波佐利的弗拉维圆形剧场，传说圣真纳罗曾在此被判刑。</li>\n</ul>\n<table>\n<thead>\n<tr><th>站点</th><th>建议时间</th></tr>\n</thead>\n<tbody>\n<tr><td>主教座堂与圣真纳罗宝库</td><td>1个半小时</td></tr>\n<tr><td>圣嘉勒堂、新耶稣堂、圣多明我大殿</td><td>半天</td></tr>\n<tr><td>圣塞韦罗小堂与圣格雷戈里奥·阿尔梅诺街</td><td>2小时</td></tr>\n<tr><td>圣真纳罗地下墓穴</td><td>1个半小时</td></tr>\n<tr><td>庞贝与朝圣地</td><td>一整天</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>那不勒斯全年都值得一游。九月有圣真纳罗节，十二月有圣格雷戈里奥·阿尔梅诺街的圣诞马槽，这两个月最能感受到民间的虔诚。春秋两季气候宜人，适合步行游览。</p>\n<h2>住在哪里</h2>\n<p><strong>Casa FMA Napoli</strong> 位于市中心，在母佑会南方会省“Madonna del Buon Consiglio”的总部。宾馆有12间客房，配备空调、暖气、无线网络和电梯。住在这里，老城的教堂步行可达，还能以慈幼会团体的节奏体验这座城市。</p>"
+  },
+  "roma-basiliche-sacro-cuore-don-bosco": {
+   "titolo": "从特米尼出发游罗马：鲍思高的教堂与宗座大殿",
+   "slug": "rome-termini-don-bosco-church-papal-basilicas-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>离特米尼车站几步之遥的马尔萨拉街上，有一座鲍思高神父倾尽最后心力建成的大殿：卡斯特罗·普雷托里奥的耶稣圣心大殿。</strong>对于怀着慈幼会精神旅行的人来说，这里是步行或乘地铁探索罗马各大殿和街区的理想起点。</p>\n<h2>为什么从特米尼一带游览罗马</h2>\n<p>位于特米尼和圣洛伦佐之间的卡斯特罗·普雷托里奥区是罗马交通最便利的地区之一：两条地铁线都从这里出发，还有通往整个市中心的公交车，以及开往机场和罗马城堡区的火车。几分钟内即可到达各宗座大殿和基督教罗马最重要的地方。</p>\n<h3>圣心大殿，鲍思高的教堂</h3>\n<p>教宗良十三世请鲍思高神父完成这座因缺乏资金而停工的大殿。圣人接受了委托，在全欧洲募集捐款，并在1887年、也就是他去世前几个月，看到大殿祝圣。大殿旁可以参观<strong>鲍思高神父的房间</strong>，他在罗马逗留期间就住在这里。</p>\n<h3>圣母大殿</h3>\n<p>步行十分钟即可到达<strong>圣母大殿</strong>，这是西方最古老的圣母大殿，拥有5世纪的马赛克和镀金藻井天花板，传说天花板用的是从美洲运来的第一批黄金。</p>\n<h3>拉特朗圣若望大殿与圣阶</h3>\n<p>乘一站地铁或步行即可到达<strong>拉特朗圣若望大殿</strong>，它是罗马的主教座堂，被称为“万堂之母”。对面是<strong>圣阶</strong>朝圣地，朝圣者跪着登上台阶。</p>\n<h3>圣伯多禄大殿与梵蒂冈博物馆</h3>\n<p>乘地铁A线约二十分钟可到达<strong>梵蒂冈</strong>一带：圣伯多禄大殿、米开朗基罗设计的穹顶，以及包括西斯廷礼拜堂在内的梵蒂冈博物馆。</p>\n<h3>城外圣保禄大殿</h3>\n<p>乘地铁B线可到达第四座宗座大殿：这里有宗徒保禄的墓，以及历代教宗的肖像系列。</p>\n<h2>周边</h2>\n<ul>\n<li><strong>阿庇亚古道上的地下墓穴</strong>：由慈幼会管理的圣嘉禄墓穴，以及圣巴斯弟盎墓穴，都是最早的基督教墓地之一。</li>\n<li><strong>蒂沃利</strong>：拥有众多喷泉的埃斯特别墅和哈德良别墅，车程不到一小时。</li>\n<li><strong>罗马城堡区</strong>：冈道尔夫堡、弗拉斯卡蒂、阿里恰和火山湖，从特米尼乘火车即可到达。</li>\n<li><strong>奥斯蒂亚古城</strong>：古罗马的港口，有街道、剧场和浴场。</li>\n</ul>\n<table>\n<thead>\n<tr><th>从马尔盖拉街到…</th><th>方式</th><th>大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>圣心大殿</td><td>步行</td><td>5分钟</td></tr>\n<tr><td>圣母大殿</td><td>步行</td><td>10–15分钟</td></tr>\n<tr><td>拉特朗圣若望大殿</td><td>地铁A线</td><td>15分钟</td></tr>\n<tr><td>圣伯多禄大殿</td><td>地铁A线</td><td>20–25分钟</td></tr>\n<tr><td>圣嘉禄地下墓穴</td><td>公交车</td><td>40分钟</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>春秋两季最适合在大殿和古迹之间漫步。七八月天气炎热：最好在中午参观教堂，那时教堂里很凉爽，傍晚再出去散步。圣诞节和复活节期间城里挤满朝圣者，请务必提前很久预订。</p>\n<h2>住在哪里</h2>\n<p>位于马尔盖拉街59号的<strong>“Maria Ausiliatrice”宾馆</strong>由鲍思高慈幼会修女的母佑会管理，在一般商业渠道之外运营。宾馆有20间配备空调和无线网络的客房，接待共同走在信仰道路上的修道人士、家庭、堂区团体和个人。鲍思高的教堂就在拐角处，这里是罗马朝圣之旅的理想落脚点。</p>"
+  },
+  "caorle-borgo-laguna-spiagge": {
+   "titolo": "卡奥尔莱：渔村、潟湖与大海",
+   "slug": "caorle-fishing-village-lagoon-beaches-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>卡奥尔莱是一座渔村，有五彩缤纷的房屋、一座千年历史的圆柱形钟楼和一座建在礁石上的圣所。</strong>背后是遍布水道和芦苇小屋的潟湖，面前是绵延数公里的海滩。它是亚得里亚海北部最受欢迎的度假地之一，距威尼斯一小时车程。</p>\n<h2>为什么要去卡奥尔莱</h2>\n<h3>老城</h3>\n<p>卡奥尔莱的中心是纵横交错的小巷、小广场和漆成红、黄、蓝、绿色的房屋，就像威尼斯潟湖上的村庄。傍晚时分，广场上满是家庭游客、冰淇淋店和海鲜餐馆。</p>\n<h3>主教座堂与圆柱形钟楼</h3>\n<p>建于11世纪的<strong>圣斯德望主教座堂</strong>旁，矗立着小城的标志之一：罗马式<strong>圆柱形钟楼</strong>，顶部为圆锥形尖顶，沿海岸各处都能望见。堂内有一座珍贵的镀金银制祭坛装饰屏。</p>\n<h3>天使圣母圣所</h3>\n<p>在防波堤的尽头、大海之上，矗立着深受渔民爱戴的<strong>天使圣母圣所</strong>。相传圣母像来自大海，每五年的九月，人们都会举行游行，用船载着圣母像沿海岸巡游。</p>\n<h3>活礁石</h3>\n<p>在连接市中心和圣所的海滨步道旁，防波堤的巨石变成了一座露天博物馆：<strong>Scogliera Viva</strong>（“活礁石”），上面有来自世界各地艺术家的雕塑和绘画。</p>\n<h3>海滩</h3>\n<p>卡奥尔莱有两片细沙大海滩：<strong>东海滩（Spiaggia di Levante）</strong>和<strong>西海滩（Spiaggia di Ponente）</strong>，海水较浅，海滨浴场设施完善，非常适合带孩子的家庭。</p>\n<h2>周边</h2>\n<h3>潟湖与芦苇小屋</h3>\n<p>卡奥尔莱身后是一片由水道、盐沼和养鱼场组成的<strong>潟湖</strong>。<strong>casoni</strong> 是用沼泽芦苇搭建的古老渔民小屋，可以步行、骑车或乘船参观。曾在这片潟湖作客的欧内斯特·海明威，在小说《过河入林》中描写过它们。</p>\n<h3>威尼斯</h3>\n<p>驾车约一小时，或乘季节性巴士和船只，即可到达<strong>威尼斯</strong>，在圣马可广场、里亚尔托桥和各个岛屿之间度过一天。</p>\n<h3>孔科尔迪亚萨吉塔里亚与波尔托格鲁阿罗</h3>\n<p>内陆的<strong>孔科尔迪亚萨吉塔里亚</strong>保存着罗马城市尤利亚·孔科尔迪亚的遗迹，以及一座带有罗马式洗礼堂的主教座堂。不远处的<strong>波尔托格鲁阿罗</strong>有拱廊环绕的老城和莱梅内河上的磨坊。</p>\n<h3>比比奥内与利尼亚诺</h3>\n<p>沿海岸再往东，是<strong>比比奥内</strong>和<strong>利尼亚诺萨比亚多罗</strong>的大海滩。</p>\n<table>\n<thead>\n<tr><th>从卡奥尔莱到…</th><th>驾车大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>潟湖与芦苇小屋</td><td>10分钟</td></tr>\n<tr><td>孔科尔迪亚萨吉塔里亚</td><td>20分钟</td></tr>\n<tr><td>波尔托格鲁阿罗</td><td>25分钟</td></tr>\n<tr><td>比比奥内</td><td>35分钟</td></tr>\n<tr><td>威尼斯</td><td>约1小时</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>海滩季从六月持续到九月。五月和九月最适合在潟湖散步，或沿海岸自行车道骑行。十二月，老城为圣诞节点亮灯饰，小巷里布置着圣诞马槽和彩灯。</p>\n<h2>住在哪里</h2>\n<p><strong>Casa per Ferie San Giuseppe</strong> 由母佑会修女管理，它不只是一处住所：在这里，每个人都能找到平静和人情温暖，时间放慢脚步，大海之美邀请你重新找回内心的平衡。卡奥尔莱渔村和潟湖近在咫尺，这里是家庭或团体海滨度假的理想落脚点。</p>"
+  },
+  "cesuna-altopiano-asiago-sentieri-grande-guerra": {
+   "titolo": "切苏纳与阿夏戈高原：森林、一战记忆与山地风味",
+   "slug": "cesuna-asiago-plateau-woods-great-war-mountain-dairies-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>在阿夏戈高原上的切苏纳，山毛榉和冷杉林中隐藏着战壕、军人公墓和通往高山牧场的小径。</strong>一个世纪前，这里曾发生第一次世界大战中最惨烈的战役之一；如今它是威尼托最宁静的地方之一，适合徒步、沉思和品尝高山牧场的奶酪。</p>\n<h2>为什么要去切苏纳和高原</h2>\n<h3>七镇高原</h3>\n<p>阿夏戈高原海拔约一千米，也被称为<strong>七镇</strong>高原：阿夏戈、罗阿纳、罗佐、加利奥、福扎、埃内戈和卢夏纳孔科。几个世纪以来，这里是一个小小的山地共和国，居住着<strong>辛布里人</strong>——一个日耳曼血统的民族，他们说一种古老的语言，至今仍保留在地名中。切苏纳是罗阿纳市的一个村庄，也是辛布里文化的中心之一。</p>\n<h3>一战遗迹</h3>\n<p>1916年和1918年，高原处于前线。切苏纳周围的森林里保存着战壕、炮兵阵地和坑道，还有几处<strong>英军公墓</strong>，安葬着在此作战的英国士兵。在阿夏戈，<strong>莱滕纪念骨堂</strong>安放着数万名阵亡将士的遗骸。这些都是纪念和祈祷的地方，参观时请怀着敬意。</p>\n<h3>小径与自然</h3>\n<p>高原上纵横着数百公里的步道、林道和自行车道。可以穿行于森林、高山奶酪作坊和牧场之间，一直走到俯瞰威尼托平原的观景点。冬季，同样的路线变成越野滑雪道和雪鞋徒步路线。</p>\n<h3>风味</h3>\n<p>这里是<strong>阿夏戈 DOP</strong> 奶酪的故乡，有新鲜的也有陈年的，都用高山牧场的牛奶制成。应季时可以找到蘑菇、浆果和蜂蜜，在山区小餐馆里能吃到团子（gnocchi）、玉米糊（polenta）和野味。</p>\n<h2>周边</h2>\n<ul>\n<li><strong>阿夏戈</strong>：高原的主镇，有圣马太主教座堂、莱滕纪念骨堂和商业街，距切苏纳仅几分钟。</li>\n<li><strong>罗阿纳与卡诺韦</strong>：有关于辛布里文化和第一次世界大战的博物馆。</li>\n<li><strong>科尔宾要塞</strong>：20世纪初的意大利要塞，高踞于阿斯蒂科谷的悬崖之上。</li>\n<li><strong>高山奶酪作坊</strong>：夏季许多作坊向游客开放，出售奶酪和黄油。</li>\n<li><strong>马罗斯蒂卡与巴萨诺德尔格拉帕</strong>：下山前往平原，可以看到“真人象棋”广场和阿尔卑斯兵桥。</li>\n</ul>\n<table>\n<thead>\n<tr><th>从切苏纳到…</th><th>驾车大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>阿夏戈</td><td>10–15分钟</td></tr>\n<tr><td>罗阿纳与卡诺韦</td><td>10分钟</td></tr>\n<tr><td>科尔宾要塞</td><td>20分钟</td></tr>\n<tr><td>巴萨诺德尔格拉帕</td><td>约1小时</td></tr>\n<tr><td>维琴察</td><td>约1小时</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>夏季是徒步、奶酪作坊开放和享受清凉空气的季节：七八月这里的气温依然宜人。秋天森林变色，可以采蘑菇和栗子。冬天有白雪、越野滑雪和非常适合避静的宁静。</p>\n<h2>住在哪里</h2>\n<p><strong>Villa Tabor</strong> 位于切苏纳，被山毛榉和冷杉环绕，自1943年起由母佑会修女管理。这是一座致力于青年和成人灵修生活的会院，有15间客房、一座还愿小教堂、电梯和免费停车场。这里接待培育周末、灵修周、神操和度假，还可以与修女团体一起分享祈祷时光。</p>"
+  },
+  "verbania-lago-maggiore-isole-borromee": {
+   "titolo": "韦尔巴尼亚与马焦雷湖：塔兰托别墅、博罗梅奥群岛与静谧之地",
+   "slug": "verbania-lake-maggiore-villa-taranto-borromean-islands-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>从佐韦拉洛山丘望去，马焦雷湖宛如群山环抱中静止的大海：湖心是博罗梅奥群岛，湖岸边是19世纪的别墅和植物园。</strong>韦尔巴尼亚是探索欧洲最美湖泊之一的理想之地，可以按照风景所提示的缓慢节奏慢慢游览。</p>\n<h2>为什么要去韦尔巴尼亚</h2>\n<p>韦尔巴尼亚于1939年由因特拉和帕兰扎两座风格不同的小城合并而成：因特拉更具商业气息，有周六集市；帕兰扎更为优雅，有湖滨大道和别墅。两地合起来是湖泊皮埃蒙特一侧最大的城市。</p>\n<h3>塔兰托别墅花园</h3>\n<p>位于卡斯塔尼奥拉岬角的<strong>塔兰托别墅植物园</strong>由苏格兰上尉尼尔·麦克伊查恩于20世纪30年代创建，汇集了来自世界各地的数千种植物：杜鹃花、映山红、枫树，温室里还有巨型睡莲。春天郁金香和杜鹃花盛开，景象壮观。</p>\n<h3>帕兰扎湖滨</h3>\n<p>帕兰扎的湖滨步道两旁种着梧桐，设有码头，面向群岛和博罗梅奥湾。对面是<strong>圣乔瓦尼</strong>小岛，阿图罗·托斯卡尼尼曾在那里居住。</p>\n<h3>教堂与小礼拜堂</h3>\n<p>在因特拉和帕兰扎之间，可以看到罗马式和巴洛克式教堂，例如圣莱昂纳多学院教堂，以及位于卡斯塔尼奥拉山丘上、保存有中世纪壁画的古老<strong>圣雷米焦教堂</strong>。</p>\n<h2>周边</h2>\n<h3>博罗梅奥群岛</h3>\n<p>乘船可以到达湾内的三座岛屿：<strong>美丽岛（Isola Bella）</strong>，有博罗梅奥家族的巴洛克宫殿和梯田花园；<strong>母亲岛（Isola Madre）</strong>，面积最大，植物园里有白孔雀漫步；<strong>渔夫岛（Isola dei Pescatori）</strong>，一个房屋沿窄巷紧密排列的小村庄。</p>\n<h3>斯特雷萨与莫塔罗内山</h3>\n<p>对岸的<strong>斯特雷萨</strong>湖滨坐落着美好年代的豪华酒店。从那里可以登上<strong>莫塔罗内山</strong>，这座山位于马焦雷湖和奥尔塔湖之间，山顶可以看到七个湖泊。</p>\n<h3>萨索的圣卡特琳娜</h3>\n<p>在伦巴第一侧的湖岸，<strong>萨索的圣卡特琳娜</strong>隐修院紧贴在陡直插入湖水的岩壁上。可以乘船或沿长长的台阶下行到达：这是一处独一无二的静默与祈祷之地。</p>\n<h3>大谷国家公园</h3>\n<p>韦尔巴尼亚身后是<strong>大谷（Val Grande）</strong>，意大利面积最大的荒野地区，一座由森林、溪流和废弃高山牧场组成的国家公园。</p>\n<h3>奥尔塔湖与坎诺比奥</h3>\n<p>约四十分钟车程外是<strong>奥尔塔圣朱利奥</strong>，以及建有大殿的圣朱利奥岛。往北，<strong>坎诺比奥</strong>有色彩缤纷的湖滨和热闹的周日集市。</p>\n<table>\n<thead>\n<tr><th>从韦尔巴尼亚到…</th><th>方式</th><th>大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>塔兰托别墅</td><td>驾车或步行</td><td>10–15分钟</td></tr>\n<tr><td>博罗梅奥群岛</td><td>从帕兰扎乘船</td><td>15–30分钟</td></tr>\n<tr><td>斯特雷萨</td><td>乘船或驾车</td><td>30分钟</td></tr>\n<tr><td>坎诺比奥</td><td>驾车</td><td>30分钟</td></tr>\n<tr><td>奥尔塔圣朱利奥</td><td>驾车</td><td>40分钟</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>四月和五月是花季：杜鹃、映山红和山茶花让花园和别墅焕然一新。夏季是乘船游湖和上岛游览的季节。秋天湖面恢复宁静，周围的森林染上红色和金色：这是避静的最佳时节。</p>\n<h2>住在哪里</h2>\n<p><strong>Casa per Ferie Maria Mazzarello</strong> 坐落在佐韦拉洛山丘上，被大自然环绕，俯瞰马焦雷湖。这是一个简朴宁静的地方，客房整洁，设有可俯瞰湖景的观景园林、会议室、小教堂和私人停车场。这里接待避静和神操，并全年举办课程和聚会：是想探索湖区、为自己留出时间的人的理想落脚点。</p>"
+  },
+  "soverato-costa-degli-aranci-squillace": {
+   "titolo": "索韦拉托与橙子海岸：大海、加吉尼的《圣母怜子像》与斯奎拉切",
+   "slug": "soverato-orange-coast-gagini-pieta-squillace-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>索韦拉托面朝斯奎拉切湾，位于卡拉布里亚人称为“Costa degli Aranci”（橙子海岸）的爱奥尼亚海岸。</strong>这里有浅色沙滩、热闹的海滨大道，上城还有一件文艺复兴时期的杰作。周围散布着中世纪村庄、考古公园，以及一位6世纪伟大修士留下的记忆。</p>\n<h2>为什么要去索韦拉托</h2>\n<h3>橙子海岸的大海</h3>\n<p>索韦拉托的海滩宽阔，沙质细软，海水清澈，小城因此多次获得<strong>蓝旗</strong>认证。海底坡度平缓，海湾避风：非常适合家庭出游。</p>\n<h3>海滨大道</h3>\n<p>傍晚时分，索韦拉托的生活转移到海滨大道上，棕榈树下有冰淇淋店，人们悠闲散步。夏季小城举办音乐会和各类活动，是爱奥尼亚海岸最热闹的地方之一。</p>\n<h3>加吉尼的《圣母怜子像》</h3>\n<p>在上城<strong>索韦拉托苏佩里奥雷</strong>，至圣痛苦圣母堂里收藏着西西里文艺复兴雕塑家<strong>安东内洛·加吉尼的《圣母怜子像》</strong>。这是一组极为细腻的白色大理石群像，是卡拉布里亚的艺术瑰宝之一。</p>\n<h3>索韦拉托旧镇</h3>\n<p>山丘上留有1783年地震后被遗弃的古村废墟，可以开阔地俯瞰整个海湾。</p>\n<h2>周边</h2>\n<h3>科帕内洛和卡米尼亚的海滩</h3>\n<p>往北几分钟车程，海岸变得岩石嶙峋：<strong>科帕内洛</strong>和<strong>卡米尼亚</strong>有花岗岩间的沙质小海湾和清澈见底的海水，非常适合浮潜。在科帕内洛的礁石间可以看到凿在石头上的水池，传说与卡西奥多鲁斯有关。</p>\n<h3>斯奎拉切</h3>\n<p>位于海湾上方山丘上的<strong>斯奎拉切</strong>是一座中世纪村庄，有诺曼城堡和悠久的<strong>陶瓷</strong>传统，作坊至今仍在制作。这里是<strong>卡西奥多鲁斯</strong>的故乡，他在6世纪创建了维瓦留姆修道院，修士们在那里抄写并保存了古代文献。</p>\n<h3>斯科拉西乌姆考古公园</h3>\n<p>在博尔贾的罗切莱塔，橄榄林间的<strong>斯科拉西乌姆公园</strong>保存着罗马城市的遗迹，包括剧场和广场，以及宏伟的诺曼式罗切拉圣母大殿。</p>\n<h3>卡坦扎罗与勒卡斯泰拉</h3>\n<p>大区首府<strong>卡坦扎罗</strong>距此半小时车程。往东南方向约一个半小时，可到达卡波里祖托岛的阿拉贡要塞<strong>勒卡斯泰拉</strong>，它仿佛漂浮在海面上。</p>\n<table>\n<thead>\n<tr><th>从索韦拉托到…</th><th>驾车大约时间</th></tr>\n</thead>\n<tbody>\n<tr><td>科帕内洛和卡米尼亚</td><td>15分钟</td></tr>\n<tr><td>斯奎拉切</td><td>20分钟</td></tr>\n<tr><td>斯科拉西乌姆公园</td><td>25分钟</td></tr>\n<tr><td>卡坦扎罗</td><td>30–40分钟</td></tr>\n<tr><td>勒卡斯泰拉</td><td>1个半小时</td></tr>\n</tbody>\n</table>\n<h2>何时前往</h2>\n<p>海滩季从六月持续到九月，海水一直温暖到十月。五月和九月是兼顾海滩和村庄游览、又避开八月酷热的理想月份。春天海岸弥漫着橙花香气，你就会明白它名字的由来。</p>\n<h2>住在哪里</h2>\n<p><strong>Casa FMA Soverato</strong> 位于圣若望·鲍思高街，由母佑会修女管理。宾馆有15间客房，配备空调、暖气、无线网络和免费停车场。对于想享受橙子海岸的大海、探索斯奎拉切湾村庄和历史的家庭和团体来说，这里是理想的落脚点。</p>"
+  },
+  "la-storia-dellaltopiano-di-asiago": {
+   "titolo": "阿夏戈高原的历史",
+   "slug": "history-of-the-asiago-plateau-zh",
+   "riassunto": "",
+   "contenuto": "<p>阿夏戈高原的根源可以追溯到罗马时代，尤其是凯尔特文化。至今在当地方言和整个地区的地名中仍能找到这种影响的痕迹。1310年至1807年，“七镇尊贵摄政会”（Spettabile Reggenza dei Sette Comuni）是一个自治的社区政府，与威尼斯共和国结盟。</p>\n<p>切苏纳周围的山林在<a rel=\"noopener\" target=\"_blank\" href=\"https://zh.wikipedia.org/wiki/第一次世界大战\">第一次世界大战</a>期间曾发生过重要事件：特别是从1918年4月起，这一地区由英军驻守，并于同年6月与奥地利军队交战。至今这里仍是参观大型战壕体系、装甲阵地、掩体遗迹以及大型“纪念骨堂”最令人难忘的地方之一，这些遗迹与博物馆和墓地一起，让人们铭记阵亡者。</p>\n<p>切苏纳和整个高原的自然环境更为这份历史文化财富增色。四季更替让这里的色彩更加鲜明，深受所有希望放松身心、恢复活力的人喜爱：可以沿着蜿蜒穿过森林的路线和小径漫步，也可以在高原上进行各种运动：从山地自行车到网球，从高尔夫到徒步，从滑雪到滑冰。</p>\n<p>众多高山奶酪作坊和小生产者的工坊，让高原上每一次简单的散步都成为发现当地美食的机会。传统风味与木工手艺的橱窗交相辉映，为每位游客带来充满趣味、处处可发现的环境。</p>"
+  },
+  "soverato-la-perla-della-calabria": {
+   "titolo": "索韦拉托，卡拉布里亚的明珠",
+   "slug": "soverato-the-pearl-of-calabria-zh",
+   "riassunto": "",
+   "contenuto": "<p>索韦拉托完美融合了历史、自然与娱乐，是卡拉布里亚的明珠。<br />下面是一些让你的旅程难忘的建议。</p>\n<p><strong>看什么、做什么：</strong></p>\n<ul>\n<li><strong>海滩：</strong>索韦拉托以极细的沙滩和清澈的海水闻名。卡米尼亚海滩因其宁静而特别受欢迎。</li>\n<li><strong>老城：</strong>漫步老城，欣赏贵族宅邸、教堂和手工作坊。</li>\n<li><strong>桑蒂切利植物园：</strong>一片宁静的绿洲，可以欣赏壮观的海湾景色。</li>\n<li><strong>博尔贾的罗切莱塔：</strong>一处非常值得一看的考古遗址，保存有一座拜占庭大殿的遗迹。</li>\n<li><strong>查理五世塔：</strong>一座古老的瞭望塔，可以眺望大海全景。</li>\n<li><strong>水上运动：</strong>如果你喜欢水上运动，在索韦拉托可以玩帆板、风筝冲浪和水肺潜水。</li>\n<li><strong>夜生活：</strong>入夜后，索韦拉托的众多酒吧和俱乐部热闹起来。</li>\n</ul>\n<p><strong>何时前往：</strong></p>\n<p>游览索韦拉托的最佳时间是六月至九月，那时天气温暖、阳光充足。</p>\n<p><strong>在哪里吃：</strong></p>\n<p>卡拉布里亚菜风味丰富、传统深厚。在索韦拉托，你可以品尝新鲜的鱼类菜肴，还有恩杜亚辣香肠（’nduja）、索普雷萨塔香肠和脆辣椒（peperoni cruschi）。</p>\n<p><strong>活动：</strong></p>\n<ul>\n<li><strong>索韦拉托夏日节：</strong>一个有音乐、演出和文化活动的夏季节庆。</li>\n<li><strong>剑鱼节：</strong>一个以剑鱼为主题的美食节，剑鱼是当地的特产之一。</li>\n</ul>\n<p><strong>更多建议：</strong></p>\n<ul>\n<li><strong>租一辆车：</strong>方便探索周边地区，前往最隐秘的海滩。</li>\n<li><strong>品尝当地特产：</strong>别错过品尝卡拉布里亚特产的机会，比如葡萄酒、橄榄油和奶酪。</li>\n<li><strong>参加一次短途游：</strong>许多旅行社组织前往埃奥利群岛、卡坦扎罗或阿斯普罗蒙特国家公园的短途游。</li>\n</ul>\n<p><strong>带什么：</strong></p>\n<ul>\n<li><strong>泳衣：</strong>享受大海必不可少。</li>\n<li><strong>防晒霜：</strong>保护你免受阳光照射。</li>\n<li><strong>帽子和太阳镜：</strong>用来遮阳。</li>\n<li><strong>舒适的鞋子：</strong>方便步行和探索。</li>\n<li><strong>相机：</strong>记录美好回忆。</li>\n</ul>\n<p>图片来源：https://a.travel-assets.com/ , https://cs-stage.altrama.com/ , https://www.lesuberante.it/,  https://booking.caorle.eu/</p>"
+  },
+  "il-giubileo-a-roma": {
+   "titolo": "罗马禧年",
+   "slug": "the-jubilee-in-rome-zh",
+   "riassunto": "",
+   "contenuto": "<p>禧年期间的罗马是一段难忘的经历。为了帮助你更好地规划旅程，这里有一些建议。</p>\n<p><strong>何时前往：</strong></p>\n<ul>\n<li><strong>开启圣门：</strong>禧年将于2024年12月24日随着圣伯多禄大殿圣门的开启正式开始。这是朝圣者最重要的时刻。</li>\n<li><strong>其他活动：</strong>全年将举办许多与禧年相关的活动，例如主题禧年（如传媒界禧年、军队禧年等）。请关注禧年官方网站，及时了解最新信息。</li>\n</ul>\n<p><strong>看什么、做什么：</strong></p>\n<ul>\n<li><strong>各大殿：</strong>除了圣伯多禄大殿，还可以参观另外四座宗座大殿：拉特朗圣若望大殿、城外圣保禄大殿、圣母大殿和城外圣老楞佐大殿。</li>\n<li><strong>拜苦路：</strong>参加城中举办的众多拜苦路活动之一，这是一次深刻的灵性体验。</li>\n<li><strong>教堂：</strong>罗马到处都是教堂，每座都有独特的历史和艺术。去参观你最感兴趣的那些吧。</li>\n<li><strong>梵蒂冈博物馆和西斯廷礼拜堂：</strong>每位罗马游客的必游之地。请提前订票，以免长时间排队。</li>\n<li><strong>其他景点：</strong>别忘了参观斗兽场、古罗马广场、万神殿、圣天使城堡和罗马的喷泉。</li>\n</ul>\n<p><strong>交通：</strong></p>\n<ul>\n<li><strong>地铁：</strong>地铁是在城中出行最快的方式。</li>\n<li><strong>公交车：</strong>众多公交线路连接罗马各个区域。</li>\n<li><strong>步行：</strong>罗马是一座适合步行探索的城市，尤其是在历史中心。</li>\n</ul>\n<p><strong>住在哪里：</strong></p>\n<ul>\n<li><strong>梵蒂冈附近：</strong>如果想离禧年主要场所近一些，可以在梵蒂冈附近寻找住处。</li>\n<li><strong>历史中心：</strong>历史中心有大量酒店、民宿和公寓可供选择。</li>\n<li><strong>城郊地区：</strong>如果预算有限，可以在城郊地区寻找住处，再乘公共交通前往市中心。</li>\n</ul>\n<p><strong>实用建议：</strong></p>\n<ul>\n<li><strong>提前预订：</strong>酒店、机票和博物馆门票都应尽早预订，特别是在旺季出行时。</li>\n<li><strong>穿着舒适：</strong>准备好走很多路，请穿舒适的鞋子。</li>\n<li><strong>带上水瓶：</strong>罗马天气炎热，请随身带水。</li>\n<li><strong>遵守规定：</strong>在宗教场所需要遵守一定的着装要求。</li>\n<li><strong>旅行保险：</strong>购买涵盖医疗费用或遣返费用的旅行保险。</li>\n</ul>\n<p>图片来源：<a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/jerome82-11303951/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">JEROME CLARYSSE</a>、<a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/nimrodins-12874542/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4529605\">Nimrod Oren</a>、<a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/mailanmaik-4340251/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4634107\">Maik</a>、<a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/paula11767-7946983/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3133764\">Paula Flan</a>、<a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it/users/rainhard2-19578714/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6207755\">Rainhard Wiesinger</a>，来自 <a rel=\"noopener\" target=\"_blank\" href=\"https://pixabay.com/it//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5074421\">Pixabay</a></p>"
+  },
+  "cosa-fare-a-napoli": {
+   "titolo": "那不勒斯玩什么",
+   "slug": "things-to-do-in-naples-zh",
+   "riassunto": "",
+   "contenuto": "<ul>\n<li><strong>斯帕卡那不勒斯街（Spaccanapoli）：</strong>在斯帕卡那不勒斯的小巷里迷路是一种独特的体验。欣赏贵族宅邸、手工作坊和巴洛克教堂。</li>\n<li><strong>新堡（Castel Nuovo）：</strong>一座俯瞰港口的雄伟城堡。参观内部大厅，欣赏城市全景。</li>\n<li><strong>翁贝托一世长廊：</strong>一座19世纪的购物长廊，新艺术风格建筑的瑰宝。欣赏彩色玻璃穹顶，在商店间漫步。</li>\n<li><strong>地下那不勒斯：</strong>探索隐藏在城市之下的那不勒斯。参观地道、蓄水池和罗马剧场。</li>\n<li><strong>国家考古博物馆：</strong>欣赏意大利最重要的考古藏品之一。别错过著名的马赛克和庞贝出土文物。</li>\n<li><strong>圣塞韦罗小堂：</strong>感受这座小堂的神秘氛围，欣赏世界上最迷人的艺术品之一《蒙纱基督》。</li>\n<li><strong>披萨：</strong>在城里众多老字号披萨店中，品尝正宗的那不勒斯披萨。</li>\n<li><strong>海滨散步：</strong>沿着那不勒斯海滨漫步，欣赏维苏威火山和海湾。</li>\n<li><strong>西班牙区（Quartieri Spagnoli）：</strong>沉浸在这个热闹多彩街区的地道氛围中。</li>\n</ul>\n<p><strong>何时前往：</strong></p>\n<p>游览那不勒斯的最佳时间是春季（4–5月）或秋季（9–10月），那时气候温和，游客也较少。</p>\n<p><strong>交通：</strong></p>\n<p>那不勒斯是一座适合步行探索的城市。也可以乘坐公共交通（公交车、地铁）或出租车。</p>\n<p><strong>在哪里吃：</strong></p>\n<p>那不勒斯美食闻名世界。一定要尝尝：</p>\n<ul>\n<li><strong>披萨：</strong>正宗的那不勒斯披萨是一种独特的体验。</li>\n<li><strong>意面：</strong>蛤蜊意面、土豆意面（pasta e patate）、热那亚炖肉酱意面（genovese）……总有一款适合你！</li>\n<li><strong>Friarielli：</strong>一种典型的那不勒斯配菜，喜欢浓郁口味的人一定要尝。</li>\n<li><strong>朗姆巴巴（Babà）：</strong>浸透朗姆酒的松软蛋糕，非常适合作为餐后甜点。</li>\n</ul>\n<p><strong>更多建议：</strong></p>\n<ul>\n<li><strong>提前预订：</strong>如果想参观最重要的博物馆，建议提前订票，特别是在旺季。</li>\n<li><strong>穿着舒适：</strong>想在那不勒斯的小巷里尽情漫游，需要一双舒适的鞋子！</li>\n<li><strong>尝尝街头小吃：</strong>别错过那不勒斯街头的各种小吃。</li>\n<li><strong>学几句那不勒斯话：</strong>会说几句那不勒斯方言，会让你的体验更加地道。</li>\n</ul>"
+  },
+  "perche-visitare-torre-annunziata": {
+   "titolo": "为什么要去托雷安农齐亚塔？",
+   "slug": "why-visit-torre-annunziata-zh",
+   "riassunto": "",
+   "contenuto": "<p>去托雷安农齐亚塔的理由有很多。下面是其中最重要的几个：</p>\n<ul>\n<li><strong>优越的地理位置：</strong>托雷安农齐亚塔位于那不勒斯湾的优越位置，可以欣赏维苏威火山和卡普里岛的全景。</li>\n<li><strong>悠久的历史：</strong>托雷安农齐亚塔的历史可以追溯到罗马时代。城里有许多考古遗址，包括波佩娅别墅遗址和托雷安农齐亚塔国家考古博物馆。</li>\n<li><strong>番茄种植：</strong>托雷安农齐亚塔以番茄闻名。这里是圣马尔扎诺番茄的生产中心，这一品种因其风味和多种用途而备受青睐。</li>\n<li><strong>海滩：</strong>托雷安农齐亚塔沿海岸有多处海滩，非常适合游泳、冲浪和帆板。</li>\n<li><strong>夜生活：</strong>托雷安农齐亚塔的夜生活很热闹，城里有许多酒吧、餐馆和俱乐部。</li>\n</ul>\n<p><strong>在托雷安农齐亚塔做什么？</strong></p>\n<p>在托雷安农齐亚塔可以做的事情很多。下面是一些最受欢迎的活动：</p>\n<ul>\n<li><strong>参观考古遗址：</strong>托雷安农齐亚塔的考古遗址是不容错过的景点，其中最重要的是波佩娅别墅遗址和托雷安农齐亚塔国家考古博物馆。</li>\n<li><strong>去游泳：</strong>托雷安农齐亚塔的海滩非常适合游泳、冲浪和帆板。</li>\n<li><strong>品尝圣马尔扎诺番茄：</strong>托雷安农齐亚塔的圣马尔扎诺番茄因其风味和多种用途而备受青睐。</li>\n<li><strong>享受夜生活：</strong>托雷安农齐亚塔的夜生活很热闹，城里有许多酒吧、餐馆和俱乐部。</li>\n</ul>\n<p><strong>如何前往托雷安农齐亚塔？</strong></p>\n<p>从那不勒斯乘火车或巴士很容易到达托雷安农齐亚塔，也可以驾车前往。</p>\n<p><strong>何时去托雷安农齐亚塔？</strong></p>\n<p>游览托雷安农齐亚塔的最佳时间是春季或秋季，那时气候温和。不过，夏天和冬天也同样值得一去。</p>\n<p><strong>游览托雷安农齐亚塔的建议</strong></p>\n<ul>\n<li><strong>慢慢来：</strong>托雷安农齐亚塔是一座历史文化丰富的城市。慢慢探索，发现它隐藏的宝藏。</li>\n<li><strong>品尝圣马尔扎诺番茄：</strong>托雷安农齐亚塔的圣马尔扎诺番茄是不容错过的美食体验。</li>\n<li><strong>体验夜生活：</strong>托雷安农齐亚塔的夜生活很热闹，一定要去城里的酒吧、餐馆和俱乐部看看。</li>\n<li><strong>在海滩上放松：</strong>托雷安农齐亚塔的海滩是放松和娱乐的理想之地。</li>\n</ul>\n<p><strong>结语</strong></p>\n<p>托雷安农齐亚塔是一座拥有丰富历史、文化和自然美景的城市。它为游客提供多种多样的活动：参观考古遗址、游泳、冲浪、帆板、品尝圣马尔扎诺番茄和体验夜生活。如果你在寻找一个有趣又实惠的目的地，托雷安农齐亚塔是一个绝佳的选择。</p>"
+  },
+  "villa-tiberiade-esercizi-spirituali-gruppi": {
+   "titolo": "Villa Tiberiade 的神操与避静日：坐落在那不勒斯湾畔",
+   "slug": "villa-tiberiade-spiritual-exercises-groups-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>Villa Tiberiade 正是为此而生：接待团体举办灵修日和神操。</strong>这座别墅位于托雷安农齐亚塔，掩映在绿意之中，可眺望索伦托半岛，而且几乎全是单人间：是静默、祈祷和相聚的理想之地。</p>\n\n<h2>适合谁</h2>\n<p>宾馆接待堂区、修会团体、协会和运动团体，为他们一天或多天的避静提供一处静谧之所。这里也适合举办培育日，或不过夜的团体聚会。</p>\n\n<h2>团体空间</h2>\n<ul>\n<li><strong>会议厅</strong>，用于默想、讲座和团体活动。</li>\n<li><strong>宽敞的园林</strong>，有花园和躺椅，两场聚会之间可以在这里静默漫步。</li>\n<li><strong>全景视野</strong>：从阳台和花园可以眺望那不勒斯湾和索伦托半岛。</li>\n<li><strong>电梯、无线网络和免费停车场</strong>，方便乘大巴或多辆汽车前来的团体。</li>\n</ul>\n\n<h3>客房：几乎全是单人间</h3>\n<p>宾馆有<strong>30间单人间</strong>，可欣赏海湾景色，配备独立卫浴，另有3间双人间和1间三人间。这样的布局很少见，对神操尤为宝贵：每个人都有自己的空间，可以独自收心，双人间则留给夫妇、家庭或陪同人员。</p>\n\n<h2>如何组织避静</h2>\n<ul>\n<li><strong>选择形式。</strong>一天的避静、一个周末，或为期五天的神操：请尽早告知宾馆，并说明参加人数。</li>\n<li><strong>询问包含哪些服务。</strong>根据你们计划的日程，与宾馆确认餐食、会议厅的使用和时间安排。</li>\n<li><strong>留出自由时间。</strong>园林和风景本身就是体验的一部分：请安排较长的休息时间，用于静默和个人祈祷。</li>\n<li><strong>时间允许的话，安排一次外出。</strong>庞贝古城遗址驾车10分钟，维苏威火山驾车30分钟：半天的参观可以为多日避静画上圆满的句号。</li>\n</ul>\n\n<h2>预订前须知</h2>\n<ul>\n<li>入住时间 14:00–21:00，11:00前退房。</li>\n<li>宾馆全面禁烟，不可携带宠物，禁止举办派对或私人活动。</li>\n<li>抵达前至少30天取消可全额退款，至少7天前取消退款50%：收集报名时请考虑到这一点。</li>\n<li>卡波迪基诺机场驾车约30分钟。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>如需查询空房和团体报价，请发邮件至 <a href=\"mailto:info@villatiberiade.it\">info@villatiberiade.it</a> 或致电 <a href=\"tel:+390818836450\">+39 081 883 6450</a>，并说明日期、人数和聚会类型。</p>"
+  },
+  "villa-crawford-ritiri-riunioni-gruppi-sorrento": {
+   "titolo": "Villa Crawford 团体接待：高踞海面之上的避静、会议与培育日",
+   "slug": "villa-crawford-retreats-meetings-groups-sorrento-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>Villa Crawford 位于圣阿涅洛，兼具两样难得的东西：一座俯瞰那不勒斯湾的历史宅邸，以及专为团体工作而设计的空间。</strong>别墅全年开放，自1954年起一直接待来这里娱乐和祈祷几个小时的青年。</p>\n\n<h2>适合谁</h2>\n<p>别墅适合堂区团体和青年团体的避静、培育聚会，以及协会和理事会的会议。组织者可以找到大小不一的会议室，还有一座园林，可以在户外继续交流。</p>\n\n<h2>团体空间</h2>\n<ul>\n<li><strong>一间宽敞的会议厅</strong>，典雅、视野开阔、光线充足，适合全体会议。</li>\n<li><strong>其他大小不一的会议室</strong>，适合小组讨论或小范围会议。</li>\n<li><strong>小教堂</strong>，供团体祈祷和举行礼仪。</li>\n<li><strong>1500平方米的园林</strong>，临海而建，可眺望维苏威火山。</li>\n<li><strong>电梯、无线网络、空调和暖气</strong>：别墅四季皆宜。</li>\n</ul>\n\n<h3>两种住宿方式</h3>\n<p><strong>别墅客房</strong>宽敞，分布在三层楼，设有电梯，一半客房可欣赏海景。<strong>花园客房</strong>位于园林中，独立于主楼，风格简朴，室外设有小桌：适合活动带领者，或想要更安静环境的人。</p>\n\n<h2>如何组织聚会</h2>\n<ul>\n<li><strong>根据日程规划空间。</strong>大厅开全体会议，小厅分组讨论，园林里休息：请向宾馆询问你们的日期有哪些会议室空闲。</li>\n<li><strong>善用别墅的历史。</strong>作家弗朗西斯·马里恩·克劳福德让人在扶壁上刻下格言<em>“In tempestate securitas”</em>（风暴中的安全），即风暴中的安全之所：这是默想或开启聚会的天然切入点。</li>\n<li><strong>淡季前来。</strong>别墅全年开放：秋季和春季是举办宁静避静的理想时节，可以远离海岸夏季的人潮。</li>\n<li><strong>留一个自由的下午。</strong>索伦托和半岛的大海近在咫尺。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>如需查询日期、会议室和报价，请发邮件至 <a href=\"mailto:info@villacrawford.it\">info@villacrawford.it</a> 或致电 <a href=\"tel:+390818073084\">081 807 3084</a>，并说明参加人数和所需的会议室。</p>"
+  },
+  "napoli-casa-fma-gruppi-pellegrinaggi": {
+   "titolo": "那不勒斯的团体与朝圣：入住市中心的慈幼会修女之家",
+   "slug": "naples-fma-house-groups-pilgrimages-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>对于到访那不勒斯的堂区团体、班级或协会来说，Casa FMA 是一个简朴而又位于市中心的落脚点。</strong>母佑会修女在南方会省的总部接待宾客，这是一座带回廊和花园的建筑群，离市中心的教堂和古迹仅几步之遥。</p>\n\n<h2>适合谁</h2>\n<p>宾馆适合想步行游览城市的小型团体：老城教堂朝圣、修学旅行、要理班或青年中心团体，以及结伴同行、共走一段旅程的朋友。宾馆有<strong>12间客房</strong>，包括单人间和双人间，更适合人数不多的团体，而不是大型旅行团。</p>\n\n<h2>提供什么</h2>\n<ul>\n<li>单人间和双人间，配1张双人床或2张单人床。</li>\n<li>空调、暖气、电梯和无线网络。</li>\n<li>一台供住客使用的冰箱。</li>\n<li>回廊和内院，城市中心的一方静谧角落。</li>\n</ul>\n<p>房价每晚<strong>60欧元</strong>起。在那不勒斯还需另付城市旅游税，每人每晚2欧元。</p>\n\n<h2>如何组织行程</h2>\n<ul>\n<li><strong>步行出行。</strong>老城要靠双脚去发现：住在这里，可以省去大巴和停车的麻烦，而这正是团体在城里最头疼的问题。</li>\n<li><strong>每天一个主题。</strong>市中心的教堂、地下那不勒斯、海滨大道：按区域划分日程，这样每段路程都不会太长。</li>\n<li><strong>提前预约参观。</strong>市中心的许多景点，例如地下游览路线和最热门的博物馆，都要求团体提前预约。</li>\n<li><strong>把旅游税算进预算。</strong>一个十人团体住三晚，需多付60欧元。</li>\n</ul>\n\n<h2>宾馆的使命</h2>\n<p>鲍思高慈幼会修女使命的核心是青年教育，尤其是最贫穷的青年。住在这里，意味着在几天里走进一个充满这种精神的家，也就是鲍思高神父的格言所表达的精神：“做好基督徒和正直的公民”。</p>\n\n<h2>联系方式</h2>\n<p>团体请发邮件至 <a href=\"mailto:amministrazione.napoli.sgb@fma-imr.it\">amministrazione.napoli.sgb@fma-imr.it</a> 或拨打 <a href=\"tel:+393759151774\">375 915 1774</a>，也可通过 <a href=\"https://wa.me/393759151774\">WhatsApp</a> 联系。</p>"
+  },
+  "roma-casa-per-ferie-gruppi-parrocchiali": {
+   "titolo": "带着堂区团体游罗马：特米尼车站附近的 Maria Ausiliatrice 宾馆",
+   "slug": "rome-guest-house-parish-groups-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>在罗马组织朝圣或团体旅行，要从一个选择开始：住在哪里。</strong>“Maria Ausiliatrice”宾馆位于马尔盖拉街，离特米尼车站仅几步之遥，正是为共同走在信仰道路上的人而设：堂区团体、神父和修女、家庭和协会。</p>\n\n<h2>适合谁</h2>\n<p>宾馆由鲍思高慈幼会修女管理，不以营利为目的，在一般商业渠道之外运营。住客认同宾馆的理念并遵守其规定：这里环境宁静、井然有序，适合来罗马祈祷、参观各大殿、共度几天时光的团体。</p>\n\n<h2>提供什么</h2>\n<ul>\n<li><strong>20间客房</strong>，配备空调、暖气和无线网络。</li>\n<li>客房每日清洁，床单每三天更换一次。</li>\n<li>免费停车，视车位情况而定。</li>\n<li>位置便利，适合乘火车抵达的客人：从特米尼车站有地铁和公交车通往全城各处。</li>\n</ul>\n\n<h2>宾馆规定，请提前告知团体</h2>\n<p>团体负责人最好在出发前向大家说明，免得有人临时感到意外：</p>\n<ul>\n<li>前台时间：12:00–13:00 及 14:00–21:00。</li>\n<li>10月至4月晚上须在21:00前返回，5月至9月须在22:00前返回。</li>\n<li>离店当天须在9:30前退房。</li>\n<li>不可携带宠物，楼内禁止吸烟。</li>\n<li>言行和着装须与宾馆的宗教宗旨相符。</li>\n</ul>\n\n<h2>如何组织行程</h2>\n<ul>\n<li><strong>按晚上返回的时间安排每天的行程。</strong>早点吃晚饭，晚间参观留待下次：宾馆的作息也能帮助团体好好休息。</li>\n<li><strong>离开当天。</strong>客房须在9:30前退还，最好安排好行李寄存，在乘火车前再做最后一次参观。</li>\n<li><strong>大殿与教宗接见。</strong>教宗接见和部分导览参观需要团体提前预约：日期一确定就请尽快预约。</li>\n<li><strong>罗马的鲍思高。</strong>由鲍思高神父主持建造的圣心大殿紧邻特米尼车站：对于慈幼会团体来说，这是顺理成章的一站。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>预订时间为周一至周六 9:00–13:00 及 15:00–18:00。请发邮件至 <a href=\"mailto:m.accoglienza@fmairo.net\">m.accoglienza@fmairo.net</a> 或拨打 <a href=\"tel:+393292352419\">329 235 2419</a>，也可通过 <a href=\"https://wa.me/393292352419\">WhatsApp</a> 联系。</p>"
+  },
+  "caorle-casa-san-giuseppe-gruppi-famiglie": {
+   "titolo": "和团体一起去海边：卡奥尔莱的 San Giuseppe 宾馆，适合青年中心、家庭和协会",
+   "slug": "caorle-san-giuseppe-house-groups-families-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>和青年中心、家庭团体或协会一起在海边度过一周：在卡奥尔莱，San Giuseppe 宾馆距海滩仅一步之遥，环境宁静安详。</strong>宾馆由母佑会修女管理，理念十分清晰：要远远不只是一处住宿设施。</p>\n\n<h2>适合谁</h2>\n<p>宾馆以温暖和尊重接待每一个人，无论其人生经历、文化或信仰如何。这里适合堂区团体和青年中心团体、结伴出行的多个家庭、协会，以及所有想在海边安静度假、建立真诚关系的人。</p>\n\n<h2>客房</h2>\n<p>宾馆提供<strong>单人间、三人间和四人间</strong>。四人间非常适合家庭，三人间则适合青少年和活动带领者。所有客房都配有暖气、电视和无线网络。</p>\n\n<h2>宾馆的精神</h2>\n<p>宾馆的价值宪章可以概括为五个词：</p>\n<ul>\n<li><strong>人人之家</strong>，让人感到安全自在。</li>\n<li><strong>接待</strong>，以温暖和尊重对待每一个人。</li>\n<li><strong>和平绿洲</strong>，置身自然，距海一步之遥。</li>\n<li><strong>家庭氛围</strong>，在对话、倾听和尊重中形成，哪怕只是短暂停留。</li>\n<li><strong>欢迎</strong>：每个细节都传递出关注和用心。</li>\n</ul>\n\n<h2>如何安排住宿</h2>\n<ul>\n<li><strong>尽早预订夏季。</strong>七月和八月是团体需求最旺的月份：冬天就把日期定下来。</li>\n<li><strong>考虑客房分配。</strong>告诉宾馆你们有多少个家庭、多少名青少年和多少名带领者：三人间和四人间很容易灵活组合。</li>\n<li><strong>海滩与探索交替进行。</strong>卡奥尔莱的渔村、海边的圣所和潟湖，非常适合安排一个不去海滩的上午或晚上。</li>\n<li><strong>淡季。</strong>五月、六月和九月海面平静、海滩空旷，非常适合避静或团体周末。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>前台通过电子邮件和电话接待咨询，时间为 9:00–12:30 及 14:00–17:30。请发邮件至 <a href=\"mailto:info@sangiuseppecaorle.it\">info@sangiuseppecaorle.it</a>，拨打 <a href=\"tel:+39042181051\">0421 81051</a> 或使用 <a href=\"https://wa.me/393342044670\">WhatsApp</a>。</p>"
+  },
+  "villa-tabor-campi-weekend-formativi-asiago": {
+   "titolo": "Villa Tabor：阿夏戈高原上的培育周末、营会与灵修周",
+   "slug": "villa-tabor-camps-formation-weekends-asiago-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>自1943年起，Villa Tabor 就在阿夏戈高原接待各类团体：培育周末、灵修周、神操、祈祷日和避静日。</strong>它被山毛榉和冷杉环绕，位于罗阿纳的切苏纳，是想把培育、自然和简朴生活结合在一起的团体的理想之地。</p>\n\n<h2>适合谁</h2>\n<p>1999年翻修后，这里成为高原上青年培育的重要场所。它接待正式和非正式团体开展教育、培育、灵修和文化活动，也接待神父和修女。自2017年起，它也向家庭敞开大门，提供放松身心、共同生活的周末。</p>\n\n<h2>提供什么</h2>\n<ul>\n<li><strong>15间客房</strong>，设有电梯、暖气和无线网络。</li>\n<li><strong>还愿小教堂</strong>，供团体祈祷。</li>\n<li><strong>免费停车场</strong>，方便驾车或乘大巴上山的人。</li>\n<li><strong>修女团体</strong>，可以与她们一起分享一些祈祷和服务的时刻。</li>\n</ul>\n\n<h2>日程建议</h2>\n<h3>大自然</h3>\n<p>从宾馆周围出发，有林间小径、山地自行车路线和徒步路线。冬天，高原上可以滑雪和滑冰：在这里举办冬令营，别有一番滋味。</p>\n<h3>一战记忆</h3>\n<p>切苏纳的森林曾是第一次世界大战重大事件的发生地。战壕、阵地和大型纪念骨堂，是青年团体意义深刻的一站：借此机会谈论和平、历史和人生抉择。</p>\n<h3>高原风味</h3>\n<p>高山奶酪作坊和小型生产者，让一次散步变成一次当地美食发现之旅。参观高山奶酪作坊，是大家共度的美好时光。</p>\n\n<h2>如何组织营会</h2>\n<ul>\n<li><strong>把活动和静默结合起来。</strong>上午培育，下午进森林，晚上在小教堂：山间的节奏对团体很有帮助。</li>\n<li><strong>带上合适的装备。</strong>即使是夏天，也要带徒步鞋和厚衣服：高海拔地区的夜晚很凉。</li>\n<li><strong>与修女团体商量。</strong>询问团体可以和修女们一起分享哪些祈祷和服务的时刻。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>请发邮件至 <a href=\"mailto:villatabor@fmaitv.eu\">villatabor@fmaitv.eu</a>，拨打 <a href=\"tel:+39042467002\">0424 67002</a> 或 <a href=\"tel:+393294870389\">329 487 0389</a>，并说明日期、人数和活动类型。</p>"
+  },
+  "verbania-casa-mazzarello-ritiri-esercizi-spirituali": {
+   "titolo": "马焦雷湖畔的避静与神操：韦尔巴尼亚的 Maria Mazzarello 宾馆",
+   "slug": "verbania-mazzarello-house-retreats-spiritual-exercises-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>在韦尔巴尼亚上方的佐韦拉洛山丘上，Maria Mazzarello 宾馆是一个俯瞰马焦雷湖的简朴静谧之地。</strong>这里组织并接待避静和神操：是为自己、为自己的团体、为灵修生活留出时间的地方。</p>\n\n<h2>适合谁</h2>\n<p>宾馆接待堂区团体、修会团体、协会和运动团体，为他们的避静提供一处幽静的环境。一年中，宾馆还组织系列活动、聚会和课程，安排祈祷、聆听和深入反思的时间，向所有希望参加的人开放。</p>\n\n<h2>团体空间</h2>\n<ul>\n<li><strong>聚会室</strong>，用于默想和小组活动。</li>\n<li><strong>多座小教堂</strong>，供个人祈祷和举行礼仪。</li>\n<li><strong>观景园林</strong>，设有俯瞰湖面的观景台，是面向风景的天然露台。</li>\n<li><strong>整洁的客房</strong>和<strong>私人停车场</strong>。</li>\n</ul>\n\n<h2>园林，一间户外大厅</h2>\n<p>园林是宾馆活动不可或缺的一部分，适合：</p>\n<ul>\n<li>慢步与默想；</li>\n<li>户外瑜伽；</li>\n<li>静默与祈祷的时光；</li>\n<li>阅读与学习；</li>\n<li>在大自然中的团体聚会。</li>\n</ul>\n<p>从清晨的阳光到日落的宁静，观景台每天都呈现不同的景色：这是对收心的天然邀请。</p>\n\n<h2>如何组织避静</h2>\n<ul>\n<li><strong>守护静默。</strong>与团体商定静默时间，并利用园林进行个人祈祷。</li>\n<li><strong>户外聚会。</strong>天气允许时，把一场聚会搬到园林里：换个场景，能让注意力焕然一新。</li>\n<li><strong>合适的季节。</strong>春天有湖畔的繁花，秋天有森林的色彩与宁静：这是举办避静的最佳时节。</li>\n<li><strong>在湖上度过半天。</strong>塔兰托别墅花园和博罗梅奥群岛就在附近，适合团体外出。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>请发邮件至 <a href=\"mailto:info@casaferiemazzarello.it\">info@casaferiemazzarello.it</a>，拨打 <a href=\"tel:+390323402365\">0323 402365</a> 或 <a href=\"tel:+393441875602\">344 187 5602</a>（也可使用 <a href=\"https://wa.me/393441875602\">WhatsApp</a>）。宾馆的各项活动请见 <a href=\"https://www.casaferiemazzarello.it/\">casaferiemazzarello.it</a>。</p>"
+  },
+  "soverato-casa-fma-gruppi-campi-estivi": {
+   "titolo": "卡拉布里亚的夏令营与团体度假：索韦拉托的 Casa FMA",
+   "slug": "soverato-fma-house-groups-summer-camps-zh",
+   "riassunto": "",
+   "contenuto": "<p><strong>无论是夏令营、青年中心度假，还是团体的海边一周，索韦拉托的 Casa FMA 都是橙子海岸上一个简朴的落脚点。</strong>宾馆由母佑会修女管理，位于圣若望·鲍思高街。</p>\n\n<h2>适合谁</h2>\n<p>宾馆适合堂区团体和青年中心团体、家庭、协会和各类团体，让他们既能享受爱奥尼亚海岸的大海，又能共度集体生活的时光。宾馆有<strong>15间客房</strong>，适合中等规模的团体。</p>\n\n<h2>提供什么</h2>\n<ul>\n<li>客房配备空调和暖气。</li>\n<li>全楼覆盖无线网络。</li>\n<li><strong>免费停车场</strong>，方便乘大巴或多辆汽车前来的团体。</li>\n</ul>\n\n<h2>为什么索韦拉托适合团体</h2>\n<ul>\n<li><strong>大海。</strong>海滩宽阔，沙色浅淡，海底缓缓倾斜：年纪最小的孩子也适合。</li>\n<li><strong>外出活动。</strong>去科帕内洛和卡米尼亚浮潜，去斯奎拉切村逛陶瓷作坊，去斯科拉西乌姆考古公园：这些都是不去海滩那几天的好去处。</li>\n<li><strong>夜晚。</strong>夏天的海滨大道十分热闹，有音乐会和各种活动。</li>\n</ul>\n\n<h2>如何组织营会</h2>\n<ul>\n<li><strong>尽早确定日期。</strong>七月和八月是需求最旺的月份：冬天就要预订。</li>\n<li><strong>避开最热的时段。</strong>清晨和傍晚去海滩，中午时段留给室内活动。</li>\n<li><strong>六月和九月。</strong>海水已经温暖，海岸也更宁静：适合避静，或人数较少、更为温馨的团体营会。</li>\n<li><strong>询问宾馆能提供什么。</strong>餐食、公共空间和时间安排，需根据你们的日程商定。</li>\n</ul>\n\n<h2>联系方式</h2>\n<p>请发邮件至 <a href=\"mailto:fmasoverato07@gmail.com\">fmasoverato07@gmail.com</a> 或拨打 <a href=\"tel:+393206908459\">320 690 8459</a>，也可通过 <a href=\"https://wa.me/393206908459\">WhatsApp</a> 联系，并说明日期和参加人数。</p>"
+  }
+ }
+}

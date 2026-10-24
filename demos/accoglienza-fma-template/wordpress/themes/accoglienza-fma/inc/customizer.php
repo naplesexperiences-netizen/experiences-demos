@@ -31,11 +31,33 @@ function fma_testi_predefiniti(): array {
 		'passo3_testo'       => 'La richiesta arriva direttamente alla struttura, che ti scrive con disponibilità e prezzo. A te arriva una copia via email.',
 		'recensioni_titolo'  => 'Dicono di noi',
 		'blog_titolo'        => 'Dal blog',
+		'seo_titolo_home'    => 'Case per ferie religiose in Italia',
+		'seo_descrizione_home' => '',
 		'piede_nota'         => 'Ogni casa risponde direttamente alle richieste di soggiorno.',
 	);
 }
 
 add_action( 'customize_register', 'fma_customizer' );
+
+/**
+ * Polylang: i testi della home cambiati in Personalizza compaiono in Lingue → Traduzioni stringhe
+ * (gruppo «Accoglienza FMA»), dove si scrive la versione in ogni lingua. Quelli predefiniti sono già
+ * tradotti nei file del tema.
+ */
+add_action(
+	'admin_init',
+	function () {
+		if ( ! function_exists( 'pll_register_string' ) ) {
+			return;
+		}
+		foreach ( fma_testi_predefiniti() as $chiave => $originale ) {
+			$valore = (string) get_theme_mod( 'fma_' . $chiave, $originale );
+			if ( '' !== $valore && $valore !== $originale ) {
+				pll_register_string( 'fma_' . $chiave, $valore, 'Accoglienza FMA', strlen( $valore ) > 80 );
+			}
+		}
+	}
+);
 
 function fma_customizer( WP_Customize_Manager $wp ): void {
 	$wp->add_section( 'fma_home', array( 'title' => 'Home page', 'priority' => 30, 'description' => 'Testi della home. Le strutture, i partner e gli articoli si gestiscono dalle rispettive voci del menu.' ) );
@@ -67,7 +89,11 @@ function fma_customizer( WP_Customize_Manager $wp ): void {
 		'blog_titolo'        => array( 'Blog: titolo in home', 'text' ),
 		'piede_nota'         => array( 'Nota a piè di pagina', 'text' ),
 	);
-	$wp->add_section( 'fma_condivisione', array( 'title' => 'Condivisione sui social', 'priority' => 31, 'description' => 'Foto dell’anteprima quando qualcuno condivide la home o una pagina senza foto propria (WhatsApp, Facebook, LinkedIn). Le strutture e gli articoli usano la loro immagine in evidenza. Misura ideale: 1200 × 630 pixel.' ) );
+	$wp->add_section( 'fma_condivisione', array( 'title' => 'Google e condivisione', 'priority' => 31, 'description' => 'Come compare la home nei risultati di Google. Più sotto, la foto dell’anteprima quando qualcuno condivide la home o una pagina senza foto propria (WhatsApp, Facebook, LinkedIn). Le strutture e gli articoli usano la loro immagine in evidenza. Misura ideale: 1200 × 630 pixel.' ) );
+	$wp->add_setting( 'fma_seo_titolo_home', array( 'default' => fma_testi_predefiniti()['seo_titolo_home'], 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp->add_control( 'fma_seo_titolo_home', array( 'label' => 'Titolo della home per Google', 'description' => 'Cosa si cerca, non lo slogan: dopo il titolo si aggiunge il nome del sito. Al massimo 45 caratteri.', 'section' => 'fma_condivisione', 'type' => 'text' ) );
+	$wp->add_setting( 'fma_seo_descrizione_home', array( 'default' => '', 'sanitize_callback' => 'sanitize_textarea_field' ) );
+	$wp->add_control( 'fma_seo_descrizione_home', array( 'label' => 'Descrizione della home per Google', 'description' => 'Fra 120 e 155 caratteri. Se vuota si usa il testo sotto il titolo principale della home.', 'section' => 'fma_condivisione', 'type' => 'textarea' ) );
 	$wp->add_setting( 'fma_social_immagine', array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
 	$wp->add_control( new WP_Customize_Media_Control( $wp, 'fma_social_immagine', array( 'label' => 'Foto per la condivisione', 'description' => 'Se vuota si usa la foto della prima casa dello slider.', 'section' => 'fma_condivisione', 'mime_type' => 'image' ) ) );
 

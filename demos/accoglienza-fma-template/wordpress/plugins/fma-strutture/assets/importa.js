@@ -27,7 +27,7 @@
     errore.hidden = true;
     riprova.hidden = true;
     var dati = new FormData();
-    dati.append('action', 'fma_importa_passo');
+    dati.append('action', cfg.azione || 'fma_importa_passo');
     dati.append('nonce', cfg.nonce);
     fetch(cfg.ajax, { method: 'POST', body: dati, credentials: 'same-origin' })
       .then(function (r) {

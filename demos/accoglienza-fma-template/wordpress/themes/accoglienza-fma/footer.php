@@ -16,10 +16,11 @@ $logo_id = (int) get_theme_mod( 'custom_logo' );
 				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/accoglienza-fma.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="500" height="121" loading="lazy">
 			<?php endif; ?>
 			<?php if ( get_bloginfo( 'description' ) ) : ?>
-				<p class="foot__tagline"><?php echo esc_html( rtrim( get_bloginfo( 'description' ), '.' ) ); ?>.</p>
+				<?php $motto = rtrim( get_bloginfo( 'description' ), '.。' ); ?>
+				<p class="foot__tagline"><?php echo esc_html( $motto . ( preg_match( '/[\x{3000}-\x{9FFF}]$/u', $motto ) ? '。' : '.' ) ); ?></p>
 			<?php endif; ?>
 		</div>
-		<nav class="foot__links" aria-label="Piè di pagina">
+		<nav class="foot__links" aria-label="<?php esc_attr_e( 'Piè di pagina', 'accoglienza-fma' ); ?>">
 			<?php
 			wp_nav_menu(
 				array(
@@ -37,11 +38,11 @@ $logo_id = (int) get_theme_mod( 'custom_logo' );
 				)
 			);
 			if ( get_privacy_policy_url() ) {
-				echo '<a href="' . esc_url( get_privacy_policy_url() ) . '">Privacy</a>';
+				echo '<a href="' . esc_url( get_privacy_policy_url() ) . '">' . esc_html__( 'Privacy', 'accoglienza-fma' ) . '</a>';
 			}
 			?>
 		</nav>
-		<p class="foot__meta">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?> · Figlie di Maria Ausiliatrice. <?php echo esc_html( fma_testo( 'piede_nota' ) ); ?></p>
+		<p class="foot__meta">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?> · <?php esc_html_e( 'Figlie di Maria Ausiliatrice', 'accoglienza-fma' ); ?> · <?php echo esc_html( fma_testo( 'piede_nota' ) ); ?></p>
 	</div>
 </footer>
 <?php wp_footer(); ?>
