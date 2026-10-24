@@ -1,0 +1,144 @@
+<div class="prose-blog">
+
+<p class="lead"><strong>The cookie banner on your site stands a good chance of being the worst of both worlds:</strong> it protects you from nothing, because the cookies fire before the guest clicks, and meanwhile it ruins the data you use to decide where to spend your budget. It is the typical result of a plugin installed in five minutes in 2022 and never looked at again — and we see it, in one form or another, on most accommodation websites that cross our desk.</p>
+
+<p>This article explains what the Italian data protection authority actually requires, the three mistakes that recur every time, and why this is less a legal problem than a data quality problem. With a check you can run yourself in ten minutes.</p>
+
+<h2>The rules, briefly</h2>
+
+<p>The Italian reference is the <strong>Guidelines on cookies and other tracking tools</strong> issued by the Garante per la protezione dei dati personali, adopted by decision of <strong>10 June 2021</strong> and fully applicable from <strong>10 January 2022</strong>. This is not a 2026 development: it is a four-year-old deadline that many sites never met.</p>
+
+<p>Five points concern a tourism website.</p>
+
+<ol>
+<li><strong>No tracking before consent.</strong> Cookies and non-technical tracking tools — third-party analytics, advertising pixels, maps, embedded video, chat — cannot be activated until the user has made a choice.</li>
+<li><strong>Scrolling is not consent.</strong> Scrolling on its own is not a valid expression of will. It can form part of a more elaborate journey amounting to a positive action, but "they kept reading, so they accepted" is not a valid basis.</li>
+<li><strong>Refusing has to be as easy as accepting.</strong> The user must be able to refuse all non-essential cookies with one click, from the first layer of the banner — including by closing the window with the X, which counts as a refusal.</li>
+<li><strong>No cookie walls.</strong> Making access to the site conditional on acceptance is as a rule unlawful, unless equivalent content or services are also available without consent.</li>
+<li><strong>A no lasts six months.</strong> Somebody who has refused must not be asked again on every visit: the request may be repeated, save in specific cases, after at least six months.</li>
+</ol>
+
+<div class="callout-info">
+<strong>What does not require consent.</strong> Technical cookies — the ones needed to make the site work: session, basket, language preference, security — do not need consent. They need to be disclosed, not consented to. This matters for sites with a booking engine: blocking those as well, out of excessive caution, breaks the site for no benefit at all.
+</div>
+
+<h2>The three mistakes that recur every time</h2>
+
+<h3>1. The cookies fire before the click</h3>
+
+<p>This is the most frequent and the most serious, and it is invisible from the outside: the banner appears correctly, but Google Analytics, the Meta pixel and the embedded map have already loaded while the user was reading. In that case the banner has no effect whatsoever — it is a graphic element.</p>
+
+<p>Why does it happen? Almost always because the tracking scripts were put into the theme, or added by a marketing plugin, or injected by an external service (an analytics connector, a booking system, a reviews widget) which the cookie plugin does not know about and therefore does not block. The banner manages only what has been connected to the banner.</p>
+
+<h3>2. "Accept" is a button, "Reject" is a grey link at the bottom</h3>
+
+<p>The second mistake is one of design. A big green "Accept all" button and, underneath, in light grey 11-point type, "manage preferences", which opens a panel with six toggles to configure one by one. Formally the refusal exists; substantively it is not an equivalent choice.</p>
+
+<p>The correct form is easier to build than the wrong one: two buttons of the same visual weight, "Accept" and "Reject", plus a third link to customise. Three elements, first layer, done.</p>
+
+<h3>3. The banner reappears on every visit</h3>
+
+<p>This happens when the user's choice is not stored, or is stored with an expiry of a few hours. Besides being wrong on the six-month point, it is the most effective way of teaching guests to click "Accept" without reading — and of irritating anyone coming back to finish an interrupted booking.</p>
+
+<h2>The real cost: your data is lying to you</h2>
+
+<p>Here is the part that matters most, and that nobody connects to the banner.</p>
+
+<p>If consent is handled badly, the numbers you decide on are broken in one of two directions, and both cost money.</p>
+
+<p><strong>If you track before consent</strong>, the data is complete but collected in a non-compliant way. The risk is not only a penalty: it is that you are building your marketing on a baseline which, the day it gets put right, shifts on its own — and you find yourself comparing seasons that cannot be compared.</p>
+
+<p><strong>If you block everything without proper consent management</strong>, the opposite happens: you lose half the data and you do not know which half. Campaigns look less effective than they are, conversions from <a href="/en/blog/metasearch-google-hotel-ads-trivago-tripadvisor-en/">metasearch and Google Hotel Ads</a> are not attributed, and you end up cutting the channel that was working best because "it doesn't bring bookings".</p>
+
+<div class="callout-warning">
+<strong>Anyone advertising with Google has one more constraint.</strong> For campaigns directed at the European Economic Area, Google requires the use of <strong>Consent Mode</strong> version 2: the consent state has to be communicated to Google's tags, explicitly and before they activate. Without it, conversion measurement and remarketing degrade. This is not a matter of regulatory compliance: it is a platform condition, and you can see it directly in your campaign data.
+</div>
+
+<p>The good news is that well-managed consent recovers part of what is lost: with Consent Mode configured correctly, users who refused still produce aggregated signals with no identifiers, enough to estimate the trend. The work is the same work compliance requires. You do it once.</p>
+
+<div style="background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">We will check what actually fires on your site</h3>
+  <p style="color:#e0f2fe;margin-bottom:24px;">We open the site with network analysis tools and tell you exactly which trackers activate before consent, which stay blocked after acceptance, and what Consent Mode is missing. A report with the evidence, not an opinion.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#0369a1;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Request the check</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Message us on WhatsApp</a>
+  </p>
+</div>
+
+<h2>The check to run yourself, ten minutes</h2>
+
+<p>You do not need a consultant to know where you stand. You need a browser.</p>
+
+<ol>
+<li><strong>Open the site in a private window</strong>, so you start with no cookies already saved.</li>
+<li><strong>Open the developer tools</strong> (F12, or right-click → Inspect) and go to the <strong>Network</strong> tab.</li>
+<li><strong>Reload the page and do not touch the banner.</strong> In the filter box type <code>google-analytics</code>, then <code>googletagmanager</code>, then <code>facebook</code>, then <code>doubleclick</code>. If anything appears, that tracker fired without consent.</li>
+<li><strong>Look at the Application → Cookies tab.</strong> How many are there before you have clicked anything? There should only be the site's own technical ones.</li>
+<li><strong>Then look at the banner the way a guest sees it.</strong> Can you refuse with one click, without opening panels? Does the X close it without accepting?</li>
+<li><strong>Finally close everything and reopen the site</strong> (not in private mode): does the banner come back? If it does, the choice is not being stored.</li>
+</ol>
+
+<p>Six checks. If they all pass, your banner works and you can stop reading here. In our experience, fewer than one site in five passes all of them.</p>
+
+<h2>What to do, in order</h2>
+
+<ol>
+<li><strong>Inventory what the site loads.</strong> The list in the Network tab is your real inventory, and it almost never matches what you thought you had installed. We often find pixels from campaigns closed two years ago, still live.</li>
+<li><strong>Remove what you do not use.</strong> This is the step nobody takes and it solves half the problem: a tracker that has been removed needs neither blocking nor disclosing, and the site gets faster.</li>
+<li><strong>Connect everything else to consent</strong>, embedded services included — maps, video, review widgets, chat — which should load only after the choice. Until then, a clickable placeholder goes in their place.</li>
+<li><strong>Configure Consent Mode v2</strong> if you advertise or measure with Google tools, with the defaults set to "denied" before the choice is made.</li>
+<li><strong>Fix the banner:</strong> two equivalent buttons, an X that refuses, the choice remembered, and a way to change your mind that is always reachable — a link in the footer is enough.</li>
+<li><strong>Update the cookie policy</strong> with the actual list, not the plugin's generic one.</li>
+<li><strong>Run the six checks again</strong> once the work is done, and then once a season: every new plugin can reintroduce the problem without warning.</li>
+</ol>
+
+<p>One side effect worth naming: fewer third-party trackers means lighter, faster pages, and a fast site converts better. Step 2 on this list pays for itself.</p>
+
+<h2>"But aren't the European rules about to change?"</h2>
+
+<p>Yes, it is being discussed — and no, that is not a reason to wait.</p>
+
+<p>The simplification package presented by the European Commission at the end of 2025 proposes, among other things, moving the cookie rules inside the GDPR, making consent signals set at browser level binding, and consolidating the six-month rule. At the date of this article it is still a <strong>proposal under negotiation</strong>: it has to pass through Parliament and Council, and full implementation is in any case expected years after any adoption.</p>
+
+<p>Two things are reasonably clear already. The first is that <strong>banners will not disappear entirely</strong>: they will remain for disclosure, for the periodic request and for withdrawal. The second is that the useful work — knowing what your site loads, not tracking before the choice, storing the consent — is exactly what is needed in either scenario. There is nothing to throw away.</p>
+
+<h2>The questions we are asked most</h2>
+
+<h3>I have a paid plugin — aren't I covered already?</h3>
+
+<p>A good plugin is necessary and not sufficient. It blocks what it has been told to block: scripts added by hand to the theme, loaded by an external service, or added by another plugin remain invisible to it. The Network tab check exists precisely to show the difference between what the plugin thinks it manages and what the site actually does.</p>
+
+<h3>Can Google Analytics be used without consent if I anonymise the data?</h3>
+
+<p>That is an assessment to be made case by case and with caution: the conditions for treating an analytics system as a technical tool are narrow and concern minimisation, no cross-referencing with other data, and limits on sharing with third parties. When in doubt, the solid route is to ask for consent and configure Consent Mode — which is also the route that leaves you with usable data.</p>
+
+<h3>If I remove the advertising pixels, do I lose remarketing?</h3>
+
+<p>You lose pixel-based remarketing for the people who refuse, yes. But the most profitable audience for an accommodation business is not a pixel: it is the list of your past guests, which is first-party data. It is one of the reasons <a href="/en/blog/email-marketing-hotels-pre-stay-post-stay/">email marketing</a> regained value exactly as third-party tracking was being narrowed.</p>
+
+<h3>Does the banner cost me bookings?</h3>
+
+<p>A well-made banner does not: two clear buttons, the choice remembered, no box covering the booking form on a phone. A badly made one does, and not because of the consent — because it covers half the screen, reappears on every page and is hard to close with a thumb. It is an interface problem before it is a privacy problem.</p>
+
+<h3>We are a small property — will anyone ever check?</h3>
+
+<p>Statistically, an inspection is not the likely scenario. The likely scenario is a different one: setting next season's budget on the wrong numbers. That is where the real cost comes from, every year, without anyone ever challenging you.</p>
+
+<h2>In short</h2>
+
+<p>The cookie banner is a tedious obligation that almost everybody has solved in the way that produces maximum annoyance and minimum benefit. The Italian rules have been settled since January 2022 and they are not complicated: do not track before the choice, make refusing as easy as accepting, remember the answer.</p>
+
+<p>The reason to fix it, though, is not the law. It is that without well-managed consent you do not know where your bookings come from — and that is a problem you pay for every season.</p>
+
+<div style="background:linear-gradient(135deg,#f59e0b,#dc2626);border-radius:16px;padding:32px;margin:40px 0;color:#ffffff;">
+  <h3 style="color:#ffffff;margin-top:0;">Consent in order and data that works again</h3>
+  <p style="color:#fef3c7;margin-bottom:24px;">An inventory of the live trackers, the dead ones removed, the rest blocked properly, Consent Mode v2 configured, and a banner that does not cover the booking form. Once, done properly.</p>
+  <p style="margin:0;">
+    <a href="/#contact" style="display:inline-block;background:#ffffff;color:#dc2626;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;margin-right:12px;">Let us talk about your site</a>
+    <a href="https://wa.me/393926917657" style="display:inline-block;background:rgba(255,255,255,0.15);border:2px solid #ffffff;color:#ffffff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;">Message us on WhatsApp</a>
+  </p>
+</div>
+
+<p><em>This article is for information only and does not constitute legal advice. The binding references are the cookie guidelines of the Italian data protection authority (Garante per la protezione dei dati personali, decision of 10 June 2021, no. 231) and the text of the GDPR; for your own situation, consult a qualified professional.</em></p>
+
+</div>

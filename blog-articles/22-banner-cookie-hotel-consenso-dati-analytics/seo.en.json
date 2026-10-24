@@ -1,0 +1,107 @@
+{
+  "slug": "cookie-banner-hotels-consent-analytics-data",
+  "lang": "en",
+  "translation_of": "banner-cookie-hotel-consenso-dati-analytics",
+  "post_title": "The Cookie Banner That Does Nothing: Consent, Broken Data and Wasted Budget",
+  "seo_title": "Cookie Banners for Hotels: Consent and Clean Data",
+  "meta_description": "Cookie banners for hotels: the Italian rules in force since 2022, the three recurring mistakes, Consent Mode v2 and a ten-minute self-check.",
+  "focus_keyword": "cookie banner for hotels",
+  "secondary_keywords": [
+    "italian cookie guidelines",
+    "consent mode v2",
+    "cookie consent tourism website",
+    "analytics cookies and bookings",
+    "eu cookie rules reform",
+    "wordpress consent management"
+  ],
+  "og_title": "The cookie banner that does nothing",
+  "og_description": "It protects you from nothing, because the cookies fire before the click, and meanwhile it ruins the data you set your budget on. The Italian rules have been settled since January 2022: no tracking before the choice, refusing as easy as accepting, the answer remembered. Plus the ten-minute check you can run yourself.",
+  "category": "Regulation & Compliance",
+  "tags": [
+    "cookies",
+    "privacy",
+    "GDPR",
+    "consent mode",
+    "analytics",
+    "regulation",
+    "tracking",
+    "hotels"
+  ],
+  "estimated_reading_time": 9,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Cookie Banner That Does Nothing: Consent, Broken Data and Wasted Budget",
+    "description": "Cookie banners for hotels: the Italian rules in force since 2022, the three recurring mistakes, Consent Mode v2 and a ten-minute self-check.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/banner-cookie-hotel-consenso-dati-analytics.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-11-04",
+    "dateModified": "2026-11-04",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/cookie-banner-hotels-consent-analytics-data/"
+    },
+    "keywords": "italian cookie guidelines, consent mode v2, cookie consent tourism website, analytics cookies and bookings, eu cookie rules reform, wordpress consent management",
+    "articleSection": "Regulation & Compliance",
+    "wordCount": 2113,
+    "inLanguage": "en"
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "I have a paid cookie plugin — am I not covered already?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good plugin is necessary and not sufficient. It blocks what it has been told to block: scripts added by hand to the theme, loaded by an external service, or added by another plugin remain invisible to it. The browser Network tab check exists precisely to show the difference between what the plugin thinks it manages and what the site actually does."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Google Analytics be used without consent if I anonymise the data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That is an assessment to be made case by case and with caution: the conditions for treating an analytics system as a technical tool are narrow and concern minimisation, no cross-referencing with other data, and limits on sharing with third parties. When in doubt, the solid route is to ask for consent and configure Consent Mode."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "If I remove the advertising pixels, do I lose remarketing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You lose pixel-based remarketing for the people who refuse. But the most profitable audience for an accommodation business is not a pixel: it is the list of your past guests, which is first-party data. It is one of the reasons email marketing regained value exactly as third-party tracking was being narrowed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the cookie banner cost me bookings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A well-made banner does not: two clear buttons, the choice remembered, no box covering the booking form on a phone. A badly made one does, and not because of the consent — because it covers half the screen, reappears on every page and is hard to close with a thumb. It is an interface problem before it is a privacy problem."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "The European cookie rules are changing: is it worth waiting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The simplification package presented by the European Commission at the end of 2025 is still a proposal under negotiation, and it has to pass through Parliament and Council. Banners will not disappear entirely, and the useful work — knowing what your site loads, not tracking before the choice, storing the consent — is needed in either scenario."
+        }
+      }
+    ]
+  }
+}

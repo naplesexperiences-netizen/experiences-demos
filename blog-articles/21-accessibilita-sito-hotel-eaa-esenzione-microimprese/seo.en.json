@@ -1,0 +1,107 @@
+{
+  "slug": "website-accessibility-hotels-eaa-microenterprise-exemption",
+  "lang": "en",
+  "translation_of": "accessibilita-sito-hotel-eaa-esenzione-microimprese",
+  "post_title": "Website Accessibility: Is Your Property Exempt? (Yes, Probably — But Not Until 2030)",
+  "seo_title": "Website Accessibility: the Micro-Enterprise Exemption",
+  "meta_description": "The European Accessibility Act: the micro-enterprise test, what the Italian AgID guidelines say, and why the \"until 2030\" does not apply to your website.",
+  "focus_keyword": "hotel website accessibility",
+  "secondary_keywords": [
+    "european accessibility act",
+    "legislative decree 82/2022",
+    "micro-enterprise accessibility exemption",
+    "agid accessibility guidelines",
+    "booking engine accessibility",
+    "WCAG for accommodation"
+  ],
+  "og_title": "Website accessibility: is your property exempt? (Yes, probably)",
+  "og_description": "The Italian AgID guidelines say it in seven words: micro-enterprises are exempt from compliance with the accessibility obligations. Two numbers settle the test. But the \"until 2030\" you were told about covers products already in use and contracts signed earlier, not your booking website.",
+  "category": "Regulation & Compliance",
+  "tags": [
+    "accessibility",
+    "regulation",
+    "european accessibility act",
+    "AgID",
+    "WCAG",
+    "website",
+    "compliance",
+    "hotels"
+  ],
+  "estimated_reading_time": 10,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Website Accessibility: Is Your Property Exempt? (Yes, Probably — But Not Until 2030)",
+    "description": "The European Accessibility Act: the micro-enterprise test, what the Italian AgID guidelines say, and why the \"until 2030\" does not apply to your website.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/accessibilita-sito-hotel-eaa-esenzione-microimprese.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-10-28",
+    "dateModified": "2026-10-28",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/website-accessibility-hotels-eaa-microenterprise-exemption/"
+    },
+    "keywords": "european accessibility act, legislative decree 82/2022, micro-enterprise accessibility exemption, agid accessibility guidelines, booking engine accessibility, WCAG for accommodation",
+    "articleSection": "Regulation & Compliance",
+    "wordCount": 2599,
+    "inLanguage": "en"
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "We are a micro-enterprise: can we ignore accessibility?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As far as the obligation goes, the Italian AgID guidelines provide an explicit exemption for micro-enterprises. Commercially, no: you lose the customers who cannot complete a booking either way, and half the fixes worth making cost a few hours of work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My site is on a standard CMS — is it already accessible?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. A good CMS gives you the foundations — correct structure, fields for alternative text — but the barriers almost always arise in the theme, in the booking engine and in the content that gets uploaded. No platform makes a site accessible on its own."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "The booking engine belongs to an external supplier: whose responsibility is it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Towards the guest it is yours: it is your site that does not work. Towards the supplier it is a matter of contract, and it is a legitimate question to put to them, asking for the answer in writing. If their form cannot be navigated by keyboard, it is a problem all their other clients have too."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do accessibility overlays make a site compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Widgets that add a toolbar to the site act on top of the problem without touching it, they frequently conflict with the screen readers users already have, and they are the subject of documented criticism from disability organisations. Badges issued by whoever sells the service have no legal value either."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does it cost to put an accommodation website right?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends how it is built. On contrast, form labels, keyboard navigation, heading structure and carousels we are talking hours, not months, if the site is soundly built. If the theme produces disorderly markup or the booking engine is a closed box, the real cost is rebuilding those pieces."
+        }
+      }
+    ]
+  }
+}

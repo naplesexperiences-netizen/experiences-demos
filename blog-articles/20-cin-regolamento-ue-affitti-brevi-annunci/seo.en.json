@@ -1,0 +1,107 @@
+{
+  "slug": "cin-eu-regulation-short-term-rentals-listings",
+  "lang": "en",
+  "translation_of": "cin-regolamento-ue-affitti-brevi-annunci",
+  "post_title": "The CIN and the EU Short-Term Rental Regulation: What Is Actually Being Checked from 2026",
+  "seo_title": "CIN and EU Short-Term Rental Rules from 2026",
+  "meta_description": "The CIN and Regulation (EU) 2024/1028: how data checking works from 20 May 2026, the five most frequent mistakes, and the half-hour checklist.",
+  "focus_keyword": "cin short term rentals italy",
+  "secondary_keywords": [
+    "regulation eu 2024/1028",
+    "italian national identification code",
+    "ministry of tourism accommodation database",
+    "short term rental listing obligations",
+    "italian short term rental rules 2026",
+    "property manager compliance italy"
+  ],
+  "og_title": "The CIN and the EU Regulation: what is actually being checked from 2026",
+  "og_description": "Regulation (EU) 2024/1028 does not ask you for one more piece of paperwork: it makes what you already have verifiable automatically. How listings, the national register and activity data get compared, the five points where it always breaks, and why you will find no penalty amounts here.",
+  "category": "Regulation & Compliance",
+  "tags": [
+    "CIN",
+    "regulation",
+    "short-term rentals",
+    "EU regulation",
+    "national register",
+    "property manager",
+    "compliance",
+    "hotels"
+  ],
+  "estimated_reading_time": 9,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The CIN and the EU Short-Term Rental Regulation: What Is Actually Being Checked from 2026",
+    "description": "The CIN and Regulation (EU) 2024/1028: how data checking works from 20 May 2026, the five most frequent mistakes, and the half-hour checklist.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/cin-regolamento-ue-affitti-brevi-annunci.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-10-21",
+    "dateModified": "2026-10-21",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/cin-eu-regulation-short-term-rentals-listings/"
+    },
+    "keywords": "regulation eu 2024/1028, italian national identification code, ministry of tourism accommodation database, short term rental listing obligations, italian short term rental rules 2026, property manager compliance italy",
+    "articleSection": "Regulation & Compliance",
+    "wordCount": 2124,
+    "inLanguage": "en"
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "I run a hotel, not a short-term let: does this concern me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CIN applies to hotels as well, so yes for that part. Regulation (EU) 2024/1028 is designed for short-term rentals intermediated by platforms: it concerns you to the extent that you sell through those channels."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "If I only let through one platform, is there less to do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The obligations are the same, but you have one point of exposure fewer and one concentration risk more: if that listing is suspended over an inconsistent piece of data, the business stops altogether."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "The platform transmits the data: do I still have to report my guests?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. They are two distinct flows, with different legal bases and different recipients. Reporting guests to the Italian police through the Alloggiati Web portal remains an obligation that falls on you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I remove the CIN from my listings for privacy reasons?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, quite the opposite: publishing it in the listings is part of the obligation. It identifies the property, it is not personal data to be protected."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does anything change if I manage properties on behalf of others?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The amount of work changes, not the substance: every unit has its own code and its own data, and consistency has to be checked for each. This is the case where channel automation stops being convenient and becomes necessary."
+        }
+      }
+    ]
+  }
+}

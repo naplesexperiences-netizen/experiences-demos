@@ -1,0 +1,108 @@
+{
+  "slug": "getting-found-chatgpt-ai-assistants-hotels",
+  "lang": "en",
+  "translation_of": "farsi-trovare-chatgpt-assistenti-ai-hotel",
+  "post_title": "Getting Found by ChatGPT: How to Enter the Answers of AI Assistants (Hotels and Tour Operators)",
+  "seo_title": "Getting Found by ChatGPT: A Guide for Hotels",
+  "meta_description": "How to get cited by ChatGPT, Perplexity and Google AI Overviews: structured data, robots.txt and quotable content, with real figures from a site in Campania.",
+  "focus_keyword": "getting found by chatgpt",
+  "secondary_keywords": [
+    "AEO for hotels",
+    "answer engine optimization",
+    "GPTBot robots.txt",
+    "structured data for hotels",
+    "AI search in tourism",
+    "perplexity for hotels",
+    "google ai overviews"
+  ],
+  "og_title": "Getting found by ChatGPT: how to enter the answers of AI assistants",
+  "og_description": "In two months, on a tour site in Campania: 65,000 reads by AI crawlers, 78% of them from ChatGPT — and only 0.7% of real visits. What that actually means, what can be measured, and the six conditions for being cited, without the promises of people selling snake oil.",
+  "category": "AI & Innovation",
+  "tags": [
+    "chatgpt",
+    "answer engine optimization",
+    "artificial intelligence",
+    "SEO",
+    "structured data",
+    "perplexity",
+    "hotels",
+    "tour operator"
+  ],
+  "estimated_reading_time": 9,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Getting Found by ChatGPT: How to Enter the Answers of AI Assistants (Hotels and Tour Operators)",
+    "description": "How to get cited by ChatGPT, Perplexity and Google AI Overviews: structured data, robots.txt and quotable content, with real figures from a site in Campania.",
+    "image": "https://naplesexperiences.com/wp-content/uploads/blog/farsi-trovare-chatgpt-assistenti-ai-hotel.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://naplesexperiences.com/wp-content/uploads/logo-experiences.png"
+      }
+    },
+    "datePublished": "2026-10-14",
+    "dateModified": "2026-10-14",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naplesexperiences.com/en/blog/getting-found-chatgpt-ai-assistants-hotels/"
+    },
+    "keywords": "AEO for hotels, answer engine optimization, GPTBot robots.txt, structured data for hotels, AI search in tourism, perplexity for hotels, google ai overviews",
+    "articleSection": "AI & Innovation",
+    "wordCount": 2233,
+    "inLanguage": "en"
+  },
+  "schema_faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I block the AI crawlers to protect my content?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends what you sell. If you live on original content — guides, itineraries, photography — blocking them is a defensible position. If you sell rooms or tours, the content on your site exists to get you chosen: blocking whoever reads it means giving up on appearing. For an accommodation business, in the great majority of cases it is better to let them in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long before I see an effect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crawlers come back in days or weeks, depending on how often the site is updated. Being cited in the answers is slower, because it also depends on external sources and on the competition for that particular question. Reasonably: a few weeks to be re-read, a few months to measure a difference."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a plugin or a paid tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Structured data, a correct robots.txt and well-written pages are done with what you already have. There are AI citation monitoring tools, useful if you manage many sites; for a single property, the monthly manual test and the server logs are enough."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I'm on Booking — don't they find me already?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They find you, but as a line in somebody else's list. Assistants readily cite the big portals, and in that answer the name that sticks is the portal's: the booking goes through them, with the commission that follows. Appearing in your own right is exactly the work that increases direct bookings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does AI-written content help you get found by AI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, and it usually does damage. An assistant is looking for information it cannot find elsewhere: opening hours, prices, real distances, the advice of somebody who lives in the place. Generic text generated in bulk contains none of that, and meanwhile it lowers the average quality of your site."
+        }
+      }
+    ]
+  }
+}
