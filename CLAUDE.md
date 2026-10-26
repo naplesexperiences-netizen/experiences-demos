@@ -1,7 +1,8 @@
 # experiences-demos — istruzioni di progetto
 
 Demo di landing page per clienti (Napoli / Salerno). Pagine statiche HTML/CSS/JS
-in `demos/`, tema condiviso in `experiences-theme/`, hub generato da `scripts/`.
+in `demos/`, hub generato da `scripts/`. Il sito WordPress e il chatbot
+sono nel repo `naplesexperiences-netizen/experiences-website`.
 
 ## Profili di lavoro
 
