@@ -1,0 +1,59 @@
+{
+  "slug": "praiano-cosa-vedere-borgo-dei-tramonti",
+  "post_title": "Praiano, il borgo dei tramonti: perché visitarlo e cosa vedere",
+  "seo_title": "Praiano, il borgo dei tramonti",
+  "meta_description": "Perché visitare Praiano: tramonti su Positano, la cupola di San Gennaro, il Convento di San Domenico e i dintorni della Costiera.",
+  "focus_keyword": "cosa vedere a praiano",
+  "secondary_keywords": [
+    "praiano",
+    "costiera amalfitana",
+    "tramonto",
+    "san gennaro",
+    "luminaria"
+  ],
+  "og_title": "Praiano, il borgo dei tramonti: perché visitarlo e cosa vedere",
+  "og_description": "Perché visitare Praiano: tramonti su Positano, la cupola di San Gennaro, il Convento di San Domenico e i dintorni della Costiera.",
+  "category": "Destinazioni",
+  "tags": [
+    "praiano",
+    "costiera amalfitana",
+    "tramonto",
+    "san gennaro",
+    "luminaria"
+  ],
+  "struttura": "Hotel Margherita",
+  "citta": "Praiano",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-margherita-experiences-standard/",
+  "sito_struttura": "https://www.hotelmargherita.info",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Le case di Praiano sulla costa, con vista verso Positano",
+    "credit": "Praiano Above Town Looking West - panoramio di trukdotcom, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=53624279"
+  },
+  "word_count": 641,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Praiano, il borgo dei tramonti: perché visitarlo e cosa vedere",
+    "description": "Perché visitare Praiano: tramonti su Positano, la cupola di San Gennaro, il Convento di San Domenico e i dintorni della Costiera.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/09-praiano-cosa-vedere-borgo-dei-tramonti/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Praiano"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/praiano-cosa-vedere-borgo-dei-tramonti/"
+  }
+}

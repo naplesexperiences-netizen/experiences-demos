@@ -253,7 +253,7 @@ while ( have_posts() ) : the_post();
                                             <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>"
                                                class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-light text-gray-700 hover:text-secondary transition-all text-sm">
                                                 <span><?php echo esc_html($cat->name); ?></span>
-                                                <span class="text-xs text-gray-400"><?php echo $cat->count; ?></span>
+                                                <span class="text-xs text-gray-400"><?php echo (int) $cat->count; ?></span>
                                             </a>
                                         </li>
                                     <?php endforeach; ?>

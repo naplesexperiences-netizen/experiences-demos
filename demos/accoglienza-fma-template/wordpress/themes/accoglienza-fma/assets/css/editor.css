@@ -1,0 +1,10 @@
+/* Anteprima nell'editor a blocchi: stessa tipografia del sito. */
+body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.7; }
+h1, h2, h3, .editor-post-title__input { font-family: var(--font-display); font-variation-settings: "SOFT" 100; font-weight: 450; line-height: 1.15; letter-spacing: -0.01em; color: var(--color-ink); }
+.editor-post-title__input { font-weight: 350; font-size: var(--text-xl); letter-spacing: -0.03em; }
+h2 { font-size: var(--text-lg); }
+h3 { font-size: var(--text-md); }
+a { color: var(--color-accent); text-underline-offset: 0.16em; }
+blockquote { border-left: 2px solid var(--color-accent); padding-left: var(--space-lg); font-family: var(--font-display); font-size: var(--text-md); }
+.wp-block { max-width: 42rem; margin-inline: auto; }
+.wp-block[data-align="wide"], .wp-block[data-align="full"] { max-width: none; }

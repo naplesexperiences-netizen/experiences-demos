@@ -1,0 +1,539 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: accoglienza-fma\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Questa pagina non c’è"
+msgstr "Esta página não existe"
+
+msgid "Forse l’indirizzo è cambiato. Le case e gli articoli sono tutti a portata di clic."
+msgstr "Talvez o endereço tenha mudado. Todas as casas e artigos estão à distância de um clique."
+
+msgid "Vedi tutte le case"
+msgstr "Ver todas as casas"
+
+msgid "Torna alla home"
+msgstr "Voltar ao início"
+
+msgid "Le case in %s"
+msgstr "As casas em %s"
+
+msgid "Non ci sono ancora case da mostrare."
+msgstr "Ainda não há casas para mostrar."
+
+msgid "Torna a trovarci presto."
+msgstr "Volte em breve."
+
+msgid "Piè di pagina"
+msgstr "Rodapé"
+
+msgid "Privacy"
+msgstr "Privacidade"
+
+msgid "Figlie di Maria Ausiliatrice"
+msgstr "Filhas de Maria Auxiliadora"
+
+msgid "Le nostre case"
+msgstr "As nossas casas"
+
+msgid "%1$d di %2$d: %3$s"
+msgstr "%1$d de %2$d: %3$s"
+
+msgid "Scopri la casa"
+msgstr "Descubra a casa"
+
+msgid "Casa precedente"
+msgstr "Casa anterior"
+
+msgid "di"
+msgstr "de"
+
+msgid "Casa successiva"
+msgstr "Casa seguinte"
+
+msgid "Metti in pausa lo scorrimento"
+msgstr "Pausar a apresentação"
+
+msgid "Cerca una casa"
+msgstr "Procurar uma casa"
+
+msgid "Dove"
+msgstr "Onde"
+
+msgid "Tutte le case"
+msgstr "Todas as casas"
+
+msgid "Per regione"
+msgstr "Por região"
+
+msgid "%1$s — tutte le case (%2$d)"
+msgstr "%1$s — todas as casas (%2$d)"
+
+msgid "Arrivo"
+msgstr "Chegada"
+
+msgid "Partenza"
+msgstr "Partida"
+
+msgid "Ospiti"
+msgstr "Hóspedes"
+
+msgid "Un ospite in meno"
+msgstr "Menos um hóspede"
+
+msgid "Un ospite in più"
+msgstr "Mais um hóspede"
+
+msgid "Cerca"
+msgstr "Procurar"
+
+msgid "(si apre in una nuova scheda)"
+msgstr "(abre num novo separador)"
+
+msgid "Case per ferie in rete"
+msgstr "Casas de acolhimento em rede"
+
+msgid "Regione"
+msgstr "Região"
+
+msgid "Regioni in cui siamo presenti"
+msgstr "Regiões onde estamos presentes"
+
+msgid "Date · persone · camera"
+msgstr "Datas · pessoas · quarto"
+
+msgid "Risposta via email dalla casa"
+msgstr "Resposta por e-mail da casa"
+
+msgid "Passo %d:"
+msgstr "Passo %d:"
+
+msgid "Tutti gli articoli"
+msgstr "Todos os artigos"
+
+msgid "%d casa per ferie"
+msgid_plural "%d case per ferie"
+msgstr[0] "%d casa de acolhimento"
+msgstr[1] "%d casas de acolhimento"
+
+msgid "Ti risponde direttamente la casa"
+msgstr "É a própria casa que lhe responde"
+
+msgid "Scegli la casa"
+msgstr "Escolha a casa"
+
+msgctxt "data breve: giorno e mese"
+msgid "%1 %2"
+msgstr "%1 %2"
+
+msgid "%1 notte"
+msgstr "%1 noite"
+
+msgid "%1 notti"
+msgstr "%1 noites"
+
+msgid "%1 ospite"
+msgstr "%1 hóspede"
+
+msgid "%1 ospiti"
+msgstr "%1 hóspedes"
+
+msgid "%1 adulto"
+msgstr "%1 adulto"
+
+msgid "%1 adulti"
+msgstr "%1 adultos"
+
+msgid "%1 bambino"
+msgstr "%1 criança"
+
+msgid "%1 bambini"
+msgstr "%1 crianças"
+
+msgid "1 casa"
+msgstr "1 casa"
+
+msgid "%1 case"
+msgstr "%1 casas"
+
+msgid "Scopri la casa →"
+msgstr "Descubra a casa →"
+
+msgid "Riprendi lo scorrimento"
+msgstr "Retomar a apresentação"
+
+msgid "Indica sia la data di arrivo sia quella di partenza, oppure lasciale vuote."
+msgstr "Indique a data de chegada e a de partida, ou deixe-as em branco."
+
+msgid "La partenza deve essere dopo l’arrivo."
+msgstr "A partida tem de ser depois da chegada."
+
+msgid "Stai cercando: %1. Le date passano al modulo della casa che scegli."
+msgstr "Está a procurar: %1. As datas passam para o formulário da casa que escolher."
+
+msgid "Foto della struttura"
+msgstr "Fotografias da casa"
+
+msgid "Chiudi"
+msgstr "Fechar"
+
+msgid "Foto precedente"
+msgstr "Fotografia anterior"
+
+msgid "Foto successiva"
+msgstr "Fotografia seguinte"
+
+msgid "%1, foto %2 di %3"
+msgstr "%1, fotografia %2 de %3"
+
+msgid "%1 · dal %2 al %3"
+msgstr "%1 · de %2 a %3"
+
+msgid "Scegli la data di arrivo."
+msgstr "Escolha a data de chegada."
+
+msgid "Scegli la data di partenza."
+msgstr "Escolha a data de partida."
+
+msgid "Scrivi nome e cognome."
+msgstr "Escreva o nome e apelido."
+
+msgid "Controlla l’indirizzo email (es. nome@esempio.it)."
+msgstr "Verifique o endereço de e-mail (ex.: nome@exemplo.pt)."
+
+msgid "Serve il consenso per inviare la richiesta."
+msgstr "É necessário o seu consentimento para enviar o pedido."
+
+msgid "Manca un’informazione: la trovi evidenziata qui sopra."
+msgstr "Falta uma informação: está assinalada acima."
+
+msgid "Mancano %1 informazioni: le trovi evidenziate qui sopra."
+msgstr "Faltam %1 informações: estão assinaladas acima."
+
+msgid "la casa"
+msgstr "a casa"
+
+msgid "camera da concordare"
+msgstr "quarto a combinar"
+
+msgid "Dal %1 al %2"
+msgstr "De %1 a %2"
+
+msgid "Connessione non riuscita: la richiesta non è partita."
+msgstr "Falha na ligação: o pedido não foi enviado."
+
+msgid "Puoi scrivere direttamente a %1."
+msgstr "Pode escrever diretamente para %1."
+
+msgid "Vai al contenuto"
+msgstr "Ir para o conteúdo"
+
+msgid "home"
+msgstr "início"
+
+msgid "Principale"
+msgstr "Principal"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Risultati per “%s”"
+msgstr "Resultados para «%s»"
+
+msgid "Articoli più recenti"
+msgstr "Artigos mais recentes"
+
+msgid "Articoli meno recenti"
+msgstr "Artigos mais antigos"
+
+msgid "Altre pagine del blog"
+msgstr "Mais páginas do blog"
+
+msgid "Pagine"
+msgstr "Páginas"
+
+msgid "Nessun articolo trovato."
+msgstr "Nenhum artigo encontrado."
+
+msgid "Case per ferie in Italia"
+msgstr "Casas de acolhimento religiosas em Itália"
+
+msgid "Case per ferie in %s"
+msgstr "Casas de acolhimento em %s"
+
+msgid "%1$s delle Salesiane in %2$s: foto, camere e servizi. Scegli la casa e scrivi direttamente alla struttura, senza intermediari."
+msgstr "%1$s das Irmãs Salesianas em %2$s: fotografias, quartos e serviços. Escolha a casa e escreva-lhe diretamente, sem intermediários."
+
+msgctxt "formato data articoli"
+msgid "j F Y"
+msgstr "j \\d\\e F \\d\\e Y"
+
+msgid "%d min di lettura"
+msgstr "%d min de leitura"
+
+msgid "%d min"
+msgstr "%d min"
+
+msgid "%d casa"
+msgid_plural "%d case"
+msgstr[0] "%d casa"
+msgstr[1] "%d casas"
+
+msgid "%d regione"
+msgid_plural "%d regioni"
+msgstr[0] "%d região"
+msgstr[1] "%d regiões"
+
+msgid "%1$s in %2$s"
+msgstr "%1$s em %2$s"
+
+msgid "Consigli di viaggio e storie dai luoghi delle nostre case: cosa vedere, quando andare, come arrivare."
+msgstr "Dicas de viagem e histórias dos lugares das nossas casas: o que ver, quando ir, como chegar."
+
+msgid "Lingua: %s"
+msgstr "Idioma: %s"
+
+msgid "Lingua"
+msgstr "Idioma"
+
+msgid "Strutture"
+msgstr "Casas"
+
+msgid "Chi siamo"
+msgstr "Quem somos"
+
+msgid "a persona a notte"
+msgstr "por pessoa por noite"
+
+msgid "a camera a notte"
+msgstr "por quarto por noite"
+
+msgid "a notte"
+msgstr "por noite"
+
+msgid "Percorso"
+msgstr "Navegação estrutural"
+
+msgid "Home"
+msgstr "Início"
+
+msgid "%d camera"
+msgid_plural "%d camere"
+msgstr[0] "%d quarto"
+msgstr[1] "%d quartos"
+
+msgid "%1$s, foto %2$d"
+msgstr "%1$s, fotografia %2$d"
+
+msgid "Apri la foto %1$d di %2$d: %3$s"
+msgstr "Abrir a fotografia %1$d de %2$d: %3$s"
+
+msgid "Tutte le foto (%d)"
+msgstr "Todas as fotografias (%d)"
+
+msgid "La descrizione di questa casa è in arrivo."
+msgstr "A descrição desta casa estará disponível em breve."
+
+msgid "Nel frattempo trovi qui sotto servizi, posizione e contatti. Per qualsiasi domanda scrivi direttamente alla struttura."
+msgstr "Entretanto, encontra abaixo os serviços, a localização e os contactos. Para qualquer dúvida, escreva diretamente à casa."
+
+msgid "Servizi"
+msgstr "Serviços"
+
+msgid "Le camere"
+msgstr "Os quartos"
+
+msgid "Letti"
+msgstr "Camas"
+
+msgid "fino a %d"
+msgstr "até %d"
+
+msgid "Camere"
+msgstr "Quartos"
+
+msgid "Richiedi questa camera"
+msgstr "Pedir este quarto"
+
+msgid "Le tipologie di camera sono in aggiornamento."
+msgstr "Os tipos de quarto estão a ser atualizados."
+
+msgid "La casa dispone di %d camera."
+msgid_plural "La casa dispone di %d camere."
+msgstr[0] "A casa dispõe de %d quarto."
+msgstr[1] "A casa dispõe de %d quartos."
+
+msgid "Indica nel modulo di richiesta di quante persone e di che sistemazione hai bisogno: ti risponde direttamente la casa."
+msgstr "Indique no formulário quantas pessoas são e que alojamento precisa: é a própria casa que lhe responde."
+
+msgid "Cosa dicono gli ospiti"
+msgstr "O que dizem os hóspedes"
+
+msgid "Nei dintorni"
+msgstr "Nas redondezas"
+
+msgid "Da sapere"
+msgstr "A saber"
+
+msgid "Dove siamo"
+msgstr "Onde estamos"
+
+msgid "Mappa: %s"
+msgstr "Mapa: %s"
+
+msgid "Indicazioni stradali"
+msgstr "Direções"
+
+msgid "La casa anche su Booking.com"
+msgstr "A casa também no Booking.com"
+
+msgid "Contatti e richiesta di soggiorno"
+msgstr "Contactos e pedido de estadia"
+
+msgid "Ti risponde"
+msgstr "Quem lhe responde"
+
+msgid "Prezzo indicativo"
+msgstr "Preço indicativo"
+
+msgid "da"
+msgstr "desde"
+
+msgid "Tassa di soggiorno"
+msgstr "Taxa turística"
+
+msgid "Telefono"
+msgstr "Telefone"
+
+msgid "Cellulare"
+msgstr "Telemóvel"
+
+msgid "Sito della casa"
+msgstr "Site da casa"
+
+msgid "Richiedi un soggiorno"
+msgstr "Pedir uma estadia"
+
+msgid "Altre case"
+msgstr "Outras casas"
+
+msgid "Pagine dell’articolo"
+msgstr "Páginas do artigo"
+
+msgid "Casa vicina"
+msgstr "Casa próxima"
+
+msgid "Dormi vicino"
+msgstr "Fique perto"
+
+msgid "Continua a leggere"
+msgstr "Continuar a ler"
+
+msgid "Vicino a %s"
+msgstr "Perto de %s"
+
+msgid "Dicono di noi"
+msgstr "O que dizem de nós"
+
+msgid "Recensioni di ospiti reali, con il link alla fonte originale."
+msgstr "Opiniões de hóspedes reais, com a ligação para a fonte original."
+
+msgid "%1$s su %2$s"
+msgstr "%1$s no %2$s"
+
+msgid "Leggi l’originale"
+msgstr "Ler o original"
+
+msgid "Le strutture"
+msgstr "As casas"
+
+msgid "Filtra per regione"
+msgstr "Filtrar por região"
+
+msgid "Tutte"
+msgstr "Todas"
+
+msgid "Azzera la ricerca"
+msgstr "Limpar a pesquisa"
+
+msgid "Mappa delle case"
+msgstr "Mapa das casas"
+
+msgid "La mappa si carica con la connessione. Tutte le case sono comunque nell’elenco."
+msgstr "O mapa precisa de ligação para carregar. Todas as casas estão na lista de qualquer forma."
+
+msgid "Nessuna casa corrisponde a questa ricerca."
+msgstr "Nenhuma casa corresponde a esta pesquisa."
+
+msgid "Mostra tutte le case"
+msgstr "Mostrar todas as casas"
+
+msgid "Case per ferie delle Figlie di Maria Ausiliatrice"
+msgstr "Casas de acolhimento das Filhas de Maria Auxiliadora"
+
+msgid "Ti sentirai come a casa"
+msgstr "Vai sentir-se em casa"
+
+msgid "Otto case per ferie delle Figlie di Maria Ausiliatrice, dal Lago Maggiore al mare di Calabria. Per famiglie, gruppi e per chi cerca un tempo di pace."
+msgstr "Oito casas de acolhimento das Filhas de Maria Auxiliadora, do Lago Maggiore ao mar da Calábria. Para famílias, grupos e para quem procura um tempo de paz."
+
+msgid "Insieme a noi"
+msgstr "Os nossos parceiros"
+
+msgid "Conosciute anche come salesiane di don Bosco, le Figlie di Maria Ausiliatrice sono una congregazione religiosa presente in tutto il mondo, nata nel 1872 dal carisma di san Giovanni Bosco e di santa Maria Domenica Mazzarello."
+msgstr "Conhecidas também como Irmãs Salesianas de Dom Bosco, as Filhas de Maria Auxiliadora são uma congregação religiosa presente em todo o mundo, nascida em 1872 do carisma de São João Bosco e de Santa Maria Domingas Mazzarello."
+
+msgid "Don Bosco scelse Maria come modello di donna capace di incarnare la “pedagogia del prendersi cura”. È lo stesso stile con cui apriamo le nostre case: accoglienza semplice, familiare, attenta alla persona. Qui soggiornano famiglie, gruppi parrocchiali, pellegrini e chiunque cerchi riposo, silenzio o un tempo di spiritualità."
+msgstr "Dom Bosco escolheu Maria como modelo de mulher capaz de encarnar a «pedagogia do cuidar». É o mesmo estilo com que abrimos as nossas casas: um acolhimento simples, familiar, atento à pessoa. Aqui ficam famílias, grupos paroquiais, peregrinos e todos os que procuram descanso, silêncio ou um tempo de espiritualidade."
+
+msgid "Ogni struttura è unica, ma tutte condividono l’impegno per l’accoglienza, la cura e il benessere degli ospiti."
+msgstr "Cada casa é única, mas todas partilham o compromisso com o acolhimento, o cuidado e o bem-estar dos hóspedes."
+
+msgid "Salesiane FMA"
+msgstr "Irmãs Salesianas FMA"
+
+msgid "Il cortile della casa FMA di Napoli"
+msgstr "O pátio da casa FMA de Nápoles"
+
+msgid "Anno di fondazione della congregazione"
+msgstr "Ano de fundação da congregação"
+
+msgid "Otto case, dal Lago Maggiore al mare di Calabria"
+msgstr "Oito casas, do Lago Maggiore ao mar da Calábria"
+
+msgid "Tutte gestite dalle Figlie di Maria Ausiliatrice. Scegli una casa sulla mappa o nell’elenco: ogni struttura risponde direttamente alla tua richiesta."
+msgstr "Todas geridas pelas Filhas de Maria Auxiliadora. Escolha uma casa no mapa ou na lista: cada casa responde diretamente ao seu pedido."
+
+msgid "Come si prenota"
+msgstr "Como reservar"
+
+msgid "Cerca per regione o sulla mappa e apri la pagina della casa: foto, camere, servizi e posizione."
+msgstr "Procure por região ou no mapa e abra a página da casa: fotografias, quartos, serviços e localização."
+
+msgid "Invia la richiesta"
+msgstr "Envie o pedido"
+
+msgid "Nel modulo della casa indica date, persone e camera. È senza impegno e non serve registrarsi."
+msgstr "No formulário da casa indique datas, pessoas e quarto. É sem compromisso e não é preciso registar-se."
+
+msgid "Ti risponde la casa"
+msgstr "A casa responde-lhe"
+
+msgid "La richiesta arriva direttamente alla struttura, che ti scrive con disponibilità e prezzo. A te arriva una copia via email."
+msgstr "O pedido chega diretamente à casa, que lhe escreve com disponibilidade e preço. Recebe uma cópia por e-mail."
+
+msgid "Dal blog"
+msgstr "Do blog"
+
+msgid "Case per ferie religiose in Italia"
+msgstr "Casas de acolhimento religiosas em Itália"
+
+msgid "Ogni casa risponde direttamente alle richieste di soggiorno."
+msgstr "Cada casa responde diretamente aos pedidos de estadia."

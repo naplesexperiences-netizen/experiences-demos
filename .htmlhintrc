@@ -5,7 +5,7 @@
   "title-require": true,
   "tag-pair": true,
   "tag-self-close": false,
-  "tagname-lowercase": true,
+  "tagname-lowercase": false,
   "attr-lowercase": true,
   "attr-value-double-quotes": false,
   "attr-no-duplication": true,

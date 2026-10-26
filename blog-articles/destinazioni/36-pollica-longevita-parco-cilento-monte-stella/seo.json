@@ -1,0 +1,59 @@
+{
+  "slug": "pollica-longevita-parco-cilento-monte-stella",
+  "post_title": "Pollica e il segreto della longevità: Acciaroli, Pioppi, Celso e il Monte Stella",
+  "seo_title": "Pollica e il segreto della longevità",
+  "meta_description": "Da Acciaroli all'interno di Pollica: la longevità cilentana, Pioppi, Celso, Galdo e il Monte Stella nel Parco Nazionale del Cilento.",
+  "focus_keyword": "pollica longevità",
+  "secondary_keywords": [
+    "pollica",
+    "acciaroli",
+    "longevità",
+    "monte stella",
+    "parco nazionale del cilento"
+  ],
+  "og_title": "Pollica e il segreto della longevità: Acciaroli, Pioppi, Celso e il Monte Stella",
+  "og_description": "Da Acciaroli all'interno di Pollica: la longevità cilentana, Pioppi, Celso, Galdo e il Monte Stella nel Parco Nazionale del Cilento.",
+  "category": "Destinazioni",
+  "tags": [
+    "pollica",
+    "acciaroli",
+    "longevità",
+    "monte stella",
+    "parco nazionale del cilento"
+  ],
+  "struttura": "Hotel La Playa",
+  "citta": "Acciaroli",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-la-playa-experiences-standard/",
+  "sito_struttura": "https://www.hotellaplayaacciaroli.it",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Il borgo di Pollica sulla collina, nel Parco Nazionale del Cilento",
+    "credit": "CilPollica16 di Ziegler175, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=59862246"
+  },
+  "word_count": 625,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pollica e il segreto della longevità: Acciaroli, Pioppi, Celso e il Monte Stella",
+    "description": "Da Acciaroli all'interno di Pollica: la longevità cilentana, Pioppi, Celso, Galdo e il Monte Stella nel Parco Nazionale del Cilento.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/36-pollica-longevita-parco-cilento-monte-stella/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Acciaroli"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/pollica-longevita-parco-cilento-monte-stella/"
+  }
+}

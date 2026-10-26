@@ -54,9 +54,170 @@ function experiences_enqueue_assets() {
     wp_localize_script( 'experiences-main', 'experiencesAjax', [
         'url'   => admin_url( 'admin-ajax.php' ),
         'nonce' => wp_create_nonce( 'experiences_contact' ),
+        // Da dove ripescare un nonce fresco quando quello qui sopra è
+        // scaduto insieme alla pagina in cache. Vedi experiences_rest_nonce().
+        'rest'  => esc_url_raw( rest_url( 'experiences/v1/nonce' ) ),
     ]);
 }
 add_action( 'wp_enqueue_scripts', 'experiences_enqueue_assets' );
+
+// ── Elementor: via il suo CSS dalla homepage ───────────────────────────
+// La front page e resa da front-page.php, che non chiama mai
+// the_content(): quello che Elementor ha salvato per quella pagina non
+// finisce nel DOM — verificato, zero elementi .elementor-element, di
+// Elementor resta solo la classe sul body. I suoi due fogli di stile
+// non hanno quindi niente da impaginare, e pesano 55 KB in due
+// richieste su ogni visita alla pagina piu vista del sito.
+//
+// Si disattiva con:
+//   add_filter( 'experiences_togli_elementor_home', '__return_false' );
+function experiences_togli_elementor_home() {
+    if ( ! is_front_page() ) {
+        return;
+    }
+    // Nell'anteprima dell'editor la pagina deve restare come la vede
+    // chi la sta costruendo.
+    if ( isset( $_GET['elementor-preview'] ) || isset( $_GET['preview'] ) ) {
+        return;
+    }
+    if ( ! apply_filters( 'experiences_togli_elementor_home', true ) ) {
+        return;
+    }
+
+    global $wp_styles;
+    if ( ! ( $wp_styles instanceof WP_Styles ) ) {
+        return;
+    }
+
+    // Copia della coda: wp_dequeue_style la modifica mentre la si scorre.
+    foreach ( (array) $wp_styles->queue as $handle ) {
+        if ( 0 === strpos( $handle, 'elementor' ) ) {
+            wp_dequeue_style( $handle );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'experiences_togli_elementor_home', 999 );
+
+// ── Configuratore: CSS e JS solo dove serve ────────────────────────────
+// Sono una pagina sola: caricarli ovunque peserebbe su tutte le altre.
+function experiences_enqueue_configuratore() {
+    if ( ! is_page_template( 'page-configuratore.php' ) ) {
+        return;
+    }
+    $uri = get_template_directory_uri();
+    $ver = wp_get_theme()->get( 'Version' );
+
+    wp_enqueue_style( 'experiences-configuratore', $uri . '/assets/css/configuratore.css', [ 'experiences-style' ], $ver );
+    // Dipende da experiences-main perche riusa experiencesAjax (indirizzo,
+    // nonce e endpoint di rinnovo) per inviare la richiesta.
+    wp_enqueue_script( 'experiences-configuratore', $uri . '/assets/js/configuratore.js', [ 'experiences-main' ], $ver, true );
+}
+add_action( 'wp_enqueue_scripts', 'experiences_enqueue_configuratore', 20 );
+
+// ── Pagina del configuratore, creata una volta sola ────────────────────
+function experiences_setup_configuratore_page() {
+    if ( get_option( 'experiences_configuratore_setup_v1' ) ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $esistente = get_page_by_path( 'configuratore' );
+    if ( $esistente && 'trash' !== $esistente->post_status ) {
+        // Stessa trappola delle pagine legali: una bozza c'e ma non e
+        // pubblica, e senza questo controllo la pagina resterebbe in 404.
+        if ( 'publish' !== $esistente->post_status ) {
+            wp_update_post([ 'ID' => $esistente->ID, 'post_status' => 'publish' ]);
+        }
+        update_post_meta( $esistente->ID, '_wp_page_template', 'page-configuratore.php' );
+        update_option( 'experiences_configuratore_setup_v1', time() );
+        return;
+    }
+
+    $id = wp_insert_post([
+        'post_title'   => 'Configuratore anteprima',
+        'post_name'    => 'configuratore',
+        'post_status'  => 'publish',
+        'post_type'    => 'page',
+        'post_content' => '',
+        'post_author'  => get_current_user_id() ?: 1,
+    ]);
+
+    if ( $id && ! is_wp_error( $id ) ) {
+        update_post_meta( $id, '_wp_page_template', 'page-configuratore.php' );
+    }
+
+    update_option( 'experiences_configuratore_setup_v1', time() );
+}
+add_action( 'admin_init', 'experiences_setup_configuratore_page' );
+
+// ── Voci del menu, una volta sola ──────────────────────────────────────
+// Le usano l'intestazione (desktop e mobile) e il piede di pagina. Erano
+// scritte a mano in due file: il footer e rimasto indietro di una
+// revisione e mostrava ancora "Galleria Demo" e "Chatbot AI" quando in
+// alto non c'erano piu.
+//
+// Modificabile senza toccare i template:
+//   add_filter( 'experiences_nav_items', fn( $v ) => … );
+function experiences_nav_items() {
+    $base = is_front_page() ? '' : esc_url( home_url( '/' ) );
+
+    return apply_filters( 'experiences_nav_items', [
+        [ 'label' => 'Servizi',   'href' => $base . '#services' ],
+        [ 'label' => 'Lavori',    'href' => $base . '#portfolio' ],
+        [ 'label' => 'Anteprima', 'href' => experiences_configuratore_url(), 'icon' => 'fas fa-eye' ],
+        [ 'label' => 'AI',        'href' => $base . '#avatar', 'icon' => 'fas fa-robot' ],
+        [ 'label' => 'Prezzi',    'href' => $base . '#pricing' ],
+        [ 'label' => 'Blog',      'href' => experiences_blog_archive_url() ],
+    ] );
+}
+
+function experiences_nav_cta() {
+    $base = is_front_page() ? '' : esc_url( home_url( '/' ) );
+    return apply_filters( 'experiences_nav_cta', [
+        'label' => 'Contatti',
+        'href'  => $base . '#contact',
+    ] );
+}
+
+function experiences_configuratore_url() {
+    $p = get_page_by_path( 'configuratore' );
+    return ( $p && 'publish' === $p->post_status )
+        ? get_permalink( $p )
+        : home_url( '/configuratore/' );
+}
+
+// ── Nonce freschi per le pagine servite dalla cache ────────────────────
+// Il nonce del form finisce dentro l'HTML, e l'HTML è servito da
+// Cloudflare con s-maxage di un anno. I nonce di WordPress scadono dopo
+// 24 ore al massimo: quando la pagina in cache invecchia oltre quella
+// soglia, il token servito è morto e admin-ajax risponde -1. Il form
+// smette di funzionare per tutti, in modo intermittente e invisibile —
+// è esattamente il guasto che aveva il form a giugno.
+//
+// Questo endpoint restituisce un token valido al momento della chiamata
+// e non viene mai messo in cache, così il JS può ritentare da solo.
+function experiences_register_nonce_route() {
+    register_rest_route( 'experiences/v1', '/nonce', [
+        'methods'             => WP_REST_Server::READABLE,
+        'permission_callback' => '__return_true',
+        'callback'            => 'experiences_rest_nonce',
+    ]);
+}
+add_action( 'rest_api_init', 'experiences_register_nonce_route' );
+
+function experiences_rest_nonce() {
+    // Il filtro permette a un plugin (per esempio il chatbot, che ha lo
+    // stesso problema) di aggiungere il proprio token alla risposta.
+    $nonces = apply_filters( 'experiences_rest_nonces', [
+        'contact' => wp_create_nonce( 'experiences_contact' ),
+    ]);
+
+    $response = new WP_REST_Response( $nonces );
+    $response->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
+    return $response;
+}
 
 // ── Defer per gli script del tema ───────────────────────────────────────
 // defer non blocca il parsing e preserva l'ordine: aos.js esegue prima di
@@ -84,6 +245,74 @@ function experiences_remove_jquery_migrate( $scripts ) {
     }
 }
 add_action( 'wp_default_scripts', 'experiences_remove_jquery_migrate' );
+
+// Definita qui e non solo in template-parts/cookie-banner.php: quel file
+// è incluso nel footer, mentre serve già a wp_head. Il template part la
+// ridichiara dentro un function_exists, quindi resta compatibile.
+if ( ! function_exists( 'experiences_should_render_cookie_banner' ) ) {
+    function experiences_should_render_cookie_banner() {
+        return apply_filters( 'experiences_cookie_banner_enabled', (bool) get_theme_mod( 'exp_cookie_banner_enabled', true ) );
+    }
+}
+
+// ── Consenso analytics: Google Consent Mode v2 ─────────────────────────
+// Il banner raccoglieva la scelta e nessuno la applicava: Google
+// Analytics (iniettato da un plugin, non dal tema) partiva comunque
+// prima del consenso e "Accetta tutti" non cambiava nulla.
+//
+// Qui si dichiara a Google, PRIMA che il suo script venga caricato, che
+// il consenso è negato: niente cookie di analytics o pubblicità, niente
+// dati pubblicitari. Alla scelta dell'utente arriva l'aggiornamento.
+// Funziona con qualunque plugin inietti gtag/GTM, perché passa dal
+// dataLayer e non dal tag.
+//
+// Priorità 0 su wp_head: deve stare prima di Site Kit e simili, che si
+// agganciano alla priorità di default.
+function experiences_consent_mode_defaults() {
+    if ( ! experiences_should_render_cookie_banner() ) {
+        return;
+    }
+    ?>
+<script id="exp-consent-mode">
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+(function () {
+    var NEGATO = {
+        ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+        analytics_storage: 'denied', functionality_storage: 'granted',
+        personalization_storage: 'denied', security_storage: 'granted'
+    };
+    gtag('consent', 'default', Object.assign({ wait_for_update: 500 }, NEGATO));
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+
+    function applica(stato) {
+        if (!stato) return;
+        gtag('consent', 'update', {
+            analytics_storage:       stato.analytics ? 'granted' : 'denied',
+            ad_storage:              stato.marketing ? 'granted' : 'denied',
+            ad_user_data:            stato.marketing ? 'granted' : 'denied',
+            ad_personalization:      stato.marketing ? 'granted' : 'denied',
+            personalization_storage: stato.marketing ? 'granted' : 'denied'
+        });
+        gtag('set', 'ads_data_redaction', !stato.marketing);
+    }
+
+    // Visita successiva: la scelta è già nel cookie, si applica subito.
+    // Il cookie, e non localStorage, perché questo script gira prima che
+    // il resto del tema sia caricato e il cookie è già disponibile.
+    try {
+        var m = document.cookie.match(/(?:^|;\s*)exp_consent_v1=([^;]*)/);
+        if (m) applica(JSON.parse(decodeURIComponent(m[1])));
+    } catch (e) {}
+
+    // Prima visita: l'evento arriva dal banner al clic.
+    window.addEventListener('experiences:consent-updated', function (e) { applica(e.detail); });
+})();
+</script>
+    <?php
+}
+add_action( 'wp_head', 'experiences_consent_mode_defaults', 0 );
 
 // ── Customizer: Cal.com link + Cookie banner toggle ─────────────────────
 function experiences_customize_register( $wp_customize ) {
@@ -122,6 +351,18 @@ function experiences_customize_register( $wp_customize ) {
         'type'        => 'url',
     ]);
 
+    $wp_customize->add_setting( 'exp_vetrina_url', [
+        'default'           => EXP_VETRINA_DEFAULT,
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_vetrina_url', [
+        'label'       => __( 'URL della vetrina (selezione)', 'experiences-srl' ),
+        'description' => __( 'La pagina con le demo scelte, una per ogni impianto diverso. È quella che il bottone principale della sezione apre; l\'elenco completo resta come seconda scelta.', 'experiences-srl' ),
+        'section'     => 'experiences_demo_section',
+        'type'        => 'url',
+    ]);
+
     $wp_customize->add_setting( 'exp_demo_count', [
         'default'           => 200,
         'sanitize_callback' => 'absint',
@@ -133,6 +374,24 @@ function experiences_customize_register( $wp_customize ) {
         'section'     => 'experiences_demo_section',
         'type'        => 'number',
         'input_attrs' => [ 'min' => 1, 'step' => 10 ],
+    ]);
+
+    // Assistente virtuale LiveAvatar
+    $wp_customize->add_section( 'experiences_avatar_section', [
+        'title'    => __( 'Assistente virtuale (avatar)', 'experiences-srl' ),
+        'priority' => 31,
+    ]);
+
+    $wp_customize->add_setting( 'exp_avatar_embed', [
+        'default'           => EXP_AVATAR_EMBED_DEFAULT,
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'exp_avatar_embed', [
+        'label'       => __( 'Indirizzo embed dell\'avatar', 'experiences-srl' ),
+        'description' => __( 'Senza il parametro "orientation": lo aggiunge il sito da solo, verticale sui telefoni e orizzontale su schermi grandi. Svuota il campo per tornare a quello predefinito.', 'experiences-srl' ),
+        'section'     => 'experiences_avatar_section',
+        'type'        => 'url',
     ]);
 
     $wp_customize->add_section( 'experiences_privacy_section', [
@@ -151,6 +410,63 @@ function experiences_customize_register( $wp_customize ) {
         'section'     => 'experiences_privacy_section',
         'type'        => 'checkbox',
     ]);
+
+    // Dati di fatturazione citati dalle pagine legali. Il tema non può
+    // conoscerli, quindi i template lasciano dei segnaposto che vengono
+    // riempiti da qui al momento della resa: chi ha già le pagine
+    // pubblicate le vede aggiornate senza doverle riscrivere.
+    $wp_customize->add_section( 'experiences_legal_section', [
+        'title'       => __( 'Dati legali', 'experiences-srl' ),
+        'description' => __( 'Compaiono nella Privacy Policy, nella Cookie Policy e nei Termini e Condizioni. Finché restano vuoti le pagine mostrano un segnaposto.', 'experiences-srl' ),
+        'priority'    => 32,
+    ]);
+
+    $exp_legal_fields = [
+        'exp_legal_company' => [
+            'label'       => __( 'Ragione sociale', 'experiences-srl' ),
+            'description' => __( 'Es: Experiences Srl', 'experiences-srl' ),
+            'default'     => 'Experiences Srl',
+        ],
+        'exp_legal_address' => [
+            'label'       => __( 'Sede legale', 'experiences-srl' ),
+            'description' => __( 'Indirizzo completo, es: Via Toledo 100, 80134 Napoli (NA)', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_vat' => [
+            'label'       => __( 'Partita IVA', 'experiences-srl' ),
+            'description' => __( 'Es: IT01234567890', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_rea' => [
+            'label'       => __( 'Numero REA', 'experiences-srl' ),
+            'description' => __( 'Il numero di iscrizione al Registro Imprese, es: NA-123456. Insieme a ragione sociale, sede e P.IVA è obbligatorio sul sito di un\'impresa italiana (art. 2250 c.c.); compare nel piede di pagina appena lo compili.', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_capitale' => [
+            'label'       => __( 'Capitale sociale', 'experiences-srl' ),
+            'description' => __( 'Solo per le società di capitali, es: 10.000 € i.v. Lascia vuoto se non serve.', 'experiences-srl' ),
+            'default'     => '',
+        ],
+        'exp_legal_hosting' => [
+            'label'       => __( 'Provider di hosting', 'experiences-srl' ),
+            'description' => __( 'Va indicato tra i destinatari dei dati nella Privacy Policy. Es: Aruba S.p.A., SiteGround, IONOS…', 'experiences-srl' ),
+            'default'     => '',
+        ],
+    ];
+
+    foreach ( $exp_legal_fields as $exp_key => $exp_field ) {
+        $wp_customize->add_setting( $exp_key, [
+            'default'           => $exp_field['default'],
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ]);
+        $wp_customize->add_control( $exp_key, [
+            'label'       => $exp_field['label'],
+            'description' => $exp_field['description'],
+            'section'     => 'experiences_legal_section',
+            'type'        => 'text',
+        ]);
+    }
 }
 add_action( 'customize_register', 'experiences_customize_register' );
 
@@ -183,7 +499,25 @@ function experiences_create_legal_pages() {
 
     foreach ( $pages as $slug => $config ) {
         $existing = get_page_by_path( $slug );
+
+        // WordPress crea di serie una pagina "Privacy Policy" in BOZZA con
+        // questo stesso slug. Il controllo di prima si fermava appena
+        // trovava una pagina qualsiasi, quindi incontrava la bozza, pensava
+        // di aver già fatto e non pubblicava nulla: /privacy-policy/
+        // rispondeva 404 mentre cookie-policy e termini funzionavano,
+        // perché per quegli slug WordPress non ha bozze.
         if ( $existing && 'trash' !== $existing->post_status ) {
+            if ( 'publish' !== $existing->post_status ) {
+                // Pagina esistente ma non pubblica: le si dà il contenuto
+                // del tema solo se è ancora vuota, per non sovrascrivere
+                // una bozza scritta a mano.
+                $update = [ 'ID' => $existing->ID, 'post_status' => 'publish' ];
+                if ( '' === trim( (string) $existing->post_content ) ) {
+                    $update['post_content'] = $config['content'];
+                }
+                wp_update_post( $update );
+            }
+
             // Se è la privacy policy ufficiale di WP, allinea l'opzione
             if ( ! empty( $config['is_wp_privacy'] ) && ! get_option( 'wp_page_for_privacy_policy' ) ) {
                 update_option( 'wp_page_for_privacy_policy', $existing->ID );
@@ -209,17 +543,161 @@ function experiences_create_legal_pages() {
 // bacheca dopo un aggiornamento del tema.
 add_action( 'after_switch_theme', 'experiences_create_legal_pages' );
 
+// Il flag è passato a _v2 con la correzione della bozza Privacy Policy:
+// sui siti dove _v1 era già impostato la creazione non sarebbe più
+// girata e la pagina sarebbe rimasta in 404.
 function experiences_ensure_legal_pages() {
-    if ( get_option( 'experiences_legal_pages_setup_v1' ) ) {
+    if ( get_option( 'experiences_legal_pages_setup_v2' ) ) {
         return;
     }
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
     experiences_create_legal_pages();
-    update_option( 'experiences_legal_pages_setup_v1', time() );
+    update_option( 'experiences_legal_pages_setup_v2', time() );
 }
 add_action( 'admin_init', 'experiences_ensure_legal_pages' );
+
+// ── Segnaposto delle pagine legali ─────────────────────────────────────
+// Le pagine legali citano dati che il tema non può conoscere — sede,
+// P.IVA, hosting — e una data di ultima modifica che invecchia da sola.
+// Restano nel contenuto come token e vengono risolti a ogni resa
+// leggendo il Personalizzatore: basta compilare i campi una volta e
+// tutte e tre le pagine si allineano, comprese quelle già pubblicate
+// dalle versioni precedenti del tema.
+function experiences_legal_page_slugs() {
+    return [ 'privacy-policy', 'cookie-policy', 'termini-e-condizioni' ];
+}
+
+function experiences_legal_values() {
+    $read = static function ( $key, $fallback ) {
+        $val = trim( (string) get_theme_mod( $key, '' ) );
+        return '' !== $val ? $val : $fallback;
+    };
+
+    return [
+        'company'  => $read( 'exp_legal_company', 'Experiences Srl' ),
+        'address'  => $read( 'exp_legal_address', '' ),
+        'vat'      => $read( 'exp_legal_vat', '' ),
+        'rea'      => $read( 'exp_legal_rea', '' ),
+        'capitale' => $read( 'exp_legal_capitale', '' ),
+        'hosting'  => $read( 'exp_legal_hosting', '' ),
+    ];
+}
+
+// ── Riga dei dati societari nel piede di pagina ────────────────────────
+// L'art. 2250 c.c. chiede che ragione sociale, sede, P.IVA e numero REA
+// siano indicati negli spazi elettronici dell'impresa. Mancavano del
+// tutto dal footer. Si mostra solo quello che e stato compilato: una
+// riga con dei buchi sarebbe peggio di nessuna riga.
+function experiences_dati_societari() {
+    $v = experiences_legal_values();
+
+    $pezzi = [];
+    if ( '' !== $v['company'] )  { $pezzi[] = $v['company']; }
+    if ( '' !== $v['address'] )  { $pezzi[] = $v['address']; }
+    if ( '' !== $v['vat'] )      { $pezzi[] = 'P.IVA ' . $v['vat']; }
+    if ( '' !== $v['rea'] )      { $pezzi[] = 'REA ' . $v['rea']; }
+    if ( '' !== $v['capitale'] ) { $pezzi[] = 'Cap. soc. ' . $v['capitale']; }
+
+    // Con la sola ragione sociale non si e adempiuto a niente: meglio
+    // non stampare una riga che sembra completa e non lo e.
+    return count( $pezzi ) > 1 ? implode( ' · ', $pezzi ) : '';
+}
+
+function experiences_legal_resolve( $content, $post = null ) {
+    // Le pagine nate dalle versioni precedenti contengono i vecchi
+    // segnaposto scritti a mano: li si riporta ai token, così sotto la
+    // risoluzione è una sola strada.
+    $legacy = [
+        '/Ultima modifica:[^<]*?TODO data\./'   => 'Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.',
+        '/Sede legale: TODO indirizzo, Napoli/' => 'Sede legale: {{EXP_SEDE}}',
+        '/P\.IVA: TODO(?![\w-])/'               => 'P.IVA: {{EXP_PIVA}}',
+        '/\{TODO_HOSTING\}/'                    => '{{EXP_HOSTING}}',
+    ];
+    $content = preg_replace( array_keys( $legacy ), array_values( $legacy ), $content );
+
+    $values = experiences_legal_values();
+
+    // Un campo vuoto non deve lasciare "P.IVA:" a metà frase né mostrare
+    // "TODO" a chi legge: il segnaposto è esplicito e l'avviso in
+    // bacheca qui sotto ricorda di sostituirlo.
+    $todo = '<em>[da completare]</em>';
+
+    $modified = $post ? get_the_modified_date( 'j F Y', $post ) : '';
+
+    return strtr( $content, [
+        '{{EXP_RAGIONE_SOCIALE}}' => esc_html( $values['company'] ),
+        '{{EXP_SEDE}}'            => '' !== $values['address'] ? esc_html( $values['address'] ) : $todo,
+        '{{EXP_PIVA}}'            => '' !== $values['vat'] ? esc_html( $values['vat'] ) : $todo,
+        '{{EXP_HOSTING}}'         => '' !== $values['hosting'] ? esc_html( $values['hosting'] ) : $todo,
+        '{{EXP_ULTIMA_MODIFICA}}' => $modified ? $modified : date_i18n( 'j F Y' ),
+    ]);
+}
+
+function experiences_legal_filter_content( $content ) {
+    if ( ! is_page() || ! in_the_loop() || ! is_main_query() ) {
+        return $content;
+    }
+
+    $post = get_post();
+    if ( ! $post || ! in_array( $post->post_name, experiences_legal_page_slugs(), true ) ) {
+        return $content;
+    }
+
+    return experiences_legal_resolve( $content, $post );
+}
+add_filter( 'the_content', 'experiences_legal_filter_content' );
+
+// Finché i dati non ci sono, le pagine legali restano incomplete: meglio
+// dirlo dove si guarda ogni giorno che lasciarlo scoprire a un cliente.
+function experiences_legal_admin_notice() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    // Solo in bacheca e nell'elenco pagine: su ogni schermata sarebbe rumore.
+    $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+    if ( ! $screen || ! in_array( $screen->id, [ 'dashboard', 'edit-page' ], true ) ) {
+        return;
+    }
+
+    $values  = experiences_legal_values();
+    $missing = [];
+    if ( '' === $values['address'] ) {
+        $missing[] = __( 'sede legale', 'experiences-srl' );
+    }
+    if ( '' === $values['vat'] ) {
+        $missing[] = __( 'partita IVA', 'experiences-srl' );
+    }
+    if ( '' === $values['hosting'] ) {
+        $missing[] = __( 'provider di hosting', 'experiences-srl' );
+    }
+
+    if ( ! $missing ) {
+        return;
+    }
+
+    printf(
+        '<div class="notice notice-warning"><p><strong>%1$s</strong> %2$s <em>%3$s</em>. <a href="%4$s">%5$s</a></p></div>',
+        esc_html__( 'Pagine legali incomplete.', 'experiences-srl' ),
+        esc_html__( 'Privacy Policy e Termini mostrano un segnaposto al posto di:', 'experiences-srl' ),
+        esc_html( implode( ', ', $missing ) ),
+        esc_url( admin_url( 'customize.php?autofocus[section]=experiences_legal_section' ) ),
+        esc_html__( 'Compila i dati legali →', 'experiences-srl' )
+    );
+}
+add_action( 'admin_notices', 'experiences_legal_admin_notice' );
+
+// ── Quanti articoli carica l'elenco del blog ───────────────────────────
+// L'elenco è filtrato in pagina, quindi li rende tutti in una volta. Il
+// tetto evita che un catalogo cresciuto troppo generi una pagina enorme;
+// oltre quella soglia conviene passare alla paginazione.
+// Modificabile senza toccare i template:
+//   add_filter( 'experiences_blog_posts_limit', fn() => 400 );
+function experiences_blog_posts_limit() {
+    return (int) apply_filters( 'experiences_blog_posts_limit', 200 );
+}
 
 // ── Galleria demo ──────────────────────────────────────────────────────
 // Le demo vivono su GitHub Pages: l'hub (index.html alla radice del repo)
@@ -231,6 +709,29 @@ define( 'EXP_DEMO_HUB_DEFAULT', 'https://naplesexperiences-netizen.github.io/exp
 function experiences_demo_hub_url() {
     $url = get_theme_mod( 'exp_demo_url', EXP_DEMO_HUB_DEFAULT );
     return $url ? $url : EXP_DEMO_HUB_DEFAULT;
+}
+
+// La vetrina: una selezione ragionata invece dell'elenco completo.
+// Duecento demo sono per lo più varianti dello stesso impianto, e
+// metterle tutte davanti a un cliente non lo aiuta a scegliere. La
+// vetrina ne tiene una per ogni modo davvero diverso di fare un sito.
+define( 'EXP_VETRINA_DEFAULT', 'https://naplesexperiences-netizen.github.io/experiences-demos/vetrina/' );
+
+function experiences_vetrina_url() {
+    $url = trim( (string) get_theme_mod( 'exp_vetrina_url', EXP_VETRINA_DEFAULT ) );
+    return '' !== $url ? $url : EXP_VETRINA_DEFAULT;
+}
+
+// ── Avatar LiveAvatar ──────────────────────────────────────────────────
+// L'indirizzo dell'embed era scritto dentro front-page.php: cambiare
+// avatar voleva dire modificare un template. Il parametro orientation
+// non fa parte di questo valore, lo aggiunge il JS in base alla
+// larghezza dello schermo.
+define( 'EXP_AVATAR_EMBED_DEFAULT', 'https://embed.liveavatar.com/v1/c9ba1ee0-5822-4be5-a239-ced83918726f' );
+
+function experiences_avatar_embed_url() {
+    $url = trim( (string) get_theme_mod( 'exp_avatar_embed', EXP_AVATAR_EMBED_DEFAULT ) );
+    return '' !== $url ? $url : EXP_AVATAR_EMBED_DEFAULT;
 }
 
 // ── Blog archive: helper URL + setup automatico pagina "Blog" ──────────
@@ -297,13 +798,12 @@ function experiences_setup_blog_archive_page() {
 add_action( 'admin_init', 'experiences_setup_blog_archive_page' );
 
 function experiences_legal_template_privacy() {
-    $site = esc_html( get_bloginfo( 'name' ) );
     $home = esc_url( home_url( '/' ) );
     return <<<HTML
-<p><em>Ultima modifica: {$site} — TODO data.</em></p>
+<p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
 <h2>Titolare del trattamento</h2>
-<p><strong>Experiences Srl</strong><br>Sede legale: TODO indirizzo, Napoli<br>P.IVA: TODO<br>Email: <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a><br>Sito: <a href="{$home}">{$home}</a></p>
+<p><strong>{{EXP_RAGIONE_SOCIALE}}</strong><br>Sede legale: {{EXP_SEDE}}<br>P.IVA: {{EXP_PIVA}}<br>Email: <a href="mailto:naplesexperiences@gmail.com">naplesexperiences@gmail.com</a><br>Sito: <a href="{$home}">{$home}</a></p>
 
 <h2>Dati raccolti</h2>
 <p>Raccogliamo solo i dati che ci fornisci volontariamente compilando il modulo contatti:</p>
@@ -338,7 +838,7 @@ function experiences_legal_template_privacy() {
 <p>I dati possono essere trattati da:</p>
 <ul>
 <li><strong>Google LLC</strong> (Gmail) — provider email del titolare</li>
-<li><strong>{TODO_HOSTING}</strong> — hosting del sito web</li>
+<li><strong>{{EXP_HOSTING}}</strong> — hosting del sito web</li>
 <li><strong>Cal.com / Calendly</strong> — per la prenotazione delle call (solo dati che fornisci al momento della prenotazione)</li>
 <li>Consulenti, commercialista, autorità competenti — solo quando obbligatorio per legge</li>
 </ul>
@@ -367,7 +867,7 @@ HTML;
 
 function experiences_legal_template_cookie() {
     return <<<HTML
-<p><em>Ultima modifica: TODO data.</em></p>
+<p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
 <p>Questo sito utilizza cookie per garantire il corretto funzionamento, analizzare il traffico e, previo consenso, mostrare contenuti personalizzati. Puoi gestire le tue preferenze in qualsiasi momento cliccando su <strong>"Preferenze Cookie"</strong> in fondo a ogni pagina.</p>
 
@@ -423,12 +923,12 @@ HTML;
 
 function experiences_legal_template_terms() {
     return <<<HTML
-<p><em>Ultima modifica: TODO data.</em></p>
+<p><em>Ultima modifica: {{EXP_ULTIMA_MODIFICA}}.</em></p>
 
 <p>I presenti Termini e Condizioni regolano l'utilizzo del sito naplesexperiences.com e dei servizi offerti da Experiences Srl.</p>
 
 <h2>1. Informazioni sul titolare</h2>
-<p><strong>Experiences Srl</strong><br>Sede legale: TODO indirizzo, Napoli<br>P.IVA: TODO</p>
+<p><strong>{{EXP_RAGIONE_SOCIALE}}</strong><br>Sede legale: {{EXP_SEDE}}<br>P.IVA: {{EXP_PIVA}}</p>
 
 <h2>2. Oggetto dei servizi</h2>
 <p>Experiences Srl offre servizi di digitalizzazione per il settore turistico, tra cui sviluppo siti web, SEO/SEM marketing, gestione Channel Manager e OTA, assistenti virtuali AI.</p>
@@ -481,6 +981,14 @@ function experiences_has_consent( $category ) {
 // evidenza quando c'è, con fallback sull'og-image del brand.
 // Un plugin SEO attivo emette già i propri tag OG: duplicarli confonde
 // i crawler, quindi in quel caso ci facciamo da parte.
+// ── Sitemap: via l'elenco degli autori ─────────────────────────────────
+// wp-sitemap-users-1.xml pubblica il nome utente di chi scrive, che e
+// meta del lavoro di chi prova a entrare in bacheca. Non serve a niente
+// lato ricerca: gli articoli stanno gia nella loro sitemap.
+add_filter( 'wp_sitemaps_add_provider', function ( $provider, $name ) {
+    return ( 'users' === $name ) ? false : $provider;
+}, 10, 2 );
+
 function experiences_seo_plugin_active() {
     return defined( 'WPSEO_VERSION' )            // Yoast
         || defined( 'RANK_MATH_VERSION' )        // Rank Math
@@ -514,14 +1022,99 @@ function experiences_stored_seo_meta( $post_id, $kind ) {
     return '';
 }
 
+// ── Titoli e descrizioni delle pagine senza contenuto ──────────────────
+// Il configuratore e l'elenco del blog sono costruiti dal template e
+// hanno il contenuto vuoto: la description finiva per essere una
+// stringa vuota e il titolo restava il nome grezzo della pagina. Qui
+// stanno i testi scritti apposta, indicizzabili e sensati.
+//
+// Modificabile senza toccare il codice:
+//   add_filter( 'experiences_meta_pagine', fn( $m ) => … );
+function experiences_meta_pagine() {
+    return apply_filters( 'experiences_meta_pagine', [
+        'configuratore' => [
+            'title' => 'Anteprima gratuita del tuo sito — Experiences Srl',
+            // Sotto i 155 caratteri, oltre i quali Google tronca.
+            'desc'  => 'Carica le foto della tua struttura e guarda come verrebbe il tuo sito, in tre stili. Gratis, senza registrazione: le foto restano sul tuo dispositivo.',
+        ],
+        'blog' => [
+            'title' => 'Guide e case study per il turismo — Experiences Srl',
+            'desc'  => 'Channel manager, prenotazioni dirette, SEO locale, AI: guide pratiche e case study con numeri veri per hotel, B&B, agenzie di viaggi e tour operator.',
+        ],
+    ] );
+}
+
+function experiences_meta_pagina_corrente() {
+    $mappa = experiences_meta_pagine();
+
+    // L'elenco degli articoli: puo essere la pagina "blog" oppure la
+    // pagina indicata in Impostazioni → Lettura, che e un'altra cosa.
+    if ( is_home() && ! is_front_page() ) {
+        return $mappa['blog'] ?? null;
+    }
+    if ( is_page() ) {
+        $slug = get_post_field( 'post_name', get_queried_object_id() );
+        if ( isset( $mappa[ $slug ] ) ) {
+            return $mappa[ $slug ];
+        }
+    }
+    return null;
+}
+
 function experiences_document_title( $title ) {
-    if ( experiences_seo_plugin_active() || ! is_singular() ) {
+    if ( experiences_seo_plugin_active() ) {
+        return $title;
+    }
+
+    // La home usava il titolo grezzo di WordPress, "nome del sito –
+    // motto": generico e diverso dall'og:title, che e scritto meglio e
+    // dice cosa facciamo. Ora coincidono.
+    if ( is_front_page() ) {
+        return 'Experiences Srl | Soluzioni Digitali per il Turismo';
+    }
+
+    $pagina = experiences_meta_pagina_corrente();
+    if ( $pagina && ! empty( $pagina['title'] ) ) {
+        return $pagina['title'];
+    }
+
+    if ( ! is_singular() ) {
         return $title;
     }
     $stored = experiences_stored_seo_meta( get_queried_object_id(), 'title' );
     return $stored ?: $title;
 }
 add_filter( 'pre_get_document_title', 'experiences_document_title', 20 );
+
+// ── Meta description per l'elenco degli articoli ───────────────────────
+// is_singular() e falso su un archivio, quindi finora /blog/ non aveva
+// nessuna description.
+function experiences_meta_tags_blog() {
+    if ( experiences_seo_plugin_active() ) return;
+    if ( ! is_home() || is_front_page() ) return;
+
+    $pagina = experiences_meta_pagine()['blog'];
+    $url    = experiences_blog_archive_url();
+    ?>
+    <meta name="description" content="<?php echo esc_attr( $pagina['desc'] ); ?>">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="<?php echo esc_url( $url ); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Experiences Srl">
+    <meta property="og:title" content="<?php echo esc_attr( $pagina['title'] ); ?>">
+    <meta property="og:description" content="<?php echo esc_attr( $pagina['desc'] ); ?>">
+    <meta property="og:url" content="<?php echo esc_url( $url ); ?>">
+    <meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="it_IT">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr( $pagina['title'] ); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr( $pagina['desc'] ); ?>">
+    <meta name="twitter:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-image.jpg">
+    <?php
+}
+add_action( 'wp_head', 'experiences_meta_tags_blog', 1 );
 
 function experiences_meta_tags_singular() {
     if ( is_front_page() || ! is_singular() ) return;
@@ -547,22 +1140,40 @@ function experiences_meta_tags_singular() {
     // 155 caratteri che Google mostra. L'excerpt è più lungo e verrebbe
     // troncato a metà frase.
     $desc = experiences_stored_seo_meta( get_the_ID(), 'description' );
+
+    // Pagine costruite dal template, con il contenuto vuoto: l'excerpt
+    // qui sotto non ha niente da cui pescare e la description usciva
+    // vuota. Il testo e scritto a mano in experiences_meta_pagine().
+    if ( ! $desc ) {
+        $pagina = experiences_meta_pagina_corrente();
+        if ( $pagina && ! empty( $pagina['desc'] ) ) {
+            $desc = $pagina['desc'];
+        }
+    }
+
     if ( ! $desc ) {
         $excerpt = has_excerpt()
             ? get_the_excerpt()
             : wp_trim_words( wp_strip_all_tags( strip_shortcodes( get_the_content() ) ), 30, '…' );
         $desc = trim( wp_strip_all_tags( $excerpt ) );
     }
+
+    $pagina        = experiences_meta_pagina_corrente();
+    $titolo_social = ( $pagina && ! empty( $pagina['title'] ) ) ? $pagina['title'] : get_the_title();
     ?>
+    <?php if ( '' !== $desc ) : ?>
     <meta name="description" content="<?php echo esc_attr( $desc ); ?>">
+    <?php endif; ?>
     <meta name="author" content="Experiences Srl">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="theme-color" content="#0B3D61">
     <link rel="canonical" href="<?php echo esc_url( get_permalink() ); ?>">
     <meta property="og:type" content="<?php echo is_singular( 'post' ) ? 'article' : 'website'; ?>">
     <meta property="og:site_name" content="Experiences Srl">
-    <meta property="og:title" content="<?php echo esc_attr( get_the_title() ); ?>">
+    <meta property="og:title" content="<?php echo esc_attr( $titolo_social ); ?>">
+    <?php if ( '' !== $desc ) : ?>
     <meta property="og:description" content="<?php echo esc_attr( $desc ); ?>">
+    <?php endif; ?>
     <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>">
     <meta property="og:image" content="<?php echo esc_url( $img ); ?>">
     <meta property="og:image:width" content="<?php echo (int) $img_w; ?>">
@@ -573,8 +1184,10 @@ function experiences_meta_tags_singular() {
     <meta property="article:modified_time" content="<?php echo esc_attr( get_the_modified_date( 'c' ) ); ?>">
     <?php endif; ?>
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo esc_attr( get_the_title() ); ?>">
+    <meta name="twitter:title" content="<?php echo esc_attr( $titolo_social ); ?>">
+    <?php if ( '' !== $desc ) : ?>
     <meta name="twitter:description" content="<?php echo esc_attr( $desc ); ?>">
+    <?php endif; ?>
     <meta name="twitter:image" content="<?php echo esc_url( $img ); ?>">
     <?php
 }
@@ -646,7 +1259,12 @@ add_action( 'init', 'experiences_register_portfolio_cpt' );
 
 // ── Portfolio shortcode [experiences_portfolio] ────────────────
 function experiences_portfolio_shortcode( $atts ) {
-    $atts  = shortcode_atts([ 'posts' => -1 ], $atts);
+    $atts  = shortcode_atts([ 'posts' => -1 ], $atts );
+    $limit = (int) $atts['posts'];
+
+    // La prima query resta senza limite: serve l'elenco completo per
+    // deduplicare per titolo. Tagliare qui restituirebbe meno elementi
+    // del richiesto ogni volta che ci sono doppioni.
     $query = new WP_Query([
         'post_type'      => 'portfolio_site',
         'posts_per_page' => -1,
@@ -654,27 +1272,34 @@ function experiences_portfolio_shortcode( $atts ) {
         'orderby'        => 'menu_order date',
         'order'          => 'ASC',
     ]);
-    // Static items always shown; WP_Query items are additional
-    // Deduplicate by title before output
+
     $seen_titles = [];
     if ( $query->have_posts() ) {
         $unique_posts = [];
         while ( $query->have_posts() ) {
             $query->the_post();
             $t = get_the_title();
-            if ( ! in_array( $t, $seen_titles ) ) {
-                $seen_titles[]   = $t;
-                $unique_posts[]  = get_post();
+            if ( ! in_array( $t, $seen_titles, true ) ) {
+                $seen_titles[]  = $t;
+                $unique_posts[] = get_post();
             }
         }
         wp_reset_postdata();
-        // Re-run with unique posts only
+
+        // Il limite dello shortcode si applica qui, a deduplica avvenuta.
+        if ( $limit > 0 ) {
+            $unique_posts = array_slice( $unique_posts, 0, $limit );
+        }
+
+        $ids = wp_list_pluck( $unique_posts, 'ID' );
+
+        // post__in vuoto viene ignorato da WP_Query, che restituirebbe
+        // l'intero post type: meglio una query che non trova nulla.
         $query = new WP_Query([
-            'post_type'  => 'portfolio_site',
-            'post__in'   => wp_list_pluck( $unique_posts, 'ID' ),
-            'orderby'    => 'menu_order',
-            'order'      => 'ASC',
-            'posts_per_page' => -1,
+            'post_type'      => 'portfolio_site',
+            'post__in'       => $ids ?: [ 0 ],
+            'orderby'        => 'post__in',
+            'posts_per_page' => $limit > 0 ? $limit : -1,
         ]);
     }
 
