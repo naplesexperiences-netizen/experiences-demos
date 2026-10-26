@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Arricchisce una demo standard con le informazioni sul territorio prese
-dall'articolo destinazioni della struttura (<blog>/destinazioni/, nel repo experiences-website).
+dall'articolo destinazioni della struttura (blog-articles/destinazioni/ nel repo experiences-website).
 
 Nella demo:
   * aggiunge la sezione «Il territorio» dopo i servizi (lead, attrazioni,
@@ -20,14 +20,18 @@ Usage:
 import html
 import importlib.util
 import json
+import os
 import re
 import shutil
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+# Gli articoli e lo script che li costruisce stanno nel repo privato experiences-website:
+# di default il clone affiancato a questo, altrimenti EXPERIENCES_WEBSITE_DIR.
+WEBSITE = Path(os.environ.get("EXPERIENCES_WEBSITE_DIR", ROOT.parent / "experiences-website"))
 DEMOS = ROOT / "demos"
-_spec = importlib.util.spec_from_file_location("dest", ROOT / "scripts" / "build-destinazioni.py")
+_spec = importlib.util.spec_from_file_location("dest", WEBSITE / "scripts" / "build-destinazioni.py")
 DEST = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(DEST)
 
