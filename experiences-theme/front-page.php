@@ -185,7 +185,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Booking integrato che converte</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Gestione contenuti autonoma</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: +60% conversione mobile</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: un sito che si apre in fretta e si usa col pollice</p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-search-dollar"></i></div>
@@ -198,7 +198,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Google Ads con ROI tracking</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Social Media targeting clienti ideali</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: +200% traffico organico in 90gg</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: ti trovano cercando la zona, non solo il tuo nome</p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border-2 border-accent shadow-lg group ring-2 ring-accent/20" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-start justify-between mb-3">
@@ -211,10 +211,14 @@ get_header();
                     <p class="text-accent text-xs font-semibold mb-2"><i class="fas fa-check-circle"></i> Soluzione</p>
                     <ul class="space-y-2 text-sm text-gray-600 mb-4">
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Sync real-time con tutte le OTA</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Zero overbooking garantito</li>
+                        <!-- "Garantito" e una parola che impegna: se un
+                             overbooking succede lo stesso, la promessa
+                             diventa contestabile. Il meccanismo reale e
+                             che la sincronizzazione lo previene. -->
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Disponibilità allineata su ogni canale, niente doppie prenotazioni</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico + analytics</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: -30h/sett, +45% diretti</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: un calendario solo, e le dirette non passano più dalle OTA</p>
                 </div>
                 <div class="card-hover bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm group" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-secondary text-2xl"><i class="fas fa-bullhorn"></i></div>
@@ -227,7 +231,7 @@ get_header();
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Foto professionali + ottimizzazione SEO</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i> Pricing dinamico per stagione</li>
                     </ul>
-                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: +35% conversione annunci</p>
+                    <p class="text-secondary text-xs font-bold border-t border-gray-100 pt-3">📈 Risultato: annunci completi, fotografati e scritti per convertire</p>
                 </div>
                 <div class="card-hover bg-gradient-to-br from-primary to-secondary rounded-2xl p-6 lg:p-8 shadow-lg group sm:col-span-2 lg:col-span-2" data-aos="fade-up" data-aos-delay="500">
                     <div class="flex flex-col">
@@ -248,7 +252,7 @@ get_header();
                                 <span class="px-3 py-1 bg-white/10 text-white text-xs rounded-full font-medium">🎯 Lead capture</span>
                             </div>
                         </div>
-                        <p class="text-accent text-xs font-bold border-t border-white/10 pt-3 mt-4">📈 Risultato: +40% prenotazioni notturne, 0 clienti persi</p>
+                        <p class="text-accent text-xs font-bold border-t border-white/10 pt-3 mt-4">📈 Risultato: nessuna richiesta resta senza risposta fino al mattino</p>
                     </div>
                 </div>
             </div>
@@ -295,15 +299,30 @@ get_header();
                 </span>
             </div>
 
-            <!-- LiveAvatar iframe — full width, 16:9 -->
-            <div data-aos="fade-up" data-aos-delay="200"
-                 style="width:100%; border-radius:1.5rem; overflow:hidden; box-shadow:0 25px 60px rgba(11,61,97,0.18); border:2px solid rgba(20,163,163,0.15);">
-                <iframe
-                    src="https://embed.liveavatar.com/v1/c9ba1ee0-5822-4be5-a239-ced83918726f?orientation=horizontal"
-                    allow="microphone; camera"
-                    title="LiveAvatar — Assistente Virtuale Experiences Srl"
-                    style="width:100%; aspect-ratio:16/9; display:block; border:none;">
-                </iframe>
+            <!-- LiveAvatar: si carica al clic.
+                 Prima l'iframe partiva allo scorrimento, sempre in
+                 orizzontale: su un telefono il video veniva 358×201, un
+                 volto dentro un francobollo. L'embed in verticale rende
+                 358×636 e qualunque altra proporzione taglia la testa,
+                 quindi il riquadro è 9:16 sotto i 768px e 16:9 sopra.
+                 Partendo al clic, il servizio di terze parti — con la
+                 sua richiesta di microfono — viene contattato solo
+                 quando il visitatore lo chiede davvero. -->
+            <div data-aos="fade-up" data-aos-delay="200" class="max-w-4xl mx-auto">
+                <div id="exp-avatar" class="exp-avatar"
+                     data-avatar-embed="<?php echo esc_url( experiences_avatar_embed_url() ); ?>">
+                    <button type="button" class="exp-avatar-start" data-avatar-start
+                            aria-describedby="exp-avatar-nota">
+                        <span class="exp-avatar-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+                        <span class="exp-avatar-label">Parla con l'Esperto Digitale</span>
+                        <span class="exp-avatar-hint">Si apre l'assistente video, in italiano</span>
+                    </button>
+                </div>
+                <p id="exp-avatar-nota" class="text-center text-xs text-gray-500 mt-3">
+                    Avviandolo ti colleghi a LiveAvatar, un servizio esterno, che potrà
+                    chiederti il microfono per parlare. Dettagli nella
+                    <a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>" class="underline hover:text-secondary">Privacy Policy</a>.
+                </p>
             </div>
 
             <!-- CTA below avatar -->
@@ -328,12 +347,18 @@ get_header();
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4">RISULTATI REALI</span>
+                <!-- "Numeri veri, risultati misurabili" impegna a poterli
+                     mostrare. Dei tre casi solo quello dell'agenzia ha un
+                     articolo con la tabella KPI; gli altri due raccontano
+                     cosa e cambiato, che e vero e dimostrabile, senza
+                     percentuali che nessuno puo verificare. -->
+                <span class="inline-block px-4 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4">CASI REALI</span>
                 <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
                     Cosa abbiamo fatto per <span class="text-gradient">altri come te</span>
                 </h2>
                 <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-                    Numeri veri, clienti veri, risultati misurabili. Ecco l'impatto del nostro lavoro.
+                    Tre situazioni in cui siamo entrati e cosa è cambiato. Dove abbiamo i numeri
+                    li pubblichiamo per intero, con il case study completo da leggere.
                 </p>
             </div>
 
@@ -347,25 +372,24 @@ get_header();
                             <p class="text-gray-400 text-xs">Ischia • 80 camere</p>
                         </div>
                     </div>
-                    <h3 class="text-white text-lg font-bold mb-3">Da overbooking a +45% prenotazioni dirette</h3>
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">+45%</p>
-                            <p class="text-gray-400 text-xs">Prenotazioni dirette</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">-25h</p>
-                            <p class="text-gray-400 text-xs">Settimana risparmiate</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">0</p>
-                            <p class="text-gray-400 text-xs">Overbooking</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-accent text-2xl font-bold">+€50k</p>
-                            <p class="text-gray-400 text-xs">Revenue/anno</p>
-                        </div>
-                    </div>
+                    <!-- Le percentuali qui erano inventate: nessuno ha
+                         misurato +45% o +€50k. Cosa e cambiato lo sappiamo
+                         e lo possiamo dimostrare; di quanto, no. -->
+                    <h3 class="text-white text-lg font-bold mb-3">Dall&rsquo;overbooking al controllo del calendario</h3>
+                    <ul class="space-y-2.5 mb-4">
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Disponibilità sincronizzata fra Booking, Expedia e sito: le doppie prenotazioni non capitano più</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Niente più aggiornamento manuale dei prezzi su quattro portali, ogni mattina</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-accent text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Motore di prenotazione sul sito: chi arriva dal nome dell&rsquo;hotel prenota lì, senza commissione</span>
+                        </li>
+                    </ul>
                     <p class="text-gray-300 text-sm italic">"In 6 mesi abbiamo recuperato il controllo totale. Il direttore ora si concentra sull'esperienza ospiti, non sul gestionale."</p>
                 </div>
 
@@ -375,28 +399,48 @@ get_header();
                         <div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center"><i class="fas fa-suitcase text-secondary text-xl"></i></div>
                         <div>
                             <p class="text-white font-bold">Agenzia Tour</p>
-                            <p class="text-gray-400 text-xs">Napoli • Tour Vesuvio/Pompei</p>
+                            <p class="text-gray-400 text-xs">Napoli • Tour Vesuvio/Pompei • dal 2022</p>
                         </div>
                     </div>
-                    <h3 class="text-white text-lg font-bold mb-3">Da 5 a 20 prenotazioni/mese in 90 giorni</h3>
+                    <!-- Le cifre sono quelle del case study pubblicato sul
+                         blog, che documenta dodici mesi con la tabella KPI.
+                         Qui c'era scritto "in 90 giorni" e "+€20k": due dati
+                         che l'articolo non sostiene — il passaggio da 5 a 20
+                         prenotazioni e da €21K a €92K di fatturato e avvenuto
+                         sull'anno. Un numero che il lettore puo verificare
+                         cliccando non deve contraddire la pagina che apre. -->
+                    <h3 class="text-white text-lg font-bold mb-3">Da 5 a 20 prenotazioni/mese in 12 mesi</h3>
                     <div class="grid grid-cols-2 gap-3 mb-4">
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">+300%</p>
-                            <p class="text-gray-400 text-xs">Prenotazioni mensili</p>
+                            <p class="text-secondary text-2xl font-bold">4&times;</p>
+                            <p class="text-gray-400 text-xs">Prenotazioni/mese</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">80%</p>
-                            <p class="text-gray-400 text-xs">Clienti online</p>
+                            <p class="text-secondary text-2xl font-bold">38%</p>
+                            <p class="text-gray-400 text-xs">Vendite dirette</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">30%</p>
-                            <p class="text-gray-400 text-xs">Clienti stranieri</p>
+                            <p class="text-secondary text-2xl font-bold">+14%</p>
+                            <p class="text-gray-400 text-xs">Ticket medio</p>
                         </div>
                         <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-secondary text-2xl font-bold">+€20k</p>
-                            <p class="text-gray-400 text-xs">Revenue/anno</p>
+                            <!-- "€21K→€92K" a text-2xl sfora il riquadro
+                                 sotto i 1280px: il confronto sta meglio
+                                 nell'etichetta, dove c'e spazio. -->
+                            <p class="text-secondary text-2xl font-bold">€92K</p>
+                            <p class="text-gray-400 text-xs">Fatturato annuo, da €21K</p>
                         </div>
                     </div>
+                    <!-- I quattro riquadri sopra sono il primo anno,
+                         documentati dal case study. Questa riga sono i
+                         quattro anni successivi, letti dall'analytics del
+                         cliente: arrotondati perche a lui basta l'ordine
+                         di grandezza e non vuole essere riconoscibile. -->
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4 pt-3 border-t border-white/10">
+                        Da allora a oggi: <strong class="text-white">oltre 200.000 visite</strong>,
+                        più di <strong class="text-white">4.400 contatti diretti</strong> fra telefonate,
+                        moduli ed email, e 7 visitatori su 10 dall&rsquo;estero.
+                    </p>
                     <p class="text-gray-300 text-sm italic">"Il sito moderno + integrazione con GetYourGuide ha cambiato tutto. Ora ricevo prenotazioni 24/7."</p>
                 </div>
 
@@ -409,25 +453,26 @@ get_header();
                             <p class="text-gray-400 text-xs">Campania • 300+ tour</p>
                         </div>
                     </div>
-                    <h3 class="text-white text-lg font-bold mb-3">Scalare da 15 a 8 dipendenti, +40% revenue</h3>
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">+40%</p>
-                            <p class="text-gray-400 text-xs">Revenue annuale</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">-60%</p>
-                            <p class="text-gray-400 text-xs">Costi admin</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">300+</p>
-                            <p class="text-gray-400 text-xs">Tour da 1 dashboard</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-3">
-                            <p class="text-white text-2xl font-bold">+€300k</p>
-                            <p class="text-gray-400 text-xs">Revenue/anno</p>
-                        </div>
-                    </div>
+                    <!-- "Da 15 a 8 dipendenti" raccontato come un risultato
+                         da vendere e anche sgradevole: significa sette
+                         persone a casa. Il punto vero e che il team non e
+                         dovuto crescere col catalogo. Le percentuali, come
+                         sopra, non le ha misurate nessuno. -->
+                    <h3 class="text-white text-lg font-bold mb-3">Trecento tour, una sola dashboard</h3>
+                    <ul class="space-y-2.5 mb-4">
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Oltre 300 tour e tutti i canali di vendita gestiti da un punto solo</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Il catalogo è cresciuto senza che dovesse crescere il team amministrativo</span>
+                        </li>
+                        <li class="flex items-start gap-2.5 text-gray-300 text-sm">
+                            <i class="fas fa-check text-white/70 text-xs mt-1.5 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Prezzi e disponibilità aggiornati una volta, validi ovunque</span>
+                        </li>
+                    </ul>
                     <p class="text-gray-300 text-sm italic">"La gestione centralizzata ci ha permesso di scalare senza assumere. Ora il team è focalizzato sulla crescita."</p>
                 </div>
             </div>
@@ -442,6 +487,100 @@ get_header();
         </div>
     </section>
 
+    <!-- ================================================
+         Section: visibilità sugli assistenti AI
+         Numeri letti dal cruscotto analytics di un cliente.
+         Attenzione a come sono presentati: le 65.000 sono letture
+         di crawler, NON visitatori. Spacciarle per traffico
+         sarebbe lo stesso errore dei claim che abbiamo tolto.
+         Il dato onesto e che i bot leggono molto e che una quota
+         piccola ma reale di visite vere arriva gia da li.
+         ================================================ -->
+    <section id="ai-search" class="py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-14 lg:items-center">
+
+                <div class="lg:col-span-6" data-aos="fade-right">
+                    <span class="inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full mb-5">
+                        VISIBILITÀ SUGLI ASSISTENTI AI
+                    </span>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">
+                        Quando un cliente chiede a ChatGPT, <span class="text-gradient">chi risponde?</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-5">
+                        Sempre più persone cercano dove dormire e cosa fare chiedendolo a un assistente,
+                        non digitandolo su Google. L&rsquo;assistente risponde con quello che ha letto —
+                        e per leggerti deve trovarti, e capirti.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Sul sito di un nostro cliente i crawler delle AI hanno fatto
+                        <strong class="text-primary">circa 65.000 letture</strong>, tre quarti delle quali ChatGPT,
+                        partendo da zero poche settimane prima. Non sono visitatori: sono i motori che decidono
+                        cosa rispondere. I visitatori veri arrivano dopo, e per ora sono lo 0,7% del totale —
+                        una quota piccola, su una strada che fino a ieri non esisteva.
+                    </p>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start gap-3 text-gray-600">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Contenuti strutturati perché un assistente possa citarli, non solo indicizzarli</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-600">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Dati della struttura leggibili da una macchina: prezzi, servizi, posizione, disponibilità</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-600">
+                            <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Monitoraggio di quali assistenti ti leggono e quanto</span>
+                        </li>
+                    </ul>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl transition-colors shadow-md">
+                        <i class="fas fa-robot" aria-hidden="true"></i> Fatti trovare dalle AI
+                    </a>
+                </div>
+
+                <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-6 lg:p-8 shadow-xl">
+                        <p class="text-xs font-semibold tracking-wider text-accent mb-6">
+                            LETTURE DEI CRAWLER AI · UN CLIENTE, DUE MESI
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">65.000</p>
+                                <p class="text-gray-400 text-xs mt-1">Letture dai crawler AI</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">78%</p>
+                                <p class="text-gray-400 text-xs mt-1">Sono ChatGPT</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">30</p>
+                                <p class="text-gray-400 text-xs mt-1">Assistenti diversi</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                                <p class="text-accent text-3xl font-bold">0,7%</p>
+                                <p class="text-gray-400 text-xs mt-1">Visite reali da assistenti</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-xs leading-relaxed border-t border-white/10 pt-4">
+                            Dati dal cruscotto analytics di un cliente, arrotondati.
+                            Le letture dei crawler non sono visite di persone: misurano quanto le AI
+                            leggono il sito, non quanti clienti porta. Lo 0,7% sono visite vere.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Section 3: Portfolio -->
     <section id="portfolio" class="py-20 lg:py-28 bg-gray-50 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -451,7 +590,11 @@ get_header();
                     I Siti <span class="text-gradient">Live</span> che abbiamo realizzato
                 </h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Click su ogni progetto per vederlo dal vivo. Tutti i siti sono in produzione e generano prenotazioni reali.
+                    <!-- Nel portfolio ci sono anche un centro medico, un
+                         museo e un ente di formazione: "generano
+                         prenotazioni" non li riguarda, e un visitatore che
+                         clicca se ne accorge in due secondi. -->
+                    Click su ogni progetto per vederlo dal vivo. Sono tutti siti in produzione, usati ogni giorno dai loro clienti &mdash; strutture ricettive, tour operator, enti culturali e di formazione.
                 </p>
             </div>
             <?php echo do_shortcode('[experiences_portfolio posts="8"]'); ?>
@@ -463,8 +606,9 @@ get_header();
          URL modificabile da Personalizza tema → Galleria demo
          ================================================ -->
     <?php
-    $exp_demo_url   = experiences_demo_hub_url();
-    $exp_demo_count = (int) get_theme_mod( 'exp_demo_count', 200 );
+    $exp_demo_url    = experiences_demo_hub_url();
+    $exp_vetrina_url = experiences_vetrina_url();
+    $exp_demo_count  = (int) get_theme_mod( 'exp_demo_count', 200 );
     ?>
     <section id="demo" class="py-20 lg:py-28 bg-dark relative overflow-hidden">
 
@@ -482,55 +626,67 @@ get_header();
                         GALLERIA DEMO
                     </span>
                     <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-                        Oltre <span class="text-gradient"><?php echo esc_html( number_format_i18n( $exp_demo_count ) ); ?> demo</span> già pronte da esplorare
+                        Dieci modi diversi di fare <span class="text-gradient">un sito</span>
                     </h2>
                     <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                        Prima di commissionare un sito, guarda come lavoriamo. Abbiamo costruito
-                        demo navigabili per hotel, B&amp;B, tour operator e strutture termali di
-                        tutta la Campania — Costiera, Ischia, Sorrento, Napoli, Cilento.
-                        Sono siti veri, non mockup: si aprono e si usano.
+                        Prima di commissionare un sito, guarda come lavoriamo. Sono siti veri,
+                        non mockup: si aprono e si usano. Ma duecento demo sono per lo più
+                        varianti dello stesso impianto, e scorrerle tutte non aiuta a scegliere:
+                        per questo ne abbiamo messe da parte <strong class="text-white">dieci</strong>,
+                        una per ogni modo davvero diverso di costruire una pagina.
                     </p>
 
                     <ul class="space-y-3 mb-9">
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Filtrabili per tipologia di struttura e località</span>
+                            <span>Dal racconto per immagini al totem touch, passando per il 3D</span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Ognuna apribile e navigabile dal vivo, anche da telefono</span>
+                            <span>Dove due approcci meritano un confronto, li trovi affiancati</span>
                         </li>
                         <li class="flex items-start gap-3 text-gray-300">
                             <i class="fas fa-check-circle text-accent mt-1 flex-shrink-0" aria-hidden="true"></i>
-                            <span>Ogni demo è personalizzabile sul tuo brand</span>
+                            <span>Ognuna apribile dal vivo, anche da telefono, e personalizzabile sul tuo brand</span>
                         </li>
                     </ul>
 
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                        <a href="<?php echo esc_url( $exp_vetrina_url ); ?>" target="_blank" rel="noopener"
                            class="px-8 py-4 bg-accent hover:bg-white hover:text-primary text-white font-semibold rounded-xl transition-colors shadow-lg inline-flex items-center justify-center gap-2 group">
-                            Esplora tutte le demo
+                            Guarda la selezione
                             <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
                         </a>
-                        <a href="#booking" data-booking-trigger
+                        <!-- Il configuratore viene prima della call: ha
+                             molto meno attrito e qualifica il contatto. -->
+                        <a href="<?php echo esc_url( experiences_configuratore_url() ); ?>"
                            class="px-8 py-4 bg-white/10 backdrop-blur border border-white/25 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2">
-                            <i class="fas fa-rocket" aria-hidden="true"></i> Voglio la mia
+                            <i class="fas fa-eye" aria-hidden="true"></i> Provalo con le tue foto
                         </a>
                     </div>
+
+                    <!-- L'elenco completo resta raggiungibile, ma sottovoce:
+                         è la seconda scelta, non la prima. -->
+                    <p class="mt-6 text-sm text-gray-400">
+                        Preferisci scorrerle tutte?
+                        <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                           class="text-accent hover:text-white underline transition-colors">
+                            Apri l'archivio completo, <?php echo esc_html( number_format_i18n( $exp_demo_count ) ); ?> demo</a>.
+                    </p>
                 </div>
 
                 <!-- Anteprima: finestra browser stilizzata -->
                 <div class="lg:col-span-6 mt-12 lg:mt-0" data-aos="fade-left">
-                    <a href="<?php echo esc_url( $exp_demo_url ); ?>" target="_blank" rel="noopener"
+                    <a href="<?php echo esc_url( $exp_vetrina_url ); ?>" target="_blank" rel="noopener"
                        class="block rounded-2xl overflow-hidden border border-white/15 shadow-2xl group"
-                       aria-label="Apri la galleria completa delle demo in una nuova scheda">
+                       aria-label="Apri la vetrina delle demo selezionate in una nuova scheda">
 
                         <!-- Barra della finestra -->
                         <div class="flex items-center gap-2 px-4 py-3 bg-white/10 border-b border-white/10">
                             <span class="w-3 h-3 rounded-full bg-red-400/70" aria-hidden="true"></span>
                             <span class="w-3 h-3 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
                             <span class="w-3 h-3 rounded-full bg-green-400/70" aria-hidden="true"></span>
-                            <span class="ml-3 text-xs text-gray-400 truncate">galleria demo · Experiences Srl</span>
+                            <span class="ml-3 text-xs text-gray-400 truncate">vetrina · Experiences Srl</span>
                         </div>
 
                         <!-- Griglia di miniature -->
@@ -555,10 +711,10 @@ get_header();
 
                             <div class="mt-4 flex items-center justify-between px-1">
                                 <span class="text-xs text-gray-400">
-                                    …e altre <?php echo esc_html( number_format_i18n( max( 0, $exp_demo_count - 6 ) ) ); ?>
+                                    Una per impianto, non una per cliente
                                 </span>
                                 <span class="text-xs font-semibold text-accent inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                                    Apri la galleria <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                    Apri la vetrina <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </span>
                             </div>
                         </div>
@@ -824,13 +980,24 @@ get_header();
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 bg-light rounded-xl flex items-center justify-center flex-shrink-0 text-secondary"><i class="fab fa-whatsapp text-xl"></i></div>
-                            <div><h4 class="font-semibold text-primary mb-1">WhatsApp</h4><a href="https://wa.me/393926917657" target="_blank" class="text-gray-600 hover:text-secondary transition">Scrivici su WhatsApp</a></div>
+                            <!-- H3 e non H4: sopra c'e un H2 e sotto, nella
+                                 stessa sezione, "Richiedi una Consulenza
+                                 Gratuita" e gia un H3. Saltare un livello
+                                 rompe l'indice che usano i lettori di
+                                 schermo per navigare la pagina. Lo stile e
+                                 tutto nelle classi, quindi non cambia nulla
+                                 a vedersi. -->
+                            <div><h3 class="font-semibold text-primary mb-1">WhatsApp</h3><a href="https://wa.me/393926917657" target="_blank" class="text-gray-600 hover:text-secondary transition">Scrivici su WhatsApp</a></div>
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-gray-200">
                         <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">8+</div><div class="text-sm text-gray-500 mt-1">Siti Realizzati</div></div>
                         <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">24/7</div><div class="text-sm text-gray-500 mt-1">Supporto AI</div></div>
-                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">100%</div><div class="text-sm text-gray-500 mt-1">Soddisfazione</div></div>
+                        <!-- "100% soddisfazione" non poggia su niente di
+                             misurabile e nessuno se lo beve. Il tempo di
+                             risposta e una promessa che possiamo mantenere
+                             e che al cliente interessa davvero. -->
+                        <div class="text-center"><div class="text-2xl lg:text-3xl font-bold text-primary">&lt;24h</div><div class="text-sm text-gray-500 mt-1">Tempo di risposta</div></div>
                     </div>
                 </div>
                 <div data-aos="fade-left">

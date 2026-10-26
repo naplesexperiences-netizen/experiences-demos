@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il PC dentro: hardware spiegato</title>
+<meta name="description" content="Guida all’hardware del computer: processore, memoria, archiviazione, scheda madre, scheda grafica, alimentatore e raffreddamento, con un simulatore di come un file arriva allo schermo.">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f4ee; --bg2:#ebe8df; --card:#fffefa; --line:#d5d0c2; --ink:#1b1f1d; --mute:#5b635f;
+  --cpu:#2f6fdb; --ram:#1d9a6c; --disk:#b9612a; --gpu:#8a3fd1; --psu:#c4361a;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f1311; --bg2:#171d1a; --card:#1b221f; --line:#2c3531; --ink:#e9ece8; --mute:#9aa49f;
+    --cpu:#6ea4ff; --ram:#4fd6a0; --disk:#f0a06a; --gpu:#c28cff; --psu:#ff7a5c;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f1311; --bg2:#171d1a; --card:#1b221f; --line:#2c3531; --ink:#e9ece8; --mute:#9aa49f;
+  --cpu:#6ea4ff; --ram:#4fd6a0; --disk:#f0a06a; --gpu:#c28cff; --psu:#ff7a5c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--cpu);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--cpu);color:#fff;padding:8px 12px;z-index:9}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;height:54px}
+.brand{font-weight:700;text-decoration:none;letter-spacing:.01em}
+.top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.top nav a{font-size:14px;color:var(--mute);text-decoration:none;padding:7px 10px;border-radius:8px;white-space:nowrap}
+.top nav a:hover,.top nav a[aria-current]{color:var(--ink);background:var(--bg2)}
+
+.hero{padding:clamp(56px,9vw,104px) 0 40px}
+.kicker{font:13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cpu);margin:0 0 14px}
+h1{font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-.02em;margin:0 0 20px;max-width:18ch;text-wrap:balance}
+.lead{font-size:clamp(18px,2vw,20px);color:var(--mute);max-width:60ch;margin:0}
+
+section{padding:clamp(48px,7vw,84px) 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance}
+.intro{color:var(--mute);max-width:64ch;margin:0 0 32px}
+.intro strong{color:var(--ink);font-weight:600}
+
+/* anatomia: schema del PC */
+.anatomy{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3vw,28px)}
+.anatomy svg{display:block;width:100%;height:auto}
+.anatomy text{font-family:var(--sans);fill:var(--ink)}
+.anatomy .sm{font-size:13px;fill:var(--mute)}
+.anatomy .hd{font-size:15px;font-weight:600}
+.anatomy .link{stroke:var(--mute);stroke-width:2;fill:none;opacity:.55}
+.anatomy .flowdot{fill:var(--cpu)}
+.anatomy g.part{cursor:pointer}
+.anatomy g.part rect{transition:stroke-width .15s,opacity .15s}
+.anatomy g.part:hover rect,.anatomy g.part:focus rect,.anatomy g.part.on rect{stroke-width:3}
+.anatomy g.dim{opacity:.35;transition:opacity .2s}
+.anatomy g.part:focus{outline:none}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:14px;color:var(--mute)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c)}
+.detail{margin-top:18px;min-height:3.4em;padding:14px 18px;border-left:3px solid var(--c,var(--cpu));background:var(--bg2);border-radius:8px;font-size:15.5px}
+.detail b{display:block;margin-bottom:2px}
+
+/* schede componenti */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:4px solid var(--c)}
+.card h3{font-size:19px;margin:0 0 8px}
+.card p{margin:0 0 10px;color:var(--mute);font-size:15.5px}
+.card ul{margin:0;padding-left:1.1em;color:var(--mute);font-size:15px}
+.card li{margin:4px 0}
+.card li b{color:var(--ink);font-weight:600}
+
+/* cos'è la memoria */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.compare{grid-template-columns:1fr}}
+.col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.col h3{margin:0 0 6px;font-size:21px}
+.col p{margin:0;color:var(--mute)}
+.tag{display:inline-block;font:12px var(--mono);padding:3px 8px;border-radius:6px;background:var(--bg2);color:var(--ink);margin-bottom:10px}
+
+/* simulatore */
+.sim{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,28px)}
+.sim .stage{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px}
+@media(max-width:640px){.sim .stage{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sim .st{border:2px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center;font-size:14px;color:var(--mute);transition:all .3s;background:var(--bg)}
+.sim .st b{display:block;font-size:16px;color:var(--ink);margin-bottom:4px}
+.sim .st.active{border-color:var(--c);color:var(--ink);background:color-mix(in srgb,var(--c) 12%,var(--bg));transform:translateY(-2px)}
+.sim .st.done{border-color:color-mix(in srgb,var(--c) 45%,var(--line))}
+.sim p#msg{min-height:3.2em;margin:0 0 16px;font-size:16px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font:inherit;font-size:15px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--cpu);border-color:var(--cpu);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+
+/* quiz */
+.quiz{display:grid;gap:14px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.q p{margin:0 0 12px;font-weight:600}
+.q label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:15.5px}
+.q label:hover{background:var(--bg2)}
+.q input{margin-top:5px;accent-color:var(--cpu)}
+.q .fb{margin:10px 0 0;font-size:15px;min-height:1.4em}
+.q .fb.ok{color:var(--ram)} .q .fb.ko{color:var(--psu)}
+.score{font:600 15px var(--mono);color:var(--mute);margin-top:4px}
+
+/* consigli */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:0;padding:0;list-style:none;counter-reset:t}
+.tips li{counter-increment:t;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 20px 20px 62px;position:relative;color:var(--mute);font-size:15.5px}
+.tips li::before{content:counter(t);position:absolute;left:18px;top:18px;width:30px;height:30px;border-radius:50%;background:var(--bg2);color:var(--ink);font:600 14px/30px var(--mono);text-align:center}
+.tips b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+
+footer{padding:40px 0 64px;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
+footer p{margin:0;max-width:70ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Il PC dentro</a>
+    <nav aria-label="Sezioni">
+      <a href="#anatomia">Anatomia</a>
+      <a href="#pezzi">Componenti</a>
+      <a href="#memoria">Memoria</a>
+      <a href="#simulatore">Simulatore</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#acquisto">Acquisto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap hero">
+    <p class="kicker">Educazione informatica · Hardware</p>
+    <h1>Cosa c’è dentro un computer, e a cosa serve ogni pezzo</h1>
+    <p class="lead">Un computer è un insieme di parti che lavorano insieme. Capire il compito di ciascuna aiuta a scegliere, a risolvere i problemi e a non spendere soldi dove non servono.</p>
+  </div>
+
+  <section id="anatomia" aria-labelledby="h-an">
+    <div class="wrap">
+      <h2 id="h-an">Anatomia di un PC</h2>
+      <p class="intro">Ecco come sono collegati i componenti principali. <strong>Passa sopra o tocca un pezzo</strong> per vedere a cosa serve.</p>
+
+      <div class="anatomy">
+        <svg viewBox="0 0 880 470" role="img" aria-labelledby="svg-t svg-d">
+          <title id="svg-t">Schema dei componenti di un PC</title>
+          <desc id="svg-d">Il processore è collegato alla memoria RAM, alla scheda grafica tramite il bus PCIe, all’archiviazione SSD tramite il chipset, e l’alimentatore fornisce energia alla scheda madre.</desc>
+
+          <!-- scheda madre: contenitore -->
+          <g class="part" data-k="mb" tabindex="0" role="button" aria-label="Scheda madre">
+            <rect x="20" y="24" width="840" height="306" rx="16" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="8 6"/>
+            <text x="40" y="52" class="sm">SCHEDA MADRE</text>
+          </g>
+
+          <!-- collegamenti -->
+          <path class="link" d="M210 146 H300"/>
+          <path class="link" d="M440 120 H520 V90 H640"/>
+          <path class="link" d="M440 170 H520 V230 H640"/>
+          <path class="link" d="M440 380 V330" stroke-dasharray="4 5"/>
+
+          <!-- RAM -->
+          <g class="part" data-k="ram" tabindex="0" role="button" aria-label="Memoria RAM">
+            <rect x="50" y="116" width="160" height="60" rx="10" fill="var(--card)" stroke="var(--ram)" stroke-width="2"/>
+            <text x="130" y="142" text-anchor="middle" class="hd">Memoria RAM</text>
+            <text x="130" y="162" text-anchor="middle" class="sm">veloce, temporanea</text>
+          </g>
+
+          <!-- CPU -->
+          <g class="part" data-k="cpu" tabindex="0" role="button" aria-label="Processore (CPU)">
+            <rect x="300" y="100" width="140" height="92" rx="12" fill="var(--cpu)" stroke="var(--cpu)" stroke-width="1.5"/>
+            <text x="370" y="138" text-anchor="middle" class="hd" style="fill:#fff">Processore</text>
+            <text x="370" y="160" text-anchor="middle" class="sm" style="fill:#fff;opacity:.9">CPU</text>
+          </g>
+
+          <!-- GPU -->
+          <g class="part" data-k="gpu" tabindex="0" role="button" aria-label="Scheda grafica">
+            <rect x="640" y="60" width="200" height="60" rx="10" fill="var(--card)" stroke="var(--gpu)" stroke-width="2"/>
+            <text x="740" y="86" text-anchor="middle" class="hd">Scheda grafica</text>
+            <text x="740" y="106" text-anchor="middle" class="sm">GPU · slot PCIe</text>
+          </g>
+
+          <!-- SSD -->
+          <g class="part" data-k="disk" tabindex="0" role="button" aria-label="Archiviazione SSD">
+            <rect x="640" y="200" width="200" height="60" rx="10" fill="var(--card)" stroke="var(--disk)" stroke-width="2"/>
+            <text x="740" y="226" text-anchor="middle" class="hd">SSD / disco</text>
+            <text x="740" y="246" text-anchor="middle" class="sm">dati che restano</text>
+          </g>
+
+          <!-- alimentatore -->
+          <g class="part" data-k="psu" tabindex="0" role="button" aria-label="Alimentatore">
+            <rect x="300" y="382" width="280" height="60" rx="10" fill="var(--card)" stroke="var(--psu)" stroke-width="2"/>
+            <text x="440" y="408" text-anchor="middle" class="hd">Alimentatore</text>
+            <text x="440" y="428" text-anchor="middle" class="sm">trasforma la corrente di casa</text>
+          </g>
+
+          <!-- dati in movimento: ogni punto parte dall'origine del proprio gruppo -->
+          <g transform="translate(210 146)"><circle class="flowdot" r="5"><animateMotion dur="2.2s" repeatCount="indefinite" path="M0 0 H90"/></circle></g>
+          <g transform="translate(440 120)"><circle class="flowdot" r="5"><animateMotion dur="3s" repeatCount="indefinite" path="M0 0 H80 V-30 H200"/></circle></g>
+          <g transform="translate(440 170)"><circle class="flowdot" r="5"><animateMotion dur="3.4s" begin="1s" repeatCount="indefinite" path="M0 0 H80 V60 H200"/></circle></g>
+          <g transform="translate(440 380)"><circle class="flowdot" r="4"><animateMotion dur="2s" repeatCount="indefinite" path="M0 0 V-50"/></circle></g>
+        </svg>
+      </div>
+
+      <div class="legend" aria-hidden="true">
+        <span style="--c:var(--cpu)">Calcolo</span>
+        <span style="--c:var(--ram)">Memoria</span>
+        <span style="--c:var(--disk)">Archiviazione</span>
+        <span style="--c:var(--gpu)">Grafica</span>
+        <span style="--c:var(--psu)">Energia</span>
+      </div>
+      <div class="detail" id="detail" aria-live="polite" style="--c:var(--cpu)"><b>Il processore</b>Esegue le istruzioni dei programmi. Quasi tutto passa da lui, e per questo è il componente più citato nelle schede tecniche.</div>
+    </div>
+  </section>
+
+  <section id="pezzi" aria-labelledby="h-pz">
+    <div class="wrap">
+      <h2 id="h-pz">I componenti, uno per uno</h2>
+      <p class="intro">Ogni scheda dice il compito del pezzo e la cosa da guardare quando lo scegli. I numeri nelle schede tecniche contano meno di quanto sembra: conta l’equilibrio fra le parti.</p>
+      <div class="cards">
+        <article class="card" style="--c:var(--cpu)">
+          <h3>Processore (CPU)</h3>
+          <p>Il «cervello» che esegue calcoli e coordina il resto.</p>
+          <ul>
+            <li><b>Core</b>: quante attività può fare in parallelo.</li>
+            <li><b>Frequenza (GHz)</b>: quante operazioni al secondo, a parità di architettura.</li>
+            <li><b>Cache</b>: piccola memoria velocissima dentro il chip.</li>
+          </ul>
+        </article>
+        <article class="card" style="--c:var(--ram)">
+          <h3>Memoria RAM</h3>
+          <p>Lo spazio di lavoro: tiene aperti i programmi e i dati che stai usando.</p>
+          <ul>
+            <li><b>Capacità</b>: 16 GB sono comodi per l’uso quotidiano.</li>
+            <li><b>Tipo</b>: DDR4 o DDR5, non sono compatibili fra loro.</li>
+            <li><b>Volatile</b>: si svuota quando il PC si spegne.</li>
+          </ul>
+        </article>
+        <article class="card" style="--c:var(--disk)">
+          <h3>Archiviazione</h3>
+          <p>Dove restano file, programmi e sistema operativo anche da spenti.</p>
+          <ul>
+            <li><b>HDD</b>: meccanico, economico per grandi capacità, più lento.</li>
+            <li><b>SSD SATA</b>: a stato solido, molto più rapido dell’HDD.</li>
+            <li><b>NVMe M.2</b>: il più rapido, va inserito direttamente sulla scheda madre.</li>
+          </ul>
+        </article>
+        <article class="card" style="--c:var(--gpu)">
+          <h3>Scheda grafica (GPU)</h3>
+          <p>Calcola immagini e video, ma anche l’IA e i giochi.</p>
+          <ul>
+            <li><b>Integrata</b>: nel processore, basta per ufficio e web.</li>
+            <li><b>Dedicata</b>: scheda separata con una sua memoria (VRAM).</li>
+          </ul>
+        </article>
+        <article class="card" style="--c:var(--line)">
+          <h3>Scheda madre</h3>
+          <p>La base su cui è montato tutto: stabilisce cosa puoi installare.</p>
+          <ul>
+            <li><b>Socket</b>: deve corrispondere al processore.</li>
+            <li><b>Formato</b>: ATX, micro-ATX, mini-ITX, per il case.</li>
+            <li><b>Slot</b>: quante RAM, quante schede e quanti SSD M.2.</li>
+          </ul>
+        </article>
+        <article class="card" style="--c:var(--psu)">
+          <h3>Alimentatore</h3>
+          <p>Converte la corrente della presa in tensioni stabili per i componenti.</p>
+          <ul>
+            <li><b>Potenza (W)</b>: deve superare il consumo totale con margine.</li>
+            <li><b>Certificazione 80 Plus</b>: più è alta, meno energia si spreca.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="memoria" aria-labelledby="h-mem">
+    <div class="wrap">
+      <h2 id="h-mem">RAM contro disco: perché sono diversi</h2>
+      <p class="intro">Il punto che confonde di più: la memoria e l’archiviazione sembrano tutte «spazio». In realtà fanno lavori opposti.</p>
+      <div class="compare">
+        <div class="col" style="border-top:4px solid var(--ram)">
+          <span class="tag">RAM</span>
+          <h3>Il banco di lavoro</h3>
+          <p>Veloce, ma si svuota a ogni spegnimento. Più RAM significa più programmi aperti senza rallentare. Quando finisce, il PC usa il disco come «memoria di emergenza»: è il motivo per cui un PC pieno di schede aperte sembra bloccarsi.</p>
+        </div>
+        <div class="col" style="border-top:4px solid var(--disk)">
+          <span class="tag">SSD / disco</span>
+          <h3>L’archivio</h3>
+          <p>Lento in confronto alla RAM, ma conserva tutto anche da spento. Più spazio significa più foto, film e programmi, non più velocità di lavoro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="simulatore" aria-labelledby="h-sim">
+    <div class="wrap">
+      <h2 id="h-sim">Simulatore: cosa succede quando apri un file</h2>
+      <p class="intro">Premi «Avanti» per seguire il percorso di un documento dal disco allo schermo.</p>
+      <div class="sim">
+        <div class="stage" id="stage">
+          <div class="st" style="--c:var(--disk)" data-i="0"><b>1 · Disco</b>il file è salvato qui</div>
+          <div class="st" style="--c:var(--ram)" data-i="1"><b>2 · RAM</b>viene copiato in memoria</div>
+          <div class="st" style="--c:var(--cpu)" data-i="2"><b>3 · Processore</b>elabora il contenuto</div>
+          <div class="st" style="--c:var(--gpu)" data-i="3"><b>4 · Schermo</b>la scheda grafica lo disegna</div>
+        </div>
+        <p id="msg" aria-live="polite">Pronto. Il file è sul disco, fermo e al sicuro.</p>
+        <div class="btns">
+          <button class="btn primary" id="next" type="button">Avanti</button>
+          <button class="btn" id="reset" type="button">Ricomincia</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" aria-labelledby="h-q">
+    <div class="wrap">
+      <h2 id="h-q">Mettiti alla prova</h2>
+      <p class="intro">Cinque domande. Scegli una risposta: ricevi subito il feedback.</p>
+      <form class="quiz" id="quizform" onsubmit="return false">
+        <fieldset class="q" style="border:1px solid var(--line)">
+          <legend style="padding:0 6px;font-weight:600">Quale componente si svuota quando spegni il PC?</legend>
+          <label><input type="radio" name="q1" value="a"> Il disco SSD</label>
+          <label><input type="radio" name="q1" value="b"> La memoria RAM</label>
+          <label><input type="radio" name="q1" value="c"> La scheda madre</label>
+          <p class="fb" data-fb="q1"></p>
+        </fieldset>
+        <fieldset class="q" style="border:1px solid var(--line)">
+          <legend style="padding:0 6px;font-weight:600">Per un PC da ufficio e navigazione web, quale scheda grafica serve di solito?</legend>
+          <label><input type="radio" name="q2" value="a"> Una scheda dedicata di fascia alta</label>
+          <label><input type="radio" name="q2" value="b"> La grafica integrata nel processore</label>
+          <label><input type="radio" name="q2" value="c"> Due schede dedicate in parallelo</label>
+          <p class="fb" data-fb="q2"></p>
+        </fieldset>
+        <fieldset class="q" style="border:1px solid var(--line)">
+          <legend style="padding:0 6px;font-weight:600">Quale tipo di archiviazione è di solito il più veloce?</legend>
+          <label><input type="radio" name="q3" value="a"> HDD meccanico</label>
+          <label><input type="radio" name="q3" value="b"> SSD SATA</label>
+          <label><input type="radio" name="q3" value="c"> NVMe M.2</label>
+          <p class="fb" data-fb="q3"></p>
+        </fieldset>
+        <fieldset class="q" style="border:1px solid var(--line)">
+          <legend style="padding:0 6px;font-weight:600">Un processore Intel di una generazione non compatibile con la scheda madre…</legend>
+          <label><input type="radio" name="q4" value="a"> …funziona comunque, basta un adattatore</label>
+          <label><input type="radio" name="q4" value="b"> …non si può montare, perché il socket non corrisponde</label>
+          <label><input type="radio" name="q4" value="c"> …si monta, ma va più lento</label>
+          <p class="fb" data-fb="q4"></p>
+        </fieldset>
+        <fieldset class="q" style="border:1px solid var(--line)">
+          <legend style="padding:0 6px;font-weight:600">Cosa indica la certificazione 80 Plus su un alimentatore?</legend>
+          <label><input type="radio" name="q5" value="a"> La garanzia estesa a cinque anni</label>
+          <label><input type="radio" name="q5" value="b"> Un’efficienza elettrica più alta, con meno energia sprecata in calore</label>
+          <label><input type="radio" name="q5" value="c"> La potenza massima in watt</label>
+          <p class="fb" data-fb="q5"></p>
+        </fieldset>
+        <div class="btns" style="margin-top:6px">
+          <button class="btn primary" id="check" type="button">Correggi</button>
+          <button class="btn" id="redo" type="button">Rifai il quiz</button>
+        </div>
+        <p class="score" id="score" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="acquisto" aria-labelledby="h-acq">
+    <div class="wrap">
+      <h2 id="h-acq">Scegliere o aggiornare: sette consigli</h2>
+      <p class="intro">Prima di comprare, chiediti a cosa serve il PC. Il resto viene dopo.</p>
+      <ol class="tips">
+        <li><b>Parti dall’uso</b>Ufficio, scuola, video, giochi o programmazione chiedono pezzi molto diversi.</li>
+        <li><b>Non sbilanciarti</b>Un processore potentissimo con 8 GB di RAM rallenta più di quanto sembri.</li>
+        <li><b>Prendi un SSD</b>È il miglioramento più sentito: un vecchio PC con SSD sembra nuovo.</li>
+        <li><b>Controlla la compatibilità</b>Socket, tipo di RAM e formato del case devono combaciare.</li>
+        <li><b>Lascia margine all’alimentatore</b>Usa circa il 60–70% della sua potenza al carico massimo.</li>
+        <li><b>Pensa al raffreddamento</b>Un PC che scalda si rallenta da solo per proteggersi.</li>
+        <li><b>Fai i backup</b>L’hardware si guasta: un backup vale più di qualsiasi componente.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Contenuto divulgativo, pensato per chi si avvicina all’informatica. Le specifiche dei prodotti cambiano in fretta: per un acquisto, verifica sempre la scheda tecnica aggiornata.</p>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const info={
+    cpu:['Il processore','Esegue le istruzioni dei programmi. Quasi tutto passa da lui, per questo è il componente più citato nelle schede tecniche.','var(--cpu)'],
+    ram:['Memoria RAM','Lo spazio di lavoro veloce: tiene i dati dei programmi aperti. Si svuota quando spegni il PC.','var(--ram)'],
+    gpu:['Scheda grafica','Disegna immagini e video sullo schermo, e accelera giochi e intelligenza artificiale.','var(--gpu)'],
+    disk:['Archiviazione','Conserva file, programmi e sistema operativo anche da spento. È più lenta della RAM, ma non perde nulla.','var(--disk)'],
+    mb:['Scheda madre','È la base su cui si collega tutto. Decide quali componenti puoi montare insieme.','var(--line)'],
+    psu:['Alimentatore','Trasforma la corrente della presa in tensioni stabili per tutti i componenti.','var(--psu)']
+  };
+  const detail=document.getElementById('detail');
+  const parts=document.querySelectorAll('.anatomy g.part');
+  const show=(k)=>{
+    const [t,d,c]=info[k];
+    detail.style.setProperty('--c',c);
+    detail.innerHTML='<b>'+t+'</b>'+d;
+    parts.forEach(p=>{p.classList.toggle('on',p.dataset.k===k);p.classList.toggle('dim',p.dataset.k!==k)});
+  };
+  parts.forEach(p=>{
+    p.addEventListener('mouseenter',()=>show(p.dataset.k));
+    p.addEventListener('click',()=>show(p.dataset.k));
+    p.addEventListener('focus',()=>show(p.dataset.k));
+    p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(p.dataset.k)}});
+  });
+
+  // simulatore
+  const steps=[
+    ['Il file è sul disco, fermo e al sicuro.'],
+    ['Il sistema copia il file dal disco nella RAM: adesso è pronto per essere usato.'],
+    ['Il processore legge il contenuto ed esegue le istruzioni necessarie.'],
+    ['La scheda grafica disegna il risultato sullo schermo. Ecco il documento!']
+  ];
+  const sts=[...document.querySelectorAll('#stage .st')];
+  const msg=document.getElementById('msg'),next=document.getElementById('next');
+  let i=-1;
+  const render=()=>{
+    sts.forEach((s,k)=>{s.classList.toggle('active',k===i);s.classList.toggle('done',k<i)});
+    msg.textContent=steps[i<0?0:i][0];
+    next.textContent=i>=steps.length-1?'Fine':'Avanti';
+    next.disabled=i>=steps.length-1;
+  };
+  next.addEventListener('click',()=>{ if(i<steps.length-1){i++;render()} });
+  document.getElementById('reset').addEventListener('click',()=>{i=-1;render();msg.textContent=steps[0][0];sts.forEach(s=>s.classList.remove('active','done'));next.disabled=false;next.textContent='Avanti'});
+  render();
+  sts.forEach(s=>s.classList.remove('active'));
+
+  // quiz
+  const answers={q1:'b',q2:'b',q3:'c',q4:'b',q5:'b'};
+  const texts={
+    q1:'La RAM è volatile: i dati dei programmi aperti spariscono allo spegnimento.',
+    q2:'Per uso quotidiano basta la grafica integrata nel processore.',
+    q3:'Il NVMe M.2 è il più rapido dei tre, perché si collega direttamente con il bus PCIe.',
+    q4:'Il socket del processore deve corrispondere a quello della scheda madre.',
+    q5:'80 Plus misura l’efficienza: meno energia sprecata in calore.'
+  };
+  const check=()=>{
+    let ok=0;
+    Object.keys(answers).forEach(q=>{
+      const sel=document.querySelector(`input[name="${q}"]:checked`);
+      const fb=document.querySelector(`[data-fb="${q}"]`);
+      if(!sel){fb.textContent='Nessuna risposta selezionata.';fb.className='fb';return}
+      const right=sel.value===answers[q];
+      if(right)ok++;
+      fb.textContent=(right?'Esatto. ':'Non proprio. ')+texts[q];
+      fb.className='fb '+(right?'ok':'ko');
+    });
+    document.getElementById('score').textContent='Punteggio: '+ok+' / '+Object.keys(answers).length;
+  };
+  document.getElementById('check').addEventListener('click',check);
+  document.getElementById('redo').addEventListener('click',()=>{
+    document.getElementById('quizform').reset();
+    document.querySelectorAll('[data-fb]').forEach(f=>{f.textContent='';f.className='fb'});
+    document.getElementById('score').textContent='';
+  });
+
+  // evidenziazione della sezione nel menu
+  const links=[...document.querySelectorAll('.top nav a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)links.forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id));
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+})();
+</script>
+</body>
+</html>

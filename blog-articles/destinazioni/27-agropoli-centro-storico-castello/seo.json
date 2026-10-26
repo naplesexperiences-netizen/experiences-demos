@@ -1,0 +1,59 @@
+{
+  "slug": "agropoli-centro-storico-castello",
+  "post_title": "Agropoli: il centro storico, il castello e il mare della porta del Cilento",
+  "seo_title": "Agropoli",
+  "meta_description": "Cosa vedere ad Agropoli: gli scaloni, il castello angioino-aragonese, Santa Maria di Costantinopoli e le spiagge in centro.",
+  "focus_keyword": "cosa vedere ad agropoli",
+  "secondary_keywords": [
+    "agropoli",
+    "castello",
+    "centro storico",
+    "cilento",
+    "spiagge"
+  ],
+  "og_title": "Agropoli: il centro storico, il castello e il mare della porta del Cilento",
+  "og_description": "Cosa vedere ad Agropoli: gli scaloni, il castello angioino-aragonese, Santa Maria di Costantinopoli e le spiagge in centro.",
+  "category": "Destinazioni",
+  "tags": [
+    "agropoli",
+    "castello",
+    "centro storico",
+    "cilento",
+    "spiagge"
+  ],
+  "struttura": "Hotel Mare",
+  "citta": "Agropoli",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-mare-experiences-standard/",
+  "sito_struttura": "https://www.hotel-mare.com",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Il promontorio di Agropoli con il borgo antico a picco sul mare",
+    "credit": "Agropoli, promontorio di Mujaidin, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=2732018"
+  },
+  "word_count": 607,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Agropoli: il centro storico, il castello e il mare della porta del Cilento",
+    "description": "Cosa vedere ad Agropoli: gli scaloni, il castello angioino-aragonese, Santa Maria di Costantinopoli e le spiagge in centro.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/27-agropoli-centro-storico-castello/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Agropoli"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/agropoli-centro-storico-castello/"
+  }
+}

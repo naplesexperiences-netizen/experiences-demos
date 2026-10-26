@@ -1,0 +1,59 @@
+{
+  "slug": "sapri-spigolatrice-pisacane-storia",
+  "post_title": "Sapri e la Spigolatrice: la storia di Pisacane e la città sul Golfo di Policastro",
+  "seo_title": "Sapri e la Spigolatrice",
+  "meta_description": "Perché visitare Sapri: la spedizione di Pisacane, la Spigolatrice di Mercantini, il lungomare e i dintorni del Golfo di Policastro.",
+  "focus_keyword": "sapri cosa vedere",
+  "secondary_keywords": [
+    "sapri",
+    "pisacane",
+    "spigolatrice",
+    "golfo di policastro",
+    "storia"
+  ],
+  "og_title": "Sapri e la Spigolatrice: la storia di Pisacane e la città sul Golfo di Policastro",
+  "og_description": "Perché visitare Sapri: la spedizione di Pisacane, la Spigolatrice di Mercantini, il lungomare e i dintorni del Golfo di Policastro.",
+  "category": "Destinazioni",
+  "tags": [
+    "sapri",
+    "pisacane",
+    "spigolatrice",
+    "golfo di policastro",
+    "storia"
+  ],
+  "struttura": "Hotel Pisacane",
+  "citta": "Sapri",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-pisacane-experiences-standard/",
+  "sito_struttura": "https://www.hotelpisacane.it",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Lo scoglio dello Scialandro e la statua della Spigolatrice a Sapri",
+    "credit": "View from Scialandro cliff-rock and 'Spigolatrice di Sapri' statue di Riccardo Pesce, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=11214574"
+  },
+  "word_count": 553,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Sapri e la Spigolatrice: la storia di Pisacane e la città sul Golfo di Policastro",
+    "description": "Perché visitare Sapri: la spedizione di Pisacane, la Spigolatrice di Mercantini, il lungomare e i dintorni del Golfo di Policastro.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/55-sapri-spigolatrice-pisacane-storia/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Sapri"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/sapri-spigolatrice-pisacane-storia/"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "agropoli-cilento-a-tavola-cucina",
+  "post_title": "Il Cilento a tavola partendo da Agropoli: cosa mangiare e dove trovarlo",
+  "seo_title": "Il Cilento a tavola partendo da Agropoli",
+  "meta_description": "Cosa mangiare nel Cilento partendo da Agropoli: mozzarella, fico bianco, alici di menaica, cacioricotta e i presidi Slow Food.",
+  "focus_keyword": "cucina cilentana",
+  "secondary_keywords": [
+    "agropoli",
+    "slow food",
+    "dieta mediterranea",
+    "fico bianco"
+  ],
+  "og_title": "Il Cilento a tavola partendo da Agropoli: cosa mangiare e dove trovarlo",
+  "og_description": "Cosa mangiare nel Cilento partendo da Agropoli: mozzarella, fico bianco, alici di menaica, cacioricotta e i presidi Slow Food.",
+  "category": "Destinazioni",
+  "tags": [
+    "agropoli",
+    "cucina cilentana",
+    "slow food",
+    "dieta mediterranea",
+    "fico bianco"
+  ],
+  "struttura": "Hotel Ristorante Il Ceppo",
+  "citta": "Agropoli",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-ristorante-il-ceppo-experiences-standard/",
+  "sito_struttura": "https://www.hotelristoranteilceppo.com",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Formaggi a pasta filata appesi a stagionare in un caseificio campano",
+    "credit": "Caseificio Mozzarella di Bufala Campana DOP en Métropole de Naples (2) di Pierre André Leclercq, CC BY-SA 4.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=128526043"
+  },
+  "word_count": 618,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Il Cilento a tavola partendo da Agropoli: cosa mangiare e dove trovarlo",
+    "description": "Cosa mangiare nel Cilento partendo da Agropoli: mozzarella, fico bianco, alici di menaica, cacioricotta e i presidi Slow Food.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/28-agropoli-cilento-a-tavola-cucina/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Agropoli"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/agropoli-cilento-a-tavola-cucina/"
+  }
+}
