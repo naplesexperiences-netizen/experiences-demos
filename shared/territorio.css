@@ -1,6 +1,7 @@
 /* Sezione «Il territorio» e pagina «Guida» delle demo standard.
    Generate da demos/scripts/enrich-territorio.py a partire dagli articoli
-   in blog-articles/destinazioni/. Usa le variabili CSS della demo. */
+   in blog-articles/destinazioni/ del repo experiences-website. Usa le variabili
+   CSS della demo. */
 
 .territorio { background: var(--bg-soft); }
 .terr-grid {
