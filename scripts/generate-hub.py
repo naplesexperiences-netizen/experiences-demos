@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """Generates the root index.html hub listing every demo under demos/.
 
+ATTENZIONE (26 ottobre 2026): la radice NON e' piu' questo elenco. index.html
+alla radice e' una pagina che rimanda a vetrina/, la selezione ragionata; il
+vecchio indice elencava 77 demo con il nome del cliente, compreso un invito di
+nozze, e in una pagina pubblica non ci doveva stare.
+
+Lo script resta perche' l'hub verra' rifatto: la logica per leggere i meta
+demo:* e costruire le schede e' questa. Ma lanciarlo cosi' com'e' SOVRASCRIVE
+la pagina di rimando. Prima di rifare l'hub, cambia OUTPUT qui sotto e decidi
+dove deve vivere il nuovo elenco.
+
 Each demo can declare metadata via meta tags in its index.html:
     <meta name="demo:tags" content="hotel,sorrento,luxury">
     <meta name="demo:category" content="hotel">
