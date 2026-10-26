@@ -184,6 +184,34 @@ dello `<script>` dell'SDK.
 Il controllo "SDK reale" in `test/smoke.mjs` carica il bundle vero e fallisce
 se lo shim viene rimosso o spostato dopo l'SDK.
 
+## Leggere le conversazioni dei visitatori
+
+`tools/transcripts.py` scarica le trascrizioni delle sessioni concluse e le
+mette in un file leggibile. Serve a capire cosa chiede davvero la gente, per
+poi correggere il contesto nella dashboard: l'avatar non impara da solo.
+
+```bash
+export LIVEAVATAR_API_KEY="la-tua-chiave"
+python3 tools/transcripts.py --giorni 30
+```
+
+Solo libreria standard: non serve installare niente. Produce in
+`trascrizioni/`:
+
+| File | Contenuto |
+|---|---|
+| `trascrizioni.md` | conversazioni leggibili + elenco di tutte le domande poste |
+| `sessioni/*.json` | copia grezza per sessione, riusata per non riscaricare |
+
+Opzioni: `--giorni N`, `--max N`, `--contesto <id>`, `--embed <id>`,
+`--avatar <id>`, `--con-sandbox` (di default le prove in sandbox sono escluse).
+
+La sezione finale del report — **Tutte le domande dei visitatori** — e' quella
+da leggere per prima: una domanda che ricorre e a cui l'avatar risponde male
+e' una riga da aggiungere al prompt o una URL da mettere fra i riferimenti.
+
+Lo script legge soltanto: non modifica nulla su LiveAvatar.
+
 ## Note operative
 
 - **La sessione costa mentre è aperta**, anche in silenzio. `MAX_SESSION_SECONDS`
