@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Arricchisce una demo standard con le informazioni sul territorio prese
-dall'articolo destinazioni della struttura (blog-articles/destinazioni/).
+dall'articolo destinazioni della struttura (<blog>/destinazioni/, nel repo experiences-website).
 
 Nella demo:
   * aggiunge la sezione «Il territorio» dopo i servizi (lead, attrazioni,
@@ -55,7 +55,7 @@ def article_for(demo):
     for i, e in enumerate(DEST.ARTICLES, 1):
         if e[2] == demo:
             return i, e
-    sys.exit(f"{demo}: nessun articolo in blog-articles/destinazioni")
+    sys.exit(f"{demo}: nessun articolo in {DEST.OUT}")
 
 
 def parse(body):
