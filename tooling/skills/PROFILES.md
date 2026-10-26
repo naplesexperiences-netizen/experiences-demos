@@ -66,9 +66,9 @@ La generazione asset via kie.ai è **opzionale e a pagamento**: `kie.mjs` risale
 cartelle sopra il cwd cercando un `.env` da cui leggere `KIE_AI_API_KEY`, e carica le
 immagini locali su `kieai.redpandaai.co`. Non serve per usare l'engine.
 
-### 5. `theme-factory` vs `experiences-theme/`
-`theme-factory` genera palette/font per artifact una tantum. Il tema dei clienti vive in
-`experiences-theme/` (tema WordPress in PHP). Non applicare `theme-factory` alle demo
+### 5. `theme-factory` vs il tema WordPress
+`theme-factory` genera palette/font per artifact una tantum. Il tema dei clienti vive nel
+repo `experiences-website` (tema WordPress in PHP). Non applicare `theme-factory` alle demo
 che devono restare coerenti col tema: serve per prototipi e presentazioni.
 
 ### 6. Grafici
