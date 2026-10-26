@@ -1,0 +1,58 @@
+{
+  "slug": "san-marco-di-castellabate-porto-borgo",
+  "post_title": "San Marco di Castellabate: il porto antico, le calette e il Cilento a misura di passo",
+  "seo_title": "San Marco di Castellabate",
+  "meta_description": "Perché visitare San Marco di Castellabate: il porto, le calette, il borgo di Castellabate, Punta Licosa e Agropoli a pochi minuti.",
+  "focus_keyword": "san marco di castellabate",
+  "secondary_keywords": [
+    "castellabate",
+    "porto",
+    "cilento",
+    "punta licosa"
+  ],
+  "og_title": "San Marco di Castellabate: il porto antico, le calette e il Cilento a misura di passo",
+  "og_description": "Perché visitare San Marco di Castellabate: il porto, le calette, il borgo di Castellabate, Punta Licosa e Agropoli a pochi minuti.",
+  "category": "Destinazioni",
+  "tags": [
+    "san marco di castellabate",
+    "castellabate",
+    "porto",
+    "cilento",
+    "punta licosa"
+  ],
+  "struttura": "New Hotel Sonia",
+  "citta": "San Marco di Castellabate",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/new-hotel-sonia-experiences-standard/",
+  "sito_struttura": "http://www.hotelsonia.it",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "La costa di Castellabate e il mare del Cilento",
+    "credit": "CilCastellabate08 di Ziegler175, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=60783558"
+  },
+  "word_count": 601,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "San Marco di Castellabate: il porto antico, le calette e il Cilento a misura di passo",
+    "description": "Perché visitare San Marco di Castellabate: il porto, le calette, il borgo di Castellabate, Punta Licosa e Agropoli a pochi minuti.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/34-san-marco-di-castellabate-porto-borgo/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "San Marco di Castellabate"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/san-marco-di-castellabate-porto-borgo/"
+  }
+}

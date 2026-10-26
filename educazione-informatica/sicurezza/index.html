@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Linea Rossa</title>
+<meta name="description" content="Guida divulgativa agli attacchi informatici (tradizionali, con IA, con gadget come il Flipper Zero), alla sorveglianza (Snowden, Alexa, occhiali Meta) e a come difendersi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: colonna editoriale con margine sinistro numerato; foto a tutta colonna; ritagli di giornale su carta chiara anche al buio. */
+:root{
+  color-scheme:dark;
+  --bg:#0c0e0d; --bg2:#141816; --line:#262c29; --ink:#ece9e1; --mute:#9aa39e;
+  --alert:#ff5a36; --warn:#ffb020; --safe:#5be3a1; --ai:#8fb4ff; --spy:#d98cff;
+  --paper:#efe9da; --paper-ink:#1d1b17; --paper-mute:#5f584a;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){color-scheme:light;--bg:#f4f2ec;--bg2:#e9e6dd;--line:#d3cfc3;--ink:#16191a;--mute:#555d59;--alert:#c4361a;--warn:#946000;--safe:#0b7a4b;--ai:#2c53b8;--spy:#8a35b5;--paper:#fffdf6;--paper-ink:#1d1b17;--paper-mute:#5f584a}
+}
+:root[data-theme="light"]{color-scheme:light;--bg:#f4f2ec;--bg2:#e9e6dd;--line:#d3cfc3;--ink:#16191a;--mute:#555d59;--alert:#c4361a;--warn:#946000;--safe:#0b7a4b;--ai:#2c53b8;--spy:#8a35b5;--paper:#fffdf6;--paper-ink:#1d1b17;--paper-mute:#5f584a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--warn);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--warn);color:#000;padding:8px 12px;z-index:99}
+
+/* barra di avanzamento lettura */
+#progress{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--alert);transform-origin:0 50%;transform:scaleX(0);z-index:30}
+
+/* nav */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.logo{font:600 14px var(--mono);letter-spacing:.08em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
+.logo i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--alert);margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+nav{min-width:0}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none}
+nav a{display:block;padding:8px 10px;font:12.5px var(--mono);text-decoration:none;color:var(--mute);border-radius:6px;white-space:nowrap}
+nav a:hover,nav a[aria-current]{color:var(--ink);background:var(--bg2)}
+
+/* ticker */
+.ticker{border-bottom:1px solid var(--line);overflow:hidden;font:12.5px var(--mono);color:var(--mute);background:var(--bg2)}
+.ticker .track{display:flex;width:max-content;animation:tick 70s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+.ticker span{padding:9px 28px;white-space:nowrap}
+.ticker b{color:var(--alert);font-weight:600;margin-right:8px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* hero */
+.hero{position:relative;padding:clamp(64px,10vw,130px) 0 64px;border-bottom:1px solid var(--line);overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 55%);mask-image:linear-gradient(90deg,transparent 0,#000 55%);pointer-events:none}
+.hero .wrap{position:relative}
+.eyebrow{font:12.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--alert)}
+h1{font:400 clamp(44px,8.5vw,108px)/.98 var(--serif);letter-spacing:-.025em;margin:20px 0 28px;max-width:14ch;text-wrap:balance}
+h1 em{color:var(--alert);font-style:italic}
+.lead{font-size:clamp(18px,2vw,21px);max-width:60ch;color:var(--mute)}
+.lead strong{color:var(--ink);font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.stats div{background:var(--bg);padding:22px}
+.stats b{display:block;font:400 44px/1 var(--serif);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.stats span{font-size:14px;color:var(--mute)}
+.note{font:12px/1.5 var(--mono);color:var(--mute);margin-top:12px}
+
+/* sezioni */
+section.s{padding:clamp(64px,9vw,120px) 0;border-bottom:1px solid var(--line)}
+.sh{display:grid;grid-template-columns:150px 1fr;gap:24px;margin-bottom:48px}
+.sh .n{font:12.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding-top:14px;color:var(--c,var(--alert))}
+h2{font:400 clamp(34px,5vw,60px)/1.05 var(--serif);letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.sh p{margin:0;max-width:62ch;color:var(--mute)}
+.sh p strong{color:var(--ink);font-weight:500}
+@media(max-width:700px){.sh{grid-template-columns:1fr;gap:4px}.sh .n{padding:0}}
+#ia{--c:var(--ai)} #gadget{--c:var(--warn)} #sorveglianza{--c:var(--spy)} #stampa{--c:var(--ink)} #difesa{--c:var(--safe)}
+h3.sub{font:400 clamp(26px,3.4vw,38px)/1.1 var(--serif);margin:0 0 12px;text-wrap:balance}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s;min-width:0}
+.card:hover{border-color:var(--c,var(--alert));transform:translateY(-2px)}
+.card h3{font:400 24px/1.2 var(--serif);margin:0}
+.card p{margin:0;font-size:15.5px;color:var(--mute)}
+.tag{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--alert))}
+.card dl{margin:auto 0 0;padding-top:12px;border-top:1px dashed var(--line);font-size:14px}
+.card dt{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-top:8px}
+.card dd{margin:2px 0 0}
+.sev{display:flex;gap:4px;align-items:center}
+.sev i{width:18px;height:4px;border-radius:2px;background:var(--line)}
+.sev i.on{background:var(--c,var(--alert))}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:12.5px var(--mono);background:none;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));counter-reset:st;margin:0 0 48px;padding:0;list-style:none;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.chain li{counter-increment:st;padding:20px;border-right:1px solid var(--line);font-size:14px;color:var(--mute);background:var(--bg2);position:relative}
+.chain li:last-child{border:0}
+.chain li::before{content:"0" counter(st);display:block;font:12px var(--mono);color:var(--alert);margin-bottom:8px}
+.chain li::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--alert);transform:scaleX(0);transform-origin:0 50%;animation:fillstep 10s infinite;animation-delay:calc(var(--i) * 2s)}
+@keyframes fillstep{0%{transform:scaleX(0)}15%,100%{transform:scaleX(1);opacity:0}0%,14%{opacity:1}}
+.chain b{display:block;color:var(--ink);font:400 20px var(--serif);margin-bottom:4px}
+
+/* foto */
+figure{margin:0}
+.photo{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}
+.photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25) contrast(1.05);transition:filter .4s,transform .8s}
+.photo:hover img{filter:none;transform:scale(1.02)}
+figcaption{font:11.5px/1.5 var(--mono);color:var(--mute);padding:10px 2px 0}
+figcaption a{color:var(--mute)}
+
+/* flipper */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+@media(max-width:800px){.split{grid-template-columns:1fr}}
+.feature{display:grid;grid-template-columns:5fr 6fr;gap:32px;align-items:center;margin-bottom:40px}
+.feature .photo{aspect-ratio:16/10}
+@media(max-width:800px){.feature{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:10px;padding:28px;background:var(--bg2);min-width:0}
+.panel h3{font:400 26px var(--serif);margin:0 0 12px}
+.panel ul,.panel ol{margin:0;padding-left:1.1em;color:var(--mute)}
+.panel li{margin:6px 0}
+.panel li b{color:var(--ink);font-weight:500}
+.panel.yes{border-top:3px solid var(--warn)} .panel.no{border-top:3px solid var(--safe)}
+.callout{border-left:3px solid var(--c,var(--warn));padding:4px 0 4px 20px;color:var(--mute);max-width:70ch;margin:40px 0 0}
+.callout b{color:var(--ink)}
+
+/* sorveglianza */
+.case{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);padding:56px 0;border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case.flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.case.flip .media{order:2}
+@media(max-width:860px){.case,.case.flip{grid-template-columns:1fr}.case.flip .media{order:0}}
+.media{display:grid;gap:12px;align-content:start}
+.media .photo{aspect-ratio:4/3}
+.media .photo.tall{aspect-ratio:4/5}
+.media .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.media .pair .photo{aspect-ratio:1}
+.kicker{font:11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--spy);margin-bottom:10px}
+.prose p{margin:0 0 16px;max-width:64ch;color:var(--mute)}
+.prose p strong{color:var(--ink);font-weight:500}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:24px 0}
+.facts div{background:var(--bg);padding:16px}
+.facts b{display:block;font:400 30px/1 var(--serif);color:var(--spy);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.facts span{font-size:13px;color:var(--mute)}
+.timeline{list-style:none;margin:24px 0 0;padding:0;border-left:1px solid var(--line)}
+.timeline li{position:relative;padding:0 0 18px 22px;color:var(--mute);font-size:15px}
+.timeline li::before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--spy)}
+.timeline time{display:block;font:12px var(--mono);color:var(--ink);letter-spacing:.04em}
+.truth{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+@media(max-width:560px){.truth{grid-template-columns:1fr}}
+.truth div{border:1px solid var(--line);border-radius:8px;padding:16px;font-size:14.5px;color:var(--mute)}
+.truth div b{display:block;font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.truth .myth b{color:var(--alert)} .truth .fact b{color:var(--safe)}
+/* onda audio e LED */
+.wave{display:flex;gap:3px;align-items:center;height:28px;margin:4px 0 16px}
+.wave i{width:3px;border-radius:2px;background:var(--spy);height:30%;animation:wave 1.1s ease-in-out infinite;animation-delay:calc(var(--d) * -0.09s)}
+@keyframes wave{50%{height:100%}}
+.led{display:inline-flex;align-items:center;gap:8px;font:12px var(--mono);color:var(--mute);margin-bottom:12px}
+.led::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--line),0 0 10px #fff;animation:pulse 1.6s infinite}
+
+/* flusso dati */
+.flow{margin:56px 0 0;border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:24px}
+.flow h3{font:400 26px var(--serif);margin:0 0 4px}
+.flow p{margin:0 0 16px;color:var(--mute);font-size:15px}
+.flow .scroll{overflow-x:auto}
+.flow svg{display:block;min-width:680px;width:100%;height:auto}
+.flow .lbl{font:600 13px var(--mono);fill:var(--ink)}
+.flow .sml{font:11px var(--mono);fill:var(--mute)}
+.flow .edge{stroke:var(--line);stroke-width:2;fill:none}
+.flow .node{fill:var(--bg);stroke:var(--spy);stroke-width:1.5}
+.flow .node.hot{stroke:var(--alert)}
+.flow .dot{fill:var(--spy)} .flow .dot.hot{fill:var(--alert)}
+
+/* rassegna stampa */
+.press{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:28px 22px;align-items:start}
+.clip{position:relative;background:var(--paper);color:var(--paper-ink);padding:22px 22px 20px;box-shadow:0 1px 0 rgba(0,0,0,.06),0 14px 30px -18px rgba(0,0,0,.6);transform:rotate(var(--r,0deg));transition:transform .3s;text-decoration:none;display:block;min-width:0;
+  background-image:linear-gradient(transparent 96%,rgba(0,0,0,.04) 96%);background-size:100% 1.55em}
+.clip:hover,.clip:focus-visible{transform:rotate(0) translateY(-4px)}
+.clip::before{content:"";position:absolute;top:-10px;left:50%;width:86px;height:22px;margin-left:-43px;background:color-mix(in srgb,var(--warn) 45%,transparent);transform:rotate(-3deg)}
+.clip .mast{display:flex;justify-content:space-between;gap:8px;font:600 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid var(--paper-ink);padding-bottom:6px;margin-bottom:12px;color:var(--paper-ink)}
+.clip .mast time{font-weight:400;color:var(--paper-mute)}
+.clip h3{font:600 22px/1.15 var(--serif);margin:0 0 10px;text-wrap:balance}
+.clip p{font:15px/1.5 var(--serif);margin:0 0 12px;color:var(--paper-mute)}
+.clip .orig{font:italic 13.5px/1.4 var(--serif);color:var(--paper-mute);margin-bottom:10px}
+.clip .go{font:11px var(--mono);letter-spacing:.06em;color:var(--paper-ink);text-decoration:underline}
+
+/* difesa */
+.layers{display:grid;gap:12px;margin-bottom:56px}
+.layer{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:24px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.layer h3{font:400 24px var(--serif);margin:0;color:var(--safe)}
+.layer small{display:block;font:12px var(--mono);color:var(--mute);margin-top:4px}
+.layer ul{margin:0;padding-left:1.1em;color:var(--mute)}
+.layer li{margin:4px 0}.layer li b{color:var(--ink);font-weight:500}
+@media(max-width:700px){.layer{grid-template-columns:1fr;gap:10px}}
+.check{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:28px}
+.check header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:16px}
+.check h3{font:400 28px var(--serif);margin:0}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.bar div{height:100%;width:0;background:var(--safe);transition:width .35s}
+.check label{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer;align-items:flex-start}
+.check input{accent-color:var(--safe);width:20px;height:20px;margin-top:3px;flex:none}
+.check label span b{display:block;font-weight:500}
+.check label span{color:var(--mute);font-size:15px}
+.check input:checked+span{opacity:.55}
+.check input:checked+span b{text-decoration:line-through}
+#score{font:14px var(--mono);color:var(--safe)}
+.reset{font:12px var(--mono);background:none;border:1px solid var(--line);color:var(--mute);padding:6px 12px;border-radius:6px;cursor:pointer}
+.emerg{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.emerg .panel{border-top:3px solid var(--alert)}
+
+footer{padding:56px 0 80px;color:var(--mute);font-size:14px}
+footer .wrap{display:grid;gap:14px}
+footer p{max-width:80ch;margin:0}
+footer a{color:var(--ink)}
+.credits{font:12px/1.6 var(--mono)}
+
+/* comparsa: gli elementi sono visibili da subito, l'animazione è solo un leggero scorrimento */
+.rise.go{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#"><i></i>Linea Rossa</a>
+    <nav aria-label="Sezioni">
+      <ul>
+        <li><a href="#tradizionali">Classici</a></li>
+        <li><a href="#ia">IA</a></li>
+        <li><a href="#gadget">Gadget</a></li>
+        <li><a href="#sorveglianza">Sorveglianza</a></li>
+        <li><a href="#stampa">Stampa</a></li>
+        <li><a href="#difesa">Difesa</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="ticker" aria-label="Titoli in evidenza">
+  <div class="track">
+    <span><b>2013</b>Snowden rivela i programmi di sorveglianza di massa della NSA</span>
+    <span><b>2019</b>Bloomberg: dipendenti e collaboratori Amazon ascoltano le registrazioni di Alexa</span>
+    <span><b>2023</b>TIME: lavoratori in Kenya pagati meno di 2 $ l’ora per filtrare i testi di ChatGPT</span>
+    <span><b>2025</b>Echo: sparisce l’opzione per non inviare la voce al cloud</span>
+    <span><b>2026</b>Inchiesta svedese: a Nairobi gli annotatori vedono i video degli occhiali Meta</span>
+    <span aria-hidden="true"><b>2013</b>Snowden rivela i programmi di sorveglianza di massa della NSA</span>
+    <span aria-hidden="true"><b>2019</b>Bloomberg: dipendenti e collaboratori Amazon ascoltano le registrazioni di Alexa</span>
+    <span aria-hidden="true"><b>2023</b>TIME: lavoratori in Kenya pagati meno di 2 $ l’ora per filtrare i testi di ChatGPT</span>
+    <span aria-hidden="true"><b>2025</b>Echo: sparisce l’opzione per non inviare la voce al cloud</span>
+    <span aria-hidden="true"><b>2026</b>Inchiesta svedese: a Nairobi gli annotatori vedono i video degli occhiali Meta</span>
+  </div>
+</div>
+
+<main id="main">
+<section class="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">Guida divulgativa · sicurezza e privacy</p>
+    <h1>Come ci <em>attaccano</em>. Chi ci ascolta. Come difendersi.</h1>
+    <p class="lead">Dal phishing ai <strong>deepfake vocali</strong>, dai gadget da tasca come il <strong>Flipper Zero</strong> fino agli oggetti che portiamo in casa e sul viso: <strong>assistenti vocali e occhiali smart</strong> che inviano audio e immagini al cloud, dove a volte li guardano persone in carne e ossa.</p>
+    <div class="stats">
+      <div><b data-count="2013">2013</b><span>Snowden rende pubblici i documenti della NSA sulla sorveglianza di massa</span></div>
+      <div><b data-count="1000">1.000</b><span>clip di Alexa ascoltate in un turno da un singolo annotatore (Bloomberg, 2019)</span></div>
+      <div><b data-count="1108">1.108</b><span>lavoratori Sama in Kenya licenziati dopo l’inchiesta sugli occhiali Meta (2026)</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="tradizionali" aria-labelledby="h-trad">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">01 / Classici</span>
+      <div><h2 id="h-trad">Gli attacchi tradizionali</h2><p>Non sono «vecchi»: sono ancora la maggior parte di ciò che succede ogni giorno. Funzionano perché sfruttano abitudini, configurazioni trascurate e software non aggiornato.</p></div>
+    </div>
+
+    <ol class="chain" aria-label="Fasi tipiche di un attacco">
+      <li style="--i:0"><b>Ricognizione</b>Raccolta di informazioni pubbliche su persone e sistemi.</li>
+      <li style="--i:1"><b>Accesso iniziale</b>Email truffa, password rubata, falla non corretta.</li>
+      <li style="--i:2"><b>Consolidamento</b>Permessi più alti, spostamento fra i sistemi.</li>
+      <li style="--i:3"><b>Azione</b>Furto dati, cifratura, frode, interruzione.</li>
+      <li style="--i:4"><b>Monetizzazione</b>Riscatto, rivendita, estorsione.</li>
+    </ol>
+
+    <div class="filters" role="group" aria-label="Filtra per bersaglio">
+      <button aria-pressed="true" data-f="all">Tutti</button>
+      <button aria-pressed="false" data-f="persone">Colpiscono le persone</button>
+      <button aria-pressed="false" data-f="sistemi">Colpiscono i sistemi</button>
+    </div>
+
+    <div class="grid" id="trad-grid">
+      <article class="card rise" data-t="persone"><span class="tag">Social engineering</span><h3>Phishing e smishing</h3><p>Messaggi che imitano banca, corriere o ente pubblico per far cliccare un link o inserire credenziali in un sito clone.</p><div class="sev" data-l="5" role="img" aria-label="Diffusione: molto alta"></div><dl><dt>Segnale</dt><dd>Urgenza, mittente appena diverso, link che non porta al dominio ufficiale.</dd></dl></article>
+      <article class="card rise" data-t="persone"><span class="tag">Social engineering</span><h3>Vishing e pretexting</h3><p>Telefonate di finti tecnici o «operatori antifrode» che costruiscono un pretesto credibile per ottenere codici o bonifici.</p><div class="sev" data-l="4" role="img" aria-label="Diffusione: alta"></div><dl><dt>Segnale</dt><dd>Ti chiedono un codice OTP o di «mettere al sicuro» i soldi spostandoli.</dd></dl></article>
+      <article class="card rise" data-t="sistemi"><span class="tag">Malware</span><h3>Ransomware</h3><p>Software che cifra file e backup e chiede un riscatto; spesso i dati vengono anche copiati per minacciarne la pubblicazione.</p><div class="sev" data-l="5" role="img" aria-label="Impatto: molto alto"></div><dl><dt>Segnale</dt><dd>File rinominati, estensioni insolite, messaggio di richiesta sullo schermo.</dd></dl></article>
+      <article class="card rise" data-t="persone"><span class="tag">Credenziali</span><h3>Credential stuffing e brute force</h3><p>Si provano in massa password rubate da altri siti o combinazioni comuni. Chi riusa la stessa password ovunque è il bersaglio ideale.</p><div class="sev" data-l="4" role="img" aria-label="Diffusione: alta"></div><dl><dt>Segnale</dt><dd>Notifiche di accessi da luoghi o dispositivi sconosciuti.</dd></dl></article>
+      <article class="card rise" data-t="sistemi"><span class="tag">Web</span><h3>Injection e falle applicative</h3><p>Dati non validati che il sito interpreta come comandi (es. SQL injection, XSS). Colpisce chi sviluppa e gestisce siti, non chi li visita.</p><div class="sev" data-l="3" role="img" aria-label="Impatto: medio-alto"></div><dl><dt>Difesa tipica</dt><dd>Query parametrizzate, validazione, revisione del codice, WAF.</dd></dl></article>
+      <article class="card rise" data-t="sistemi"><span class="tag">Rete</span><h3>DDoS</h3><p>Una marea di richieste da migliaia di dispositivi compromessi satura un servizio fino a renderlo inutilizzabile.</p><div class="sev" data-l="3" role="img" aria-label="Impatto: medio"></div><dl><dt>Difesa tipica</dt><dd>Servizi di mitigazione, rate limiting, capacità elastica.</dd></dl></article>
+      <article class="card rise" data-t="persone"><span class="tag">Rete</span><h3>Man-in-the-middle e Wi-Fi falsi</h3><p>Chi si interpone fra te e il servizio può leggere o alterare il traffico, tipicamente su reti pubbliche aperte o con nomi ingannevoli.</p><div class="sev" data-l="2" role="img" aria-label="Diffusione: media"></div><dl><dt>Difesa tipica</dt><dd>HTTPS ovunque, VPN affidabile, niente operazioni sensibili su Wi-Fi aperti.</dd></dl></article>
+      <article class="card rise" data-t="sistemi"><span class="tag">Supply chain</span><h3>Software e fornitori compromessi</h3><p>L’attacco entra tramite un aggiornamento, una libreria o un fornitore di fiducia, aggirando le difese del bersaglio finale.</p><div class="sev" data-l="3" role="img" aria-label="Impatto: alto"></div><dl><dt>Difesa tipica</dt><dd>Inventario delle dipendenze, firme, principio del minimo privilegio.</dd></dl></article>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="ia" aria-labelledby="h-ia">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">02 / Intelligenza artificiale</span>
+      <div><h2 id="h-ia">Quando l’attaccante ha un assistente</h2><p>L’IA non inventa nuove categorie di crimine: <strong>abbassa il costo</strong> di quelle esistenti, le rende più credibili e le moltiplica. E, allo stesso tempo, diventa essa stessa un bersaglio.</p></div>
+    </div>
+    <div class="grid">
+      <article class="card rise"><span class="tag">Inganno</span><h3>Phishing senza errori</h3><p>I modelli linguistici scrivono email impeccabili, in qualsiasi lingua e con il tono giusto. Sparisce il vecchio indizio degli strafalcioni.</p><dl><dt>Cambia</dt><dd>Non fidarti della forma: verifica sempre il canale e la richiesta.</dd></dl></article>
+      <article class="card rise"><span class="tag">Inganno</span><h3>Voice cloning</h3><p>Pochi secondi di audio pubblico bastano a imitare una voce: il «figlio in difficoltà» o il «capo che urge» al telefono.</p><dl><dt>Contromisura</dt><dd>Parola d’ordine di famiglia o azienda; richiamare sul numero noto.</dd></dl></article>
+      <article class="card rise"><span class="tag">Inganno</span><h3>Deepfake video</h3><p>Videochiamate o filmati manipolati. Sono già stati usati in frodi aziendali con falsi dirigenti in riunione.</p><dl><dt>Contromisura</dt><dd>Doppia approvazione per i pagamenti, indipendentemente da chi lo chiede.</dd></dl></article>
+      <article class="card rise"><span class="tag">Automazione</span><h3>Ricognizione su scala</h3><p>L’IA incrocia profili social, siti e dati trapelati per costruire messaggi personalizzati per migliaia di persone insieme.</p><dl><dt>Contromisura</dt><dd>Ridurre l’esposizione: profili privati, meno dettagli pubblici.</dd></dl></article>
+      <article class="card rise"><span class="tag">Codice</span><h3>Malware assistito</h3><p>Gli assistenti di programmazione possono accelerare chi sa già scrivere codice ostile. I fornitori inseriscono filtri, ma non sono infallibili.</p><dl><dt>Contromisura</dt><dd>Rilevamento comportamentale (EDR), non solo firme di virus.</dd></dl></article>
+      <article class="card rise"><span class="tag">Bersaglio</span><h3>Prompt injection</h3><p>Testo nascosto in una pagina, un PDF o un’email convince un assistente IA a ignorare le istruzioni e a rivelare dati o agire al posto tuo.</p><dl><dt>Contromisura</dt><dd>Permessi minimi agli agenti, conferma umana per azioni sensibili.</dd></dl></article>
+      <article class="card rise"><span class="tag">Bersaglio</span><h3>Avvelenamento e fuga di dati</h3><p>Dati di addestramento manipolati, modelli che «ricordano» informazioni riservate, dipendenti che incollano segreti in chatbot non autorizzati.</p><dl><dt>Contromisura</dt><dd>Policy d’uso dell’IA, strumenti aziendali approvati, classificazione dei dati.</dd></dl></article>
+    </div>
+    <p class="callout" style="--c:var(--ai)"><b>Lato difesa conta altrettanto.</b> L’IA aiuta a individuare anomalie, filtrare spam e smistare gli allarmi più in fretta. La corsa è simmetrica: vince chi ha le basi in ordine.</p>
+  </div>
+</section>
+
+<section class="s" id="gadget" aria-labelledby="h-g">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">03 / Gadget</span>
+      <div><h2 id="h-g">Flipper Zero e i «giocattoli» da pentester</h2><p>Dispositivi tascabili nati per studio e test autorizzati. Fanno parlare con oggetti di uso comune e mostrano quanto certi sistemi siano <strong>fragili per progetto</strong>, non per magia.</p></div>
+    </div>
+
+    <div class="feature">
+      <figure>
+        <div class="photo"><img src="img/flipper.jpg" alt="Un Flipper Zero, piccolo dispositivo bianco e arancione con schermo monocromatico e pulsanti direzionali" width="900" height="558" loading="lazy"></div>
+        <figcaption>Flipper Zero. Foto: Turbospok, <a href="https://commons.wikimedia.org/wiki/File:Flipper_Zero.jpg" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</figcaption>
+      </figure>
+      <div class="prose">
+        <p>Grande come un telecomando da auto, il <strong>Flipper Zero</strong> riunisce in un solo oggetto radio sub-GHz, lettore RFID e NFC, trasmettitore a infrarossi, porta USB e pin di espansione. Costa poco più di un buon paio di cuffie ed è diventato il simbolo dell’«hacking da tasca», tanto che alcuni Paesi ne hanno discusso il divieto.</p>
+        <p>Il suo vero merito è didattico: rende visibile in pochi secondi quali oggetti intorno a noi <strong>non hanno alcuna protezione</strong>.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="panel yes">
+        <h3>Cosa mostra il Flipper Zero</h3>
+        <ul>
+          <li><b>Radio sub-GHz</b>: telecomandi di cancelli e barriere più vecchi, con codice fisso, possono essere registrati e ripetuti.</li>
+          <li><b>RFID/NFC</b>: certi badge a bassa frequenza (125 kHz) non hanno alcuna autenticazione e si copiano.</li>
+          <li><b>Infrarossi</b>: legge e riproduce telecomandi di TV e condizionatori.</li>
+          <li><b>USB e GPIO</b>: può emulare una tastiera o dialogare con schede esterne.</li>
+        </ul>
+      </div>
+      <div class="panel no">
+        <h3>Cosa non fa</h3>
+        <ul>
+          <li>Non «hackera» automaticamente auto, bancomat o smartphone moderni.</li>
+          <li>Non aggira i <b>rolling code</b> e le chiavi cifrate dei sistemi recenti.</li>
+          <li>Non rompe carte di pagamento o badge con crittografia robusta.</li>
+          <li>Non è magico: spesso serve prossimità, contesto e un bersaglio già debole.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid">
+      <article class="card rise"><span class="tag">Accesso fisico</span><h3>Cloni di badge</h3><p>Il rischio riguarda i sistemi di accesso obsoleti. La soluzione è sostituire i lettori con tecnologie autenticate, non vietare i gadget.</p></article>
+      <article class="card rise"><span class="tag">USB</span><h3>Rubber Ducky, O.MG, BadUSB</h3><p>Chiavette o cavi che si presentano come tastiera e digitano comandi in pochi secondi. Il computer si fida di tutto ciò che si dichiara «tastiera».</p></article>
+      <article class="card rise"><span class="tag">Wi-Fi</span><h3>Access point civetta</h3><p>Dispositivi che imitano una rete nota per attirare i telefoni. Per questo i dispositivi che si riconnettono da soli sono un rischio.</p></article>
+      <article class="card rise"><span class="tag">Radio</span><h3>Relay e SDR</h3><p>Radio programmabili e ripetitori possono estendere il raggio di certe chiavi keyless. Riguarda soprattutto alcuni modelli di auto.</p></article>
+    </div>
+
+    <p class="callout"><b>Legalità.</b> Possedere un Flipper Zero è legale; usarlo su sistemi o cose altrui senza autorizzazione no, e in Italia può configurare reati come l’accesso abusivo a sistema informatico (art. 615-ter c.p.). Provalo solo sui tuoi dispositivi o in un ambiente di test autorizzato.</p>
+  </div>
+</section>
+
+<section class="s" id="sorveglianza" aria-labelledby="h-sv">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">04 / Chi ascolta</span>
+      <div><h2 id="h-sv">Sorveglianza: dallo Stato al salotto</h2><p>Non tutti i rischi arrivano da un criminale. A volte i dati escono <strong>con il nostro consenso</strong>, sepolto in una pagina di termini d’uso, e finiscono davanti a occhi che non immaginiamo: agenzie governative, dipendenti, subappaltatori dall’altra parte del mondo.</p></div>
+    </div>
+
+    <!-- Snowden -->
+    <article class="case" aria-labelledby="h-snow">
+      <div class="media">
+        <figure>
+          <div class="photo tall"><img src="img/snowden.jpg" alt="Ritratto di Edward Snowden a Hong Kong nel giugno 2013" width="576" height="694" loading="lazy"></div>
+          <figcaption>Edward Snowden a Hong Kong, giugno 2013. Foto: Laura Poitras / Praxis Films, <a href="https://commons.wikimedia.org/wiki/File:Edward_Snowden-2.jpg" rel="noopener">Wikimedia Commons</a>, CC BY 3.0</figcaption>
+        </figure>
+        <figure>
+          <div class="photo"><img src="img/nsa.jpg" alt="Veduta notturna dall’alto della sede della NSA a Fort Meade, Maryland, con i parcheggi illuminati" width="900" height="600" loading="lazy"></div>
+          <figcaption>La sede della NSA a Fort Meade, 2013. Foto: Trevor Paglen, <a href="https://commons.wikimedia.org/wiki/File:National_Security_Agency,_2013.jpg" rel="noopener">Wikimedia Commons</a>, CC0</figcaption>
+        </figure>
+      </div>
+      <div class="prose">
+        <p class="kicker">Caso 1 · Stati Uniti, 2013</p>
+        <h3 class="sub" id="h-snow">Edward Snowden e la sorveglianza di massa</h3>
+        <p>Nel 2013 <strong>Edward Snowden</strong>, consulente informatico che lavorava per la NSA tramite la società Booz Allen Hamilton, consegna a un gruppo di giornalisti (Glenn Greenwald, Laura Poitras, Ewen MacAskill e poi Barton Gellman) migliaia di documenti riservati. Ne emerge un sistema di raccolta dati su scala globale, che coinvolge anche cittadini non sospettati di nulla.</p>
+        <div class="facts">
+          <div><b>PRISM</b><span>accesso ai dati di grandi aziende Internet su richiesta del governo USA</span></div>
+          <div><b>Metadati</b><span>chi chiama chi, quando, per quanto: raccolti in blocco dagli operatori telefonici</span></div>
+          <div><b>Tempora</b><span>l’intelligence britannica (GCHQ) intercetta i cavi in fibra ottica</span></div>
+        </div>
+        <ol class="timeline">
+          <li><time>5–6 giugno 2013</time>The Guardian pubblica l’ordine segreto che obbliga Verizon a consegnare ogni giorno i metadati delle chiamate; segue lo scoop su PRISM, anche sul Washington Post.</li>
+          <li><time>9 giugno 2013</time>Snowden rivela la propria identità in un video girato a Hong Kong.</li>
+          <li><time>Giugno 2013</time>Accusato negli USA in base all’Espionage Act, con il passaporto revocato resta bloccato a Mosca. Otterrà asilo e, nel 2022, la cittadinanza russa.</li>
+          <li><time>Ottobre 2013</time>Der Spiegel: anche il cellulare della cancelliera tedesca Angela Merkel era sotto controllo.</li>
+          <li><time>2014–2015</time>Pulitzer per il servizio pubblico a Guardian US e Washington Post; lo USA Freedom Act mette fine alla raccolta in blocco dei tabulati da parte della NSA.</li>
+        </ol>
+        <p style="margin-top:16px"><strong>Perché ci riguarda ancora.</strong> Dopo Snowden la cifratura end-to-end è diventata la norma in app come WhatsApp e Signal, e HTTPS è ovunque. La lezione resta: i <strong>metadati</strong> raccontano di te quasi quanto i contenuti.</p>
+      </div>
+    </article>
+
+    <!-- Alexa -->
+    <article class="case flip" aria-labelledby="h-alexa">
+      <div class="media">
+        <figure>
+          <div class="photo tall"><img src="img/echo.jpg" alt="Altoparlante intelligente Amazon Echo di seconda generazione, cilindrico, appoggiato su un mobile" width="675" height="900" loading="lazy"></div>
+          <figcaption>Amazon Echo (2ª gen.). Foto: The Unwinder, <a href="https://commons.wikimedia.org/wiki/File:Amazon_Echo_2nd_gen.jpg" rel="noopener">Wikimedia Commons</a>, CC BY-SA 2.0</figcaption>
+        </figure>
+      </div>
+      <div class="prose">
+        <p class="kicker">Caso 2 · Assistenti vocali, dal 2019</p>
+        <h3 class="sub" id="h-alexa">Alexa: chi c’è dall’altra parte del microfono</h3>
+        <div class="wave" aria-hidden="true"><i style="--d:1"></i><i style="--d:2"></i><i style="--d:3"></i><i style="--d:4"></i><i style="--d:5"></i><i style="--d:6"></i><i style="--d:7"></i><i style="--d:8"></i><i style="--d:9"></i><i style="--d:10"></i><i style="--d:11"></i><i style="--d:12"></i><i style="--d:13"></i><i style="--d:14"></i><i style="--d:15"></i><i style="--d:16"></i></div>
+        <p>Nell’aprile 2019 <strong>Bloomberg</strong> rivela che migliaia di dipendenti e collaboratori di Amazon, da Boston al Costa Rica, dall’India alla Romania, ascoltano e trascrivono spezzoni delle conversazioni con Alexa per migliorarne il riconoscimento vocale. Alcuni dichiarano di ascoltare fino a <strong>1.000 clip per turno</strong>, comprese scene private o inquietanti.</p>
+        <div class="truth">
+          <div class="myth"><b>Si dice</b>«Alexa registra tutto, sempre».</div>
+          <div class="fact"><b>In realtà</b>Ascolta in locale e invia l’audio al cloud dopo la parola di attivazione. Ma le <strong>attivazioni accidentali</strong> sono frequenti: uno studio di Northeastern University e Imperial College (2020) ne ha contate fino a circa 19 al giorno con la TV accesa.</div>
+        </div>
+        <p>Nel 2023 Amazon ha accettato di pagare <strong>25 milioni di dollari</strong> alla FTC americana per aver conservato a lungo le registrazioni vocali dei bambini. Dal <strong>28 marzo 2025</strong>, con l’arrivo di Alexa+, è sparita l’opzione che su alcuni Echo permetteva di elaborare la voce sul dispositivo senza inviarla al cloud.</p>
+        <p>Non è solo Amazon: nel 2019 sono emerse revisioni umane simili anche per <strong>Siri</strong> (Apple) e <strong>Google Assistant</strong>, poi sospese o rese facoltative.</p>
+      </div>
+    </article>
+
+    <!-- Meta -->
+    <article class="case" aria-labelledby="h-meta">
+      <div class="media">
+        <figure>
+          <div class="photo"><img src="img/rayban.jpg" alt="Occhiali smart Ray-Ban Meta neri con le piccole fotocamere ai lati della montatura, appoggiati sulla custodia in pelle" width="900" height="675" loading="lazy"></div>
+          <figcaption>Ray-Ban Meta (1ª gen.): la fotocamera è il piccolo foro sulla montatura. Foto: CCadio, <a href="https://commons.wikimedia.org/wiki/File:Ray-Ban_Meta_Gen_1_smart_glasses_with_charging_case.jpg" rel="noopener">Wikimedia Commons</a>, CC BY 4.0</figcaption>
+        </figure>
+        <div class="led">LED bianco acceso = sta registrando</div>
+      </div>
+      <div class="prose">
+        <p class="kicker">Caso 3 · Occhiali smart, 2025–2026</p>
+        <h3 class="sub" id="h-meta">Occhiali Meta: i video finiscono a Nairobi</h3>
+        <p>Gli occhiali <strong>Ray-Ban Meta</strong> hanno fotocamera e microfoni nella montatura: oltre 7 milioni di paia venduti nel solo 2025. Da aprile 2025 Meta ha cambiato le regole: l’<strong>IA con fotocamera resta attiva</strong> finché è attivo il comando «Hey Meta», e le registrazioni vocali vengono <strong>conservate fino a un anno</strong> senza possibilità di disattivarlo, si possono solo cancellare a mano.</p>
+        <p>A febbraio 2026 un’inchiesta dei quotidiani svedesi <strong>Svenska Dagbladet</strong> e <strong>Göteborgs-Posten</strong>, basata su oltre trenta testimonianze, rivela che a <strong>Nairobi</strong> i dipendenti di <strong>Sama</strong>, società subappaltatrice di Meta, etichettano video e audio ripresi dagli occhiali per addestrare l’IA. Raccontano di aver visto persone in bagno, mentre si spogliano o hanno rapporti sessuali, e carte bancarie inquadrate per caso. Secondo gli annotatori, la sfocatura automatica dei volti a volte non funziona.</p>
+        <div class="facts">
+          <div><b>Marzo</b><span>il Garante privacy britannico (ICO) scrive a Meta; in Kenya apre un’indagine l’autorità per la protezione dei dati</span></div>
+          <div><b>Class action</b><span>negli USA: Meta accusata di pubblicità ingannevole sulla privacy</span></div>
+          <div><b>1.108</b><span>licenziamenti in Sama ad aprile 2026, dopo che Meta chiude il contratto</span></div>
+        </div>
+        <p>Meta sostiene che la revisione umana è prevista dalla sua informativa e che i dati vengono prima filtrati per tutelare la privacy. Ha poi dichiarato che Sama «non rispettava i suoi standard». Le accuse della class action non sono ancora state provate in tribunale.</p>
+        <div class="truth">
+          <div class="myth"><b>Si dice</b>«Gli occhiali filmano in automatico».</div>
+          <div class="fact"><b>In realtà</b>Foto e video partono da un comando dell’utente. Ma quando chiedi all’IA «cosa sto guardando?», l’immagine va al cloud di Meta e può essere usata per l’addestramento. E chi ti sta davanti spesso non nota il LED.</div>
+        </div>
+        <p>Già nel 2024 due studenti di Harvard avevano mostrato che, collegando questi occhiali a un motore di riconoscimento facciale, si può risalire in pochi secondi a nome e indirizzo di sconosciuti incrociati per strada.</p>
+      </div>
+    </article>
+
+    <div class="flow" aria-labelledby="h-flow">
+      <h3 id="h-flow">Il viaggio di una registrazione</h3>
+      <p>Il percorso tipico di un clip audio o video che un’azienda usa per addestrare l’IA. Il punto rosso è quello che quasi nessuno immagina.</p>
+      <div class="scroll">
+        <svg viewBox="0 0 900 230" role="img" aria-label="Schema: il dispositivo invia il clip al cloud dell’azienda; da lì una parte va ad annotatori umani di aziende subappaltatrici, che lo etichettano; i dati etichettati addestrano il modello IA, che torna sul dispositivo con un aggiornamento.">
+          <path id="p1" class="edge" d="M150 90 H330"/>
+          <path id="p2" class="edge" d="M410 90 H560"/>
+          <path id="p3" class="edge" d="M640 90 H760"/>
+          <path id="p4" class="edge" d="M800 128 C800 215 110 215 110 128" stroke-dasharray="4 6"/>
+          <circle class="node" cx="110" cy="90" r="38"/>
+          <circle class="node" cx="370" cy="90" r="38"/>
+          <circle class="node hot" cx="600" cy="90" r="38"/>
+          <circle class="node" cx="800" cy="90" r="38"/>
+          <text class="lbl" x="110" y="95" text-anchor="middle">Occhiali</text>
+          <text class="lbl" x="370" y="95" text-anchor="middle">Cloud</text>
+          <text class="lbl" x="600" y="95" text-anchor="middle">Persone</text>
+          <text class="lbl" x="800" y="95" text-anchor="middle">Modello</text>
+          <text class="sml" x="110" y="30" text-anchor="middle">o assistente vocale</text>
+          <text class="sml" x="370" y="30" text-anchor="middle">server dell’azienda</text>
+          <text class="sml" x="600" y="30" text-anchor="middle">annotatori in subappalto</text>
+          <text class="sml" x="600" y="46" text-anchor="middle">Nairobi · Bucarest · San José</text>
+          <text class="sml" x="800" y="30" text-anchor="middle">IA addestrata</text>
+          <text class="sml" x="455" y="222" text-anchor="middle">aggiornamento: l’assistente «capisce meglio»</text>
+          <circle class="dot" r="5"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion></circle>
+          <circle class="dot" r="5"><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion></circle>
+          <circle class="dot hot" r="5"><animateMotion dur="2.6s" begin=".6s" repeatCount="indefinite"><mpath href="#p2"/></animateMotion></circle>
+          <circle class="dot" r="5"><animateMotion dur="2.2s" begin="1s" repeatCount="indefinite"><mpath href="#p3"/></animateMotion></circle>
+          <circle class="dot" r="4"><animateMotion dur="5s" begin="2s" repeatCount="indefinite"><mpath href="#p4"/></animateMotion></circle>
+        </svg>
+      </div>
+    </div>
+
+    <p class="callout" style="--c:var(--spy)"><b>Il lavoro invisibile dell’IA.</b> Sama non è nuova a questi casi. Fra il 2019 e il 2023 ha moderato a Nairobi i contenuti di Facebook, e nel 2021–22 ha filtrato per OpenAI testi violenti destinati a ChatGPT, con paghe fra 1,32 e 2 dollari l’ora (TIME, 2023). Dietro l’«intelligenza artificiale» ci sono spesso persone sottopagate che guardano ciò che noi non vorremmo mai mostrare.</p>
+  </div>
+</section>
+
+<section class="s" id="stampa" aria-labelledby="h-st">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">05 / Rassegna stampa</span>
+      <div><h2 id="h-st">Lo hanno scritto i giornali</h2><p>Gli articoli originali da cui partono i casi di questa pagina. Titoli in lingua originale, sintesi in italiano. Ogni ritaglio apre la fonte in una nuova scheda.</p></div>
+    </div>
+    <div class="press">
+      <a class="clip rise" style="--r:-1.2deg" href="https://www.theguardian.com/world/2013/jun/06/nsa-phone-records-verizon-court-order" target="_blank" rel="noopener">
+        <div class="mast"><span>The Guardian</span><time datetime="2013-06-06">6 giu 2013</time></div>
+        <h3>NSA collecting phone records of millions of Verizon customers daily</h3>
+        <p>Il primo scoop dai documenti di Snowden: un ordine segreto obbliga Verizon a consegnare alla NSA i metadati di tutte le chiamate.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+      <a class="clip rise" style="--r:.8deg" href="https://www.theguardian.com/world/2013/jun/09/edward-snowden-nsa-whistleblower-surveillance" target="_blank" rel="noopener">
+        <div class="mast"><span>The Guardian</span><time datetime="2013-06-09">9 giu 2013</time></div>
+        <h3>Edward Snowden: the whistleblower behind the NSA surveillance revelations</h3>
+        <p>Snowden esce allo scoperto e spiega perché ha deciso di rendere pubblici i documenti.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+      <a class="clip rise" style="--r:-.5deg" href="https://www.bloomberg.com/news/articles/2019-04-10/is-anyone-listening-to-you-on-alexa-a-global-team-reviews-audio" target="_blank" rel="noopener">
+        <div class="mast"><span>Bloomberg</span><time datetime="2019-04-10">10 apr 2019</time></div>
+        <h3>Amazon Workers Are Listening to What You Tell Alexa</h3>
+        <p>Un team globale di dipendenti e collaboratori ascolta e annota le registrazioni degli Echo per addestrare l’assistente.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+      <a class="clip rise" style="--r:1.1deg" href="https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings" target="_blank" rel="noopener">
+        <div class="mast"><span>The Guardian</span><time datetime="2019-07-26">26 lug 2019</time></div>
+        <h3>Apple contractors ‘regularly hear confidential details’ on Siri recordings</h3>
+        <p>Anche Siri: collaboratori esterni ascoltano spezzoni con dati medici, affari e momenti intimi registrati per errore.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+      <a class="clip rise" style="--r:-.9deg" href="https://time.com/6247678/openai-chatgpt-kenya-workers/" target="_blank" rel="noopener">
+        <div class="mast"><span>TIME</span><time datetime="2023-01-18">18 gen 2023</time></div>
+        <h3>OpenAI Used Kenyan Workers on Less Than $2 Per Hour to Make ChatGPT Less Toxic</h3>
+        <p>I dipendenti di Sama a Nairobi leggevano descrizioni di violenze per insegnare all’IA a riconoscerle.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+      <a class="clip rise" style="--r:.6deg" href="https://techcrunch.com/2025/04/30/if-you-own-ray-ban-meta-glasses-you-should-double-check-your-privacy-settings/" target="_blank" rel="noopener">
+        <div class="mast"><span>TechCrunch</span><time datetime="2025-04-30">30 apr 2025</time></div>
+        <h3>If you own Ray-Ban Meta glasses, you should double-check your privacy settings</h3>
+        <p>Meta cambia l’informativa: IA con fotocamera attiva di default, registrazioni vocali conservate senza possibilità di rinuncia.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+      <a class="clip rise" style="--r:-1deg" href="https://www.helpnetsecurity.com/2026/03/05/meta-ray-ban-smart-glasses-privacy-risks/" target="_blank" rel="noopener">
+        <div class="mast"><span>Help Net Security</span><time datetime="2026-03-05">5 mar 2026</time></div>
+        <h3>Workers reviewing Meta Ray-Ban footage encounter users’ intimate moments</h3>
+        <p>Riprende l’inchiesta di Svenska Dagbladet e Göteborgs-Posten sugli annotatori di Sama a Nairobi.</p>
+        <span class="go">Leggi l’articolo →</span>
+      </a>
+      <a class="clip rise" style="--r:.9deg" href="https://thenextweb.com/news/meta-smart-glasses-sama-kenya-workers" target="_blank" rel="noopener">
+        <div class="mast"><span>The Next Web</span><time datetime="2026-05-01">1 mag 2026</time></div>
+        <h3>Meta ends Sama contract after Kenyan workers report seeing intimate footage</h3>
+        <p>Dopo l’inchiesta Meta chiude il contratto: 1.108 lavoratori ricevono la lettera di licenziamento.</p>
+        <span class="go">Leggi l’originale →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="difesa" aria-labelledby="h-d">
+  <div class="wrap">
+    <div class="sh">
+      <span class="n">06 / Difesa</span>
+      <div><h2 id="h-d">Come difendersi</h2><p>Nessuna misura è perfetta, ma poche abitudini ben scelte fermano la grande maggioranza degli attacchi e riducono ciò che regaliamo a chi ascolta.</p></div>
+    </div>
+
+    <div class="layers">
+      <div class="layer rise"><div><h3>Persone</h3><small>l’anello più preso di mira</small></div><ul>
+        <li><b>Fermati e verifica</b>: urgenza e segretezza sono le leve preferite di chi inganna.</li>
+        <li><b>Canale alternativo</b>: richiama sul numero ufficiale, mai su quello fornito nel messaggio.</li>
+        <li><b>Parola d’ordine</b> concordata in famiglia o in azienda contro voci e video clonati.</li>
+        <li><b>Mai codici OTP</b> a nessuno: nessuna banca li chiede.</li></ul></div>
+      <div class="layer rise"><div><h3>Account</h3><small>la porta più usata</small></div><ul>
+        <li><b>Password manager</b> e password uniche e lunghe per ogni servizio.</li>
+        <li><b>Autenticazione a due fattori</b>, meglio con app o chiave fisica (passkey/FIDO2) che con SMS.</li>
+        <li>Controlla se le tue email compaiono in violazioni note (es. Have I Been Pwned).</li></ul></div>
+      <div class="layer rise"><div><h3>Dispositivi</h3><small>pulizia e aggiornamenti</small></div><ul>
+        <li><b>Aggiornamenti automatici</b> di sistema, app e router.</li>
+        <li>Antivirus/EDR attivo, disco cifrato, blocco schermo.</li>
+        <li><b>Backup 3-2-1</b>: tre copie, due supporti, una offline o immutabile.</li>
+        <li>Non collegare chiavette o cavi USB di origine ignota.</li></ul></div>
+      <div class="layer rise"><div><h3>Rete e fisico</h3><small>dove entrano i gadget</small></div><ul>
+        <li>Wi-Fi con WPA3/WPA2 robusto; rete ospiti separata; evita reti aperte.</li>
+        <li>Sostituisci <b>cancelli e badge a codice fisso</b> con sistemi a rolling code o autenticati.</li>
+        <li>Disattiva la connessione automatica alle reti note e il Bluetooth quando non serve.</li>
+        <li>Chiudi la chiave keyless in una custodia schermante la notte.</li></ul></div>
+      <div class="layer rise"><div><h3>Privacy</h3><small>assistenti vocali e occhiali smart</small></div><ul>
+        <li>Nell’app Alexa disattiva <b>«Aiuta a migliorare Alexa»</b> e imposta la cancellazione automatica delle registrazioni; fai lo stesso con Siri e Google Assistant.</li>
+        <li>Usa il <b>tasto di spegnimento del microfono</b> durante conversazioni riservate e non tenere assistenti vocali in camera da letto o in bagno.</li>
+        <li>Sugli occhiali smart disattiva «Hey Meta» se non ti serve, rivedi e cancella la cronologia vocale, toglili nei luoghi privati.</li>
+        <li>Rispetta gli altri: chiedi prima di riprendere e ricorda che anche chi ti sta davanti ha diritto alla privacy.</li>
+        <li>Preferisci app con <b>cifratura end-to-end</b> (Signal, WhatsApp) e limita i permessi di microfono e fotocamera alle app che ne hanno bisogno.</li></ul></div>
+      <div class="layer rise"><div><h3>IA</h3><small>usarla senza cadere</small></div><ul>
+        <li>Non incollare dati personali o riservati in strumenti non approvati.</li>
+        <li>Agli agenti IA dai solo i permessi indispensabili e richiedi conferma per le azioni importanti.</li>
+        <li>Tratta contenuti, audio e video «troppo perfetti» con lo stesso scetticismo di un’email.</li></ul></div>
+    </div>
+
+    <div class="check" id="check">
+      <header><h3>La tua checklist</h3><span id="score" aria-live="polite">0 / 12</span></header>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" aria-label="Avanzamento"><div id="fill"></div></div>
+      <div id="items"></div>
+      <p style="margin:16px 0 0"><button class="reset" id="reset" type="button">Azzera</button> <span class="note" style="margin-left:8px">Le spunte restano salvate solo nel tuo browser.</span></p>
+    </div>
+
+    <div class="emerg">
+      <div class="panel"><h3>Se sei stato colpito</h3><ol>
+        <li>Scollega il dispositivo dalla rete; non spegnerlo se è un’azienda.</li>
+        <li>Cambia le password da un dispositivo pulito e attiva il 2FA.</li>
+        <li>Avvisa banca o carta se sono coinvolti pagamenti.</li>
+        <li>Non pagare un riscatto senza consulto: non garantisce nulla.</li></ol></div>
+      <div class="panel"><h3>A chi segnalare</h3><ol>
+        <li>Polizia Postale (commissariatodips.it) per truffe e furti d’identità.</li>
+        <li>CSIRT Italia / ACN per incidenti rilevanti.</li>
+        <li>Garante Privacy: entro 72 ore se un’organizzazione subisce una violazione di dati personali (GDPR, art. 33); reclamo se un’azienda tratta male i tuoi dati.</li></ol></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Scopo del sito.</b> Contenuto esclusivamente divulgativo e difensivo: nessuna istruzione operativa. I fatti sui casi citati provengono dagli articoli della rassegna stampa; alcune vicende (come la class action contro Meta) sono ancora in corso.</p>
+    <p>Per approfondire: <a href="https://www.acn.gov.it" rel="noopener">ACN</a> · <a href="https://www.garanteprivacy.it" rel="noopener">Garante Privacy</a> · <a href="https://clusit.it" rel="noopener">Clusit</a> · <a href="https://owasp.org" rel="noopener">OWASP</a> · <a href="https://haveibeenpwned.com" rel="noopener">Have I Been Pwned</a></p>
+    <p class="credits">Foto da Wikimedia Commons: Flipper Zero, Turbospok (<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it" rel="noopener">CC BY-SA 4.0</a>) · Edward Snowden, Laura Poitras / Praxis Films (<a href="https://creativecommons.org/licenses/by/3.0/deed.it" rel="noopener">CC BY 3.0</a>) · NSA 2013, Trevor Paglen (<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.it" rel="noopener">CC0</a>) · Amazon Echo, The Unwinder (<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.it" rel="noopener">CC BY-SA 2.0</a>) · Ray-Ban Meta, CCadio (<a href="https://creativecommons.org/licenses/by/4.0/deed.it" rel="noopener">CC BY 4.0</a>). Immagini ridimensionate e compresse.</p>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // barre di gravità
+  document.querySelectorAll('.sev').forEach(s=>{
+    const n=+s.dataset.l;
+    s.innerHTML=Array.from({length:5},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('');
+  });
+
+  // filtri
+  const btns=document.querySelectorAll('.filters button'),cards=document.querySelectorAll('#trad-grid .card');
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    btns.forEach(x=>x.setAttribute('aria-pressed',x===b));
+    cards.forEach(c=>c.hidden=b.dataset.f!=='all'&&c.dataset.t!==b.dataset.f);
+  }));
+
+  // voce di menu attiva
+  const links=[...document.querySelectorAll('nav a')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)links.forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id));
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section.s').forEach(s=>io.observe(s));
+
+  // barra di lettura
+  const pr=document.getElementById('progress');
+  const onScroll=()=>{const h=document.documentElement;pr.style.transform=`scaleX(${h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)})`};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // leggero scorrimento all'ingresso (gli elementi sono sempre visibili)
+  if(!reduce){
+    const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('go');rv.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rise').forEach((el,i)=>{el.style.animationDelay=(i%4)*70+'ms';rv.observe(el)});
+  }
+
+  // contatori
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const end=+el.dataset.count,year=end===2013;
+    if(reduce)return;
+    const fmt=n=>year?String(n):String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+    const start=year?1990:0,t0=performance.now(),dur=1600;
+    const step=t=>{const p=Math.min(1,(t-t0)/dur),v=Math.round(start+(end-start)*(1-Math.pow(1-p,3)));el.textContent=fmt(v);if(p<1)requestAnimationFrame(step)};
+    requestAnimationFrame(step);
+  });
+
+  // flusso SVG: fermo se movimento ridotto
+  if(reduce)document.querySelectorAll('.flow svg').forEach(s=>s.pauseAnimations&&s.pauseAnimations());
+
+  // rete animata nell'hero
+  const cv=document.getElementById('net'),ctx=cv.getContext('2d');
+  let W=0,H=0,nodes=[],edges=[],packets=[],col={},running=true,frame=0;
+  const readCol=()=>{const cs=getComputedStyle(document.documentElement);col={line:cs.getPropertyValue('--line').trim(),mute:cs.getPropertyValue('--mute').trim(),alert:cs.getPropertyValue('--alert').trim()}};
+  function size(){
+    const dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+    const n=Math.max(18,Math.round(W*H/14000));
+    nodes=Array.from({length:n},()=>({x:rnd()*W,y:rnd()*H,vx:(rnd()-.5)*.18,vy:(rnd()-.5)*.18}));
+    packets=[];readCol();
+  }
+  function link(){edges=[];for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<150)edges.push([a,b,d])}}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    if(++frame%90===0)readCol();
+    nodes.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1});
+    link();
+    ctx.lineWidth=1;
+    edges.forEach(([a,b,d])=>{ctx.globalAlpha=1-d/150;ctx.strokeStyle=col.line;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()});
+    ctx.globalAlpha=1;ctx.fillStyle=col.mute;
+    nodes.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,7);ctx.fill()});
+    if(edges.length&&packets.length<14&&Math.random()<.12){const e=edges[(Math.random()*edges.length)|0];packets.push({a:e[0],b:e[1],t:0})}
+    ctx.fillStyle=col.alert;
+    packets=packets.filter(k=>{k.t+=.018;const x=k.a.x+(k.b.x-k.a.x)*k.t,y=k.a.y+(k.b.y-k.a.y)*k.t;ctx.beginPath();ctx.arc(x,y,2.4,0,7);ctx.fill();return k.t<1});
+  }
+  function loop(){if(running){draw();requestAnimationFrame(loop)}}
+  size();
+  if(reduce){link();draw()}else{
+    new IntersectionObserver(([e])=>{const was=running;running=e.isIntersecting;if(running&&!was)loop()}).observe(cv);
+    loop();
+  }
+  addEventListener('resize',()=>{size();if(reduce){link();draw()}});
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{readCol();if(reduce)draw()});
+  new MutationObserver(()=>{readCol();if(reduce)draw()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+  // checklist
+  const items=[
+    ['Password manager attivo','Una password unica e lunga per ogni servizio.'],
+    ['2FA su email, banca e social','Preferibilmente con app o chiave fisica.'],
+    ['Aggiornamenti automatici','Telefono, computer, router e app.'],
+    ['Backup 3-2-1','Almeno una copia offline o immutabile.'],
+    ['Disco e telefono cifrati','Con blocco schermo e PIN robusto.'],
+    ['Parola d’ordine di famiglia','Contro voci e video clonati.'],
+    ['Profili social ripuliti','Meno dati pubblici su lavoro, famiglia, abitudini.'],
+    ['Wi-Fi di casa messo in sicurezza','WPA2/WPA3, password del router cambiata, rete ospiti.'],
+    ['Controllo violazioni dei tuoi account','Con Have I Been Pwned o simili.'],
+    ['Cronologia vocale rivista','Alexa, Siri, Google: revisione umana disattivata, cancellazione automatica attiva.'],
+    ['Permessi di microfono e fotocamera','Solo alle app che ne hanno davvero bisogno.'],
+    ['Regole per l’uso dell’IA','Nessun dato riservato in strumenti non approvati.']
+  ];
+  const KEY='linea-rossa-check-v2';
+  let state=[];
+  try{state=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+  const box=document.getElementById('items');
+  box.innerHTML=items.map((it,i)=>`<label for="chk${i}"><input type="checkbox" id="chk${i}" data-i="${i}"${state.includes(i)?' checked':''}><span><b>${it[0]}</b>${it[1]}</span></label>`).join('');
+  const upd=()=>{
+    const n=box.querySelectorAll('input:checked').length,t=items.length;
+    document.getElementById('score').textContent=n+' / '+t;
+    document.getElementById('fill').style.width=(n/t*100)+'%';
+    document.querySelector('.bar').setAttribute('aria-valuenow',n);
+    try{localStorage.setItem(KEY,JSON.stringify([...box.querySelectorAll('input:checked')].map(x=>+x.dataset.i)))}catch(e){}
+  };
+  box.addEventListener('change',upd);
+  document.getElementById('reset').onclick=()=>{box.querySelectorAll('input').forEach(x=>x.checked=false);upd()};
+  upd();
+})();
+</script>
+</body>
+</html>
