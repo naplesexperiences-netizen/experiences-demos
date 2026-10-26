@@ -1,0 +1,28 @@
+# Sorgente unica di verita per tooling/skills/install-skills.sh
+#
+# Formato:  nome_locale | repo_git | percorso_skill_nel_repo | licenza | gruppo
+#
+# gruppo = core     -> sempre installata (set di base per il lavoro web di questo repo)
+#          scroll   -> solo progetti scroll-driven immersivi (pesante: 213 KB di references,
+#                      richiede ffmpeg completo + playwright-core + Chrome vero)
+#
+# Solo repo con licenza aperta (MIT / Apache-2.0) compaiono qui: vengono copiati
+# ("vendored") dentro .claude/skills/ e committati, come gia fatto per le skill GSAP.
+# Le skill Vercel NON sono qui perche vercel-labs/agent-skills non ha alcun LICENSE:
+# si installano a livello utente, fuori da questo repo. Vedi install-skills.sh --vercel.
+
+interface-design       | https://github.com/Dammyjay93/interface-design | .claude/skills/interface-design                      | MIT        | core
+frontend-design        | https://github.com/anthropics/skills           | skills/frontend-design                                | Apache-2.0 | core
+theme-factory          | https://github.com/anthropics/skills           | skills/theme-factory                                  | Apache-2.0 | core
+high-perf-browser      | https://github.com/wondelai/skills             | high-perf-browser                                     | MIT        | core
+web-typography         | https://github.com/wondelai/skills             | web-typography                                        | MIT        | core
+refactoring-ui         | https://github.com/wondelai/skills             | refactoring-ui                                        | MIT        | core
+top-design             | https://github.com/wondelai/skills             | top-design                                            | MIT        | core
+microinteractions      | https://github.com/wondelai/skills             | microinteractions                                     | MIT        | core
+ux-heuristics          | https://github.com/wondelai/skills             | ux-heuristics                                         | MIT        | core
+design-everyday-things | https://github.com/wondelai/skills             | design-everyday-things                                | MIT        | core
+cro-methodology        | https://github.com/wondelai/skills             | cro-methodology                                       | MIT        | core
+ui-typography          | https://github.com/bencium/bencium-marketplace | typography/skills/typography                          | MIT        | core
+design-audit           | https://github.com/bencium/bencium-marketplace | design-audit/skills/design-audit                      | MIT        | core
+bencium-aeo            | https://github.com/bencium/bencium-marketplace | bencium-aeo/skills/bencium-aeo                        | MIT        | core
+scroll-craft           | https://github.com/nateherkai/scroll-craft     | plugins/nateherk-design/skills/scroll-craft           | MIT        | scroll

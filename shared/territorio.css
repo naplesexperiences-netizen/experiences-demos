@@ -1,0 +1,149 @@
+/* Sezione «Il territorio» e pagina «Guida» delle demo standard.
+   Generate da demos/scripts/enrich-territorio.py a partire dagli articoli
+   in blog-articles/destinazioni/. Usa le variabili CSS della demo. */
+
+.territorio { background: var(--bg-soft); }
+.terr-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+.terr-photo { margin: 0; position: sticky; top: 96px; }
+.terr-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-lg, var(--radius));
+    box-shadow: var(--shadow-lg, 0 18px 44px rgba(0,0,0,.12));
+    display: block;
+}
+.terr-credit {
+    font-size: 11.5px;
+    color: var(--text-muted, var(--text-soft));
+    margin-top: 10px;
+    line-height: 1.5;
+}
+.terr-credit a { color: inherit; text-decoration: underline; }
+.terr-lead {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 26px;
+}
+.terr-list { list-style: none; display: grid; gap: 18px; margin-bottom: 30px; padding: 0; }
+.terr-item {
+    background: #fff;
+    border: 1px solid var(--border, color-mix(in srgb, var(--primary) 10%, #fff));
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow, 0 4px 18px rgba(0,0,0,.05));
+}
+.terr-item h3 {
+    font-family: var(--font-serif, 'Poppins', Georgia, serif);
+    font-size: 1.05rem;
+    color: var(--primary);
+    margin: 0 0 6px;
+}
+.terr-item p { font-size: 14px; line-height: 1.7; color: var(--text-muted, var(--text-soft)); margin: 0; }
+.terr-dist { margin-bottom: 30px; }
+.terr-dist h3 {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary-dark, var(--teal));
+    margin: 0 0 10px;
+}
+.terr-dist dl { display: grid; grid-template-columns: 1fr auto; margin: 0; }
+.terr-dist dt, .terr-dist dd {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border, color-mix(in srgb, var(--primary) 10%, #fff));
+    font-size: 14px;
+    margin: 0;
+}
+.terr-dist dt { color: var(--text); font-weight: 600; }
+.terr-dist dd { color: var(--text-muted, var(--text-soft)); text-align: right; padding-left: 16px; }
+
+/* Template gsap: niente .container/.section-pad, larghezza come le altre sezioni */
+.terr-gsap { padding: 100px 24px; }
+.terr-wrap { max-width: 1100px; margin: 0 auto; }
+.terr-gsap .btn-primary:hover { color: var(--accent); border-color: var(--accent); }
+.terr-card-link { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--teal); }
+
+@media (max-width: 860px) {
+    .terr-gsap { padding: 72px 20px; }
+    .terr-grid { grid-template-columns: 1fr; gap: 32px; }
+    .terr-photo { position: static; }
+}
+
+/* ---------- Pagina «Guida» ---------- */
+.guida-hero { position: relative; min-height: min(52vh, 560px); display: flex; align-items: flex-end; color: #fff; }
+.guida-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.guida-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.68), rgba(0,0,0,.08) 60%); }
+.guida-hero .container { position: relative; z-index: 1; padding: 0 32px 48px; width: 100%; }
+.guida-hero .eyebrow { color: #fff; opacity: .9; }
+.guida-hero h1 {
+    font-family: var(--font-serif, 'Poppins', Georgia, serif);
+    font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+    line-height: 1.15;
+    max-width: 22ch;
+    margin: 6px 0 0;
+}
+.guida-back { display: block; max-width: 720px; margin: 0 auto 28px; color: var(--primary); font-weight: 700; font-size: 14px; }
+.prose-blog { max-width: 720px; margin: 0 auto; color: var(--text); font-size: 1.04rem; line-height: 1.8; }
+.prose-blog .lead { font-size: 1.15rem; }
+.prose-blog h2 {
+    font-family: var(--font-serif, 'Poppins', Georgia, serif);
+    color: var(--primary);
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    line-height: 1.25;
+    margin: 2.2em 0 .6em;
+}
+.prose-blog h3 { color: var(--primary-dark); font-size: 1.15rem; margin: 1.6em 0 .4em; }
+.prose-blog p, .prose-blog ul, .prose-blog ol { margin: 0 0 1.1em; }
+.prose-blog ul, .prose-blog ol { padding-left: 1.3em; }
+.prose-blog li { margin-bottom: .4em; }
+.prose-blog table { width: 100%; border-collapse: collapse; margin: 1.4em 0; font-size: .95rem; }
+.prose-blog th, .prose-blog td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border, color-mix(in srgb, var(--primary) 10%, #fff)); vertical-align: top; }
+.prose-blog th { background: var(--primary-light, var(--bg-soft)); color: var(--primary-dark); }
+.prose-blog [class^="callout"] {
+    background: var(--primary-light, var(--bg-soft));
+    border-left: 4px solid var(--secondary, var(--accent));
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin: 1.6em 0;
+}
+.prose-blog [class^="callout"] p { margin: 0; }
+.prose-blog .photo-credit { font-size: .8rem; color: var(--text-muted, var(--text-soft)); }
+.prose-blog .photo-credit a { color: inherit; }
+.guida-cta {
+    max-width: 720px;
+    margin: 48px auto 0;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border-radius: var(--radius-lg, var(--radius));
+    padding: 32px;
+}
+.guida-cta h2 { font-family: var(--font-serif, 'Poppins', Georgia, serif); color: #fff; margin: 0 0 10px; font-size: 1.5rem; }
+.guida-cta p { color: rgba(255,255,255,.85); margin: 0 0 20px; line-height: 1.7; }
+.guida-cta a {
+    display: inline-block;
+    background: #fff;
+    color: var(--primary);
+    padding: 13px 26px;
+    border-radius: var(--radius);
+    font-weight: 700;
+}
+/* Guida nel template gsap */
+.guida-gsap .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.guida-gsap .section-pad { padding: 72px 0 96px; }
+.guida-gsap .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+.guida-gsap .guida-hero h1 { color: #fff; }
+.guida-gsap .guida-cta a { color: var(--primary); }
+
+@media (max-width: 768px) {
+    .guida-hero .container { padding: 0 20px 36px; }
+    .prose-blog table { display: block; overflow-x: auto; }
+}

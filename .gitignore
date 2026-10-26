@@ -1,0 +1,11 @@
+# Riferimenti visivi: clonati fuori dal repo da tooling/skills/sync-references.sh
+# (qui solo per sicurezza, nel caso NAPLES_REFS venga puntato dentro il progetto)
+.naples-references/
+references/
+
+# Cache dei cloni di install-skills.sh
+naples-skills-cache/
+
+# Python
+__pycache__/
+*.pyc

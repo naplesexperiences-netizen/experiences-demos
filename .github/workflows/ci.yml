@@ -21,7 +21,33 @@ jobs:
         run: npm install -g htmlhint@1.1.4
 
       - name: Run HTMLHint
-        run: htmlhint --config .htmlhintrc "index.html" "demos/**/*.html"
+        # blog-articles/ contiene frammenti HTML da incollare nell'editor di
+        # WordPress, non documenti: iniziano con <div class="prose-blog"> e un
+        # doctype non devono averlo. Vanno esclusi, altrimenti il linter li
+        # boccia per "Doctype must be declared first".
+        # .htmlhintignore non basta: htmlhint lo onora solo quando espande lui
+        # i glob, non quando riceve i percorsi da xargs.
+        #
+        # .claude/ e escluso perche contiene skill di terze parti copiate
+        # (vendored): i loro template HTML non sono nostri deliverable e non
+        # devono rispettare le nostre regole di lint.
+        #
+        # In .htmlhintrc la regola tagname-lowercase e spenta: htmlhint non
+        # sa niente di SVG e boccia <animateMotion>, <clipPath>,
+        # <linearGradient>, <feGaussianBlur>, <textPath>, che per specifica
+        # SVG DEVONO essere in camelCase. Le nostre demo usano SVG inline
+        # dappertutto, quindi la regola produce solo falsi positivi.
+        # Non riaccenderla: la CI diventa rossa alla prima animazione SVG.
+        # (attr-lowercase invece resta accesa: quella una lista di eccezioni
+        # per l'SVG ce l'ha, e accetta viewBox, repeatCount e simili.)
+        run: |
+          find . -name "*.html" \
+            ! -path "./.claude/*" \
+            ! -path "*-experiences-standard/*" \
+            ! -path "*-new-template-experiences/*" \
+            ! -path "./blog-articles/*" \
+            ! -path "./node_modules/*" \
+            -print0 | xargs -0 htmlhint --config .htmlhintrc
 
   link-check:
     name: Broken link check
@@ -35,6 +61,8 @@ jobs:
           args: >-
             --offline
             --no-progress
+            --exclude data:.*
+            --exclude HERO_IMAGE_URL
             './index.html'
             './demos/**/*.html'
           fail: true

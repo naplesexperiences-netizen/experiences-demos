@@ -1,0 +1,228 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: fma-richieste\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Vacanza"
+msgstr "Vacances"
+
+msgid "Famiglia"
+msgstr "Famille"
+
+msgid "Gruppo o parrocchia"
+msgstr "Groupe ou paroisse"
+
+msgid "Ritiro spirituale"
+msgstr "Retraite spirituelle"
+
+msgctxt "formato data email"
+msgid "j F Y"
+msgstr "j F Y"
+
+msgid "Scegli la data di arrivo."
+msgstr "Choisissez la date d’arrivée."
+
+msgid "La data di arrivo è già passata."
+msgstr "La date d’arrivée est déjà passée."
+
+msgid "Scegli la data di partenza."
+msgstr "Choisissez la date de départ."
+
+msgid "La partenza deve essere dopo l’arrivo."
+msgstr "Le départ doit être postérieur à l’arrivée."
+
+msgid "Per soggiorni oltre 120 notti scrivi direttamente alla casa."
+msgstr "Pour les séjours de plus de 120 nuits, écrivez directement à la maison."
+
+msgid "Indica da 1 a 120 adulti."
+msgstr "Indiquez de 1 à 120 adultes."
+
+msgid "Indica da 0 a 60 bambini."
+msgstr "Indiquez de 0 à 60 enfants."
+
+msgid "Scrivi nome e cognome."
+msgstr "Indiquez vos nom et prénom."
+
+msgid "Controlla l’indirizzo email (es. nome@esempio.it)."
+msgstr "Vérifiez l’adresse e-mail (ex. nom@exemple.fr)."
+
+msgid "Serve il consenso per inviare la richiesta."
+msgstr "Votre consentement est nécessaire pour envoyer la demande."
+
+msgid "Richiesta inviata."
+msgstr "Demande envoyée."
+
+msgid "Hai inviato molte richieste in poco tempo. Riprova tra qualche minuto o scrivi direttamente alla casa."
+msgstr "Vous avez envoyé beaucoup de demandes en peu de temps. Réessayez dans quelques minutes ou écrivez directement à la maison."
+
+msgid "Struttura non trovata. Ricarica la pagina e riprova."
+msgstr "Maison introuvable. Rechargez la page et réessayez."
+
+msgid "Questa casa non riceve ancora richieste dal sito: usa i recapiti indicati nella pagina."
+msgstr "Cette maison ne reçoit pas encore de demandes via le site : utilisez les coordonnées indiquées sur la page."
+
+msgid "Manca un’informazione: la trovi evidenziata."
+msgstr "Il manque une information : elle est signalée."
+
+msgid "Mancano %d informazioni: le trovi evidenziate."
+msgstr "Il manque %d informations : elles sont signalées."
+
+msgid "%d adulto"
+msgid_plural "%d adulti"
+msgstr[0] "%d adulte"
+msgstr[1] "%d adultes"
+
+msgid "%d bambino"
+msgid_plural "%d bambini"
+msgstr[0] "%d enfant"
+msgstr[1] "%d enfants"
+
+msgid "%d notte"
+msgid_plural "%d notti"
+msgstr[0] "%d nuit"
+msgstr[1] "%d nuits"
+
+msgid "Struttura: %s"
+msgstr "Maison : %s"
+
+msgid "Date: %s"
+msgstr "Dates : %s"
+
+msgid "Partecipanti: %s"
+msgstr "Participants : %s"
+
+msgid "Camera: %s"
+msgstr "Chambre : %s"
+
+msgid "da concordare con la casa"
+msgstr "à convenir avec la maison"
+
+msgid "Tipo di soggiorno: %s"
+msgstr "Type de séjour : %s"
+
+msgid "Non siamo riusciti a inviare la richiesta. Scrivi direttamente a %s."
+msgstr "Nous n’avons pas pu envoyer votre demande. Écrivez directement à %s."
+
+msgid "Ciao %s,"
+msgstr "Bonjour %s,"
+
+msgid "abbiamo inoltrato la tua richiesta a %s. Ti risponderà direttamente la casa, con disponibilità e prezzi."
+msgstr "nous avons transmis votre demande à %s. La maison vous répondra directement avec ses disponibilités et ses prix."
+
+msgid "Per aggiungere dettagli rispondi a questa email: arriverà a %1$s (%2$s)."
+msgstr "Pour ajouter des précisions, répondez à cet e-mail : il arrivera à %1$s (%2$s)."
+
+msgid "Abbiamo inoltrato la tua richiesta a %s"
+msgstr "Nous avons transmis votre demande à %s"
+
+msgid "Richiesta inviata a %1$s. Ti abbiamo mandato una copia a %2$s."
+msgstr "Demande envoyée à %1$s. Nous vous avons envoyé une copie à %2$s."
+
+msgid "Lascia vuoto questo campo"
+msgstr "Laissez ce champ vide"
+
+msgid "Richiedi un soggiorno"
+msgstr "Demander un séjour"
+
+msgid "Senza impegno: la casa ti risponde con disponibilità e prezzi."
+msgstr "Sans engagement : la maison vous répond avec ses disponibilités et ses prix."
+
+msgid "Arrivo"
+msgstr "Arrivée"
+
+msgid "Partenza"
+msgstr "Départ"
+
+msgid "Partecipanti"
+msgstr "Participants"
+
+msgid "Adulti"
+msgstr "Adultes"
+
+msgid "Un adulto in meno"
+msgstr "Un adulte de moins"
+
+msgid "Un adulto in più"
+msgstr "Un adulte de plus"
+
+msgid "Bambini"
+msgstr "Enfants"
+
+msgid "Un bambino in meno"
+msgstr "Un enfant de moins"
+
+msgid "Un bambino in più"
+msgstr "Un enfant de plus"
+
+msgid "Tipologia di camera"
+msgstr "Type de chambre"
+
+msgid "Da concordare con la casa"
+msgstr "À convenir avec la maison"
+
+msgid "Più tipologie (gruppo)"
+msgstr "Plusieurs types (groupe)"
+
+msgid "Camera singola"
+msgstr "Chambre simple"
+
+msgid "Camera doppia"
+msgstr "Chambre double"
+
+msgid "Camera per famiglia"
+msgstr "Chambre familiale"
+
+msgid "Più camere (gruppo)"
+msgstr "Plusieurs chambres (groupe)"
+
+msgid "Tipo di soggiorno"
+msgstr "Type de séjour"
+
+msgid "Nome e cognome"
+msgstr "Nom et prénom"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Telefono"
+msgstr "Téléphone"
+
+msgid "(facoltativo)"
+msgstr "(facultatif)"
+
+msgid "Messaggio"
+msgstr "Message"
+
+msgid "Esigenze particolari, orario di arrivo, pasti…"
+msgstr "Besoins particuliers, heure d’arrivée, repas…"
+
+msgid "Ho letto l’%s e acconsento al trattamento dei dati per rispondere alla richiesta."
+msgstr "J’ai lu la %s et j’accepte le traitement de mes données pour répondre à ma demande."
+
+msgid "informativa privacy"
+msgstr "politique de confidentialité"
+
+msgid "Acconsento al trattamento dei dati per rispondere alla richiesta: li riceve solo la casa scelta."
+msgstr "J’accepte le traitement de mes données pour répondre à ma demande : seule la maison choisie les reçoit."
+
+msgid "La richiesta non è partita: controlla i campi e riprova."
+msgstr "La demande n’a pas été envoyée : vérifiez les champs et réessayez."
+
+msgid "Invia la richiesta"
+msgstr "Envoyer la demande"
+
+msgid "La richiesta arriva a %s."
+msgstr "La demande arrive à %s."
+
+msgid "Richiesta inviata"
+msgstr "Demande envoyée"
+
+msgid "La tua richiesta è arrivata a %s: ti risponderà direttamente la casa. Ti abbiamo mandato una copia via email."
+msgstr "Votre demande est arrivée à %s : la maison vous répondra directement. Nous vous avons envoyé une copie par e-mail."
+
+msgid "Invia un’altra richiesta"
+msgstr "Envoyer une autre demande"

@@ -1,0 +1,57 @@
+{
+  "slug": "castellabate-borgo-castello-benvenuti-al-sud",
+  "post_title": "Castellabate, il borgo di Benvenuti al Sud: castello, belvedere e vicoli",
+  "seo_title": "Castellabate, il borgo di Benvenuti al Sud",
+  "meta_description": "Castellabate fra Borghi più belli d'Italia e Benvenuti al Sud: il Castello dell'Abate, il belvedere, Santa Maria e i dintorni.",
+  "focus_keyword": "castellabate cosa vedere",
+  "secondary_keywords": [
+    "castellabate",
+    "benvenuti al sud",
+    "borghi più belli d'italia",
+    "castello dell'abate"
+  ],
+  "og_title": "Castellabate, il borgo di Benvenuti al Sud: castello, belvedere e vicoli",
+  "og_description": "Castellabate fra Borghi più belli d'Italia e Benvenuti al Sud: il Castello dell'Abate, il belvedere, Santa Maria e i dintorni.",
+  "category": "Destinazioni",
+  "tags": [
+    "castellabate",
+    "benvenuti al sud",
+    "borghi più belli d'italia",
+    "castello dell'abate"
+  ],
+  "struttura": "Hotel Villa Sirio",
+  "citta": "Santa Maria di Castellabate",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-villa-sirio-experiences-standard/",
+  "sito_struttura": "https://www.villasirio.it",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Uno scorcio del borgo medievale di Castellabate",
+    "credit": "Castellabate porta la chiazza - panoramio di templare3000, CC BY 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=54259004"
+  },
+  "word_count": 610,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Castellabate, il borgo di Benvenuti al Sud: castello, belvedere e vicoli",
+    "description": "Castellabate fra Borghi più belli d'Italia e Benvenuti al Sud: il Castello dell'Abate, il belvedere, Santa Maria e i dintorni.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/31-castellabate-borgo-castello-benvenuti-al-sud/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Santa Maria di Castellabate"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/castellabate-borgo-castello-benvenuti-al-sud/"
+  }
+}
