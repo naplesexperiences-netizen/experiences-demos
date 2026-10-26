@@ -2,13 +2,13 @@
 """Builds the "destinazioni" blog articles: one per accommodation demo.
 
 For every entry in ARTICLES this script:
-  * writes blog-articles/destinazioni/<NN>-<slug>/seo.json
+  * writes <blog>/destinazioni/<NN>-<slug>/seo.json
   * (re)writes the footer block of article.html between the markers
     <!-- destinazioni:footer --> and <!-- /destinazioni:footer -->
     with the photo credit, the "Leggi anche" links (same area) and the
     CTA to the demo.
 
-Then it writes blog-articles/destinazioni/destinazioni-import.xml, a WXR
+Then it writes <blog>/destinazioni/destinazioni-import.xml, a WXR
 file for Strumenti → Importa → WordPress: one draft post per article,
 its featured image (featured.jpg, credits in images.json) and the
 Yoast / Rank Math SEO fields.
@@ -18,6 +18,7 @@ again after editing the table below.
 """
 import html
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -25,7 +26,10 @@ from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "blog-articles" / "destinazioni"
+# <blog> è il blog-articles/ del repo experiences-website. Di default è il clone
+# affiancato a questo repo; per un altro percorso impostare BLOG_ARTICLES_DIR.
+BLOG = Path(os.environ.get("BLOG_ARTICLES_DIR", ROOT.parent / "experiences-website" / "blog-articles"))
+OUT = BLOG / "destinazioni"
 DEMO_BASE = "https://naplesexperiences-netizen.github.io/experiences-demos/demos"
 SITE = "https://naplesexperiences.com"
 # Where WordPress downloads featured.jpg from during the import: the
@@ -576,7 +580,7 @@ def main():
         d = OUT / dir_name(i, entry[0])
         art = d / "article.html"
         if not art.exists():
-            missing.append(art.relative_to(ROOT))
+            missing.append(art.relative_to(BLOG))
             continue
         related = [e for e in ARTICLES if e[4] == entry[4] and e is not entry]
         img = images.get(dir_name(i, entry[0]))
