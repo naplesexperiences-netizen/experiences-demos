@@ -1,43 +1,41 @@
-# Insectron Arena — copia giocabile
+# Insectron Arena — rimando
 
-Battaglia tattica a turni 5v5 su griglia. Si gioca da qui:
-**[`gioca.html`](gioca.html)**, un file solo, nessuna dipendenza, funziona
-anche senza rete.
+Questa cartella **non contiene più il gioco**: tiene tre pagine che portano al
+sito del gioco, perché i vecchi indirizzi continuino a funzionare e perché la
+vetrina dell'hub continui a elencare la demo.
+
+| vecchio indirizzo | porta a |
+|---|---|
+| `index.html` | la vetrina del gioco |
+| `gioca.html` | il gioco |
+| `privacy.html` | l'informativa |
+
+**Il gioco si gioca qui:**
+<https://naplesexperiences-netizen.github.io/insectorarena/>
+
+**Il progetto sta qui:**
+<https://github.com/naplesexperiences-netizen/insectorarena>
+
+Lì dentro c'è tutto: il gioco in un file solo, la documentazione tecnica
+(`DOCUMENTAZIONE.md`), la roadmap, i cinque piani, le 31 suite di prove con i
+loro 816 controlli, il materiale grafico e la telemetria.
 
 Demo prodotta da **Experiences Srl**.
 
 ---
 
-## Il progetto sta altrove
+## Perché così, e non cancellando tutto
 
-Questa cartella tiene **solo la copia giocabile**, perché l'hub delle demo la
-pubblica insieme alle altre. Tutto il resto — documentazione tecnica, piani,
-prove automatiche, materiale grafico, telemetria — vive nel repository
-dedicato al gioco:
+L'indirizzo `…/experiences-demos/demos/insectron-arena/` è stato pubblico, ed
+è quello che compare nelle anteprime condivise da qui: cancellandolo, ogni
+link già in giro finirebbe su una pagina che non c'è. Tre file da due
+chilobyte lo tengono vivo.
 
-**<https://github.com/naplesexperiences-netizen/insectorarena>**
+In cambio sono spariti 1,8 MB di roba duplicata — il gioco e 1,5 MB di
+schermate identiche a quelle del repository del gioco — e con loro il
+problema di tenere allineate due copie dello stesso file.
 
-| se cerchi | vai a |
-|---|---|
-| com'è fatto, da dove vengono i dati, che cosa è stato misurato | `DOCUMENTAZIONE.md` |
-| dove siamo e cosa manca | `ROADMAP.md` |
-| i piani per allevamento, mondo, multiplayer, vendite, grafica | `PIANO-*.md` |
-| le 31 suite e gli 816 controlli | `prove-automatiche/` |
-| il materiale per far ridisegnare gli Insector | `sprite-da-migliorare/` |
-| worker e schema della telemetria (spenta) | `telemetria/` |
-
-Il gioco ha anche un **sito proprio**, con vetrina, informativa e installazione
-come app: <https://naplesexperiences-netizen.github.io/insectorarena/>
-
-## Come si tengono allineate le due copie
-
-`gioca.html` qui dentro è **generato** da quello del repository del gioco: non
-va modificato a mano. La differenza è di due righe — qui ci sono i due
-`<meta demo:*>` che servono all'indice dell'hub, e manca la registrazione del
-service worker, perché l'hub non ne ha uno.
-
-Dal repository del gioco:
-
-```sh
-python3 prove-automatiche/strumenti/specchia.py
-```
+Le pagine rimandano da sole, con `<meta http-equiv="refresh">` e con
+`location.replace()` — che non lascia traccia nella cronologia, così il tasto
+«indietro» non ti riporta sul ponte. Chi ha JavaScript spento e il rimando
+bloccato trova comunque un pulsante.
