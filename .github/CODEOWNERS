@@ -1,0 +1,32 @@
+# CODEOWNERS — chi deve approvare cosa
+#
+# Questo repository contiene prototipi. Non c'e' niente, qui dentro, che
+# giri su hardware di un cliente: il totem di Sportlandia, che era l'unico,
+# e' stato spostato nel repository dedicato naplesexperiences-netizen/
+# sportlandia dopo che una passata automatica di meta tag SEO lo aveva
+# riportato indietro di sette commit e rotto sullo schermo in sede.
+#
+# Qui restano sotto revisione solo l'infrastruttura e niente altro, di
+# proposito: chiedere un'approvazione per ogni prototipo fermerebbe il
+# lavoro in blocco senza proteggere niente di vivo.
+#
+# Sintassi: l'ULTIMA riga che corrisponde a un percorso vince, non la prima.
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Infrastruttura: CI, deploy su Pages, generatore dell'hub
+# Un errore qui non rompe una demo, le rompe tutte insieme.
+# ─────────────────────────────────────────────────────────────────────
+/.github/                       @naplesexperiences-netizen
+/scripts/                       @naplesexperiences-netizen
+/.htmlhintrc                    @naplesexperiences-netizen
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Se in futuro una demo viene installata da un cliente
+#
+# Non aggiungerla qui: spostala in un repository suo, come e' stato fatto
+# per Sportlandia. Un proprietario in questo file la protegge solo se
+# tutto il repository passa da pull request, e quel costo ricadrebbe sui
+# 200 prototipi. La separazione invece non costa niente a nessuno.
+# ─────────────────────────────────────────────────────────────────────

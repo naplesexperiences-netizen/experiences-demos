@@ -1,0 +1,59 @@
+{
+  "slug": "camerota-borghi-collina-licusati-lentiscosa",
+  "post_title": "Camerota oltre la spiaggia: il borgo, Licusati, Lentiscosa e la cucina di collina",
+  "seo_title": "Camerota oltre la spiaggia",
+  "meta_description": "Da Marina di Camerota ai borghi di collina: Camerota alta e il castello, Licusati, Lentiscosa e la tavola cilentana.",
+  "focus_keyword": "camerota borgo",
+  "secondary_keywords": [
+    "camerota",
+    "licusati",
+    "lentiscosa",
+    "borghi",
+    "cucina cilentana"
+  ],
+  "og_title": "Camerota oltre la spiaggia: il borgo, Licusati, Lentiscosa e la cucina di collina",
+  "og_description": "Da Marina di Camerota ai borghi di collina: Camerota alta e il castello, Licusati, Lentiscosa e la tavola cilentana.",
+  "category": "Destinazioni",
+  "tags": [
+    "camerota",
+    "licusati",
+    "lentiscosa",
+    "borghi",
+    "cucina cilentana"
+  ],
+  "struttura": "Hotel Riccio",
+  "citta": "Marina di Camerota",
+  "demo_url": "https://naplesexperiences-netizen.github.io/experiences-demos/demos/hotel-riccio-experiences-standard/",
+  "sito_struttura": "https://www.albergoriccio.it",
+  "featured_image": {
+    "file": "featured.jpg",
+    "alt": "Il borgo collinare di Camerota",
+    "credit": "Camerota di Geofix, CC BY-SA 3.0",
+    "source_url": "https://commons.wikimedia.org/w/index.php?curid=11039598"
+  },
+  "word_count": 553,
+  "estimated_reading_time": 3,
+  "schema_article": {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Camerota oltre la spiaggia: il borgo, Licusati, Lentiscosa e la cucina di collina",
+    "description": "Da Marina di Camerota ai borghi di collina: Camerota alta e il castello, Licusati, Lentiscosa e la tavola cilentana.",
+    "image": "https://naplesexperiences-netizen.github.io/experiences-demos/blog-articles/destinazioni/50-camerota-borghi-collina-licusati-lentiscosa/featured.jpg",
+    "about": {
+      "@type": "Place",
+      "name": "Marina di Camerota"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Experiences Srl",
+      "url": "https://naplesexperiences.com"
+    },
+    "inLanguage": "it-IT",
+    "mainEntityOfPage": "https://naplesexperiences.com/blog/camerota-borghi-collina-licusati-lentiscosa/"
+  }
+}
