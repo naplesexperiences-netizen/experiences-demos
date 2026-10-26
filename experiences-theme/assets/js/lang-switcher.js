@@ -44,17 +44,6 @@ function applyLang(lang) {
     ];
   }
 
-  // Update avatar suggested questions buttons
-  const avatarBtns = document.querySelectorAll('[data-avatar-q]');
-  avatarBtns.forEach(btn => {
-    const idx = btn.getAttribute('data-avatar-q');
-    const key = `avatar_q${idx}`;
-    if (t[key]) {
-      btn.textContent = t[key];
-      btn.setAttribute('onclick', `avatarSendMessage('${t[key]}')`);
-    }
-  });
-
   // Update switcher UI
   updateSwitcherUI(lang);
 }
