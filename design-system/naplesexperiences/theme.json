@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": false,
+    "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "custom": false,
+      "customGradient": false,
+      "palette": [
+        { "slug": "ink", "name": "Ink", "color": "#0b3d61" },
+        { "slug": "night", "name": "Night", "color": "#0a1628" },
+        { "slug": "teal-600", "name": "Teal (azione)", "color": "#0d7c7c" },
+        { "slug": "teal-700", "name": "Teal (testo)", "color": "#0a6464" },
+        { "slug": "teal-400", "name": "Teal brillante (solo su scuro)", "color": "#14a3a3" },
+        { "slug": "mist", "name": "Mist", "color": "#e8f4f4" },
+        { "slug": "white", "name": "Bianco", "color": "#ffffff" },
+        { "slug": "gray-700", "name": "Testo", "color": "#374151" }
+      ],
+      "gradients": [
+        { "slug": "brand", "name": "Ink → Teal", "gradient": "linear-gradient(135deg, #0b3d61, #0a6464)" }
+      ]
+    },
+    "shadow": {
+      "defaultPresets": false,
+      "presets": [
+        { "slug": "sm", "name": "Piccola", "shadow": "0 1px 3px rgb(11 61 97 / .10)" },
+        { "slug": "md", "name": "Media", "shadow": "0 4px 12px rgb(11 61 97 / .08)" },
+        { "slug": "lg", "name": "Grande", "shadow": "0 10px 30px rgb(11 61 97 / .10)" }
+      ]
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "customFontSize": false,
+      "fontFamilies": [
+        { "slug": "heading", "name": "Montserrat", "fontFamily": "'Montserrat', system-ui, sans-serif" },
+        { "slug": "body", "name": "Inter", "fontFamily": "'Inter', system-ui, sans-serif" }
+      ],
+      "fontSizes": [
+        { "slug": "small", "name": "Piccolo", "size": "0.875rem" },
+        { "slug": "medium", "name": "Normale", "size": "1rem" },
+        { "slug": "large", "name": "Grande", "size": "1.25rem" },
+        { "slug": "x-large", "name": "Titolo", "size": "1.875rem" }
+      ]
+    },
+    "spacing": {
+      "defaultSpacingSizes": false,
+      "spacingSizes": [
+        { "slug": "20", "name": "XS", "size": "0.5rem" },
+        { "slug": "40", "name": "S", "size": "1rem" },
+        { "slug": "50", "name": "M", "size": "1.5rem" },
+        { "slug": "60", "name": "L", "size": "2rem" },
+        { "slug": "70", "name": "XL", "size": "3rem" },
+        { "slug": "80", "name": "XXL", "size": "4rem" }
+      ]
+    }
+  }
+}

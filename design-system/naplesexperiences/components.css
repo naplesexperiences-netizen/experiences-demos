@@ -1,0 +1,212 @@
+/*
+ * Experiences Srl — componenti
+ * Richiede tokens.css. Prefisso unico `exp-`, modificatori BEM `--`.
+ * Sostituisce: shimmer-btn, verticale-btn, exp-carousel-btn, cb-qbtn e le
+ * combinazioni di utility Tailwind scritte a mano sui pulsanti.
+ */
+
+/* ── Pulsante ─────────────────────────────────────────────── */
+.exp-btn {
+  --_bg: var(--exp-color-action);
+  --_bg-hover: var(--exp-color-action-hover);
+  --_bg-active: var(--exp-color-action-active);
+  --_fg: var(--exp-color-on-action);
+  --_border: transparent;
+  --_border-hover: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--exp-space-2);
+  min-height: 2.75rem;                       /* 44px: target touch */
+  padding: var(--exp-space-3) var(--exp-space-6);
+  border: 2px solid var(--_border);
+  border-radius: var(--exp-radius-md);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--exp-font-body);
+  font-size: var(--exp-text-base);
+  font-weight: var(--exp-weight-semibold);
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--exp-shadow-md);
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: var(--exp-dur-fast);
+  transition-timing-function: var(--exp-ease);
+}
+.exp-btn:hover { background: var(--_bg-hover); border-color: var(--_border-hover); box-shadow: var(--exp-shadow-lg); }
+.exp-btn:active { background: var(--_bg-active); transform: translateY(1px); box-shadow: var(--exp-shadow-sm); }
+.exp-btn:focus-visible { outline: 3px solid var(--exp-color-focus); outline-offset: 3px; }
+.exp-btn > svg, .exp-btn > i { flex: none; font-size: 1.1em; }
+
+/* Varianti */
+.exp-btn--outline {
+  --_bg: transparent;
+  --_bg-hover: var(--exp-color-action);
+  --_bg-active: var(--exp-color-action-hover);
+  --_fg: var(--exp-color-link);
+  --_border: currentColor;
+  --_border-hover: var(--exp-color-action);
+  box-shadow: none;
+}
+.exp-btn--outline:hover, .exp-btn--outline:active { color: var(--exp-color-on-action); }
+
+/* Su sfondo scuro: pulsante principale luminoso (teal-400 + testo night 5.87:1) */
+.exp-btn--bright {
+  --_bg: var(--exp-teal-400);
+  --_bg-hover: var(--exp-teal-300);
+  --_bg-active: var(--exp-teal-400);
+  --_fg: var(--exp-night-900);
+  box-shadow: var(--exp-shadow-glow);
+}
+.exp-btn--bright:focus-visible, .exp-btn--ghost:focus-visible { outline-color: var(--exp-teal-300); }
+
+/* Su sfondo scuro: secondario trasparente */
+.exp-btn--ghost {
+  --_bg: transparent;
+  --_bg-hover: rgb(255 255 255 / .10);
+  --_bg-active: rgb(255 255 255 / .16);
+  --_fg: var(--exp-color-text-on-dark);
+  --_border: rgb(255 255 255 / .30);
+  --_border-hover: rgb(255 255 255 / .60);
+  box-shadow: none;
+}
+
+/* Su sfondo scuro: bianco pieno */
+.exp-btn--inverse {
+  --_bg: var(--exp-white);
+  --_bg-hover: var(--exp-mist-50);
+  --_bg-active: var(--exp-mist-50);
+  --_fg: var(--exp-ink-700);
+}
+
+.exp-btn--whatsapp {
+  --_bg: var(--exp-whatsapp);
+  --_bg-hover: var(--exp-whatsapp-hover);
+  --_bg-active: var(--exp-whatsapp-active);
+  --_fg: var(--exp-night-900);               /* bianco su #25d366 = 1.98:1 */
+}
+
+/* Taglie */
+.exp-btn--sm { min-height: 2.25rem; padding: var(--exp-space-2) var(--exp-space-4); font-size: var(--exp-text-sm); border-radius: var(--exp-radius-sm); }
+.exp-btn--lg { min-height: 3.5rem; padding: var(--exp-space-4) var(--exp-space-8); font-size: var(--exp-text-lg); }
+.exp-btn--block { display: flex; width: 100%; }
+
+/* Stati */
+.exp-btn:disabled,
+.exp-btn[aria-disabled="true"] {
+  --_bg: var(--exp-gray-200);
+  --_bg-hover: var(--exp-gray-200);
+  --_bg-active: var(--exp-gray-200);
+  --_fg: var(--exp-gray-600);
+  --_border: transparent;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+.exp-btn[aria-busy="true"] { position: relative; color: transparent; pointer-events: none; }
+.exp-btn[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 1.1em;
+  height: 1.1em;
+  margin: -.55em 0 0 -.55em;
+  border: 2px solid var(--_fg);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: exp-spin .7s linear infinite;
+}
+@keyframes exp-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .exp-btn[aria-busy="true"]::after { animation-duration: 2s; }
+  .exp-btn:active { transform: none; }
+}
+
+/* ── Pulsante icona (carosello, chiudi, menu) ─────────────── */
+.exp-icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--exp-color-border);
+  border-radius: var(--exp-radius-full);
+  background: var(--exp-color-surface);
+  color: var(--exp-ink-700);
+  cursor: pointer;
+  box-shadow: var(--exp-shadow-sm);
+  transition: background-color var(--exp-dur-fast) var(--exp-ease), color var(--exp-dur-fast) var(--exp-ease), border-color var(--exp-dur-fast) var(--exp-ease);
+}
+.exp-icon-btn:hover { background: var(--exp-color-action); border-color: var(--exp-color-action); color: var(--exp-color-on-action); }
+.exp-icon-btn:focus-visible { outline: 3px solid var(--exp-color-focus); outline-offset: 2px; }
+.exp-icon-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ── Chip (quick reply del chatbot, filtri, verticali) ────── */
+.exp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--exp-space-2);
+  min-height: 2.25rem;
+  padding: var(--exp-space-2) var(--exp-space-4);
+  border: 1px solid rgb(var(--exp-teal-400-rgb) / .35);
+  border-radius: var(--exp-radius-full);
+  background: var(--exp-color-surface-soft);
+  color: var(--exp-color-link);
+  font-size: var(--exp-text-sm);
+  font-weight: var(--exp-weight-medium);
+  cursor: pointer;
+  transition: background-color var(--exp-dur-fast) var(--exp-ease), color var(--exp-dur-fast) var(--exp-ease), border-color var(--exp-dur-fast) var(--exp-ease);
+}
+.exp-chip:hover { background: var(--exp-color-action); border-color: var(--exp-color-action); color: var(--exp-color-on-action); }
+.exp-chip:focus-visible { outline: 3px solid var(--exp-color-focus); outline-offset: 2px; }
+.exp-chip[aria-pressed="true"] { background: var(--exp-color-action); border-color: var(--exp-color-action); color: var(--exp-color-on-action); }
+.exp-chip--on-dark { background: rgb(255 255 255 / .06); border-color: rgb(255 255 255 / .20); color: var(--exp-color-text-on-dark); }
+.exp-chip--on-dark:hover { background: var(--exp-teal-400); border-color: var(--exp-teal-400); color: var(--exp-night-900); }
+
+/* ── Link testuale ────────────────────────────────────────── */
+.exp-link {
+  color: var(--exp-color-link);
+  font-weight: var(--exp-weight-semibold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .2em;
+  transition: color var(--exp-dur-fast) var(--exp-ease);
+}
+.exp-link:hover { color: var(--exp-color-link-hover); text-decoration-thickness: 2px; }
+.exp-link:focus-visible { outline: 2px solid var(--exp-color-focus); outline-offset: 2px; border-radius: 2px; }
+
+/* ── Card ─────────────────────────────────────────────────── */
+.exp-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--exp-color-border);
+  border-radius: var(--exp-radius-lg);
+  background: var(--exp-color-surface);
+  box-shadow: var(--exp-shadow-sm);
+  overflow: hidden;
+  transition: transform var(--exp-dur-slow) var(--exp-ease-out), box-shadow var(--exp-dur-slow) var(--exp-ease-out);
+}
+.exp-card--interactive:hover { transform: translateY(-4px); box-shadow: var(--exp-shadow-lg); }
+.exp-card--interactive:focus-within { box-shadow: var(--exp-shadow-lg), var(--exp-ring); }
+
+/* ── Badge / eyebrow ──────────────────────────────────────── */
+.exp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--exp-space-1);
+  padding: var(--exp-space-1) var(--exp-space-3);
+  border-radius: var(--exp-radius-full);
+  background: var(--exp-color-surface-soft);
+  color: var(--exp-color-link);
+  font-size: var(--exp-text-xs);
+  font-weight: var(--exp-weight-semibold);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.exp-badge--on-dark { background: rgb(var(--exp-teal-400-rgb) / .15); color: var(--exp-color-accent-on-brand); }
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-card--interactive:hover { transform: none; }
+}

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiences — componenti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--exp-font-body); color: var(--exp-color-text); background: var(--exp-color-surface); line-height: var(--exp-leading-body); }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: var(--exp-space-12) var(--exp-space-4); }
+  h1, h2 { font-family: var(--exp-font-heading); color: var(--exp-color-heading); line-height: var(--exp-leading-tight); }
+  h1 { font-size: var(--exp-text-4xl); margin: 0 0 var(--exp-space-2); }
+  h2 { font-size: var(--exp-text-2xl); margin: var(--exp-space-12) 0 var(--exp-space-4); }
+  .lead { color: var(--exp-color-text-muted); max-width: 40rem; margin: 0; }
+  .row { display: flex; flex-wrap: wrap; gap: var(--exp-space-4); align-items: center; }
+  .panel { padding: var(--exp-space-8); border-radius: var(--exp-radius-lg); }
+  .panel--dark { background: var(--exp-color-surface-dark); color: var(--exp-color-text-on-dark); }
+  .panel--brand { background: linear-gradient(135deg, var(--exp-ink-700), var(--exp-color-surface-brand)); color: var(--exp-color-text-on-dark); }
+  .panel--soft { background: var(--exp-color-surface-soft); }
+  .panel h3 { margin: 0 0 var(--exp-space-4); font-family: var(--exp-font-heading); font-size: var(--exp-text-lg); color: inherit; }
+  .panel--soft h3 { color: var(--exp-color-heading); }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: var(--exp-space-3); }
+  .sw { border: 1px solid var(--exp-color-border); border-radius: var(--exp-radius-md); overflow: hidden; font-size: var(--exp-text-xs); }
+  .sw i { display: block; height: 4rem; }
+  .sw div { padding: var(--exp-space-2) var(--exp-space-3); }
+  .sw b { display: block; font-size: var(--exp-text-sm); color: var(--exp-color-heading); }
+  code { font-family: var(--exp-font-mono); font-size: .85em; }
+  .muted-dark { color: var(--exp-color-muted-on-dark); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--exp-space-6); }
+  .exp-card .body { padding: var(--exp-space-6); }
+  .exp-card h4 { margin: var(--exp-space-3) 0 var(--exp-space-2); font-family: var(--exp-font-heading); color: var(--exp-color-heading); }
+  .exp-card p { margin: 0 0 var(--exp-space-4); font-size: var(--exp-text-sm); color: var(--exp-color-text-muted); }
+  .exp-card .media { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--exp-ink-700), var(--exp-teal-600)); }
+  table { width: 100%; border-collapse: collapse; font-size: var(--exp-text-sm); }
+  th, td { text-align: left; padding: var(--exp-space-2) var(--exp-space-3); border-bottom: 1px solid var(--exp-color-border); vertical-align: top; }
+  th { color: var(--exp-color-heading); }
+  .table-scroll { overflow-x: auto; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Experiences — componenti</h1>
+  <p class="lead">Token e componenti del tema <code>experiences-theme</code>. Ogni coppia testo/sfondo in questa pagina rispetta WCAG AA.</p>
+
+  <h2>Colore</h2>
+  <div class="swatches">
+    <div class="sw"><i style="background:var(--exp-ink-700)"></i><div><b>ink-700</b>#0b3d61 · titoli, fondi</div></div>
+    <div class="sw"><i style="background:var(--exp-night-900)"></i><div><b>night-900</b>#0a1628 · sezioni scure</div></div>
+    <div class="sw"><i style="background:var(--exp-teal-600)"></i><div><b>teal-600</b>#0d7c7c · azione</div></div>
+    <div class="sw"><i style="background:var(--exp-teal-700)"></i><div><b>teal-700</b>#0a6464 · link, hover, superfici</div></div>
+    <div class="sw"><i style="background:var(--exp-teal-800)"></i><div><b>teal-800</b>#084f4f · attivo</div></div>
+    <div class="sw"><i style="background:var(--exp-teal-400)"></i><div><b>teal-400</b>#14a3a3 · solo su scuro</div></div>
+    <div class="sw"><i style="background:var(--exp-teal-300)"></i><div><b>teal-300</b>#4adede · testo su scuro</div></div>
+    <div class="sw"><i style="background:var(--exp-teal-200)"></i><div><b>teal-200</b>#99ecec · testo su teal</div></div>
+    <div class="sw"><i style="background:var(--exp-mist-50)"></i><div><b>mist-50</b>#e8f4f4 · superficie tenue</div></div>
+  </div>
+
+  <h2>Pulsanti</h2>
+  <div class="panel panel--soft">
+    <h3>Su chiaro</h3>
+    <div class="row">
+      <a class="exp-btn exp-btn--lg" href="#">Richiedi una demo</a>
+      <a class="exp-btn" href="#">Contattaci</a>
+      <a class="exp-btn exp-btn--outline" href="#">Scopri i servizi</a>
+      <button class="exp-btn exp-btn--sm" type="button">Piccolo</button>
+      <button class="exp-btn" type="button" disabled>Non disponibile</button>
+      <button class="exp-btn" type="button" aria-busy="true">Invio in corso</button>
+      <a class="exp-btn exp-btn--whatsapp" href="#">WhatsApp</a>
+    </div>
+  </div>
+  <div class="panel panel--dark" style="margin-top:var(--exp-space-4)">
+    <h3>Su scuro</h3>
+    <div class="row">
+      <a class="exp-btn exp-btn--bright exp-btn--lg" href="#">Prenota audit gratuito</a>
+      <a class="exp-btn exp-btn--ghost exp-btn--lg" href="#">Parla con noi</a>
+      <a class="exp-btn exp-btn--inverse" href="#">Guarda la selezione</a>
+      <a class="exp-btn" href="#">Primario</a>
+    </div>
+  </div>
+
+  <h2>Chip, badge, link, pulsanti icona</h2>
+  <div class="panel panel--soft">
+    <div class="row">
+      <span class="exp-badge">Soluzioni che funzionano</span>
+      <button class="exp-chip" type="button">Come funziona?</button>
+      <button class="exp-chip" type="button" aria-pressed="true">Hotel &amp; B&amp;B</button>
+      <a class="exp-link" href="#">Apri l'archivio completo</a>
+      <button class="exp-icon-btn" type="button" aria-label="Precedente">‹</button>
+      <button class="exp-icon-btn" type="button" aria-label="Successivo">›</button>
+    </div>
+  </div>
+  <div class="panel panel--brand" style="margin-top:var(--exp-space-4)">
+    <div class="row">
+      <span class="exp-badge exp-badge--on-dark">Assistente virtuale AI</span>
+      <button class="exp-chip exp-chip--on-dark" type="button">Tour operator</button>
+      <span class="muted-dark">Testo attenuato su superficie brand (minimo /82)</span>
+    </div>
+  </div>
+
+  <h2>Card</h2>
+  <div class="cards">
+    <article class="exp-card exp-card--interactive">
+      <div class="media"></div>
+      <div class="body">
+        <span class="exp-badge">Revenue</span>
+        <h4>Channel Manager</h4>
+        <p>Un calendario solo, e le dirette non passano più dalle OTA.</p>
+        <a class="exp-link" href="#">Leggi il caso</a>
+      </div>
+    </article>
+    <article class="exp-card exp-card--interactive">
+      <div class="media"></div>
+      <div class="body">
+        <span class="exp-badge">AI</span>
+        <h4>Assistente 24/7</h4>
+        <p>Risponde in 12 lingue e passa al team solo le richieste vere.</p>
+        <a class="exp-btn exp-btn--sm" href="#">Provalo</a>
+      </div>
+    </article>
+  </div>
+
+  <h2>Migrazione delle classi</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Oggi nei template</th><th>Diventa</th></tr></thead>
+      <tbody>
+        <tr><td><code>px-8 py-4 bg-secondary hover:bg-accent text-white font-semibold rounded-xl shadow-md</code></td><td><code>exp-btn exp-btn--lg</code></td></tr>
+        <tr><td><code>shimmer-btn px-8 py-4 text-white …</code> (su hero)</td><td><code>exp-btn exp-btn--bright exp-btn--lg</code></td></tr>
+        <tr><td><code>px-8 py-4 border border-white/20 text-white hover:bg-white/10 …</code></td><td><code>exp-btn exp-btn--ghost exp-btn--lg</code></td></tr>
+        <tr><td><code>py-3 px-6 border-2 border-secondary text-secondary …</code></td><td><code>exp-btn exp-btn--outline exp-btn--block</code></td></tr>
+        <tr><td><code>bg-white border-2 border-white text-primary …</code></td><td><code>exp-btn exp-btn--inverse exp-btn--block</code></td></tr>
+        <tr><td><code>verticale-btn …</code>, <code>cb-qbtn</code></td><td><code>exp-chip</code> / <code>exp-chip--on-dark</code></td></tr>
+        <tr><td><code>exp-carousel-btn</code></td><td><code>exp-icon-btn</code></td></tr>
+        <tr><td><code>inline-block px-4 py-1 bg-light text-secondary text-sm font-semibold rounded-full</code></td><td><code>exp-badge</code></td></tr>
+        <tr><td><code>card-hover bg-white rounded-xl …</code></td><td><code>exp-card exp-card--interactive</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

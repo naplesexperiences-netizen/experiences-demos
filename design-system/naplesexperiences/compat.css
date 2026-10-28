@@ -1,0 +1,107 @@
+/*
+ * Experiences Srl — livello di compatibilità
+ * Da caricare DOPO tailwind.min.css e style.css. Corregge i contrasti WCAG AA
+ * sulle utility e sulle classi custom già presenti nei template, senza toccarli.
+ * Ogni regola qui è debito: va tolta quando il template corrispondente passa
+ * ai componenti exp-* (vedi README, «Migrazione»).
+ * Verifica: node design-system/naplesexperiences/check-contrast.js --inject
+ *
+ * Contesto di sfondo. Il CSS non conosce l'antenato più vicino, quindi:
+ *   - default: le utility restano come sono (pensate per lo sfondo scuro);
+ *   - dentro una superficie chiara  → versione scura        (specificità 0,2,0);
+ *   - scura dentro chiara           → torna versione chiara (0,3,0);
+ *   - chiara dentro scura           → versione scura        (0,3,0, dichiarata dopo).
+ * Le liste vanno tenute allineate a quelle usate nei template.
+ *
+ *   CHIARE: .bg-white .bg-light .bg-gray-50 .bg-white/95
+ *   SCURE:  .bg-dark .bg-primary .bg-secondary .hero-gradient .stat-card
+ *           .bg-white/5 .bg-white/10 .pricing-card.featured
+ *           [class*="from-primary"] [class*="from-dark"] footer
+ */
+
+/* ── 1. Superfici teal: il punto più chiaro scende a teal-700 ─────────── */
+:is(section, div, aside, header, footer).bg-secondary { background-color: var(--exp-color-surface-brand); }
+.to-secondary { --tw-gradient-to: var(--exp-color-surface-brand) var(--tw-gradient-to-position); }
+.hero-gradient {
+  /* finisce su teal-800: il teal-300 dei testi dell'hero regge in ogni punto */
+  background: linear-gradient(135deg, var(--exp-night-900) 0%, var(--exp-ink-700) 50%, var(--exp-teal-800) 100%);
+}
+.pricing-card.featured { background: linear-gradient(135deg, var(--exp-ink-700), var(--exp-color-surface-brand)); }
+
+/* ── 2. Teal come testo ───────────────────────────────────────────────── */
+/* su scuro: teal-300 (su ink e su teal-700 il teal-400 non basta) */
+:is(.bg-dark, .bg-primary, .bg-secondary, .hero-gradient, .stat-card, .bg-white\/5, .bg-white\/10,
+    .pricing-card.featured, [class*="from-primary"], [class*="from-dark"], footer)
+  :is(.text-accent, .text-secondary, .hover\:text-accent:hover) { color: var(--exp-color-accent-on-dark); }
+/* su chiaro: teal-700 */
+:is(.bg-white, .bg-light, .bg-gray-50, .bg-white\/95)
+  :is(.text-accent, .text-secondary, .hover\:text-accent:hover, .hover\:text-secondary:hover),
+:is(.bg-white, .bg-light, .bg-gray-50, .bg-white\/95):is(.text-accent, .text-secondary) { color: var(--exp-color-link); }
+/* scura dentro chiara */
+:is(.bg-white, .bg-light, .bg-gray-50)
+  :is(.bg-dark, .bg-primary, .bg-secondary, .stat-card, .pricing-card.featured, [class*="from-primary"], [class*="from-dark"])
+  :is(.text-accent, .text-secondary) { color: var(--exp-color-accent-on-dark); }
+/* chiara dentro scura */
+:is(.bg-dark, .bg-primary, .bg-secondary, .hero-gradient, [class*="from-primary"], [class*="from-dark"], footer)
+  :is(.bg-white, .bg-light, .bg-gray-50)
+  :is(.text-accent, .text-secondary) { color: var(--exp-color-link); }
+
+/* ── 3. Riempimenti teal con testo bianco ─────────────────────────────── */
+.bg-accent.text-white,
+.bg-accent\/80.text-white { background-color: var(--exp-color-action); }
+.hover\:bg-accent:hover,
+.hover\:bg-accent\/90:hover { background-color: var(--exp-color-action-hover); }
+
+/* Pulsante animato: ogni tappa del gradiente regge il testo bianco */
+.shimmer-btn {
+  background-image: linear-gradient(90deg,
+    var(--exp-teal-600) 0%, var(--exp-teal-700) 40%, var(--exp-teal-600) 60%,
+    var(--exp-teal-800) 80%, var(--exp-teal-600) 100%);
+}
+
+/* ── 4. Bianco attenuato sulle superfici che finiscono in teal: min /82 ─ */
+:is(.bg-secondary, .hero-gradient, .pricing-card.featured, [class*="to-secondary"])
+  :is(.text-white\/50, .text-white\/60, .text-white\/70, .text-white\/80, .text-white\/90) { color: var(--exp-color-muted-on-dark); }
+:is(.bg-secondary, .hero-gradient, .pricing-card.featured, [class*="to-secondary"]) .text-gray-300 { color: var(--exp-mist-50); }
+/* teal su superfici che finiscono in teal-700: teal-200. Doppia classe per
+   battere la regola «scura dentro chiara» (0,3,0) anche dentro sezioni bianche */
+:is(.bg-secondary, .pricing-card.featured, [class*="to-secondary"])
+  :is(.text-accent, .text-secondary):is(.text-accent, .text-secondary) { color: var(--exp-color-accent-on-brand); }
+/* pill teal traslucida su superficie teal: testo bianco */
+:is(.bg-secondary, [class*="to-secondary"]) :is(.bg-accent\/10, .bg-accent\/15, .bg-accent\/20)
+  :is(.text-accent, .text-secondary):is(.text-accent, .text-secondary),
+:is(.bg-secondary, [class*="to-secondary"]) :is(.bg-accent\/10, .bg-accent\/15, .bg-accent\/20):is(.text-accent, .text-secondary) { color: var(--exp-color-on-action); }
+
+/* ── 5. Grigi ─────────────────────────────────────────────────────────── */
+:is(.bg-dark, .stat-card, .bg-white\/5, .bg-white\/10, .hero-gradient, footer, [class*="from-primary"])
+  :is(.text-gray-400, .text-gray-500) { color: var(--exp-color-subtle-on-dark); }
+:is(.bg-white, .bg-light, .bg-gray-50) .text-gray-400 { color: var(--exp-color-text-muted); }
+:is(.bg-white, .bg-light, .bg-gray-50) :is(.bg-dark, .stat-card, [class*="from-primary"], [class*="from-dark"])
+  :is(.text-gray-400, .text-gray-500) { color: var(--exp-color-subtle-on-dark); }
+
+/* ── 6. Classi custom del tema ────────────────────────────────────────── */
+/* Il CSS del chatbot e dei componenti è in <style> dentro il <body>, quindi
+   arriva dopo questo file: `html body` serve a vincere senza !important. */
+html body .exp-avatar-hint { color: var(--exp-color-on-action); }
+html body .exp-c-link { color: var(--exp-color-link-on-dark); }
+.scroll-indicator, .scroll-indicator * { color: var(--exp-color-muted-on-dark); }
+
+/* Chatbot */
+html body #expcb1 .cb-head { background: linear-gradient(135deg, var(--exp-ink-700), var(--exp-color-surface-brand)); }
+html body #expcb1 .cb-sub { color: var(--exp-color-muted-on-dark); }
+html body #expcb1 .cb-demo,
+html body #expcb1 .cb-ai-badge { color: var(--exp-color-on-action); font-size: var(--exp-text-xs); }
+html body #expcb1 .cb-qlabel { color: var(--exp-color-text-muted); font-size: var(--exp-text-xs); }
+html body #expcb1 .cb-qbtn { color: var(--exp-color-link); font-size: var(--exp-text-xs); }
+html body #expcb1 .cb-qbtn:hover { background: var(--exp-color-action); border-color: var(--exp-color-action); color: var(--exp-color-on-action); }
+
+/* ── 7. Focus visibile per tutto ciò che è interattivo ────────────────── */
+:is(a, button, [role="button"], input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--exp-color-focus);
+  outline-offset: 2px;
+}
+:is(.bg-dark, .bg-primary, .bg-secondary, .hero-gradient, footer, [class*="from-primary"])
+  :is(a, button, [role="button"]):focus-visible { outline-color: var(--exp-teal-300); }
+
+/* ── 8. Corpo minimo 12px ─────────────────────────────────────────────── */
+.text-\[10px\] { font-size: var(--exp-text-xs); }

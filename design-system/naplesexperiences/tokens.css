@@ -1,0 +1,156 @@
+/*
+ * Experiences Srl — design tokens
+ * Unica fonte di verità per colori, tipo, raggi, ombre e motion del tema
+ * `experiences-theme`. Tailwind (tailwind.preset.js) e style.css leggono
+ * queste variabili: nessun hex scritto a mano fuori da questo file.
+ *
+ * Regola del teal (contrasto WCAG AA, testo ≥ 4.5:1):
+ *   --exp-teal-400 #14a3a3  → solo su sfondo scuro o decorativo (3.09:1 su bianco)
+ *   --exp-teal-600 #0d7c7c  → fondo pulsanti con testo bianco (5.01:1)
+ *   --exp-teal-700 #0a6464  → testo e link su chiaro (6.19:1 su mist), hover dei
+ *                             pulsanti, superfici teal con testo bianco attenuato
+ *                             fino a /80 (5.09:1)
+ *   --exp-teal-300 #4adede  → testo teal su sfondo scuro (night, ink)
+ *   --exp-teal-200 #99ecec  → testo teal su superfici teal-700 (5.15:1)
+ */
+:root {
+  /* — Brand, scala — */
+  --exp-teal-200: #99ecec;
+  --exp-teal-300: #4adede;
+  --exp-teal-400: #14a3a3;
+  --exp-teal-600: #0d7c7c;
+  --exp-teal-700: #0a6464;
+  --exp-teal-800: #084f4f;
+  --exp-ink-700: #0b3d61;
+  --exp-night-900: #0a1628;
+  --exp-mist-50: #e8f4f4;
+  --exp-white: #ffffff;
+
+  /* Canali RGB per le trasparenze: rgb(var(--exp-teal-400-rgb) / .3).
+     Servono anche a Tailwind per i modificatori tipo bg-accent/20. */
+  --exp-teal-200-rgb: 153 236 236;
+  --exp-teal-300-rgb: 74 222 222;
+  --exp-teal-400-rgb: 20 163 163;
+  --exp-teal-600-rgb: 13 124 124;
+  --exp-teal-700-rgb: 10 100 100;
+  --exp-teal-800-rgb: 8 79 79;
+  --exp-ink-700-rgb: 11 61 97;
+  --exp-night-900-rgb: 10 22 40;
+  --exp-mist-50-rgb: 232 244 244;
+
+  /* — Neutri — */
+  --exp-gray-50: #f9fafb;
+  --exp-gray-200: #e5e7eb;
+  --exp-gray-300: #d1d5db;
+  --exp-gray-400: #9ca3af;   /* testo secondario su night (7.35:1); mai su bianco */
+  --exp-gray-500: #6b7280;   /* minimo per testo secondario su bianco (4.83:1) */
+  --exp-gray-600: #4b5563;   /* testo secondario su mist */
+  --exp-gray-700: #374151;
+
+  /* — Stato — */
+  --exp-success: #10b981;
+  --exp-success-bg: #ecfdf5;
+  --exp-warning: #f59e0b;
+  --exp-warning-bg: #fef3c7;
+  --exp-whatsapp: #25d366;
+  --exp-whatsapp-hover: #1ebe5b;
+  --exp-whatsapp-active: #1aa851;
+
+  /* — Ruoli (usare questi nei componenti) — */
+  --exp-color-text: var(--exp-gray-700);
+  --exp-color-text-muted: var(--exp-gray-500);
+  --exp-color-heading: var(--exp-ink-700);
+  --exp-color-link: var(--exp-teal-700);
+  --exp-color-link-hover: var(--exp-teal-800);
+  --exp-color-action: var(--exp-teal-600);
+  --exp-color-action-hover: var(--exp-teal-700);
+  --exp-color-action-active: var(--exp-teal-800);
+  --exp-color-on-action: var(--exp-white);
+  --exp-color-surface: var(--exp-white);
+  --exp-color-surface-soft: var(--exp-mist-50);
+  --exp-color-surface-dark: var(--exp-night-900);
+  --exp-color-surface-brand: var(--exp-teal-700);
+  --exp-color-border: var(--exp-gray-200);
+  --exp-color-focus: var(--exp-teal-600);
+
+  /* Ruoli su sfondo scuro */
+  --exp-color-text-on-dark: var(--exp-white);
+  --exp-color-muted-on-dark: rgb(255 255 255 / .82);  /* minimo anche su surface-brand */
+  --exp-color-subtle-on-dark: var(--exp-gray-400);     /* note legali, footer */
+  --exp-color-accent-on-dark: var(--exp-teal-300);
+  --exp-color-link-on-dark: var(--exp-teal-300);
+  --exp-color-accent-on-brand: var(--exp-teal-200);
+
+  /* — Tipografia — */
+  --exp-font-heading: 'Montserrat', system-ui, sans-serif;
+  --exp-font-body: 'Inter', system-ui, sans-serif;
+  --exp-font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --exp-text-xs: .75rem;     /* 12px — minimo per etichette e badge */
+  --exp-text-sm: .875rem;
+  --exp-text-base: 1rem;
+  --exp-text-lg: 1.125rem;
+  --exp-text-xl: 1.25rem;
+  --exp-text-2xl: 1.5rem;
+  --exp-text-3xl: 1.875rem;
+  --exp-text-4xl: 2.25rem;
+  --exp-text-5xl: 3rem;
+  --exp-text-6xl: 3.75rem;
+  --exp-text-display: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);
+
+  --exp-weight-regular: 400;
+  --exp-weight-medium: 500;
+  --exp-weight-semibold: 600;
+  --exp-weight-bold: 700;
+
+  --exp-leading-tight: 1.15;
+  --exp-leading-snug: 1.35;
+  --exp-leading-body: 1.6;
+
+  /* — Spaziatura (base 4px, allineata a Tailwind) — */
+  --exp-space-1: .25rem;
+  --exp-space-2: .5rem;
+  --exp-space-3: .75rem;
+  --exp-space-4: 1rem;
+  --exp-space-6: 1.5rem;
+  --exp-space-8: 2rem;
+  --exp-space-12: 3rem;
+  --exp-space-16: 4rem;
+  --exp-space-24: 6rem;
+
+  /* — Raggi — */
+  --exp-radius-sm: .5rem;     /* chip, input piccoli */
+  --exp-radius-md: .75rem;    /* pulsanti, input */
+  --exp-radius-lg: 1rem;      /* card */
+  --exp-radius-xl: 1.5rem;    /* modali, pannelli grandi */
+  --exp-radius-full: 9999px;
+
+  /* — Ombre (una sola tinta: ink) — */
+  --exp-shadow-sm: 0 1px 3px rgb(var(--exp-ink-700-rgb) / .10);
+  --exp-shadow-md: 0 4px 12px rgb(var(--exp-ink-700-rgb) / .08);
+  --exp-shadow-lg: 0 10px 30px rgb(var(--exp-ink-700-rgb) / .10);
+  --exp-shadow-xl: 0 25px 60px rgb(var(--exp-ink-700-rgb) / .18);
+  --exp-shadow-glow: 0 8px 24px rgb(var(--exp-teal-400-rgb) / .30);
+  --exp-ring: 0 0 0 3px rgb(var(--exp-teal-400-rgb) / .45);
+
+  /* — Motion — */
+  --exp-dur-fast: 150ms;      /* hover, focus, feedback */
+  --exp-dur-base: 250ms;      /* menu, accordion */
+  --exp-dur-slow: 400ms;      /* ingresso sezioni */
+  --exp-ease: cubic-bezier(.4, 0, .2, 1);
+  --exp-ease-out: cubic-bezier(.16, 1, .3, 1);
+
+  /* — Livelli — */
+  --exp-z-header: 50;
+  --exp-z-chat: 60;
+  --exp-z-modal: 100;
+  --exp-z-cookie: 10000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --exp-dur-fast: 0ms;
+    --exp-dur-base: 0ms;
+    --exp-dur-slow: 0ms;
+  }
+}
