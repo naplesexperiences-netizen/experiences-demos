@@ -44,6 +44,19 @@ node design-system/naplesexperiences/check-contrast.js --inject   # con tokens +
 Nessuno scroll orizzontale introdotto. Il checker salta testi su immagini e testo
 sfumato (`background-clip: text`); per i gradienti usa il punto peggiore.
 
+## Zip per WordPress
+
+```
+./design-system/naplesexperiences/build-zip.sh [cartella-di-uscita]   # default: ./dist
+```
+
+- `experiences-design-system.zip` — **plugin** (sorgente in `plugin/`). Bacheca → Plugin →
+  Aggiungi nuovo → Carica plugin → Attiva, poi svuotare la cache di Cloudflare.
+  Carica tokens + components + compat dopo i CSS del tema; `compat.css` si accende
+  solo con `experiences-theme`. Disattivarlo riporta il sito com'era.
+- `experiences-design-system-tema.zip` — i file per l'integrazione nel tema (passi sotto).
+  Quando il tema carica da sé il design system, il plugin va disattivato.
+
 ## Installazione nel tema
 
 1. Copiare la cartella in `experiences-theme/design-system/` (senza `check-contrast.js` e `preview.html`, che restano strumenti).
