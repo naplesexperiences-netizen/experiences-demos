@@ -3,6 +3,8 @@
 Demo di landing page per clienti (Napoli / Salerno). Pagine statiche HTML/CSS/JS
 in `demos/`, hub generato da `scripts/`. Il sito WordPress e il chatbot
 sono nel repo `naplesexperiences-netizen/experiences-website`.
+Accoglienza FMA (demo, tema e plugin WordPress, ex `demos/accoglienza-fma-template`)
+è nel repo `naplesexperiences-netizen/accoglienzafma`.
 
 ## Profili di lavoro
 
