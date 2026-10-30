@@ -288,8 +288,9 @@
         .card:hover .card-img-wrap img { transform: scale(1.07); }
         .card-icon {
             position: absolute;
-            bottom: -22px;
-            right: 20px;
+            bottom: 14px;
+            right: 16px;
+            color: #fff;
             width: 46px;
             height: 46px;
             background: var(--accent-strong);
@@ -302,7 +303,7 @@
             z-index: 2;
         }
         .card-body { padding: 30px 26px 26px; }
-        .card-title { font-size: 23px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .card-title { line-height: 1.25; font-size: 23px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
         .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; font-family: 'Jost', sans-serif; }
 
         /* GALLERY */
@@ -662,7 +663,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .gsap-enabled .hero-content { visibility: hidden; }
-        .gsap-enabled .reveal { opacity: 0; will-change: transform, opacity; }
+        .gsap-enabled .reveal { opacity: 0; }
 
 
         /* ACCESSIBILITA' E TOUCH (audit fase 1) */
@@ -676,6 +677,27 @@
         .demo-banner a, footer a { display: inline-block; padding: 12px 2px; margin: -12px 0; }
         .demo-banner a { border-bottom: 0; text-decoration: underline; text-underline-offset: 3px; }
         @media (max-width: 600px) { .demo-banner { font-size: 12px; padding: 8px 14px; line-height: 1.5; } }
+
+
+        /* ICONE (fase 2): sprite SVG al posto delle emoji, ereditano colore e dimensione dal testo */
+        .ic { width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.22em; flex-shrink: 0; }
+        .card-icon .ic { width: 26px; height: 26px; vertical-align: middle; }
+        .hero-scroll .ic { width: 28px; height: 28px; }
+        /* TIPOGRAFIA (fase 2) */
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
+        .stat-num, .pricing-price { font-variant-numeric: tabular-nums lining-nums; }
+        /* MICRO-INTERAZIONI (fase 3): pressione dei pulsanti, caricamento immagini, tocco senza ritardo */
+        a, button, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+        .btn, .btn-white, .btn-ghost, .pricing-btn, .chat-send, .btn-cta { transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+        .btn:active, .btn-white:active, .btn-ghost:active, .pricing-btn:active, .chat-send:active, .btn-cta:active { transform: translateY(1px) scale(0.98); }
+        .card-img-wrap, .gallery-item, .about-img-wrap {
+            background: linear-gradient(100deg, var(--bg-soft) 30%, color-mix(in srgb, var(--primary) 9%, #fff) 50%, var(--bg-soft) 70%);
+            background-size: 200% 100%; animation: shimmer 1.6s linear infinite;
+        }
+        @keyframes shimmer { to { background-position: -200% 0; } }
+        .review-sample { display: inline-block; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); border: 1px solid color-mix(in srgb, var(--text-soft) 40%, transparent); border-radius: 20px; padding: 2px 10px; margin-bottom: 10px; }
+        @media (prefers-reduced-motion: reduce) { .card-img-wrap, .gallery-item, .about-img-wrap { animation: none; } }
 
         /* RESPONSIVE */
         @media (max-width: 860px) {
@@ -702,9 +724,27 @@
     </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 00-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></symbol>
+  <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 004 0V3M8 12v9M17 3c-2.2 1.6-3 4-3 7h3v11"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15M5 19c3-4 6-7 10-9"/></symbol>
+  <symbol id="i-boat" viewBox="0 0 24 24"><path d="M12 3v12M12 4l7 10h-7M12 7L6 14h6M3 17l2 4h14l2-4z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1.1-4.4A8 8 0 1121 12z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-6M12 20V6M19 20v-10"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8v3a2 2 0 010 4v3h18v-3a2 2 0 010-4V8zM14 8v10" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+</svg>
+
 
 <div class="demo-banner">
-    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    <svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg> Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
     Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
 </div>
 
@@ -715,7 +755,7 @@
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#about">Chi siamo</a></li>
             <li><a href="#services">Servizi</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
@@ -734,10 +774,10 @@
         <p>{{HOTEL_TAGLINE}}</p>
         <div class="hero-btns">
             <a href="#contact" class="btn btn-primary">{{CTA_TEXT}}</a>
-            <a href="#about" class="btn btn-outline">Scopri di Più</a>
+            <a href="#about" class="btn btn-outline">Scopri di più</a>
         </div>
     </div>
-    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
+    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso"><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg></a>
 </section>
 
 <div class="stats-bar" id="stats">
@@ -764,11 +804,11 @@
 <section class="about-section reveal" id="about">
     <div class="about-img-wrap">
         <img src="{{ABOUT_IMAGE_URL}}" alt="{{HOTEL_NAME}}">
-        <div class="about-img-badge">📍 {{CITTA}}</div>
+        <div class="about-img-badge"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> {{CITTA}}</div>
     </div>
     <div class="about-text">
-        <div class="section-tag">Chi Siamo</div>
-        <h2>Un'Accoglienza su Misura</h2>
+        <div class="section-tag">Chi siamo</div>
+        <h2>Un’accoglienza su misura</h2>
         <p>{{HOTEL_DESCRIPTION}}</p>
         <ul class="highlights-list">
             <li><span class="check">✓</span> {{HIGHLIGHT1}}</li>
@@ -783,14 +823,14 @@
 <section class="services-section" id="services">
     <div class="section-header reveal">
         <div class="section-tag">Servizi</div>
-        <h2>Esperienze su Misura per Voi</h2>
+        <h2>Esperienze su misura per voi</h2>
         <p>Ogni servizio è pensato per rendere il vostro soggiorno indimenticabile.</p>
     </div>
     <div class="cards-grid">
         <div class="card reveal">
             <div class="card-img-wrap">
                 <img src="{{SERVICE1_IMG}}" alt="{{SERVICE1_TITLE}}" loading="lazy">
-                <div class="card-icon">🛏️</div>
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{SERVICE1_TITLE}}</h3>
@@ -800,7 +840,7 @@
         <div class="card reveal">
             <div class="card-img-wrap">
                 <img src="{{SERVICE2_IMG}}" alt="{{SERVICE2_TITLE}}" loading="lazy">
-                <div class="card-icon">🍽️</div>
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-utensils"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{SERVICE2_TITLE}}</h3>
@@ -810,7 +850,7 @@
         <div class="card reveal">
             <div class="card-img-wrap">
                 <img src="{{SERVICE3_IMG}}" alt="{{SERVICE3_TITLE}}" loading="lazy">
-                <div class="card-icon">🌿</div>
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{SERVICE3_TITLE}}</h3>
@@ -820,7 +860,7 @@
         <div class="card reveal">
             <div class="card-img-wrap">
                 <img src="{{SERVICE4_IMG}}" alt="{{SERVICE4_TITLE}}" loading="lazy">
-                <div class="card-icon">⛵</div>
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-boat"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{SERVICE4_TITLE}}</h3>
@@ -830,7 +870,7 @@
         <div class="card reveal">
             <div class="card-img-wrap">
                 <img src="{{SERVICE5_IMG}}" alt="{{SERVICE5_TITLE}}" loading="lazy">
-                <div class="card-icon">📍</div>
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{SERVICE5_TITLE}}</h3>
@@ -840,7 +880,7 @@
         <div class="card reveal">
             <div class="card-img-wrap">
                 <img src="{{SERVICE6_IMG}}" alt="{{SERVICE6_TITLE}}" loading="lazy">
-                <div class="card-icon">✨</div>
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">{{SERVICE6_TITLE}}</h3>
@@ -853,7 +893,7 @@
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
         <div class="section-tag">Galleria</div>
-        <h2>Un Assaggio dell'Esperienza</h2>
+        <h2>Un assaggio dell’esperienza</h2>
         <p>Scorci e atmosfere della struttura: lasciatevi ispirare.</p>
     </div>
     <div class="gallery-grid reveal">
@@ -869,13 +909,14 @@
 <section class="reviews-section" id="reviews">
     <div class="section-header reveal">
         <div class="section-tag">Recensioni</div>
-        <h2>Le Voci dei Nostri Ospiti</h2>
-        <p>Chi sceglie {{HOTEL_NAME}} torna per ritrovare la stessa accoglienza.</p>
+        <h2>Le voci dei nostri ospiti</h2>
+        <p>Chi sceglie {{HOTEL_NAME}} torna per ritrovare la stessa accoglienza. Testi di esempio: nel sito reale compariranno le recensioni vere dei vostri ospiti.</p>
     </div>
     <div class="reviews-grid">
         <div class="review-card reveal">
+            <div class="review-sample">Recensione di esempio</div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Soggiorno splendido dall'inizio alla fine. Personale gentilissimo e attento a ogni dettaglio. Torneremo sicuramente."</p>
+            <p class="review-text">«Soggiorno splendido dall’inizio alla fine. Personale gentilissimo e attento a ogni dettaglio. Torneremo sicuramente.»</p>
             <div class="review-author">
                 <div class="review-avatar">CV</div>
                 <div>
@@ -885,8 +926,9 @@
             </div>
         </div>
         <div class="review-card reveal">
+            <div class="review-sample">Recensione di esempio</div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"A truly welcoming place. Clean, comfortable and the staff went out of their way to make us feel at home. Highly recommended."</p>
+            <p class="review-text">«A truly welcoming place. Clean, comfortable and the staff went out of their way to make us feel at home. Highly recommended.»</p>
             <div class="review-author">
                 <div class="review-avatar">HW</div>
                 <div>
@@ -896,8 +938,9 @@
             </div>
         </div>
         <div class="review-card reveal">
+            <div class="review-sample">Recensione di esempio</div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Ottima accoglienza e ambienti curati nei minimi dettagli. Esperienza che consigliamo volentieri a chi cerca qualità e tranquillità."</p>
+            <p class="review-text">«Ottima accoglienza e ambienti curati nei minimi dettagli. Esperienza che consigliamo volentieri a chi cerca qualità e tranquillità.»</p>
             <div class="review-author">
                 <div class="review-avatar">MP</div>
                 <div>
@@ -915,13 +958,13 @@
             <h2>Assistente AI 24/7</h2>
             <p>Con Experiences Srl, il vostro sito risponde agli ospiti in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
             <ul class="chatbot-features">
-                <li>🌍 <span>Assistenza multilingua istantanea</span></li>
-                <li>📅 <span>Gestione richieste e prenotazioni</span></li>
-                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
-                <li>📊 <span>Integrazione con booking engine</span></li>
-                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg> <span>Assistenza multilingua istantanea</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> <span>Gestione richieste e prenotazioni</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-message"/></svg> <span>Meno email manuali per il vostro staff</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg> <span>Integrazione con booking engine</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg> <span>Risposte immediate, a qualsiasi ora</span></li>
             </ul>
-            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;"><svg class="ic" aria-hidden="true"><use href="#i-message"/></svg> Info Chatbot</a>
         </div>
         <div class="chatbot-ui reveal">
             <div class="chatbot-header">
@@ -942,7 +985,7 @@
 <section class="pricing-section" id="pricing">
     <div class="section-header reveal">
         <div class="section-tag">Piani Experiences Srl</div>
-        <h2>Soluzioni su Misura per il Vostro Business</h2>
+        <h2>Soluzioni su misura per il vostro business</h2>
         <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
     </div>
     <div class="pricing-grid">
@@ -996,7 +1039,7 @@
             <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra struttura. Contattateci per individuare insieme la soluzione più conveniente.</span>
         </div>
         <div class="pricing-note">
-            <span class="note-icon">🔗</span>
+            <span class="note-icon"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span>
             <span><strong>Channel Manager:</strong> suggeriamo noi un Channel Manager, ma potete indicarci quello che già utilizzate o sceglierne uno di vostra preferenza. I costi del Channel Manager sono a carico del cliente.</span>
         </div>
     </div>
@@ -1025,18 +1068,18 @@
             <p>Con il Piano Premium includiamo il Channel Manager che sincronizza disponibilità e prezzi su Booking.com, Expedia, Airbnb e altri portali, evitando overbooking.</p>
         </details>
         <details class="faq-item">
-            <summary>Cosa include l'assistenza?</summary>
+            <summary>Cosa include l’assistenza?</summary>
             <p>Tutti i piani includono aggiornamenti, backup e supporto tecnico. I piani Pro e Premium aggiungono report mensili e, per il Premium, un account manager dedicato raggiungibile H24.</p>
         </details>
     </div>
 </section>
 
 <section class="cta-section" id="contact">
-    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <h2>Pronti a trasformare il vostro business?</h2>
     <p>Questa demo mostra come potrebbe essere il sito della vostra struttura. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra struttura.</p>
     <div class="cta-btns">
-        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
-        <a href="mailto:{{HOTEL_EMAIL}}" class="btn-ghost">📧 Email</a>
+        <a href="https://wa.me/393926917657" class="btn-white"><svg class="ic" aria-hidden="true"><use href="#i-message"/></svg> WhatsApp</a>
+        <a href="mailto:{{HOTEL_EMAIL}}" class="btn-ghost"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> Email</a>
     </div>
     <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Jost',sans-serif;">Experiences Srl · +39 392 691 7657</p>
 </section>
