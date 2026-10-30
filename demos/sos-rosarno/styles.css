@@ -182,3 +182,80 @@ p { margin: 0; }
   html { scroll-behavior: auto; }
   .btn { transition: none; }
 }
+
+/* ---- Foto e movimento ---- */
+
+img { height: auto; }
+
+/* Hero: titolo che sale riga per riga */
+.line { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; }
+.line > span { display: inline-block; }
+.js .line > span { transform: translateY(105%); animation: rise 900ms cubic-bezier(.2,.7,.2,1) forwards; }
+.js .line:nth-child(2) > span { animation-delay: 120ms; }
+@keyframes rise { to { transform: none; } }
+
+.js .hero .lead, .js .hero .actions { opacity: 0; transform: translateY(16px); animation: fade-up 700ms 400ms cubic-bezier(.2,.7,.2,1) forwards; }
+.js .hero .actions { animation-delay: 540ms; }
+@keyframes fade-up { to { opacity: 1; transform: none; } }
+
+/* Foto che fluttuano attorno all'arancia 3D */
+.chip {
+  position: absolute;
+  width: 26%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 4px solid var(--ground);
+  box-shadow: 0 18px 40px -18px rgba(19, 32, 26, .5);
+  animation: float 7s ease-in-out infinite;
+  z-index: 1;
+}
+.chip-1 { left: -4%; bottom: 4%; }
+.chip-2 { right: -2%; top: 2%; animation-delay: -3.5s; }
+@keyframes float { 50% { transform: translateY(-14px) rotate(2deg); } }
+.orange-stage canvas { position: relative; z-index: 0; }
+
+/* Scritta che scorre */
+.marquee { overflow: hidden; background: var(--accent); color: var(--ink); border-block: 2px solid var(--ink); }
+.marquee-track { display: flex; width: max-content; animation: scroll 32s linear infinite; }
+.marquee span { padding: 14px 28px; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; white-space: nowrap; }
+.marquee span::after { content: "✺"; margin-left: 56px; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* Foto a tutta larghezza con parallasse */
+.band { position: relative; margin: 0; height: clamp(320px, 62vh, 640px); overflow: hidden; background: var(--field); }
+.band img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; will-change: transform; }
+.band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 61, 46, .85), transparent 55%); }
+.band figcaption {
+  position: absolute; z-index: 1; left: var(--gutter); right: var(--gutter); bottom: clamp(24px, 5vw, 56px);
+  max-width: 18ch; font-size: clamp(2rem, 5.2vw, 4.4rem); font-weight: 700; line-height: .98; letter-spacing: -0.03em; color: var(--on-field);
+}
+
+/* Box: foto affiancata */
+.box { position: relative; }
+.box-photo { margin: 0 0 64px; max-width: 420px; overflow: hidden; aspect-ratio: 4 / 5; }
+.box-photo img { width: 100%; height: 118%; object-fit: cover; will-change: transform; }
+@media (min-width: 900px) {
+  .box-photo { position: absolute; top: clamp(96px, 14vw, 180px); right: var(--gutter); width: 30%; margin: 0; }
+  .box-head { max-width: 58%; }
+  .plans, .esito, .fallback { max-width: 58%; }
+  .plans { gap: 40px; }
+}
+
+/* Galleria Chi siamo */
+.gallery { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 24px); margin-top: 24px; }
+.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 30% 50%; transition: transform 600ms cubic-bezier(.2,.7,.2,1); }
+.gallery img:nth-child(2) { margin-top: 48px; }
+.gallery img:hover { transform: scale(1.03) rotate(-.6deg); }
+@media (max-width: 800px) { .gallery { grid-template-columns: 1fr 1fr; } .gallery img:nth-child(3) { display: none; } .gallery img:nth-child(2) { margin-top: 24px; } .chip { width: 30%; } }
+
+/* Comparsa allo scroll */
+.js .reveal { opacity: 0; transform: translateY(32px); transition: opacity 800ms cubic-bezier(.2,.7,.2,1) var(--d, 0ms), transform 800ms cubic-bezier(.2,.7,.2,1) var(--d, 0ms); }
+.js .reveal.in { opacity: 1; transform: none; }
+.gallery img.reveal.in:hover { transform: scale(1.03) rotate(-.6deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .line > span, .js .hero .lead, .js .hero .actions { animation: none; transform: none; opacity: 1; }
+  .chip, .marquee-track { animation: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .band img, .box-photo img { transform: none !important; }
+}

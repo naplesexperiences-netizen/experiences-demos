@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 
@@ -25,32 +26,50 @@
 
   <section class="hero">
     <div class="hero-text">
-      <h1>Arance di Rosarno.</h1>
+      <h1><span class="line"><span>Arance</span></span> <span class="line"><span>di Rosarno.</span></span></h1>
       <p class="lead">Dalla terra alla tua tavola. SOS Rosarno - Mani e Terra SCS ONLUS vende arance direttamente dalla cooperativa: ricevi un box una volta sola o ogni mese.</p>
       <div class="actions">
         <a class="btn btn-accent" href="#box">Scegli il box</a>
         <a class="btn btn-ghost" href="#box" data-mode="subscription">Abbonati ogni mese</a>
       </div>
     </div>
-    <div class="orange-stage" aria-hidden="true">
+    <div class="orange-stage">
+      <img class="chip chip-1" src="img/arance-foglie.webp" alt="Arance con le foglie appena raccolte" width="1000" height="1500" loading="eager" decoding="async">
+      <img class="chip chip-2" src="img/fette.webp" alt="Fette di arancia" width="1000" height="1500" loading="eager" decoding="async">
       <canvas id="orange" aria-hidden="true"></canvas>
     </div>
   </section>
 
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Piana di Rosarno</span><span>Dalla cooperativa</span><span>Raccolte a mano</span><span>Spedite a casa tua</span>
+      <span>Piana di Rosarno</span><span>Dalla cooperativa</span><span>Raccolte a mano</span><span>Spedite a casa tua</span>
+    </div>
+  </div>
+
+  <figure class="band">
+    <img src="img/cassa.webp" alt="Una cassa piena di arance" width="1600" height="2133" loading="lazy" decoding="async" data-parallax="0.12">
+    <figcaption class="reveal">Una cassa. Una cooperativa. Nessun intermediario.</figcaption>
+  </figure>
+
   <section class="box" id="box" aria-labelledby="box-title">
-    <div class="box-head">
+    <div class="box-head reveal">
       <h2 id="box-title">Il box di arance</h2>
       <p>Arance di stagione dalla cooperativa, pronte per essere spedite. Scegli se acquistare una volta sola o abbonarti.</p>
     </div>
 
+    <figure class="box-photo reveal">
+      <img src="img/arancia-tagliata.webp" alt="Un'arancia tagliata a metà su un tagliere" width="1000" height="1500" loading="lazy" decoding="async" data-parallax="0.08">
+    </figure>
+
     <div class="plans">
-      <div class="plan">
+      <div class="plan reveal">
         <h3>Una tantum</h3>
         <p class="price" data-price-label="once">Da confermare</p>
         <p>Un box, pagamento unico con carta o wallet, spedito all'indirizzo che indichi.</p>
         <button class="btn btn-accent" type="button" data-mode="payment">Acquista un box</button>
       </div>
-      <div class="plan">
+      <div class="plan reveal" style="--d:120ms">
         <h3>Abbonamento mensile</h3>
         <p class="price" data-price-label="subscription">Da confermare</p>
         <p>Un box al mese, addebitato ogni mese. Puoi disdire quando vuoi dal link che ricevi via email.</p>
@@ -63,13 +82,21 @@
   </section>
 
   <section class="about" id="chi-siamo" aria-labelledby="about-title">
-    <h2 id="about-title">Chi siamo</h2>
+    <h2 id="about-title" class="reveal">Chi siamo</h2>
+    <div class="about-copy reveal" style="--d:100ms">
     <p>SOS Rosarno - Mani e Terra è una società cooperativa sociale ONLUS. Lavora la terra della piana di Rosarno e porta in tavola il frutto del lavoro.</p>
     <p class="todo">Testo da confermare con la cooperativa.</p>
+    </div>
+    <div class="gallery">
+      <img class="reveal" src="img/uomo.webp" alt="Un contadino raccoglie un'arancia dall'albero" width="1200" height="800" loading="lazy" decoding="async">
+      <img class="reveal" style="--d:120ms" src="img/mano.webp" alt="Una mano coglie un'arancia matura tra le foglie" width="1000" height="667" loading="lazy" decoding="async">
+      <img class="reveal" style="--d:240ms" src="img/donne.webp" alt="Due persone raccolgono arance dall'albero con un cesto" width="1200" height="675" loading="lazy" decoding="async">
+    </div>
+    <!-- Foto: Unsplash, segnaposto. Sostituire con le foto reali della cooperativa. -->
   </section>
 
   <section class="contact" id="contatti" aria-labelledby="contact-title">
-    <h2 id="contact-title">Contatti</h2>
+    <h2 id="contact-title" class="reveal">Contatti</h2>
     <ul class="contact-list">
       <li>Informazioni generali: <a href="mailto:sosrosarno@gmail.com">sosrosarno@gmail.com</a></li>
       <li>Ordini: <a href="mailto:ordinisosrosarno@gmail.com">ordinisosrosarno@gmail.com</a></li>
@@ -85,6 +112,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
 <script src="orange.js" defer></script>
+<script src="motion.js" defer></script>
 <script src="checkout.js" defer></script>
 </body>
 </html>
