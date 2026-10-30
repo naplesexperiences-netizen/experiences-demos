@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOS Rosarno - Mani e Terra SCS ONLUS</title>
+<meta name="description" content="Arance di Rosarno dalla cooperativa SOS Rosarno - Mani e Terra. Acquista un box una tantum o in abbonamento mensile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <a class="wordmark" href="#top" aria-label="SOS Rosarno, torna all'inizio">SOS Rosarno</a>
+  <nav aria-label="Principale">
+    <a href="#box">Il box</a>
+    <a href="#chi-siamo">Chi siamo</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Arance di Rosarno.</h1>
+      <p class="lead">Dalla terra alla tua tavola. SOS Rosarno - Mani e Terra SCS ONLUS vende arance direttamente dalla cooperativa: ricevi un box una volta sola o ogni mese.</p>
+      <div class="actions">
+        <a class="btn btn-accent" href="#box">Scegli il box</a>
+        <a class="btn btn-ghost" href="#box" data-mode="subscription">Abbonati ogni mese</a>
+      </div>
+    </div>
+    <div class="orange-stage" aria-hidden="true">
+      <canvas id="orange" aria-hidden="true"></canvas>
+    </div>
+  </section>
+
+  <section class="box" id="box" aria-labelledby="box-title">
+    <div class="box-head">
+      <h2 id="box-title">Il box di arance</h2>
+      <p>Arance di stagione dalla cooperativa, pronte per essere spedite. Scegli se acquistare una volta sola o abbonarti.</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Una tantum</h3>
+        <p class="price" data-price-label="once">Da confermare</p>
+        <p>Un box, pagamento unico con carta o wallet, spedito all'indirizzo che indichi.</p>
+        <button class="btn btn-accent" type="button" data-mode="payment">Acquista un box</button>
+      </div>
+      <div class="plan">
+        <h3>Abbonamento mensile</h3>
+        <p class="price" data-price-label="subscription">Da confermare</p>
+        <p>Un box al mese, addebitato ogni mese. Puoi disdire quando vuoi dal link che ricevi via email.</p>
+        <button class="btn btn-accent" type="button" data-mode="subscription">Attiva l'abbonamento</button>
+      </div>
+    </div>
+
+    <p class="esito" id="esito" role="status" aria-live="polite"></p>
+    <p class="fallback">Preferisci ordinare per email? Scrivi a <a href="mailto:ordinisosrosarno@gmail.com?subject=Ordine%20box%20arance">ordinisosrosarno@gmail.com</a>.</p>
+  </section>
+
+  <section class="about" id="chi-siamo" aria-labelledby="about-title">
+    <h2 id="about-title">Chi siamo</h2>
+    <p>SOS Rosarno - Mani e Terra è una società cooperativa sociale ONLUS. Lavora la terra della piana di Rosarno e porta in tavola il frutto del lavoro.</p>
+    <p class="todo">Testo da confermare con la cooperativa.</p>
+  </section>
+
+  <section class="contact" id="contatti" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contatti</h2>
+    <ul class="contact-list">
+      <li>Informazioni generali: <a href="mailto:sosrosarno@gmail.com">sosrosarno@gmail.com</a></li>
+      <li>Ordini: <a href="mailto:ordinisosrosarno@gmail.com">ordinisosrosarno@gmail.com</a></li>
+      <li>Facebook: <a href="https://www.facebook.com/sosrosarno.org" rel="noopener">facebook.com/sosrosarno.org</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <p>SOS Rosarno - Mani e Terra SCS ONLUS</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<script src="orange.js" defer></script>
+<script src="checkout.js" defer></script>
+</body>
+</html>
