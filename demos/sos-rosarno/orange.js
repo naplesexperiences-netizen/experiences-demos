@@ -13,13 +13,15 @@
   }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.3;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
   camera.position.z = 4.2;
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-  const key = new THREE.DirectionalLight(0xffffff, 1.9);
+  scene.add(new THREE.HemisphereLight(0xfff4e6, 0x6b4a2a, 0.9));
+  const key = new THREE.DirectionalLight(0xffffff, 2.4);
   key.position.set(-3, 4, 5);
   scene.add(key);
   const rim = new THREE.DirectionalLight(0xffd7a8, 0.8);
@@ -44,51 +46,80 @@
     );
   }
 
-  const geometry = new THREE.SphereGeometry(1, 128, 128);
+  // Forma: arancia leggermente schiacciata, con la cavità del calice in alto e l'ombelico in basso.
+  const geometry = new THREE.SphereGeometry(1, 160, 160);
   const pos = geometry.attributes.position;
   const v = new THREE.Vector3();
   for (let i = 0; i < pos.count; i++) {
     v.fromBufferAttribute(pos, i).normalize();
-    // Buccia leggermente irregolare: piccole cavità fitte e un'ondulazione lenta.
     const dimples = noise(v.x * 9, v.y * 9, v.z * 9);
     const undulation = noise(v.x * 1.6 + 3, v.y * 1.6, v.z * 1.6);
-    const r = 1 + (dimples - 0.5) * 0.028 + (undulation - 0.5) * 0.035;
-    pos.setXYZ(i, v.x * r, v.y * r, v.z * r);
+    const topPit = Math.max(0, v.y - 0.86) / 0.14;      // 0..1 vicino al polo nord
+    const navel = Math.max(0, -v.y - 0.9) / 0.1;        // 0..1 vicino al polo sud
+    const r = 1 + (dimples - 0.5) * 0.02 + (undulation - 0.5) * 0.04 - topPit * topPit * 0.07 - navel * navel * 0.04;
+    pos.setXYZ(i, v.x * r * 1.02, v.y * r * 0.94, v.z * r * 1.02);
   }
   geometry.computeVertexNormals();
 
-  // Texture bump a puntini, per la grana della buccia.
-  const bumpCanvas = document.createElement('canvas');
-  bumpCanvas.width = bumpCanvas.height = 512;
-  const ctx = bumpCanvas.getContext('2d');
-  ctx.fillStyle = '#808080';
-  ctx.fillRect(0, 0, 512, 512);
-  for (let i = 0; i < 9000; i++) {
-    const shade = 90 + Math.random() * 90;
-    ctx.fillStyle = `rgb(${shade},${shade},${shade})`;
-    ctx.beginPath();
-    ctx.arc(Math.random() * 512, Math.random() * 512, 0.8 + Math.random() * 1.6, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  const bumpMap = new THREE.CanvasTexture(bumpCanvas);
-  bumpMap.wrapS = bumpMap.wrapT = THREE.RepeatWrapping;
+  // Buccia da foto reale: colore e rilievo dei pori, piastrellati.
+  const loader = new THREE.TextureLoader();
+  const peel = loader.load('img/peel-color.webp');
+  peel.colorSpace = THREE.SRGBColorSpace;
+  const bump = loader.load('img/peel-bump.webp');
+  [peel, bump].forEach((t) => {
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(5, 3);
+    t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  });
 
   const orange = new THREE.Mesh(
     geometry,
-    new THREE.MeshStandardMaterial({ color: 0xff7a14, roughness: 0.5, metalness: 0, bumpMap, bumpScale: 1.4 })
+    new THREE.MeshPhysicalMaterial({
+      map: peel,
+      color: 0xffeedd,
+      bumpMap: bump,
+      bumpScale: 0.6,
+      roughness: 0.52,
+      clearcoat: 0.25,
+      clearcoatRoughness: 0.45,
+      sheen: 0.2,
+      sheenColor: new THREE.Color(0xffb067),
+      sheenRoughness: 0.5,
+    })
   );
 
-  // Picciolo e foglia, in verde scuro.
-  const green = new THREE.MeshStandardMaterial({ color: 0x1f5a2e, roughness: 0.7 });
-  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.05, 0.22, 12), green);
-  stem.position.y = 1.02;
-  const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.22, 24, 12), green);
-  leaf.scale.set(1.6, 0.35, 0.8);
-  leaf.position.set(0.22, 1.12, 0);
-  leaf.rotation.z = -0.4;
+  // Calice verde in alto: piccola stella di sepali e un moncone di picciolo.
+  const green = new THREE.MeshStandardMaterial({ color: 0x2f6b34, roughness: 0.65 });
+  const calyx = new THREE.Group();
+  for (let i = 0; i < 5; i++) {
+    const sepal = new THREE.Mesh(new THREE.SphereGeometry(0.09, 16, 8), green);
+    sepal.scale.set(2.2, 0.28, 0.9);
+    const a = (i / 5) * Math.PI * 2;
+    sepal.position.set(Math.cos(a) * 0.11, 0, Math.sin(a) * 0.11);
+    sepal.rotation.y = -a;
+    sepal.rotation.z = 0.12;
+    calyx.add(sepal);
+  }
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.04, 0.14, 12), new THREE.MeshStandardMaterial({ color: 0x5b4a2a, roughness: 0.8 }));
+  stem.position.y = 0.05;
+  calyx.add(stem);
+  calyx.position.y = 0.9;
+
+  // Ombelico in basso: piccolo disco più scuro.
+  const navelMark = new THREE.Mesh(
+    new THREE.CircleGeometry(0.07, 24),
+    new THREE.MeshStandardMaterial({ color: 0xb85a0e, roughness: 0.7 })
+  );
+  navelMark.rotation.x = Math.PI / 2;
+  navelMark.position.y = -0.935;
+
+  const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.24, 24, 12), green);
+  leaf.scale.set(1.0, 0.14, 0.55);
+  leaf.position.set(0.2, 0.98, 0);
+  leaf.rotation.z = -0.5;
 
   const model = new THREE.Group();
-  model.add(orange, stem, leaf);
+  model.add(orange, calyx, navelMark, leaf);
   scene.add(model);
 
   // Puntatore: coordinate normalizzate -1..1 rispetto alla hero.
