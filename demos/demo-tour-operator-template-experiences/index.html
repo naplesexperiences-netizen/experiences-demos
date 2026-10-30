@@ -23,6 +23,8 @@
             --primary-dark: color-mix(in srgb, {{PRIMARY_COLOR}} 80%, #000 20%);
             --accent: {{SECONDARY_COLOR}};
             --accent-light: color-mix(in srgb, {{SECONDARY_COLOR}} 75%, #fff 25%);
+            /* sfondo per testo bianco: l'accento scurito garantisce contrasto AA (>=4.5:1) con qualunque colore cliente */
+            --accent-strong: color-mix(in srgb, var(--accent) 62%, #000);
             --teal: color-mix(in srgb, {{PRIMARY_COLOR}} 55%, {{SECONDARY_COLOR}} 45%);
             --bg-soft: color-mix(in srgb, {{PRIMARY_COLOR}} 6%, #fff 94%);
             --text: #20323a;
@@ -78,7 +80,7 @@
         }
         .nav-links a:hover { color: var(--primary); }
         .btn-cta {
-            background: var(--accent);
+            background: var(--accent-strong);
             color: #fff !important;
             padding: 10px 24px;
             border-radius: 30px;
@@ -135,7 +137,7 @@
         }
         .hero-badge {
             display: inline-block;
-            background: color-mix(in srgb, var(--accent) 92%, transparent);
+            background: color-mix(in srgb, var(--accent-strong) 94%, transparent);
             color: #fff;
             font-size: 12px;
             font-weight: 600;
@@ -174,7 +176,7 @@
             transition: all 0.25s;
             display: inline-block;
         }
-        .btn-primary { background: var(--accent); color: #fff; border: 2px solid var(--accent); }
+        .btn-primary { background: var(--accent-strong); color: #fff; border: 2px solid var(--accent-strong); }
         .btn-primary:hover { background: transparent; color: var(--accent-light); border-color: var(--accent-light); }
         .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
         .btn-outline:hover { background: rgba(255,255,255,0.16); }
@@ -427,7 +429,7 @@
             animation: fadeInUp 0.35s ease-out;
         }
         .chat-user {
-            background: var(--accent);
+            background: var(--accent-strong);
             border-radius: 12px 12px 0 12px;
             padding: 10px 14px;
             font-size: 13px;
@@ -461,7 +463,7 @@
         .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
         .chat-input input:focus { outline: 1px solid var(--accent-light); }
         .chat-send {
-            background: var(--accent);
+            background: var(--accent-strong);
             border: none;
             border-radius: 8px;
             padding: 10px 16px;
@@ -501,7 +503,7 @@
             top: -13px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--accent);
+            background: var(--accent-strong);
             color: #fff;
             font-size: 11px;
             font-weight: 600;
@@ -531,8 +533,8 @@
             text-decoration: none;
             transition: all 0.2s;
         }
-        .pricing-btn:hover { background: var(--accent); }
-        .pricing-card.featured .pricing-btn { background: var(--accent); }
+        .pricing-btn:hover { background: var(--accent-strong); }
+        .pricing-card.featured .pricing-btn { background: var(--accent-strong); }
         .pricing-card.featured .pricing-btn:hover { background: var(--primary); }
         .pricing-notes {
             max-width: 1100px;
@@ -662,6 +664,18 @@
         }
         .gsap-enabled .hero-content { visibility: hidden; }
         .gsap-enabled .reveal { opacity: 0; will-change: transform, opacity; }
+
+        /* ACCESSIBILITA' E TOUCH (audit fase 1) */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+            outline: 3px solid var(--accent-strong); outline-offset: 3px; border-radius: 6px;
+        }
+        .hero :focus-visible, .stats-bar :focus-visible, .chatbot-section :focus-visible, .cta-section :focus-visible, footer :focus-visible, .demo-banner :focus-visible { outline-color: #fff; }
+        .nav-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+        .hero-scroll { padding: 10px 14px; }
+        .chat-send { min-height: 44px; }
+        .demo-banner a, footer a { display: inline-block; padding: 12px 2px; margin: -12px 0; }
+        .demo-banner a { border-bottom: 0; text-decoration: underline; text-underline-offset: 3px; }
+        @media (max-width: 600px) { .demo-banner { font-size: 12px; padding: 8px 14px; line-height: 1.5; } }
 
         /* RESPONSIVE */
         @media (max-width: 860px) {
