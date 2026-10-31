@@ -5,40 +5,747 @@
     <meta name="robots" content="noindex,nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Villa Cimbrone - Demo Experiences Srl</title>
-    <meta name="description" content="Hotel Villa Cimbrone - Hotel Villa Cimbrone — Dimora XII sec giardini celebri hotel de charme panoramica luxury. Situato a Ravello, è la scelta ideale per chi cerca qualità e autenticità nel territorio campano.">
+    <meta name="description" content="Hotel Villa Cimbrone - Hotel Villa Cimbrone a Ravello è un hotel de charme 5 stelle ospitato in una dimora storica del XII secolo, con giardini celebri e posizione panoramica sulla Costiera Amalfitana.">
     <meta property="og:title" content="Hotel Villa Cimbrone - Demo Experiences Srl">
-    <meta property="og:description" content="Dimora XII sec giardini celebri hotel de charme panoramica luxury Demo gratuita realizzata da Experiences Srl.">
+    <meta property="og:description" content="Una dimora storica del XII secolo a Ravello, tra giardini celebri e vista panoramica Demo gratuita realizzata da Experiences Srl.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.hotelvillacimbrone.com/wp-content/themes/hvc-theme/img/slide-arrow-button.png">
+    <meta property="og:image" content="img/img-1.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Marca il documento solo se il JS è attivo: gli stati iniziali "nascosti" delle animazioni
          GSAP sono vincolati a questa classe, così i contenuti restano visibili se JS o la CDN GSAP non caricano. -->
     <script>document.documentElement.classList.add('gsap-enabled');</script>
-    <link rel="stylesheet" href="../../shared/gsap.css">
-    <link rel="stylesheet" href="../../shared/territorio.css">
     <style>
         :root {
             /* Palette personalizzabile per ogni cliente: tutto deriva da due soli colori */
-            --primary: #1a2b4a;
+            --primary: #1f4e79;
             --primary-dark: color-mix(in srgb, var(--primary) 72%, #000);
-            --accent: #c9a227;
+            --accent: #b8862f;
             --accent-light: color-mix(in srgb, var(--accent) 60%, #fff);
+            /* sfondo per testo bianco: l'accento scurito garantisce contrasto AA (>=4.5:1) con qualunque colore cliente */
+            --accent-strong: color-mix(in srgb, var(--accent) 62%, #000);
             --teal: color-mix(in srgb, var(--primary) 65%, #2c8f84);
             --bg-soft: color-mix(in srgb, var(--primary) 4%, #fff);
             --text: #2c352f;
             --text-soft: #5d6862;
             --radius: 18px;
         }
-        
-        .hero-bg { background-image: url('https://www.hotelvillacimbrone.com/wp-content/themes/hvc-theme/img/slide-arrow-button.png'); }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Jost', system-ui, -apple-system, sans-serif; line-height: 1.7; color: var(--text); background: #fff; }
+        h1, h2, h3, .nav-logo { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: 0.2px; }
+
+        /* DEMO BANNER */
+        .demo-banner {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 200;
+        }
+        .demo-banner a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+        .demo-banner a:hover { opacity: 0.85; }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .nav-logo { font-weight: 700; font-size: 24px; color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; align-items: center; list-style: none; }
+        .nav-links a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-cta {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: all 0.2s !important;
+        }
+        .btn-cta:hover { background: var(--accent-strong) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--primary); transition: all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('img/img-1.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.52);
+            transform: scale(1.05);
+            will-change: transform;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20,63,57,0.3) 0%, rgba(20,63,57,0.6) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 820px;
+            padding: 0 24px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: color-mix(in srgb, var(--accent-strong) 94%, transparent);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            padding: 7px 20px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 74px);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 36px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s;
+            display: inline-block;
+        }
+        .btn-primary { background: var(--accent-strong); color: #fff; border: 2px solid var(--accent-strong); }
+        .btn-primary:hover { background: transparent; color: var(--accent-light); border-color: var(--accent-light); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
+        .btn-outline:hover { background: rgba(255,255,255,0.16); }
+        .hero-scroll {
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.8);
+            font-size: 22px;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
+
+        /* STATS */
+        .stats-bar { background: var(--primary); color: #fff; padding: 48px 20px; }
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item { padding: 10px 0; }
+        .stat-num { font-size: 48px; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
+        .stat-label { font-size: 13px; opacity: 0.85; letter-spacing: 0.5px; text-transform: uppercase; }
+
+        /* SECTION BASE */
+        .section-tag {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--teal);
+            margin-bottom: 14px;
+            font-family: 'Jost', sans-serif;
+        }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 600; color: var(--primary); }
+        .section-header p { color: var(--text-soft); margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+        /* ABOUT */
+        .about-section {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img-wrap {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(31,94,86,0.2);
+            position: relative;
+        }
+        .about-img-wrap img { width: 100%; height: 440px; object-fit: cover; display: block; }
+        .about-img-badge {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            color: var(--primary);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .about-img-badge .stars { color: var(--accent); letter-spacing: 2px; }
+        .about-text h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 600; color: var(--primary); margin-bottom: 18px; line-height: 1.15; }
+        .about-text p { color: var(--text-soft); font-size: 15px; margin-bottom: 20px; }
+        .highlights-list { list-style: none; margin-top: 10px; }
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text);
+            border-bottom: 1px solid #e7efeb;
+        }
+        .check { color: var(--teal); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+
+        /* SERVICES */
+        .services-section { background: var(--bg-soft); padding: 100px 24px; }
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(31,94,86,0.07);
+            transition: all 0.3s;
+        }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(31,94,86,0.14); }
+        .card-img-wrap { overflow: hidden; height: 210px; position: relative; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrap img { transform: scale(1.07); }
+        .card-icon {
+            position: absolute;
+            bottom: 14px;
+            right: 16px;
+            color: #fff;
+            width: 46px;
+            height: 46px;
+            background: var(--accent-strong);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 45%, transparent);
+            z-index: 2;
+        }
+        .card-body { padding: 30px 26px 26px; }
+        .card-title { line-height: 1.25; font-size: 23px; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+        .card-desc { font-size: 14px; color: var(--text-soft); line-height: 1.65; font-family: 'Jost', sans-serif; }
+
+        /* GALLERY */
+        .gallery-section { padding: 100px 24px; }
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 14px;
+        }
+        .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(20,63,57,0.55) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+
+        /* TESTIMONIALS */
+        .reviews-section { background: var(--bg-soft); padding: 100px 24px; }
+        .reviews-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 26px;
+        }
+        .review-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: 0 4px 24px rgba(31,94,86,0.07);
+            position: relative;
+        }
+        .review-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 14px;
+            right: 24px;
+            font-size: 72px;
+            font-family: Georgia, serif;
+            color: var(--accent);
+            opacity: 0.22;
+            line-height: 1;
+        }
+        .review-stars { color: var(--accent); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+        .review-text { font-size: 15px; color: var(--text-soft); font-style: italic; margin-bottom: 18px; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--teal));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+        }
+        .review-name { font-size: 14px; font-weight: 600; color: var(--primary); font-family: 'Jost', sans-serif; }
+        .review-origin { font-size: 12px; color: #9aa49e; font-family: 'Jost', sans-serif; }
+
+        /* CHATBOT PREVIEW */
+        .chatbot-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 100px 24px;
+            color: #fff;
+        }
+        .chatbot-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .chatbot-text h2 { font-size: clamp(30px, 4vw, 42px); font-weight: 600; margin-bottom: 16px; }
+        .chatbot-text p { opacity: 0.88; margin-bottom: 20px; font-size: 15px; }
+        .chatbot-features { list-style: none; margin-bottom: 28px; }
+        .chatbot-features li {
+            padding: 9px 0;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .chatbot-ui {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .chatbot-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .chat-log { max-height: 260px; overflow-y: auto; scrollbar-width: thin; }
+        .chat-bubble {
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px 12px 12px 0;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 90%;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .chat-user {
+            background: var(--accent-strong);
+            border-radius: 12px 12px 0 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-left: auto;
+            max-width: 80%;
+            text-align: right;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.35s ease-out;
+        }
+        .chat-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+        .chat-typing i {
+            width: 6px; height: 6px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+            font-style: normal;
+        }
+        .chat-typing i:nth-child(2) { animation-delay: 0.2s; }
+        .chat-typing i:nth-child(3) { animation-delay: 0.4s; }
+        .chat-input { display: flex; gap: 8px; margin-top: 12px; }
+        .chat-input input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Jost', sans-serif;
+        }
+        .chat-input input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-input input:focus { outline: 1px solid var(--accent-light); }
+        .chat-send {
+            background: var(--accent-strong);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .chat-send:hover { background: var(--accent-light); }
+
+        /* PRICING */
+        .pricing-section { padding: 100px 24px; background: #fff; }
+        .pricing-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .pricing-card {
+            border: 2px solid #e4ede9;
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 36px rgba(31,94,86,0.12); transform: translateY(-4px); }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, #fff) 0%, #fff 100%);
+            transform: scale(1.03);
+        }
+        .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+        .pricing-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-strong);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            padding: 5px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-name { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
+        .pricing-req { font-size: 12px; color: var(--text-soft); margin-bottom: 10px; }
+        .pricing-price { font-size: 44px; font-weight: 700; color: var(--primary); margin-bottom: 4px; font-family: 'Cormorant Garamond', serif; }
+        .pricing-period { font-size: 12px; color: #9aa49e; margin-bottom: 8px; font-family: 'Jost', sans-serif; }
+        .pricing-commission { font-size: 13px; color: var(--teal); font-weight: 500; margin-bottom: 20px; padding: 8px; background: var(--bg-soft); border-radius: 6px; font-family: 'Jost', sans-serif; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 26px; }
+        .pricing-features li { padding: 8px 0; font-size: 13px; color: var(--text-soft); display: flex; gap: 8px; border-bottom: 1px solid #eef4f1; font-family: 'Jost', sans-serif; }
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            font-family: 'Jost', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .pricing-btn:hover { background: var(--accent-strong); }
+        .pricing-card.featured .pricing-btn { background: var(--accent-strong); }
+        .pricing-card.featured .pricing-btn:hover { background: var(--primary); }
+        .pricing-notes {
+            max-width: 1100px;
+            margin: 36px auto 0;
+            display: grid;
+            gap: 10px;
+        }
+        .pricing-note {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--bg-soft);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: var(--text-soft);
+            line-height: 1.6;
+            font-family: 'Jost', sans-serif;
+        }
+        .pricing-note strong { color: var(--primary); }
+        .pricing-note .note-icon { font-size: 16px; flex-shrink: 0; }
+
+        /* FAQ */
+        .faq-section { background: var(--bg-soft); padding: 100px 24px; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(31,94,86,0.06);
+            overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 18px 22px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Jost', sans-serif;
+            color: var(--primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 22px 18px; font-size: 14px; color: var(--text-soft); font-family: 'Jost', sans-serif; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--primary) 100%);
+            padding: 100px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-section h2 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 600; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; font-size: 17px; margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; }
+        .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-btns .btn-white {
+            background: #fff;
+            color: var(--primary);
+            padding: 15px 38px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .cta-btns .btn-ghost {
+            background: transparent;
+            color: #fff;
+            padding: 15px 38px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 15px;
+            font-family: 'Jost', sans-serif;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+        .cta-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 46px 24px;
+            text-align: center;
+            font-size: 13px;
+        }
+        footer a { color: var(--accent-light); text-decoration: none; }
+        footer strong { color: #fff; }
+
+        /* FLOATING WHATSAPP */
+        .wa-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 300;
+            background: #25d366;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+            transition: transform 0.2s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+
+        /* ANIMATIONS
+           Le animazioni d'ingresso e di scroll sono gestite via GSAP (vedi <script> in fondo),
+           con ScrollTrigger per i reveal e gsap.matchMedia() per rispettare prefers-reduced-motion.
+           Gli stati iniziali "nascosti" sono vincolati a .gsap-enabled: se JS o la CDN GSAP
+           non caricano, la classe viene rimossa e tutti i contenuti restano visibili. */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gsap-enabled .hero-content { visibility: hidden; }
+        .gsap-enabled .reveal { opacity: 0; }
+
+
+        /* ACCESSIBILITA' E TOUCH (audit fase 1) */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+            outline: 3px solid var(--accent-strong); outline-offset: 3px; border-radius: 6px;
+        }
+        .hero :focus-visible, .stats-bar :focus-visible, .chatbot-section :focus-visible, .cta-section :focus-visible, footer :focus-visible, .demo-banner :focus-visible { outline-color: #fff; }
+        .nav-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+        .hero-scroll { padding: 10px 14px; }
+        .chat-send { min-height: 44px; }
+        .demo-banner a, footer a { display: inline-block; padding: 12px 2px; margin: -12px 0; }
+        .demo-banner a { border-bottom: 0; text-decoration: underline; text-underline-offset: 3px; }
+        @media (max-width: 600px) { .demo-banner { font-size: 12px; padding: 8px 14px; line-height: 1.5; } }
+
+
+        /* ICONE (fase 2): sprite SVG al posto delle emoji, ereditano colore e dimensione dal testo */
+        .ic { width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.22em; flex-shrink: 0; }
+        .card-icon .ic { width: 26px; height: 26px; vertical-align: middle; }
+        .hero-scroll .ic { width: 28px; height: 28px; }
+        /* TIPOGRAFIA (fase 2) */
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
+        .stat-num, .pricing-price { font-variant-numeric: tabular-nums lining-nums; }
+        /* MICRO-INTERAZIONI (fase 3): pressione dei pulsanti, caricamento immagini, tocco senza ritardo */
+        a, button, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+        .btn, .btn-white, .btn-ghost, .pricing-btn, .chat-send, .btn-cta { transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+        .btn:active, .btn-white:active, .btn-ghost:active, .pricing-btn:active, .chat-send:active, .btn-cta:active { transform: translateY(1px) scale(0.98); }
+        .card-img-wrap, .gallery-item, .about-img-wrap {
+            background: linear-gradient(100deg, var(--bg-soft) 30%, color-mix(in srgb, var(--primary) 9%, #fff) 50%, var(--bg-soft) 70%);
+            background-size: 200% 100%; animation: shimmer 1.6s linear infinite;
+        }
+        @keyframes shimmer { to { background-position: -200% 0; } }
+        .review-sample { display: inline-block; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-soft); border: 1px solid color-mix(in srgb, var(--text-soft) 40%, transparent); border-radius: 20px; padding: 2px 10px; margin-bottom: 10px; }
+        @media (prefers-reduced-motion: reduce) { .card-img-wrap, .gallery-item, .about-img-wrap { animation: none; } }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 18px 24px 24px;
+                gap: 16px;
+                box-shadow: 0 14px 24px rgba(0,0,0,0.1);
+            }
+            .nav-links.open { display: flex; }
+            .about-section { grid-template-columns: 1fr; gap: 30px; margin: 60px auto; }
+            .chatbot-inner { grid-template-columns: 1fr; gap: 40px; }
+            .pricing-card.featured { transform: none; }
+            .hero { min-height: 80vh; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+        }
     </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 00-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></symbol>
+  <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 004 0V3M8 12v9M17 3c-2.2 1.6-3 4-3 7h3v11"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15M5 19c3-4 6-7 10-9"/></symbol>
+  <symbol id="i-boat" viewBox="0 0 24 24"><path d="M12 3v12M12 4l7 10h-7M12 7L6 14h6M3 17l2 4h14l2-4z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1.1-4.4A8 8 0 1121 12z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-6M12 20V6M19 20v-10"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8v3a2 2 0 010 4v3h18v-3a2 2 0 010-4V8zM14 8v10" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+</svg>
+
 
 <div class="demo-banner">
-    🎯 Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
+    <svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg> Questa è una <strong>DEMO GRATUITA</strong> realizzata da <a href="https://naplesexperiences.com" target="_blank">Experiences Srl</a> —
     Vuoi un sito come questo? <a href="https://wa.me/393926917657" target="_blank">Contattaci su WhatsApp</a>
 </div>
 
@@ -49,9 +756,8 @@
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#about">Chi siamo</a></li>
             <li><a href="#services">Servizi</a></li>
-            <li><a href="#territorio">Il Territorio</a></li>
             <li><a href="#gallery">Galleria</a></li>
             <li><a href="#reviews">Recensioni</a></li>
             <li><a href="#pricing">Piani</a></li>
@@ -64,53 +770,53 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <div class="hero-badge">★ Hotel 5 stelle / dimora storica · Ravello</div>
+        <div class="hero-badge">★ Hotel 5 stelle · Dimora storica · Ravello</div>
         <h1>Hotel Villa Cimbrone</h1>
-        <p>Dimora XII sec giardini celebri hotel de charme panoramica luxury</p>
+        <p>Una dimora storica del XII secolo a Ravello, tra giardini celebri e vista panoramica</p>
         <div class="hero-btns">
-            <a href="#contact" class="btn btn-primary">Prenota Ora</a>
-            <a href="#about" class="btn btn-outline">Scopri di Più</a>
+            <a href="#contact" class="btn btn-primary">Richiedi disponibilità</a>
+            <a href="#about" class="btn btn-outline">Scopri di più</a>
         </div>
     </div>
-    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso">⌄</a>
+    <a href="#stats" class="hero-scroll" aria-label="Scorri in basso"><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg></a>
 </section>
 
 <div class="stats-bar" id="stats">
     <div class="stats-inner">
         <div class="stat-item reveal">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Su Misura</div>
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Hotel</div>
         </div>
         <div class="stat-item reveal">
-            <div class="stat-num">IT/EN</div>
-            <div class="stat-label">Multilingua</div>
+            <div class="stat-num">XII</div>
+            <div class="stat-label">Secolo</div>
         </div>
         <div class="stat-item reveal">
             <div class="stat-num">Ravello</div>
-            <div class="stat-label">Posizione</div>
+            <div class="stat-label">Costiera Amalfitana</div>
         </div>
         <div class="stat-item reveal">
-            <div class="stat-num">24/7</div>
-            <div class="stat-label">Assistenza</div>
+            <div class="stat-num">IT · EN</div>
+            <div class="stat-label">Lingue</div>
         </div>
     </div>
 </div>
 
 <section class="about-section reveal" id="about">
     <div class="about-img-wrap">
-        <img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/10/230930_racjoe1121-1024x683.jpg" alt="Hotel Villa Cimbrone">
-        <div class="about-img-badge">📍 Ravello</div>
+        <img src="img/img-2.jpg" alt="Hotel Villa Cimbrone">
+        <div class="about-img-badge"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> Ravello</div>
     </div>
     <div class="about-text">
-        <div class="section-tag">Chi Siamo</div>
-        <h2>Un'Accoglienza su Misura</h2>
-        <p>L'Hotel Villa Cimbrone è una dimora del XII secolo trasformata in hotel de charme, all'interno dei celebri giardini. Per gli ospiti, la Terrazza dell'Infinito è un luogo privato quando i cancelli chiudono ai visitatori: la si può vivere al tramonto e all'alba, quando Ravello è tutta silenzio e il mare cambia colore ogni minuto.</p>
+        <div class="section-tag">Chi siamo</div>
+        <h2>Un’accoglienza su misura</h2>
+        <p>Hotel Villa Cimbrone a Ravello è un hotel de charme 5 stelle ospitato in una dimora storica del XII secolo, con giardini celebri e posizione panoramica sulla Costiera Amalfitana.</p>
         <ul class="highlights-list">
-            <li><span class="check">✓</span> Qualità garantita</li>
-            <li><span class="check">✓</span> Territorio autentico</li>
-            <li><span class="check">✓</span> Accoglienza dedicata</li>
-            <li><span class="check">✓</span> Esperienza consolidata</li>
-            <li><span class="check">✓</span> Posizione ideale</li>
+            <li><span class="check">✓</span> Dimora storica del XII secolo</li>
+            <li><span class="check">✓</span> Giardini celebri</li>
+            <li><span class="check">✓</span> Posizione panoramica</li>
+            <li><span class="check">✓</span> Hotel 5 stelle</li>
+            <li><span class="check">✓</span> A Ravello, in Costiera Amalfitana</li>
         </ul>
     </div>
 </section>
@@ -118,128 +824,100 @@
 <section class="services-section" id="services">
     <div class="section-header reveal">
         <div class="section-tag">Servizi</div>
-        <h2>Esperienze su Misura per Voi</h2>
+        <h2>Esperienze su misura per voi</h2>
         <p>Ogni servizio è pensato per rendere il vostro soggiorno indimenticabile.</p>
     </div>
     <div class="cards-grid">
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/12/Hotel-Villa-Cimbrone-slide-home-1-1024x683.jpg" alt="Camere & Suite" loading="lazy">
-                <div class="card-icon">🛏️</div>
+                <img src="img/img-3.jpg" alt="Camere e suite" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg></div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Camere & Suite</h3>
-                <p class="card-desc">Sistemazioni accoglienti e curate, pensate per il comfort di coppie, famiglie e viaggiatori business.</p>
+                <h3 class="card-title">Camere e suite</h3>
+                <p class="card-desc">Camere e suite della dimora, con soffitti affrescati e pavimenti in maiolica.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelvillacimbrone.com/wp-content/themes/hvc-theme/img/slide-arrow-button.png" alt="Ristorazione" loading="lazy">
-                <div class="card-icon">🍽️</div>
+                <img src="img/img-4.jpg" alt="Giardini" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-utensils"/></svg></div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Ristorazione</h3>
-                <p class="card-desc">Cucina del territorio con prodotti freschi e sapori autentici della tradizione campana.</p>
+                <h3 class="card-title">Giardini</h3>
+                <p class="card-desc">I giardini celebri della villa, parte dell’identità della struttura.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/10/230930_racjoe1121-1024x683.jpg" alt="Relax & Benessere" loading="lazy">
-                <div class="card-icon">🌿</div>
+                <img src="img/img-5.jpg" alt="Vista panoramica" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Relax & Benessere</h3>
-                <p class="card-desc">Spazi dedicati al riposo e al benessere per rigenerarsi durante il soggiorno.</p>
+                <h3 class="card-title">Vista panoramica</h3>
+                <p class="card-desc">Una posizione panoramica sulla Costiera Amalfitana.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/territorio.jpg" alt="Esperienze sul Territorio" loading="lazy">
-                <div class="card-icon">⛵</div>
+                <img src="img/img-6.jpg" alt="Esperienze e territorio" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-boat"/></svg></div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Esperienze sul Territorio</h3>
-                <p class="card-desc">Da qui si scoprono i giardini, la Terrazza dell'Infinito e Villa Rufolo. Tutti i consigli nella nostra guida di Ravello.</p>
-                <a class="terr-card-link" href="guida/">Scopri la guida →</a>
+                <h3 class="card-title">Esperienze e territorio</h3>
+                <p class="card-desc">Ravello, la Costiera Amalfitana e il suo patrimonio da scoprire.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelvillacimbrone.com/wp-content/themes/hvc-theme/img/slide-arrow-button.png" alt="Posizione Strategica" loading="lazy">
-                <div class="card-icon">📍</div>
+                <img src="img/img-1.jpg" alt="Posizione" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Posizione Strategica</h3>
-                <p class="card-desc">Facile accesso alle principali attrazioni, spiagge e punti di interesse del territorio.</p>
+                <h3 class="card-title">Posizione</h3>
+                <p class="card-desc">A Ravello, nel cuore della Costiera Amalfitana.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/10/230930_racjoe1121-1024x683.jpg" alt="Servizi su Misura" loading="lazy">
-                <div class="card-icon">✨</div>
+                <img src="img/img-2.jpg" alt="Contatti e prenotazioni" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
             </div>
             <div class="card-body">
-                <h3 class="card-title">Servizi su Misura</h3>
-                <p class="card-desc">Accoglienza personalizzata e servizi dedicati per rendere unico ogni soggiorno.</p>
+                <h3 class="card-title">Contatti e prenotazioni</h3>
+                <p class="card-desc">Richieste di disponibilità dirette, senza intermediari.</p>
             </div>
         </div>
     </div>
 </section>
-
-<!-- territorio:start -->
-<!-- ===== TERRITORIO ===== -->
-<section class="territorio terr-gsap" id="territorio">
-    <div class="terr-wrap">
-        <div class="section-header reveal">
-            <div class="section-tag">Il Territorio</div>
-            <h2>Perché visitare Ravello</h2>
-            <p>In fondo a un viale di glicini, una balaustra di marmo con una fila di busti settecenteschi si affaccia sul vuoto: sotto, a trecento metri, c'è il mare. È la Terrazza dell'Infinito di Villa Cimbrone, e Gore Vidal la definì "il panorama più bello del mondo".</p>
-        </div>
-        <div class="terr-grid">
-            <figure class="terr-photo reveal">
-                <img src="img/territorio.jpg" alt="I busti di marmo della Terrazza dell&#x27;Infinito a Villa Cimbrone, Ravello" width="1200" height="675" loading="lazy">
-                <figcaption class="terr-credit">Foto: <a href="https://commons.wikimedia.org/w/index.php?curid=35665180">Ravello - Villa Cimbrone 02</a> di Mihael Grmek, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
-            </figure>
-            <div class="reveal">
-                <ul class="terr-list">
-                        <li class="terr-item"><h3>I giardini</h3><p>Il parco si estende per circa sei ettari lungo lo sperone di roccia che chiude Ravello verso il mare.</p></li>
-                        <li class="terr-item"><h3>La Terrazza dell'Infinito</h3><p>Il viale principale, il cosiddetto Viale dell'Immensità, conduce dritto alla Terrazza dell'Infinito. Dalla balaustra, il Golfo di Salerno si apre fino a Capo d'Orso e, nelle giornate limpide, fino al Cilento.</p></li>
-                        <li class="terr-item"><h3>Villa Rufolo</h3><p>Nel cuore del paese, Villa Rufolo è la villa del XIII secolo in cui Wagner trovò l'ispirazione per il Parsifal.</p></li>
-                        <li class="terr-item"><h3>Il Duomo</h3><p>Il Duomo di Ravello, fondato nel 1086, conserva le porte di bronzo di Barisano da Trani, due amboni a mosaico e la cappella di San Pantaleone, il patrono, il cui sangue secondo la tradizione si scioglie ogni anno a fine luglio.</p></li>
-                </ul>
-                <a href="guida/" class="btn btn-primary">Leggi la guida di Ravello →</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- territorio:end -->
 
 <section class="gallery-section" id="gallery">
     <div class="section-header reveal">
         <div class="section-tag">Galleria</div>
-        <h2>Un Assaggio dell'Esperienza</h2>
+        <h2>Un assaggio dell’esperienza</h2>
         <p>Scorci e atmosfere della struttura: lasciatevi ispirare.</p>
     </div>
     <div class="gallery-grid reveal">
-        <div class="gallery-item wide"><img src="https://www.hotelvillacimbrone.com/wp-content/themes/hvc-theme/img/slide-arrow-button.png" alt="Hotel Villa Cimbrone" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/10/230930_racjoe1121-1024x683.jpg" alt="Hotel Villa Cimbrone" loading="lazy"></div>
-        <div class="gallery-item tall"><img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/12/Hotel-Villa-Cimbrone-slide-home-1-1024x683.jpg" alt="Camere & Suite" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://www.hotelvillacimbrone.com/wp-content/themes/hvc-theme/img/slide-arrow-button.png" alt="Ristorazione" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/10/230930_racjoe1121-1024x683.jpg" alt="Relax & Benessere" loading="lazy"></div>
-        <div class="gallery-item wide"><img src="https://www.hotelvillacimbrone.com/wp-content/uploads/2019/12/Hotel-Villa-Cimbrone-slide-home-1-1024x683.jpg" alt="Esperienze sul Territorio" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="img/img-1.jpg" alt="Hotel Villa Cimbrone" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/img-2.jpg" alt="Hotel Villa Cimbrone" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="img/img-3.jpg" alt="Camere e suite" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/img-4.jpg" alt="Giardini" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/img-5.jpg" alt="Vista panoramica" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="img/img-6.jpg" alt="Esperienze e territorio" loading="lazy"></div>
     </div>
 </section>
 
 <section class="reviews-section" id="reviews">
     <div class="section-header reveal">
         <div class="section-tag">Recensioni</div>
-        <h2>Le Voci dei Nostri Ospiti</h2>
-        <p>Chi sceglie Hotel Villa Cimbrone torna per ritrovare la stessa accoglienza.</p>
+        <h2>Le voci dei nostri ospiti</h2>
+        <p>Chi sceglie Hotel Villa Cimbrone torna per ritrovare la stessa accoglienza. Testi di esempio: nel sito reale compariranno le recensioni vere dei vostri ospiti.</p>
     </div>
     <div class="reviews-grid">
         <div class="review-card reveal">
+            <div class="review-sample">Recensione di esempio</div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Soggiorno splendido dall'inizio alla fine. Personale gentilissimo e attento a ogni dettaglio. Torneremo sicuramente."</p>
+            <p class="review-text">«Soggiorno splendido dall’inizio alla fine. Personale gentilissimo e attento a ogni dettaglio. Torneremo sicuramente.»</p>
             <div class="review-author">
                 <div class="review-avatar">CV</div>
                 <div>
@@ -249,8 +927,9 @@
             </div>
         </div>
         <div class="review-card reveal">
+            <div class="review-sample">Recensione di esempio</div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"A truly welcoming place. Clean, comfortable and the staff went out of their way to make us feel at home. Highly recommended."</p>
+            <p class="review-text">«A truly welcoming place. Clean, comfortable and the staff went out of their way to make us feel at home. Highly recommended.»</p>
             <div class="review-author">
                 <div class="review-avatar">HW</div>
                 <div>
@@ -260,8 +939,9 @@
             </div>
         </div>
         <div class="review-card reveal">
+            <div class="review-sample">Recensione di esempio</div>
             <div class="review-stars">★★★★★</div>
-            <p class="review-text">"Ottima accoglienza e ambienti curati nei minimi dettagli. Esperienza che consigliamo volentieri a chi cerca qualità e tranquillità."</p>
+            <p class="review-text">«Ottima accoglienza e ambienti curati nei minimi dettagli. Esperienza che consigliamo volentieri a chi cerca qualità e tranquillità.»</p>
             <div class="review-author">
                 <div class="review-avatar">MP</div>
                 <div>
@@ -279,13 +959,13 @@
             <h2>Assistente AI 24/7</h2>
             <p>Con Experiences Srl, il vostro sito risponde agli ospiti in italiano, inglese e altre lingue — giorno e notte. Provatelo qui accanto!</p>
             <ul class="chatbot-features">
-                <li>🌍 <span>Assistenza multilingua istantanea</span></li>
-                <li>📅 <span>Gestione richieste e prenotazioni</span></li>
-                <li>💬 <span>Riduce il 70% delle email manuali</span></li>
-                <li>📊 <span>Integrazione con booking engine</span></li>
-                <li>⚡ <span>Risposta media: sotto i 2 secondi</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg> <span>Assistenza multilingua istantanea</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> <span>Gestione richieste e prenotazioni</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-message"/></svg> <span>Meno email manuali per il vostro staff</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg> <span>Integrazione con booking engine</span></li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg> <span>Risposte immediate, a qualsiasi ora</span></li>
             </ul>
-            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;">💬 Info Chatbot</a>
+            <a href="https://wa.me/393926917657" class="btn btn-primary" style="display:inline-block;"><svg class="ic" aria-hidden="true"><use href="#i-message"/></svg> Info Chatbot</a>
         </div>
         <div class="chatbot-ui reveal">
             <div class="chatbot-header">
@@ -293,10 +973,10 @@
                 <span style="font-size:14px; font-weight:600;">Assistente AI · Hotel Villa Cimbrone</span>
             </div>
             <div class="chat-log" id="chatLog">
-                <div class="chat-bubble">Ciao! Posso aiutarti a scoprire Hotel Villa Cimbrone. Come posso esserti utile?</div>
+                <div class="chat-bubble">Buongiorno! Sono l’assistente di Hotel Villa Cimbrone. Come posso aiutarla?</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Prova: cosa vedere a Ravello?" aria-label="Scrivi un messaggio">
+                <input type="text" id="chatInput" placeholder="Prova: avete disponibilità per il weekend?" aria-label="Scrivi un messaggio">
                 <button class="chat-send" id="chatSend" aria-label="Invia">→</button>
             </div>
         </div>
@@ -306,61 +986,79 @@
 <section class="pricing-section" id="pricing">
     <div class="section-header reveal">
         <div class="section-tag">Piani Experiences Srl</div>
-        <h2>Soluzioni su Misura per il Vostro Business</h2>
-        <p>Ogni piano include supporto tecnico dedicato e assistenza personalizzata per il vostro successo.</p>
+        <h2>Soluzioni su misura per il vostro business</h2>
+        <p>Canone annuo più una commissione sulle vendite: il piano dipende dai clienti che gestite in un anno. Più volume, meno fisso.</p>
     </div>
     <div class="pricing-grid">
         <div class="pricing-card reveal">
-            <div class="pricing-name">Piano Base</div>
-            <div class="pricing-price">€500</div>
-            <div class="pricing-period">/anno</div>
-            <div class="pricing-commission">+ 5% di commissione</div>
+            <div class="pricing-name">Base</div>
+            <div class="pricing-req">Requisito: <strong>fino a 1.000</strong> clienti all’anno</div>
+            <div class="pricing-price">€1.400</div>
+            <div class="pricing-period">/anno + IVA</div>
+            <div class="pricing-commission">+ 10% di commissione sulle vendite</div>
             <ul class="pricing-features">
-                <li>✓ <span>Sito mobile-optimized</span></li>
-                <li>✓ <span>SEO base e Google My Business</span></li>
-                <li>✓ <span>Modulo contatti</span></li>
-                <li>✓ <span>Integrazione social</span></li>
-                <li>✓ <span>Supporto tecnico email</span></li>
+                <li>✓ <span>Sviluppo sito web e gestione</span></li>
+                <li>✓ <span>SEO/SEM marketing</span></li>
+                <li>✓ <span>Gestione Channel Manager</span></li>
+                <li>✓ <span>Creazione e gestione annunci OTA</span></li>
+                <li>✓ <span>Assistenti virtuali IA</span></li>
             </ul>
-            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
-        </div>
-        <div class="pricing-card featured reveal">
-            <div class="pricing-badge">⭐ Più Scelto</div>
-            <div class="pricing-name">Piano Pro</div>
-            <div class="pricing-price">€1.000</div>
-            <div class="pricing-period">/anno</div>
-            <div class="pricing-commission">+ 8% di commissione</div>
-            <ul class="pricing-features">
-                <li>✓ <span>Tutto del Piano Base</span></li>
-                <li>✓ <span>Chatbot AI 24/7</span></li>
-                <li>✓ <span>Booking engine integrato</span></li>
-                <li>✓ <span>Google Ads gestiti</span></li>
-                <li>✓ <span>Report mensile</span></li>
-            </ul>
-            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Scegli Base</a>
         </div>
         <div class="pricing-card reveal">
-            <div class="pricing-name">Piano Premium</div>
-            <div class="pricing-price">€1.400</div>
-            <div class="pricing-period">/anno</div>
-            <div class="pricing-commission">+ 10% di commissione</div>
+            <div class="pricing-name">Advanced</div>
+            <div class="pricing-req">Requisito: <strong>1.000–5.000</strong> clienti all’anno</div>
+            <div class="pricing-price">€1.000</div>
+            <div class="pricing-period">/anno + IVA</div>
+            <div class="pricing-commission">+ 8% di commissione sulle vendite</div>
             <ul class="pricing-features">
-                <li>✓ <span>Tutto del Piano Pro</span></li>
-                <li>✓ <span>Channel Manager OTA</span></li>
-                <li>✓ <span>Integrazione Booking.com</span></li>
-                <li>✓ <span>Account manager dedicato</span></li>
-                <li>✓ <span>Supporto H24</span></li>
+                <li>✓ <span>Sviluppo sito web e gestione</span></li>
+                <li>✓ <span>SEO/SEM marketing</span></li>
+                <li>✓ <span>Gestione Channel Manager</span></li>
+                <li>✓ <span>Creazione e gestione annunci OTA</span></li>
+                <li>✓ <span>Assistenti virtuali IA</span></li>
             </ul>
-            <a href="https://wa.me/393926917657" class="pricing-btn">Inizia Ora</a>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Scegli Advanced</a>
+        </div>
+        <div class="pricing-card reveal">
+            <div class="pricing-name">Pro</div>
+            <div class="pricing-req">Requisito: <strong>5.000–10.000</strong> clienti all’anno</div>
+            <div class="pricing-price">€500</div>
+            <div class="pricing-period">/anno + IVA</div>
+            <div class="pricing-commission">+ 5% di commissione sulle vendite</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sviluppo sito web e gestione</span></li>
+                <li>✓ <span>SEO/SEM marketing</span></li>
+                <li>✓ <span>Gestione Channel Manager</span></li>
+                <li>✓ <span>Creazione e gestione annunci OTA</span></li>
+                <li>✓ <span>Assistenti virtuali IA</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Scegli Pro</a>
+        </div>
+        <div class="pricing-card featured reveal">
+            <div class="pricing-badge">Popolare</div>
+            <div class="pricing-name">Enterprise</div>
+            <div class="pricing-req">Requisito: <strong>oltre 10.000</strong> clienti all’anno</div>
+            <div class="pricing-price">€0</div>
+            <div class="pricing-period">/anno · nessuna fee fissa</div>
+            <div class="pricing-commission">+ 3% di commissione sulle vendite</div>
+            <ul class="pricing-features">
+                <li>✓ <span>Sviluppo sito web e gestione</span></li>
+                <li>✓ <span>SEO/SEM marketing</span></li>
+                <li>✓ <span>Gestione Channel Manager</span></li>
+                <li>✓ <span>Creazione e gestione annunci OTA</span></li>
+                <li>✓ <span>Assistenti virtuali IA e chatbot</span></li>
+            </ul>
+            <a href="https://wa.me/393926917657" class="pricing-btn">Scegli Enterprise</a>
         </div>
     </div>
     <div class="pricing-notes reveal">
         <div class="pricing-note">
             <span class="note-icon">ℹ️</span>
-            <span><strong>Piano e commissione su misura:</strong> il piano consigliato e la percentuale di commissione dipendono dal numero di clienti annuali della vostra struttura. Contattateci per individuare insieme la soluzione più conveniente.</span>
+            <span><strong>Piano e commissione su misura:</strong> le fasce indicate sono il requisito di accesso: il piano e la commissione si determinano sul numero stimato di clienti all’anno della vostra struttura. Tutti i prezzi sono + IVA; la commissione si applica solo sulle vendite generate attraverso i nostri canali.</span>
         </div>
         <div class="pricing-note">
-            <span class="note-icon">🔗</span>
+            <span class="note-icon"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span>
             <span><strong>Channel Manager:</strong> suggeriamo noi un Channel Manager, ma potete indicarci quello che già utilizzate o sceglierne uno di vostra preferenza. I costi del Channel Manager sono a carico del cliente.</span>
         </div>
     </div>
@@ -374,7 +1072,7 @@
     <div class="faq-list reveal">
         <details class="faq-item">
             <summary>Quanto costa realizzare un sito come questo?</summary>
-            <p>I piani Experiences Srl partono da €500/anno e includono realizzazione, hosting, manutenzione e supporto. Questa demo è gratuita e senza impegno: contattateci su WhatsApp per una proposta personalizzata.</p>
+            <p>Il canone annuo dipende dal numero di clienti della struttura (da €1.400 + IVA fino a €0 per oltre 10.000 clienti all’anno), più una commissione sulle vendite online dal 10% al 3%. Questa demo è gratuita e senza impegno: contattateci su WhatsApp per una proposta personalizzata.</p>
         </details>
         <details class="faq-item">
             <summary>In quanto tempo il sito sarà online?</summary>
@@ -386,21 +1084,21 @@
         </details>
         <details class="faq-item">
             <summary>Posso integrare Booking.com e gli altri portali?</summary>
-            <p>Con il Piano Premium includiamo il Channel Manager che sincronizza disponibilità e prezzi su Booking.com, Expedia, Airbnb e altri portali, evitando overbooking.</p>
+            <p>Sì: tutti i piani includono la gestione del Channel Manager, che sincronizza disponibilità e prezzi su Booking.com, Expedia, Airbnb e altri portali. Potete usare quello che avete già o uno suggerito da noi; la licenza è a carico della struttura.</p>
         </details>
         <details class="faq-item">
-            <summary>Cosa include l'assistenza?</summary>
-            <p>Tutti i piani includono aggiornamenti, backup e supporto tecnico. I piani Pro e Premium aggiungono report mensili e, per il Premium, un account manager dedicato raggiungibile H24.</p>
+            <summary>Cosa include l’assistenza?</summary>
+            <p>Tutti i piani includono gli stessi servizi: sviluppo e gestione del sito, SEO/SEM, gestione del Channel Manager, annunci OTA e assistenti virtuali IA. Cambiano solo canone e commissione, in base ai clienti all’anno.</p>
         </details>
     </div>
 </section>
 
 <section class="cta-section" id="contact">
-    <h2>Pronti a Trasformare il Vostro Business?</h2>
+    <h2>Pronti a trasformare il vostro business?</h2>
     <p>Questa demo mostra come potrebbe essere il sito della vostra struttura. Contattateci per una consulenza senza impegno: la personalizziamo gratuitamente per la vostra struttura.</p>
     <div class="cta-btns">
-        <a href="https://wa.me/393926917657" class="btn-white">💬 WhatsApp</a>
-        <a href="mailto:info@villacimbrone.it" class="btn-ghost">📧 Email</a>
+        <a href="https://wa.me/393926917657" class="btn-white"><svg class="ic" aria-hidden="true"><use href="#i-message"/></svg> WhatsApp</a>
+        <a href="mailto:naplesexperiences@gmail.com" class="btn-ghost"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> Email</a>
     </div>
     <p style="margin-top:24px; font-size:13px; opacity:0.7; font-family:'Jost',sans-serif;">Experiences Srl · +39 392 691 7657</p>
 </section>
@@ -508,7 +1206,6 @@
     var hotelName = "Hotel Villa Cimbrone";
     var citta = "Ravello";
     var replies = [
-        /* territorio */ { keys: ['vedere', 'visitare', 'dintorni', 'escursion', 'consigli', 'territorio', 'spiagg'], text: "Da non perdere: <strong>I giardini</strong> e <strong>La Terrazza dell'Infinito</strong>. Il parco si estende per circa sei ettari lungo lo sperone di roccia che chiude Ravello verso il mare. Vuoi che ti suggerisca un itinerario per i giorni del tuo soggiorno?" },
         { keys: ['prezz', 'cost', 'tariff', 'price', 'quanto'], text: 'Le tariffe variano in base al periodo e al tipo di camera scelto. 💶 Indicami le date e il numero di ospiti e vi preparo un preventivo su misura!' },
         { keys: ['disponibil', 'prenot', 'camera', 'book', 'room', 'weekend'], text: 'Verifico subito la disponibilità! 📅 Per quante persone e in quali date desiderate soggiornare con noi a ' + citta + '?' },
         { keys: ['colazion', 'mangiare', 'ristorante', 'cena', 'pranzo'], text: 'Offriamo proposte gastronomiche curate, con prodotti del territorio. 🍽️ Per maggiori dettagli su menu e orari sono qui per aiutarvi.' },
