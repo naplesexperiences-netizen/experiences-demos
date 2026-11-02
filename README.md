@@ -44,8 +44,8 @@ opzionali ma fortemente consigliati per tenere navigabile la collezione.
 
 1. **Sviluppo**: lavora sempre su un branch feature (`claude/<topic>` per
    sessioni Claude, o `feat/<demo>` per altri lavori).
-2. **Merge su `main`**: il workflow `.github/workflows/pages.yml` rigenera
-   l'`index.html` di root e fa il deploy su GitHub Pages.
+2. **Merge su `main`**: GitHub Pages pubblica `main` così com'è (deploy dal
+   branch, «pages build and deployment»), in meno di un minuto.
 3. **Live URL**: il demo è disponibile a
    `https://naplesexperiences-netizen.github.io/experiences-demos/demos/<slug>/`.
 
@@ -59,11 +59,8 @@ git checkout -b feat/<nome-demo>
 mkdir -p demos/<nome-demo>
 # ... scrivi index.html con <title> e <meta description>
 
-# 3. (opzionale) rigenera l'hub localmente per verificare
-python3 scripts/generate-hub.py
-
-# 4. commit + push + merge su main
-git add demos/<nome-demo> index.html
+# 3. commit + push + merge su main (non toccare index.html di root)
+git add demos/<nome-demo>
 git commit -m "demo: <nome-demo>"
 git push -u origin feat/<nome-demo>
 # poi merge su main → deploy automatico
@@ -71,16 +68,18 @@ git push -u origin feat/<nome-demo>
 
 ## Hub auto-generato
 
-`scripts/generate-hub.py` scansiona `demos/`, estrae `<title>` e
-`<meta description>` di ciascun `index.html`, e scrive un `index.html`
-nella root del repo. Lo script viene eseguito anche dal workflow di deploy,
-quindi non è necessario committare la versione locale (ma puoi farlo per
-avere il preview aggiornato anche sui branch).
+> **Non lanciare `scripts/generate-hub.py` e non committare il suo output.**
+> Dal 26 ottobre 2026 l'`index.html` di root rimanda a `vetrina/`; lo script
+> lo sovrascriverebbe con l'elenco pubblico di tutte le demo e i nomi dei
+> clienti. Resta nel repo solo come base per un hub futuro (vedi l'avvertenza
+> in testa allo script). La CI lo esegue solo per verificare che non dia
+> errori, senza pubblicare nulla.
 
 ## Configurazione GitHub Pages
 
-- **Settings → Pages → Source**: `GitHub Actions`
-- **Workflow**: `.github/workflows/pages.yml` (push su `main` + dispatch manuale)
+- **Settings → Pages → Source**: `Deploy from a branch` → `main` / root
+- Nessun workflow di deploy: il vecchio `pages.yml` (che rigenerava l'hub) è
+  stato tolto il 2 novembre 2026. Non rimettere la fonte su `GitHub Actions`.
 
 ## CI (PR e push)
 
