@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scrivere un business plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Guida pratica al business plan, sezione per sezione, con un esempio completo e un calcolatore per quantificare il mercato: dal mercato totale ai clienti fidelizzati.">
+<meta name="demo:tags" content="didattica,business plan,impresa,interattivo">
+<meta name="demo:category" content="education">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: un fascicolo d'ufficio. Indice fisso a sinistra come il sommario del
+     documento, capitoli numerati nell'ordine reale del business plan, estratti
+     d'esempio come fogli spillati, cifre evidenziate col pennarello. */
+  :root {
+    --paper: #eef1ee;
+    --sheet: #f9fbf9;
+    --ink: #15221d;
+    --ink-soft: #55645d;
+    --rule: #c9d2cc;
+    --ledger: #2c55c9;
+    --ledger-soft: #dde5fa;
+    --marker: #f1cf4a;
+    --marker-ink: #15221d;
+    --good: #1f7a4f;
+    --bad: #b2412e;
+    --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --body: "Literata", Georgia, "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --measure: 66ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #111916;
+      --sheet: #18221e;
+      --ink: #e4ebe6;
+      --ink-soft: #9aaba2;
+      --rule: #2f3c36;
+      --ledger: #86a4f5;
+      --ledger-soft: #1f2a48;
+      --marker: #b89a26;
+      --marker-ink: #111916;
+      --good: #5cc795;
+      --bad: #ef8a76;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #111916;
+    --sheet: #18221e;
+    --ink: #e4ebe6;
+    --ink-soft: #9aaba2;
+    --rule: #2f3c36;
+    --ledger: #86a4f5;
+    --ledger-soft: #1f2a48;
+    --marker: #b89a26;
+    --marker-ink: #111916;
+    --good: #5cc795;
+    --bad: #ef8a76;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--ledger); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--ledger); outline-offset: 2px; border-radius: 2px;
+  }
+  h1, h2, h3, h4 { font-family: var(--display); line-height: 1.12; text-wrap: balance; margin: 0; }
+  p, ul, ol { margin: 0; }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  mark, .hl { background: linear-gradient(transparent 12%, var(--marker) 12%, var(--marker) 88%, transparent 88%); color: var(--marker-ink); padding: 0 .15em; }
+
+  /* ---------- struttura ---------- */
+  .wrap {
+    display: grid;
+    grid-template-columns: 15.5rem minmax(0, 1fr);
+    gap: 3.5rem;
+    max-width: 76rem;
+    margin: 0 auto;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+    padding-block: 0 5rem;
+  }
+  nav.toc {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0px) + 1.5rem);
+    align-self: start;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    padding-top: 2.5rem;
+    font-family: var(--display);
+  }
+  .toc-label {
+    font: 600 .72rem/1 var(--display); letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); padding-bottom: .75rem; border-bottom: 1px solid var(--rule);
+  }
+  .toc ol { list-style: none; padding: 0; margin-top: .5rem; display: grid; gap: 1px; }
+  .toc a {
+    display: grid; grid-template-columns: 2rem 1fr; align-items: baseline;
+    padding: .38rem .5rem .38rem 0; color: var(--ink-soft); text-decoration: none;
+    font-size: .93rem; font-weight: 500; border-left: 2px solid transparent; padding-left: .6rem;
+  }
+  .toc a .n { font: 400 .75rem var(--mono); color: var(--ink-soft); }
+  .toc a:hover { color: var(--ink); }
+  .toc a.active { color: var(--ink); border-left-color: var(--ledger); }
+  .toc a.active .n { color: var(--ledger); }
+  .toc a.key { font-weight: 700; }
+
+  main { min-width: 0; padding-top: 2.5rem; }
+
+  /* ---------- copertina ---------- */
+  .cover { padding-bottom: 3rem; border-bottom: 2px solid var(--ink); }
+  .cover .eyebrow {
+    font: 600 .75rem/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ledger);
+  }
+  .cover h1 {
+    font-size: clamp(2.6rem, 6.2vw, 4.6rem); font-weight: 700; letter-spacing: -.025em;
+    margin-top: 1rem; max-width: 14ch;
+  }
+  .cover .lede { font-size: 1.2rem; max-width: 58ch; margin-top: 1.25rem; color: var(--ink); }
+  .cover-meta {
+    display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-top: 2rem;
+    font: 400 .85rem/1.4 var(--mono); color: var(--ink-soft);
+  }
+  .cover-meta b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- capitoli ---------- */
+  section.ch { padding-block: 4rem 1rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; }
+  .ch-head { display: grid; grid-template-columns: auto 1fr; gap: .25rem 1.25rem; align-items: baseline; }
+  .ch-num { font: 400 1rem var(--mono); color: var(--ledger); }
+  .ch-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); font-weight: 700; letter-spacing: -.015em; }
+  .ch-head .why { grid-column: 2; color: var(--ink-soft); font-size: 1.02rem; max-width: var(--measure); margin-top: .5rem; }
+  .ch-body { display: grid; gap: 1.6rem; margin-top: 2.25rem; max-width: 46rem; }
+  .ch-body > p, .ch-body > ul, .ch-body > ol { max-width: var(--measure); }
+  .ch-body h3 {
+    font-size: .78rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-soft);
+    margin-bottom: -.75rem;
+  }
+  .ch-body h4 { font-size: 1.25rem; font-weight: 600; margin-bottom: -.8rem; }
+  .ch-body ul, .ch-body ol { padding-left: 1.2rem; display: grid; gap: .45rem; }
+  .ch-body li::marker { color: var(--ledger); }
+
+  /* estratto d'esempio: l'unico elemento "foglio" */
+  .sample {
+    background: var(--sheet); border: 1px solid var(--rule);
+    padding: 1.5rem 1.6rem 1.6rem; position: relative;
+    box-shadow: 0 1px 0 var(--rule), 0 10px 24px -18px rgba(20, 34, 29, .35);
+    display: grid; gap: .9rem; min-width: 0;
+  }
+  .sample::before {
+    content: "Esempio"; position: absolute; top: -.7rem; left: 1.2rem;
+    font: 600 .7rem/1 var(--display); letter-spacing: .14em; text-transform: uppercase;
+    background: var(--ledger); color: var(--sheet); padding: .35rem .55rem;
+  }
+  .sample.alt::before { content: attr(data-label); }
+  .sample p, .sample li { font-size: .98rem; }
+  .sample .src { font: 400 .78rem/1.5 var(--mono); color: var(--ink-soft); }
+  .sample ul { padding-left: 1.1rem; display: grid; gap: .35rem; }
+
+  .avoid { border-top: 1px solid var(--rule); padding-top: 1rem; display: grid; gap: .5rem; max-width: var(--measure); }
+  .avoid b { font: 600 .78rem var(--display); letter-spacing: .13em; text-transform: uppercase; color: var(--bad); }
+  .avoid ul { list-style: none; padding: 0; display: grid; gap: .4rem; }
+  .avoid li { padding-left: 1.3rem; position: relative; font-size: .97rem; }
+  .avoid li::before { content: "×"; position: absolute; left: 0; color: var(--bad); font-family: var(--mono); }
+
+  /* tabelle */
+  .tbl { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; min-width: 30rem; }
+  th, td { text-align: left; padding: .55rem .7rem .55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th { font: 600 .74rem var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1.5px solid var(--ink); }
+  td.r, th.r { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; padding-right: 0; padding-left: .7rem; white-space: nowrap; }
+  tr.total td { font-weight: 600; border-bottom: 1.5px solid var(--ink); }
+  .neg { color: var(--bad); }
+  .pos { color: var(--good); }
+
+  /* ---------- mercato: scala dei livelli ---------- */
+  .ladder { display: grid; gap: 0; border-top: 1.5px solid var(--ink); }
+  .rung {
+    display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto; gap: .2rem 1rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--rule); align-items: baseline;
+  }
+  .rung .k { font: 600 .85rem var(--mono); color: var(--ledger); }
+  .rung h4 { font-size: 1.12rem; font-weight: 600; margin: 0; }
+  .rung h4 small { font: 400 .78rem var(--mono); color: var(--ink-soft); margin-left: .4rem; }
+  .rung p { grid-column: 2 / 4; font-size: .95rem; color: var(--ink-soft); max-width: 60ch; }
+  .rung .v { font: 600 1.05rem var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+
+  /* calcolatore */
+  .calc { background: var(--sheet); border: 1px solid var(--rule); padding: 1.5rem; display: grid; gap: 1.25rem; min-width: 0; }
+  .calc-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; align-items: baseline; }
+  .calc-head h4 { font-size: 1.2rem; font-weight: 700; margin: 0; }
+  .calc-head button {
+    font: 500 .85rem var(--display); background: transparent; color: var(--ledger);
+    border: 1px solid var(--ledger); padding: .4rem .75rem; cursor: pointer;
+  }
+  .calc-head button:hover { background: var(--ledger-soft); }
+  .stage {
+    display: grid; grid-template-columns: minmax(0, 1fr) 7.5rem; gap: .35rem 1rem; align-items: center;
+    padding-bottom: 1rem; border-bottom: 1px dashed var(--rule);
+  }
+  .stage:last-of-type { border-bottom: 0; padding-bottom: 0; }
+  .stage label { font: 600 .98rem var(--display); }
+  .stage label span { display: block; font: 400 .8rem/1.4 var(--body); color: var(--ink-soft); margin-top: .1rem; }
+  .stage .in { display: flex; align-items: center; gap: .3rem; justify-content: flex-end; }
+  .stage input {
+    width: 100%; font: 600 .95rem var(--mono); text-align: right; padding: .4rem .5rem;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink); border-radius: 0;
+  }
+  .stage .unit { font: 400 .85rem var(--mono); color: var(--ink-soft); }
+  .bar { grid-column: 1 / 3; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; align-items: center; }
+  .bar .track { height: .6rem; background: var(--ledger-soft); position: relative; }
+  .bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--ledger); transition: width .35s ease; }
+  @media (prefers-reduced-motion: reduce) { .bar .fill { transition: none; } }
+  .bar .out { font: 600 1rem var(--mono); font-variant-numeric: tabular-nums; text-align: right; min-width: 7rem; }
+  .bar .cap { grid-column: 1 / 3; font: 400 .76rem var(--mono); color: var(--ink-soft); }
+  .result { border-top: 1.5px solid var(--ink); padding-top: 1rem; display: grid; gap: .5rem; }
+  .result .row { display: flex; justify-content: space-between; gap: 1rem; font-size: .95rem; }
+  .result .row .num { white-space: nowrap; }
+  .result .row.tot { font-weight: 600; font-size: 1.05rem; border-top: 1px solid var(--rule); padding-top: .5rem; }
+  .note { font-size: .88rem; color: var(--ink-soft); max-width: var(--measure); }
+
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .two > div { display: grid; gap: .5rem; align-content: start; min-width: 0; }
+  .two h4 { margin: 0; }
+
+  .swot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--rule); background: var(--sheet); }
+  .swot > div { padding: 1rem 1.1rem; display: grid; gap: .4rem; align-content: start; }
+  .swot > div:nth-child(1), .swot > div:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  .swot > div:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .swot b { font: 600 .74rem var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ledger); }
+  .swot ul { padding-left: 1rem; font-size: .93rem; display: grid; gap: .25rem; }
+
+  .chart { overflow-x: auto; }
+  .chart svg { display: block; width: 100%; min-width: 30rem; height: auto; }
+  .chart text { font-family: var(--mono); font-size: 11px; fill: var(--ink-soft); }
+  .chart .lbl { font-family: var(--display); font-size: 12.5px; font-weight: 600; }
+
+  footer { padding-top: 3rem; color: var(--ink-soft); font-size: .9rem; max-width: var(--measure); display: grid; gap: .5rem; }
+
+  /* ---------- telefono ---------- */
+  @media (max-width: 60rem) {
+    .wrap { grid-template-columns: minmax(0, 1fr); gap: 0;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    nav.toc { position: static; max-height: none; padding-top: 1.5rem; }
+    .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1rem; }
+    .toc a { font-size: .88rem; }
+    main { padding-top: 2rem; }
+  }
+  @media (max-width: 34rem) {
+    .two, .swot { grid-template-columns: minmax(0, 1fr); }
+    .swot > div { border-right: 0 !important; border-bottom: 1px solid var(--rule); }
+    .swot > div:last-child { border-bottom: 0; }
+    .stage { grid-template-columns: minmax(0, 1fr) 6.5rem; }
+    .ch-head { grid-template-columns: minmax(0, 1fr); }
+    .ch-head .why { grid-column: 1; }
+    .rung { grid-template-columns: 2rem minmax(0, 1fr); }
+    .rung .v { grid-column: 2; text-align: left; }
+    .rung p { grid-column: 2; }
+    .sample { padding: 1.4rem 1.1rem 1.2rem; }
+    .calc { padding: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="toc" aria-label="Indice del business plan">
+  <div class="toc-label">Indice del documento</div>
+  <ol>
+    <li><a href="#intro"><span class="n">00</span>A cosa serve</a></li>
+    <li><a href="#executive"><span class="n">01</span>Executive summary</a></li>
+    <li><a href="#impresa"><span class="n">02</span>L’impresa e il team</a></li>
+    <li><a href="#prodotto"><span class="n">03</span>Prodotto o servizio</a></li>
+    <li><a href="#mercato" class="key"><span class="n">04</span>Analisi di mercato</a></li>
+    <li><a href="#concorrenza"><span class="n">05</span>Concorrenza</a></li>
+    <li><a href="#marketing"><span class="n">06</span>Marketing e vendite</a></li>
+    <li><a href="#operativo"><span class="n">07</span>Piano operativo</a></li>
+    <li><a href="#finanza"><span class="n">08</span>Piano economico-finanziario</a></li>
+    <li><a href="#rischi"><span class="n">09</span>Rischi e scenari</a></li>
+    <li><a href="#allegati"><span class="n">10</span>Allegati</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="cover">
+  <div class="eyebrow">Guida pratica, capitolo per capitolo</div>
+  <h1>Come si scrive un business plan</h1>
+  <p class="lede">Il sito segue l’ordine dei capitoli di un business plan vero. Per ognuno trovi cosa scrivere, come scriverlo e un estratto d’esempio. L’esempio è sempre la stessa attività, così vedi come i numeri di un capitolo diventano le basi del successivo.</p>
+  <div class="cover-meta">
+    <span>Attività d’esempio: <b>Sfoglia Lab</b>, laboratorio di sfogliatelle e caffetteria a Salerno</span>
+    <span>Orizzonte: <b>3 anni</b></span>
+    <span>Investimento: <b>100.000 €</b></span>
+  </div>
+</header>
+
+<!-- 00 -->
+<section class="ch" id="intro">
+  <div class="ch-head">
+    <span class="ch-num">00</span>
+    <h2>A cosa serve un business plan</h2>
+    <p class="why">È il documento che spiega cosa vuoi fare, per chi, con quali soldi e quando l’impresa comincerà a guadagnare.</p>
+  </div>
+  <div class="ch-body">
+    <p>Serve a due lettori. Il primo sei tu: scriverlo ti obbliga a mettere in fila ipotesi che a voce sembrano solide e sulla carta spesso non tornano. Il secondo è chi deve darti soldi o fiducia: banca, investitore, ente che gestisce un bando, socio.</p>
+    <h3>Tre regole valide per tutto il documento</h3>
+    <ol>
+      <li><strong>Ogni numero ha una fonte o un calcolo.</strong> «Il mercato vale 136 milioni» non basta: scrivi da dove arriva.</li>
+      <li><strong>I capitoli si parlano.</strong> I clienti stimati nell’analisi di mercato diventano i ricavi del conto economico; il personale del piano operativo diventa un costo.</li>
+      <li><strong>Scrivi per chi non ti conosce.</strong> Frasi brevi, niente gergo di settore senza spiegarlo, tabelle dove ci sono cifre.</li>
+    </ol>
+    <p>Lunghezza tipica: 15–30 pagine più gli allegati. Per un bando segui l’indice richiesto dall’ente, che di solito ricalca questo.</p>
+  </div>
+</section>
+
+<!-- 01 -->
+<section class="ch" id="executive">
+  <div class="ch-head">
+    <span class="ch-num">01</span>
+    <h2>Executive summary</h2>
+    <p class="why">Una o due pagine che riassumono tutto il piano. Molti lettori leggono solo questa.</p>
+  </div>
+  <div class="ch-body">
+    <p>Va in testa al documento ma si scrive <mark>per ultimo</mark>, quando i numeri degli altri capitoli sono definitivi. Deve rispondere in poche righe a sette domande.</p>
+    <ul>
+      <li>Che cosa vendi e quale problema risolve?</li>
+      <li>A chi lo vendi e quanti sono?</li>
+      <li>Perché dovrebbero scegliere te e non un concorrente?</li>
+      <li>Chi c’è nel team?</li>
+      <li>Quanto serve per partire e da dove arrivano i soldi?</li>
+      <li>Quanto prevedi di fatturare e quando raggiungi il pareggio?</li>
+      <li>Che cosa chiedi al lettore?</li>
+    </ul>
+    <div class="sample">
+      <p><strong>Sfoglia Lab</strong> è un laboratorio a vista di sfogliatelle e dolci della tradizione campana con caffetteria, nel centro storico di Salerno. Produce ogni mattina in piccoli lotti e vende al banco, da asporto e su prenotazione per uffici ed eventi.</p>
+      <p>Nell’area servita ci sono circa <strong>28.000 persone</strong> che comprano regolarmente pasticceria al bar e sono disposte a pagare di più per un prodotto artigianale. Puntiamo a conquistarne il 12% in tre anni e a costruire un nucleo di <strong>circa 210 clienti fidelizzati</strong> che passano almeno due volte a settimana.</p>
+      <p>Il team unisce una pasticcera con 12 anni di laboratorio e un socio con 8 anni di gestione di sala. L’investimento è di <strong>100.000 €</strong>: 30.000 € dai soci, 40.000 € da finanziamento agevolato, 30.000 € da prestito bancario. Ricavi previsti: <strong>190.000 €</strong> il primo anno, <strong>290.000 €</strong> il terzo. Pareggio operativo nel secondo anno.</p>
+      <p>Chiediamo un prestito bancario di 30.000 € a 5 anni.</p>
+    </div>
+    <div class="avoid">
+      <b>Da evitare</b>
+      <ul>
+        <li>Frasi generiche come «un progetto innovativo in un mercato in crescita».</li>
+        <li>Numeri che non coincidono con quelli dei capitoli successivi.</li>
+        <li>Dimenticare di dire che cosa chiedi.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="ch" id="impresa">
+  <div class="ch-head">
+    <span class="ch-num">02</span>
+    <h2>L’impresa e il team</h2>
+    <p class="why">Chi siete, che forma giuridica avete scelto e perché siete le persone giuste per farlo.</p>
+  </div>
+  <div class="ch-body">
+    <h3>Cosa scrivere</h3>
+    <ul>
+      <li><strong>Dati dell’impresa:</strong> nome, forma giuridica (ditta individuale, Srl, Srls, cooperativa), sede, data di avvio prevista, codice ATECO.</li>
+      <li><strong>Missione:</strong> una frase su cosa fate e per chi. Niente slogan.</li>
+      <li><strong>Soci e quote:</strong> chi possiede cosa e chi decide.</li>
+      <li><strong>Team:</strong> per ogni persona chiave, ruolo ed esperienza <em>pertinente</em>. Se manca una competenza, dite come la coprirete.</li>
+    </ul>
+    <div class="sample">
+      <div class="tbl"><table>
+        <thead><tr><th>Persona</th><th>Ruolo</th><th>Esperienza</th><th class="r">Quota</th></tr></thead>
+        <tbody>
+          <tr><td>Anna R.</td><td>Socia, responsabile laboratorio</td><td>12 anni da pasticcera, di cui 5 come capo laboratorio</td><td class="r">50%</td></tr>
+          <tr><td>Marco D.</td><td>Socio, gestione e sala</td><td>8 anni responsabile di sala in caffetteria, gestione turni e fornitori</td><td class="r">50%</td></tr>
+          <tr><td>Da assumere</td><td>Aiuto pasticcere e banconista</td><td>Contratto part-time dal mese 1</td><td class="r">—</td></tr>
+        </tbody>
+      </table></div>
+      <p>Forma giuridica: Srl semplificata. Sede: centro storico di Salerno, locale di 70 m² con vetrina su strada pedonale. Commercialista esterno per contabilità e paghe.</p>
+    </div>
+    <div class="avoid">
+      <b>Da evitare</b>
+      <ul>
+        <li>Curriculum completi nel corpo del testo: vanno negli allegati.</li>
+        <li>Nascondere le competenze che mancano. Il lettore se ne accorge comunque.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="ch" id="prodotto">
+  <div class="ch-head">
+    <span class="ch-num">03</span>
+    <h2>Prodotto o servizio</h2>
+    <p class="why">Che cosa vendete, a quale bisogno risponde e cosa lo rende diverso.</p>
+  </div>
+  <div class="ch-body">
+    <p>Descrivi il prodotto dal punto di vista del cliente: che problema gli togli, in che momento della giornata, quanto paga. Poi la <strong>proposta di valore</strong>: perché scegliere te. Deve essere verificabile, non un aggettivo.</p>
+    <div class="two">
+      <div><h4>Debole</h4><p>«Prodotti di altissima qualità e un servizio eccellente.»</p></div>
+      <div><h4>Verificabile</h4><p>«Sfogliatelle sfornate ogni 40 minuti dalle 7 alle 11, mai più vecchie di un’ora. Il laboratorio è visibile dalla strada.»</p></div>
+    </div>
+    <div class="sample">
+      <div class="tbl"><table>
+        <thead><tr><th>Linea</th><th>Esempi</th><th class="r">Prezzo</th><th class="r">Quota ricavi</th></tr></thead>
+        <tbody>
+          <tr><td>Colazione al banco</td><td>Sfogliatella riccia o frolla e caffè</td><td class="r">3,80 €</td><td class="r">55%</td></tr>
+          <tr><td>Asporto</td><td>Vassoi misti, babà, pasticceria secca</td><td class="r">18 €/kg</td><td class="r">30%</td></tr>
+          <tr><td>Ordini B2B</td><td>Colazioni per uffici, B&amp;B, piccoli eventi</td><td class="r">da 45 €</td><td class="r">15%</td></tr>
+        </tbody>
+      </table></div>
+      <p>Scontrino medio stimato: <strong>6,50 €</strong> (colazione più un pezzo da asporto, oppure due colazioni).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MERCATO -->
+<section class="ch" id="mercato">
+  <div class="ch-head">
+    <span class="ch-num">04</span>
+    <h2>Analisi di mercato</h2>
+    <p class="why">Il capitolo che regge tutti gli altri: da qui arrivano i ricavi del piano finanziario. Si parte da tutti i potenziali clienti e si arriva ai clienti fedeli, restringendo il campo un passaggio alla volta.</p>
+  </div>
+  <div class="ch-body">
+
+    <h3>L’idea di fondo</h3>
+    <p>Il mercato si quantifica come un imbuto. In cima ci sono tutte le persone che comprano quel tipo di prodotto. A ogni gradino togli chi non puoi servire, chi non sceglierà te, chi non ti conosce, chi prova una volta e non torna. In fondo restano i clienti fidelizzati: pochi, ma sono quelli che pagano l’affitto.</p>
+    <p>Per ogni gradino scrivi tre cose: <strong>il criterio</strong> che usi per restringere, <strong>la percentuale</strong> e <strong>la fonte</strong> di quella percentuale.</p>
+
+    <div class="ladder" role="list">
+      <div class="rung" role="listitem">
+        <span class="k">1</span><h4>Mercato totale <small>TAM</small></h4><span class="v">756.000</span>
+        <p>Tutte le persone che comprano il tipo di prodotto nell’area più ampia che ha senso considerare. Esempio: residenti in provincia di Salerno che comprano pasticceria al bar almeno una volta al mese.</p>
+      </div>
+      <div class="rung" role="listitem">
+        <span class="k">2</span><h4>Mercato servibile <small>SAM</small></h4><span class="v">28.123</span>
+        <p>La parte del mercato totale che puoi davvero raggiungere con il tuo modello: chi vive, lavora o passa nella zona del locale, e chi cerca il tuo segmento (qui: artigianale, prezzo più alto).</p>
+      </div>
+      <div class="rung" role="listitem">
+        <span class="k">3</span><h4>Mercato ottenibile <small>SOM</small></h4><span class="v">3.375</span>
+        <p>La quota del mercato servibile che puoi realisticamente conquistare in 3 anni, tenendo conto dei concorrenti e delle tue risorse. Per un’attività nuova di solito tra il 5% e il 15%.</p>
+      </div>
+      <div class="rung" role="listitem">
+        <span class="k">4</span><h4>Clienti raggiunti</h4><span class="v">2.363</span>
+        <p>Chi viene a sapere che esisti, grazie alla vetrina, al passaparola e al marketing. Dipende dal budget e dalla posizione.</p>
+      </div>
+      <div class="rung" role="listitem">
+        <span class="k">5</span><h4>Clienti acquisiti</h4><span class="v">1.063</span>
+        <p>Chi fa almeno un primo acquisto. È il tasso di conversione da «ti conosco» a «ti provo».</p>
+      </div>
+      <div class="rung" role="listitem">
+        <span class="k">6</span><h4>Clienti ripetuti</h4><span class="v">532</span>
+        <p>Chi torna almeno una seconda volta entro tre mesi. Qui si vede se il prodotto mantiene la promessa.</p>
+      </div>
+      <div class="rung" role="listitem">
+        <span class="k">7</span><h4>Clienti fidelizzati</h4><span class="v"><mark>213</mark></span>
+        <p>Chi compra con regolarità per almeno sei mesi: nell’esempio, due volte a settimana. Spendono molto più degli altri e portano nuovi clienti con il passaparola.</p>
+      </div>
+    </div>
+
+    <h3>Come si ricava ogni percentuale</h3>
+    <ul>
+      <li><strong>Dimensione del mercato totale:</strong> dati ISTAT su popolazione e consumi delle famiglie, Camera di Commercio per numero e tipo di imprese, associazioni di categoria (per bar e pasticcerie: rapporti annuali di settore), Eurostat per confronti europei.</li>
+      <li><strong>Area servibile:</strong> mappe con il raggio a piedi o in auto dal punto vendita, dati comunali per residenti e pendolari, dati turistici regionali per le presenze.</li>
+      <li><strong>Interesse per il segmento:</strong> un questionario breve (anche 100 risposte bastano per un ordine di grandezza), ricerche su Google Trends, recensioni dei concorrenti.</li>
+      <li><strong>Quota ottenibile:</strong> numero di concorrenti diretti nell’area e loro forza. Con 7 concorrenti comparabili, puntare a più di 1/8 del mercato servibile è difficile da difendere.</li>
+      <li><strong>Raggiunti, acquisiti, ripetuti, fidelizzati:</strong> medie di settore, dati di attività simili (chiedere a un fornitore, a un consulente o a un ex titolare), e dopo l’apertura i tuoi dati reali da cassa e programma fedeltà.</li>
+    </ul>
+
+    <div class="calc" id="calc">
+      <div class="calc-head">
+        <h4>Calcola il tuo imbuto</h4>
+        <button type="button" id="reset">Ripristina l’esempio</button>
+      </div>
+      <p class="note">Valori di partenza: Sfoglia Lab. Cambia i numeri con quelli della tua attività. Le barre mostrano quanta parte del gradino precedente passa al successivo.</p>
+
+      <div class="stage">
+        <label for="pop">Popolazione dell’area ampia<span>Residenti in provincia, regione o nazione: dipende da quanto lontano arriva il prodotto.</span></label>
+        <div class="in"><input id="pop" type="number" min="0" step="1000" value="1050000" inputmode="numeric"></div>
+      </div>
+      <div class="stage" data-step="tam">
+        <label for="p-tam">1 · Mercato totale<span>% che compra il tipo di prodotto (qui: pasticceria al bar, almeno 1 volta al mese).</span></label>
+        <div class="in"><input id="p-tam" type="number" min="0" max="100" step="0.1" value="72"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="area">
+        <label for="p-area">2a · Nell’area servita<span>% del mercato totale che vive, lavora o passa nella tua zona.</span></label>
+        <div class="in"><input id="p-area" type="number" min="0" max="100" step="0.1" value="9.3"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="sam">
+        <label for="p-sam">2b · Mercato servibile<span>% dell’area interessata al tuo segmento (qui: artigianale, prezzo più alto).</span></label>
+        <div class="in"><input id="p-sam" type="number" min="0" max="100" step="0.1" value="40"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="som">
+        <label for="p-som">3 · Mercato ottenibile<span>Quota realistica del servibile in 3 anni.</span></label>
+        <div class="in"><input id="p-som" type="number" min="0" max="100" step="0.1" value="12"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="reach">
+        <label for="p-reach">4 · Clienti raggiunti<span>% dell’ottenibile che viene a sapere che esisti.</span></label>
+        <div class="in"><input id="p-reach" type="number" min="0" max="100" step="0.1" value="70"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="acq">
+        <label for="p-acq">5 · Clienti acquisiti<span>% dei raggiunti che fa un primo acquisto.</span></label>
+        <div class="in"><input id="p-acq" type="number" min="0" max="100" step="0.1" value="45"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="rep">
+        <label for="p-rep">6 · Clienti ripetuti<span>% degli acquisiti che torna entro 3 mesi.</span></label>
+        <div class="in"><input id="p-rep" type="number" min="0" max="100" step="0.1" value="50"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+      <div class="stage" data-step="loy">
+        <label for="p-loy">7 · Clienti fidelizzati<span>% dei ripetuti che compra con regolarità per 6+ mesi.</span></label>
+        <div class="in"><input id="p-loy" type="number" min="0" max="100" step="0.1" value="40"><span class="unit">%</span></div>
+        <div class="bar"><div class="track"><div class="fill"></div></div><div class="out"></div><div class="cap"></div></div>
+      </div>
+
+      <div class="stage">
+        <label for="ticket">Scontrino medio<span>Spesa media per visita.</span></label>
+        <div class="in"><input id="ticket" type="number" min="0" step="0.1" value="6.5"><span class="unit">€</span></div>
+      </div>
+      <div class="stage">
+        <label for="f-loy">Visite al mese di un fidelizzato</label>
+        <div class="in"><input id="f-loy" type="number" min="0" step="0.5" value="8"></div>
+      </div>
+      <div class="stage">
+        <label for="f-rep">Visite al mese di un cliente ripetuto non fedele</label>
+        <div class="in"><input id="f-rep" type="number" min="0" step="0.5" value="2"></div>
+      </div>
+      <div class="stage">
+        <label for="f-occ">Visite all’anno di un cliente occasionale</label>
+        <div class="in"><input id="f-occ" type="number" min="0" step="0.5" value="3"></div>
+      </div>
+
+      <div class="result" aria-live="polite">
+        <div class="row"><span>Fidelizzati</span><span class="num" id="r-loy"></span></div>
+        <div class="row"><span>Ripetuti non fedeli</span><span class="num" id="r-rep"></span></div>
+        <div class="row"><span>Occasionali (un acquisto, poi raramente)</span><span class="num" id="r-occ"></span></div>
+        <div class="row tot"><span>Ricavi annui stimati</span><span class="num" id="r-tot"></span></div>
+        <p class="note" id="r-share"></p>
+      </div>
+    </div>
+
+    <h3>Verifica dal basso</h3>
+    <p>Il calcolo dall’alto (<em>top-down</em>) parte dalle statistiche e scende. Va sempre confrontato con un calcolo dal basso (<em>bottom-up</em>), che parte da quello che puoi osservare con i tuoi occhi. Se i due risultati sono lontani, una delle ipotesi è sbagliata.</p>
+    <div class="sample alt" data-label="Esempio · bottom-up">
+      <p>Abbiamo contato i passanti davanti al locale per 5 mattine feriali, dalle 7 alle 12: in media <strong>2.400 persone</strong>. In due bar simili della zona entra circa il <strong>4%</strong> di chi passa.</p>
+      <p class="num">2.400 × 4% = 96 scontrini/giorno<br>96 × 6,50 € × 300 giorni = <mark>187.200 €/anno</mark></p>
+      <p>Il calcolo dall’alto dà circa 193.000 €. I due risultati distano il 3%: le ipotesi reggono. Nel conto economico usiamo <strong>190.000 €</strong>, il valore più prudente arrotondato.</p>
+      <p class="src">Fonti: conteggio diretto 6–10 ottobre; ISTAT, popolazione residente; questionario a 140 persone in zona; dati di cassa forniti da un bar della stessa via.</p>
+    </div>
+
+    <h3>Oltre ai numeri</h3>
+    <ul>
+      <li><strong>Segmenti di clientela:</strong> descrivi 2–4 gruppi con abitudini diverse. Per Sfoglia Lab: impiegati della zona (colazione veloce, 7:30–9:00), residenti (weekend, asporto), turisti (tarda mattinata), aziende e B&amp;B (ordini).</li>
+      <li><strong>Tendenze:</strong> che cosa sta cambiando nel mercato e perché ti favorisce o ti danneggia (crescita del turismo in centro, più persone in smart working il lunedì e il venerdì).</li>
+      <li><strong>Stagionalità:</strong> mesi forti e deboli. Ti servirà per il piano di cassa.</li>
+    </ul>
+
+    <div class="avoid">
+      <b>Da evitare</b>
+      <ul>
+        <li>«Se prendiamo solo l’1% del mercato italiano…»: è il mercato totale, non quello ottenibile. Nessuno ci crede.</li>
+        <li>Percentuali senza fonte o senza un ragionamento scritto.</li>
+        <li>Fermarsi ai clienti acquisiti. Senza i ripetuti e i fidelizzati i ricavi risultano gonfiati.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="ch" id="concorrenza">
+  <div class="ch-head">
+    <span class="ch-num">05</span>
+    <h2>Analisi della concorrenza</h2>
+    <p class="why">Chi vende già qualcosa di simile ai tuoi clienti, e in cosa sei migliore o peggiore.</p>
+  </div>
+  <div class="ch-body">
+    <p>Distingui i concorrenti <strong>diretti</strong> (stesso prodotto, stessa zona) da quelli <strong>indiretti</strong> (soddisfano lo stesso bisogno in altro modo: il supermercato con le brioche confezionate, la macchinetta in ufficio). Confrontali su criteri che contano per il cliente, non su quelli che ti fanno vincere.</p>
+    <div class="sample">
+      <div class="tbl"><table>
+        <thead><tr><th>Concorrente</th><th>Distanza</th><th class="r">Colazione</th><th>Punto forte</th><th>Punto debole</th></tr></thead>
+        <tbody>
+          <tr><td>Pasticceria storica A</td><td>350 m</td><td class="r">3,50 €</td><td>Marchio noto, turisti</td><td>Prodotto non fresco dopo le 10, poco posto</td></tr>
+          <tr><td>Bar B</td><td>80 m</td><td class="r">2,60 €</td><td>Prezzo, velocità</td><td>Prodotto industriale</td></tr>
+          <tr><td>Caffetteria C (catena)</td><td>600 m</td><td class="r">4,20 €</td><td>Locale ampio, wi-fi</td><td>Niente pasticceria locale</td></tr>
+          <tr><td><strong>Sfoglia Lab</strong></td><td>—</td><td class="r">3,80 €</td><td>Sfornato ogni 40 minuti, laboratorio a vista</td><td>Marchio nuovo, 14 posti a sedere</td></tr>
+        </tbody>
+      </table></div>
+      <p>In tutto 7 concorrenti diretti entro 600 m. Da qui il 12% di quota ottenibile del capitolo 04: circa la quota media di un ottavo locale, leggermente sotto per prudenza.</p>
+    </div>
+    <div class="avoid">
+      <b>Da evitare</b>
+      <ul>
+        <li>«Non abbiamo concorrenti.» Vuol dire che il mercato non esiste oppure che non hai cercato.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="ch" id="marketing">
+  <div class="ch-head">
+    <span class="ch-num">06</span>
+    <h2>Marketing e vendite</h2>
+    <p class="why">Come porti i clienti da ogni gradino dell’imbuto a quello successivo, e quanto ti costa.</p>
+  </div>
+  <div class="ch-body">
+    <p>Organizza il capitolo con le quattro leve classiche: <strong>prodotto</strong>, <strong>prezzo</strong>, <strong>distribuzione</strong> (dove e come vendi) e <strong>promozione</strong>. Poi collega ogni azione a un gradino dell’imbuto: così il lettore vede che il budget ha uno scopo.</p>
+    <div class="sample">
+      <div class="tbl"><table>
+        <thead><tr><th>Gradino</th><th>Azione</th><th class="r">Costo anno 1</th><th>Come la misuriamo</th></tr></thead>
+        <tbody>
+          <tr><td>Raggiunti</td><td>Vetrina con laboratorio, insegna, scheda Google e Instagram, volantini negli uffici vicini</td><td class="r">3.500 €</td><td>Visualizzazioni della scheda, passanti che si fermano</td></tr>
+          <tr><td>Acquisiti</td><td>Prima colazione a 2,50 € con coupon, degustazioni il sabato</td><td class="r">2.000 €</td><td>Coupon usati</td></tr>
+          <tr><td>Ripetuti</td><td>Tessera a timbri: la decima colazione è gratis</td><td class="r">1.500 €</td><td>Tessere con almeno 2 timbri</td></tr>
+          <tr><td>Fidelizzati</td><td>Prenotazione via WhatsApp, abbonamento mensile per uffici</td><td class="r">1.000 €</td><td>Clienti con 8+ visite al mese</td></tr>
+          <tr class="total"><td colspan="2">Totale budget marketing</td><td class="r">8.000 €</td><td></td></tr>
+        </tbody>
+      </table></div>
+      <p>Costo di acquisizione per cliente: 8.000 € ÷ 1.063 clienti acquisiti = <strong>7,50 €</strong>. Un cliente fidelizzato vale 6,50 € × 8 × 12 = <strong>624 € l’anno</strong>.</p>
+    </div>
+    <div class="avoid">
+      <b>Da evitare</b>
+      <ul>
+        <li>Elenchi di canali senza budget e senza obiettivi («useremo i social»).</li>
+        <li>Prezzi decisi guardando solo i costi, senza confrontarli con quelli dei concorrenti.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="ch" id="operativo">
+  <div class="ch-head">
+    <span class="ch-num">07</span>
+    <h2>Piano operativo</h2>
+    <p class="why">Come funziona l’attività giorno per giorno: luoghi, persone, fornitori, permessi e tempi.</p>
+  </div>
+  <div class="ch-body">
+    <h3>Cosa scrivere</h3>
+    <ul>
+      <li><strong>Sede e attrezzature:</strong> dove, quanto è grande, che cosa serve comprare.</li>
+      <li><strong>Processo:</strong> i passaggi dalla materia prima al cliente, con orari e capacità massima.</li>
+      <li><strong>Fornitori:</strong> chi sono, condizioni di pagamento, alternative se uno salta.</li>
+      <li><strong>Personale:</strong> quante persone, con che contratto, in che turni.</li>
+      <li><strong>Autorizzazioni:</strong> SCIA, requisiti igienico-sanitari, HACCP, insegna.</li>
+      <li><strong>Cronoprogramma:</strong> le tappe fino all’apertura.</li>
+    </ul>
+    <div class="sample">
+      <div class="tbl"><table>
+        <thead><tr><th>Mese</th><th>Tappa</th></tr></thead>
+        <tbody>
+          <tr><td class="num">M−4</td><td>Costituzione Srls, domanda di finanziamento agevolato</td></tr>
+          <tr><td class="num">M−3</td><td>Firma del contratto d’affitto, progetto del locale</td></tr>
+          <tr><td class="num">M−2</td><td>Lavori, ordine di forno e banco frigo</td></tr>
+          <tr><td class="num">M−1</td><td>SCIA e corso HACCP, selezione del personale, prove di produzione</td></tr>
+          <tr><td class="num">M0</td><td>Apertura</td></tr>
+        </tbody>
+      </table></div>
+      <p>Capacità del laboratorio: 480 sfogliatelle al giorno con un forno a 10 teglie. La domanda stimata al primo anno è di circa 260 pezzi al giorno: c’è margine per crescere senza nuovi investimenti fino al terzo anno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="ch" id="finanza">
+  <div class="ch-head">
+    <span class="ch-num">08</span>
+    <h2>Piano economico-finanziario</h2>
+    <p class="why">I numeri di tutti i capitoli precedenti tradotti in euro: quanto serve, da dove arriva, quando torna indietro.</p>
+  </div>
+  <div class="ch-body">
+    <p>Contiene quattro prospetti. Ognuno risponde a una domanda diversa.</p>
+
+    <h4>Investimenti e fonti</h4>
+    <p>Quanto serve per partire e chi mette i soldi. Le due colonne devono avere lo stesso totale.</p>
+    <div class="sample">
+      <div class="two">
+        <div class="tbl"><table style="min-width:0">
+          <thead><tr><th>Impieghi</th><th class="r">€</th></tr></thead>
+          <tbody>
+            <tr><td>Attrezzature laboratorio</td><td class="r">42.000</td></tr>
+            <tr><td>Arredi e banco</td><td class="r">25.000</td></tr>
+            <tr><td>Lavori sul locale</td><td class="r">15.000</td></tr>
+            <tr><td>Cassa e informatica</td><td class="r">3.000</td></tr>
+            <tr><td>Costi di avvio</td><td class="r">5.000</td></tr>
+            <tr><td>Scorte e liquidità iniziale</td><td class="r">10.000</td></tr>
+            <tr class="total"><td>Totale</td><td class="r">100.000</td></tr>
+          </tbody>
+        </table></div>
+        <div class="tbl"><table style="min-width:0">
+          <thead><tr><th>Fonti</th><th class="r">€</th></tr></thead>
+          <tbody>
+            <tr><td>Capitale dei soci</td><td class="r">30.000</td></tr>
+            <tr><td>Finanziamento agevolato</td><td class="r">40.000</td></tr>
+            <tr><td>Prestito bancario, 5 anni</td><td class="r">30.000</td></tr>
+            <tr class="total"><td>Totale</td><td class="r">100.000</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <h4>Conto economico previsionale</h4>
+    <p>Ricavi meno costi, anno per anno. I ricavi arrivano dall’imbuto del capitolo 04; il personale dal capitolo 07; il marketing dal 06.</p>
+    <div class="sample">
+      <div class="tbl"><table>
+        <thead><tr><th>Migliaia di €</th><th class="r">Anno 1</th><th class="r">Anno 2</th><th class="r">Anno 3</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ricavi</strong></td><td class="r"><strong>190,0</strong></td><td class="r"><strong>245,0</strong></td><td class="r"><strong>290,0</strong></td></tr>
+          <tr><td>Materie prime (30% dei ricavi)</td><td class="r">−57,0</td><td class="r">−73,5</td><td class="r">−87,0</td></tr>
+          <tr><td>Personale</td><td class="r">−78,0</td><td class="r">−82,0</td><td class="r">−96,0</td></tr>
+          <tr><td>Affitto</td><td class="r">−24,0</td><td class="r">−24,0</td><td class="r">−24,5</td></tr>
+          <tr><td>Utenze</td><td class="r">−9,0</td><td class="r">−9,5</td><td class="r">−10,0</td></tr>
+          <tr><td>Marketing</td><td class="r">−8,0</td><td class="r">−7,0</td><td class="r">−7,0</td></tr>
+          <tr><td>Altri costi</td><td class="r">−6,0</td><td class="r">−6,5</td><td class="r">−7,0</td></tr>
+          <tr class="total"><td>Margine operativo lordo (EBITDA)</td><td class="r">8,0</td><td class="r">42,5</td><td class="r">58,5</td></tr>
+          <tr><td>Ammortamenti (90.000 € in 5 anni)</td><td class="r">−18,0</td><td class="r">−18,0</td><td class="r">−18,0</td></tr>
+          <tr class="total"><td>Risultato operativo (EBIT)</td><td class="r neg">−10,0</td><td class="r">24,5</td><td class="r">40,5</td></tr>
+          <tr><td>Interessi sui prestiti</td><td class="r">−2,4</td><td class="r">−2,0</td><td class="r">−1,6</td></tr>
+          <tr><td>Imposte (stima 28%)</td><td class="r">0,0</td><td class="r">−6,3</td><td class="r">−10,9</td></tr>
+          <tr class="total"><td>Utile netto</td><td class="r neg">−12,4</td><td class="r pos">16,2</td><td class="r pos">28,0</td></tr>
+        </tbody>
+      </table></div>
+      <p class="src">Ricavi anno 1 dal capitolo 04 (≈193.000 €, arrotondati per prudenza). Crescita anno 2 e 3: più clienti fidelizzati e ordini B2B.</p>
+    </div>
+
+    <h4>Punto di pareggio</h4>
+    <p>Il fatturato a cui i ricavi coprono esattamente i costi. Si calcola dividendo i costi fissi per il margine di contribuzione, cioè la parte di ogni euro incassato che resta dopo i costi variabili.</p>
+    <div class="sample">
+      <p class="num">Costi fissi anno 1 = 78 + 24 + 9 + 8 + 6 + 18 = 143.000 €<br>Margine di contribuzione = 100% − 30% = 70%<br>Pareggio = 143.000 ÷ 0,70 = <mark>204.300 € di ricavi</mark></p>
+      <div class="chart" role="img" aria-label="Grafico del punto di pareggio: le linee dei ricavi e dei costi totali si incrociano a 204.300 euro di fatturato. L'anno 1 è sotto, gli anni 2 e 3 sopra.">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="var(--rule)" stroke-width="1">
+            <line x1="60" y1="280" x2="580" y2="280"/>
+            <line x1="60" y1="193.3" x2="580" y2="193.3" stroke-dasharray="2 4"/>
+            <line x1="60" y1="106.7" x2="580" y2="106.7" stroke-dasharray="2 4"/>
+            <line x1="60" y1="20" x2="580" y2="20" stroke-dasharray="2 4"/>
+            <line x1="60" y1="20" x2="60" y2="280"/>
+          </g>
+          <text x="52" y="284" text-anchor="end">0</text>
+          <text x="52" y="197" text-anchor="end">100k</text>
+          <text x="52" y="111" text-anchor="end">200k</text>
+          <text x="52" y="24" text-anchor="end">300k</text>
+          <text x="60" y="298" text-anchor="middle">0</text>
+          <text x="233.3" y="298" text-anchor="middle">100k</text>
+          <text x="406.7" y="298" text-anchor="middle">200k</text>
+          <text x="580" y="298" text-anchor="middle">300k</text>
+          <text x="320" y="316" text-anchor="middle">Ricavi annui (€)</text>
+          <!-- zona di perdita / profitto -->
+          <polygon points="60,280 414.1,102.9 60,156.1" fill="var(--bad)" fill-opacity=".09"/>
+          <polygon points="414.1,102.9 580,20 580,78.1" fill="var(--good)" fill-opacity=".12"/>
+          <line x1="60" y1="156.1" x2="580" y2="156.1" stroke="var(--ink-soft)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="60" y1="156.1" x2="580" y2="78.1" stroke="var(--bad)" stroke-width="2.5"/>
+          <line x1="60" y1="280" x2="580" y2="20" stroke="var(--ledger)" stroke-width="2.5"/>
+          <text class="lbl" x="96" y="176" style="fill:var(--ink-soft)">Costi fissi 143k</text>
+          <text class="lbl" x="300" y="108" style="fill:var(--bad)">Costi totali</text>
+          <text class="lbl" x="170" y="242" style="fill:var(--ledger)">Ricavi</text>
+          <circle cx="414.1" cy="102.9" r="5" fill="var(--ink)"/>
+          <text class="lbl" x="404" y="88" text-anchor="end" style="fill:var(--ink)">Pareggio 204k</text>
+          <g font-size="10.5">
+            <line x1="389.3" y1="280" x2="389.3" y2="272" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="389.3" y="266" text-anchor="middle" style="fill:var(--ink)">A1</text>
+            <line x1="484.7" y1="280" x2="484.7" y2="272" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="484.7" y="266" text-anchor="middle" style="fill:var(--ink)">A2</text>
+            <line x1="562.7" y1="280" x2="562.7" y2="272" stroke="var(--ink)" stroke-width="1.5"/>
+            <text x="562.7" y="266" text-anchor="middle" style="fill:var(--ink)">A3</text>
+          </g>
+        </svg>
+      </div>
+      <p>L’anno 1 (190.000 €) è sotto il pareggio: la perdita è prevista e coperta dalla liquidità iniziale. Dall’anno 2 l’attività è in utile.</p>
+    </div>
+
+    <h4>Piano di cassa</h4>
+    <p>Il conto economico dice se guadagni; il piano di cassa dice se hai i soldi sul conto mese per mese. Si fa per il primo anno mese per mese, poi per trimestri. Conta entrate e uscite quando avvengono davvero: l’IVA, le rate del prestito, i fornitori pagati a 60 giorni. Molte imprese in utile chiudono perché restano senza cassa.</p>
+    <div class="avoid">
+      <b>Da evitare</b>
+      <ul>
+        <li>Ricavi che crescono del 50% l’anno senza spiegare da dove arrivano i clienti.</li>
+        <li>Dimenticare lo stipendio dei soci, i contributi, l’IVA e le rate dei prestiti.</li>
+        <li>Mostrare solo lo scenario migliore.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="ch" id="rischi">
+  <div class="ch-head">
+    <span class="ch-num">09</span>
+    <h2>Rischi e scenari</h2>
+    <p class="why">Che cosa può andare storto, quanto costerebbe e che cosa farai in quel caso.</p>
+  </div>
+  <div class="ch-body">
+    <p>Due strumenti: l’<strong>analisi SWOT</strong> (punti di forza, debolezze, opportunità, minacce) e gli <strong>scenari</strong>, cioè il conto economico rifatto con ipotesi peggiori e migliori.</p>
+    <div class="swot">
+      <div><b>Punti di forza</b><ul><li>Prodotto sempre fresco, visibile</li><li>Esperienza del team nel settore</li></ul></div>
+      <div><b>Debolezze</b><ul><li>Marchio sconosciuto</li><li>Pochi posti a sedere</li></ul></div>
+      <div><b>Opportunità</b><ul><li>Turismo in crescita nel centro storico</li><li>Ordini da uffici e B&amp;B</li></ul></div>
+      <div><b>Minacce</b><ul><li>Aumento del prezzo di burro e farina</li><li>Apertura di una catena vicina</li></ul></div>
+    </div>
+    <div class="sample alt" data-label="Esempio · scenari anno 2">
+      <div class="tbl"><table>
+        <thead><tr><th>Scenario</th><th>Ipotesi</th><th class="r">Ricavi</th><th class="r">EBITDA</th></tr></thead>
+        <tbody>
+          <tr><td>Pessimista</td><td>Fidelizzati al 25% invece del 40%</td><td class="r">205.000 €</td><td class="r">14.500 €</td></tr>
+          <tr><td>Base</td><td>Ipotesi del capitolo 04</td><td class="r">245.000 €</td><td class="r">42.500 €</td></tr>
+          <tr><td>Ottimista</td><td>Ordini B2B raddoppiati</td><td class="r">270.000 €</td><td class="r">60.000 €</td></tr>
+        </tbody>
+      </table></div>
+      <p>Anche nello scenario pessimista l’EBITDA resta positivo e copre la rata del prestito (6.500 € l’anno). Contromisura prevista: ridurre il part-time e spingere gli abbonamenti per uffici.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="ch" id="allegati">
+  <div class="ch-head">
+    <span class="ch-num">10</span>
+    <h2>Allegati</h2>
+    <p class="why">Tutto ciò che dimostra quello che hai scritto, senza appesantire il testo.</p>
+  </div>
+  <div class="ch-body">
+    <ul>
+      <li>Curriculum dei soci</li>
+      <li>Preventivi di attrezzature e lavori</li>
+      <li>Bozza del contratto d’affitto e planimetria</li>
+      <li>Questionario e risultati, conteggi dei passanti</li>
+      <li>Conto economico e piano di cassa completi, in foglio di calcolo</li>
+      <li>Lettere d’intenti di clienti B2B, se ci sono</li>
+    </ul>
+    <div class="avoid">
+      <b>Prima di consegnare</b>
+      <ul>
+        <li>Controlla che ogni numero dell’executive summary compaia identico nel capitolo da cui viene.</li>
+        <li>Fallo leggere a una persona estranea al progetto: se non riesce a dirti in due frasi cosa fai e quanto guadagni, riscrivi il summary.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sfoglia Lab è un’attività inventata. Le persone, i concorrenti e le percentuali sono esempi costruiti per mostrare il metodo: per il tuo piano usa dati reali e cita le fonti.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var fmt = { format: function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); } };
+  var eur = function (n) { return fmt.format(Math.round(n)) + ' €'; };
+  var steps = [
+    { id: 'tam', label: 'clienti nel mercato totale' },
+    { id: 'area', label: 'nell’area servita' },
+    { id: 'sam', label: 'mercato servibile' },
+    { id: 'som', label: 'mercato ottenibile' },
+    { id: 'reach', label: 'raggiunti' },
+    { id: 'acq', label: 'acquisiti' },
+    { id: 'rep', label: 'ripetuti' },
+    { id: 'loy', label: 'fidelizzati' }
+  ];
+  var defaults = {};
+  var inputs = document.querySelectorAll('#calc input');
+  inputs.forEach(function (el) { defaults[el.id] = el.value; });
+  function val(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v >= 0 ? v : 0; }
+
+  function update() {
+    var n = val('pop');
+    var counts = {};
+    steps.forEach(function (s) {
+      var p = Math.min(val('p-' + s.id), 100);
+      n = Math.round(n * p / 100);
+      counts[s.id] = n;
+      var row = document.querySelector('[data-step="' + s.id + '"]');
+      row.querySelector('.fill').style.width = p + '%';
+      row.querySelector('.out').textContent = fmt.format(n);
+      row.querySelector('.cap').textContent = String(p).replace('.', ',') + '% del gradino precedente · ' + s.label;
+    });
+    var t = val('ticket');
+    var loy = counts.loy;
+    var rep = Math.max(counts.rep - counts.loy, 0);
+    var occ = Math.max(counts.acq - counts.rep, 0);
+    var rLoy = loy * val('f-loy') * 12 * t;
+    var rRep = rep * val('f-rep') * 12 * t;
+    var rOcc = occ * val('f-occ') * t;
+    var tot = rLoy + rRep + rOcc;
+    document.getElementById('r-loy').textContent = fmt.format(loy) + ' × ' + eur(rLoy / Math.max(loy, 1)) + ' = ' + eur(rLoy);
+    document.getElementById('r-rep').textContent = fmt.format(rep) + ' clienti = ' + eur(rRep);
+    document.getElementById('r-occ').textContent = fmt.format(occ) + ' clienti = ' + eur(rOcc);
+    document.getElementById('r-tot').textContent = eur(tot);
+    var share = tot > 0 ? Math.round(rLoy / tot * 100) : 0;
+    var pctPeople = counts.acq > 0 ? Math.round(loy / counts.acq * 100) : 0;
+    document.getElementById('r-share').textContent = 'I fidelizzati sono il ' + pctPeople + '% dei clienti acquisiti ma portano il ' + share + '% dei ricavi.';
+  }
+  inputs.forEach(function (el) { el.addEventListener('input', update); });
+  document.getElementById('reset').addEventListener('click', function () {
+    inputs.forEach(function (el) { el.value = defaults[el.id]; });
+    update();
+  });
+  update();
+
+  // indice: evidenzia il capitolo in lettura
+  var links = {};
+  document.querySelectorAll('.toc a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          Object.keys(links).forEach(function (k) { links[k].classList.toggle('active', k === e.target.id); });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('section.ch').forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
