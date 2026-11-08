@@ -9,7 +9,7 @@
     <meta property="og:title" content="Hotel Saline - Demo Experiences Srl">
     <meta property="og:description" content="Family hotel sul mare a Palinuro, con piscina, spiaggia privata e centro benessere Demo gratuita realizzata da Experiences Srl.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="img/img-1.jpg">
+    <meta property="og:image" content="img/hero.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -116,7 +116,7 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('img/img-1.jpg');
+            background-image: url('img/hero.jpg');
             background-size: cover;
             background-position: center;
             filter: brightness(0.52);
@@ -314,6 +314,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: 200px;
+            grid-auto-flow: dense;
             gap: 14px;
         }
         .gallery-item { border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; }
@@ -822,7 +823,7 @@
 
 <section class="about-section reveal" id="about">
     <div class="about-img-wrap">
-        <img src="img/img-2.jpg" alt="Hotel Saline">
+        <img src="img/hotel.jpg" alt="Hotel Saline: l’edificio e la piscina sul mare">
         <div class="about-img-badge"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> Palinuro</div>
     </div>
     <div class="about-text">
@@ -848,7 +849,7 @@
     <div class="cards-grid">
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/img-3.jpg" alt="Camere" loading="lazy">
+                <img src="img/camera-vista-mare.jpg" alt="Camera con vista mare" loading="lazy">
                 <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg></div>
             </div>
             <div class="card-body">
@@ -858,8 +859,8 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/img-4.jpg" alt="Piscina e spiaggia privata" loading="lazy">
-                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-utensils"/></svg></div>
+                <img src="img/piscina-spiaggia.jpg" alt="Piscina e spiaggia privata" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-boat"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Piscina e spiaggia privata</h3>
@@ -868,8 +869,8 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/img-5.jpg" alt="Miniclub" loading="lazy">
-                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div>
+                <img src="img/miniclub-famiglie.jpg" alt="Famiglia con bambina in piscina" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Miniclub</h3>
@@ -878,17 +879,17 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/img-1.jpg" alt="Centro benessere" loading="lazy">
-                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-boat"/></svg></div>
+                <img src="img/centro-massaggi.jpg" alt="Massaggio nel centro benessere" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Centro benessere</h3>
-                <p class="card-desc">Un’area dedicata al benessere e al relax.</p>
+                <p class="card-desc">Il centro massaggi Diabasi e una palestra Technogym, per rilassarsi o tenersi in forma.</p>
             </div>
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/img-2.jpg" alt="Posizione" loading="lazy">
+                <img src="img/palinuro-drone.jpg" alt="Palinuro e la costa del Cilento dall’alto" loading="lazy">
                 <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></div>
             </div>
             <div class="card-body">
@@ -898,8 +899,8 @@
         </div>
         <div class="card reveal">
             <div class="card-img-wrap">
-                <img src="img/img-3.jpg" alt="Contatti e prenotazioni" loading="lazy">
-                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
+                <img src="img/reception.jpg" alt="Ospiti alla reception" loading="lazy">
+                <div class="card-icon"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">Contatti e prenotazioni</h3>
@@ -916,12 +917,15 @@
         <p>Scorci e atmosfere della struttura: lasciatevi ispirare.</p>
     </div>
     <div class="gallery-grid reveal">
-        <div class="gallery-item wide"><img src="img/img-1.jpg" alt="Hotel Saline" loading="lazy"></div>
-        <div class="gallery-item"><img src="img/img-2.jpg" alt="Hotel Saline" loading="lazy"></div>
-        <div class="gallery-item tall"><img src="img/img-3.jpg" alt="Camere" loading="lazy"></div>
-        <div class="gallery-item"><img src="img/img-4.jpg" alt="Piscina e spiaggia privata" loading="lazy"></div>
-        <div class="gallery-item"><img src="img/img-5.jpg" alt="Miniclub" loading="lazy"></div>
-        <div class="gallery-item wide"><img src="img/img-1.jpg" alt="Centro benessere" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="img/costa-spiaggia.jpg" alt="La spiaggia di Palinuro dall’alto" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/lounge.jpg" alt="La lounge" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="img/colazione.jpg" alt="La colazione a buffet" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/ristorante.jpg" alt="La sala ristorante vista mare" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/piscina.jpg" alt="In piscina" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="img/spiaggia-famiglia.jpg" alt="Famiglia sulla spiaggia privata" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/bar.jpg" alt="Un aperitivo al bar" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/terrazza.jpg" alt="La terrazza sul mare" loading="lazy"></div>
+        <div class="gallery-item"><img src="img/pizzeria.jpg" alt="Il forno a legna della pizzeria" loading="lazy"></div>
     </div>
 </section>
 
