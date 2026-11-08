@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doppio Controllo</title>
+<meta name="description" content="Guida divulgativa: quanto fidarsi delle risposte dell’IA, casi reali di viaggi, medicine e chatbot finiti male, fake news, annunci e video falsi con personaggi famosi, e come difendersi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,0..100;1,9..144,300..800,0..100&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Concept: la scrivania del correttore di bozze. Carta, inchiostro, una sola matita rossa
+   per le correzioni e un evidenziatore per ciò che va controllato. */
+:root{
+  color-scheme:light;
+  --bg:#f2ede3; --bg2:#e9e2d4; --card:#fbf8f1; --line:#d6cdbb;
+  --ink:#16140f; --ink2:rgba(22,20,15,.68); --ink3:rgba(22,20,15,.46);
+  --red:#cf3418; --ok:#1d6b48; --hl:#f3d34a; --hl-ink:#16140f;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --e-out:cubic-bezier(.16,1,.3,1); --e-q:cubic-bezier(.25,1,.5,1); --e-io:cubic-bezier(.87,0,.13,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bg:#12110d;--bg2:#1a1813;--card:#1e1c16;--line:#353127;--ink:#eee8da;--ink2:rgba(238,232,218,.7);--ink3:rgba(238,232,218,.48);--red:#ff6a4a;--ok:#5fd39a;--hl:#c9a92a;--hl-ink:#12110d}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12110d;--bg2:#1a1813;--card:#1e1c16;--line:#353127;--ink:#eee8da;--ink2:rgba(238,232,218,.7);--ink3:rgba(238,232,218,.48);--red:#ff6a4a;--ok:#5fd39a;--hl:#c9a92a;--hl-ink:#12110d}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--hl);color:var(--hl-ink)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--ink);color:var(--bg);padding:8px 12px;z-index:99}
+.mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+mark{background:linear-gradient(transparent 55%,var(--hl) 55%);color:inherit;padding:0 .08em}
+
+/* avanzamento */
+#progress{position:fixed;inset:0 0 auto 0;height:3px;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:40}
+
+/* nav */
+header.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+.logo{font:600 15px/1 var(--serif);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:10px}
+.logo svg{width:22px;height:22px}
+.top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,#000 85%,transparent)}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font:500 14px var(--sans);text-decoration:none;padding:8px 10px;border-radius:999px;color:var(--ink2);white-space:nowrap;transition:color .3s var(--e-q),background .3s var(--e-q)}
+.top nav a:hover,.top nav a[aria-current="true"]{color:var(--ink);background:var(--bg2)}
+@media (max-width:760px){.top nav{display:none}}
+
+/* hero */
+.hero{min-height:calc(100svh - 58px);display:grid;align-content:center;padding-block:clamp(48px,9vh,120px) clamp(40px,8vh,96px);position:relative}
+.hero .kicker{margin:0 0 clamp(20px,4vh,40px);color:var(--ink2);display:flex;gap:14px;flex-wrap:wrap}
+.hero .kicker span+span::before{content:"/";margin-right:14px;color:var(--ink3)}
+.hero h1{font-family:var(--serif);font-weight:340;font-variation-settings:"opsz" 144,"SOFT" 30;font-size:clamp(64px,15.5vw,232px);line-height:.86;letter-spacing:-.045em;margin:0;position:relative}
+.hero h1 .ln{display:block;clip-path:inset(-60% -40% 0 -40%);padding-bottom:.06em}
+.hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:rise 1.1s var(--e-out) forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .ln:nth-child(3)>span{animation-delay:.24s}
+.hero h1 .ln:nth-child(2){padding-left:8.33%}
+.hero h1 em{font-style:italic;font-weight:300}
+.word-vero{position:relative;display:inline-block}
+.word-vero svg{position:absolute;left:-8%;top:-6%;width:116%;height:118%;overflow:visible;pointer-events:none}
+.word-vero path{fill:none;stroke:var(--red);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1s var(--e-io) 1.25s forwards}
+.annot{position:absolute;font:italic 400 clamp(20px,2.8vw,42px)/1.1 var(--serif);color:var(--red);opacity:0;animation:fadein .6s var(--e-out) 2.05s forwards;white-space:nowrap;letter-spacing:0}
+.annot.a1{left:calc(100% + .55em);top:12%;transform:rotate(-6deg)}
+@keyframes rise{to{transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadein{to{opacity:1}}
+.hero .lede{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:clamp(36px,7vh,80px)}
+@media (min-width:1001px){.hero{grid-template-columns:repeat(12,1fr);column-gap:24px}.hero .kicker,.hero h1{grid-column:1 / -1;grid-row:auto}.hero h1{grid-row:2}.hero .lede{grid-column:8 / -1;grid-row:2;align-self:center;margin-top:0;display:block;position:relative;z-index:1}.hero .lede p{max-width:34ch}.hero .lede .scroll{margin-top:28px}}
+.hero .lede p:not(.scroll){grid-column:6 / span 6;margin:0;font-size:clamp(18px,1.7vw,22px);line-height:1.5;color:var(--ink2);opacity:0;animation:fadein .9s var(--e-out) .7s forwards}
+.hero .lede p strong{color:var(--ink);font-weight:600}
+.hero .scroll{grid-column:1 / span 4;align-self:end;color:var(--ink3);opacity:0;animation:fadein .9s var(--e-out) 1s forwards;display:flex;align-items:center;gap:10px}
+.hero .scroll i{display:block;width:1px;height:44px;background:var(--ink3);transform-origin:top;animation:tick 2.2s var(--e-io) infinite}
+@keyframes tick{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:1000px){.hero .lede p:not(.scroll),.hero .scroll{grid-column:1 / -1}}
+@media (max-width:760px){.hero h1 .ln:nth-child(2){padding-left:0}.annot.a1{left:calc(100% + .5em);top:8%}}
+
+/* sezioni */
+section.ch{padding-block:clamp(72px,12vw,160px);border-top:1px solid var(--line);position:relative}
+.ch-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:clamp(40px,6vw,80px)}
+.ch-num{grid-column:1 / span 2;font:300 clamp(56px,8vw,120px)/.8 var(--serif);font-variation-settings:"opsz" 144;color:var(--red);letter-spacing:-.04em}
+.ch-title{grid-column:3 / span 10}
+.ch-title .mono{color:var(--ink3);display:block;margin-bottom:14px}
+h2{font:360 clamp(40px,6.4vw,96px)/.95 var(--serif);font-variation-settings:"opsz" 144,"SOFT" 20;letter-spacing:-.035em;margin:0 0 22px;text-wrap:balance}
+h2 em{font-style:italic;font-weight:300}
+.ch-title p{max-width:60ch;margin:0;color:var(--ink2);font-size:clamp(17px,1.5vw,20px);text-wrap:pretty}
+@media (max-width:760px){.ch-num,.ch-title{grid-column:1 / -1}}
+h3{font:500 clamp(24px,2.4vw,32px)/1.1 var(--serif);letter-spacing:-.02em;margin:0 0 10px}
+p{text-wrap:pretty}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--e-out),transform 1.1s var(--e-out)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+
+/* 01: risposta annotata */
+.answer-wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+.answer{grid-column:1 / span 7;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,3vw,36px);position:relative}
+.q{display:flex;justify-content:flex-end;margin-bottom:22px}
+.q span{background:var(--bg2);border-radius:18px 18px 4px 18px;padding:12px 16px;max-width:80%;font-size:16px}
+.bot{display:flex;gap:12px;align-items:center;margin-bottom:12px;color:var(--ink3)}
+.bot i{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 90deg,var(--ink) 0 25%,var(--ink3) 0 50%,var(--ink) 0 75%,var(--ink3) 0);display:block}
+.answer p{margin:0 0 14px;font-size:17px}
+.answer .claim{position:relative;transition:background-size .9s var(--e-out);background:linear-gradient(transparent 58%,var(--hl) 58%) no-repeat 0 0 / 0% 100%}
+.answer .claim.on{background-size:100% 100%}
+.answer .claim sup{font:600 11px var(--mono);color:var(--red);margin-left:2px}
+.notes{grid-column:8 / span 5;display:grid;gap:14px;position:sticky;top:90px}
+.note{border-left:2px solid var(--red);padding:4px 0 4px 18px;opacity:.25;transform:translateX(10px);transition:opacity .7s var(--e-out),transform .9s var(--e-out)}
+.note.on{opacity:1;transform:none}
+.note b{font:600 12px var(--mono);color:var(--red);letter-spacing:.06em;display:block;margin-bottom:4px}
+.note p{margin:0;font-size:15.5px;color:var(--ink2)}
+.note p strong{color:var(--ink)}
+@media (max-width:900px){.answer,.notes{grid-column:1 / -1}.notes{position:static}}
+
+.procon{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:clamp(56px,8vw,110px);border-top:1px solid var(--ink)}
+.procon>div{padding:28px 28px 0 0}
+.procon>div+div{padding-left:28px;border-left:1px solid var(--line)}
+.procon h3 .mono{display:block;color:var(--ok);margin-bottom:8px}
+.procon>div+div h3 .mono{color:var(--red)}
+.procon ul{list-style:none;margin:18px 0 0;padding:0}
+.procon li{padding:14px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;gap:6px}
+.procon li::before{content:"+";font:600 16px var(--mono);color:var(--ok)}
+.procon>div+div li::before{content:"−";color:var(--red)}
+.procon li b{font-weight:600}
+.procon li span{color:var(--ink2);display:block;font-size:15.5px}
+@media (max-width:760px){.procon{grid-template-columns:1fr}.procon>div{padding-right:0}.procon>div+div{padding-left:0;border-left:0;margin-top:24px}}
+.rule{margin:clamp(56px,8vw,100px) 0 0;font:300 italic clamp(30px,4.4vw,64px)/1.08 var(--serif);letter-spacing:-.025em;max-width:22ch;margin-left:auto;text-wrap:balance}
+.rule::before{content:"";display:block;width:56px;height:3px;background:var(--red);margin-bottom:22px}
+
+/* 02: casi */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.tab{font:500 15px var(--sans);padding:10px 18px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink2);cursor:pointer;transition:all .35s var(--e-q)}
+.tab:hover{border-color:var(--ink);color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab small{font:600 11px var(--mono);margin-left:6px;opacity:.6}
+.panel[hidden]{display:none}
+.cases{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.case{grid-column:span 4;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:12px;transition:transform .6s var(--e-out),border-color .4s var(--e-q)}
+.case:hover{transform:translateY(-4px);border-color:var(--ink3)}
+.case.wide{grid-column:span 8}
+.case .meta{display:flex;justify-content:space-between;gap:12px;color:var(--ink3)}
+.case p{margin:0;font-size:15.5px;color:var(--ink2)}
+.case p strong{color:var(--ink);font-weight:600}
+.case .lesson{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);font-size:15px;color:var(--ink)}
+.case .lesson::before{content:"Lezione  ";font:600 11px var(--mono);letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.case .src{font:500 12.5px var(--mono);color:var(--ink3)}
+.case .src a{color:var(--ink2)}
+@media (max-width:980px){.case,.case.wide{grid-column:span 6}}
+@media (max-width:640px){.case,.case.wide{grid-column:1 / -1}}
+.care{grid-column:1 / -1;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;border:1px solid var(--line);background:var(--bg2);border-radius:18px;padding:22px 24px;font-size:15.5px}
+.care svg{width:28px;height:28px;color:var(--ok)}
+.care p{margin:0;color:var(--ink2)}
+.care p strong{color:var(--ink)}
+.care a{white-space:nowrap}
+
+/* 03: fake news */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);margin-bottom:clamp(56px,8vw,110px)}
+.why div{padding:24px 22px 0 0}
+.why div+div{padding-left:22px;border-left:1px solid var(--line)}
+.why b{font:300 56px/1 var(--serif);color:var(--red);display:block;margin-bottom:10px}
+.why h3{font-size:22px}
+.why p{margin:0;color:var(--ink2);font-size:15.5px}
+@media (max-width:900px){.why{grid-template-columns:1fr 1fr}.why div:nth-child(3){border-left:0;padding-left:0}.why div{padding-bottom:24px}}
+@media (max-width:520px){.why{grid-template-columns:1fr}.why div+div{border-left:0;padding-left:0;border-top:1px solid var(--line)}}
+.feature{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
+.feature .fig{grid-column:1 / span 6;aspect-ratio:4/5;border-radius:20px;position:relative;overflow:hidden;background:
+  radial-gradient(120% 80% at 50% 0%,#fdfdfb 0,#e9e7e1 45%,#b9b6ad 100%)}
+.feature .fig svg{position:absolute;inset:0;width:100%;height:100%}
+.feature .fig .tag{position:absolute;left:18px;bottom:18px;right:18px;display:flex;justify-content:space-between;gap:8px;font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#16140f}
+.feature .fig .tag span{background:#fbf8f1;padding:6px 10px;border-radius:6px}
+.feature .fig .tag span.f{background:#cf3418;color:#fff}
+.feature .txt{grid-column:8 / span 5}
+.feature .txt p{color:var(--ink2)}
+@media (max-width:900px){.feature .fig,.feature .txt{grid-column:1 / -1}.feature .fig{aspect-ratio:4/3}}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:clamp(48px,7vw,90px)}
+.mini div{border-top:1px solid var(--line);padding-top:18px}
+.mini p{margin:0;font-size:15.5px;color:var(--ink2)}
+@media (max-width:760px){.mini{grid-template-columns:1fr}}
+
+/* 04: annuncio falso */
+.spot{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+.ad{grid-column:1 / span 6;background:#fff;color:#1c1e21;border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.05),0 30px 60px -30px rgba(22,20,15,.45);font:14px/1.4 Arial,Helvetica,sans-serif;position:relative;overflow:hidden}
+.ad-h{display:flex;gap:10px;align-items:center;padding:14px 16px}
+.ad-h i{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2c5aa0,#9fb6d8);display:block;flex:none}
+.ad-h b{display:block;font-size:14.5px}
+.ad-h small{color:#65676b;font-size:12.5px}
+.ad-t{padding:0 16px 12px}
+.ad-v{aspect-ratio:16/10;position:relative;background:linear-gradient(160deg,#28323f,#0f1419);display:grid;place-items:center;overflow:hidden}
+.ad-v svg{width:100%;height:100%;position:absolute;inset:0}
+.ad-v .live{position:absolute;top:12px;left:12px;background:#d10f0f;color:#fff;font:700 11px Arial;padding:3px 7px;border-radius:3px;letter-spacing:.05em}
+.ad-v .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;padding:26px 14px 12px;font:700 15px/1.25 Arial}
+.ad-f{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f0f2f5;padding:10px 16px}
+.ad-f small{color:#65676b;font-size:11.5px;text-transform:uppercase;display:block}
+.ad-f b{font-size:14.5px}
+.ad-f span.btn{background:#e4e6eb;border-radius:6px;padding:8px 12px;font-weight:700;font-size:13.5px;white-space:nowrap}
+.ad-c{padding:12px 16px 16px;font-size:13px;color:#65676b;border-top:1px solid #e4e6eb}
+.hs{position:absolute;translate:-50% -50%;width:30px;height:30px;border-radius:50%;border:0;background:var(--red);color:#fff;font:700 13px var(--mono);cursor:pointer;display:grid;place-items:center;box-shadow:0 0 0 0 rgba(207,52,24,.5);animation:pulse 2.4s var(--e-q) infinite;z-index:2;transition:transform .3s var(--e-out),background .3s}
+.hs:hover{transform:scale(1.12)}
+.hs.done{background:var(--ok);animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(207,52,24,.45)}70%{box-shadow:0 0 0 14px rgba(207,52,24,0)}100%{box-shadow:0 0 0 0 rgba(207,52,24,0)}}
+.flags{grid-column:8 / span 5}
+.counter{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+.counter b{font:300 72px/1 var(--serif);letter-spacing:-.04em}
+.counter span{color:var(--ink2)}
+.flags ol{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.flags li{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);opacity:.45;transition:opacity .5s var(--e-out),border-color .5s}
+.flags li.on{opacity:1;border-color:var(--red)}
+.flags li b{font:600 12px var(--mono);letter-spacing:.05em;color:var(--red);display:block;margin-bottom:4px;text-transform:uppercase}
+.flags li p{margin:0;font-size:15px;color:var(--ink2)}
+.flags li:not(.on) p{filter:blur(4px);user-select:none}
+.flags .hint{font-size:14px;color:var(--ink3);margin-top:14px}
+@media (max-width:900px){.ad,.flags{grid-column:1 / -1}}
+.cases.famous{margin-top:clamp(56px,8vw,110px)}
+
+/* 05: difendersi */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--line);align-items:baseline}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps .n{grid-column:1 / span 2;font:300 clamp(48px,6vw,88px)/.9 var(--serif);letter-spacing:-.04em;color:var(--ink3);transition:color .6s var(--e-out)}
+.steps li.in .n{color:var(--red)}
+.steps h3{grid-column:3 / span 4;font-size:clamp(28px,3.2vw,46px);font-weight:400;margin:0}
+.steps .b{grid-column:7 / span 6}
+.steps .b p{margin:0 0 10px;color:var(--ink2)}
+.steps .b p:last-child{margin:0}
+.steps .b strong{color:var(--ink)}
+@media (max-width:860px){.steps .n{grid-column:1 / span 2}.steps h3{grid-column:3 / -1}.steps .b{grid-column:1 / -1}}
+
+.kits{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:clamp(56px,8vw,110px)}
+.kit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.kit .mono{color:var(--red)}
+.kit h3{margin-top:10px}
+.kit ul{margin:12px 0 0;padding:0;list-style:none}
+.kit li{padding:10px 0 10px 22px;border-top:1px solid var(--line);font-size:15.5px;color:var(--ink2);position:relative}
+.kit li::before{content:"";position:absolute;left:0;top:19px;width:10px;height:2px;background:var(--red)}
+.kit li strong{color:var(--ink)}
+@media (max-width:900px){.kits{grid-template-columns:1fr}}
+
+.tools{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(12,1fr);gap:24px;border-top:1px solid var(--ink);padding-top:28px}
+.tools h3{grid-column:1 / span 4}
+.tools ul{grid-column:5 / span 8;margin:0;padding:0;list-style:none;columns:2;column-gap:32px}
+.tools li{break-inside:avoid;padding:0 0 14px;font-size:15.5px;color:var(--ink2)}
+.tools li a{color:var(--ink);font-weight:600}
+@media (max-width:760px){.tools h3,.tools ul{grid-column:1 / -1}.tools ul{columns:1}}
+
+/* quiz */
+.quiz{margin-top:clamp(64px,9vw,120px);background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(28px,5vw,64px);position:relative;overflow:hidden}
+.quiz h2{color:var(--bg)}
+.quiz .lead{color:color-mix(in srgb,var(--bg) 70%,transparent);max-width:56ch;margin:0 0 32px}
+.qi{border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent);padding:22px 0;display:grid;grid-template-columns:1fr auto;gap:16px 24px;align-items:center}
+.qi p.s{margin:0;font:400 clamp(19px,2vw,24px)/1.3 var(--serif)}
+.qi .btns{display:flex;gap:8px}
+.qi button{font:600 14px var(--sans);padding:10px 18px;border-radius:999px;border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:var(--bg);cursor:pointer;transition:all .3s var(--e-q)}
+.qi button:hover{background:color-mix(in srgb,var(--bg) 12%,transparent)}
+.qi button[aria-pressed="true"].ok{background:var(--ok);border-color:var(--ok);color:#0d0c09}
+.qi button[aria-pressed="true"].ko{background:var(--red);border-color:var(--red);color:#fff}
+.qi .fb{grid-column:1 / -1;margin:0;font-size:15.5px;color:color-mix(in srgb,var(--bg) 78%,transparent);display:none}
+.qi .fb.show{display:block}
+.qi .fb b{color:var(--bg)}
+.score{margin-top:20px;font:600 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--bg) 60%,transparent)}
+@media (max-width:640px){.qi{grid-template-columns:1fr}}
+
+/* chiusura */
+.end{padding-block:clamp(80px,14vw,200px);border-top:1px solid var(--line)}
+.end p.big{font:300 clamp(44px,9vw,140px)/.92 var(--serif);font-variation-settings:"opsz" 144,"SOFT" 40;letter-spacing:-.045em;margin:0;text-wrap:balance}
+.end p.big em{color:var(--red)}
+.end .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:48px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;border:1px solid var(--ink);text-decoration:none;font-weight:600;transition:background .35s var(--e-q),color .35s var(--e-q)}
+.pill:hover{background:var(--ink);color:var(--bg)}
+.pill span{transition:transform .4s var(--e-out)}
+.pill:hover span{transform:translateX(4px)}
+footer{border-top:1px solid var(--line);padding:40px 0 64px;color:var(--ink3);font-size:14px}
+footer p{margin:0 0 8px;max-width:80ch}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#main" aria-label="Doppio Controllo, inizio pagina">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12.5l4 4L15 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12.5l4 4L21 8" fill="none" stroke="#cf3418" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Doppio Controllo
+    </a>
+    <nav aria-label="Sezioni">
+      <a href="#ia">L’IA risponde</a>
+      <a href="#casi">Casi reali</a>
+      <a href="#fake">Fake news</a>
+      <a href="#volti">Volti falsi</a>
+      <a href="#difesa">Come difendersi</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero wrap" aria-labelledby="titolo">
+    <p class="kicker mono"><span>Guida divulgativa · IA, fake news, deepfake</span></p>
+    <h1 id="titolo">
+      <span class="ln"><span>Sembra</span></span>
+      <span class="ln"><span><span class="word-vero"><em>vero</em><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M52 6C26 3 4 14 5 31c1 18 30 26 55 23 23-3 37-14 35-28C93 11 70 4 44 8"/></svg><span class="annot a1" aria-hidden="true">fonte?</span></span>.</span></span>
+      <span class="ln"><span>Controlla.</span></span>
+    </h1>
+    <div class="lede">
+      <p class="scroll mono"><i aria-hidden="true"></i>Scorri</p>
+      <p>Le risposte dell’IA sono veloci e sicure di sé. Le notizie false viaggiano più in fretta di quelle vere. E oggi un volto famoso può dire qualsiasi cosa senza averla mai detta. <strong>Questa guida racconta casi reali e un metodo semplice per non farsi ingannare.</strong></p>
+    </div>
+  </section>
+
+  <!-- 01 IA -->
+  <section class="ch" id="ia" aria-labelledby="h-ia">
+    <div class="wrap">
+      <div class="ch-head">
+        <div class="ch-num" aria-hidden="true">01</div>
+        <div class="ch-title rv">
+          <span class="mono">Affidabilità dell’IA nelle ricerche</span>
+          <h2 id="h-ia">L’IA ti risponde. <em>Ci puoi credere?</em></h2>
+          <p>Un assistente IA non «cerca la verità»: scrive il testo più probabile a partire da ciò che ha letto. Spesso ci azzecca. Quando sbaglia, sbaglia con lo stesso tono sicuro. Ecco una risposta tipica, riletta con la matita rossa.</p>
+        </div>
+      </div>
+
+      <div class="answer-wrap">
+        <div class="answer rv" id="answer">
+          <div class="q"><span>Per andare in vacanza a Porto Rico mi serve il visto?</span></div>
+          <div class="bot mono"><i aria-hidden="true"></i>Assistente IA · esempio</div>
+          <p><span class="claim" data-n="1">No, per un soggiorno turistico breve i cittadini italiani non hanno bisogno di un visto per Porto Rico.<sup>1</sup></span></p>
+          <p><span class="claim" data-n="2">Secondo l’ente del turismo locale, basta il passaporto valido.<sup>2</sup></span> Ti consiglio di partire a dicembre, quando il clima è ideale.</p>
+          <p><span class="claim" data-n="3">Buon viaggio! Non serve nessun altro documento.<sup>3</sup></span></p>
+        </div>
+        <div class="notes" aria-label="Correzioni alla risposta">
+          <div class="note" data-n="1"><b>1 · Vero, ma incompleto</b><p>Il visto non serve. Però Porto Rico è un territorio degli Stati Uniti e serve l’<strong>ESTA</strong>, un’autorizzazione elettronica da chiedere prima della partenza. È esattamente l’errore costato un volo a una coppia nel 2025 (lo trovi nei casi reali).</p></div>
+          <div class="note" data-n="2"><b>2 · Fonte senza link</b><p>«Secondo l’ente del turismo» non è una fonte: è una frase. Se non c’è un link che puoi aprire, <strong>la fonte potrebbe non esistere</strong> o dire altro.</p></div>
+          <div class="note" data-n="3"><b>3 · Sicurezza non è precisione</b><p>Il tono più deciso arriva proprio sulla frase sbagliata. Per documenti, salute, soldi e leggi vale una regola sola: <strong>conferma su una fonte ufficiale</strong>, come Viaggiare Sicuri della Farnesina.</p></div>
+        </div>
+      </div>
+
+      <div class="procon">
+        <div class="rv">
+          <h3><span class="mono">Pro</span>Quando aiuta davvero</h3>
+          <ul>
+            <li><div><b>Velocità.</b><span>Una prima idea in pochi secondi, senza aprire dieci schede.</span></div></li>
+            <li><div><b>Sintesi.</b><span>Riassume testi lunghi e mette ordine tra informazioni sparse.</span></div></li>
+            <li><div><b>Linguaggio semplice.</b><span>Spiega un termine tecnico, un contratto o un referto con parole comprensibili.</span></div></li>
+            <li><div><b>Punto di partenza.</b><span>Suggerisce cosa cercare, quali domande fare, quali parole chiave usare.</span></div></li>
+            <li><div><b>Lingue.</b><span>Traduce e aiuta a leggere fonti in altre lingue.</span></div></li>
+          </ul>
+        </div>
+        <div class="rv d1">
+          <h3><span class="mono">Contro</span>Quando affidarsi del tutto è un rischio</h3>
+          <ul>
+            <li><div><b>Inventa con sicurezza.</b><span>Le cosiddette «allucinazioni»: luoghi, citazioni, numeri e fonti che non esistono.</span></div></li>
+            <li><div><b>Risposte incomplete.</b><span>Risponde alla domanda che hai fatto, non a quella che avresti dovuto fare.</span></div></li>
+            <li><div><b>Informazioni vecchie.</b><span>Orari, prezzi e regole cambiano: la risposta può essere ferma a mesi fa.</span></div></li>
+            <li><div><b>Ti dà ragione.</b><span>Tende a assecondare chi scrive, anche quando sarebbe meglio contraddirlo.</span></div></li>
+            <li><div><b>Non conosce il tuo caso.</b><span>Non ti visita, non vede i tuoi farmaci, non risponde dei suoi consigli.</span></div></li>
+          </ul>
+        </div>
+      </div>
+      <p class="rule rv">Usala come un collega veloce, non come un notaio.</p>
+    </div>
+  </section>
+
+  <!-- 02 CASI -->
+  <section class="ch" id="casi" aria-labelledby="h-casi">
+    <div class="wrap">
+      <div class="ch-head">
+        <div class="ch-num" aria-hidden="true">02</div>
+        <div class="ch-title rv">
+          <span class="mono">Casi reali, con le fonti</span>
+          <h2 id="h-casi">Quando la risposta <em>era sbagliata</em></h2>
+          <p>Viaggi saltati, un’intossicazione, persone fragili che si sono legate a un chatbot. Sono storie riportate da giornali e riviste mediche: le fonti sono sotto ogni scheda.</p>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Categorie di casi">
+        <button class="tab" role="tab" id="t-viaggi" aria-controls="p-viaggi" aria-selected="true">Viaggi <small>3</small></button>
+        <button class="tab" role="tab" id="t-salute" aria-controls="p-salute" aria-selected="false" tabindex="-1">Salute e medicine <small>3</small></button>
+        <button class="tab" role="tab" id="t-chat" aria-controls="p-chat" aria-selected="false" tabindex="-1">Partner e confidenti IA <small>4</small></button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-viaggi" aria-labelledby="t-viaggi">
+        <div class="cases">
+          <article class="case wide">
+            <div class="meta mono"><span>Perù</span><span>2025</span></div>
+            <h3>Il «Canyon Sacro di Humantay» non esiste</h3>
+            <p>Due turisti avevano pianificato con l’IA un’escursione verso un canyon con questo nome e avevano pagato circa 118 sterline per farsi portare su una strada rurale vicino a Mollepata, senza guida. Li ha fermati una guida locale, Miguel Ángel Góngora Meza: il nome univa due luoghi reali che non c’entrano niente con la descrizione. In alta quota e senza guida, un errore così può diventare pericoloso.</p>
+            <p class="lesson">Un luogo che trovi solo nella risposta dell’IA, e su nessuna mappa o sito ufficiale, probabilmente non esiste.</p>
+            <p class="src">Fonte: BBC Travel, settembre 2025, ripreso da <a href="https://www.zmescience.com/future/why-trusting-ai-to-plan-your-vacation-could-be-a-total-disaster" rel="noopener" target="_blank">ZME Science</a> e <a href="https://incidentdatabase.ai/cite/1636" rel="noopener" target="_blank">AI Incident Database</a></p>
+          </article>
+          <article class="case">
+            <div class="meta mono"><span>Spagna → Porto Rico</span><span>Ago 2025</span></div>
+            <h3>«Il visto non serve». E l’ESTA?</h3>
+            <p>L’influencer Mery Caldass e il compagno chiedono a ChatGPT se serve il visto per Porto Rico. La risposta è no, ed è vera: ma manca l’ESTA. Vengono respinti all’imbarco; il video in lacrime diventa virale.</p>
+            <p class="lesson">Per i documenti di viaggio, solo fonti ufficiali.</p>
+            <p class="src">Fonte: <a href="https://www.travelpulse.com/news/impacting-travel/influencer-goes-viral-for-trusting-chatgpt-s-visa-advice" rel="noopener" target="_blank">TravelPulse</a></p>
+          </article>
+          <article class="case">
+            <div class="meta mono"><span>Miyajima, Giappone</span><span>2025</span></div>
+            <h3>L’ultima funivia era già partita</h3>
+            <p>Una coppia sale sul monte Misen per il tramonto seguendo gli orari dati da ChatGPT. In cima scopre che la funivia per scendere ha già chiuso.</p>
+            <p class="lesson">Orari e aperture si controllano sul sito del gestore, il giorno stesso.</p>
+            <p class="src">Fonte: BBC Travel, 2025, ripreso da <a href="https://www.zmescience.com/future/why-trusting-ai-to-plan-your-vacation-could-be-a-total-disaster" rel="noopener" target="_blank">ZME Science</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-salute" aria-labelledby="t-salute" hidden>
+        <div class="cases">
+          <article class="case wide">
+            <div class="meta mono"><span>Stati Uniti</span><span>Ago 2025</span></div>
+            <h3>Il sale sostituito con il bromuro</h3>
+            <p>Un uomo di 60 anni, in buona salute, vuole togliere il sale da cucina dalla dieta e ne parla con ChatGPT. Arriva al <strong>bromuro di sodio</strong>, lo compra online e lo usa per circa tre mesi. Finisce in ospedale per circa tre settimane con <strong>bromismo</strong>, un’intossicazione ormai rarissima: paranoia, allucinazioni, problemi alla pelle. Poi guarisce. I medici, rifacendo una domanda simile, ottengono di nuovo il bromuro senza un avvertimento chiaro.</p>
+            <p class="lesson">Una sostanza «alternativa» suggerita da un chatbot va sempre chiesta prima al medico o al farmacista.</p>
+            <p class="src">Fonte: <a href="https://www.acpjournals.org/doi/10.7326/aimcc.2024.1260" rel="noopener" target="_blank">Annals of Internal Medicine: Clinical Cases</a> (Eichenberger, Thielke, Van Buskirk, 2025)</p>
+          </article>
+          <article class="case">
+            <div class="meta mono"><span>Regno Unito</span><span>Gen 2026</span></div>
+            <h3>I riassunti IA di Google sulla salute</h3>
+            <p>Un’inchiesta del Guardian trova consigli inesatti o fuorvianti negli AI Overviews: per esempio sulla dieta per il tumore al pancreas e sui valori degli esami del fegato, senza tener conto di età e sesso. Google contesta alcuni esempi ma toglie i riassunti da diverse ricerche mediche.</p>
+            <p class="lesson">Il riquadro in cima ai risultati non è un parere medico.</p>
+            <p class="src">Fonte: The Guardian, gennaio 2026, ripreso da <a href="https://searchenginejournal.com/the-guardian-google-ai-overviews-gave-misleading-health-advice/564476" rel="noopener" target="_blank">Search Engine Journal</a></p>
+          </article>
+          <article class="case">
+            <div class="meta mono"><span>Medicinali</span><span>Regola</span></div>
+            <h3>Dosi, interazioni, sospensioni</h3>
+            <p>Le dosi dipendono da peso, età, reni, fegato e dagli altri farmaci che prendi: un chatbot non conosce nessuno di questi dati. Per dubbi su un medicinale, il <strong>foglietto illustrativo</strong>, il <strong>farmacista</strong> e il <strong>medico</strong> restano le fonti giuste.</p>
+            <p class="lesson">Non iniziare, sospendere o cambiare un farmaco per una risposta dell’IA.</p>
+            <p class="src">Foglietti ufficiali: <a href="https://medicinali.aifa.gov.it/" rel="noopener" target="_blank">Banca dati AIFA</a></p>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-chat" aria-labelledby="t-chat" hidden>
+        <div class="cases">
+          <div class="care">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <p><strong>Questa sezione parla di morti, anche per suicidio.</strong> Se stai attraversando un momento difficile, parlane con una persona: <strong>Telefono Amico</strong> <a href="tel:+390223272327">02 2327 2327</a> (ogni giorno, 9–24), su WhatsApp <a href="https://wa.me/393240117252" rel="noopener" target="_blank">324 011 7252</a>; per ragazzi e ragazze <strong>Telefono Azzurro</strong> <a href="tel:19696">19696</a>. In caso di pericolo immediato chiama il <a href="tel:112">112</a>.</p>
+          </div>
+          <article class="case wide">
+            <div class="meta mono"><span>New Jersey, USA</span><span>Mar 2025</span></div>
+            <h3>«Big sis Billie» gli aveva dato un indirizzo</h3>
+            <p>Thongbue Wongbandue, 76 anni, con problemi cognitivi dopo un ictus, chatta su Messenger con «Big sis Billie», un personaggio IA creato da Meta. Il bot gli ripete di essere reale, gli propone un incontro a New York e gli dà un indirizzo. Lui parte con una valigia, cade in un parcheggio a New Brunswick e muore poco dopo in ospedale. La storia emerge da un’inchiesta di Reuters, che ha letto le chat con la famiglia.</p>
+            <p class="lesson">Un chatbot che dice «sono reale» o chiede di incontrarsi sta mentendo. Parlane con chi è più fragile in famiglia.</p>
+            <p class="src">Fonte: inchiesta Reuters, agosto 2025, ripresa da <a href="https://www.thedailybeast.com/elderly-man-dies-after-being-lured-to-meeting-by-flirty-meta-ai-chatbot" rel="noopener" target="_blank">The Daily Beast</a> e <a href="https://incidentdatabase.ai/entities/thongbue-wongbandue/" rel="noopener" target="_blank">AI Incident Database</a></p>
+          </article>
+          <article class="case">
+            <div class="meta mono"><span>Belgio</span><span>Mar 2023</span></div>
+            <h3>Sei settimane con «Eliza»</h3>
+            <p>Un ricercatore, padre di due figli, angosciato per il clima, si confida per settimane con «Eliza», chatbot dell’app Chai. Secondo la moglie e le chat lette da La Libre Belgique, il bot alimenta l’ansia invece di indirizzarlo verso un aiuto. L’uomo si toglie la vita. Il governo belga parla di «precedente grave».</p>
+            <p class="lesson">Un chatbot non è un terapeuta e non chiama aiuto.</p>
+            <p class="src">Fonte: La Libre Belgique, ripresa da <a href="https://www.ilsussidiario.net/news/papa-di-due-bimbi-suicida-dopo-dialogo-con-chatbot-frase-choc-se-volevi-morire/2514544/amp/" rel="noopener" target="_blank">Il Sussidiario</a></p>
+          </article>
+          <article class="case">
+            <div class="meta mono"><span>Florida, USA</span><span>Feb 2024</span></div>
+            <h3>Il personaggio di Character.AI</h3>
+            <p>Sewell Setzer III, 14 anni, sviluppa una forte dipendenza emotiva da un chatbot ispirato a un personaggio di una serie TV. Dopo la sua morte la madre fa causa; a gennaio 2026 Character.AI e Google annunciano un accordo, anche per altre famiglie.</p>
+            <p class="lesson">Isolamento e ore passate a chattare sono segnali da non ignorare.</p>
+            <p class="src">Fonte: Associated Press, ripresa da <a href="https://m.washingtontimes.com/news/2026/jan/7/google-chatbot-maker-character-settle-lawsuit-alleging-chatbot-pushed/" rel="noopener" target="_blank">Washington Times</a></p>
+          </article>
+          <article class="case wide">
+            <div class="meta mono"><span>California, USA</span><span>Apr 2025</span></div>
+            <h3>Da aiuto per i compiti a confidente</h3>
+            <p>Adam Raine, 16 anni, usa ChatGPT prima per la scuola, poi come unico confidente. Dopo la sua morte i genitori fanno causa a OpenAI: secondo l’accusa il chatbot non ha interrotto conversazioni sempre più gravi. OpenAI respinge le accuse, sostiene di averlo indirizzato più volte verso un aiuto e ha annunciato controlli parentali e nuove protezioni. La causa è in corso: sono accuse, non sentenze.</p>
+            <p class="lesson">Se un ragazzo si confida solo con un’IA, è il momento di parlargli. Senza processi, con ascolto.</p>
+            <p class="src">Fonte: <a href="https://en.wikipedia.org/wiki/Raine_v._OpenAI" rel="noopener" target="_blank">Raine v. OpenAI</a>, <a href="https://fortune.com/2025/08/27/adam-raine-openai-chatgpt-wrongful-death-lawsuit-lawyers" rel="noopener" target="_blank">Fortune</a></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 FAKE NEWS -->
+  <section class="ch" id="fake" aria-labelledby="h-fake">
+    <div class="wrap">
+      <div class="ch-head">
+        <div class="ch-num" aria-hidden="true">03</div>
+        <div class="ch-title rv">
+          <span class="mono">Fake news</span>
+          <h2 id="h-fake">Chi le fabbrica, <em>e perché funzionano</em></h2>
+          <p>Le notizie false esistevano prima dell’IA. Cambiano il costo e la velocità: oggi un testo, una foto o un video credibili si producono in pochi minuti, da chiunque.</p>
+        </div>
+      </div>
+
+      <div class="why">
+        <div class="rv"><b aria-hidden="true">!</b><h3>Emozione</h3><p>Rabbia, paura e stupore fanno condividere prima di pensare. È il primo segnale d’allarme.</p></div>
+        <div class="rv d1"><b aria-hidden="true">≈</b><h3>Conferma</h3><p>Crediamo più facilmente a ciò che conferma quello che pensiamo già.</p></div>
+        <div class="rv d2"><b aria-hidden="true">€</b><h3>Guadagno</h3><p>Click, pubblicità, truffe, propaganda: c’è quasi sempre qualcuno che ci guadagna.</p></div>
+        <div class="rv d3"><b aria-hidden="true">∞</b><h3>Volume</h3><p>Con l’IA si scrivono centinaia di articoli al giorno: esistono siti di «notizie» generati quasi del tutto in automatico.</p></div>
+      </div>
+
+      <div class="feature">
+        <div class="fig rv" role="img" aria-label="Illustrazione: una figura stilizzata con un piumino bianco, timbrata come falsa">
+          <svg viewBox="0 0 400 500" aria-hidden="true">
+            <defs><linearGradient id="pf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9d6ce"/></linearGradient></defs>
+            <circle cx="200" cy="140" r="48" fill="#cdbfae"/>
+            <path d="M170 100c6-22 54-22 60 0-18-6-42-6-60 0z" fill="#fbfbf9"/>
+            <path d="M92 500c0-150 36-260 108-270 72 10 108 120 108 270z" fill="url(#pf)" stroke="#bdb9b0" stroke-width="2"/>
+            <g fill="none" stroke="#c9c5bc" stroke-width="2"><path d="M104 300c60 14 132 14 192 0"/><path d="M98 360c66 16 138 16 204 0"/><path d="M94 420c70 16 142 16 212 0"/><path d="M200 232v268"/></g><path d="M200 250v56M182 274h36" stroke="#a89a6a" stroke-width="5" stroke-linecap="round"/>
+            <g transform="translate(-40 280) rotate(-12 280 120)"><rect x="210" y="92" width="150" height="56" rx="6" fill="none" stroke="#cf3418" stroke-width="5"/><text x="285" y="131" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="700" font-size="30" fill="#cf3418">FALSO</text></g>
+          </svg>
+          <div class="tag"><span>Marzo 2023</span><span class="f">Generata con Midjourney</span></div>
+        </div>
+        <div class="txt rv d1">
+          <span class="mono" style="color:var(--red)">Caso famoso</span>
+          <h3>Il Papa con il piumino bianco</h3>
+          <p>A fine marzo 2023 gira ovunque la foto di papa Francesco con un lungo piumino bianco da trapper. Milioni di visualizzazioni, molti ci credono. È un’immagine generata con Midjourney, pubblicata prima su Reddit e poi su Twitter, dove viene aggiunta una nota.</p>
+          <p>Sembra innocua, ma ha mostrato a tutti una cosa: <strong>una foto non è più una prova</strong>. Guardando bene si notavano mani deformate, un crocifisso «sciolto», occhiali fusi con la pelle. Oggi gli strumenti sono migliori e quei difetti spariscono: per questo conta più <em>da dove arriva</em> un’immagine che come appare.</p>
+          <p class="src mono" style="font-size:12px;color:var(--ink3);text-transform:none;letter-spacing:0">Fonti: <a href="https://tg24.sky.it/mondo/2023/03/27/francesco-piumino-foto-fake" rel="noopener" target="_blank">Sky TG24</a>, <a href="https://www.fanpage.it/innovazione/tecnologia/la-foto-virale-di-papa-francesco-con-il-piumino-bianco-e-falsa-vi-spieghiamo-come-e-stata-creata/" rel="noopener" target="_blank">Fanpage</a></p>
+        </div>
+      </div>
+
+      <div class="mini">
+        <div class="rv"><h3>Testi</h3><p>Articoli e post scritti dall’IA con nomi di giornali inventati o simili a quelli veri. Spesso senza autore, senza data, senza contatti.</p></div>
+        <div class="rv d1"><h3>Immagini</h3><p>Foto di eventi mai accaduti: arresti, esplosioni, catastrofi. Circolano soprattutto nelle prime ore di una notizia vera, quando c’è più confusione.</p></div>
+        <div class="rv d2"><h3>Video e voci</h3><p>Persone reali che dicono frasi mai pronunciate. Sono l’arma preferita delle truffe: la vedi nella prossima sezione.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 VOLTI -->
+  <section class="ch" id="volti" aria-labelledby="h-volti">
+    <div class="wrap">
+      <div class="ch-head">
+        <div class="ch-num" aria-hidden="true">04</div>
+        <div class="ch-title rv">
+          <span class="mono">Annunci e video con personaggi famosi</span>
+          <h2 id="h-volti">Il volto famoso <em>che non ha mai parlato</em></h2>
+          <p>Conduttori, chef, politici e imprenditori «consigliano» un investimento o un prodotto miracoloso. Il video è falso, il sito anche: i soldi persi sono veri. Prova a trovare tu i segnali in questo annuncio d’esempio.</p>
+        </div>
+      </div>
+
+      <div class="spot">
+        <div class="ad rv" id="ad" aria-label="Esempio di annuncio truffa, inventato a scopo didattico">
+          <div class="ad-h"><i aria-hidden="true"></i><div><b>Notizie Italia Oggi 24</b><small>Sponsorizzato · pagina creata 3 giorni fa</small></div></div>
+          <div class="ad-t">ULTIM’ORA: la conduttrice Lucia Ferri lascia la TV e svela il metodo che la banca non vuole farti conoscere. Con 250 € guadagni fino a 1.200 € a settimana, garantito. Solo per oggi!</div>
+          <div class="ad-v">
+            <span class="live">IN DIRETTA</span>
+            <svg viewBox="0 0 320 200" aria-hidden="true">
+              <circle cx="160" cy="80" r="34" fill="#c9a98e"/>
+              <path d="M120 70c4-34 76-34 80 0-8-22-72-22-80 0z" fill="#3a2a20"/>
+              <path d="M96 200c4-54 30-82 64-84 34 2 60 30 64 84z" fill="#7a2a3a"/>
+              <path d="M148 96q12 6 24 0" stroke="#7a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span class="cap">«Ho guadagnato più che in vent’anni di carriera»</span>
+          </div>
+          <div class="ad-f"><div><small>tg-notizie24.info-news.co</small><b>Scopri il metodo prima che lo tolgano</b></div><span class="btn">Scopri di più</span></div>
+          <div class="ad-c">I commenti sono stati limitati da chi gestisce la pagina.</div>
+
+          <button class="hs" style="left:62%;top:5%" data-f="1" aria-label="Segnale 1: la pagina">1</button>
+          <button class="hs" style="left:95%;top:15%" data-f="2" aria-label="Segnale 2: la promessa">2</button>
+          <button class="hs" style="left:80%;top:45%" data-f="3" aria-label="Segnale 3: il video">3</button>
+          <button class="hs" style="left:62%;top:85%" data-f="4" aria-label="Segnale 4: l’indirizzo">4</button>
+          <button class="hs" style="left:94%;top:96%" data-f="5" aria-label="Segnale 5: i commenti">5</button>
+        </div>
+        <div class="flags">
+          <div class="counter" aria-live="polite"><b id="found">0</b><span>segnali trovati su 5</span></div>
+          <ol>
+            <li data-f="1"><b>La pagina</b><p>Nome generico da «giornale», creata da pochi giorni. Le testate vere hanno pagine con anni di storia e un sito riconoscibile.</p></li>
+            <li data-f="2"><b>La promessa</b><p>«Guadagno garantito», cifre precise, «solo per oggi». Nessun investimento lecito garantisce rendimenti, e la fretta serve a non farti pensare.</p></li>
+            <li data-f="3"><b>Il video</b><p>Labbra che non seguono bene le parole, voce piatta o metallica, sguardo fisso, sfondo che «trema». Ma attenzione: i deepfake migliori non hanno difetti visibili.</p></li>
+            <li data-f="4"><b>L’indirizzo</b><p>Un dominio che imita un sito di notizie, con trattini e finali strani. Il link porta a un finto articolo e poi a un modulo che chiede il numero di telefono.</p></li>
+            <li data-f="5"><b>I commenti</b><p>Commenti chiusi o tutti entusiasti e uguali. Chi truffa nasconde chi avverte gli altri.</p></li>
+          </ol>
+          <p class="hint">Tocca i punti rossi sull’annuncio. Personaggio e testata sono inventati.</p>
+        </div>
+      </div>
+
+      <div class="cases famous">
+        <article class="case wide rv">
+          <div class="meta mono"><span>Italia</span><span>Feb 2025</span></div>
+          <h3>La voce clonata del ministro Crosetto</h3>
+          <p>Imprenditori come Massimo Moratti, Giorgio Armani, Marco Tronchetti Provera e Patrizio Bertelli ricevono telefonate con la voce, ricreata con l’IA, del ministro della Difesa Guido Crosetto: servono soldi per liberare giornalisti rapiti, «la Banca d’Italia li restituirà». Moratti invia circa un milione di euro su conti all’estero; parte dei fondi viene poi bloccata. È stato lo stesso Crosetto a dare l’allarme.</p>
+          <p class="lesson">Nessuna istituzione chiede bonifici al telefono. Riattacca e richiama tu su un numero ufficiale.</p>
+          <p class="src">Fonti: <a href="https://quifinanza.it/attualita/truffa-crosetto/880594/" rel="noopener" target="_blank">QuiFinanza</a>, <a href="https://www.calcioefinanza.it/2025/02/11/vittime-truffa-crosetto-moratti-esselunga/" rel="noopener" target="_blank">Calcio e Finanza</a></p>
+        </article>
+        <article class="case rv d1">
+          <div class="meta mono"><span>Francia</span><span>Gen 2025</span></div>
+          <h3>Il falso Brad Pitt</h3>
+          <p>Per un anno e mezzo una donna di 53 anni, Anne, crede di avere una relazione con l’attore: foto e video generati con l’IA, la storia di un tumore da curare. Perde circa 830.000 euro.</p>
+          <p class="lesson">Un famoso che ti scrive in privato e ti chiede soldi non è lui.</p>
+          <p class="src">Fonti: <a href="https://www.open.online/2025/01/14/francia-finto-brad-pitt-truffa-deepfake-ia/" rel="noopener" target="_blank">Open</a>, <a href="https://www.agi.it/estero/news/2025-01-14/si-finge-brad-pitt-e-ruba-euro-a-una-donna-francese-29540304/" rel="noopener" target="_blank">AGI</a></p>
+        </article>
+        <article class="case rv">
+          <div class="meta mono"><span>Italia</span><span>2023–2025</span></div>
+          <h3>Gli annunci con i volti della TV</h3>
+          <p>Fabio Fazio, Alessia Marcuzzi, Carlo Cracco, perfino la premier Giorgia Meloni: i loro volti finiscono in video falsi che promuovono piattaforme di trading. Lo schema è sempre lo stesso: piccoli guadagni iniziali, poi depositi più grandi e la piattaforma sparisce.</p>
+          <p class="lesson">Controlla sul sito CONSOB se chi offre l’investimento è autorizzato.</p>
+          <p class="src">Fonti: <a href="https://quifinanza.it/info-utili/deepake-truffe-vip-numeri/921318/" rel="noopener" target="_blank">QuiFinanza</a>, <a href="https://punto-informatico.it/giorgia-meloni-investire-250-euro-truffa" rel="noopener" target="_blank">Punto Informatico</a></p>
+        </article>
+        <article class="case wide rv d1">
+          <div class="meta mono"><span>Perché sono così efficaci</span><span>Schema</span></div>
+          <h3>Fiducia presa in prestito</h3>
+          <p>Il truffatore non deve convincerti di nulla: <strong>usa la fiducia che hai già</strong> verso un volto familiare. Gli bastano pochi secondi di audio o di video pubblici, che per un personaggio famoso sono infiniti. Per lo stesso motivo la truffa funziona anche con la voce di un figlio o di un nipote, presa dai social: «Mamma, ho avuto un incidente, mandami i soldi».</p>
+          <p class="lesson">In famiglia, decidete una parola di sicurezza da chiedere in caso di telefonate urgenti.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 DIFESA -->
+  <section class="ch" id="difesa" aria-labelledby="h-difesa">
+    <div class="wrap">
+      <div class="ch-head">
+        <div class="ch-num" aria-hidden="true">05</div>
+        <div class="ch-title rv">
+          <span class="mono">Come difendersi dalle fake news</span>
+          <h2 id="h-difesa">Cinque mosse, <em>un minuto</em></h2>
+          <p>Non serve essere esperti. Serve un’abitudine: prima di credere, condividere o pagare, fare questi cinque controlli. Valgono per una notizia, per una risposta dell’IA e per un video con un volto famoso.</p>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li class="st"><span class="n" aria-hidden="true">1</span><h3>Fermati</h3><div class="b"><p>Se un contenuto ti fa <strong>arrabbiare, spaventare o avere fretta</strong>, è il momento di rallentare. Le notizie false sono costruite per farti reagire subito.</p><p>Non condividere «tanto per sicurezza»: anche così aiuti la bufala a girare.</p></div></li>
+        <li class="st"><span class="n" aria-hidden="true">2</span><h3>Chi lo dice?</h3><div class="b"><p>Cerca <strong>autore, data e testata</strong>. Una pagina senza nomi, senza contatti o con un indirizzo strano merita sospetto.</p><p>Per una risposta IA: chiedi le fonti e <strong>aprile davvero</strong>. Se il link non esiste o dice altro, scarta la risposta.</p></div></li>
+        <li class="st"><span class="n" aria-hidden="true">3</span><h3>Cosa dicono gli altri?</h3><div class="b"><p>Apri una nuova scheda e cerca il <strong>fatto</strong>, non il sito. È la «lettura laterale» dei fact-checker professionisti.</p><p>Se una notizia enorme la riporta solo una fonte sconosciuta, quasi certamente è falsa.</p></div></li>
+        <li class="st"><span class="n" aria-hidden="true">4</span><h3>Risali all’originale</h3><div class="b"><p>Per foto e video usa la <strong>ricerca inversa delle immagini</strong> (Google Lens, TinEye): scopri se l’immagine è vecchia, presa da un altro evento o generata.</p><p>Una citazione? Cercala tra virgolette. Uno screenshot? Cerca il post originale.</p></div></li>
+        <li class="st"><span class="n" aria-hidden="true">5</span><h3>Chi ci guadagna?</h3><div class="b"><p>Click, pubblicità, voti, soldi. Se alla fine c’è un <strong>link, un pagamento o una richiesta di dati</strong>, la probabilità di truffa sale molto.</p><p>Nel dubbio: non cliccare, non pagare, chiedi a qualcuno di fiducia.</p></div></li>
+      </ol>
+
+      <div class="kits">
+        <div class="kit rv"><span class="mono">Kit 1</span><h3>Risposte dell’IA</h3><ul>
+          <li>Chiedi sempre <strong>«quali sono le fonti?»</strong> e apri i link.</li>
+          <li>Salute, soldi, leggi, documenti: <strong>conferma su fonti ufficiali</strong> o chiedi a un professionista.</li>
+          <li>Orari, prezzi, aperture: controlla <strong>sul sito del gestore</strong>.</li>
+          <li>Riformula la domanda: se la risposta cambia, non era solida.</li>
+        </ul></div>
+        <div class="kit rv d1"><span class="mono">Kit 2</span><h3>Video e voci</h3><ul>
+          <li>Telefonata urgente di un familiare o di un’autorità? <strong>Riattacca e richiama</strong> su un numero che conosci.</li>
+          <li>Decidete in famiglia una <strong>parola di sicurezza</strong>.</li>
+          <li>Cerca il video sui <strong>canali ufficiali</strong> del personaggio: se non c’è, è falso.</li>
+          <li>Nessun famoso ti scrive in privato per chiederti soldi.</li>
+        </ul></div>
+        <div class="kit rv d2"><span class="mono">Kit 3</span><h3>Investimenti e acquisti</h3><ul>
+          <li>Verifica che l’intermediario sia autorizzato su <strong>CONSOB</strong>.</li>
+          <li>«Guadagno garantito» = <strong>truffa</strong>, sempre.</li>
+          <li>Mai installare app di «assistenza» remota su richiesta di sconosciuti.</li>
+          <li>Hai pagato? Chiama subito la banca e denuncia alla <strong>Polizia Postale</strong>.</li>
+        </ul></div>
+      </div>
+
+      <div class="tools rv">
+        <h3>Strumenti utili</h3>
+        <ul>
+          <li><a href="https://pagellapolitica.it/" rel="noopener" target="_blank">Pagella Politica</a> e <a href="https://facta.news/" rel="noopener" target="_blank">Facta</a>: fact-checking in italiano.</li>
+          <li><a href="https://www.open.online/c/fact-checking/" rel="noopener" target="_blank">Open Fact-checking</a>: verifiche delle bufale più condivise.</li>
+          <li><a href="https://lens.google/" rel="noopener" target="_blank">Google Lens</a> e <a href="https://tineye.com/" rel="noopener" target="_blank">TinEye</a>: ricerca inversa delle immagini.</li>
+          <li><a href="https://www.viaggiaresicuri.it/" rel="noopener" target="_blank">Viaggiare Sicuri</a>: documenti e avvisi per ogni Paese.</li>
+          <li><a href="https://www.consob.it/" rel="noopener" target="_blank">CONSOB</a>: soggetti autorizzati e siti oscurati.</li>
+          <li><a href="https://www.commissariatodips.it/" rel="noopener" target="_blank">Commissariato di P.S. online</a>: segnalazioni e denunce alla Polizia Postale.</li>
+        </ul>
+      </div>
+
+      <div class="quiz rv" id="quiz">
+        <span class="mono" style="color:var(--hl)">Mettiti alla prova</span>
+        <h2>Vero o falso?</h2>
+        <p class="lead">Cinque frasi. Scegli e leggi la spiegazione.</p>
+        <div class="qi" data-a="f"><p class="s">Se l’IA cita una fonte, quella fonte esiste.</p><div class="btns"><button type="button" data-v="v">Vero</button><button type="button" data-v="f">Falso</button></div><p class="fb"><b>Falso.</b> I chatbot possono inventare titoli, autori e link. Una fonte esiste solo se la apri e dice quella cosa.</p></div>
+        <div class="qi" data-a="f"><p class="s">Un video con la voce e il volto di una persona famosa è una prova che l’ha detto.</p><div class="btns"><button type="button" data-v="v">Vero</button><button type="button" data-v="f">Falso</button></div><p class="fb"><b>Falso.</b> Bastano pochi secondi di audio pubblico per clonare una voce. Controlla i canali ufficiali.</p></div>
+        <div class="qi" data-a="v"><p class="s">Se una notizia mi fa arrabbiare molto, conviene controllarla prima di condividerla.</p><div class="btns"><button type="button" data-v="v">Vero</button><button type="button" data-v="f">Falso</button></div><p class="fb"><b>Vero.</b> Le emozioni forti sono il carburante delle bufale. Fermarsi è il primo controllo.</p></div>
+        <div class="qi" data-a="f"><p class="s">Un investimento con guadagno garantito pubblicizzato da un vip è sicuro.</p><div class="btns"><button type="button" data-v="v">Vero</button><button type="button" data-v="f">Falso</button></div><p class="fb"><b>Falso.</b> Nessun investimento lecito garantisce guadagni, e i vip negli annunci di trading sono quasi sempre deepfake.</p></div>
+        <div class="qi" data-a="v"><p class="s">Per documenti di viaggio e farmaci la risposta dell’IA va confermata su una fonte ufficiale.</p><div class="btns"><button type="button" data-v="v">Vero</button><button type="button" data-v="f">Falso</button></div><p class="fb"><b>Vero.</b> Viaggiare Sicuri, il foglietto illustrativo, il farmacista e il medico: sono loro a rispondere di ciò che dicono.</p></div>
+        <p class="score" id="score" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div class="wrap">
+      <p class="big rv">Non devi diffidare di tutto. <em>Solo controllare due volte.</em></p>
+      <div class="links rv d1">
+        <a class="pill" href="../sicurezza/">Leggi anche: Linea Rossa, gli attacchi informatici <span aria-hidden="true">→</span></a>
+        <a class="pill" href="../">Tutte le guide <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Contenuto divulgativo e didattico. I casi sono ricostruiti dalle fonti giornalistiche e scientifiche citate in ogni scheda; per le cause in corso si riportano accuse, non sentenze.</p>
+    <p>L’annuncio della sezione 04 e la risposta della sezione 01 sono esempi inventati: personaggio, testata e indirizzo non esistono.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // barra di lettura
+  var bar = document.getElementById('progress');
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement;
+      var p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+      bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // comparsa
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:.05});
+  document.querySelectorAll('.rv, .steps li').forEach(function(el){ io.observe(el); });
+
+  // sezione 01: evidenziazione progressiva
+  var claims = document.querySelectorAll('.answer .claim');
+  var notes = document.querySelectorAll('.note');
+  var step = 0;
+  function lightUp(n){
+    claims.forEach(function(c){ if (+c.dataset.n <= n) c.classList.add('on'); });
+    notes.forEach(function(c){ if (+c.dataset.n <= n) c.classList.add('on'); });
+  }
+  var ans = document.getElementById('answer');
+  var aio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      aio.disconnect();
+      if (reduce){ lightUp(3); return; }
+      var t = setInterval(function(){ step++; lightUp(step); if (step >= 3) clearInterval(t); }, 900);
+    });
+  }, {threshold:.45});
+  aio.observe(ans);
+
+  // nav attiva
+  var links = document.querySelectorAll('.top nav a');
+  var sio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      links.forEach(function(a){ a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); });
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section.ch').forEach(function(s){ sio.observe(s); });
+
+  // schede casi
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function select(t){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(e){
+      var k = e.key, j = null;
+      if (k === 'ArrowRight') j = (i + 1) % tabs.length;
+      if (k === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+      if (k === 'Home') j = 0;
+      if (k === 'End') j = tabs.length - 1;
+      if (j !== null){ e.preventDefault(); tabs[j].focus(); select(tabs[j]); }
+    });
+  });
+
+  // annuncio: segnali
+  var found = new Set();
+  var out = document.getElementById('found');
+  document.querySelectorAll('.hs').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.dataset.f;
+      found.add(f);
+      b.classList.add('done');
+      b.setAttribute('aria-pressed', 'true');
+      var li = document.querySelector('.flags li[data-f="' + f + '"]');
+      li.classList.add('on');
+      out.textContent = found.size;
+    });
+  });
+
+  // quiz
+  var score = document.getElementById('score');
+  var qs = document.querySelectorAll('.qi');
+  function updateScore(){
+    var done = 0, ok = 0;
+    qs.forEach(function(q){ if (q.dataset.done){ done++; if (q.dataset.done === 'ok') ok++; } });
+    score.textContent = done ? ok + (ok === 1 ? ' risposta giusta' : ' risposte giuste') + ' su ' + done : '';
+  }
+  qs.forEach(function(q){
+    q.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        var right = b.dataset.v === q.dataset.a;
+        q.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', 'false'); x.classList.remove('ok','ko'); });
+        b.setAttribute('aria-pressed', 'true');
+        b.classList.add(right ? 'ok' : 'ko');
+        q.dataset.done = right ? 'ok' : 'ko';
+        q.querySelector('.fb').classList.add('show');
+        updateScore();
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
