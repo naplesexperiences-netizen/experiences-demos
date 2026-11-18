@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Bartolo e Paola · L'ora rubino</title>
+<meta name="description" content="Invito al matrimonio di Bartolo e Paola, sabato 19 giugno 2027 a Paestum: brillantini, sipario rosso e un ballo sotto i riflettori.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Bartolo e Paola si sposano">
+<meta property="og:description" content="Soffia sui brillantini e apri il sipario. Sabato 19 giugno 2027, Paestum.">
+<meta property="og:image" content="https://naplesexperiences-netizen.github.io/experiences-demos/demos/bartolo-paola-ruby/img/palco.webp">
+<meta name="theme-color" content="#2A0507">
+<link rel="icon" href="../bartolo-paola-matrimonio/img/sigillo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/sipario.webp">
+<style>
+/* L'ora rubino: brillantini rossi, sipario di velluto, un ballo sotto il riflettore; poi raso, pizzo d'oro e carta avorio */
+:root{
+  --ruby:#9B111E; --ruby-deep:#5E0A10; --night:#1A0406; --black:#0E0203;
+  --gold:#D9B46A; --gold-hi:#F4DFA8; --gold-lo:#A47A32;
+  --ivory:#FBF4E6; --paper:#F6ECD9; --ink:#2E1712; --muted:#6E5546;
+  --script:"Pinyon Script","Great Vibes",cursive;
+  --serif:"Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --gold-text:linear-gradient(180deg,#FFF0C2 0%,#E9C77E 45%,#B98A3C 100%);
+  --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--black);color:var(--ivory);font:400 1.15rem/1.6 var(--serif);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:4px}
+.script{font-family:var(--script);font-weight:400;line-height:1.15}
+.gold{background:var(--gold-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kick{margin:0;font:500 .78rem/1.4 var(--serif);letter-spacing:.32em;text-transform:uppercase}
+section{position:relative}
+.wrap{width:min(100% - 2.5rem,34rem);margin-inline:auto}
+h2{margin:0;font:400 clamp(2.9rem,12vw,4rem)/1.1 var(--script)}
+.sub{margin:.35rem 0 0;font-style:italic;opacity:.8}
+/* gold button, like the invitation's ribbon */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.7rem 1.6rem;border:0;border-radius:999px;cursor:pointer;text-decoration:none;
+  font:600 .82rem/1 var(--serif);letter-spacing:.2em;text-transform:uppercase;color:#3A1A06;
+  background:linear-gradient(180deg,#F8E3AE,#DDB566 55%,#B88A3E);box-shadow:inset 0 1px 0 rgb(255 255 255 / .6),0 6px 18px -6px rgb(0 0 0 / .6)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:none;color:var(--gold-hi);box-shadow:inset 0 0 0 1px rgb(217 180 106 / .7)}
+.btn.ruby{background:linear-gradient(180deg,#C2202C,#8E0E17);color:#FFF4E2;box-shadow:inset 0 1px 0 rgb(255 255 255 / .25),0 6px 18px -6px rgb(90 5 10 / .7)}
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- 0. glitter: the invitation hides under red glitter; blow on it (or tap) and it flies away ---------- */
+.glitter{position:fixed;inset:0;z-index:100;cursor:pointer;text-align:center;color:var(--gold-hi);background:none}
+.glitter::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 30%,#4A070C,#1C0204 75%);transition:opacity 1.1s ease .15s}
+.glitter.blown::before{opacity:0}
+.glitter.blown{pointer-events:none}
+.glitter canvas{position:absolute;inset:0;width:100%;height:100%}
+.glitter .g-top{position:absolute;left:0;right:0;display:block;text-align:center;top:calc(9svh + env(safe-area-inset-top,0px));margin:0;font:italic 500 1.05rem/1.4 var(--serif);text-shadow:0 1px 8px rgb(0 0 0 / .8)}
+.glitter .g-bot{position:absolute;left:0;right:0;display:block;text-align:center;bottom:calc(10svh + env(safe-area-inset-bottom,0px));text-shadow:0 2px 14px rgb(0 0 0 / .85)}
+.glitter .g-bot b{display:block;font:400 clamp(2.6rem,11vw,3.6rem)/1.1 var(--script)}
+.glitter .g-bot span{display:block;margin-top:.3rem;font:500 .8rem/1.4 var(--serif);letter-spacing:.28em;text-transform:uppercase;opacity:.85}
+.glitter .g-top,.glitter .g-bot{transition:opacity .5s;padding:1.2rem 0;background:radial-gradient(50% 50% at 50% 50%,rgb(20 2 4 / .82),rgb(20 2 4 / .5) 55%,transparent 100%)}
+.glitter.blown .g-top,.glitter.blown .g-bot{opacity:0}
+.mic{position:fixed;z-index:101;left:50%;bottom:calc(3svh + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:.5rem 1rem;border:0;border-radius:999px;
+  background:rgb(0 0 0 / .35);color:var(--gold-hi);font:500 .85rem/1 var(--serif);letter-spacing:.06em;cursor:pointer;transition:opacity .4s}
+.mic svg{width:16px;height:16px}
+.mic.listening{box-shadow:0 0 0 2px var(--gold)}
+.mic[hidden]{display:none}
+
+/* ---------- 1. the stage: velvet curtains open on the couple dancing in the spotlight ---------- */
+.stage{height:100vh;height:100svh;min-height:34rem;overflow:hidden;background:#0D0303;isolation:isolate}
+.stage .bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:50% 72%}
+.stage::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgb(14 2 3 / .75),rgb(14 2 3 / .25) 30%,rgb(14 2 3 / 0) 42%,rgb(14 2 3 / 0) 70%,rgb(14 2 3 / .65))}
+.dust{position:absolute;left:50%;top:0;width:min(46vw,16rem);height:62%;transform:translateX(-50%);pointer-events:none;z-index:0}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:#FFE7B0;box-shadow:0 0 6px 1px rgb(255 214 140 / .8);opacity:0;animation:mote 6s linear infinite}
+@keyframes mote{0%{opacity:0;transform:translateY(0)}20%{opacity:.9}80%{opacity:.7}100%{opacity:0;transform:translateY(60px) translateX(8px)}}
+.titles{position:absolute;left:0;right:0;top:calc(clamp(3.2rem,9svh,5rem) + .6rem + env(safe-area-inset-top,0px));z-index:2;text-align:center;padding:0 1rem;text-shadow:0 2px 18px rgb(0 0 0 / .7)}
+.titles .kick{color:var(--gold-hi);font-size:.72rem;opacity:.9}
+.names{margin:.2rem 0 0;font:400 clamp(3.4rem,15vw,5.6rem)/1 var(--script);text-shadow:none;filter:drop-shadow(0 2px 10px rgb(0 0 0 / .75))}
+.names span{display:block;padding:0 .2em;clip-path:inset(-20% 100% -20% 0);transition:clip-path 1.6s cubic-bezier(.65,0,.35,1);transition-delay:var(--d)}
+.names .amp{font-size:.55em;margin:-.05em 0}
+.open .names span{clip-path:inset(-20% -10% -20% 0)}
+.titles .invite,.titles .when,.titles .where{margin:.3rem 0 0;opacity:0;transform:translateY(8px);transition:opacity 1s ease,transform 1s ease;transition-delay:var(--d)}
+.open .titles .invite,.open .titles .when,.open .titles .where{opacity:1;transform:none}
+.titles .invite{font-style:italic;font-size:1.05rem;color:#F8E9CF}
+.titles .when{font:600 1.05rem/1.3 var(--serif);letter-spacing:.42em;color:var(--gold-hi)}
+.titles .where{font-size:.9rem;letter-spacing:.06em;color:#F1DEC0;opacity:.9}
+.open .titles .where{opacity:.9}
+/* the curtains: one photo of velvet, split in two; each half gathers towards its side */
+.curtain{position:absolute;top:0;bottom:0;width:50.5%;z-index:5;background:url(img/sipario.webp) center/cover #6E0A10;transition:transform 2.4s cubic-bezier(.7,0,.2,1);box-shadow:0 0 40px rgb(0 0 0 / .6)}
+.curtain::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(0 0 0 / .35),transparent 20%,transparent 80%,rgb(0 0 0 / .35))}
+.curtain.l{left:0;transform-origin:0 50%;background-position:0 50%}
+.curtain.r{right:0;transform-origin:100% 50%;background-position:100% 50%}
+.open .curtain.l{transform:scaleX(var(--g,.16)) skewY(-1.5deg)}
+.open .curtain.r{transform:scaleX(var(--g,.16)) skewY(1.5deg)}
+@media (min-aspect-ratio:2/3){.stage .bg{left:50%;width:auto;aspect-ratio:9/16;transform:translateX(-50%)}}
+.valance{position:absolute;left:0;right:0;top:0;z-index:6;height:clamp(3.2rem,9svh,5rem);background:url(img/sipario.webp) center 20%/cover #6E0A10;
+  -webkit-mask:radial-gradient(60% 100% at 50% 0,#000 98%,transparent) 0 0/25% 100% repeat-x;mask:radial-gradient(60% 100% at 50% 0,#000 98%,transparent) 0 0/25% 100% repeat-x;
+  filter:drop-shadow(0 6px 8px rgb(0 0 0 / .6))}
+.valance::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:repeating-linear-gradient(90deg,#E6C57A 0 2px,#9C7230 2px 4px);opacity:.85}
+.cue{position:absolute;z-index:3;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:.2rem;text-decoration:none;
+  font:500 .7rem/1 var(--serif);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-hi);opacity:0;transition:opacity 1s ease 4.2s}
+.open .cue{opacity:.9}
+.cue svg{width:20px;height:20px;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+
+/* ---------- 2. the letter: red satin, a lace envelope, the card slides out ---------- */
+.letter{padding:5.5rem 0 6rem;background:url(img/raso.webp) center/cover #6B0B12;overflow:hidden}
+.letter::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 45%,transparent,rgb(20 2 4 / .55))}
+.env{position:relative;width:min(100% - 2.5rem,23rem);margin:0 auto;padding-top:2rem}
+.card{position:relative;z-index:1;margin:0 .9rem;padding:2rem 1.5rem 10.5rem;background:var(--ivory);color:var(--ink);text-align:center;border-radius:4px;
+  box-shadow:inset 0 0 0 6px var(--ivory),inset 0 0 0 7px var(--gold),0 18px 40px -16px rgb(0 0 0 / .7);transform:translateY(46%);transition:transform 1.8s cubic-bezier(.22,1,.36,1) .3s}
+.env.in .card{transform:none}
+.card h2{font-size:clamp(2.3rem,9.5vw,2.9rem);color:var(--ruby)}
+.card p{margin:.9rem 0 0;font-size:1.08rem;line-height:1.55}
+.card .sign{font:400 1.9rem/1 var(--script);color:var(--gold-lo);margin-top:1.1rem}
+/* the pocket: deep red paper with gold lace, a V opening */
+.pocket{position:absolute;z-index:2;left:0;right:0;bottom:0;height:9.5rem;border-radius:0 0 6px 6px;
+  background:radial-gradient(circle at 50% 50%,rgb(230 190 110 / .55) 0 1.5px,transparent 2px) 0 0/12px 12px,
+    radial-gradient(circle at 50% 50%,transparent 0 4px,rgb(230 190 110 / .35) 4.5px 5.2px,transparent 5.6px) 6px 6px/12px 12px,linear-gradient(180deg,#7E0D16,#4E060C);
+  clip-path:polygon(0 0,50% 32%,100% 0,100% 100%,0 100%);box-shadow:0 18px 40px -14px rgb(0 0 0 / .8)}
+.pocket::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(244 223 168 / .9),rgb(164 122 50 / .9)) top/100% 2px no-repeat;clip-path:polygon(0 0,50% 32%,100% 0,100% 3%,50% 35%,0 3%)}
+.wax{position:absolute;z-index:3;left:50%;bottom:calc(9.5rem - 3.04rem - 1.6rem);width:3.2rem;aspect-ratio:1;transform:translateX(-50%);border-radius:48% 52% 50% 49%;display:grid;place-items:center;
+  background:radial-gradient(circle at 34% 28%,#FFF0BE,#E2BD68 32%,#B98C37 64%,#86601F);box-shadow:inset 0 -3px 6px rgb(80 50 10 / .45),0 4px 10px rgb(0 0 0 / .45);
+  font:400 1.15rem/1 var(--script);color:#7A5418}
+
+/* ---------- 3. save the date: a desk calendar that turns its pages to June ---------- */
+.date{padding:5.5rem 0 5rem;background:radial-gradient(90% 60% at 50% 30%,#3A0609,#140203 80%);text-align:center}
+.date .sub{color:#F1DEC0}
+.cal{position:relative;width:min(100% - 3rem,19rem);margin:2.5rem auto 0;perspective:1200px;cursor:pointer}
+.cal .rings{position:absolute;z-index:20;left:12%;right:12%;top:-.9rem;display:flex;justify-content:space-between;pointer-events:none}
+.cal .rings i{width:.55rem;height:1.6rem;border-radius:.3rem;background:linear-gradient(90deg,#8A6526,#F4DFA8 45%,#9C7230);box-shadow:0 2px 3px rgb(0 0 0 / .5)}
+.pages{position:relative;aspect-ratio:1/1.08}
+.page{position:absolute;inset:0;padding:1.6rem 1rem 1rem;background:var(--ivory);color:var(--ink);border-radius:6px;transform-origin:50% 0;backface-visibility:hidden;
+  box-shadow:0 1px 0 #E5D6BB,0 2px 0 #F3E8D4,0 3px 0 #E2D2B5,0 16px 30px -12px rgb(0 0 0 / .7);transition:transform .75s cubic-bezier(.5,0,.3,1),opacity .75s ease}
+.page.gone{transform:rotateX(-115deg);opacity:0}
+.page .m{margin:0;font:400 2.3rem/1 var(--script);color:var(--ruby)}
+.page .y{margin:.15rem 0 .7rem;font:600 .72rem/1 var(--serif);letter-spacing:.35em;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.15rem .1rem;font:500 .95rem/1.9 var(--serif);font-variant-numeric:lining-nums tabular-nums}
+.grid b{font:600 .62rem/2 var(--serif);letter-spacing:.12em;color:var(--gold-lo)}
+.grid span{position:relative}
+.grid .day{color:var(--ruby);font-weight:600}
+.grid .day svg{position:absolute;left:50%;top:50%;width:2.4rem;height:2.1rem;transform:translate(-50%,-52%);overflow:visible}
+.grid .day path{fill:none;stroke:var(--ruby);stroke-width:2;stroke-linecap:round;stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset 1s ease .3s}
+.cal.done .day path{stroke-dashoffset:0}
+.tassel{position:absolute;z-index:21;right:-.6rem;top:-.6rem;width:1.6rem;height:7rem;pointer-events:none;transform-origin:50% 0;animation:swing 3.4s ease-in-out infinite}
+@keyframes swing{50%{transform:rotate(6deg)}}
+.cal-hint{margin:.9rem 0 0;font-size:.85rem;font-style:italic;color:#E9D3AE;opacity:.75}
+.date-text{margin:1.6rem 0 0;opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s}
+.date.done .date-text{opacity:1;transform:none}
+.date-text .big{margin:0;font:500 1.25rem/1.4 var(--serif);letter-spacing:.12em;color:var(--gold-hi);text-transform:uppercase}
+.date-text p{margin:.3rem 0 1.2rem;font-style:italic;color:#F1DEC0}
+.date-text .row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
+
+/* ---------- 4. the day: ivory paper between two borders of gold lace ---------- */
+.lace{height:28px;background:radial-gradient(circle at 50% 0,transparent 0 6px,#E2C27C 6.5px 8px,transparent 8.5px) 0 0/22px 22px repeat-x,
+  radial-gradient(circle at 50% 100%,#D9B46A 0 9px,transparent 9.5px) 0 0/22px 18px repeat-x,
+  radial-gradient(circle at 50% 50%,#7A5418 0 1.3px,transparent 1.6px) 11px 3px/22px 18px repeat-x;filter:drop-shadow(0 2px 2px rgb(0 0 0 / .25))}
+.lace.up{transform:scaleY(-1)}
+.day-sec{background:linear-gradient(180deg,#FBF4E6,#F3E6CC);color:var(--ink)}
+.day-in{padding:3.5rem 0 4rem;text-align:center}
+.day-in h2{color:var(--ruby)}
+.day-in .sub{color:var(--muted)}
+.tl{list-style:none;margin:2.2rem 0 0;padding:0;text-align:left}
+.tl li{display:grid;grid-template-columns:4.2rem 1fr;gap:1.1rem;padding:.9rem 0;border-top:1px solid rgb(164 122 50 / .3)}
+.tl li:first-child{border-top:0}
+.tl time{font:600 1.2rem/1.3 var(--serif);color:var(--gold-lo);font-variant-numeric:lining-nums}
+.tl h3{margin:0;font:400 1.9rem/1 var(--script);color:var(--ruby)}
+.tl p{margin:.25rem 0 0;font-size:1.02rem;line-height:1.45;color:var(--muted)}
+
+/* ---------- 5. where: arched windows on the places ---------- */
+.where-sec{padding:5rem 0;background:linear-gradient(180deg,#1A0406,#2E0509);text-align:center}
+.places{display:grid;gap:2.5rem;margin-top:2.5rem}
+.arch{width:min(100%,19rem);margin:0 auto;aspect-ratio:3/3.6;overflow:hidden;border-radius:50% 50% 6px 6px / 38% 38% 6px 6px;box-shadow:0 0 0 1px rgb(217 180 106 / .6),0 0 0 7px #1A0406,0 0 0 8px rgb(217 180 106 / .45),0 24px 40px -18px rgb(0 0 0 / .8)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.place h3{margin:1.4rem 0 0;font:500 1.45rem/1.2 var(--serif);color:var(--gold-hi)}
+.place .t{margin:.2rem 0 0;font:400 1.6rem/1.2 var(--script);color:var(--gold)}
+.place p{margin:.4rem 0 1rem;color:#EAD6B6;font-size:1rem}
+.info{display:grid;gap:1.2rem;margin:3rem 0 0;text-align:left}
+.info div{padding:1.1rem 1.2rem;border:1px solid rgb(217 180 106 / .35);border-radius:var(--r);background:rgb(0 0 0 / .2)}
+.info h4{margin:0;font:400 1.6rem/1.1 var(--script);color:var(--gold)}
+.info p{margin:.3rem 0 0;font-size:1rem;color:#EAD6B6}
+
+/* ---------- 6. dress code: fabrics and colours of the evening ---------- */
+.dress{padding:5rem 0;background:#140203;text-align:center}
+.swatches{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:2rem}
+.sw{position:relative;aspect-ratio:1;border-radius:var(--r);overflow:hidden;box-shadow:inset 0 0 0 1px rgb(217 180 106 / .4)}
+.sw span{position:absolute;left:.7rem;bottom:.5rem;font:400 1.6rem/1 var(--script);color:#FFF4E0;text-shadow:0 1px 8px rgb(0 0 0 / .8)}
+.sw.satin{background:url(img/raso.webp) 30% 40%/260% #8E0E17}
+.sw.velvet{background:url(img/sipario.webp) 40% 50%/300% #6E0A10}
+.sw.sequin{background:radial-gradient(circle at 30% 30%,#FFD9DC 0 1px,transparent 1.6px) 0 0/7px 7px,radial-gradient(circle,#E0323E 0 2.2px,#7A0A12 2.6px) 0 0/7px 7px,#7A0A12}
+.sw.pearl{background:radial-gradient(circle at 35% 30%,#FFFFFF,#EDE4D3 40%,#C9BCA3 72%,transparent 74%) 0 0/34px 34px,linear-gradient(135deg,#F5EDE0,#D8CCB6)}
+.sw.pearl span{color:#3A2416;text-shadow:0 1px 6px rgb(255 255 255 / .8)}
+.palette{display:flex;justify-content:center;gap:.7rem;margin:1.8rem 0 0;padding:0;list-style:none}
+.palette li{display:grid;justify-items:center;gap:.35rem;font-size:.78rem;letter-spacing:.06em;color:#EAD6B6}
+.palette i{width:2.3rem;height:2.3rem;border-radius:50%;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .25),0 3px 8px rgb(0 0 0 / .5)}
+.dress-notes{margin:2rem 0 0;display:grid;gap:1rem;text-align:left}
+.dress-notes h4{margin:0;font:400 1.6rem/1 var(--script);color:var(--gold)}
+.dress-notes p{margin:.25rem 0 0;font-size:1rem;color:#EAD6B6}
+
+/* ---------- 7. notes and 8. reply, on ivory paper ---------- */
+.notes{background:linear-gradient(180deg,#FBF4E6,#F3E6CC);color:var(--ink)}
+.notes-in{padding:3.5rem 0 4rem;text-align:center}
+.note{margin:2rem 0 0;padding:1.5rem 1.3rem;border-radius:4px;background:#FFFBF2;box-shadow:inset 0 0 0 5px #FFFBF2,inset 0 0 0 6px rgb(164 122 50 / .5),0 10px 24px -14px rgb(60 30 10 / .4)}
+.note h3{margin:0;font:400 2.1rem/1.1 var(--script);color:var(--ruby)}
+.note p{margin:.5rem 0 0;font-size:1.05rem;color:var(--muted)}
+.iban{display:block;margin:.8rem 0 .9rem;font:600 clamp(.95rem,4vw,1.15rem)/1.3 var(--serif);letter-spacing:.06em;color:var(--ink);white-space:nowrap}
+.note .btn.ghost{color:var(--ruby);box-shadow:inset 0 0 0 1px rgb(155 17 30 / .55)}
+.rsvp-card{margin:2.5rem 0 0;padding:2rem 1.3rem 1.6rem;text-align:left}
+.rsvp-card h3{text-align:center;font-size:2.6rem}
+.rsvp-card .lead{text-align:center;margin:.3rem 0 1.4rem}
+.f{margin:0 0 1.1rem}
+.f label,.f legend{display:block;margin:0 0 .35rem;font:600 .78rem/1.3 var(--serif);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lo)}
+.f input[type=text],.f input[type=email],.f select,.f textarea{width:100%;min-height:48px;padding:.6rem .8rem;border:0;border-bottom:1.5px solid rgb(164 122 50 / .55);border-radius:0;background:rgb(255 255 255 / .6);
+  font:400 1.1rem/1.4 var(--serif);color:var(--ink)}
+.f textarea{min-height:5rem;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-bottom-color:var(--ruby);background:#FFF}
+fieldset.f{border:0;padding:0}
+.choice{display:flex;align-items:center;gap:.6rem;min-height:44px;font-size:1.1rem;cursor:pointer}
+.choice input{width:1.2rem;height:1.2rem;accent-color:var(--ruby)}
+.err{margin:.3rem 0 0;color:#A3131F;font-size:.95rem}
+.send{display:flex;justify-content:center;margin-top:1.4rem}
+.done{text-align:center}
+.done p{color:var(--muted)}
+.hp{position:absolute;left:-9999px}
+
+/* sticky reply ribbon */
+.reply{position:fixed;z-index:60;left:50%;bottom:calc(.9rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);transition:transform .5s cubic-bezier(.22,1,.36,1);white-space:nowrap}
+.reply.show{transform:translate(-50%,0)}
+/* music */
+.music{position:fixed;top:calc(.7rem + env(safe-area-inset-top,0px));right:calc(.7rem + env(safe-area-inset-right,0px));z-index:70;display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;
+  border:1px solid rgb(244 223 168 / .5);background:rgb(14 2 3 / .45);color:var(--gold-hi);cursor:pointer}
+body.locked .music{opacity:0;pointer-events:none}
+.music .bars{display:flex;align-items:flex-end;gap:2px;height:14px}
+.music .bars i{width:3px;border-radius:1px;background:currentColor}
+.music .bars i:nth-child(1){height:45%}.music .bars i:nth-child(2){height:80%}.music .bars i:nth-child(3){height:60%}.music .bars i:nth-child(4){height:95%}
+.music[aria-pressed="true"] .bars i{animation:eq 1s ease-in-out infinite alternate}
+.music[aria-pressed="true"] .bars i:nth-child(2){animation-delay:-.4s}
+.music[aria-pressed="true"] .bars i:nth-child(3){animation-delay:-.7s}
+@keyframes eq{from{height:20%}to{height:100%}}
+footer{padding:3rem 1.25rem calc(6rem + env(safe-area-inset-bottom,0px));text-align:center;background:var(--black);color:#CDB79A}
+footer .sig{margin:0;font:400 2.6rem/1.2 var(--script)}
+footer p{margin:.3rem 0 0;font-size:.95rem}
+footer .credits{max-width:30rem;margin:1.4rem auto 0;font-size:.78rem;line-height:1.5;opacity:.65}
+@media (min-width:860px){
+  .places{grid-template-columns:1fr 1fr}
+  .info{grid-template-columns:1fr 1fr 1fr}
+  .wrap.wide{width:min(100% - 4rem,58rem)}
+  .swatches{grid-template-columns:repeat(4,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- 0. glitter (hidden by script when motion is reduced or JavaScript is off) -->
+<div class="glitter" id="glitter" role="button" tabindex="0" aria-label="Apri l'invito: soffia sui brillantini o tocca lo schermo">
+  <canvas aria-hidden="true"></canvas>
+  <span class="g-top" aria-hidden="true">Un invito si nasconde sotto i brillantini…</span>
+  <span class="g-bot" aria-hidden="true"><b class="gold">Soffia sui brillantini</b><span>oppure tocca lo schermo</span></span>
+</div>
+<button class="mic" id="mic" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span>Soffia nel microfono</span></button>
+
+<main>
+<!-- 1. the stage -->
+<header class="stage" id="palco">
+  <img class="bg" src="img/palco.webp" alt="Due sposi ballano al centro di un palco, sotto un riflettore" width="1152" height="2048" fetchpriority="high">
+  <div class="dust" aria-hidden="true"></div>
+  <div class="titles">
+    <p class="kick">Insieme alle loro famiglie</p>
+    <h1 class="names gold"><span style="--d:.4s">Bartolo</span><span class="amp" style="--d:1.2s">&amp;</span><span style="--d:1.6s">Paola</span></h1>
+    <p class="invite" style="--d:2.6s">vi invitano a festeggiare il loro matrimonio</p>
+    <p class="when" style="--d:3s">19 · 06 · 2027</p>
+    <p class="where" style="--d:3.3s">Basilica Paleocristiana · Paestum</p>
+  </div>
+  <div class="curtain l" aria-hidden="true"></div><div class="curtain r" aria-hidden="true"></div>
+  <div class="valance" aria-hidden="true"></div>
+  <a class="cue" href="#lettera">Scorri<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+</header>
+
+<!-- 2. the letter -->
+<section class="letter" id="lettera" aria-labelledby="l-title">
+  <div class="env" id="env">
+    <div class="card">
+      <h2 id="l-title">Cari familiari e amici</h2>
+      <p>abbiamo aspettato a lungo questo giorno e vogliamo viverlo con le persone che ci hanno accompagnato fin qui.</p>
+      <p>Unitevi a noi per un sì davanti ai templi di Paestum, una cena sotto le stelle, tanta musica e qualche ballo di troppo.</p>
+      <p class="sign">Bartolo &amp; Paola</p>
+    </div>
+    <div class="pocket" aria-hidden="true"></div>
+    <span class="wax" aria-hidden="true">B&amp;P</span>
+  </div>
+</section>
+
+<!-- 3. save the date -->
+<section class="date" id="data" aria-labelledby="d-title">
+  <div class="wrap">
+    <h2 id="d-title" class="gold">Segnate la data</h2>
+    <p class="sub">Sfogliate le pagine fino al nostro giorno</p>
+    <div class="cal" id="cal" role="button" tabindex="0" aria-label="Calendario: tocca per sfogliare fino a giugno 2027">
+      <div class="rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <svg class="tassel" viewBox="0 0 26 112" aria-hidden="true"><path d="M13 0v70" stroke="#D9B46A" stroke-width="1.6"/><circle cx="13" cy="30" r="4" fill="#F6EEDD"/><circle cx="13" cy="46" r="4" fill="#F6EEDD"/><circle cx="13" cy="62" r="4" fill="#F6EEDD"/><path d="M13 70l-7 34h14z" fill="#B88A3E"/><path d="M8 104v6M11 104v7M15 104v7M18 104v6" stroke="#9C7230" stroke-width="1.2"/></svg>
+      <div class="pages" id="pages"></div>
+    </div>
+    <p class="cal-hint" aria-hidden="true">tocca il calendario per sfogliarlo</p>
+    <div class="date-text">
+      <p class="big">Sabato 19 giugno 2027</p>
+      <p>alle 16, nella Basilica Paleocristiana di Paestum</p>
+      <div class="row">
+        <a class="btn" href="../bartolo-paola-matrimonio/matrimonio.ics" type="text/calendar">Aggiungi al calendario</a>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Matrimonio%20Bartolo%20e%20Paola&amp;dates=20270619T140000Z/20270619T210000Z&amp;location=Basilica%20Paleocristiana%2C%20Paestum">Google Calendar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. the day -->
+<section class="day-sec" id="giornata" aria-labelledby="g-title">
+  <div class="lace" aria-hidden="true"></div>
+  <div class="wrap day-in">
+    <h2 id="g-title">La giornata</h2>
+    <p class="sub">Come andrà la festa</p>
+    <ol class="tl">
+      <li class="rv"><time datetime="16:00">16:00</time><div><h3>Il sì</h3><p>Nella Basilica Paleocristiana, di fronte agli scavi di Paestum.</p></div></li>
+      <li class="rv"><time datetime="17:00">17:00</time><div><h3>Brindisi e foto</h3><p>Fuori dalla chiesa, tutti insieme.</p></div></li>
+      <li class="rv"><time datetime="18:00">18:00</time><div><h3>Aperitivo</h3><p>All'Hotel Ariston, nei giardini.</p></div></li>
+      <li class="rv"><time datetime="20:00">20:00</time><div><h3>La cena</h3><p>I sapori del Cilento, dal mare all'orto.</p></div></li>
+      <li class="rv"><time datetime="22:00">22:00</time><div><h3>Primo ballo e torta</h3><p>Sotto le luci, poi tutti in pista.</p></div></li>
+      <li class="rv"><time datetime="23:00">23:00</time><div><h3>Ultimo brindisi</h3><p>Poi si rientra: per chi viaggia in autobus, si riparte verso Castellammare.</p></div></li>
+    </ol>
+  </div>
+  <div class="lace up" aria-hidden="true"></div>
+</section>
+
+<!-- 5. where -->
+<section class="where-sec" id="dove" aria-labelledby="w-title">
+  <div class="wrap wide">
+    <h2 id="w-title" class="gold">Dove</h2>
+    <div class="places">
+      <div class="place rv">
+        <div class="arch"><img src="../bartolo-paola-matrimonio/img/paestum-tramonto.webp" alt="I templi di Paestum al tramonto" loading="lazy" style="object-position:70% 50%"></div>
+        <p class="t">La cerimonia, ore 16</p>
+        <h3>Basilica Paleocristiana</h3>
+        <p>Di fronte agli scavi archeologici, Paestum (SA)</p>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Basilica+Paleocristiana+Paestum">Indicazioni</a>
+      </div>
+      <div class="place rv" style="--d:.15s">
+        <div class="arch"><img src="../bartolo-paola-matrimonio/img/ariston-hotel.webp" alt="L'Hotel Ariston di sera, con la fontana illuminata" loading="lazy" style="object-position:55% 70%"></div>
+        <p class="t">Il ricevimento, dalle 18</p>
+        <h3>Hotel Ariston</h3>
+        <p>Capaccio Paestum (SA)</p>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Ariston+Paestum">Indicazioni</a>
+      </div>
+    </div>
+    <div class="info">
+      <div class="rv"><h4>L'autobus</h4><p>Gratuito, andata e ritorno: partenza da Castellammare di Stabia alle 14:00.</p></div>
+      <div class="rv" style="--d:.1s"><h4>Restate a dormire</h4><p>Camere all'Hotel Ariston a 150 € a notte, colazione e spiaggia incluse.</p></div>
+      <div class="rv" style="--d:.2s"><h4>Parcheggio</h4><p>Gratuito sia alla Basilica sia all'hotel.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. dress code -->
+<section class="dress" id="dresscode" aria-labelledby="dc-title">
+  <div class="wrap wide">
+    <h2 id="dc-title" class="gold">Dress code</h2>
+    <p class="sub" style="color:#F1DEC0">Elegante, con un tocco di rosso</p>
+    <div class="swatches">
+      <div class="sw satin rv"><span>Raso</span></div>
+      <div class="sw velvet rv" style="--d:.08s"><span>Velluto</span></div>
+      <div class="sw sequin rv" style="--d:.16s"><span>Paillettes</span></div>
+      <div class="sw pearl rv" style="--d:.24s"><span>Perle</span></div>
+    </div>
+    <ul class="palette" aria-label="Colori della serata">
+      <li><i style="background:#141018"></i>Notte</li>
+      <li><i style="background:#5E0F18"></i>Bordeaux</li>
+      <li><i style="background:#9B111E"></i>Rubino</li>
+      <li><i style="background:#E8D2A6"></i>Champagne</li>
+      <li><i style="background:#F6EEDD"></i>Avorio</li>
+    </ul>
+    <div class="dress-notes">
+      <div class="rv"><h4>Per lei</h4><p>Abito lungo o al ginocchio, in raso, velluto o paillettes. Il bianco lo lasciamo alla sposa.</p></div>
+      <div class="rv"><h4>Per lui</h4><p>Abito scuro, cravatta o papillon. Un dettaglio rosso è il benvenuto.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. notes and 8. reply -->
+<section class="notes" id="rispondi" aria-labelledby="r-title">
+  <div class="lace" aria-hidden="true"></div>
+  <div class="wrap notes-in">
+    <div class="note rv">
+      <h3>Il regalo</h3>
+      <p>La vostra presenza è il regalo più bello. Se volete aiutarci a costruire la nostra prima casa:</p>
+      <span class="iban" id="iban">IT00 X000 0000 0000 0000 0000 000</span>
+      <button class="btn ghost" type="button" id="copy">Copia l'IBAN</button>
+    </div>
+    <div class="note rsvp-card rv" id="rsvp">
+      <h3 id="r-title">Ci sarai?</h3>
+      <p class="lead">Rispondete entro il 15 aprile 2027</p>
+      <form id="f" novalidate>
+        <div class="f"><label for="nome">Nome e cognome</label><input id="nome" name="nome" type="text" autocomplete="name" required></div>
+        <div class="f"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <fieldset class="f">
+          <legend>Verrai?</legend>
+          <label class="choice"><input type="radio" name="presenza" value="si" checked> Sì, con gioia</label>
+          <label class="choice"><input type="radio" name="presenza" value="no"> Purtroppo non potrò</label>
+        </fieldset>
+        <div class="f" id="ospiti-f"><label for="ospiti">Quante persone, te compreso?</label>
+          <select id="ospiti" name="ospiti"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+        <div class="f"><label for="dieta">Allergie o esigenze (facoltativo)</label><input id="dieta" name="dieta" type="text"></div>
+        <div class="f"><label for="msg">Un pensiero per gli sposi (facoltativo)</label><textarea id="msg" name="messaggio"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="sito">Non compilare</label><input id="sito" name="sito" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="err" id="err" role="alert" hidden></p>
+        <div class="send"><button class="btn ruby" type="submit" id="send">Invia la risposta</button></div>
+      </form>
+      <div class="done" id="done" hidden tabindex="-1">
+        <p class="sign" style="font:400 2rem/1.1 var(--script);color:var(--ruby);margin:0">Grazie!</p>
+        <p>Abbiamo ricevuto la tua risposta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<a class="btn reply" id="reply" href="#rsvp">Rispondi all'invito</a>
+
+<footer>
+  <p class="sig gold">Bartolo &amp; Paola</p>
+  <p>19 giugno 2027 · Paestum</p>
+  <p class="credits">Palco, sipario e raso: immagini generate con l'intelligenza artificiale. Hotel: foto Hotel Ariston Paestum. Templi: <a href="https://commons.wikimedia.org/wiki/File:Paestum,_Italia,_2023-03-26,_DD_66-68_HDR.jpg">Diego Delso</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Musica: Debussy, «Clair de lune», suonata da <a href="https://commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg">Laurens Goedhart</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, body=document.body, stage=document.getElementById('palco');
+
+  /* ---------- music: starts with the first gesture, one button to pause it ---------- */
+  var audio=null, mb=document.createElement('button'), fadeT;
+  mb.className='music'; mb.type='button'; mb.setAttribute('aria-pressed','false'); mb.setAttribute('aria-label','Ascolta la musica');
+  mb.innerHTML='<span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>'; body.appendChild(mb);
+  function ui(on){ mb.setAttribute('aria-pressed',on?'true':'false'); mb.setAttribute('aria-label',on?'Metti in pausa la musica':'Ascolta la musica') }
+  function fade(to,ms,done){ clearInterval(fadeT); var from=audio.volume, t0=Date.now();
+    fadeT=setInterval(function(){ var k=Math.min(1,(Date.now()-t0)/ms); audio.volume=from+(to-from)*k; if(k===1){ clearInterval(fadeT); if(done) done() } },50) }
+  function play(){ if(!audio){ audio=new Audio('../bartolo-paola-matrimonio/audio/musica.mp3'); audio.loop=true; audio.volume=0 }
+    var p=audio.play(); if(p&&p.catch) p.catch(function(){ ui(false) }); ui(true); fade(.55,2500) }
+  function pause(){ if(audio){ ui(false); fade(0,500,function(){ audio.pause() }) } }
+  mb.addEventListener('click',function(){ mb.getAttribute('aria-pressed')==='true'?pause():play() });
+  document.addEventListener('visibilitychange',function(){ if(!audio) return; if(document.hidden) audio.pause(); else if(mb.getAttribute('aria-pressed')==='true') audio.play().catch(function(){ ui(false) }) });
+
+  /* ---------- 1. stage: motes in the beam, then the curtains open ---------- */
+  var dust=stage.querySelector('.dust');
+  for(var i=0;i<16;i++){ var m=document.createElement('i'); m.style.left=(10+Math.random()*80)+'%'; m.style.top=(5+Math.random()*80)+'%';
+    m.style.animationDelay=(-Math.random()*6).toFixed(2)+'s'; m.style.animationDuration=(4+Math.random()*4).toFixed(2)+'s'; dust.appendChild(m) }
+  function gather(){ var w=innerWidth, h=stage.offsetHeight, img=w/h>2/3?h*9/16:w; stage.style.setProperty('--g',Math.max(.16,(w-img)/2/(w*.505)+.05).toFixed(3)) }
+  gather(); addEventListener('resize',gather);
+  function openStage(){ stage.classList.add('open'); body.classList.remove('locked') }
+
+  /* ---------- 0. glitter ---------- */
+  var g=document.getElementById('glitter'), mic=document.getElementById('mic');
+  if(reduce){ g.parentNode.removeChild(g); mic.parentNode.removeChild(mic); openStage() }
+  else (function(){
+    var cv=g.querySelector('canvas'), ctx=cv.getContext('2d'), dpr=Math.min(devicePixelRatio||1,2), W, H, P=[], blown=false, raf, t0;
+    var cols=['#5A060C','#8E0E17','#B8141F','#D62A35','#F05A62','#FF9AA0','#FFE1C4'];
+    function build(){ W=cv.width=innerWidth*dpr; H=cv.height=innerHeight*dpr; P=[];
+      var n=Math.round(innerWidth*innerHeight/26);
+      for(var k=0;k<n;k++){ var r=Math.random(); P.push({x:Math.random()*W,y:Math.random()*H,s:(r<.8?1.3+Math.random()*1.7:2.8+Math.random()*2.4)*dpr,
+        c:cols[Math.min(cols.length-1,Math.floor(Math.pow(Math.random(),1.6)*cols.length))],tw:Math.random()<.06,ph:Math.random()*6.3,vx:0,vy:0,dl:0,a:1}) } }
+    function draw(now){
+      ctx.clearRect(0,0,W,H); var el=blown?(now-t0)/1000:0;
+      for(var k=0;k<P.length;k++){ var p=P[k];
+        if(blown&&el>p.dl){ var t=el-p.dl; p.x+=p.vx; p.y+=p.vy; p.vy-=.06*dpr; p.vx*=1.01; p.a=Math.max(0,1-t/1.3) }
+        if(p.a<=0) continue;
+        var a=p.a; if(p.tw) a*=.45+.55*Math.abs(Math.sin(now/380+p.ph));
+        ctx.globalAlpha=a; ctx.fillStyle=p.tw?'#FFF2DC':p.c; ctx.fillRect(p.x,p.y,p.s,p.s) }
+      ctx.globalAlpha=1;
+      if(!blown||el<2.6) raf=requestAnimationFrame(draw) }
+    /* a gust from (ox,oy): nearer grains leave first and faster, all of them rise and drift outwards */
+    function blow(ox,oy){ if(blown) return; blown=true; t0=performance.now(); play();
+      ox*=dpr; oy*=dpr; var D=Math.hypot(W,H);
+      P.forEach(function(p){ var dx=p.x-ox, dy=p.y-oy, d=Math.hypot(dx,dy)||1, f=(1-d/D);
+        p.dl=d/D*.7*Math.random()+d/D*.25; var sp=(6+Math.random()*10)*dpr*(.5+f);
+        p.vx=dx/d*sp*.6+(Math.random()-.5)*4*dpr; p.vy=dy/d*sp*.4-(4+Math.random()*8)*dpr });
+      g.classList.add('blown'); mic.hidden=true; stopMic();
+      setTimeout(openStage,900);
+      setTimeout(function(){ cancelAnimationFrame(raf); if(g.parentNode) g.parentNode.removeChild(g); if(mic.parentNode) mic.parentNode.removeChild(mic) },3200) }
+    g.addEventListener('click',function(e){ blow(e.clientX||innerWidth/2,e.clientY||innerHeight/2) });
+    g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); blow(innerWidth/2,innerHeight) } });
+    setTimeout(function(){ try{ g.focus({preventScroll:true}) }catch(e){} },300);
+    addEventListener('resize',function(){ if(!blown) build() });
+    build(); raf=requestAnimationFrame(draw);
+    /* blowing for real: the microphone hears a gust (a loud, noisy sound) and the glitter flies off from the bottom */
+    var stream=null, actx=null;
+    function stopMic(){ if(stream) stream.getTracks().forEach(function(t){ t.stop() }); if(actx) actx.close().catch(function(){}); stream=null; actx=null }
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&(window.AudioContext||window.webkitAudioContext)){
+      mic.hidden=false;
+      mic.addEventListener('click',function(){
+        navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){ stream=s; actx=new (window.AudioContext||window.webkitAudioContext)();
+          var an=actx.createAnalyser(); an.fftSize=512; actx.createMediaStreamSource(s).connect(an); var buf=new Uint8Array(an.fftSize), hot=0;
+          mic.classList.add('listening'); mic.querySelector('span').textContent='Soffia adesso…';
+          (function listen(){ if(blown||!stream) return; an.getByteTimeDomainData(buf); var sum=0;
+            for(var k=0;k<buf.length;k++){ var v=(buf[k]-128)/128; sum+=v*v }
+            hot=Math.sqrt(sum/buf.length)>.18?hot+1:0; if(hot>5) blow(innerWidth/2,innerHeight); else requestAnimationFrame(listen) })();
+        }).catch(function(){ mic.querySelector('span').textContent='Microfono non disponibile: tocca lo schermo' }) });
+    }
+  })();
+
+  /* ---------- reveals ---------- */
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) } }) },{threshold:.25}):null;
+  [].forEach.call(document.querySelectorAll('.rv,#env'),function(el){ io?io.observe(el):el.classList.add('in') });
+
+  /* ---------- 3. calendar: February to June 2027, the 19th circled ---------- */
+  var months=['Febbraio','Marzo','Aprile','Maggio','Giugno'], mi=[1,2,3,4,5], pages=document.getElementById('pages'), cal=document.getElementById('cal'), dateSec=document.getElementById('data');
+  var circle='<svg viewBox="0 0 40 34" aria-hidden="true"><path d="M33 9C29 3 16 1 9 6 2 11 3 24 12 29s23 3 26-6c2-6-1-12-8-15"/></svg>';
+  mi.forEach(function(m,k){ var first=new Date(2027,m,1).getDay(), days=new Date(2027,m+1,0).getDate(), off=(first+6)%7;
+    var h='<p class="m">'+months[k]+'</p><p class="y">2027</p><div class="grid"><b>L</b><b>M</b><b>M</b><b>G</b><b>V</b><b>S</b><b>D</b>';
+    for(var e=0;e<off;e++) h+='<span></span>';
+    for(var d=1;d<=days;d++) h+=(m===5&&d===19)?'<span class="day">'+d+circle+'</span>':'<span>'+d+'</span>';
+    var pg=document.createElement('div'); pg.className='page'; pg.style.zIndex=10-k; pg.innerHTML=h+'</div>';
+    if(m!==5) pg.setAttribute('aria-hidden','true'); pages.appendChild(pg) });
+  var all=[].slice.call(pages.children), cur=0, auto=null;
+  function turn(){ if(cur>=all.length-1) return; all[cur].classList.add('gone'); cur++;
+    if(cur===all.length-1){ clearInterval(auto); setTimeout(function(){ cal.classList.add('done'); dateSec.classList.add('done') },500) } }
+  cal.addEventListener('click',turn); cal.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); turn() } });
+  if(reduce){ while(cur<all.length-1) turn() }
+  else if(io){ new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ o.disconnect(); setTimeout(function(){ auto=setInterval(turn,1100) },900) } },{threshold:.55}).observe(cal) }
+  else { while(cur<all.length-1) turn() }
+
+  /* ---------- copy IBAN ---------- */
+  document.getElementById('copy').addEventListener('click',function(){ var t=document.getElementById('iban').textContent.replace(/\s/g,''), b=this;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){ b.textContent='Copiato!' },function(){ b.textContent='Seleziona e copia' });
+    setTimeout(function(){ b.textContent="Copia l'IBAN" },2200) });
+
+  /* ---------- reply ribbon: after the stage, until the form is in view ---------- */
+  var reply=document.getElementById('reply'), rsvp=document.getElementById('rsvp'), pastStage=false, atForm=false;
+  function rib(){ reply.classList.toggle('show',pastStage&&!atForm) }
+  if(io){ new IntersectionObserver(function(es){ pastStage=!es[0].isIntersecting; rib() }).observe(stage);
+    new IntersectionObserver(function(es){ atForm=es[0].isIntersecting; rib() },{threshold:.1}).observe(rsvp) }
+
+  /* ---------- 8. reply form: same sheet as the main invitation ---------- */
+  var RSVP_ENDPOINT='https://script.google.com/macros/s/AKfycbzIRL0IWe4rU0UAxguo4OXeLpvCA6zKVLCQoDd7Vghlxa99rVia9ol3mek2d9qDTkE-GQ/exec';
+  var f=document.getElementById('f'), err=document.getElementById('err'), send=document.getElementById('send'), osp=document.getElementById('ospiti-f');
+  function yes(){ return f.presenza.value==='si' }
+  [].forEach.call(f.presenza,function(r){ r.addEventListener('change',function(){ osp.hidden=!yes() }) });
+  f.addEventListener('submit',function(e){ e.preventDefault(); err.hidden=true;
+    if(!f.nome.value.trim()){ err.textContent='Scrivi il tuo nome e cognome.'; err.hidden=false; f.nome.focus(); return }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())){ err.textContent="Scrivi un'email valida, ad esempio nome@email.it."; err.hidden=false; f.email.focus(); return }
+    send.disabled=true; send.textContent='Invio in corso…';
+    var data=new URLSearchParams({presenza:yes()?'si':'no',nome:f.nome.value.trim(),email:f.email.value.trim(),ospiti:yes()?f.ospiti.value:'0',dieta:yes()?f.dieta.value.trim():'',
+      bus:'no',posti:'0',hotel:'no',camere:'0',notti:'',messaggio:f.messaggio.value.trim(),sito:f.sito.value});
+    fetch(RSVP_ENDPOINT,{method:'POST',mode:'no-cors',body:data}).then(function(){ f.hidden=true; var d=document.getElementById('done'); d.hidden=false; d.focus() },
+      function(){ err.textContent='Non siamo riusciti a inviare la risposta. Controlla la connessione e riprova.'; err.hidden=false; send.disabled=false; send.textContent='Riprova' }) });
+})();
+</script>
+</body>
+</html>
