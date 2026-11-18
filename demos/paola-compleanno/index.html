@@ -314,7 +314,7 @@ var GIFTS = {
     text: 'Buona tavola, tempo tutto per te e qualcosa di bello da scoprire, dalla mattina alla sera.',
     plain: 'Una giornata tra cibo, relax e cultura. Prepara il costume da bagno.',
     pack: 'Prepara il costume da bagno.',
-    icons: [['cibo','Cibo'],['relax','Relax'],['cultura','Cultura']]
+    icons: [['cibo','Cibo'],['relax','Relax'],['teatro','Teatro']]
   },
   B: {
     title: 'Prepara <em>la valigia</em>',
@@ -628,7 +628,7 @@ picks.forEach(function(p){
 });
 
 /* ============ AVVIO ============ */
-addEventListener('load', function(){ ['cibo','relax','cultura','valigia','mare','costume'].forEach(function(n){ new Image().src = 'img/' + n + '.jpg'; }); });
+addEventListener('load', function(){ ['cibo','relax','teatro','valigia','mare','costume'].forEach(function(n){ new Image().src = 'img/' + n + '.jpg'; }); });
 var saved = load();
 if (saved && saved.scelta && GIFTS[saved.scelta]) {
   lockChoice(saved.scelta);
