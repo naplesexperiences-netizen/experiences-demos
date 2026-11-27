@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vesuvio Express · Dalla stazione al cratere</title>
+<meta name="description" content="Demo: dalla stazione di Ercolano Scavi al Gran Cono del Vesuvio, raccontato in capitoli video.">
+<meta name="robots" content="noindex">
+<meta name="demo:tags" content="vesuvio,ercolano,video,scroll,transfer">
+<meta name="demo:category" content="tour">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800&family=Atkinson+Hyperlegible+Next:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-sfondo-960.webp" imagesrcset="media/hero-sfondo-960.webp 960w, media/hero-sfondo.webp 1920w" imagesizes="100vw">
+<style>
+  :root {
+    --basalto: #231f1c;
+    --basalto-2: #3a3430;
+    --pomice: #6b635c;
+    --cenere: #eeeae3;
+    --carta: #f7f5f1;
+    --giallo: #f7a707;
+    --giallo-scuro: #de9606;
+    --azzurro-profondo: #006088;
+    --display: "Archivo", "Noto Sans", system-ui, sans-serif;
+    --body: "Atkinson Hyperlegible Next", "Noto Sans", system-ui, sans-serif;
+    /* Vetta del Vesuvio nella foto (in % della foto): da qui parte lo zoom */
+    --vetta-x: 44.8%;
+    --vetta-y: 18.9%;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--basalto); }
+  body {
+    margin: 0;
+    background: var(--basalto);
+    color: var(--cenere);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--giallo); outline-offset: 3px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 48px; padding-inline: 1.25rem;
+    border: 0; border-radius: 999px;
+    background: var(--giallo); color: var(--basalto);
+    font: 600 1rem/1 var(--body); text-decoration: none; cursor: pointer;
+    transition: background-color .15s ease, transform .15s ease;
+  }
+  .btn:hover { background: var(--giallo-scuro); }
+  .btn:active { transform: scale(.97); }
+  .btn-ghost {
+    background: rgba(35,31,28,.55); color: var(--cenere);
+    border: 1px solid rgba(238,234,227,.35);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .btn-ghost:hover { background: rgba(35,31,28,.8); }
+
+  /* ---------- Barra ---------- */
+  .bar {
+    position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .75rem clamp(1rem, 3vw, 2rem);
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(35,31,28,.55), rgba(35,31,28,0));
+  }
+  .bar .btn { white-space: nowrap; }
+  .bar > * { pointer-events: auto; }
+  .bar img { width: 132px; height: auto; filter: drop-shadow(0 1px 6px rgba(0,0,0,.35)); }
+
+  /* ---------- Apertura a due livelli ---------- */
+  .hero {
+    position: relative; height: 100svh; min-height: 520px;
+    overflow: hidden; background: var(--basalto);
+  }
+  /* La "lastra" ha le proporzioni della foto e copre lo schermo come object-fit: cover,
+     così parola, sfondo e primo piano restano allineati a ogni misura. */
+  .plate {
+    --w: max(100vw, calc(max(100svh, 520px) * 1920 / 1217));
+    position: absolute; inset-inline-start: 50%; inset-block-start: 50%;
+    width: var(--w); aspect-ratio: 1920 / 1217;
+    translate: -50% -50%;
+    container-type: inline-size;
+    transform-origin: var(--vetta-x) var(--vetta-y);
+    transition: transform 1.5s cubic-bezier(.6,0,.85,.2), filter 1.5s ease-in;
+  }
+  .plate img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .layer-bg { z-index: 1; }
+  .layer-fg { z-index: 3; }
+  .word {
+    position: absolute; z-index: 2;
+    /* La base delle lettere scende di poco sotto la linea delle rovine (49% dal basso):
+       la parte bassa resta nascosta dal primo piano. Centrata un po' a sinistra per non
+       finire dietro gli alberi a destra. */
+    --fs: min(12cqi, 19vw);
+    inset-inline: 0 14%; inset-block-end: calc(49% - .22 * var(--fs));
+    margin: 0; text-align: center;
+    font: 800 var(--fs)/.8 var(--display);
+    letter-spacing: -.02em;
+    color: var(--cenere);
+    text-shadow: 0 .02em .12em rgba(35,31,28,.25);
+    user-select: none;
+  }
+  .hero-copy {
+    position: absolute; z-index: 5;
+    inset-inline: 0; inset-block-end: 0;
+    padding: 4rem clamp(1rem, 4vw, 3rem) clamp(1.25rem, 4vh, 2.5rem);
+    background: linear-gradient(to top, rgba(35,31,28,.85), rgba(35,31,28,0));
+    display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem;
+    transition: opacity .4s ease;
+  }
+  .hero-copy h1 {
+    margin: 0; max-width: 22ch;
+    font: 500 clamp(1.5rem, 3.2vw, 2.5rem)/1.1 var(--display);
+    text-wrap: balance;
+  }
+  .hero-copy p { margin: .5rem 0 0; color: rgba(238,234,227,.8); max-width: 40ch; }
+
+  /* Punto da toccare sulla vetta */
+  .summit {
+    position: absolute; z-index: 4;
+    inset-inline-start: var(--vetta-x); inset-block-start: var(--vetta-y);
+    width: 64px; height: 64px; translate: -50% -50%;
+    border: 0; border-radius: 50%; background: transparent; cursor: pointer;
+    display: grid; place-items: center;
+  }
+  .summit::before, .summit::after {
+    content: ""; position: absolute; border-radius: 50%;
+  }
+  .summit::before { width: 14px; height: 14px; background: var(--giallo); box-shadow: 0 0 0 4px rgba(247,167,7,.35); }
+  .summit::after { inset: 8px; border: 2px solid var(--giallo); animation: ping 2.2s ease-out infinite; }
+  @keyframes ping { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
+  .summit-label {
+    position: absolute; inset-block-start: calc(100% - 6px); white-space: nowrap;
+    font: 600 .8125rem/1 var(--body); color: var(--basalto);
+    background: var(--cenere); padding: .4rem .6rem; border-radius: 999px;
+  }
+
+  /* Zoom nella vetta */
+  .hero.is-zooming .plate { transform: scale(6); filter: brightness(1.6) blur(2px); }
+  .hero.is-zooming .hero-copy { opacity: 0; }
+  .hero.is-zooming .summit { opacity: 0; }
+  .flash {
+    position: fixed; inset: 0; z-index: 30; pointer-events: none;
+    background: var(--carta); opacity: 0;
+    transition: opacity .5s ease;
+  }
+  .flash.on { opacity: 1; }
+
+  /* ---------- Percorso a capitoli ---------- */
+  .tour {
+    position: relative; height: 100svh; min-height: 520px;
+    overflow: hidden; background: #000;
+  }
+  .tour video, .tour .still {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .tour .still { opacity: 0; transition: opacity .6s ease; }
+  .tour.use-stills .still.on { opacity: 1; }
+  .tour::after { /* leggibilità del testo */
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 45%),
+                linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 20%);
+  }
+  .chapter {
+    position: absolute; z-index: 2;
+    inset-inline-start: clamp(1rem, 4vw, 3rem); inset-block-end: clamp(6.5rem, 14vh, 8.5rem);
+    max-width: min(34rem, calc(100% - 2rem));
+  }
+  .chapter-n {
+    margin: 0 0 .5rem; font: 500 .9375rem/1 var(--display);
+    color: var(--giallo); font-variant-numeric: tabular-nums;
+  }
+  .chapter-title {
+    margin: 0; font: 800 clamp(2rem, 6vw, 4.25rem)/.95 var(--display); letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .chapter-text { margin: .75rem 0 0; font-size: clamp(1rem, 1.6vw, 1.1875rem); max-width: 38ch; color: rgba(238,234,227,.9); }
+  /* Titolo visibile solo nella pausa (il 30%), come nel riferimento */
+  .chapter-title, .chapter-text {
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .45s ease, transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .tour.is-holding .chapter-title, .tour.is-holding .chapter-text { opacity: 1; transform: none; }
+  .tour.is-holding .chapter-text { transition-delay: .08s; }
+
+  .controls {
+    position: absolute; z-index: 3;
+    inset-inline: clamp(1rem, 4vw, 3rem); inset-block-end: clamp(1rem, 4vh, 2rem);
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .75rem 1.5rem;
+  }
+  .steps { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .steps li { flex: 1; }
+  .steps button {
+    position: relative; display: block; width: 100%; height: 44px; padding: 0;
+    border: 0; background: transparent; cursor: pointer;
+  }
+  .steps button::before { /* binario */
+    content: ""; position: absolute; inset-inline: 0; inset-block-start: 50%; height: 4px; translate: 0 -50%;
+    border-radius: 2px; background: rgba(238,234,227,.3);
+  }
+  .steps .fill {
+    position: absolute; inset-inline-start: 0; inset-block-start: 50%; height: 4px; translate: 0 -50%;
+    width: calc(var(--p, 0) * 100%); border-radius: 2px; background: var(--giallo);
+  }
+  .icon-btn {
+    width: 48px; height: 48px; padding: 0; border-radius: 50%;
+  }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .nav { display: flex; gap: .5rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  /* ---------- Chiusura ---------- */
+  .end {
+    background: var(--cenere); color: var(--basalto);
+    padding: clamp(3rem, 10vw, 7rem) clamp(1rem, 4vw, 3rem);
+  }
+  .end-inner { max-width: 68rem; margin-inline: auto; display: grid; gap: 2rem; }
+  @media (min-width: 900px) { .end-inner { grid-template-columns: 1.2fr 1fr; align-items: end; } }
+  .end h2 { margin: 0; font: 800 clamp(2rem, 5vw, 3.5rem)/1 var(--display); letter-spacing: -.02em; text-wrap: balance; }
+  .end p { margin: 1rem 0 0; max-width: 46ch; color: var(--basalto-2); }
+  .end .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .end .btn-line { background: transparent; color: var(--basalto); border: 2px solid var(--basalto); }
+  .end .btn-line:hover { background: var(--basalto); color: var(--cenere); }
+  .credits {
+    max-width: 68rem; margin: clamp(3rem, 8vw, 5rem) auto 0; padding-block-start: 1.25rem;
+    border-block-start: 1px solid #ddd6cb; font-size: .875rem; color: var(--pomice);
+  }
+  .credits p { margin: .25rem 0; max-width: none; color: inherit; }
+  .credits a { color: var(--azzurro-profondo); }
+
+  @media (max-width: 640px) {
+    .word { inset-inline: 0; }
+    .hero-copy { padding-block-start: 6rem; }
+    .hero-copy .btn { width: 100%; }
+    .controls .steps { grid-column: 1 / -1; grid-row: 1; }
+    .controls .nav { grid-column: 1 / -1; }
+    .bar img { width: 104px; }
+    .bar .btn { min-height: 44px; padding-inline: 1rem; font-size: .9375rem; }
+    .bar .long { display: none; }
+    .chapter { inset-block-end: 9rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .plate, .flash, .chapter-title, .chapter-text, .tour .still { transition: none; }
+    .summit::after { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a href="#top" aria-label="Vesuvio Express, inizio pagina"><img src="media/logo.webp" alt="Vesuvio Express" width="360" height="113"></a>
+  <a class="btn" href="#prenota">Prenota<span class="long">navetta + ingresso</span></a>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="plate" id="plate">
+      <img class="layer-bg" src="media/hero-sfondo-960.webp"
+           srcset="media/hero-sfondo-960.webp 960w, media/hero-sfondo.webp 1920w" sizes="100vw"
+           alt="Il Vesuvio visto da Porta Vesuvio, a Pompei" fetchpriority="high">
+      <p class="word" aria-hidden="true">VESUVIO</p>
+      <img class="layer-fg" src="media/hero-primo-piano-960.webp"
+           srcset="media/hero-primo-piano-960.webp 960w, media/hero-primo-piano.webp 1920w" sizes="100vw"
+           alt="" aria-hidden="true">
+      <button class="summit" id="summit" type="button" aria-label="Sali sul Vesuvio e guarda il percorso in video">
+        <span class="summit-label" aria-hidden="true">Tocca la vetta</span>
+      </button>
+    </div>
+    <div class="hero-copy">
+      <div>
+        <h1 id="hero-title">Dalla stazione di Ercolano Scavi al cratere del Vesuvio</h1>
+        <p>La navetta parte a pochi passi dall'uscita della Circumvesuviana. Guarda il viaggio, tappa per tappa.</p>
+      </div>
+      <button class="btn btn-ghost" id="start" type="button">Guarda il percorso</button>
+    </div>
+  </section>
+
+  <section class="tour" id="percorso" aria-label="Il percorso in video">
+    <video id="video" muted playsinline preload="metadata" poster="media/poster.jpg" aria-hidden="true">
+      <source src="media/percorso.mp4" type="video/mp4">
+    </video>
+    <img class="still" src="media/capitolo-1.jpg" alt="" loading="lazy" data-still="0">
+    <img class="still" src="media/capitolo-2.jpg" alt="" loading="lazy" data-still="1">
+    <img class="still" src="media/capitolo-3.jpg" alt="" loading="lazy" data-still="2">
+    <img class="still" src="media/capitolo-4.jpg" alt="" loading="lazy" data-still="3">
+    <img class="still" src="media/capitolo-5.jpg" alt="" loading="lazy" data-still="4">
+    <img class="still" src="media/capitolo-6.jpg" alt="" loading="lazy" data-still="5">
+
+    <div class="chapter" aria-live="polite">
+      <p class="chapter-n" id="ch-n">1 di 6</p>
+      <h2 class="chapter-title" id="ch-title">Ercolano Scavi</h2>
+      <p class="chapter-text" id="ch-text"></p>
+    </div>
+
+    <div class="controls">
+      <ol class="steps" id="steps"></ol>
+      <div class="nav">
+        <button class="btn btn-ghost icon-btn" id="prev" type="button" aria-label="Tappa precedente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="btn btn-ghost icon-btn" id="toggle" type="button" aria-label="Metti in pausa">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="toggle-icon"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        </button>
+        <button class="btn btn-ghost icon-btn" id="next" type="button" aria-label="Tappa successiva">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="end" id="prenota" aria-labelledby="end-title">
+    <div class="end-inner">
+      <div>
+        <h2 id="end-title">Navetta e ingresso al Gran Cono, in un solo biglietto</h2>
+        <p>Il biglietto del cratere si esaurisce spesso: con il pacchetto hai la corsa della navetta abbinata alla tua fascia d'ingresso.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://www.vesuvioexpress.it/">Prenota navetta + ingresso</a>
+        <a class="btn btn-line" href="#percorso" id="again">Riguarda il percorso</a>
+      </div>
+    </div>
+    <div class="credits">
+      <p><strong>Demo</strong> · Video: Vesuvio Express (spot del cliente, rimontato). Foto di apertura: Pixabay, foto 4635882 (<a href="https://pixabay.com/service/license-summary/">licenza Pixabay</a>, da riverificare). Le foto definitive arriveranno dal servizio fotografico.</p>
+    </div>
+  </section>
+</main>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<script>
+(() => {
+  // Ogni capitolo: tratto del video (inizio/fine, in secondi) + titolo per la pausa.
+  // Il video percorso.mp4 è lo spot del cliente rimontato in ordine di viaggio.
+  const CHAPTERS = [
+    { from: 0.00,  to: 3.46,  title: "Ercolano Scavi",     text: "Esci dalla stazione della Circumvesuviana: la navetta parte a pochi passi." },
+    { from: 3.56,  to: 5.40,  title: "A bordo",            text: "Sali sulla navetta Vesuvio Express e lasci la città alle spalle." },
+    { from: 5.48,  to: 11.80, title: "La strada del Parco", text: "Si sale tra pinete e ginestre del Parco Nazionale del Vesuvio." },
+    { from: 11.88, to: 18.56, title: "Quota 1000",          text: "In circa 30 minuti arrivi all'area di accesso al Gran Cono." },
+    { from: 18.64, to: 26.68, title: "Il Gran Cono",        text: "Da qui si sale a piedi, lungo il sentiero, fino al bordo del cratere." },
+    { from: 26.76, to: 34.36, title: "Si torna a Ercolano", text: "La navetta ti riporta alla stazione, pronto per il treno." },
+  ];
+  // Pausa con il titolo: il 30% del capitolo (viaggio 70%, pausa 30%), almeno 2,5 s.
+  const holdFor = (c) => Math.max(2500, ((c.to - c.from) * 1000 * 3) / 7);
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = (id) => document.getElementById(id);
+  const hero = $("hero"), plate = $("plate"), flash = $("flash");
+  const tour = $("percorso"), video = $("video");
+  const stills = [...document.querySelectorAll(".still")];
+  const stepsEl = $("steps");
+
+  let current = -1, playing = true, holdTimer = null, raf = 0, holdStart = 0, holdLeft = 0;
+
+  // Barre di avanzamento, una per capitolo
+  const fills = CHAPTERS.map((c, i) => {
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = `<span class="fill"></span><span class="sr-only">Tappa ${i + 1}: ${c.title}</span>`;
+    b.addEventListener("click", () => go(i));
+    li.appendChild(b); stepsEl.appendChild(li);
+    return b.querySelector(".fill");
+  });
+  const setFill = (i, p) => fills[i].style.setProperty("--p", Math.max(0, Math.min(1, p)));
+
+  if (reduce) tour.classList.add("use-stills");
+
+  function show(i) {
+    const c = CHAPTERS[i];
+    $("ch-n").textContent = `${i + 1} di ${CHAPTERS.length}`;
+    $("ch-title").textContent = c.title;
+    $("ch-text").textContent = c.text;
+    fills.forEach((_, k) => setFill(k, k < i ? 1 : 0));
+  }
+
+  function go(i) {
+    if (i < 0 || i >= CHAPTERS.length) return;
+    clearTimeout(holdTimer); cancelAnimationFrame(raf);
+    current = i; show(i);
+    tour.classList.remove("is-holding");
+    const c = CHAPTERS[i];
+
+    if (reduce) { // niente movimento: fermo immagine del capitolo e testo subito
+      stills.forEach((s, k) => s.classList.toggle("on", k === i));
+      setFill(i, 1); hold();
+      return;
+    }
+    video.currentTime = c.from;
+    if (playing) video.play().catch(() => setPlaying(false));
+    travel();
+  }
+
+  // Viaggio (70%): il video scorre; un ciclo rAF lo ferma esattamente prima del taglio
+  function travel() {
+    const c = CHAPTERS[current];
+    const t = video.currentTime;
+    setFill(current, ((t - c.from) / (c.to - c.from)) * 0.7);
+    if (t >= c.to) {
+      video.pause();
+      setFill(current, 0.7);
+      hold();
+      return;
+    }
+    raf = requestAnimationFrame(travel);
+  }
+
+  // Pausa (30%): titolo a schermo, poi tappa successiva se in riproduzione
+  function hold(remaining) {
+    tour.classList.add("is-holding");
+    const c = CHAPTERS[current];
+    const total = holdFor(c);
+    holdLeft = remaining ?? total;
+    holdStart = performance.now();
+    if (!playing) return;
+    const tick = () => {
+      const done = total - holdLeft + (performance.now() - holdStart);
+      if (!reduce) setFill(current, 0.7 + 0.3 * (done / total));
+      if (done < total) raf = requestAnimationFrame(tick);
+    };
+    tick();
+    holdTimer = setTimeout(() => {
+      if (current < CHAPTERS.length - 1) go(current + 1);
+      else { setPlaying(false); setFill(current, 1); holdLeft = 0; }
+    }, holdLeft);
+  }
+
+  function setPlaying(on) {
+    playing = on;
+    $("toggle").setAttribute("aria-label", on ? "Metti in pausa" : "Riprendi");
+    $("toggle-icon").innerHTML = on
+      ? '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>'
+      : '<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/>';
+  }
+
+  $("toggle").addEventListener("click", () => {
+    if (current < 0) return go(0);
+    if (playing) { // pausa
+      setPlaying(false);
+      clearTimeout(holdTimer); cancelAnimationFrame(raf);
+      if (tour.classList.contains("is-holding")) holdLeft -= performance.now() - holdStart;
+      else video.pause();
+    } else { // riprendi
+      setPlaying(true);
+      if (current === CHAPTERS.length - 1 && tour.classList.contains("is-holding") && holdLeft <= 0) return go(0);
+      if (tour.classList.contains("is-holding")) hold(Math.max(0, holdLeft));
+      else if (!reduce) { video.play(); travel(); }
+    }
+  });
+  $("prev").addEventListener("click", () => go(Math.max(0, current - 1)));
+  $("next").addEventListener("click", () => go(Math.min(CHAPTERS.length - 1, current + 1)));
+  tour.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") go(Math.min(CHAPTERS.length - 1, current + 1));
+    if (e.key === "ArrowLeft") go(Math.max(0, current - 1));
+  });
+
+  // Ingresso: zoom nella vetta (scale 6 dal punto toccato), lampo, poi il percorso
+  let entering = false;
+  function enter() {
+    if (entering) return; entering = true;
+    setPlaying(true);
+    if (reduce) { tour.scrollIntoView(); go(0); entering = false; return; }
+    video.load(); // inizia a caricare mentre parte lo zoom
+    hero.classList.add("is-zooming");
+    setTimeout(() => flash.classList.add("on"), 950);
+    setTimeout(() => {
+      tour.scrollIntoView({ behavior: "instant", block: "start" });
+      go(0);
+      flash.classList.remove("on");
+      setTimeout(() => { hero.classList.remove("is-zooming"); entering = false; }, 600);
+    }, 1500);
+  }
+  $("summit").addEventListener("click", enter);
+  $("start").addEventListener("click", enter);
+  $("again").addEventListener("click", (e) => { e.preventDefault(); tour.scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); setPlaying(true); go(0); });
+
+  // Arrivando sul percorso scorrendo, parte da solo; uscendo si ferma
+  new IntersectionObserver(([en]) => {
+    if (en.isIntersecting && en.intersectionRatio > 0.6 && current < 0 && !entering) go(0);
+    if (!en.isIntersecting && playing && current >= 0) $("toggle").click();
+  }, { threshold: [0, 0.6] }).observe(tour);
+
+  show(0);
+})();
+</script>
+</body>
+</html>
